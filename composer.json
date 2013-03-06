@@ -1,3 +1,11 @@
 {
-    "name": "Isometriks/SymEditBundle"
+    "name": "Isometriks/SymEditBundle",
+    "description": "CMS For Symfony2", 
+    "authors": [
+        {
+            "name": "Craig Blanchette", 
+            "email": "craig.blanchette@gmail.com"
+        }
+    ],
+    "target-dir": "Isometriks/Bundle/SymEditBundle"
 }
