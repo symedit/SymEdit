@@ -1,0 +1,24 @@
+{% extends 'IsometriksSymEditBundle::base.html.twig' %}
+
+{% block title %}Profile &raquo; {{ user.username }}{% endblock %}
+
+{% block content %}
+
+<h2>
+    {{ user.fullname }} 
+    <small>({{ user.username }})</small>
+</h2>
+
+<table class="table table-bordered">
+    <tr>
+        <th>Username:</th>
+        <td>{{ user.username }}</td>
+    </tr>
+    <tr>
+        <th>Email:</th>
+        <td>{{ user.email }}</td>
+    </tr>
+</table>
+
+<a class="btn btn-primary" href="{{ path('fos_user_profile_edit') }}">Edit Profile</a>
+{% endblock %}

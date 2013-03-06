@@ -1,0 +1,41 @@
+{% extends 'IsometriksSymEditBundle::form.html.twig' %}
+
+{% block title %}Login to SymEdit{% endblock %}
+
+{% block content %}
+{% if error %}
+    <div class="alert">{{ error|trans({}, 'FOSUserBundle') }}</div>
+{% endif %}
+
+<form class="form-horizontal" action="{{ path("fos_user_security_check") }}" method="post">
+  
+  <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
+
+  <div class="control-group">
+    <label class="control-label" for="username">{{ 'security.login.username'|trans({}, 'FOSUserBundle') }}</label>
+    <div class="controls">
+      <input type="text" id="username" name="_username" value="{{ last_username }}" required="required" placeholder="Username">
+    </div>
+  </div>
+    
+  <div class="control-group">
+    <label class="control-label" for="password">{{ 'security.login.password'|trans({}, 'FOSUserBundle') }}</label>
+    <div class="controls">
+      <input type="password" id="password" name="_password" required="required" placeholder="Password" />
+      <span class="help-inline"><a href="{{ path('fos_user_resetting_request') }}">Forgot Password</a></span>
+    </div>
+  </div>
+    
+  <div class="control-group">
+    <div class="controls">
+      <label class="checkbox">
+        {{ 'security.login.remember_me'|trans({}, 'FOSUserBundle') }} <input type="checkbox" id="remember_me" name="_remember_me" value="on" />
+      </label>
+    </div>
+  </div>
+
+  <div class="form-actions">
+    <input class="btn btn-primary" type="submit" id="_submit" name="_submit" value="{{ 'security.login.submit'|trans({}, 'FOSUserBundle') }}" />
+  </div>
+</form>
+{% endblock %}
