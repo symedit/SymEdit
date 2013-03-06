@@ -1,0 +1,18 @@
+<?xml version="1.0" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <parameters>
+        <parameter key="isometriks_settings.twig.extension.class">Isometriks\Bundle\SettingsBundle\Twig\Extension\SettingsBundleExtension</parameter>
+    </parameters>
+
+    <services>
+        <service id="isometriks_settings.twig.extension" class="%isometriks_settings.twig.extension.class%">
+            <argument type="service" id="isometriks_settings.settings" />
+            <argument>%isometriks_settings.twig.extension.global_variable%</argument>
+            <tag name="twig.extension" />
+        </service>
+    </services>
+</container>

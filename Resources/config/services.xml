@@ -1,0 +1,48 @@
+<?xml version="1.0" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <parameters>
+        <parameter key="isometriks_settings.cache_folder">isometriks_settings</parameter>
+        <parameter key="isometriks_settings.loader.loader_chain.class">Isometriks\Bundle\SettingsBundle\Loader\LoaderChain</parameter>
+        <parameter key="isometriks_settings.loader.yaml_files_loader.class">Isometriks\Bundle\SettingsBundle\Loader\YamlFilesLoader</parameter>
+        <parameter key="isometriks_settings.loader.xml_files_loader.class">Isometriks\Bundle\SettingsBundle\Loader\XmlFilesLoader</parameter>
+        <parameter key="isometriks_settings.settings.class">Isometriks\Bundle\SettingsBundle\Model\Settings</parameter>
+        <parameter key="isometriks_settings.form.settings.class">Isometriks\Bundle\SettingsBundle\Form\Type\SettingsType</parameter>
+    </parameters>
+
+    <services>
+        <service id="isometriks_settings.loader.loader_chain" class="%isometriks_settings.loader.loader_chain.class%">
+            <argument type="collection">
+                <argument type="service" id="isometriks_settings.loader.yaml_files_loader" />
+                <!--<argument type="service" id="isometriks_settings.loader.xml_files_loader" />-->
+            </argument>
+        </service>
+        
+        <service id="isometriks_settings.loader.yaml_files_loader" class="%isometriks_settings.loader.yaml_files_loader.class%">
+            <argument>%isometriks_settings.loader.files.yaml%</argument>
+        </service>
+        
+        <service id="isometriks_settings.settings" class="%isometriks_settings.settings.class%">
+            <argument type="service" id="isometriks_settings.loader.loader_chain" />
+            <argument>%kernel.root_dir%</argument>
+            <argument>%kernel.cache_dir%/%isometriks_settings.cache_folder%</argument>
+            <argument>%kernel.debug%</argument>
+        </service>
+        <!--
+        <service id="isometriks_settings.loader.xml_files_loader" class="%isometriks_settings.loader.xml_files_loader.class%">
+            <argument>%isometriks_settings.loader.files.xml%</argument>
+        </service>
+        -->
+        
+        
+        <service id="form.type.settings" class="%isometriks_settings.form.settings.class%">
+            <argument type="service" id="isometriks_settings.settings" />
+            <argument type="service" id="security.context" />
+            <tag name="form.type" alias="settings" />
+        </service>
+
+    </services>
+</container>
