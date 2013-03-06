@@ -1,6 +1,7 @@
 {
     "name": "Isometriks/SymEditBundle",
     "description": "CMS For Symfony2", 
+    "type": "symfony-bundle", 
     "authors": [
         {
             "name": "Craig Blanchette", 
