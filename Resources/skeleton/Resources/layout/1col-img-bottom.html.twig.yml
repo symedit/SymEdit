@@ -1,0 +1,5 @@
+title: 1 Column, Image Bottom
+description: One column layout, full content across top, main image bottom, 
+rows:
+        - 't'
+        - 'i'

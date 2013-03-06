@@ -1,0 +1,22 @@
+{% extends 'IsometriksSymEditBundle::base.html.twig' %}
+
+{% block title %}Users &raquo; List{% endblock %}
+
+{% block content %}
+
+<table class="table table-bordered">
+    {% for user in entities %}
+        <tr>
+            <td><i class="icon-user icon-white"></i> {{ user.username }}</td>
+            <td>{{ user.fullname }}</td>
+            <td>
+                <a class="btn btn-success btn-small" href="{{ path('admin_user_show', {id:user.id}) }}">Show</a>
+                <a class="btn btn-primary btn-small" href="{{ path('admin_user_edit', {id:user.id}) }}">Edit</a>
+            </td>
+        </tr>
+    {% endfor %}
+</table>
+
+<a class="btn btn-primary" href="{{ path('admin_user_new') }}">Create New User</a>
+
+{% endblock %}

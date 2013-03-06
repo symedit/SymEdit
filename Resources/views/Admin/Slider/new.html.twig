@@ -1,0 +1,12 @@
+{% extends 'IsometriksSymEditBundle::base.html.twig' %}
+
+{% block title %}Images &raquo; Sliders &raquo; New{% endblock %}
+
+{% block content %}
+<form class="form-horizontal" action="{{ path('admin_image_slider_create') }}" method="post" {{ form_enctype(form) }}>
+    {{ form_widget(form) }}
+    <div class="form-actions">
+        <button class="btn btn-primary" type="submit">Create</button>
+    </div>
+</form>
+{% endblock %}

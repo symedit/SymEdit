@@ -1,0 +1,27 @@
+{% extends 'IsometriksSymEditBundle::base.html.twig' %}
+
+{% block title %}Images &raquo; Sliders &raquo; List{% endblock %}
+
+{% block content %}
+    
+    {% for entity in entities %}
+    <div class="well">
+        <h5 class="pull-right">({{ entity.name }})</h5>
+        <h3>{{ entity.description }}</h3>
+        
+        {% for slide in entity.slides %}
+            <a href="{{ path('admin_image_slider_slide_edit', {id:slide.id}) }}">
+                <img class="img-polaroid" src="{{ slide.image.webpath|constrain({w:200,h:60}) }}" />
+            </a>
+        {% endfor %}
+            
+        <div class="form-actions">
+            <a class="btn btn-primary" href="{{ path('admin_image_slider_edit', { 'id': entity.id }) }}">Edit Slider</a>
+        </div>
+    </div>
+    {% endfor %}
+
+    <div class="form-actions">
+        <a class="btn btn-success" href="{{ path('admin_image_slider_new') }}">Create Slider</a>
+    </div>
+{% endblock %}

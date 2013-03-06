@@ -1,0 +1,65 @@
+{% extends 'IsometriksSymEditBundle::base.html.twig' %}
+
+{% macro tree(node) %}
+  {% if node.children|length > 0 %}
+  <ul>
+      {% for child in node.children %}
+          <li data-id="{{ child.id }}">
+              <a href="{{ path('admin_page_edit', {id:child.id}) }}">
+                  {% if child.homepage %}
+                      <i class="icon-home icon-white"></i>
+                  {% else %}
+                      {% if child.pageController %}
+                      <i class="icon-filter icon-white"></i>
+                      {% else %}
+                      <i class="icon-file icon-white"></i>
+                      {% endif %}
+                  {% endif %}
+                  {{ child.title }}
+              </a>
+              {{ _self.tree( child ) }}
+          </li>
+      {% endfor %}
+  </ul>
+  {% endif %}
+{% endmacro %}
+
+{% block title %}Showing Pages{% endblock %}
+
+{% block content %}
+<div class="tree" id="page-tree">
+     {{ _self.tree( Root ) }}
+</div>
+<form class="form-hidden" id="reorder-form" action="{{ path('admin_page_reorder') }}">
+    {{ form_widget(reorder_form) }}
+</form>
+{% endblock %}
+
+{% block scripts %}
+    {{ parent() }}
+    <script>
+        $(function(){
+            var $form = $('#reorder-form'); 
+            
+            function sortStop(e, ui){
+                $target = $(e.target); 
+                var order = 0; 
+                var pairs = []; 
+                $target.find('>li').each(function(){
+                    pairs.push({
+                        name: 'isometriks_page_reorder[pair]['+$(this).data('id')+']',
+                        value: order++
+                    });
+                }); 
+
+                var data = $form.serializeArray().concat(pairs); 
+                
+                $.post($form.attr('action'), data);
+            }
+            
+            $('#page-tree ul').sortable({
+                update: sortStop
+            }); 
+        });
+    </script>
+{% endblock %}

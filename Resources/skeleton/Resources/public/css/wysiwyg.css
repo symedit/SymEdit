@@ -1,0 +1,6 @@
+@import url('../bootstrap/css/bootstrap.min.css'); 
+
+body {
+    max-width: 1000px; 
+    padding: 10px 20px;
+}

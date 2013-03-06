@@ -1,0 +1,6 @@
+{% if chunk.options.src is not defined %}
+    {% set src = 'http://placehold.it/' ~ chunk.options.w ~ 'x' ~ chunk.options.h %}
+{% else %}
+    {% set src = chunk.options.src %}
+{% endif %}
+<img {% if chunk.options.class is defined and chunk.options.class %}class="{{ chunk.options.class }}" {% endif %}src="{{ src }}">

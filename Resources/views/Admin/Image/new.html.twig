@@ -1,0 +1,14 @@
+{% extends 'IsometriksSymEditBundle::base.html.twig' %}
+
+{% block title %}Images &raquo; Upload{% endblock %}
+
+{% block content %}
+
+<form class="form-horizontal" action="{{ path('admin_image_create') }}" method="post" {{ form_enctype(form) }}>
+    {{ form_widget(form) }}
+    <div class="form-actions">
+        <button class="btn btn-primary" type="submit">Upload Image</button>
+    </div>
+</form>
+
+{% endblock %}

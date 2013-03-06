@@ -1,0 +1,15 @@
+symedit_crawler_controller:
+    resource: "@IsometriksSymEditBundle/Controller/CrawlerController.php"
+    type: annotation
+    
+symedit_webmaster_controller:
+    resource: "@IsometriksSymEditBundle/Controller/WebmasterController.php"
+    type: annotation
+    
+symedit_blog_controller:
+    resource: "@IsometriksSymEditBundle/Controller/BlogController.php"
+    type: annotation
+    
+symedit_contact_controller:
+    resource: "@IsometriksSymEditBundle/Controller/ContactController.php"
+    type: annotation

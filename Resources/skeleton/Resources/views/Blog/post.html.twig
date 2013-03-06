@@ -1,0 +1,19 @@
+<article>
+    <h3>
+        <a href="{{ path('blog_slug_view', {slug:Post.slug}) }}">{{ Post.title }}</a> 
+        <small>by 
+            {% if Post.author.gplus %}
+                <a href="{{ Post.author.gplus }}?rel=author"><img src="https://www.gstatic.com/images/icons/gplus-16.png" alt="{{ Post.author.fullname|plain }} on Google+"></a>
+            {% endif %}
+            <a href="{{ path('blog_author_view', {username:Post.author.username}) }}">{{ Post.author.fullname }}</a>
+        </small>
+    </h3>
+    <p>
+        {% if Post.image %}
+            <span class="span3">
+                <img class="img-polaroid" src="{{ Post.image.webpath|constrain({w:200,h:400}) }}" alt="{{ Post.title }}" />
+            </span>
+        {% endif %}
+        {{ Post.content|raw }}
+    </p>
+</article>

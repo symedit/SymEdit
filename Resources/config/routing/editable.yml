@@ -1,0 +1,11 @@
+isometriks_sym_edit_editable_chunk:
+    resource: "@IsometriksSymEditBundle/Editable/Extension/Chunk/Controller/ChunkController.php"
+    type: annotation
+    
+isometriks_sym_edit:
+    resource: "@IsometriksSymEditBundle/Editable/Extension/Chunk/Controller/ImageChunkController.php"
+    type: annotation
+    
+isometriks_sym_edit_editable_entity_attribute:
+    resource: "@IsometriksSymEditBundle/Editable/Extension/EntityAttribute/EntityAttributeController.php"
+    type: annotation

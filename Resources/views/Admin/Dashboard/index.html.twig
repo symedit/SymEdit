@@ -1,0 +1,82 @@
+{% extends 'IsometriksSymEditBundle::base.html.twig' %}
+
+{% block title %}Dashboard{% endblock %}
+
+{% block content %}
+
+<h2>Welcome, {{ app.user.firstname }}</h2>
+  
+<div class="row">
+    <div class="span4">
+        <div class="widget">
+            <div class="widget-heading">
+                <span class="title">Setup</span>
+            </div>
+            <div class="widget-content">
+                <ul>
+                    {% if is_granted('ROLE_ADMIN_SETTING') %}<li><a href="{{ path('admin_setting') }}">Change Site Settings</a></li>{% endif %}
+                    {% if is_granted('ROLE_ADMIN_USER')    %}<li><a href="{{ path('admin_user') }}">Create Users</a></li>{% endif %}
+                    {% if is_granted('ROLE_ADMIN_BLOG')    %}<li><a href="{{ path('admin_blog_category') }}">Create Blog Categories</a></li>{% endif %}
+                </ul>
+            </div>
+        </div>
+    </div>
+        
+    <div class="span4">
+        <div class="widget">
+            <div class="widget-heading">
+                <span class="title">Common Content Updates</span>
+            </div>
+            <div class="widget-content">
+                <ul>
+                    {% if is_granted('ROLE_ADMIN_BLOG')  %}<li><a href="{{ path('admin_blog_new') }}">Post New Blog</a></li>{% endif %}
+                    {% if is_granted('ROLE_ADMIN_PAGE')  %}<li><a href="{{ path('admin_page') }}">Edit Page Content</a></li>{% endif %}
+                    {% if is_granted('ROLE_ADMIN_IMAGE') %}<li><a href="{{ path('admin_image') }}">Upload / Edit Images</a></li>{% endif %}
+                </ul>
+            </div>
+        </div>
+    </div>
+        
+    <div class="span4">
+        <div class="widget">
+            <div class="widget-heading">
+                <span class="title">{{ app.user.firstname }}'s Actions</span>
+            </div>
+            <div class="widget-content">
+                <ul>
+                    <li><a href="{{ path('fos_user_profile_show') }}">View Profile</a></li>
+                    <li><a href="{{ path('fos_user_profile_edit') }}">Edit Profile</a></li>
+                    <li><a href="{{ path('fos_user_change_password') }}">Change Password</a></li>
+                    <li><a href="{{ path('fos_user_security_logout') }}">Logout</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+  {# Missing Templates Widget #}
+
+  {% if missing_templates|length > 0 %}
+  <div class="span4 pull-right">
+      <div class="widget">
+          <div class="widget-heading">
+              <span class="title"><i class="icon-warning-sign icon-white"></i> Missing Templates</span>
+          </div>
+          <div class="widget-content">
+              <ul>
+                  {% for entity in missing_templates %}
+                      <li><a href="{{ path('admin_page_edit', {id:entity.id}) }}">{{ entity.title }}</a></li>
+                  {% endfor %}
+              </ul>
+              <form method="post" action="{{ path('admin_dashboard_update_missing') }}">
+                  {{ form_widget(missing_form.template) }}
+                  {{ form_rest(missing_form) }}
+                  <div class="form-actions">
+                      <button class="btn btn-primary">Set Template for All</button>
+                  </div>
+              </form>
+          </div>
+      </div>
+  </div>
+  {% endif %}
+{% endblock %}

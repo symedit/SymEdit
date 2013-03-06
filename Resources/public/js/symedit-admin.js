@@ -1,0 +1,82 @@
+
+var Isometriks = (function(){
+
+    redactor_iframe = {
+        iframe: true,
+    };
+        
+    redactor = {
+        createSpans: function(){
+            var rows; 
+            if(rows = prompt('Enter column widths comma separated, should add to 12.', '6,6')){
+                rows = rows.split(','); 
+                var html = ''; 
+                for(var i=0; i<rows.length; i++){
+                    html += '<div class="span' + rows[i].trim() + '"><p>Span ' + rows[i] + '</p></div>'; 
+                }  
+                return html;
+            }
+        
+            return false; 
+        },
+            
+        row: function(obj){
+            var html; 
+            if(html = redactor.createSpans()){
+                obj.$editor.focus();
+                obj.restoreSelection(); 
+                obj.execCommand('inserthtml', '<div class="row">' + html + '</div>'); 
+            }
+        }, 
+            
+        fluidRow: function(obj){
+            var html; 
+            if(html = redactor.createSpans()){
+                obj.$editor.focus();
+                obj.restoreSelection(); 
+                obj.execCommand('inserthtml', '<div class="row-fluid">' + html + '</div>'); 
+            }
+        },
+            
+        heroUnit: function(obj){
+            var html = '<div class="hero-unit"><h1>Caption</h1><p>Sub Text</p><p><a href="#" class="btn btn-large btn-primary">Learn More &raquo</a></p></div>';
+            obj.$editor.focus();
+            obj.restoreSelection(); 
+            obj.execCommand('inserthtml', html); 
+        }
+    };
+
+
+    redactor_options = {
+        formattingTags: ['p', 'blockquote', 'pre', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6'],
+        convertDivs: false,
+        buttonsAdd: ['|', 'bootstrap'], 
+        buttonsCustom: {
+            bootstrap: {
+                title: "Bootstrap Commands",
+                dropdown: {      
+                    row: {
+                        title: 'Insert Row', 
+                        callback: this.redactor.row
+                    },
+                        
+                    row_fluid: {
+                        title: 'Insert Fluid Row', 
+                        callback: this.redactor.fluidRow
+                    },
+                        
+                    hero_unit: {
+                        title: 'Insert Hero Unit', 
+                        callback: this.redactor.heroUnit
+                    }
+                }
+            }
+        }
+    };
+
+    return {
+        redactor_options: redactor_options, 
+        redactor_iframe: redactor_iframe
+    };
+    
+})(); 

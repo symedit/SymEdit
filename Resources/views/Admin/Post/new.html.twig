@@ -1,0 +1,44 @@
+{% extends 'IsometriksSymEditBundle::base.html.twig' %}
+
+{% block title %}Blog &raquo; New{% endblock %}
+
+{% block content %}
+
+<form class="form-horizontal" action="{{ path('admin_blog_create') }}" method="post" {{ form_enctype(form) }}>
+    
+    <ul class="nav nav-tabs">
+        <li class="active"><a href="#basic" data-toggle="tab">Basic</a></li>
+        <li><a href="#post-seo" data-toggle="tab">SEO</a></li>
+        <li><a href="#post-summary" data-toggle="tab">Summary</a></li>
+        <li><a href="#post-content" data-toggle="tab">Content</a></li>
+    </ul>
+    
+    <div class="tab-content">
+        <div class="tab-pane active" id="basic">
+            {{ form_row(form.title) }}
+            {{ form_row(form.author) }}
+            {{ form_row(form.status) }}
+            {{ form_row(form.image.file, {label: 'Featured Image'}) }}
+            {{ form_row(form.categories) }}
+        </div>
+            
+        <div class="tab-pane" id="post-seo">
+            {{ form_widget(form.seo) }}
+        </div>           
+            
+        <div class="tab-pane" id="post-summary">
+            {{ form_widget(form.summary) }}
+        </div>
+            
+        <div class="tab-pane" id="post-content">
+            {{ form_widget(form.content) }}
+        </div>
+    </div>
+    
+    {{ form_rest(form) }}
+    
+    <div class="form-actions">
+        <button class="btn btn-primary" type="submit">Add Post</button>
+    </div>
+</form>
+{% endblock %}

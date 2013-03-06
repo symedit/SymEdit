@@ -1,0 +1,43 @@
+{% extends 'IsometriksSymEditBundle::base.html.twig' %}
+
+{% block title %}Images &raquo; List{% endblock %}
+
+{% block content %}
+
+<ul class="thumbnails" id="images">
+  {% for entity in entities %}
+  <li class="span2">
+      <div class="widget">
+          <div class="widget-heading">
+              <span class="title">{{ entity.name }}</span>
+          </div>
+          <div class="widget-content inverse nopad">
+              <a href="{{ path('admin_image_edit', {id:entity.id}) }}">
+                  <img src="{{ entity.webpath|constrain({ w:170 }) }}">
+              </a>
+          </div>
+      </div>
+  </li>
+  {% endfor %}
+</ul>
+
+<div class="form-actions">
+    <a class="btn btn-primary" href="{{ path('admin_image_new') }}">
+        Add New Image
+    </a>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script src="{{ asset('bundles/isometrikssymedit/js/jquery.masonry.min.js') }}"></script>
+<script type="text/javascript">
+    $(window).load(function(){
+        $('#images').masonry({
+            itemSelector: 'li', 
+            columnWidth: function( containerWidth ) {
+                return containerWidth / 6;
+            }
+        });
+    }); 
+</script>
+{% endblock %}

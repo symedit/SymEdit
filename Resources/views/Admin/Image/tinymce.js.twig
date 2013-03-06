@@ -1,0 +1,5 @@
+var tinyMCEImageList = new Array(
+{% for image in images %}
+        ["{{ image.name }}", "{{ image.webpath|raw }}"]{% if not loop.last %},{% endif %}
+{% endfor %}
+);

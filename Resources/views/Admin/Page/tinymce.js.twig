@@ -1,0 +1,5 @@
+var tinyMCELinkList = new Array(
+{% for page in pages %}
+        ["{{ page }}", "{{ page.path }}"]{% if not loop.last %},{% endif %}
+{% endfor %}
+);

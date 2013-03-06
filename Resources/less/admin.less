@@ -1,0 +1,140 @@
+
+@import "elements.less"; 
+@import "layout.less"; 
+
+@media (min-width: 981px) {
+  body {
+    padding-top: 50px;
+  }
+}
+
+@media (max-width: 979px){
+  .navbar-fixed-top {
+    margin-bottom: 0;
+  }
+}
+
+#title {
+  background-color: rgba(0,0,0,.6); 
+  padding: 4px 0; 
+  font-size: 15px; 
+
+  .text {
+    margin-left: 20px; 
+  }
+}
+
+#flash {
+  background-color: rgba(150,50,50,.6); 
+  color: #fff; 
+  padding: 4px 0;
+  font-size: 13px; 
+
+  .text {
+    margin-left: 40px; 
+  }
+}
+
+#content {
+  margin-top: 26px;
+  padding-bottom: 40px; 
+}
+
+
+ 
+.wysiwyg-editor {
+  height: 500px; 
+}
+
+.form-hidden {
+  display: none; 
+}
+
+.full-width {
+  width: 100%;
+}
+
+.text-center {
+  text-align: center; 
+}
+
+.counter {
+  font-size: 10px; 
+  background-color: rgba(0,0,0,.6); 
+  color: #fff; 
+  padding: 2px 0; 
+  width: 60px; 
+  text-align: center; 
+  display: block; 
+
+  &.over {
+    background-color: rgba(140,60,60,.6); 
+    font-weight: bold; 
+  }
+}
+
+
+.tree {
+
+  [class^="icon-"], [class*=" icon-"] {
+    margin-right: 5px; 
+  }
+
+  li {
+    list-style: none; 
+    padding: 6px 0; 
+  }
+
+  li:last-child {
+    padding-bottom: 0;  
+  }
+
+  a {
+    border: 1px solid transparent; 
+    padding: 4px 12px; 
+    .transition(.3s); 
+  }
+
+  a:hover {
+    text-decoration: none; 
+    border: 1px solid rgba(255,255,255,.3); 
+    background-color: rgba(255,255,255,.1); 
+    .rounded(3px); 
+  }
+}
+
+.form-actions {
+    > button, > a, > input {
+        margin: 0; 
+        margin-right: 12px; 
+    }
+}
+
+
+// Redactor Fixes
+iframe {
+  margin-left: 0 !important; 
+}
+
+.redactor_tab label {
+  color: #333; 
+}
+
+.redactor_box textarea {
+  .box-sizing(); 
+  padding: 10px !important; 
+  font-family: "Lucida Console", Monaco, monospace !important; 
+}
+
+body .redactor_toolbar li a.redactor_btn_bootstrap {
+  text-align: center; 
+  font-size: 14px !important; 
+  line-height: 1.8 !important; 
+  text-indent: 0; 
+  color: #333; 
+  background-image: none; 
+
+  &:after {
+    content: "B"; 
+  }
+}

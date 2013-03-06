@@ -1,0 +1,14 @@
+{% extends 'IsometriksSymEditBundle::base.html.twig' %}
+
+{% block title %}Users &raquo; Create New{% endblock %}
+
+{% block content %}
+
+<form class="form-horizontal" action="{{ path('admin_user_create') }}" method="post" {{ form_enctype(form) }}>
+    {{ form_widget(form) }}
+    <div class="form-actions">
+        <button class="btn btn-primary" type="submit">Add User</button>
+    </div>
+</form>
+
+{% endblock %}

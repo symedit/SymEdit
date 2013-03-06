@@ -1,0 +1,98 @@
+company:
+    label: Company Settings
+    default_options:
+        attr:
+            class: span5
+    settings:
+        name:
+            options:
+                label: Company Name
+            default: SymEdit Site
+        address:
+            default: 5 SymEdit Way
+            type: textarea
+            options:
+                attr:
+                    rows: 3
+        email:
+            default: contact@mysite.com
+            options:
+                label: Contact Email
+        phone:
+            default: (123)-123-1234
+        fax: 
+            options:
+                required: false
+        
+social:
+    label: Social Media Settings
+    default_options:
+        required: false
+        attr:
+            class: span5
+    settings:
+        facebook:
+            default: "http://facebook.com"
+            type: url
+        twitter:
+            default: "http://twitter.com"
+            type: url
+        youtube:
+            default: "http://youtube.com"
+            type: url
+        google-plus:
+            default: "http://plus.google.com"
+            type: url
+        linkedin:
+            default: "http://linkedin.com"
+            type: url
+            options:
+                label: LinkedIn
+            
+webmaster:
+    label: Webmaster Settings
+    role: ROLE_ADMIN_WEBMASTER
+    default_options:
+        required: false
+        attr:
+            class: span5
+    settings:
+        google_analytics:
+            options:
+                label: Google Analytics Code
+        google_verify:
+            options:
+                label: Google Verification
+        bing_verify: 
+            options:
+                label: Bing Verification
+        robots:
+            type: choice
+            options:
+                required: true
+                choices:
+                    deny: Deny All
+                    allow: Allow All
+                attr:
+                    class: span3
+                    
+blog:
+    label: Blog Settings
+    role: ROLE_ADMIN_BLOG
+    settings:
+        max_posts:
+            type: integer
+            default: 3
+        
+advanced:
+    label: Advanced Settings
+    role: ROLE_SUPER_ADMIN
+    settings:
+        caching:
+            required: true
+            type: choice
+            options:
+                choices:
+                    none: No Cache
+                    cache: Cache
+        

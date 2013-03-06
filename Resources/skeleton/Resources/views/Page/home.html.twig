@@ -1,0 +1,9 @@
+{% extends '{{{ bundle }}}:Page:base.html.twig' %}
+
+{% block content %}
+  
+    {% render 'IsometriksSymEditBundle:Slider:index' with { name:'homepage' } %}
+
+    {{ parent() }}
+
+{% endblock %}

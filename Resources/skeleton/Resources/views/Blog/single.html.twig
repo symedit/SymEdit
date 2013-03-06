@@ -1,0 +1,12 @@
+{% extends '{{{ bundle }}}:Blog:index.html.twig' %}
+
+{% block title %}{{ SEO.title|default(Post.title) }}{% endblock %}
+{% block description %}{{ SEO.description|default(Post.content|striptags|slice(0,150)) }}{% endblock %}
+
+{% block blog_title %}
+    Viewing Post
+{% endblock %}
+
+{% block blog_content %}
+    {% include '{{{ bundle }}}:Blog:post.html.twig' %}
+{% endblock %}

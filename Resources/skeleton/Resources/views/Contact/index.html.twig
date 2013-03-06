@@ -1,0 +1,36 @@
+{% extends '{{{ bundle }}}:Page:base.html.twig' %}
+
+{% block content %}
+<div class="row">
+  <div class="span6">
+      <h1>{{ Page.title }}</h1>
+      <div>
+      <h3>
+        {{ Settings.company.address|nl2br }}
+      </h3>
+      <h5>P: {{ Settings.company.phone }}</h5>
+      {% if Settings.company.fax %}<h5>F: {{ Settings.company.fax }}</h5>{% endif %}
+      <h5>E: <a href="mailto:{{ Settings.company.email }}">{{ Settings.company.email }}</a></h5>
+     </div>
+   </div>
+
+    <div class="span6">
+      <iframe width="540" height="280" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/maps?q=2131+Providence+Pike+North+Smithfield,+RI+02896&amp;ie=UTF8&amp;hq=&amp;hnear=2131+Providence+Pike,+North+Smithfield,+Rhode+Island+02896&amp;gl=us&amp;t=m&amp;z=14&amp;ll=41.944924,-71.546474&amp;output=embed"></iframe>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="span6">
+      <h3>Services</h3>
+      <form method="post" class="form-horizontal">
+
+          {{ form_widget(form) }}
+
+          <button style="margin-left:80px" type="submit" class="btn">Send Message</button>
+      </form>
+    </div>
+    <div class="span6">
+        {{ Page.content|raw }}
+    </div>
+  </div>
+{% endblock %}

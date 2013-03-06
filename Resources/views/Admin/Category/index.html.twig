@@ -1,0 +1,28 @@
+{% extends 'IsometriksSymEditBundle::base.html.twig' %}
+
+{% macro tree(node) %}
+  {% if node.children|length > 0 %}
+  <ul>
+      {% for child in node.children %}
+          <li>
+              <a href="{{ path('admin_blog_category_edit', {id:child.id}) }}">
+                  <i class="icon-tag icon-white"></i> {{ child.title }}
+              </a>
+              {{ _self.tree( child ) }}
+          </li>
+      {% endfor %}
+  </ul>
+  {% endif %}
+{% endmacro %}
+
+{% block title %}Blog &raquo; Categories &raquo; List{% endblock %}
+
+{% block content %}
+<div class="tree">
+     {{ _self.tree( RootCategory ) }}
+</div>
+
+<div class="form-actions">
+    <a class="btn btn-primary" href="{{ path('admin_blog_category_new') }}">New Category</a>
+</div>
+{% endblock %}

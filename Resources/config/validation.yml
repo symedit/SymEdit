@@ -1,0 +1,35 @@
+
+Isometriks\Bundle\SymEditBundle\Entity\Page:
+    constraints:
+        - Callback:
+            methods: [isNameValid]
+    properties:
+        title:
+            - NotBlank: 
+                message: "You must provide a Title for this Page"
+        name:
+            - Regex:
+                pattern: "/^[a-z0-9_-]+$/"
+                message: "You may only use lowercase letters, numbers, underscores or hyphens"
+                
+Isometriks\Bundle\SymEditBundle\Entity\Image:
+    properties:
+        name:
+            - NotBlank: ~
+            - Regex:
+                pattern: "/^[a-z0-9_-]+$/"
+                message: "You may only use lowercase letters, numbers, underscores or hyphens"
+                
+Isometriks\Bundle\SymEditBundle\Entity\Category:
+    properties:
+        name:
+            - NotBlank: ~
+            - Regex:
+                pattern: "/^[a-z0-9_-]+$/"
+                message: "You may only use lowercase letters, numbers, underscores or hyphens"
+                
+Isometriks\Bundle\SymEditBundle\Entity\Post:
+    properties:
+        title:
+            - NotBlank: ~
+            

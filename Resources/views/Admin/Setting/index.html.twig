@@ -1,0 +1,32 @@
+{% extends 'IsometriksSymEditBundle::base.html.twig' %}
+
+{% block title %}Settings{% endblock %}
+
+{% block content %}
+
+<form class="form-horizontal" method="post" action="{{ path('admin_setting_update') }}">
+    
+    <ul class="nav nav-tabs">
+        {% for group in form.groups %}
+        <li{% if loop.first %} class="active"{% endif %}>
+            <a href="#setting-{{ group.vars.name }}" data-toggle="tab">{{ group.vars.label }}</a>
+        </li>
+        {% endfor %}
+    </ul>
+
+    <div class="tab-content">
+        
+    {% for group in form.groups %}
+        <div class="tab-pane{% if loop.first %} active{% endif %}" id="setting-{{ group.vars.name }}">
+            {{ form_widget(group) }}
+        </div>
+    {% endfor %}
+        
+    {{ form_rest(form) }}
+        
+    <div class="form-actions">
+        <button type="submit" class="btn btn-primary">Update Settings</button>
+    </div>
+</form>
+
+{% endblock %}

@@ -1,0 +1,42 @@
+admin:
+    page:
+        title: Title
+        name: Name
+        tagline: Tagline
+        template: 
+            help: It is suggested that you try not to change templates once a page is already constructed, unless they have similar layouts. Templates requiring different content may not be interchangeable. 
+        parent: Parent
+        summary: Summary
+        pagecontroller: Page Controller?
+        pagecontrollerpath: 
+            label: Controller Path
+            help: When a controller with the path you specify is called, it will inject this Page. Use the PageController Annotation to link them.
+        display: 
+            label: Display
+            help: Show this Page in Navigation 
+        crawl:
+            label: Crawl
+            help: Show this Page on sitemap.xml?
+            
+        tabs:
+            basic: Basic
+            template: Template
+            seo: SEO
+            content: Content
+            advanced: Advanced
+            
+    file:
+        name:
+            label: Name
+            help: Letters, numbers, underscores, and hyphens
+        file:
+            label: File
+            help: ''
+            
+    seo:
+        title: Title
+        description: Description
+        keywords: Keywords
+        index: Index
+        follow: Follow
+        

@@ -1,0 +1,33 @@
+<article class="summary">
+    <div class="row-fluid">
+        <div class="date span3">
+            {{ Post.createdAt|date('F j, Y') }}
+        </div>
+        <div class="span9">
+            <h3>{{ Post.title }}</h3>
+        </div>
+    </div>
+        
+    <div class="row-fluid">
+        <div class="span3">
+        {% if Post.image %}
+            <img src="{{ Post.image.webpath|constrain({w:200,h:400}) }}" alt="{{ Post.title }}" />
+        {% endif %}
+        </div>
+        <div class="span9">
+            <div class="author">
+                Posted by <a href="{{ path('blog_author_view', { username: Post.author.username }) }}">{{ Post.author.fullname }}</a>
+            </div>
+            <p class="summary">
+                {% if Post.summary %}
+                    {{ Post.summary|raw }}
+                {% else %}
+                    {{ Post.content|plain(350, '...') }}
+                {% endif %}
+            </p>
+            <div>
+                <a class="read-more" href="{{ path('blog_slug_view', { slug: Post.slug }) }}">Continue reading &raquo;</a>
+            </div>
+        </div>
+    </div>
+</article>

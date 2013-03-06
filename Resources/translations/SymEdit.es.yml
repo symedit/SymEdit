@@ -1,0 +1,10 @@
+admin:
+    page:
+        title: Título
+        name: Nombre
+        tagline: Lema
+        summary: Resumen
+        template: Plantilla
+        parent: Padre
+        display:
+            label: Mostrar

@@ -1,0 +1,55 @@
+{% extends 'IsometriksSymEditBundle::base.html.twig' %}
+
+{% block title %}Create New Page{% endblock %}
+
+{% block content %}
+<form class="form-horizontal" action="{{ path('admin_page_create') }}" method="post" {{ form_enctype(form) }}>
+
+    {% include 'IsometriksSymEditBundle:Admin/Page:tabs.html.twig' %}
+
+    <div class="tab-content">
+        <div class="tab-pane active" id="basic">
+            <div class="row">
+                <div class="span6">
+                    {{ form_row( form.title ) }}
+                    {{ form_row( form.name ) }}  
+                    {{ form_row( form.tagline ) }}
+                </div>
+                    
+                <div class="span6">
+                    {{ form_row( form.parent ) }}
+                    {{ form_row( form.display ) }}
+                </div>
+            </div>
+
+            {{ form_row( form.summary ) }}
+            
+        </div>
+            
+        <div class="tab-pane" id="template">
+              {{ form_row( form.template ) }}
+        </div>            
+            
+        <div class="tab-pane" id="seo">
+            {{ form_widget( form.seo ) }}
+            {{ form_row( form.crawl ) }}
+        </div>
+            
+        <div class="tab-pane" id="page_content">
+            <div class="row-fluid">
+            {{ form_widget( form.content ) }}
+            </div>
+        </div>
+            
+        <div class="tab-pane" id="advanced">
+            {{ form_row( form.pageController ) }}
+            {{ form_row( form.pageControllerPath ) }}
+        </div>
+    </div>
+
+    {{ form_rest(form) }}
+    <div class="form-actions">
+        <button class="btn btn-primary" type="submit">Create Page</button>
+    </div>
+</form>
+{% endblock %}

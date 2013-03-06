@@ -1,0 +1,10 @@
+{% macro pageRoute(page) %}
+  <a href="{{ path(app.request.attributes.get('_route'), app.request.attributes.get('_route_params')|merge({'page':page})) }}">{{ page }}</a>
+{% endmacro %}
+<div class="pagination pagination-centered">
+    <ul>
+{% for i in 1..Pages.num %}
+        <li{% if Pages.cur == i %} class="active"{% endif %}>{{ _self.pageRoute(i) }}</li>
+{% endfor %}
+    </ul>
+</div>

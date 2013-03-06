@@ -1,0 +1,29 @@
+{% extends 'IsometriksSymEditBundle::base.html.twig' %}
+
+{% block title %}Users &raquo; {{ entity.username }}{% endblock %}
+
+{% block content %}
+
+<h3>{{ entity.fullname }} aka "{{ entity.username }}"</h3>
+
+<table class="table table-bordered">
+    <tr>
+        <th>Username:</th>
+        <td>{{ entity.username }}</td>
+    </tr>
+    <tr>
+        <th>Email:</th>
+        <td>{{ entity.email }}</td>
+    </tr>
+</table>
+
+<h4>Roles</h4>
+
+<ul>
+    {% for role in entity.roles %}
+    <li>{{ role }}</li>    
+    {% endfor %}
+</ul>
+
+<a class="btn btn-primary" href="{{ path('admin_user_edit', {id:entity.id}) }}">Edit User</a>
+{% endblock %}
