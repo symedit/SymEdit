@@ -1,5 +1,5 @@
 {
-    "name": "Isometriks/SymEditBundle",
+    "name": "isometriks/symedit-bundle",
     "description": "CMS For Symfony2", 
     "type": "symfony-bundle", 
     "authors": [
