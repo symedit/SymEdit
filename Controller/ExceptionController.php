@@ -4,15 +4,15 @@ namespace Isometriks\Bundle\SymEditBundle\Controller;
 
 use Symfony\Bundle\TwigBundle\Controller\ExceptionController as BaseController;
 use Symfony\Component\HttpKernel\Exception\FlattenException;
-use Symfony\Component\HttpKernel\Log\DebugLoggerInterface;
 use Symfony\Bundle\FrameworkBundle\Templating\TemplateReference;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request; 
+use Psr\Log\LoggerInterface; 
 use Isometriks\Bundle\SymEditBundle\Entity\Page; 
 
 class ExceptionController extends BaseController
 {
-    public function showAction(Request $request, FlattenException $exception, DebugLoggerInterface $logger = null, $format = 'html')
+    public function showAction(Request $request, FlattenException $exception, LoggerInterface $logger = null, $format = 'html')
     {
         $code        = $exception->getStatusCode();
         $host_bundle = $this->container->getParameter('isometriks_sym_edit.host_bundle');
