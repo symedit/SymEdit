@@ -45,7 +45,7 @@ class Settings implements \ArrayAccess
 
     private function getMergedSettings()
     {
-        $cache = new ConfigCache($this->cache_dir . '/settings.php', $this->debug);
+        $cache = new ConfigCache($this->cache_dir . '/isometriks_settings/settings.php', $this->debug);
 
         if (!$cache->isFresh()) {
             $file = sprintf('%s/config/settings.yml', $this->root_dir);
