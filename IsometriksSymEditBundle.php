@@ -15,7 +15,6 @@ class IsometriksSymEditBundle extends Bundle
         parent::build($container);
 
         $container->addCompilerPass(new AnnotationLoaderCompilerPass());
-        $container->addCompilerPass(new TwigExceptionCompilerPass()); 
         $container->addCompilerPass(new EditableExtensionCompilerPass());
     }
 }
