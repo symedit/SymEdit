@@ -7,7 +7,7 @@ use Symfony\Component\HttpKernel\Exception\FlattenException;
 use Symfony\Bundle\FrameworkBundle\Templating\TemplateReference;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request; 
-use Psr\Log\LoggerInterface; 
+use Symfony\Component\HttpKernel\Log\DebugLoggerInterface;
 use Isometriks\Bundle\SymEditBundle\Entity\Page; 
 
 class ExceptionController extends BaseController
@@ -21,7 +21,7 @@ class ExceptionController extends BaseController
         $this->host_bundle = $host_bundle; 
     }
     
-    public function showAction(Request $request, FlattenException $exception, LoggerInterface $logger = null, $format = 'html')
+    public function showAction(Request $request, FlattenException $exception, DebugLoggerInterface $logger = null, $format = 'html')
     {
         $code = $exception->getStatusCode();
 
