@@ -12,29 +12,35 @@ use Isometriks\Bundle\SymEditBundle\Entity\Page;
 
 class ExceptionController extends BaseController
 {
+    private $host_bundle; 
+    
+    public function __construct(\Twig_Environment $twig, $debug, $host_bundle)
+    {
+        parent::__construct($twig, $debug); 
+        
+        $this->host_bundle = $host_bundle; 
+    }
+    
     public function showAction(Request $request, FlattenException $exception, LoggerInterface $logger = null, $format = 'html')
     {
-        $code        = $exception->getStatusCode();
-        $host_bundle = $this->container->getParameter('isometriks_sym_edit.host_bundle');
-        $templating  = $this->container->get('templating');
-        $debug       = $this->container->get('kernel')->isDebug();
+        $code = $exception->getStatusCode();
 
         // If not debugging, try to find a template that exists, if not we'll 
         // default to Twig's default behavior.
-        if (!$debug) {
-            $bundles = array($host_bundle, 'IsometriksSymEditBundle');
+        if (!$this->debug) {
+            $bundles = array($this->host_bundle, 'IsometriksSymEditBundle');
 
             foreach ($bundles as $bundle) {
                 $template = new TemplateReference($bundle, 'Exception', $code, 'html', 'twig');
 
-                if ($templating->exists($template)) {
-                    return $templating->renderResponse($template, array(
+                if ($this->templateExists($template)) {
+                    return new Response($this->twig->render($template, array(
                         'Page' => $this->getPage(), 
                         'status_code' => $code,
                         'status_text' => isset(Response::$statusTexts[$code]) ? Response::$statusTexts[$code] : '',
                         'exception' => $exception,
                         'logger' => $logger,
-                    ));
+                    )));
                 }
             }
         }
