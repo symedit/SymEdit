@@ -6,7 +6,7 @@
         <div class="span9">
             <h1>{% block blog_title %}{{ Page.tagline }}{% endblock %}</h1>
             {% block blog_content %}
-                {% render 'IsometriksSymEditBundle:Blog:recent' %}
+                {{ render(controller('IsometriksSymEditBundle:Blog:recent')) }}
             {% endblock %}
             {% if Pages is defined and Pages.num > 1 %}
                 {% include '{{{ bundle }}}:Blog:paginate.html.twig' %}
