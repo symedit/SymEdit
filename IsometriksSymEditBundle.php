@@ -6,6 +6,7 @@ use Symfony\Component\HttpKernel\Bundle\Bundle;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Isometriks\Bundle\SymEditBundle\DependencyInjection\Compiler\AnnotationLoaderCompilerPass;  
 use Isometriks\Bundle\SymEditBundle\DependencyInjection\Compiler\EditableExtensionCompilerPass;  
+use Isometriks\Bundle\SymEditBundle\DependencyInjection\Compiler\TwigExceptionCompilerPass; 
 
 class IsometriksSymEditBundle extends Bundle 
 {    
@@ -15,5 +16,6 @@ class IsometriksSymEditBundle extends Bundle
 
         $container->addCompilerPass(new AnnotationLoaderCompilerPass());
         $container->addCompilerPass(new EditableExtensionCompilerPass());
+        $container->addCompilerPass(new TwigExceptionCompilerPass()); 
     }
 }
