@@ -14,9 +14,6 @@ class TwigExceptionCompilerPass implements CompilerPassInterface
         
         // Change the definition to use our class
         $definition = $container->getDefinition('twig.controller.exception'); 
-        $definition->setClass($controller); 
-        
-        // Set the Symfony exception listener to call this class instead with the showAction 
-        $container->setParameter('twig.exception_listener.controller', $controller.'::showAction'); 
+        $definition->setClass($controller);  
     }
 }

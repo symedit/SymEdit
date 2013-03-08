@@ -25,7 +25,6 @@ isometriks_settings:
         global_variable: Settings
         
 twig:
-    exception_controller: Isometriks\Bundle\SymEditBundle\Controller\ExceptionController::showAction
     form:
         resources: 
             - 'IsometriksSymEditBundle:Form:fields.html.twig'
