@@ -2,7 +2,7 @@
 
 {% block content %}
   
-    {% render 'IsometriksSymEditBundle:Slider:index' with { name:'homepage' } %}
+    {{ render('IsometriksSymEditBundle:Slider:index', { name:'homepage' }) }}
 
     {{ parent() }}
 
