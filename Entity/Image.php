@@ -5,6 +5,7 @@ namespace Isometriks\Bundle\SymEditBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Isometriks\Bundle\MediaBundle\Entity\File; 
 
 /**
  * @ORM\Entity

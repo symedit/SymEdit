@@ -4,8 +4,6 @@ namespace Isometriks\Bundle\SymEditBundle\Twig\Extension;
 
 use Symfony\Component\DependencyInjection\ContainerInterface; 
 use Symfony\Component\DependencyInjection\ContainerAwareInterface; 
-use Isometriks\Bundle\SymEditBundle\Twig\TokenParser; 
-use Isometriks\Bundle\SymEditBundle\Entity\Image; 
 
 class SymEditExtension extends \Twig_Extension implements ContainerAwareInterface
 {
@@ -69,19 +67,8 @@ class SymEditExtension extends \Twig_Extension implements ContainerAwareInterfac
     public function getFilters()
     {
         return array(
-            'constrain' => new \Twig_Filter_Method($this, 'imageConstrain'),
             'plain'     => new \Twig_Filter_Method($this, 'plain'),
         );
-    }
-
-    public function imageConstrain($src, $args)
-    {
-        // If you try to constrain an Image object directly
-        if($src instanceof Image){
-            $src = $src->getWebPath(); 
-        }
-        
-        return $this->container->get('isometriks_sym_edit.util.image_manipulator')->constrain($src, $args);
     }
     
     private function getExtensions()

@@ -4,6 +4,10 @@ namespace Isometriks\Bundle\SymEditBundle\Util;
 
 use Isometriks\Bundle\SettingsBundle\Model\Settings;
 
+/**
+ * TODO: Probbaly just take in an array instead of a Settings object..
+ * it does implement array access so we can remove this coupling, no?
+ */
 class Mailer
 {
     private $settings;

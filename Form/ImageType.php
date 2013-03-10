@@ -4,6 +4,7 @@ namespace Isometriks\Bundle\SymEditBundle\Form;
 
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+use Isometriks\Bundle\MediaBundle\Form\FileType; 
 
 class ImageType extends FileType
 {

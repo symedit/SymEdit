@@ -43,6 +43,8 @@ social:
         google-plus:
             default: "http://plus.google.com"
             type: url
+            options:
+                label: 'Google+'
         linkedin:
             default: "http://linkedin.com"
             type: url

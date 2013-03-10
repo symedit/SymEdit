@@ -5,28 +5,33 @@
 {% block content %}
 
 <form class="form-horizontal" method="post" action="{{ path('admin_setting_update') }}">
-    
-    <ul class="nav nav-tabs">
-        {% for group in form.groups %}
-        <li{% if loop.first %} class="active"{% endif %}>
-            <a href="#setting-{{ group.vars.name }}" data-toggle="tab">{{ group.vars.label }}</a>
-        </li>
-        {% endfor %}
-    </ul>
+    <div class="row-fluid">
+        <div class="span3">
+            <div class="well">
+                <ul class="nav nav-pills nav-stacked">
+                    {% for group in form.groups %}
+                    <li{% if loop.first %} class="active"{% endif %}>
+                        <a href="#setting-{{ group.vars.name }}" data-toggle="tab">{{ group.vars.label }}</a>
+                    </li>
+                    {% endfor %}
+                </ul>
 
-    <div class="tab-content">
-        
-    {% for group in form.groups %}
-        <div class="tab-pane{% if loop.first %} active{% endif %}" id="setting-{{ group.vars.name }}">
-            {{ form_widget(group) }}
+                <button type="submit" class="btn btn-block btn-primary">Update Settings</button>
+            </div>
         </div>
-    {% endfor %}
-        
-    {{ form_rest(form) }}
-        
-    <div class="form-actions">
-        <button type="submit" class="btn btn-primary">Update Settings</button>
+            
+        <div class="span9">
+            <div class="tab-content well">
+
+            {% for group in form.groups %}
+                <div class="tab-pane{% if loop.first %} active{% endif %}" id="setting-{{ group.vars.name }}">
+                    {{ form_widget(group) }}
+                </div>
+            {% endfor %}
+            </div>
+        </div>
     </div>
+    {{ form_rest(form) }}
 </form>
 
 {% endblock %}

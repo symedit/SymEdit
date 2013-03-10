@@ -245,7 +245,7 @@ div.subnav {
 	li > a:hover,
 	li.active > a:hover,
 	li:active > a:hover {
-		background-color: #8AD5DC;
+		background-color: lighten(@wellBackground, 10%);
 		border-color: transparent;
 		text-shadow: none;
 	}
@@ -425,10 +425,6 @@ input, textarea, .uneditable-input {
 
 select {
 	border: 0px solid transparent;
-}
-
-button {
-	margin-left: 12px;
 }
 
 input, textarea, .search-query, .uneditable-input,
