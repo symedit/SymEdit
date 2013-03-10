@@ -65,9 +65,9 @@ class FileTypeSubscriber implements EventSubscriberInterface {
     {
         $data   = $event->getData(); 
         $form   = $event->getForm(); 
-                
+        
         $form->add($this->factory->createNamed('file', 'file', null, array(
-            'required' => $this->options['required'], 
+            'required' => $data === null && $this->options['required'], 
             'label' => $this->options['file_label'], 
             'help_block' => $this->options['file_help'],
         )));

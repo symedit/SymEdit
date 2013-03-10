@@ -20,15 +20,15 @@ class Configuration implements ConfigurationInterface
         $treeBuilder = new TreeBuilder();
         $rootNode = $treeBuilder->root('isometriks_media');
 
-        $rootNode
+        /*$rootNode
             ->children()
-                ->arrayNode('sizes')->defaultNull()->prototype('array')->useAttributeAsKey('key')
+                ->arrayNode('sizes')->prototype('array')->useAttributeAsKey('key')
                     ->children()
                         ->scalarNode('w')->end()
                         ->scalarNode('h')->end()
                     ->end()
                 ->end()
-            ->end(); 
+            ->end(); */
                 
 
         return $treeBuilder;
