@@ -654,7 +654,11 @@ class Page implements UpdatableInterface
     
     public function getBreadcrumbs()
     {
-        return $this->getRoot() || $this->getHomepage() ? array() : array_merge($this->getParent()->getBreadcrumbs(), array($this)); 
+        if($this->getRoot() || $this->getHomepage() || $this->getParent() === null){
+            return array(); 
+        } else {
+            return array_merge($this->getParent()->getBreadcrumbs(), array($this)); 
+        }
     }
    
     
