@@ -6,6 +6,7 @@ namespace Isometriks\Bundle\SymEditBundle\Entity;
 
 use FOS\UserBundle\Entity\User as BaseUser;
 use Doctrine\ORM\Mapping as ORM;
+use Isometriks\Bundle\SymEditBundle\Util\Util; 
 
 /**
  * @ORM\Entity
@@ -34,6 +35,16 @@ class User extends BaseUser
      * @ORM\Column(length=255, nullable=true)
      */
     protected $gplus; 
+    
+    /**
+     * @ORM\ManyToOne(targetEntity="Image", cascade={"persist"})
+     */
+    protected $image;
+    
+    /**
+     * @ORM\Column(type="text", name="biography", nullable=true)
+     */
+    protected $biography; 
 
     public function __toString()
     {
@@ -127,5 +138,39 @@ class User extends BaseUser
     public function getGplus()
     {
         return $this->gplus;
+    }
+    
+    public function getBiography()
+    {
+        return $this->biography; 
+    }
+    
+    public function setBiography($biography)
+    {
+        $this->biography = $biography; 
+        
+        return $this; 
+    }
+    
+    public function getImage()
+    {
+        return $this->image; 
+    }
+    
+    public function setImage(Image $image)
+    {
+        $this->image = $image;
+        $this->setUpdated(); 
+        
+        return $this; 
+    }
+    
+    public function setUpdated()
+    {
+        if($image = $this->getImage()){
+            if($image->hasFile()){
+                $image->setName(Util::slugify($this->getFullname())); 
+            }
+        }
     }
 }
