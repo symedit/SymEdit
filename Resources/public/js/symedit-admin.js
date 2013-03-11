@@ -3,6 +3,8 @@ var Isometriks = (function(){
 
     redactor_iframe = {
         iframe: true,
+        autoresize: true, 
+        minHeight: 400
     };
         
     redactor = {

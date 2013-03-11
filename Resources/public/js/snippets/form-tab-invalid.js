@@ -3,6 +3,6 @@ $(function(){
        var $closest = $(this).closest('.tab-pane'); 
        var id = $closest.attr('id'); 
        
-       $('.nav-tabs a[href="#' + id + '"]').tab('show'); 
+       $('.nav a[href="#' + id + '"]').tab('show'); 
     });
 }); 
