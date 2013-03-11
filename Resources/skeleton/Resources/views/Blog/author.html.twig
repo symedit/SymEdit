@@ -1,6 +1,7 @@
 {% extends '{{{ bundle }}}:Blog:index.html.twig' %}
 
 {% block title %}{% if Author %}Posts by {{ Author.fullname }}{% else %}Author Not Found{% endif %}{% endblock %}
+{% block description %}Blogs posts by {{ Author.fullname }}{% endblock %}
 
 {% block blog_content %}
 {% if Author %}
