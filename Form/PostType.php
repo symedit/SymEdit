@@ -50,7 +50,6 @@ class PostType extends AbstractType {
                 ->add('image', new ImageType(), array(
                     'require_name' => false, 
                     'required' => false, 
-                    'parent_update' => 'setUpdated', 
                 ))
                 ->add('seo', new SeoVirtualType())
         ;
