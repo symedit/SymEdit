@@ -7,7 +7,7 @@
     <parameters>    
         <parameter key="isometriks_sym_edit.admin_dir">sym-admin</parameter>
         <parameter key="isometriks_sym_edit.finder.resource_finder.class">Isometriks\Bundle\SymEditBundle\Finder\ResourceFinder</parameter>
-        <parameter key="isometriks_sym_edit.view.guesser.class">Isometriks\Bundle\RealEstateBundle\Templating\TemplateGuesser</parameter>
+        <parameter key="isometriks_sym_edit.view.guesser.class">Isometriks\Bundle\SymEditBundle\Templating\TemplateGuesser</parameter>
     </parameters>
     
     <services>        
