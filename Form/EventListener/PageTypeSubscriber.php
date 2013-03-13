@@ -46,6 +46,10 @@ class PageTypeSubscriber implements EventSubscriberInterface {
             $form->add($this->factory->createNamed('parent', 'entity', null, array(
                 'class' => 'IsometriksSymEditBundle:Page', 
                 'label' => 'admin.page.parent', 
+                
+                // TODO: This is a pretty big problem, we can't let them
+                // choose the page itself, or choose one of its children 
+                // without making a loop. 
                 'query_builder' => function(EntityRepository $er) {
                     return $er->createQueryBuilder('p')
                               ->where('p.homepage = false')

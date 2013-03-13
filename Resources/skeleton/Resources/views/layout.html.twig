@@ -49,7 +49,6 @@
                     {% endblock %}
                 </div>
             </div>
-            {% include '{{{ bundle }}}:Widget:google-analytics.html.twig' %}
         {% endblock %}
             <div id="push"></div>
         </div>
@@ -76,7 +75,8 @@
             
         {% block scripts %}
         <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
-        <script src="{{ asset('/bundles/{{{ asset_dir }}}/bootstrap/js/bootstrap.min.js') }}"></script>    
+        <script src="{{ asset('/bundles/{{{ asset_dir }}}/bootstrap/js/bootstrap.min.js') }}"></script> 
+        {% include '{{{ bundle }}}:Widget:google-analytics.html.twig' %}
         {% endblock %}            
 
         {% block editable_include %}

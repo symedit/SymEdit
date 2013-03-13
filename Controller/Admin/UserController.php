@@ -161,7 +161,7 @@ class UserController extends Controller
         }
 
         return array(
-            'entity'      => $entity,
+            'entity'      => $user,
             'form'        => $form->createView(),
         );
     }
