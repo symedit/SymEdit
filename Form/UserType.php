@@ -17,10 +17,11 @@ class UserType extends BaseType
         parent::buildForm($basic, $options); 
         
         /*
-         *  Remove the plain password, we're editing a user so they
-         *  Should have full permission to do so
+         *  Set Plain Password to be not required
          */
-        $basic->remove('plainPassword'); 
+        if($basic->has('plainPassword')){
+            $basic->get('plainPassword')->setRequired(false); 
+        }
         
         $builder
                 ->add($basic)
