@@ -1,6 +1,6 @@
 <?php
 
-namespace Isometriks\Bundle\SymEditBundle\Listener; 
+namespace Isometriks\Bundle\SymEditBundle\EventListener; 
 
 use Symfony\Component\DependencyInjection\ContainerInterface; 
 use Symfony\Component\DependencyInjection\ContainerAwareInterface; 

@@ -5,9 +5,9 @@
            xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
     
     <parameters>
-        <parameter key="isometriks_sym_edit.listener.page_path.class">Isometriks\Bundle\SymEditBundle\Listener\PagePathListener</parameter>
-        <parameter key="isometriks_sym_edit.listener.controller.class">Isometriks\Bundle\SymEditBundle\Listener\ControllerListener</parameter>
-        <parameter key="isometriks_sym_edit.listener.chunk.class">Isometriks\Bundle\SymEditBundle\Listener\ChunkListener</parameter>
+        <parameter key="isometriks_sym_edit.listener.page_path.class">Isometriks\Bundle\SymEditBundle\EventListener\PagePathListener</parameter>
+        <parameter key="isometriks_sym_edit.listener.controller.class">Isometriks\Bundle\SymEditBundle\EventListener\ControllerListener</parameter>
+        <parameter key="isometriks_sym_edit.listener.chunk.class">Isometriks\Bundle\SymEditBundle\EventListener\ChunkListener</parameter>
     </parameters>
     
     <services>

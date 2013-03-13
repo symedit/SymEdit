@@ -1,6 +1,6 @@
 <?php
 
-namespace Isometriks\Bundle\SymEditBundle\Listener;
+namespace Isometriks\Bundle\SymEditBundle\EventListener;
 
 use Doctrine\ORM\Event\LifecycleEventArgs;
 use Isometriks\Bundle\SymEditBundle\Entity\Page; 

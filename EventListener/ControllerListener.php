@@ -1,6 +1,6 @@
 <?php
 
-namespace Isometriks\Bundle\SymEditBundle\Listener;
+namespace Isometriks\Bundle\SymEditBundle\EventListener;
 
 use Symfony\Bundle\FrameworkBundle\Routing\Router;
 use Symfony\Component\HttpKernel\Event\FilterControllerEvent;
