@@ -1,12 +1,14 @@
-{% extends 'IsometriksSymEditBundle::form.html.twig' %}
+{% extends 'IsometriksSymEditBundle:Admin/User:form.html.twig' %}
+
+{% set entity = form.vars.data %}
 
 {% block title %}Profile &raquo; Edit{% endblock %}
 
-{% block content %}
-<form class="form-horizontal" action="{{ path('fos_user_profile_edit') }}" {{ form_enctype(form) }} method="POST" class="fos_user_profile_edit">
-    {{ form_widget(form) }}
-    <div class="form-actions">
-        <input class="btn btn-primary" type="submit" value="{{ 'profile.edit.submit'|trans({}, 'FOSUserBundle') }}" />
-    </div>
-</form>
+{% block form_action %}{{ path('fos_user_profile_edit') }}{% endblock %}
+
+{% block form_actions %}
+<div class="well well-small">
+    {{ form_widget(form.basic.current_password, { attr: { class: 'input-block-level', placeholder: 'Current Password' }}) }}
+</div>
+<button type="submit" class="btn btn-primary btn-block">Update Profile</button>
 {% endblock %}

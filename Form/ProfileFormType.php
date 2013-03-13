@@ -4,27 +4,46 @@ namespace Isometriks\Bundle\UserBundle\Form;
 
 use Symfony\Component\Form\FormBuilderInterface;
 use FOS\UserBundle\Form\Type\ProfileFormType as BaseType;
+use Isometriks\Bundle\SymEditBundle\Form\ImageType; 
 
-class ProfileFormType extends BaseType {
-
+class ProfileFormType extends BaseType 
+{
     public function buildForm(FormBuilderInterface $builder, array $options)
     {   
+        $basic = $builder->create('basic', 'form', array(
+            'virtual' => true, 
+            'data_class' => $options['data_class'], 
+        )); 
+        
+        parent::buildForm($basic, $options); 
+              
+        $basic
+            ->add('firstName', 'text', array(
+                'label' => 'First Name', 
+            ))
+            ->add('lastName', 'text', array(
+                'label' => 'Last Name',
+                'required' => false, 
+            ))
+            ->add('gplus', 'url', array(
+                'label' => 'Google+ Profile URL',
+                'required' => false, 
+            )); 
+        
         $builder
-                ->add('firstName', 'text', array(
-                    'label' => 'First Name', 
+                ->add($basic)
+                ->add('biography', 'textarea', array(
+                    'attr' => array(
+                        'class' => 'wysiwyg-editor', 
+                    ), 
+                    'widget_control_group' => false, 
                 ))
-                ->add('lastName', 'text', array(
-                    'label' => 'Last Name',
-                ))
-                ->add('gplus', 'url', array(
-                    'label' => 'Google+ Profile URL',
+                ->add('image', new ImageType(), array(
                     'required' => false, 
-                ));;
-        
-        parent::buildForm($builder, $options);
-        
-        $builder
-                ->add('roles', 'symedit_role'); 
+                    'require_name' => false, 
+                    'parent_update' => 'setUpdated', 
+                ))
+                ->add('roles', 'symedit_role');
     }
 
     public function getName()
