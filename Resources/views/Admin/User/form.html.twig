@@ -1,0 +1,51 @@
+{% extends 'IsometriksSymEditBundle::base.html.twig' %}
+
+{% block content %}
+<form class="form-horizontal" action="{{ block('form_action') }}" method="post" {{ form_enctype(form) }}>
+    <div class="row-fluid">
+        <div class="span3">
+            <div class="well">
+                <ul class="nav nav-pills nav-stacked">
+                    <li class="active"><a data-toggle="tab" href="#basic"><i class="icon-info-sign"></i> Basic</a></li>
+                    <li><a data-toggle="tab" href="#image"><i class="icon-picture"></i> Image</a></li>
+                    <li><a data-toggle="tab" href="#biography"><i class="icon-file"></i> Biography</a></li>
+                    <li><a data-toggle="tab" href="#roles"><i class="icon-tasks"></i> Roles</a></li>
+                </ul>
+                {% block form_actions %}{% endblock %}
+            </div>
+        </div>
+        <div class="span9">
+            <div class="tab-content well">
+                <div id="basic" class="tab-pane active">
+                    {{ form_widget(form.basic) }}
+                </div>
+
+                <div id="image" class="tab-pane">
+                    <div class="row-fluid">
+                        <div class="span6">
+                            {{ form_widget(form.image) }}
+                        </div>
+                        <div class="span6">
+                            {% if entity.image %}
+                            <div class="well">
+                                <img class="img-polaroid" src="{{ entity.image|constrain({h:200}) }}" />
+                            </div>
+                            {% endif %}
+                        </div>
+                    </div>                    
+                </div>
+
+                <div id="biography" class="tab-pane">
+                    {{ form_widget(form.biography) }}
+                </div>
+
+                <div id="roles" class="tab-pane">
+                    {{ form_widget(form.roles) }}
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    {{ form_rest(form) }}
+</form>
+{% endblock %}

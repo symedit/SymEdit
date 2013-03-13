@@ -83,10 +83,6 @@ body .redactor_box_fullscreen {
 	white-space: normal;
         color: inherit; 
 }
-.redactor_editor a {
-	color: #15c !important;
-	text-decoration: underline !important;
-}
 
 .redactor_editor object,
 .redactor_editor embed,
