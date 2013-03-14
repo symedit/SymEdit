@@ -1,3 +1,4 @@
+ 
 
 body, html {
     height: 100%;
@@ -10,6 +11,11 @@ body, html {
     margin: 0 auto -@footer_height; 
 }
 
-#push, #footer, footer {
+#footer, footer {
+    padding: @footer_padding 0; 
     height: @footer_height - (@footer_padding*2); 
+}
+
+#push {
+    height: @footer_height; 
 }
