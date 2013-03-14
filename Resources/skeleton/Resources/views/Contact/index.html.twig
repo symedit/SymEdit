@@ -2,35 +2,32 @@
 
 {% block content %}
 <div class="row">
-  <div class="span6">
-      <h1>{{ Page.title }}</h1>
-      <div>
-      <h3>
-        {{ Settings.company.address|nl2br }}
-      </h3>
-      <h5>P: {{ Settings.company.phone }}</h5>
-      {% if Settings.company.fax %}<h5>F: {{ Settings.company.fax }}</h5>{% endif %}
-      <h5>E: <a href="mailto:{{ Settings.company.email }}">{{ Settings.company.email }}</a></h5>
-     </div>
-   </div>
+    <div class="span6">
+        <h3>
+            {{ Settings.company.address|nl2br }}
+        </h3>
+        <h5>P: {{ Settings.company.phone }}</h5>
+            {% if Settings.company.fax %}<h5>F: {{ Settings.company.fax }}</h5>{% endif %}
+        <h5>E: <a href="mailto:{{ Settings.company.email }}">{{ Settings.company.email }}</a></h5>
+    </div>
 
     <div class="span6">
         {% include '{{{ bundle }}}:CMS:map.html.twig' %}
     </div>
-  </div>
+</div>
 
-  <div class="row">
+<div class="row">
     <div class="span6">
-      <h3>Services</h3>
-      <form method="post" class="form-horizontal">
+        <h3>Services</h3>
+        <form method="post" class="form-horizontal">
 
-          {{ form_widget(form) }}
+            {{ form_widget(form) }}
 
-          <button style="margin-left:80px" type="submit" class="btn">Send Message</button>
-      </form>
+            <button style="margin-left:80px" type="submit" class="btn">Send Message</button>
+        </form>
     </div>
     <div class="span6">
         {{ Page.content|raw }}
     </div>
-  </div>
+</div>
 {% endblock %}
