@@ -4,7 +4,7 @@
       {% for child in node.children %}
           <li{% if active is not null and active == child %} class="active"{% endif %}>
               <a href="{{ path('blog_category_view', {slug:child.slug}) }}">
-                  {{ child.title }}
+                  <span class="badge badge-info">{{ child.total }}</span> {{ child.title }}
               </a>
               {{ _self.tree( child, active ) }}
           </li>

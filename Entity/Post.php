@@ -77,7 +77,7 @@ class Post implements UpdatableInterface
     private $updatedAt; 
     
     /**
-     * @ORM\ManyToMany(targetEntity="Category")
+     * @ORM\ManyToMany(targetEntity="Category", inversedBy="posts")
      */
     private $categories; 
     

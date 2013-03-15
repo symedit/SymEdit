@@ -55,6 +55,13 @@ class Category
     private $children;
     
     /**
+     * @ORM\ManyToMany(targetEntity="Post", mappedBy="categories")
+     */
+    private $posts; 
+    
+    private $total; 
+    
+    /**
      * @var array $seo
      *
      * @ORM\Column(name="seo", type="json_array", nullable=true)
@@ -176,6 +183,7 @@ class Category
     public function __construct()
     {
         $this->children = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->posts = new \Doctrine\Common\Collections\ArrayCollection();
     }
     
     /**
@@ -260,5 +268,43 @@ class Category
     public function getSeo()
     {
         return $this->seo;
+    }
+
+    /**
+     * Add posts
+     *
+     * @param \Isometriks\Bundle\SymEditBundle\Entity\Post $posts
+     * @return Category
+     */
+    public function addPost(Post $post)
+    {
+        $this->posts[] = $post;
+    
+        return $this;
+    }
+
+    /**
+     * Remove posts
+     *
+     * @param \Isometriks\Bundle\SymEditBundle\Entity\Post $posts
+     */
+    public function removePost(Post $post)
+    {
+        $this->posts->removeElement($post);
+    }
+
+    /**
+     * Get posts
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getPosts()
+    {
+        return $this->posts;
+    }
+    
+    public function getTotal()
+    {
+        return $this->posts->count(); 
     }
 }
