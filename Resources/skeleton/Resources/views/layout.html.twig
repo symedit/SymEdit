@@ -43,7 +43,7 @@
                     {% endblock %}
                 </nav>
                 <div>
-                    <h1>{% content Page.tagline %}</h1>
+                    {% block heading %}<h1>{% content Page.tagline %}</h1>{% endblock %}
                     {% block content %}
                     {{ Page.content|raw }}
                     {% endblock %}
