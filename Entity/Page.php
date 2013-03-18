@@ -163,10 +163,6 @@ class Page implements UpdatableInterface
     public function __construct()
     {
         $this->children = new \Doctrine\Common\Collections\ArrayCollection();
-        $this->setSeo(array(
-            'index' => 'index', 
-            'follow' => 'follow', 
-        ));
         $this->setHomepage(false);
         $this->setRoot(false);
         $this->setDisplay(true);

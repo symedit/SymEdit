@@ -139,7 +139,7 @@ class PageController extends Controller
 
         return array(
             'entity'      => $entity,
-            'edit_form'   => $editForm->createView(),
+            'form'        => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
             'action'      => 'update',
         );
@@ -178,7 +178,7 @@ class PageController extends Controller
 
         return array(
             'entity'      => $entity,
-            'edit_form'   => $editForm->createView(),
+            'form'        => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
         );
     }
@@ -225,7 +225,9 @@ class PageController extends Controller
             
             // Don't delete the homepage or root!
             if($entity->getHomepage() || $entity->getRoot()){
-                throw new \Exception('Cannot delete homepage / root.'); 
+                $this->get('session')->getFlashBag()->add('error', 'Cannot delete this page.');
+                
+                return $this->redirect($this->generateUrl('admin_page'));  
             }
 
             $em->remove($entity);

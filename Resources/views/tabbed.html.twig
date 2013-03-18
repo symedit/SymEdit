@@ -1,0 +1,24 @@
+{% extends 'IsometriksSymEditBundle::base.html.twig' %}
+
+{% block content %}
+<form class="form-horizontal" action="{% block action %}{% endblock %}" {% block method %}method="post"{% endblock %} {{ form_enctype(form) }}>
+    <div class="row-fluid">
+        <div class="span2">
+            <div class="well well-small">
+                <ul class="nav nav-pills nav-stacked">
+                    {% block tabs %}{% endblock %}
+                </ul>
+                {% block form_actions %}{% endblock %}
+            </div>
+        </div>
+        <div class="span10">
+            <div class="tab-content well">
+                {% block tab_content %}{% endblock %}
+            </div>
+        </div>
+    </div>
+    
+    {{ form_rest(form) }}
+</form>
+{% block extra %}{% endblock %}
+{% endblock %}

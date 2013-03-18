@@ -1,8 +1,16 @@
-{% extends 'IsometriksSymEditBundle:Admin/User:form.html.twig' %}
+{% extends 'IsometriksSymEditBundle::tabbed.html.twig' %}
 
 {% block title %}Users &raquo; {{ entity.username }} &raquo; Edit{% endblock %}
 
 {% block form_action %}{{ path('admin_user_update', {id:entity.id}) }}{% endblock %}
+
+{% block tabs %}
+    {% include 'IsometriksSymEditBundle:Admin/User:tabs.html.twig' %}
+{% endblock %}
+
+{% block tab_content %}
+    {% include 'IsometriksSymEditBundle:Admin/User:tab_content.html.twig' %}
+{% endblock %}
 
 {% block form_actions %}
 <button type="submit" class="btn btn-primary btn-block">Update User</button>

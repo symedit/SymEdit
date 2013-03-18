@@ -1,69 +1,64 @@
-{% extends 'IsometriksSymEditBundle::base.html.twig' %}
+{% extends 'IsometriksSymEditBundle::tabbed.html.twig' %}
 
 {% block title %}Pages &raquo; {{ entity.title }} &raquo; Edit{% endblock %}
 
-{% block content %}
-<form class="form-horizontal" action="{{ path('admin_page_update', { 'id': entity.id }) }}" method="post" {{ form_enctype(edit_form) }}>
+{% block action %}{{ path('admin_page_update', { 'id': entity.id }) }}{% endblock %}
 
+{% block tabs %}
     {% include 'IsometriksSymEditBundle:Admin/Page:tabs.html.twig' %}
+{% endblock %}
 
-    <div class="tab-content">
-        <div class="tab-pane active" id="basic">
-            <div class="row">
-                <div class="span6">
-                    {{ form_row( edit_form.title ) }}
-                    {% if not entity.homepage %}
-                      {{ form_row(edit_form.name) }}  
-                    {% endif %}
-                    {{ form_row( edit_form.tagline ) }}
-                </div>
-                    
-                <div class="span6">
-                    {% if not entity.homepage %}
-                      {{ form_row( edit_form.parent ) }}
-                    {% endif %}
-                    {{ form_row( edit_form.display ) }}
-                </div>
-            </div>
+{% block tab_content %}
+<div class="tab-pane active" id="basic">
+    <div class="row-fluid">
+        <div class="span6">
+            {{ form_row( form.title, { attr: { class: 'span12' }} ) }}
+            {% if not entity.homepage %}
+              {{ form_row(form.name, { attr: { class: 'span12' }}) }}  
+            {% endif %}
+            {{ form_row( form.tagline, { attr: { class: 'span12' }} ) }}
+        </div>
 
-            {{ form_row( edit_form.summary ) }}
-            
-        </div>
-            
-        <div class="tab-pane" id="template">
-            {{ form_row(edit_form.template) }}
-        </div>
-            
-        <div class="tab-pane" id="seo">
-            {{ form_widget( edit_form.seo ) }}
-            {{ form_row( edit_form.crawl ) }}
-        </div>
-            
-        <div class="tab-pane" id="page_content">
-            <div class="row-fluid">
-                {{ form_widget( edit_form.content ) }}
-            </div>
-        </div>
-            
-        <div class="tab-pane" id="advanced">
-            {{ form_row( edit_form.pageController ) }}
-            {{ form_row( edit_form.pageControllerPath ) }}
+        <div class="span6">
+            {% if not entity.homepage %}
+                {{ form_row( form.parent ) }}
+            {% endif %}
+            {{ form_row( form.display ) }}
         </div>
     </div>
 
-    {{ form_rest(edit_form) }}
-    
-    <div class="form-actions">
-        <button class="btn btn-primary" type="submit">Save Page</button>
-        {% if is_granted('ROLE_ADMIN_EDITABLE') %}<input class="btn btn-success" name="live_edit" type="submit" value="Save and Live Edit" />{% endif %}
-        {% if not entity.homepage %}<button type="button" data-toggle="form-forward" data-message="Are you sure you want to delete this page?" data-target="#page-delete" class="btn btn-warning">Delete Page</button>{% endif %}
-    </div>
-</form>
+    {{ form_row( form.summary ) }}
+</div>
 
+<div class="tab-pane" id="template">
+    {{ form_row(form.template) }}
+</div>
+
+<div class="tab-pane" id="seo">
+    {{ form_widget( form.seo ) }}
+    {{ form_row( form.crawl ) }}
+</div>
+
+<div class="tab-pane" id="page_content">
+    {{ form_widget( form.content ) }}
+</div>
+
+<div class="tab-pane" id="advanced">
+    {{ form_row( form.pageController ) }}
+    {{ form_row( form.pageControllerPath ) }}
+</div>
+{% endblock %}
+
+{% block form_actions %}
+<button class="btn btn-primary btn-block" type="submit">Save Page</button>
+{% if is_granted('ROLE_ADMIN_EDITABLE') %}<input class="btn btn-success btn-block" name="live_edit" type="submit" value="Save and Live Edit" />{% endif %}
+{% if not entity.homepage %}<button type="button" data-toggle="form-forward" data-message="Are you sure you want to delete this page?" data-target="#page-delete" class="btn btn-warning btn-block">Delete Page</button>{% endif %}
+{% endblock %}
+
+{% block extra %}
 {% if not entity.homepage %}
 <form class="form-hidden" id="page-delete" action="{{ path('admin_page_delete', { 'id': entity.id }) }}" method="post">
     {{ form_widget(delete_form) }}
 </form>
 {% endif %}
-
 {% endblock %}

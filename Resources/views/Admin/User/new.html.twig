@@ -1,14 +1,15 @@
-{% extends 'IsometriksSymEditBundle::base.html.twig' %}
+{% extends 'IsometriksSymEditBundle::tabbed.html.twig' %}
 
 {% block title %}Users &raquo; Create New{% endblock %}
 
-{% block content %}
+{% block tabs %}
+    {% include 'IsometriksSymEditBundle:Admin/User:tabs.html.twig' %}
+{% endblock %}
 
-<form class="form-horizontal" action="{{ path('admin_user_create') }}" method="post" {{ form_enctype(form) }}>
-    {{ form_widget(form) }}
-    <div class="form-actions">
-        <button class="btn btn-primary" type="submit">Add User</button>
-    </div>
-</form>
+{% block tab_content %}
+    {% include 'IsometriksSymEditBundle:Admin/User:tab_content.html.twig' %}
+{% endblock %}
 
+{% block form_actions %}
+<button type="submit" class="btn btn-primary btn-block">Add User</button>
 {% endblock %}

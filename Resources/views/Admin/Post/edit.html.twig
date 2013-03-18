@@ -1,60 +1,57 @@
-{% extends 'IsometriksSymEditBundle::base.html.twig' %}
+{% extends 'IsometriksSymEditBundle::tabbed.html.twig' %}
 
 {% block title %}Blog &raquo; {{ entity.title }} &raquo; Edit{% endblock %}
 
-{% block content %}
+{% block form_action %}{{ path('admin_blog_update', {id:entity.id}) }}{% endblock %}
 
-<form class="form-horizontal" action="{{ path('admin_blog_update', {id:entity.id}) }}" method="post" {{ form_enctype(form) }}>
+{% block tabs %}
+<li class="active"><a href="#basic" data-toggle="tab">Basic</a></li>
+<li><a href="#post-seo" data-toggle="tab">SEO</a></li>
+<li><a href="#post-summary" data-toggle="tab">Summary</a></li>
+<li><a href="#post-content" data-toggle="tab">Content</a></li>
+{% endblock %}
     
-    <ul class="nav nav-tabs">
-        <li class="active"><a href="#basic" data-toggle="tab">Basic</a></li>
-        <li><a href="#post-seo" data-toggle="tab">SEO</a></li>
-        <li><a href="#post-summary" data-toggle="tab">Summary</a></li>
-        <li><a href="#post-content" data-toggle="tab">Content</a></li>
-    </ul>
-    
-    <div class="tab-content">
-        <div class="tab-pane active" id="basic">
-            <div class="row">
-                <div class="span6">
-                    {{ form_row(form.title) }}
-                    {{ form_row(form.author) }}
-                    {{ form_row(form.status) }}
-                    {{ form_row(form.image.file, {label: 'Featured Image'}) }}
-                    {{ form_row(form.categories) }}
-                </div>
-                    
-                <div class="span6 text-center">
-                    {% if entity.image %}
-                        <h4>Featured Image</h4>
-                        <img class="img-polaroid" src="{{ entity.image.webpath|constrain({w:300,h:300}) }}" />
-                    {% endif %}
-                </div>
-            </div>
+{% block tab_content %}
+<div class="tab-pane active" id="basic">
+    <div class="row">
+        <div class="span6">
+            {{ form_row(form.title) }}
+            {{ form_row(form.author) }}
+            {{ form_row(form.status) }}
+            {{ form_row(form.image.file, {label: 'Featured Image'}) }}
+            {{ form_row(form.categories) }}
         </div>
 
-        <div class="tab-pane" id="post-seo">
-            {{ form_widget(form.seo) }}
-        </div>
-            
-        <div class="tab-pane" id="post-summary">
-            {{ form_widget(form.summary) }}
-        </div>            
-            
-        <div class="tab-pane" id="post-content">
-            {{ form_widget(form.content) }}
+        <div class="span6 text-center">
+            {% if entity.image %}
+                <h4>Featured Image</h4>
+                <img class="img-polaroid" src="{{ entity.image.webpath|constrain({w:300,h:300}) }}" />
+            {% endif %}
         </div>
     </div>
-    
-    {{ form_rest(form) }}
-    
-    <div class="form-actions">
-        <button class="btn btn-primary" type="submit">Update Post</button>
-        <button type="button" data-toggle="form-forward" data-message="Are you sure you want to delete this post?" data-target="#post-delete" class="btn btn-warning">Delete Post</button>
-        <a target="_blank" class="btn btn-info" href="{{ path('blog_preview', { slug: entity.slug }) }}">Preview Post</a>
-    </div>
-</form>
+</div>
 
+<div class="tab-pane" id="post-seo">
+    {{ form_widget(form.seo) }}
+</div>
+
+<div class="tab-pane" id="post-summary">
+    {{ form_widget(form.summary) }}
+</div>            
+
+<div class="tab-pane" id="post-content">
+    {{ form_widget(form.content) }}
+</div>
+{% endblock %}
+    
+{% block form_actions %}
+<button class="btn btn-primary btn-block" type="submit">Update Post</button>
+<a target="_blank" class="btn btn-info btn-block" href="{{ path('blog_preview', { slug: entity.slug }) }}">Preview Post</a>
+<button type="button" data-toggle="form-forward" data-message="Are you sure you want to delete this post?" data-target="#post-delete" class="btn btn-warning btn-block">Delete Post</button>
+{% endblock %}
+
+
+{% block extra %}
 <form id="post-delete" class="form-hidden" action="{{ path('admin_blog_delete', { 'id': entity.id }) }}" method="post">
     {{ form_widget(delete_form) }}
 </form>
