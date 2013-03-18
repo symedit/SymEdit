@@ -4,6 +4,14 @@
 
 {% block title %}Profile &raquo; Edit{% endblock %}
 
+{% block tabs %}
+    {% include 'IsometriksSymEditBundle:Admin/User:tabs.html.twig' %}
+{% endblock %}
+
+{% block tab_content %}
+    {% include 'IsometriksSymEditBundle:Admin/User:tab_content.html.twig' %}
+{% endblock %}
+
 {% block form_action %}{{ path('fos_user_profile_edit') }}{% endblock %}
 
 {% block form_actions %}
