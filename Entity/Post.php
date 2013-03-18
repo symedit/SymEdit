@@ -6,6 +6,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Isometriks\Bundle\SymEditBundle\Util\Util;
 use Isometriks\Bundle\SymEditBundle\Model\UpdatableInterface; 
+use Isometriks\Bundle\SymEditBundle\Model\UserInterface; 
 
 /**
  * Isometriks\Bundle\SymEditBundle\Entity\Post
@@ -38,7 +39,7 @@ class Post implements UpdatableInterface
     private $title;
 
     /**
-     * @ORM\ManyToOne(targetEntity="User")
+     * @ORM\ManyToOne(targetEntity="Isometriks\Bundle\SymEditBundle\Model\UserInterface", inversedBy="posts")
      */
     private $author;
 
@@ -184,10 +185,10 @@ class Post implements UpdatableInterface
     /**
      * Set author
      *
-     * @param Isometriks\Bundle\SymEditBundle\Entity\User $author
+     * @param Isometriks\Bundle\SymEditBundle\Model\UserInterface $author
      * @return Post
      */
-    public function setAuthor(\Isometriks\Bundle\SymEditBundle\Entity\User $author = null)
+    public function setAuthor(UserInterface $author = null)
     {
         $this->author = $author;
 
@@ -197,7 +198,7 @@ class Post implements UpdatableInterface
     /**
      * Get author
      *
-     * @return Isometriks\Bundle\SymEditBundle\Entity\User 
+     * @return Isometriks\Bundle\SymEditBundle\Model\UserInterface 
      */
     public function getAuthor()
     {

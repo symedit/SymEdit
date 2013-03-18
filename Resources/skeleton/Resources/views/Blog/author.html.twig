@@ -8,7 +8,7 @@
     <h3>{{ Author.fullname }}</h3>
     
     <ul>
-    {% for Post in Posts %}
+    {% for Post in Author.posts %}
         <li><a href="{{ path('blog_slug_view', {slug:Post.slug}) }}">{{ Post.title }}</a></li>
     {% endfor %}
     </ul>

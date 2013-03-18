@@ -2,7 +2,7 @@
 
 {% block title %}Blog &raquo; {{ entity.title }} &raquo; Edit{% endblock %}
 
-{% block form_action %}{{ path('admin_blog_update', {id:entity.id}) }}{% endblock %}
+{% block action %}{{ path('admin_blog_update', {id:entity.id}) }}{% endblock %}
 
 {% block tabs %}
 <li class="active"><a href="#basic" data-toggle="tab">Basic</a></li>

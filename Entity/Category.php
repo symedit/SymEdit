@@ -59,8 +59,6 @@ class Category
      */
     private $posts; 
     
-    private $total; 
-    
     /**
      * @var array $seo
      *

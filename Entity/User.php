@@ -1,40 +1,24 @@
 <?php
 
-// src/Acme/UserBundle/Entity/User.php
-
 namespace Isometriks\Bundle\SymEditBundle\Entity;
 
-use FOS\UserBundle\Entity\User as BaseUser;
-use Doctrine\ORM\Mapping as ORM;
+use Isometriks\Bundle\UserBundle\Entity\User as BaseUser;
 use Isometriks\Bundle\SymEditBundle\Util\Util; 
+use Isometriks\Bundle\SymEditBundle\Model\UserInterface; 
+use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Entity
  * @ORM\Table(name="users")
  */
-class User extends BaseUser
+class User extends BaseUser implements UserInterface
 {
     /**
      * @ORM\Id
      * @ORM\Column(type="integer")
      * @ORM\GeneratedValue(strategy="AUTO")
      */
-    protected $id;
-
-    /**
-     * @ORM\Column(length=255, nullable=true)
-     */
-    protected $firstName;
-
-    /**
-     * @ORM\Column(length=255, nullable=true)
-     */
-    protected $lastName; 
-    
-    /**
-     * @ORM\Column(length=255, nullable=true)
-     */
-    protected $gplus; 
+    protected $id;    
     
     /**
      * @ORM\ManyToOne(targetEntity="Image", cascade={"persist"})
@@ -42,20 +26,11 @@ class User extends BaseUser
     protected $image;
     
     /**
-     * @ORM\Column(type="text", name="biography", nullable=true)
+     * @ORM\OneToMany(targetEntity="Post", mappedBy="author")
+     * @ORM\OrderBy({"createdAt"="DESC"})
      */
-    protected $biography; 
-
-    public function __toString()
-    {
-        return $this->getFullname(); 
-    }
+    protected $posts; 
     
-    public function __construct()
-    {
-        parent::__construct();
-    }
-
     /**
      * Get id
      *
@@ -64,98 +39,21 @@ class User extends BaseUser
     public function getId()
     {
         return $this->id;
-    }
-
-    /**
-     * Set firstName
-     *
-     * @param string $firstName
-     * @return User
-     */
-    public function setFirstName($firstName)
-    {
-        $this->firstName = $firstName;
-
-        return $this;
-    }
-
-    /**
-     * Get firstName
-     *
-     * @return string 
-     */
-    public function getFirstName()
-    {
-        return $this->firstName;
-    }
-
-    /**
-     * Set lastName
-     *
-     * @param string $lastName
-     * @return User
-     */
-    public function setLastName($lastName)
-    {
-        $this->lastName = $lastName;
-
-        return $this;
-    }
-
-    /**
-     * Get lastName
-     *
-     * @return string 
-     */
-    public function getLastName()
-    {
-        return $this->lastName;
-    }
-
-    public function getFullname()
-    {
-        return sprintf('%s %s', $this->getFirstName(), $this->getLastName());
-    }
-
-    /**
-     * Set gplus
-     *
-     * @param string $gplus
-     * @return User
-     */
-    public function setGplus($gplus)
-    {
-        $this->gplus = $gplus;
+    }    
     
-        return $this;
-    }
-
-    /**
-     * Get gplus
-     *
-     * @return string 
-     */
-    public function getGplus()
+    public function setUpdated()
     {
-        return $this->gplus;
-    }
-    
-    public function getBiography()
-    {
-        return $this->biography; 
-    }
-    
-    public function setBiography($biography)
-    {
-        $this->biography = $biography; 
-        
-        return $this; 
+        if($image = $this->getImage()){
+            if($image->hasFile()){
+                $image->setName(Util::slugify($this->getFullname())); 
+            }
+        }
     }
     
     public function getImage()
     {
         return $this->image; 
-    }
+    }    
     
     public function setImage(Image $image)
     {
@@ -165,12 +63,8 @@ class User extends BaseUser
         return $this; 
     }
     
-    public function setUpdated()
+    public function getPosts()
     {
-        if($image = $this->getImage()){
-            if($image->hasFile()){
-                $image->setName(Util::slugify($this->getFullname())); 
-            }
-        }
+        return $this->posts; 
     }
 }
