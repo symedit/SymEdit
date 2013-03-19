@@ -26,7 +26,6 @@ var Isometriks = (function(){
             var html; 
             if(html = redactor.createSpans()){
                 obj.$editor.focus();
-                obj.restoreSelection(); 
                 obj.execCommand('inserthtml', '<div class="row">' + html + '</div>'); 
             }
         }, 
@@ -35,7 +34,6 @@ var Isometriks = (function(){
             var html; 
             if(html = redactor.createSpans()){
                 obj.$editor.focus();
-                obj.restoreSelection(); 
                 obj.execCommand('inserthtml', '<div class="row-fluid">' + html + '</div>'); 
             }
         },
@@ -43,7 +41,6 @@ var Isometriks = (function(){
         heroUnit: function(obj){
             var html = '<div class="hero-unit"><h1>Caption</h1><p>Sub Text</p><p><a href="#" class="btn btn-large btn-primary">Learn More &raquo</a></p></div>';
             obj.$editor.focus();
-            obj.restoreSelection(); 
             obj.execCommand('inserthtml', html); 
         }
     };
