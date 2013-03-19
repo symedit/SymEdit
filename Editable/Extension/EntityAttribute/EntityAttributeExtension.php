@@ -45,6 +45,7 @@ class EntityAttributeExtension extends AbstractEditableExtension
     public function getJavascripts()
     {
         return array(
+            'bundles/isometrikssymedit/js/editable/jquery.ajaxsubmit.js',
             'bundles/isometrikssymedit/redactor/redactor.min.js', 
         );
     }
