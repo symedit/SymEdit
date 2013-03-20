@@ -7,6 +7,7 @@
         <div class="span6">
             {{ form_widget(form.image) }}
         </div>
+        {% if entity is defined %}
         <div class="span6">
             {% if entity.image %}
             <div class="well">
@@ -14,6 +15,7 @@
             </div>
             {% endif %}
         </div>
+        {% endif %}
     </div>                    
 </div>
 
