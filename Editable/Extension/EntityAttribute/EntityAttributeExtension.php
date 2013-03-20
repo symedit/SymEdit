@@ -36,6 +36,12 @@ class EntityAttributeExtension extends AbstractEditableExtension
         }
     }
     
+    /**
+     * @TODO Probably use the Symfony property compoment here instead..
+     * 
+     * @param \Isometriks\Bundle\SymEditBundle\Editable\Editable $editable
+     * @return type
+     */
     private function getValue(Editable $editable)
     {
         $method = sprintf('get%s', ucfirst($editable->getParameter('attribute'))); 
