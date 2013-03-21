@@ -5,7 +5,7 @@
     xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
 
     <parameters>
-        <parameter key="isometriks_stylizer.assetic.command.class">Symfony\Bundle\AsseticBundle\Command\DumpCommand</parameter>
+        <parameter key="isometriks_stylizer.assetic.command.class">Isometriks\Bundle\StylizerBundle\Command\DumpCommand</parameter>
         <parameter key="isometriks_stylizer.dumper.class">Isometriks\Bundle\StylizerBundle\Dumper\Dumper</parameter>
         <parameter key="isometriks_stylizer.injector.lessphp.class">Isometriks\Bundle\StylizerBundle\Injector\LessPhpInjector</parameter>
         <parameter key="isometriks_stylizer.loader.class">Isometriks\Bundle\StylizerBundle\Loader\Loader</parameter>
@@ -39,6 +39,7 @@
             <argument type="service" id="isometriks_stylizer.loader" />
             <argument type="service" id="isometriks_stylizer.dumper" />
             <argument>%kernel.root_dir%</argument>
+            <argument>%assetic.cache_dir%/assets</argument>
         </service>
         
         <service id="isometriks_stylizer.form" class="%isometriks_stylizer.form.class%">

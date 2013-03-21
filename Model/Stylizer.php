@@ -6,6 +6,7 @@ use Isometriks\Bundle\StylizerBundle\Loader\Loader;
 use Isometriks\Bundle\StylizerBundle\Dumper\Dumper; 
 use Isometriks\Bundle\StylizerBundle\Loader\ConfigData; 
 use Symfony\Component\Yaml\Yaml; 
+use Symfony\Component\Filesystem\Filesystem; 
 
 class Stylizer implements \ArrayAccess
 {
@@ -14,13 +15,15 @@ class Stylizer implements \ArrayAccess
     private $dumper; 
     private $configData; 
     private $rootDir; 
+    private $cacheDir; 
     private $file = 'config/styles.yml'; 
     
-    public function __construct(Loader $loader, Dumper $dumper, $rootDir)
+    public function __construct(Loader $loader, Dumper $dumper, $rootDir, $cacheDir)
     {
         $this->loader = $loader; 
         $this->dumper = $dumper; 
         $this->rootDir = $rootDir; 
+        $this->cacheDir = $cacheDir; 
     }
     
     public function getConfigData()
@@ -61,8 +64,16 @@ class Stylizer implements \ArrayAccess
     
     public function save()
     {
-        $file = $this->rootDir.'/'.$this->file;
+        /**
+         * Remove asset cache
+         */
+        $fs = new Filesystem(); 
+        $fs->remove($this->cacheDir); 
         
+        /**
+         * Save Variables
+         */
+        $file = $this->rootDir.'/'.$this->file;
         file_put_contents($file, Yaml::dump($this->getVariables())); 
     }
     

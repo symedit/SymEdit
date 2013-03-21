@@ -5,6 +5,7 @@ namespace Isometriks\Bundle\StylizerBundle\Form\Type;
 use Symfony\Component\Form\AbstractType; 
 use Symfony\Component\Form\FormBuilderInterface; 
 use Isometriks\Bundle\StylizerBundle\Model\Stylizer; 
+use Symfony\Component\Validator\Constraints\NotBlank; 
 
 class StylesType extends AbstractType
 {
@@ -28,6 +29,9 @@ class StylesType extends AbstractType
                 array(
                     'label' => $label, 
                     'property_path' => sprintf('[%s]', $name), 
+                    'constraints' => array(
+                        new NotBlank(), 
+                    ), 
                 ), 
                 $options
             )); 

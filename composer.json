@@ -1,0 +1,15 @@
+{
+    "name": "isometriks/stylizer-bundle",
+    "description": "Dynamic Variables / Dumping for Assetic", 
+    "type": "symfony-bundle", 
+    "authors": [
+        {
+            "name": "Craig Blanchette", 
+            "email": "craig.blanchette@gmail.com"
+        }
+    ],
+    "autoload": {
+        "psr-0": { "Isometriks\\Bundle\\StylizerBundle": "" }
+    }, 
+    "target-dir": "Isometriks/Bundle/StylizerBundle"
+}

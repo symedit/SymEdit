@@ -17,7 +17,6 @@ class Dumper
     private $injectors;
     private $command; 
     private $manager; 
-    private $loader; 
     
     public function __construct(ContainerInterface $container, FilterManager $manager, Command $command, array $injectors = array())
     {
