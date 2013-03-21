@@ -28,15 +28,24 @@
                     
                     <p>
                         {% if Settings.company.phone %}
-                        <i class="icon-phone"></i> {{ Settings.company.phone }} <br>
+                        <span class="circle-icon">
+                            <i class="icon-phone"></i>
+                        </span> 
+                        {{ Settings.company.phone }} <br>
                         {% endif %}
 
                         {% if Settings.company.fax %}
-                        <i class="icon-book"></i> {{ Settings.company.fax }} <br>
+                        <span class="circle-icon">
+                            <i class="icon-book"></i>
+                        </span>
+                        {{ Settings.company.fax }} <br>
                         {% endif %}
 
                         {% if Settings.company.email %}
-                        <i class="icon-envelope"></i> <a href="mailto:{{ Settings.company.email }}">{{ Settings.company.email }}</a>
+                        <span class="circle-icon">
+                            <i class="icon-envelope"></i> 
+                        </span>
+                        <a href="mailto:{{ Settings.company.email }}">{{ Settings.company.email }}</a>
                         {% endif %}
                     </p>
                 </address>

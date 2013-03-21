@@ -1,0 +1,25 @@
+
+@import "elements.less"; 
+
+.circle-icon {
+
+    background-color: #333; 
+    .rounded(50px); 
+    text-align: center;
+    width: 25px; 
+    font-size: 14px; 
+    line-height: 25px; 
+    display: inline-block; 
+    margin-bottom: 4px; 
+    margin-right: 2px; 
+
+    [class^="icon-"] {
+        color: #fff; 
+    }
+
+    &.circle-large {
+        width: 40px; 
+        line-height: 40px; 
+        font-size: 20px; 
+    }
+}
