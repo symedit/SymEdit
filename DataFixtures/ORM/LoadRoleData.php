@@ -23,6 +23,7 @@
               'ROLE_ADMIN_SETTING'   => 'Settings Access',
               'ROLE_ADMIN_USER'      => 'User Access',
               'ROLE_ADMIN_EDITABLE'  => 'Live Edit Access', 
+              'ROLE_ADMIN_STYLIZER'  => 'Access to Stylizer', 
           ); 
           
           foreach($roles as $role=>$description){

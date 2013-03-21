@@ -31,24 +31,29 @@
     <body>
         <div id="wrap">
         {% block body %}
+            {% block nav %}
             <div class="container">
                 <nav>
-                    {% block nav %}
                     <div class="navbar">
                         <div class="navbar-inner">
                             <a class="brand" href="/">{{ Settings.company.name }}</a>
                             {{ nav.bootstrap( Root ) }}
                         </div>
                     </div>
-                    {% endblock %}
                 </nav>
-                <div>
-                    {% block heading %}<h1>{% content Page.tagline %}</h1>{% endblock %}
+            </div>
+            {% endblock %}
+                
+            {% block content_container %}
+            <div class="container">
+                {% block heading %}<h1>{% content Page.tagline %}</h1>{% endblock %}
+                <div id="content">
                     {% block content %}
                     {{ Page.content|raw }}
                     {% endblock %}
                 </div>
             </div>
+            {% endblock %}
         {% endblock %}
             <div id="push"></div>
         </div>

@@ -1,0 +1,3 @@
+
+   - Add Image Dimensions to the Image entity, so you can use .width / .height or what not
+        from getImageSize

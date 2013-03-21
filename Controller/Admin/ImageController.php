@@ -235,7 +235,7 @@ class ImageController extends Controller
         $em = $this->getDoctrine()->getManager(); 
         $images = $em->getRepository('IsometriksSymEditBundle:Image')->findAll(); 
         
-        $manip = $this->get('isometriks_sym_edit.util.image_manipulator'); 
+        $manip = $this->get('isometriks_media.util.image_manipulator'); 
         
         $out = array(); 
         

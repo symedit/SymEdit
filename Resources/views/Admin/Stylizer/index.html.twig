@@ -1,0 +1,14 @@
+{% extends 'IsometriksSymEditBundle::base.html.twig' %}
+
+{% block title %}Stylizer &raquo; Edit Styles{% endblock %}
+
+{% block content %}
+<form class="form-horizontal" method="post">
+    {{ form_widget(form) }}
+    
+    <div class="form-actions">
+        <button class="btn btn-primary" type="submit">Save</button>
+        <button name="dump" type="submit" class="btn btn-info">Save and Dump</button>
+    </div>
+</form>
+{% endblock %}

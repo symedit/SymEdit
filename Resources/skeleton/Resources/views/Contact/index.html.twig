@@ -1,33 +1,81 @@
 {% extends '{{{ bundle }}}:Page:base.html.twig' %}
 
-{% block content %}
-<div class="row">
-    <div class="span6">
-        <h3>
-            {{ Settings.company.address|nl2br }}
-        </h3>
-        <h5>P: {{ Settings.company.phone }}</h5>
-            {% if Settings.company.fax %}<h5>F: {{ Settings.company.fax }}</h5>{% endif %}
-        <h5>E: <a href="mailto:{{ Settings.company.email }}">{{ Settings.company.email }}</a></h5>
+
+{% block content_container %}
+<div id="content">
+    <div class="container">
+        {% block heading %}<h1>{% content Page.tagline %}</h1>{% endblock %}
+        
+        <div>
+            {% content Page.content %}
+        </div>
     </div>
 
-    <div class="span6">
-        {% include '{{{ bundle }}}:CMS:map.html.twig' %}
+    <div class="gmap-full">
+        {% include '{{{ bundle }}}:CMS:map.html.twig' with { width: '100%', height: '300px' } %}
     </div>
-</div>
 
-<div class="row">
-    <div class="span6">
-        <h3>Services</h3>
-        <form method="post" class="form-horizontal">
+    <div class="container">
+    {% block content %}
+        <div class="row-fluid">
+            <div class="span6">
+                <h4>Our Contact Details</h4>
+                <address>
+                    <p>
+                        <strong>{{ Settings.company.name }}</strong> <br>
+                        {{ Settings.company.address|nl2br }} 
+                    </p>
+                    
+                    <p>
+                        {% if Settings.company.phone %}
+                        <i class="icon-phone"></i> {{ Settings.company.phone }} <br>
+                        {% endif %}
 
-            {{ form_widget(form) }}
+                        {% if Settings.company.fax %}
+                        <i class="icon-book"></i> {{ Settings.company.fax }} <br>
+                        {% endif %}
 
-            <button style="margin-left:80px" type="submit" class="btn">Send Message</button>
-        </form>
-    </div>
-    <div class="span6">
-        {{ Page.content|raw }}
+                        {% if Settings.company.email %}
+                        <i class="icon-envelope"></i> <a href="mailto:{{ Settings.company.email }}">{{ Settings.company.email }}</a>
+                        {% endif %}
+                    </p>
+                </address>
+            </div>
+
+            <div class="span6">
+                <h4>Send us a message</h4>
+                <form method="post">
+
+                    <div class="row-fluid">
+                        <div class="span4">
+                            <h6>Name</h6>
+                            {{ form_widget(form.name, { attr: { class: 'span12'}}) }}
+                        </div>
+                            
+                        <div class="span4">
+                            <h6>Email</h6>
+                            {{ form_widget(form.email, { attr: { class: 'span12'}}) }}
+                        </div>
+                           
+                        <div class="span4">
+                            <h6>Phone</h6>
+                            {{ form_widget(form.phone, { attr: { class: 'span12'}}) }}
+                        </div>
+                    </div>
+                    
+                    <h6>Your Message</h6>
+                    
+                    {{ form_widget(form.message, { attr: { rows: 5, class: 'span12' }}) }}
+                    
+                    {{ form_rest(form) }}
+                    
+                    <div class="form-actions">
+                        <button type="submit" class="btn">Send Message</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    {% endblock %}
     </div>
 </div>
 {% endblock %}

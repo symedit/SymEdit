@@ -38,3 +38,7 @@ symedit_admin_slider_controller:
 symedit_admin_user_controller:
     resource: "@IsometriksSymEditBundle/Controller/Admin/UserController.php"
     type: annotation
+    
+symedit_admin_stylizer_controller:
+    resource: "@IsometriksSymEditBundle/Controller/Admin/StylizerController.php"
+    type: annotation
