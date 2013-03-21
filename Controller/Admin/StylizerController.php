@@ -18,6 +18,13 @@ class StylizerController extends Controller
      */
     public function indexAction(Request $request)
     {
+        /**
+         * Stylizer Bundle was not added, so this page shouldn't exist. 
+         */
+        if(!$this->has('isometriks_stylizer.stylizer')){
+            throw $this->createNotFoundException(); 
+        }
+        
         $stylizer = $this->get('isometriks_stylizer.stylizer'); 
         $form = $this->createForm('styles', $stylizer); 
         
