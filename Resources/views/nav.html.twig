@@ -45,14 +45,14 @@
                     </li>
                     {% endif %}
                     
-                    {% if is_granted('ROLE_ADMIN_SETTING') or is_granted('ROLE_ADMIN_USER') or is_granted('ROLE_ADMIN_STYLIZER') %}
+                    {% if is_granted('ROLE_ADMIN_SETTING') or is_granted('ROLE_ADMIN_USER') or (is_granted('ROLE_ADMIN_STYLIZER') and stylizer) %}
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">Site <b class="caret"></b></a>
                         <ul class="dropdown-menu">
                             {% if is_granted('ROLE_ADMIN_SETTING') %}
                             <li><a href="{{ path('admin_setting') }}"><i class="icon-cog"></i> Settings</a></li>
                             {% endif %}
-                            {% if is_granted('ROLE_ADMIN_STYLIZER') %}
+                            {% if (is_granted('ROLE_ADMIN_STYLIZER') and stylizer) %}
                             <li><a href="{{ path('admin_stylizer') }}"><i class="icon-magic"></i> Stylizer</a></li>
                             {% endif %}                                
                             {% if is_granted('ROLE_ADMIN_USER') %}

@@ -47,6 +47,7 @@ class SymEditExtension extends \Twig_Extension implements ContainerAwareInterfac
         
         if($context->getToken() !== null && $context->isGranted('ROLE_ADMIN')){
             $globals['extensions'] = $this->getExtensions(); 
+            $globals['stylizer'] = $this->container->has('isometriks_stylizer.stylizer'); 
         }
         
         // Inject the Page variable globally in case
