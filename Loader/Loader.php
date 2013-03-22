@@ -21,7 +21,7 @@ class Loader
             $data = Yaml::parse(file_get_contents($file));
             
             foreach($data as $name => $value){
-                $configData->addVariable($name, $value); 
+                $configData->parseGroup($name, $value); 
             }
         }
     }

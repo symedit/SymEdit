@@ -10,7 +10,8 @@
         <parameter key="isometriks_stylizer.injector.lessphp.class">Isometriks\Bundle\StylizerBundle\Injector\LessPhpInjector</parameter>
         <parameter key="isometriks_stylizer.loader.class">Isometriks\Bundle\StylizerBundle\Loader\Loader</parameter>
         <parameter key="isometriks_stylizer.stylizer.class">Isometriks\Bundle\StylizerBundle\Model\Stylizer</parameter>
-        <parameter key="isometriks_stylizer.form.class">Isometriks\Bundle\StylizerBundle\Form\Type\StylesType</parameter>
+        <parameter key="isometriks_stylizer.form.styles.class">Isometriks\Bundle\StylizerBundle\Form\Type\StylesType</parameter>
+        <parameter key="isometriks_stylizer.form.color.class">Isometriks\Bundle\StylizerBundle\Form\Type\ColorType</parameter>
     </parameters>
 
     
@@ -42,9 +43,13 @@
             <argument>%assetic.cache_dir%/assets</argument>
         </service>
         
-        <service id="isometriks_stylizer.form" class="%isometriks_stylizer.form.class%">
+        <service id="isometriks_stylizer.form.styles" class="%isometriks_stylizer.form.styles.class%">
             <argument type="service" id="isometriks_stylizer.stylizer" />
             <tag name="form.type" alias="styles" />
+        </service>
+        
+        <service id="isometriks_stylizer.form.color" class="%isometriks_stylizer.form.color.class%">
+            <tag name="form.type" alias="color" />
         </service>
     </services>
 </container>

@@ -5,6 +5,7 @@ namespace Isometriks\Bundle\StylizerBundle\Form\Type;
 use Symfony\Component\Form\AbstractType; 
 use Symfony\Component\Form\FormBuilderInterface; 
 use Isometriks\Bundle\StylizerBundle\Model\Stylizer; 
+use Isometriks\Bundle\StylizerBundle\Loader\GroupData; 
 use Symfony\Component\Validator\Constraints\NotBlank; 
 
 class StylesType extends AbstractType
@@ -18,14 +19,43 @@ class StylesType extends AbstractType
     
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $config = $this->stylizer->getConfigData()->getVariableConfig(); 
+        $groups = $this->stylizer->getConfigData()->getGroups(); 
+        
+        $allGroups = $builder->create('groups', 'form', array(
+            'virtual' => true, 
+        )); 
+        
+        foreach($groups as $groupName => $group){
+            
+            $groupOptions = array(
+                'virtual' => true, 
+                'extra' => $group->getExtra(), 
+            ); 
+            
+            if($group->getLabel() !== null){
+                $groupOptions['label'] = $group->getLabel(); 
+            }
+            
+            $groupForm = $builder->create('group_'.$groupName, new GroupType(), $groupOptions); 
+            $this->addVariables($groupForm, $group);  
+            
+            $allGroups->add($groupForm); 
+        }
+        
+        $builder->add($allGroups); 
+    }
+    
+    private function addVariables(FormBuilderInterface $builder, GroupData $group)
+    {
+        $config = $group->getVariableConfig(); 
         
         foreach($config as $name => $data){
             
             $label = isset($data['label']) ? $data['label'] : '';
             $options = isset($data['options']) ? $data['options'] : array(); 
+            $type = isset($data['type']) ? $data['type'] : 'text'; 
             
-            $builder->add($name, 'text', array_merge(
+            $builder->add($name, $type, array_merge(
                 array(
                     'label' => $label, 
                     'property_path' => sprintf('[%s]', $name), 
@@ -35,7 +65,7 @@ class StylesType extends AbstractType
                 ), 
                 $options
             )); 
-        }
+        }  
     }
     
     public function getName()
