@@ -1,14 +1,32 @@
-{% extends 'IsometriksSymEditBundle::base.html.twig' %}
+{% extends 'IsometriksSymEditBundle::tabbed.html.twig' %}
 
 {% block title %}Stylizer &raquo; Edit Styles{% endblock %}
 
-{% block content %}
-<form class="form-horizontal" method="post">
-    {{ form_widget(form) }}
-    
-    <div class="form-actions">
-        <button class="btn btn-primary" type="submit">Save</button>
-        <button name="dump" type="submit" class="btn btn-info">Save and Dump</button>
+{% block action %}{{ path('admin_stylizer') }}{% endblock %}
+
+{% block tabs %}
+{% for group in form.groups %}
+<li{% if loop.first %} class="active"{% endif %}>
+    <a href="#group-{{ group.vars.name }}" data-toggle="tab">
+    {% if group.vars.extra.icon is defined %}
+        <i class="icon-{{ group.vars.extra.icon }}"></i>
+    {% endif %}
+        {{ group.vars.label }}
+    </a>
+</li>
+{% endfor %}
+{% endblock %}
+
+{% block tab_content %}
+{% for group in form.groups %}
+    <div class="tab-pane{% if loop.first %} active{% endif %}" id="group-{{ group.vars.name }}">
+        {{ form_widget(group) }}
     </div>
-</form>
+{% endfor %}
+{% endblock %}
+
+
+{% block form_actions %}
+<button class="btn btn-primary btn-block" type="submit">Save</button>
+<button name="dump" type="submit" class="btn btn-info btn-block">Save and Dump</button>
 {% endblock %}

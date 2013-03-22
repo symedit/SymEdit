@@ -1,37 +1,26 @@
-{% extends 'IsometriksSymEditBundle::base.html.twig' %}
+{% extends 'IsometriksSymEditBundle::tabbed.html.twig' %}
 
 {% block title %}Settings{% endblock %}
 
-{% block content %}
+{% block action %}{{ path('admin_setting_update') }}{% endblock %}
 
-<form class="form-horizontal" method="post" action="{{ path('admin_setting_update') }}">
-    <div class="row-fluid">
-        <div class="span3">
-            <div class="well">
-                <ul class="nav nav-pills nav-stacked">
-                    {% for group in form.groups %}
-                    <li{% if loop.first %} class="active"{% endif %}>
-                        <a href="#setting-{{ group.vars.name }}" data-toggle="tab">{{ group.vars.label }}</a>
-                    </li>
-                    {% endfor %}
-                </ul>
+{% block tabs %}
+{% for group in form.groups %}
+<li{% if loop.first %} class="active"{% endif %}>
+    <a href="#setting-{{ group.vars.name }}" data-toggle="tab">{{ group.vars.label }}</a>
+</li>
+{% endfor %}
+{% endblock %}
 
-                <button type="submit" class="btn btn-block btn-primary">Update Settings</button>
-            </div>
-        </div>
-            
-        <div class="span9">
-            <div class="tab-content well">
-
-            {% for group in form.groups %}
-                <div class="tab-pane{% if loop.first %} active{% endif %}" id="setting-{{ group.vars.name }}">
-                    {{ form_widget(group) }}
-                </div>
-            {% endfor %}
-            </div>
-        </div>
+{% block tab_content %}
+{% for group in form.groups %}
+    <div class="tab-pane{% if loop.first %} active{% endif %}" id="setting-{{ group.vars.name }}">
+        {{ form_widget(group) }}
     </div>
-    {{ form_rest(form) }}
-</form>
+{% endfor %}
+{% endblock %}
 
+
+{% block form_actions %}
+<button type="submit" class="btn btn-block btn-primary">Update Settings</button>
 {% endblock %}
