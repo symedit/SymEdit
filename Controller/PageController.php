@@ -14,16 +14,19 @@ class PageController extends Controller
         $response = new Response();
         $settings = $this->get('isometriks_settings.settings');
         $editable = $this->get('security.context')->isGranted('ROLE_ADMIN_EDITABLE');
-
+        
         /**
          * If cache option exists, and it is set to cache, try to serve it from cache. 
          * Also, don't serve cached anything if editable is on. 
          */
         if ($settings->has('advanced.caching') && $settings->get('advanced.caching') === 'cache' && !$editable) {
+           
             $response->setLastModified($entity->getUpdatedAt());
+            $response->setPublic();
+            $response->setVary('Cookie'); 
+            $response->setMaxAge(600);  
 
             if ($response->isNotModified($request)) {
-                $response->setPublic();
                 return $response;
             }
         }
