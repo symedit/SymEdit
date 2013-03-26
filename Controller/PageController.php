@@ -2,49 +2,34 @@
 
 namespace Isometriks\Bundle\SymEditBundle\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
 use Isometriks\Bundle\SymEditBundle\Entity\Page;
 
 class PageController extends Controller
 {
-    public function showAction(Page $entity, Request $request)
+    public function showAction(Page $page, Request $request)
     {
-        $response = new Response();
-        $settings = $this->get('isometriks_settings.settings');
-        $editable = $this->get('security.context')->isGranted('ROLE_ADMIN_EDITABLE');
-        
-        /**
-         * If cache option exists, and it is set to cache, try to serve it from cache. 
-         * Also, don't serve cached anything if editable is on. 
-         */
-        if ($settings->has('advanced.caching') && $settings->get('advanced.caching') === 'cache' && !$editable) {
-           
-            $response->setLastModified($entity->getUpdatedAt());
-            $response->setPublic();
-            $response->setVary('Cookie'); 
-            $response->setMaxAge(600);  
+        $response = $this->createResponse($page->getUpdatedAt());  
 
-            if ($response->isNotModified($request)) {
-                return $response;
-            }
+        if ($response->isNotModified($request)) {
+            return $response;
         }
 
-        // Set it active and traverse
-        $entity->setActive(true, true);
+        /**
+         * Set the page active up to root
+         */
+        $page->setActive(true, true);
 
-        // Insert Page variable into the Request headers
+        /**
+         * Insert Page variable into the Request headers
+         */
         $request->attributes->add(array(
-            '_page' => $entity,
+            '_page' => $page,
         ));
 
-        $host_bundle = $this->container->getParameter('isometriks_sym_edit.host_bundle');
-        $template = sprintf('%s:Page:%s', $host_bundle, $entity->getTemplate());
-
-        return $this->render($template, array(
-            'Page' => $entity,
-            'SEO' => $entity->getSeo(),
+        return $this->render($this->getHostTemplate('Page', $page->getTemplate()), array(
+            'Page' => $page,
+            'SEO' => $page->getSeo(),
         ), $response);
     }
 }

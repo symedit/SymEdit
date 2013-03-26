@@ -3,9 +3,9 @@
 namespace Isometriks\Bundle\SymEditBundle\Controller; 
 
 use Isometriks\Bundle\SymEditBundle\Annotation\PageController as Bind; 
-use Symfony\Bundle\FrameworkBundle\Controller\Controller; 
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route; 
 use Symfony\Component\HttpFoundation\Request;
+use Isometriks\Bundle\SymEditBundle\Entity\Page; 
 
 /**
  * @Bind(name="symedit-contact")
@@ -15,33 +15,46 @@ class ContactController extends Controller
     /**
      * @Route("/")
      */
-    public function indexAction(Request $request)
+    public function indexAction(Request $request, Page $_page)
     {
-        $finder  = $this->get('isometriks_sym_edit.finder.resource_finder'); 
-
-        $host_bundle = $finder->getBundle(); 
-        $namespace   = $finder->getBundleNamespace(); 
+        $finder    = $this->get('isometriks_sym_edit.finder.resource_finder'); 
+        $namespace = $finder->getBundleNamespace(); 
         
         $type = $namespace.'\\Form\\ContactType'; 
         $form = $this->createForm(new $type()); 
         
+        $response = $this->createResponse($_page->getUpdatedAt()); 
+        
         if ($request->getMethod() === 'POST') {
 
+            /**
+             * Set the response to private in case the validation fails, 
+             * preventing the errors from being cached. 
+             */
+            $response->setPrivate(); 
+            
             $form->bind($request);
 
             if ($form->isValid()) {
 
                 $mailer = $this->get('symedit.mailer'); 
-                $mailer->sendAdmin('Contact Form Submission', $host_bundle.':Contact:contact.txt.twig', array(
+                $mailer->sendAdmin('Contact Form Submission', $this->getHostTemplate('Contact', 'contact.txt.twig'), array(
                     'Form' => $form->getData()
                 )); 
 
-                return $this->render($host_bundle.':Contact:success.html.twig');
+                return $this->render($this->getHostTemplate('Contact', 'success.html.twig'));
             }
+            
+        } elseif ($response->isNotModified($request)) {
+            
+            /**
+             * We can only return this response if it is the public one
+             */
+            return $response; 
         }
         
-        return $this->render($host_bundle.':Contact:index.html.twig', array(
+        return $this->render($this->getHostTemplate('Contact', 'index.html.twig'), array(
             'form' => $form->createView(), 
-        ));
+        ), $response);
     }
 }

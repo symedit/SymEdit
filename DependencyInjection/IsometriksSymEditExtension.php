@@ -31,6 +31,29 @@ class IsometriksSymEditExtension extends Extension
         $loader->load('twig.xml');
         $loader->load('util.xml'); 
         $loader->load('profiler.xml'); 
+        
+        
+        /**
+         * Add Classes to Compile
+         */
+        $this->addClassesToCompile(array(
+            // services.xml
+            'Isometriks\\Bundle\\SymEditBundle\\Finder\\ResourceFinder', 
+            'Isometriks\\Bundle\\SymEditBundle\\Templating\\TemplateGuesser', 
+            
+            // event.xml
+            'Isometriks\\Bundle\\SymEditBundle\\EventListener\\ControllerListener', 
+            'Isometriks\\Bundle\\SymEditBundle\\EventListener\\ChunkListener', 
+            
+            // twig.xml
+            'Isometriks\\Bundle\\SymEditBundle\\Twig\\Extension\\SymEditExtension',
+            'Isometriks\\Bundle\\SymEditBundle\\Twig\\Extension\\EditableExtension', 
+            'Isometriks\\Bundle\\SymEditBundle\\Controller\\ExceptionController', 
+            
+            // controllers
+            'Isometriks\\Bundle\\SymEditBundle\\Controller\\Controller', 
+            'Isometriks\\Bundle\\SymEditBundle\\Controller\\PageController', 
+        )); 
            
         /**
          * Setup the Host Bundle and make sure it exists

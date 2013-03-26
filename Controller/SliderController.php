@@ -2,15 +2,12 @@
 
 namespace Isometriks\Bundle\SymEditBundle\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-
 class SliderController extends Controller
 {
     public function indexAction($name, $template = null)
     {
         if($template === null){
-            $host_bundle = $this->container->getParameter('isometriks_sym_edit.host_bundle');
-            $template = sprintf('%s:Widget:%s', $host_bundle, 'slider.html.twig');
+            $template = $this->getHostTemplate('Widget', 'slider.html.twig'); 
         }
         
         $em = $this->getDoctrine()->getManager();

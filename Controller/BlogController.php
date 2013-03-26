@@ -2,7 +2,6 @@
 
 namespace Isometriks\Bundle\SymEditBundle\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Routing\Annotation\Route;
 use Isometriks\Bundle\SymEditBundle\Annotation\PageController as Bind;
 use Isometriks\Bundle\SymEditBundle\Entity\Post;
@@ -16,32 +15,24 @@ use Symfony\Component\HttpFoundation\Request;
  */
 class BlogController extends Controller
 {
-
     /**
      * @Route("/", name="blog")
      * @Sitemap()
      */
     public function indexAction(Request $request)
     {
-        $response = new Response();
         $em = $this->getDoctrine()->getManager();
 
         $modified = $em->createQuery('SELECT MAX(p.updatedAt) as modified FROM IsometriksSymEditBundle:Post p')
-                ->getSingleScalarResult();
+                       ->getSingleScalarResult();
 
-        $response->setLastModified(new \DateTime($modified));
+        $response = $this->createResponse(new \DateTime($modified)); 
 
         if ($response->isNotModified($request)) {
-
-            $response->setPublic();
             return $response;
-        } else {
-
-            $host_bundle = $this->container->getParameter('isometriks_sym_edit.host_bundle');
-            $template = sprintf('%s:Blog:%s', $host_bundle, 'index.html.twig');
-
-            return $this->render($template, array(), $response);
         }
+
+        return $this->render($this->getHostTemplate('Blog', 'index.html.twig'), array(), $response);
     }
 
     public function recentAction()
@@ -52,10 +43,7 @@ class BlogController extends Controller
 
         // TODO Cache this for ESI
 
-        $host_bundle = $this->container->getParameter('isometriks_sym_edit.host_bundle');
-        $template = sprintf('%s:Blog:%s', $host_bundle, 'list.html.twig');
-
-        return $this->render($template, array(
+        return $this->render($this->getHostTemplate('Blog', 'list.html.twig'), array(
             'Posts' => $posts,
         ));
     }
@@ -73,21 +61,16 @@ class BlogController extends Controller
             throw $this->createNotFoundException(sprintf('Post with slug "%s" not found.', $slug));
         }
 
-        $response = new Response();
-        $response->setLastModified($post->getUpdatedAt());
+        $response = $this->createResponse($post->getUpdatedAt());
 
         if ($response->isNotModified($request)) {
-            $response->setPublic();
             return $response;
-        } else {
-            $host_bundle = $this->container->getParameter('isometriks_sym_edit.host_bundle');
-            $template = sprintf('%s:Blog:%s', $host_bundle, 'single.html.twig');
-
-            return $this->render($template, array(
-                        'Post' => $post,
-                        'SEO' => $post->getSeo(),
-                            ), $response);
-        }
+        } 
+        
+        return $this->render($this->getHostTemplate('Blog', 'single.html.twig'), array(
+            'Post' => $post,
+            'SEO' => $post->getSeo(),
+        ), $response);
     }
 
     /**
@@ -97,7 +80,7 @@ class BlogController extends Controller
     {
         $context = $this->get('security.context');
 
-        if ($context->isGranted('ROLE_ADMIN') === false) {
+        if (!$context->isGranted('ROLE_ADMIN')) {
             throw $this->createNotFoundException('No preview available');
         }
 
@@ -110,12 +93,9 @@ class BlogController extends Controller
             throw $this->createNotFoundException(sprintf('Post with slug "%s" not found.', $slug));
         }
 
-        $host_bundle = $this->container->getParameter('isometriks_sym_edit.host_bundle');
-        $template = sprintf('%s:Blog:%s', $host_bundle, 'single.html.twig');
-
-        return $this->render($template, array(
-                    'Post' => $post,
-                    'SEO' => $post->getSeo(),
+        return $this->render($this->getHostTemplate('Blog', 'single.html.twig'), array(
+            'Post' => $post,
+            'SEO' => $post->getSeo(),
         ));
     }
 
@@ -144,31 +124,19 @@ class BlogController extends Controller
         $posts = $this->getPaginator($query, $page);
         $latest = current($posts->getIterator());
 
-        // This still isn't technically correct. We should check for
-        // latest modified in the current page. 
-        $response = new Response();
-
-        if ($latest) {
-            $response->setLastModified($latest->getUpdatedAt());
-        }
+        $modified = $latest === null ? null : $latest->getUpdatedAt(); 
+        $response = $this->createResponse($modified); 
 
         if ($response->isNotModified($request)) {
-
-            $response->setPublic();
             return $response;
-            
-        } else {
-
-            $host_bundle = $this->container->getParameter('isometriks_sym_edit.host_bundle');
-            $template = sprintf('%s:Blog:%s', $host_bundle, 'category.html.twig');
-
-            return $this->render($template, array(
-                        'Category' => $category,
-                        'SEO' => $category->getSeo(),
-                        'Posts' => $posts,
-                        'Pages' => $this->getPages($posts, $page),
-            ), $response);
         }
+
+        return $this->render($this->getHostTemplate('Blog', 'category.html.twig'), array(
+            'Category' => $category,
+            'SEO' => $category->getSeo(),
+            'Posts' => $posts,
+            'Pages' => $this->getPages($posts, $page),
+        ), $response);
     }
 
     /**
@@ -176,9 +144,6 @@ class BlogController extends Controller
      */
     public function authorViewAction($username)
     {
-        $host_bundle = $this->container->getParameter('isometriks_sym_edit.host_bundle');
-        $template = sprintf('%s:Blog:%s', $host_bundle, 'author.html.twig');
-
         $em = $this->getDoctrine()->getManager();
 
         $user_manager = $this->container->get('fos_user.user_manager');
@@ -192,7 +157,7 @@ class BlogController extends Controller
                 ->setParameter('username', $username)
                 ->getQuery();
 
-        return $this->render($template, array(
+        return $this->render($this->getHostTemplate('Blog', 'author.html.twig'), array(
             'Posts' => $query->getResult(),
             'Author' => $user,
         ));
@@ -200,7 +165,7 @@ class BlogController extends Controller
 
     private function getMaxPosts()
     {
-        $settings = $this->get('isometriks_settings.settings');
+        $settings = $this->getSettings();
         $max = 4;
 
         if ($settings->has('blog.max_posts')) {
