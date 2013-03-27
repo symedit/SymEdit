@@ -4,6 +4,7 @@ namespace {{{ namespace }}}\Form;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\Validator\Constraints\NotBlank; 
 
 class ContactType extends AbstractType
 {
@@ -14,6 +15,9 @@ class ContactType extends AbstractType
                 'attr' => array(
                     'placeholder' => 'Name', 
                 ),
+                'constraints' => array(
+                    new NotBlank(), 
+                ), 
             ))
             ->add('email', 'email', array(
                 'required' => false, 
@@ -23,17 +27,21 @@ class ContactType extends AbstractType
             ))
             ->add('phone', 'text', array(
                 'label' => 'Phone', 
-                'required' => false, 
                 'attr' => array(
                     'placeholder' => 'Phone',   
+                ),
+                'constraints' => array(
+                    new NotBlank(), 
                 ),
             ))
             ->add('message', 'textarea', array(
                 'label' => 'Message', 
-                'required' => false, 
                 'attr' => array(
                     'placeholder' => 'Your Message', 
-                ), 
+                ),
+                'constraints' => array(
+                    new NotBlank(), 
+                ),
             ));
     }
 

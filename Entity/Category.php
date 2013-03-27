@@ -69,7 +69,7 @@ class Category
     
     public function __toString()
     {
-        return $this->getSlug();
+        return $this->getTitle();
     }
     
     /**

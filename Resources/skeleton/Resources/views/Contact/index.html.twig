@@ -53,11 +53,11 @@
 
             <div class="span6">
                 <h4>Send us a message</h4>
+                
                 <form method="post">
-
                     <div class="row-fluid">
                         <div class="span4">
-                            <h6>Name</h6>
+                            <h6>Name*</h6>
                             {{ form_widget(form.name, { attr: { class: 'span12'}}) }}
                         </div>
                             
@@ -67,12 +67,12 @@
                         </div>
                            
                         <div class="span4">
-                            <h6>Phone</h6>
+                            <h6>Phone*</h6>
                             {{ form_widget(form.phone, { attr: { class: 'span12'}}) }}
                         </div>
                     </div>
                     
-                    <h6>Your Message</h6>
+                    <h6>Your Message*</h6>
                     
                     {{ form_widget(form.message, { attr: { rows: 5, class: 'span12' }}) }}
                     
