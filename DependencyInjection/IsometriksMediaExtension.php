@@ -27,5 +27,19 @@ class IsometriksMediaExtension extends Extension
         foreach(array('util', 'events', 'twig') as $file){
             $loader->load($file.'.xml'); 
         }
+        
+        /**
+         * Compile Classes
+         */
+        $this->addClassesToCompile(array(
+            // events.xml
+            'Isometriks\\Bundle\MediaBundle\\EventListener\\RootInjectableListener', 
+            
+            // twig.xml
+            'Isometriks\\Bundle\\MediaBundle\\Twig\\Extension\\MediaExtension', 
+            
+            // util.xml
+            'Isometriks\\Bundle\\MediaBundle\\Util\\ImageManipulator', 
+        )); 
     }
 }
