@@ -16,7 +16,6 @@ class Controller extends BaseController
     {
         $response = new Response(); 
         $response->setVary('Cookie'); 
-        $response->setSharedMaxAge(600);
         
         if($this->isCacheable()){
             
@@ -26,6 +25,7 @@ class Controller extends BaseController
             
             $response->setLastModified($modified); 
             $response->setPublic(); 
+            $response->setSharedMaxAge(600);
         }
         
         return $response; 

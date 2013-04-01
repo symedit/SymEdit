@@ -51,8 +51,8 @@ class IsometriksSymEditExtension extends Extension
             'Isometriks\\Bundle\\SymEditBundle\\Controller\\ExceptionController', 
             
             // controllers
-            'Isometriks\\Bundle\\SymEditBundle\\Controller\\Controller', 
-            'Isometriks\\Bundle\\SymEditBundle\\Controller\\PageController', 
+            //'Isometriks\\Bundle\\SymEditBundle\\Controller\\Controller', 
+            //'Isometriks\\Bundle\\SymEditBundle\\Controller\\PageController', 
         )); 
            
         /**
