@@ -39,7 +39,7 @@ abstract class File implements RootInjectableInterface
     
     public function __toString()
     {
-        return $this->getName(); 
+        return $this->getWebPath(); 
     }
     
     /**
