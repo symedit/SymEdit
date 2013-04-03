@@ -27,7 +27,7 @@ class EditableExtension extends \Twig_Extension
     public function render($subject, $type, array $parameters = array())
     {
         $editable = new Editable($subject, $type, $parameters);
-        $extension = $this->registry->getExtensionForType($editable);
+        $extension = $this->getEditableRegistry()->getExtensionForType($editable);
 
         return $extension->execute($editable, $this->form_factory, $this->security);
     }
