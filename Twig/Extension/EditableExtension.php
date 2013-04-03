@@ -9,16 +9,19 @@ use Isometriks\Bundle\SymEditBundle\Twig\TokenParser;
 class EditableExtension extends \Twig_Extension
 {
     private $container;
-    private $registry;
     private $form_factory;
     private $security;
 
     public function __construct(ContainerInterface $container)
     {
         $this->container = $container;
-        $this->registry = $this->container->get('isometriks_sym_edit.editable.registry');
         $this->security = $this->container->get('security.context');
         $this->form_factory = $this->container->get('form.factory');
+    }
+    
+    private function getEditableRegistry()
+    {
+        return $this->container->get('isometriks_sym_edit.editable.registry'); 
     }
 
     public function render($subject, $type, array $parameters = array())
@@ -41,7 +44,7 @@ class EditableExtension extends \Twig_Extension
     {
         $scripts = array();
 
-        foreach ($this->registry->getLoadedExtensions() as $extension) {
+        foreach ($this->getEditableRegistry()->getLoadedExtensions() as $extension) {
             $scripts = array_merge($scripts, $extension->getJavascripts());
         }
 
@@ -52,7 +55,7 @@ class EditableExtension extends \Twig_Extension
     {
         $sheets = array();
 
-        foreach ($this->registry->getLoadedExtensions() as $extension) {
+        foreach ($this->getEditableRegistry()->getLoadedExtensions() as $extension) {
             $sheets = array_merge($sheets, $extension->getStylesheets());
         }
 

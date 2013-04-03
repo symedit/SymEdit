@@ -57,6 +57,7 @@ class SymEditExtension extends \Twig_Extension implements ContainerAwareInterfac
             
             if($request->attributes->has('_page')){
                 $page = $request->attributes->get('_page'); 
+                $page->setActive(true, true); 
                 $globals['Page'] = $page; 
                 $globals['SEO']  = $page->getSeo(); 
             }

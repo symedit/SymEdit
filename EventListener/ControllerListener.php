@@ -42,11 +42,6 @@ class ControllerListener
                 'pageControllerPath' => $annot->getName()
             ));
 
-            // TODO: Hmm... this is kind of a problem..
-            // This is preemptive, the controller might want to return
-            // a cached response but this will slow it down a lot. 
-            $page->setActive(true, true);
-
             $event->getRequest()->attributes->add(array(
                 '_page' => $page
             ));
