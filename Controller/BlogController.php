@@ -7,7 +7,6 @@ use Isometriks\Bundle\SymEditBundle\Annotation\PageController as Bind;
 use Isometriks\Bundle\SymEditBundle\Entity\Post;
 use Isometriks\Bundle\SitemapBundle\Annotation\Sitemap;
 use Doctrine\ORM\Tools\Pagination\Paginator;
-use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
 
 /**
