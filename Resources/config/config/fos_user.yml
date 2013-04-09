@@ -1,0 +1,10 @@
+fos_user:
+    db_driver: orm 
+    firewall_name: main
+    user_class: %isometriks_sym_edit.security.user_class%
+    registration:
+        form:
+            type: %isometriks_sym_edit.fos_user.form.registration% 
+    profile:
+        form:
+            type: %isometriks_sym_edit.fos_user.form.profile% 

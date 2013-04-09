@@ -1,0 +1,8 @@
+parameters:
+    # User Class
+    isometriks_sym_edit.security.user_class:        Isometriks\Bundle\SymEditBundle\Entity\User
+           
+    # FOS Parameters
+    isometriks_sym_edit.fos_user.form.registration: isometriks_symedit_user_registration
+    isometriks_sym_edit.fos_user.form.profile:      isometriks_symedit_user_profile
+            

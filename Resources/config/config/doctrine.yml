@@ -1,0 +1,10 @@
+doctrine:
+    orm:
+        resolve_target_entities:
+            Isometriks\Bundle\SymEditBundle\Model\UserInterface: %isometriks_sym_edit.security.user_class%
+        entity_managers:
+            default:
+                filters:
+                    post_published:
+                        class: Isometriks\Bundle\SymEditBundle\Filter\PostPublishedFilter
+                        enabled: true

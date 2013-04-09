@@ -1,0 +1,8 @@
+imports:
+    - { resource: parameters.yml }
+    - { resource: doctrine.yml }
+    - { resource: fos_user.yml }
+    - { resource: isometriks_settings.yml }
+    - { resource: jms_security_extra.yml }
+    - { resource: mopa_bootstrap.yml }
+    - { resource: twig.yml }

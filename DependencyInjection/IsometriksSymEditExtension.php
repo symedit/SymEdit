@@ -48,11 +48,6 @@ class IsometriksSymEditExtension extends Extension
             // twig.xml
             'Isometriks\\Bundle\\SymEditBundle\\Twig\\Extension\\SymEditExtension',
             'Isometriks\\Bundle\\SymEditBundle\\Twig\\Extension\\EditableExtension', 
-            'Isometriks\\Bundle\\SymEditBundle\\Controller\\ExceptionController', 
-            
-            // controllers
-            //'Isometriks\\Bundle\\SymEditBundle\\Controller\\Controller', 
-            //'Isometriks\\Bundle\\SymEditBundle\\Controller\\PageController', 
         )); 
            
         /**
