@@ -1,7 +1,7 @@
 doctrine:
     orm:
         resolve_target_entities:
-            Isometriks\Bundle\SymEditBundle\Model\UserInterface: %isometriks_sym_edit.security.user_class%
+            Isometriks\Bundle\SymEditBundle\Model\UserInterface: %isometriks_sym_edit.entity.user_class%
         entity_managers:
             default:
                 filters:
