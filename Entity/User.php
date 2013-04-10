@@ -5,29 +5,24 @@ namespace Isometriks\Bundle\SymEditBundle\Entity;
 use Isometriks\Bundle\UserBundle\Entity\User as BaseUser;
 use Isometriks\Bundle\SymEditBundle\Util\Util; 
 use Isometriks\Bundle\SymEditBundle\Model\UserInterface; 
-use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity
- * @ORM\Table(name="users")
+ * Isometriks\Bundle\SymEditBundle\Entity\User
  */
 class User extends BaseUser implements UserInterface
 {
     /**
-     * @ORM\Id
-     * @ORM\Column(type="integer")
-     * @ORM\GeneratedValue(strategy="AUTO")
+     * @var integer $id
      */
     protected $id;    
     
     /**
-     * @ORM\ManyToOne(targetEntity="Image", cascade={"persist"})
+     * @var Isometriks\Bundle\SymEditBundle\Entity\Image
      */
     protected $image;
     
     /**
-     * @ORM\OneToMany(targetEntity="Post", mappedBy="author")
-     * @ORM\OrderBy({"createdAt"="DESC"})
+     * @var ArrayCollection $posts
      */
     protected $posts; 
     

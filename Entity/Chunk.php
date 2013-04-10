@@ -2,15 +2,11 @@
 
 namespace Isometriks\Bundle\SymEditBundle\Entity;
 
-use Doctrine\ORM\Mapping as ORM;
 use Isometriks\Bundle\SymEditBundle\Editable\Extension\Chunk\Strategy\ChunkStrategyInterface; 
 use Isometriks\Bundle\SymEditBundle\Entity\Page; 
 
 /**
  * Chunk
- *
- * @ORM\Table(name="chunk")
- * @ORM\Entity
  */
 class Chunk
 {
@@ -26,37 +22,27 @@ class Chunk
     
     /**
      * @var integer
-     *
-     * @ORM\Column(name="id", type="integer")
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
 
     
     /**
      * @var string Chunk Name
-     * 
-     * @ORM\Column(name="name", type="string", length=255)
      */
     private $name; 
     
     /**
      * @var array
-     *
-     * @ORM\Column(name="options", type="json_array")
      */
     private $options;
 
     /**
      * @var string
-     *
-     * @ORM\Column(name="strategy_name", type="string", length=255)
      */
     private $strategyName;
     
     /**
-     * @ORM\ManyToOne(targetEntity="Page", inversedBy="chunks")
+     * @var Isometriks\Bundle\SymEditBundle\Entity\Page
      */
     private $page; 
     

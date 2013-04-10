@@ -1,0 +1,153 @@
+Isometriks\Bundle\SymEditBundle\Entity\Page:
+    type: entity
+    table: pages
+    repositoryClass: Isometriks\Bundle\SymEditBundle\Repository\PageRepository
+    fields:
+        id:
+            type: integer
+            scale: 0
+            length: null
+            unique: false
+            nullable: false
+            precision: 0
+            id: true
+            generator:
+                strategy: IDENTITY
+        homepage:
+            type: boolean
+            scale: 0
+            length: null
+            unique: false
+            nullable: false
+            precision: 0
+        root:
+            type: boolean
+            scale: 0
+            length: null
+            unique: false
+            nullable: false
+            precision: 0
+        name:
+            type: string
+            scale: 0
+            length: 255
+            unique: false
+            nullable: true
+            precision: 0
+        tagline:
+            type: string
+            scale: 0
+            length: 255
+            unique: false
+            nullable: true
+            precision: 0
+        summary:
+            type: text
+            scale: 0
+            length: null
+            unique: false
+            nullable: true
+            precision: 0
+        path:
+            type: string
+            scale: 0
+            length: 255
+            unique: false
+            nullable: false
+            precision: 0
+        title:
+            type: string
+            scale: 0
+            length: 255
+            unique: false
+            nullable: false
+            precision: 0
+        content:
+            type: text
+            scale: 0
+            length: null
+            unique: false
+            nullable: true
+            precision: 0
+        seo:
+            type: json_array
+            scale: 0
+            length: null
+            unique: false
+            nullable: true
+            precision: 0
+        pageOrder:
+            type: integer
+            scale: 0
+            length: null
+            unique: false
+            nullable: false
+            precision: 0
+        display:
+            type: boolean
+            scale: 0
+            length: null
+            unique: false
+            nullable: false
+            precision: 0
+        crawl:
+            type: boolean
+            scale: 0
+            length: null
+            unique: false
+            nullable: false
+            precision: 0
+        pageController:
+            type: boolean
+            scale: 0
+            length: null
+            unique: false
+            nullable: false
+            precision: 0
+        pageControllerPath:
+            type: string
+            scale: 0
+            length: 255
+            unique: false
+            nullable: true
+            precision: 0
+        updatedAt:
+            type: datetime
+            nullable: false
+        template:
+            type: string
+            nullable: true
+    manyToOne:
+        parent:
+            targetEntity: Isometriks\Bundle\SymEditBundle\Entity\Page
+            cascade: {  }
+            mappedBy: null
+            inversedBy: children
+            joinColumns:
+                parent:
+                    referencedColumnName: id
+                    onDelete: 'SET NULL'
+            orphanRemoval: false
+    oneToMany:
+        children:
+            targetEntity: Isometriks\Bundle\SymEditBundle\Entity\Page
+            cascade:
+                - remove
+                - persist
+            mappedBy: parent
+            inversedBy: null
+            orphanRemoval: false
+            orderBy:
+                pageOrder: ASC
+        chunks:
+            targetEntity: Isometriks\Bundle\SymEditBundle\Entity\Chunk
+            cascade:
+                - remove
+                - persist
+            mappedBy: page
+            inversedBy: null
+            orphanRemoval: false
+            orderBy: null
+    lifecycleCallbacks:
+        prePersist:
+            - fixPath

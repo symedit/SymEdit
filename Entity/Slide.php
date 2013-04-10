@@ -2,52 +2,35 @@
 
 namespace Isometriks\Bundle\SymEditBundle\Entity;
 
-use Doctrine\ORM\Mapping as ORM;
-
 /**
  * Isometriks\Bundle\SymEditBundle\Entity\Slide
- *
- * @ORM\Table(name="slide")
- * @ORM\Entity
  */
 class Slide
 {
     /**
      * @var integer $id
-     *
-     * @ORM\Column(name="id", type="integer")
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
 
     /**
      * @var string $caption
-     *
-     * @ORM\Column(name="caption", type="string", length=255, nullable=true)
      */
     private $caption;
     
     
     /**
      * @var string $position
-     * 
-     * @ORM\Column(name="position", type="string", length=50, nullable=true)
      */
     private $position; 
 
     
     /**
      * @var Slider
-     * 
-     * @ORM\ManyToOne(targetEntity="Slider", inversedBy="slides")
      */
     private $slider; 
     
     /**
      * @var Image
-     * 
-     * @ORM\ManyToOne(targetEntity="Image", cascade={"persist"})
      */
     private $image; 
 

@@ -2,44 +2,30 @@
 
 namespace Isometriks\Bundle\SymEditBundle\Entity;
 
-use Doctrine\ORM\Mapping as ORM;
 
 /**
  * Isometriks\Bundle\SymEditBundle\Entity\Slider
- *
- * @ORM\Table(name="slider")
- * @ORM\Entity
  */
 class Slider
 {
     /**
      * @var integer $id
-     *
-     * @ORM\Column(name="id", type="integer")
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
 
     /**
      * @var string $name
-     *
-     * @ORM\Column(name="name", type="string", length=255)
      */
     private $name;
 
     /**
      * @var string $description
-     *
-     * @ORM\Column(name="description", type="string", length=255)
      */
     private $description;
     
     
     /**
      * @var type 
-     * 
-     * @ORM\OneToMany(targetEntity="Slide", mappedBy="slider")
      */
     private $slides; 
 

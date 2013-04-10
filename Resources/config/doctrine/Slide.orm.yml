@@ -1,0 +1,49 @@
+Isometriks\Bundle\SymEditBundle\Entity\Slide:
+    type: entity
+    table: slide
+    fields:
+        id:
+            type: integer
+            scale: 0
+            length: null
+            unique: false
+            nullable: false
+            precision: 0
+            id: true
+            generator:
+                strategy: IDENTITY
+        caption:
+            type: string
+            scale: 0
+            length: 255
+            unique: false
+            nullable: true
+            precision: 0
+        position:
+            type: string
+            scale: 0
+            length: 50
+            unique: false
+            nullable: true
+            precision: 0
+    manyToOne:
+        slider:
+            targetEntity: Isometriks\Bundle\SymEditBundle\Entity\Slider
+            cascade: {  }
+            mappedBy: null
+            inversedBy: slides
+            joinColumns:
+                slider_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+        image:
+            targetEntity: Isometriks\Bundle\SymEditBundle\Entity\Image
+            cascade:
+                - persist
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                image_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+    lifecycleCallbacks: {  }

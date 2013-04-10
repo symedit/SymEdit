@@ -2,23 +2,17 @@
 
 namespace Isometriks\Bundle\SymEditBundle\Entity; 
 
-use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Isometriks\Bundle\MediaBundle\Entity\File; 
 
 /**
- * @ORM\Entity
- * @ORM\Table(name="images")
- * @ORM\HasLifecycleCallbacks
- * @UniqueEntity(fields={"path"}, message="There is already an image with this name, please choose another.")
+ * Image entity, extends the File entity in MediaBundle 
  */
 class Image extends File
 {
     /**
-     * @ORM\Id
-     * @ORM\Column(type="integer")
-     * @ORM\GeneratedValue(strategy="AUTO")
+     * @var int Primary Key
      */
     private $id; 
 
@@ -43,7 +37,7 @@ class Image extends File
     }
     
     /**
-     * @ORM\PostRemove()
+     * PostRemove()
      */
     public function removeUpload()
     {

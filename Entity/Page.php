@@ -2,153 +2,112 @@
 
 namespace Isometriks\Bundle\SymEditBundle\Entity;
 
-use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\ExecutionContext;
 use Isometriks\Bundle\SymEditBundle\Model\UpdatableInterface; 
 
 /**
- * 
- * @ORM\Table(name="pages")
- * @ORM\Entity(repositoryClass="Isometriks\Bundle\SymEditBundle\Repository\PageRepository")
- * @ORM\HasLifecycleCallbacks
- * 
+ * Page Entity 
  */
 class Page implements UpdatableInterface 
 {
 
     /**
      * @var integer $id
-     *
-     * @ORM\Column(name="id", type="integer")
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="AUTO")
      */
     protected $id;
 
     /**
      * @var boolean $homepage
-     *
-     * @ORM\Column(name="homepage", type="boolean")
      */
     protected $homepage;
 
     /**
      * @var boolean $root
-     *
-     * @ORM\Column(name="root", type="boolean")
      */
     protected $root;
 
     /**
      * @var string $name
-     *
-     * @ORM\Column(name="name", type="string", length=255, nullable=true)
      */
     protected $name;
 
     /**
      * @var string $tagline
-     *
-     * @ORM\Column(name="tagline", type="string", length=255, nullable=true)
      */
     protected $tagline;
 
     /**
      * @var string $summary
-     *
-     * @ORM\Column(name="summary", type="text", nullable=true)
      */
     protected $summary;
 
     /**
      * @var string $path
-     *
-     * @ORM\Column(name="path", type="string", length=255)
      */
     protected $path;
 
     /**
      * @var string $title
-     *
-     * @ORM\Column(name="title", type="string", length=255)
      */
     protected $title;
 
     /**
      * @var string $content
-     *
-     * @ORM\Column(name="content", type="text", nullable=true)
      */
     protected $content;
 
     /**
      * @var array $seo
-     *
-     * @ORM\Column(name="seo", type="json_array", nullable=true)
      */
     protected $seo;
 
     /**
      * @var integer $pageOrder
-     *
-     * @ORM\Column(name="pageOrder", type="integer")
      */
     protected $pageOrder;
 
     /**
      * @var boolean $display
-     *
-     * @ORM\Column(name="display", type="boolean")
      */
     protected $display;
 
     /**
      * @var boolean $crawl
-     *
-     * @ORM\Column(name="crawl", type="boolean")
      */
     protected $crawl;
 
     /**
      * @var boolean $pageController
-     *
-     * @ORM\Column(name="pageController", type="boolean")
      */
     protected $pageController;
 
     /**
      * @var string $pageControllerPath
-     *
-     * @ORM\Column(name="pageControllerPath", type="string", length=255, nullable=true)
      */
     protected $pageControllerPath;
 
     /**
      * @var \DateTime $updatedAt
-     *
-     * @ORM\Column(name="updatedAt", type="datetime")
      */
     protected $updatedAt;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Page", inversedBy="children")
-     * @ORM\JoinColumn(name="parent", referencedColumnName="id", onDelete="SET NULL")
+     * @var Isometriks\Bundle\SymEditBundle\Entity\Page Parent page or null for root
      */
     protected $parent;
 
     /**
-     * @ORM\OneToMany(targetEntity="Page", mappedBy="parent", cascade={"persist","remove"})
-     * @ORM\OrderBy({"pageOrder"="ASC"})
+     * @var ArrayCollection Children of this page
      */
     protected $children;
     
     /**
-     * @ORM\OneToMany(targetEntity="Chunk", mappedBy="page", cascade={"persist", "remove"})
+     * @var ArrayCollection Chunks associated to this page
      */
     protected $chunks; 
 
     /**
-     * @ORM\Column(name="template", length=255, nullable=true)
+     * @var string Template Name
      */
     protected $template;
 
@@ -668,7 +627,7 @@ class Page implements UpdatableInterface
     }
 
     /**
-     * @ORM\PrePersist
+     * PrePersist
      */
     public function fixPath()
     {

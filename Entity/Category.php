@@ -2,67 +2,40 @@
 
 namespace Isometriks\Bundle\SymEditBundle\Entity;
 
-use Doctrine\ORM\Mapping as ORM;
-
 /**
  * Isometriks\Bundle\SymEditBundle\Entity\Category
- *
- * @ORM\Table(name="category")
- * @ORM\HasLifecycleCallbacks
- * @ORM\Entity(repositoryClass="Isometriks\Bundle\SymEditBundle\Repository\CategoryRepository")
  */
 class Category
 {
     /**
      * @var integer $id
-     *
-     * @ORM\Column(name="id", type="integer")
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
 
     /**
      * @var string $name
-     *
-     * @ORM\Column(name="name", type="string", length=255)
      */
     private $name;
 
     /**
      * @var string $title
-     *
-     * @ORM\Column(name="title", type="string", length=255)
      */
     private $title;
 
     /**
      * @var string $slug
-     *
-     * @ORM\Column(name="slug", type="string", length=255)
      */
     private $slug;
 
-    /**
-     * @ORM\ManyToOne(targetEntity="Category", inversedBy="children")
-     * @ORM\JoinColumn(name="parent", referencedColumnName="id", onDelete="SET NULL")
-     */
+    
     private $parent;
 
-    /**
-     * @ORM\OneToMany(targetEntity="Category", mappedBy="parent", cascade={"persist","remove"})
-     */
     private $children;
     
-    /**
-     * @ORM\ManyToMany(targetEntity="Post", mappedBy="categories")
-     */
     private $posts; 
     
     /**
      * @var array $seo
-     *
-     * @ORM\Column(name="seo", type="json_array", nullable=true)
      */
     private $seo;
     
@@ -157,7 +130,7 @@ class Category
     }
     
     /**
-     * @ORM\PrePersist
+     * PrePersist
      */
     public function fixSlug()
     {

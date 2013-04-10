@@ -2,19 +2,12 @@
 
 namespace Isometriks\Bundle\SymEditBundle\Entity;
 
-use Doctrine\ORM\Mapping as ORM;
-use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Isometriks\Bundle\SymEditBundle\Util\Util;
 use Isometriks\Bundle\SymEditBundle\Model\UpdatableInterface; 
 use Isometriks\Bundle\SymEditBundle\Model\UserInterface; 
 
 /**
  * Isometriks\Bundle\SymEditBundle\Entity\Post
- *
- * @ORM\Table(name="post")
- * @ORM\Entity(repositoryClass="Isometriks\Bundle\SymEditBundle\Repository\PostRepository")
- * @ORM\HasLifecycleCallbacks
- * @UniqueEntity(fields={"slug"}, message="The Post slug must be unique. It is created from your post title.")
  */
 class Post implements UpdatableInterface
 {
@@ -24,73 +17,61 @@ class Post implements UpdatableInterface
     
     /**
      * @var integer $id
-     *
-     * @ORM\Column(name="id", type="integer")
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
 
     /**
      * @var string $title
-     *
-     * @ORM\Column(name="title", type="string", length=255)
      */
     private $title;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Isometriks\Bundle\SymEditBundle\Model\UserInterface", inversedBy="posts")
+     * @var
      */
     private $author;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Image", cascade={"persist"})
+     * @var Isometriks\Bundle\SymEditBundle\Entity\Image
      */
     private $image;
 
     /**
      * @var string $slug
-     *
-     * @ORM\Column(name="slug", type="string", length=255, unique=true)
      */
     private $slug;
 
     /**
      * @var string $content
-     *
-     * @ORM\Column(name="content", type="text", nullable=true)
      */
     private $content;
     
     /**
-     * @ORM\Column(name="summary", type="text", nullable=true)
+     * @var string $summary
      */
     private $summary; 
     
     /**
-     * @ORM\Column(name="createdAt", type="datetime")
+     * @var \DateTime $createdAt
      */    
     private $createdAt; 
     
     /**
-     * @ORM\Column(name="updatedAt", type="datetime")
+     * @var \DateTime $updatedAt
      */
     private $updatedAt; 
     
     /**
-     * @ORM\ManyToMany(targetEntity="Category", inversedBy="posts")
+     * @var ArrayCollection $categories
      */
     private $categories; 
     
     /**
-     * @ORM\Column(name="status", type="integer")
+     * @var integer $status
      */
     private $status; 
     
     /**
      * @var array $seo
-     *
-     * @ORM\Column(name="seo", type="json_array", nullable=true)
      */
     private $seo;
 
