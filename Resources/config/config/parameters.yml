@@ -1,6 +1,6 @@
 parameters:
     # User Class
-    isometriks_sym_edit.security.user_class:        Isometriks\Bundle\SymEditBundle\Entity\User
+    isometriks_sym_edit.security.user_class:        Isometriks\Bundle\UserBundle\Entity\User
     
     # Entity Class
     isometriks_sym_edit.entity.user_class:          %isometriks_sym_edit.security.user_class%

@@ -3,7 +3,7 @@ doctrine:
         resolve_target_entities:
             Isometriks\Bundle\SymEditBundle\Model\UserInterface: %isometriks_sym_edit.entity.user_class%
         entity_managers:
-            default:
+            default:                    
                 filters:
                     post_published:
                         class: Isometriks\Bundle\SymEditBundle\Filter\PostPublishedFilter
