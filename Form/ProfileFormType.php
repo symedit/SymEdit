@@ -33,6 +33,7 @@ class ProfileFormType extends BaseType
         $builder
                 ->add($basic)
                 ->add('biography', 'textarea', array(
+                    'required' => false,
                     'attr' => array(
                         'class' => 'wysiwyg-editor', 
                     ), 
@@ -41,7 +42,6 @@ class ProfileFormType extends BaseType
                 ->add('image', new ImageType(), array(
                     'required' => false, 
                     'require_name' => false, 
-                    'parent_update' => 'setUpdated', 
                 ))
                 ->add('roles', 'symedit_role');
     }
