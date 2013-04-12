@@ -9,6 +9,13 @@ use Isometriks\Bundle\SymEditBundle\Entity\Post;
 
 class PostType extends AbstractType {
 
+    private $userClass; 
+    
+    public function __construct($userClass)
+    {
+        $this->userClass = $userClass;
+    }
+    
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
@@ -33,7 +40,7 @@ class PostType extends AbstractType {
                 ))
                 ->add('author', 'entity', array(
                     'property' => 'fullname', 
-                    'class'    => 'Isometriks\\Bundle\\SymEditBundle\\Entity\\User', 
+                    'class'    => $this->userClass, 
                 ))
                 ->add('status', 'choice', array(
                     'choices' => array(
@@ -66,7 +73,7 @@ class PostType extends AbstractType {
 
     public function getName()
     {
-        return 'isometriks_bundle_symeditbundle_posttype';
+        return 'symedit_post';
     }
 
 }

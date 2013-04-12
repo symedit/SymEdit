@@ -26,9 +26,7 @@ class UserController extends Controller
      */
     public function indexAction()
     {
-        $em = $this->getDoctrine()->getManager();
-
-        $entities = $em->getRepository('IsometriksSymEditBundle:User')->findAll();
+        $entities = $this->getRepository()->findAll();
 
         return array(
             'entities' => $entities,
@@ -43,9 +41,7 @@ class UserController extends Controller
      */
     public function showAction($id)
     {
-        $em = $this->getDoctrine()->getManager();
-
-        $entity = $em->getRepository('IsometriksSymEditBundle:User')->find($id);
+        $entity = $this->getRepository()->find($id);
 
         if (!$entity) {
             throw $this->createNotFoundException('Unable to find User entity.');
@@ -110,9 +106,7 @@ class UserController extends Controller
      */
     public function editAction($id)
     {
-        $em = $this->getDoctrine()->getManager();
-
-        $entity = $em->getRepository('IsometriksSymEditBundle:User')->find($id);
+        $entity = $this->getRepository()->find($id);
 
         if (!$entity) {
             throw $this->createNotFoundException('Unable to find User entity.');
@@ -137,9 +131,7 @@ class UserController extends Controller
      */
     public function updateAction(Request $request, $id)
     {
-        $em = $this->getDoctrine()->getManager();
-
-        $user = $em->getRepository('IsometriksSymEditBundle:User')->find($id);
+        $user = $this->getRepository()->find($id);
 
         if (!$user) {
             throw $this->createNotFoundException('Unable to find Page entity.');
@@ -164,5 +156,13 @@ class UserController extends Controller
             'entity'      => $user,
             'form'        => $form->createView(),
         );
+    }
+    
+    private function getRepository()
+    {
+        $em = $this->getDoctrine()->getManager(); 
+        $class = $this->container->getParameter('fos_user.model.user.class'); 
+        
+        return $em->getRepository($class); 
     }
 }

@@ -52,7 +52,7 @@ class PostController extends Controller
     {
         $entity = new Post();
         $entity->setAuthor($this->getUser()); 
-        $form   = $this->createForm(new PostType(), $entity); 
+        $form   = $this->createForm('symedit_post', $entity); 
 
         return array(
             'entity' => $entity,
@@ -70,7 +70,7 @@ class PostController extends Controller
     public function createAction(Request $request)
     {
         $entity  = new Post();
-        $form = $this->createForm(new PostType(), $entity);
+        $form = $this->createForm('symedit_post', $entity);
         $form->bind($request);
 
         if ($form->isValid()) {
@@ -106,7 +106,7 @@ class PostController extends Controller
             throw $this->createNotFoundException('Unable to find Post entity.');
         }
 
-        $editForm = $this->createForm(new PostType($entity->getSlug()), $entity);
+        $editForm = $this->createForm('symedit_post', $entity);
         $deleteForm = $this->createDeleteForm($id);
 
         return array(
@@ -135,7 +135,7 @@ class PostController extends Controller
         }
 
         $deleteForm = $this->createDeleteForm($id);
-        $editForm = $this->createForm(new PostType(), $entity);
+        $editForm = $this->createForm('symedit_post', $entity);
         $editForm->bind($request);
 
         if ($editForm->isValid()) {     

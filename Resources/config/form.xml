@@ -7,6 +7,7 @@
     <parameters>
         <parameter key="isometriks_sym_edit.form.type.template.class">Isometriks\Bundle\SymEditBundle\Form\Type\TemplateType</parameter>
         <parameter key="isometriks_sym_edit.form.type.role.class">Isometriks\Bundle\SymEditBundle\Form\Type\RoleType</parameter>
+        <parameter key="isometriks_sym_edit.form.type.post.class">Isometriks\Bundle\SymEditBundle\Form\PostType</parameter>
     </parameters>
     
     <services>
@@ -20,6 +21,11 @@
             <argument type="service" id="doctrine" />
             <argument type="service" id="security.context" />
             <tag name="form.type" alias="symedit_role" />
+        </service>
+        
+        <service id="isometriks_sym_edit.form.type.post" class="%isometriks_sym_edit.form.type.post.class%">
+            <argument>%fos_user.model.user.class%</argument>
+            <tag name="form.type" alias="symedit_post" />
         </service>
     </services>
 
