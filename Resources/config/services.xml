@@ -1,0 +1,24 @@
+<?xml version="1.0" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <parameters>
+        <parameter key="isometriks_sym_edit.form.type.registration.class">Isometriks\Bundle\UserBundle\Form\RegistrationFormType</parameter>
+        <parameter key="isometriks_sym_edit.form.type.profile.class">Isometriks\Bundle\UserBundle\Form\ProfileFormType</parameter>
+    </parameters>
+    
+    <services>
+        <service id="isometriks_sym_edit.form.type.registration" class="%isometriks_sym_edit.form.type.registration.class%">
+            <argument>%fos_user.model.user.class%</argument>
+            <tag name="form.type" alias="isometriks_symedit_user_registration" />
+        </service>
+
+        <service id="isometriks_sym_edit.form.type.profile" class="%isometriks_sym_edit.form.type.profile.class%">
+            <argument>%fos_user.model.user.class%</argument>
+            <tag name="form.type" alias="isometriks_symedit_user_profile" />
+        </service>
+    </services>
+
+</container>
