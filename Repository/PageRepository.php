@@ -32,6 +32,13 @@ class PageRepository extends EntityRepository
 
         return $query->getQuery()->getResult();
     }
+    
+    public function findPageControllers()
+    {
+        return $this->findBy(array(
+            'pageController' => true
+        )); 
+    }
 
     public function getPath($path)
     {

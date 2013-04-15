@@ -27,9 +27,13 @@ class PageLoader extends BaseLoader
      */
     public function load($resource = null, $type = null)
     {
-        $pages = $this->em->getRepository($resource)->findCMSPages(true);
+        $repo       = $this->em->getRepository($resource);
+        $pages      = $repo->findCMSPages(true);
         $collection = new RouteCollection();
 
+        /**
+         * Add actual CMS Pages
+         */
         foreach ($pages as $page) {
 
             $defaults = array(

@@ -10,7 +10,7 @@
 {% for child in children %}
 {% set sub_children = visible ? child.visibleChildren : child.children %}
        <li class="{% if child.active %}active{% endif %}{% if sub_children|length > 0 and options.preliclass is defined %} {{ options.preliclass }}{% endif %}">
-        <a href="{{ child.path }}"{% if options.toggleextra is defined and sub_children|length > 0 %} {{ options.toggleextra|raw }}{% endif %}>{{ child.title }}
+        <a href="{{ path(child.route) }}"{% if options.toggleextra is defined and sub_children|length > 0 %} {{ options.toggleextra|raw }}{% endif %}>{{ child.title }}
 {% if sub_children|length > 0 %}
   {% if options.caret is defined and (options.maxlevel is not defined or options.maxlevel > level) %}{{ options.caret|raw }}{% endif %}
         </a>

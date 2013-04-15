@@ -25,7 +25,7 @@ class ControllerLoader extends AnnotatedRouteControllerLoader
     }
 
     public function load($class, $type = null)
-    {
+    { 
         $collection = parent::load($class, $type);
 
         $class = new \ReflectionClass($class);
@@ -38,10 +38,49 @@ class ControllerLoader extends AnnotatedRouteControllerLoader
                 'pageControllerPath' => $path
             ));
 
-            // If corresponding page doesn't exist, don't load these routes. 
+            /**
+             *  If corresponding page doesn't exist, don't load these routes. 
+             */
             if ($page === null) {
-                $collection = new RouteCollection();
+                
+                return new RouteCollection(); 
+                
+            /**
+             * Find the Index route
+             */
             } else {
+                
+                /**
+                 * No Default route specified, find a route matching '/'
+                 */
+                if($annot->getDefault() === null){
+                   
+                    $found = false; 
+                    foreach($collection->all() as $route){
+                        if($route->getPath() === '/'){
+                            $collection->add($page->getRoute(), clone $route); 
+
+                            $found = true; 
+                            break; 
+                        }
+                    }
+                    
+                    if(!$found){
+                        throw new \Exception('Could not determine the index route, you should provide one in the annotation through the "default" attribute');
+                    }
+                    
+                /**
+                 * Default route specified, find it or throw error
+                 */
+                } else {
+                    
+                    if($defaultRoute = $collection->get($annot->getDefault())){
+                        $collection->add($page->getRoute(), clone $defaultRoute); 
+                    } else {
+                        throw new \Exception(sprintf('Default route "%s" does not exist', $annot->getDefault())); 
+                    }  
+                }
+                
                 $collection->addPrefix($page->getPath());
             }
         }

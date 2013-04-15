@@ -501,7 +501,7 @@ class Page implements UpdatableInterface
         if($this->getHomepage()){
             return 'homepage'; 
         } else {
-            return 'page' . str_replace(array('-','/'), '_', $this->getPath()); 
+            return 'page' . str_replace(array('-','/'), '_', rtrim($this->getPath(), '/')); 
         }
     }
 

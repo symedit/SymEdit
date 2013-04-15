@@ -8,6 +8,7 @@ namespace Isometriks\Bundle\SymEditBundle\Annotation;
 class PageController
 {
     private $name;
+    private $default; 
 
     public function __construct(array $data)
     {
@@ -18,6 +19,16 @@ class PageController
             }
             $this->$method($value);
         }
+    }
+    
+    public function setDefault($default)
+    {
+        $this->default = $default; 
+    }
+    
+    public function getDefault()
+    {
+        return $this->default; 
     }
 
     public function setName($name)
