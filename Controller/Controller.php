@@ -58,6 +58,16 @@ class Controller extends BaseController
     }
     
     /**
+     * Gets the host namespace
+     * 
+     * @return string The host namespace
+     */
+    public function getHostNamespace()
+    {
+        return $this->container->getParameter('isometriks_sym_edit.host_namespace'); 
+    }
+    
+    /**
      * Prepends the host bundle to the template in format HostBundle:Controller:template
      * 
      * @param string $controller
@@ -68,7 +78,7 @@ class Controller extends BaseController
     {
         return $this->getHostBundle().':'.$controller.':'.$template; 
     }
-    
+
     /**
      * Gets Settings
      * 
