@@ -17,8 +17,7 @@ class ContactController extends Controller
      */
     public function indexAction(Request $request, Page $_page)
     {
-        $finder    = $this->get('isometriks_sym_edit.finder.resource_finder'); 
-        $namespace = $finder->getBundleNamespace(); 
+        $namespace = $this->getHostNamespace(); 
         
         $type = $namespace.'\\Form\\ContactType'; 
         $form = $this->createForm(new $type()); 
