@@ -379,4 +379,14 @@ class Post implements UpdatableInterface
     {
         return $this->status;
     }
+    
+    /**
+     * Whether the post is published or not
+     * 
+     * @return boolean
+     */
+    public function isPublished()
+    {
+        return $this->status === self::PUBLISHED; 
+    }
 }
