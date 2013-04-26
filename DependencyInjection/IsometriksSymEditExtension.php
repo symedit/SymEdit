@@ -63,11 +63,20 @@ class IsometriksSymEditExtension extends Extension
                 throw new \Exception(sprintf('Host Bundle "%s" does not exist.', $bundle)); 
             }
             
+            /**
+             * Bundle namespace
+             */
             $bundleInstance = new \ReflectionClass($bundles[$bundle]); 
             $namespace = $bundleInstance->getNamespaceName(); 
             
+            /**
+             * Bundle directory
+             */
+            $directory = dirname($bundleInstance->getFileName()); 
+            
             $container->setParameter('isometriks_sym_edit.host_namespace', $namespace);  
             $container->setParameter('isometriks_sym_edit.host_bundle', $bundle); 
+            $container->setParameter('isometriks_sym_edit.host_dir', $directory); 
         }
         
         $container->setParameter('isometriks_sym_edit.extensions.routes', $config['extensions']); 
