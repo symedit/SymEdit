@@ -11,5 +11,14 @@
     "autoload": {
         "psr-0": { "Isometriks\\Bundle\\SymEditBundle": "" }
     }, 
-    "target-dir": "Isometriks/Bundle/SymEditBundle"
+    "target-dir": "Isometriks/Bundle/SymEditBundle", 
+    "require": {
+        "isometriks/user-bundle": "dev-master", 
+        "isometriks/settings-bundle": "dev-master", 
+        "isometriks/sitemap-bundle": "dev-master", 
+        "isometriks/media-bundle": "dev-master"
+    }, 
+    "suggest": {
+        "isometriks/stylizer-bundle": "Allows you to use the stylizer to edit styles."
+    }
 }
