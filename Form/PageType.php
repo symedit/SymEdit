@@ -19,7 +19,7 @@ class PageType extends AbstractType {
             ))
             ->add('summary', 'textarea', array(
                 'attr' => array(
-                    'class' => 'wysiwyg-editor span6', 
+                    'class' => 'wysiwyg-editor span12', 
                     'style' => 'height: 250px', 
                  ),
                 'label' => 'admin.page.summary',
