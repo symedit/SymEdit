@@ -3,7 +3,6 @@
 namespace Isometriks\Bundle\SymEditBundle\Test\Entity; 
 
 use Isometriks\Bundle\SymEditBundle\Tests\TestCase; 
-use Isometriks\Bundle\SymEditBundle\Entity\Image; 
 use Isometriks\Bundle\SymEditBundle\Entity\Post; 
 
 class PostTest extends TestCase

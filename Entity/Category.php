@@ -188,6 +188,7 @@ class Category
      */
     public function addChildren(\Isometriks\Bundle\SymEditBundle\Entity\Category $children)
     {
+        $children->setParent($this); 
         $this->children[] = $children;
     
         return $this;

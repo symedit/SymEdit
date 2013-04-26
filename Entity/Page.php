@@ -536,6 +536,7 @@ class Page implements UpdatableInterface
      */
     public function addChildren(\Isometriks\Bundle\SymEditBundle\Entity\Page $children)
     {
+        $children->setParent($this); 
         $this->children[] = $children;
 
         return $this;
@@ -603,7 +604,7 @@ class Page implements UpdatableInterface
     public function getVisibleChildren()
     {
         return $this->getChildren()->filter(function($en) {
-                            return $en->getDisplay();
+            return $en->getDisplay();
         });
     }
     
