@@ -2,9 +2,6 @@
 
 namespace Isometriks\Bundle\SymEditBundle\Model;
 
-/**
- * Isometriks\Bundle\SymEditBundle\Entity\Slide
- */
 abstract class Slide implements SlideInterface
 {
     /**
@@ -68,10 +65,10 @@ abstract class Slide implements SlideInterface
     /**
      * Set slider
      *
-     * @param Isometriks\Bundle\SymEditBundle\Entity\Slider $slider
+     * @param Isometriks\Bundle\SymEditBundle\Model\SliderInterface $slider
      * @return Slide
      */
-    public function setSlider(\Isometriks\Bundle\SymEditBundle\Entity\Slider $slider = null)
+    public function setSlider(SliderInterface $slider = null)
     {
         $this->slider = $slider;
     
@@ -81,7 +78,7 @@ abstract class Slide implements SlideInterface
     /**
      * Get slider
      *
-     * @return Isometriks\Bundle\SymEditBundle\Entity\Slider 
+     * @return Isometriks\Bundle\SymEditBundle\Model\SliderInterface
      */
     public function getSlider()
     {
