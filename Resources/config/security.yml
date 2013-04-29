@@ -5,9 +5,6 @@ security:
 
     encoders:
         FOS\UserBundle\Model\UserInterface: sha512
-        
-#    form_login:
-#        default_target_path: /sym-admin
 
     firewalls:
         main:
@@ -24,7 +21,7 @@ security:
         - { path: ^/login$, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/register, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/resetting, role: IS_AUTHENTICATED_ANONYMOUSLY }
-        - { path: ^/sym-admin, role: ROLE_ADMIN }
+        - { path: ^%isometriks_sym_edit.admin_dir%, role: ROLE_ADMIN }
         - { path: ^/_editable, roles: [ROLE_ADMIN, ROLE_ADMIN_EDITABLE] }
 
     role_hierarchy:
