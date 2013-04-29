@@ -8,7 +8,8 @@ use Symfony\Component\HttpFoundation\Response;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
-use Isometriks\Bundle\SymEditBundle\Entity\Page;
+use Isometriks\Bundle\SymEditBundle\Model\PageInterface;
+use Isometriks\Bundle\SymEditBundle\Entity\Page; 
 use Isometriks\Bundle\SymEditBundle\Form\PageType;
 use JMS\SecurityExtraBundle\Annotation\PreAuthorize; 
 use Isometriks\Bundle\SymEditBundle\Form\PageReorderType; 
@@ -193,11 +194,11 @@ class PageController extends Controller
      * @param \Isometriks\Bundle\SymEditBundle\Entity\Page $page
      * @return RedirectResponse
      */
-    private function redirectEdit(Request $request, Page $page)
+    private function redirectEdit(Request $request, PageInterface $page)
     {
         if($request->request->has('live_edit')){
             $url = $this->generateUrl($page->getRoute()); 
-        } else {
+        } else { 
             $url = $this->generateUrl('admin_page_edit', array('id' => $page->getId())); 
         }
         
@@ -243,21 +244,5 @@ class PageController extends Controller
             ->add('id', 'hidden')
             ->getForm()
         ;
-    }
-    
-    
-    /**
-     * @Route("/tinymce.{_format}", defaults={"_format"="js"}, name="admin_page_tinymce")
-     * @Template()
-     */
-    public function tinymceAction()
-    {
-        $em = $this->getDoctrine()->getManager(); 
-        
-        $pages = $em->getRepository('IsometriksSymEditBundle:Page')->findAll(); 
-        
-        return array(
-            'pages' => $pages, 
-        ); 
     }
 }

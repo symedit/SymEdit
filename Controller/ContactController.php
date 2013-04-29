@@ -5,7 +5,7 @@ namespace Isometriks\Bundle\SymEditBundle\Controller;
 use Isometriks\Bundle\SymEditBundle\Annotation\PageController as Bind; 
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route; 
 use Symfony\Component\HttpFoundation\Request;
-use Isometriks\Bundle\SymEditBundle\Entity\Page; 
+use Isometriks\Bundle\SymEditBundle\Model\PageInterface; 
 
 /**
  * @Bind(name="symedit-contact")
@@ -15,7 +15,7 @@ class ContactController extends Controller
     /**
      * @Route("/")
      */
-    public function indexAction(Request $request, Page $_page)
+    public function indexAction(Request $request, PageInterface $_page)
     {
         $namespace = $this->getHostNamespace(); 
         
