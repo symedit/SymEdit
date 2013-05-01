@@ -1,4 +1,7 @@
-{% if Settings.webmaster.google_analytics %}
+{% set enabled = Settings.webmaster.google_analytics_enabled %}
+{% set code = Settings.webmaster.google_analytics %}
+
+{% if code is not empty and enabled %}
 <script type="text/javascript">
   var _gaq = _gaq || [];
   _gaq.push(['_setAccount', '{{ Settings.webmaster.google_analytics }}']);
@@ -10,6 +13,6 @@
     var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
   })();
 </script>
-{% else %}
-  Google Analytics code not set. 
+{% elseif enabled and code is empty %}
+  Google Analytics enabled, but code not set. 
 {% endif %}

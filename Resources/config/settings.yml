@@ -59,6 +59,17 @@ webmaster:
         attr:
             class: span5
     settings:
+        google_analytics_enabled:
+            type: choice
+            default: true
+            options: 
+                required: true
+                choices:
+                    true: Enabled
+                    false: Disabled
+                label: Enable Google Analytics              
+                attr:
+                    class: ~
         google_analytics:
             options:
                 label: Google Analytics Code
@@ -70,6 +81,7 @@ webmaster:
                 label: Bing Verification
         robots:
             type: choice
+            default: deny
             options:
                 required: true
                 choices:
