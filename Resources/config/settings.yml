@@ -12,6 +12,7 @@ company:
             default: 5 SymEdit Way
             type: textarea
             options:
+                required: false
                 attr:
                     rows: 3
         email:
@@ -32,24 +33,36 @@ social:
             class: span5
     settings:
         facebook:
-            default: "http://facebook.com"
             type: url
+            options:
+                attr:
+                    placeholder: "http://facebook.com"
+            
         twitter:
-            default: "http://twitter.com"
             type: url
+            options:
+                attr:
+                    placeholder: "http://twitter.com"
+            
         youtube:
-            default: "http://youtube.com"
             type: url
+            options:
+                attr:
+                    placeholder: "http://youtube.com"
+            
         google-plus:
-            default: "http://plus.google.com"
             type: url
             options:
                 label: 'Google+'
+                attr:
+                    placeholder: "http://plus.google.com"
+                    
         linkedin:
-            default: "http://linkedin.com"
             type: url
             options:
                 label: LinkedIn
+                attr:
+                    placeholder: "http://linkedin.com"             
             
 webmaster:
     label: Webmaster Settings
@@ -73,9 +86,13 @@ webmaster:
         google_analytics:
             options:
                 label: Google Analytics Code
+                attr:
+                    placeholder: UA-12345678                
         google_verify:
             options:
                 label: Google Verification
+                attr: 
+                    placeholder: google123456789012
         bing_verify: 
             options:
                 label: Bing Verification
