@@ -11,9 +11,11 @@
         </div>
     </div>
 
+    {% if Settings.company.address is not empty %}
     <div class="gmap-full">
         {% include '{{{ bundle }}}:CMS:map.html.twig' with { width: '100%', height: '300px' } %}
     </div>
+    {% endif %}
 
     <div class="container">
     {% block content %}
