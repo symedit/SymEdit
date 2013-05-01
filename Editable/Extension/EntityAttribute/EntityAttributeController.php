@@ -74,6 +74,10 @@ class EntityAttributeController extends Controller
             $status = true; 
             $data = $form->getData(); 
             $entity = $this->getEntity($id, $data['class']); 
+            
+            /**
+             * TODO: Use the propertypath stuff from Symfony. 
+             */
             $method = sprintf('set%s', ucfirst($data['attribute'])); 
 
             if(!method_exists($entity, $method)){
@@ -83,12 +87,6 @@ class EntityAttributeController extends Controller
             $entity->$method($data['value']);
 
             $em = $this->getDoctrine()->getManager(); 
-
-            // If your entity is updatable, then update it. 
-            if($entity instanceof UpdatableInterface){
-                $entity->setUpdatedAt(new \DateTime()); 
-            }
-            
             $em->persist($entity); 
             $em->flush(); 
         }
