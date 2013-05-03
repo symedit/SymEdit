@@ -13,7 +13,7 @@ use Isometriks\Bundle\SymEditBundle\Model\PageInterface;
 class ContactController extends Controller
 {
     /**
-     * @Route("/")
+     * @Route("/", name="contact")
      */
     public function indexAction(Request $request, PageInterface $_page)
     {
