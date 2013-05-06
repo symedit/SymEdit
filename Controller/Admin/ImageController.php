@@ -3,7 +3,7 @@
 namespace Isometriks\Bundle\SymEditBundle\Controller\Admin;
 
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response; 
+use Symfony\Component\HttpFoundation\JsonResponse; 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -211,22 +211,6 @@ class ImageController extends Controller
         ;
     }
     
-    
-    /**
-     * @Route("/tinymce.{_format}", defaults={"_format"="js"}, name="admin_image_tinymce")
-     * @Template()
-     */
-    public function tinymceAction()
-    {
-        $em = $this->getDoctrine()->getManager(); 
-        
-        $images = $em->getRepository('IsometriksSymEditBundle:Image')->findAll(); 
-        
-        return array(
-            'images' => $images, 
-        ); 
-    }
-    
     /**
      * @Route("/images.{_format}", defaults={"_format"="json"}, name="admin_image_json")
      */
@@ -241,11 +225,11 @@ class ImageController extends Controller
         
         foreach($images as $image){
             $out[] = array(
-                'thumb' => $manip->constrain($image->getWebPath(), array('w' => 150)), 
+                'thumb' => $manip->constrain($image->getWebPath(), array('w' => 234)), 
                 'image' => $image->getWebPath(),   
             );
         }
         
-        return new Response(json_encode($out)); 
+        return new JsonResponse($out); 
     }
 }
