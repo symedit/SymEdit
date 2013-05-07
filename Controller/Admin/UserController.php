@@ -7,7 +7,6 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
-use Isometriks\Bundle\SymEditBundle\Form\UserType;
 use JMS\SecurityExtraBundle\Annotation\PreAuthorize; 
 
 /**
@@ -26,7 +25,8 @@ class UserController extends Controller
      */
     public function indexAction()
     {
-        $entities = $this->getRepository()->findAll();
+        $user_manager = $this->get('fos_user.user_manager');
+        $entities = $user_manager->findUsers(); 
 
         return array(
             'entities' => $entities,
@@ -41,7 +41,8 @@ class UserController extends Controller
      */
     public function showAction($id)
     {
-        $entity = $this->getRepository()->find($id);
+        $user_manager = $this->get('fos_user.user_manager');
+        $entity = $user_manager->findUserBy(array('id' => $id)); 
 
         if (!$entity) {
             throw $this->createNotFoundException('Unable to find User entity.');
@@ -60,8 +61,7 @@ class UserController extends Controller
      */
     public function newAction()
     {
-        $user_class = $this->container->getParameter('fos_user.model.user.class'); 
-        $form       = $this->createForm(new UserType($user_class)); 
+        $form = $this->createForm('symedit_user'); 
 
         return array(
             'form'   => $form->createView(),
@@ -77,10 +77,9 @@ class UserController extends Controller
      */
     public function createAction(Request $request)
     {
-        $user_class   = $this->container->getParameter('fos_user.model.user.class'); 
         $user_manager = $this->get('fos_user.user_manager'); 
         $user         = $user_manager->createUser(); 
-        $form         = $this->createForm(new UserType($user_class), $user); 
+        $form         = $this->createForm('symedit_user', $user); 
         
         $form->bind($request); 
         
@@ -106,14 +105,14 @@ class UserController extends Controller
      */
     public function editAction($id)
     {
-        $entity = $this->getRepository()->find($id);
+        $user_manager = $this->get('fos_user.user_manager'); 
+        $entity = $user_manager->findUserBy(array('id' => $id));
 
         if (!$entity) {
             throw $this->createNotFoundException('Unable to find User entity.');
         }
         
-        $user_class = $this->container->getParameter('fos_user.model.user.class'); 
-        $form       = $this->createForm(new UserType($user_class, true), $entity); 
+        $form = $this->createForm('symedit_user', $entity); 
 
         return array(
             'form'   => $form->createView(),
@@ -131,16 +130,14 @@ class UserController extends Controller
      */
     public function updateAction(Request $request, $id)
     {
-        $user = $this->getRepository()->find($id);
+        $user_manager = $this->get('fos_user.user_manager'); 
+        $user = $user_manager->findUserBy(array('id' => $id)); 
 
         if (!$user) {
             throw $this->createNotFoundException('Unable to find Page entity.');
         }
-        
-        $user_class   = $this->container->getParameter('fos_user.model.user.class'); 
-        $user_manager = $this->get('fos_user.user_manager'); 
-        $form         = $this->createForm(new UserType($user_class), $user); 
-        
+         
+        $form = $this->createForm('symedit_user', $user); 
         $form->bind($request); 
 
         if ($form->isValid()) {
@@ -156,13 +153,5 @@ class UserController extends Controller
             'entity'      => $user,
             'form'        => $form->createView(),
         );
-    }
-    
-    private function getRepository()
-    {
-        $em = $this->getDoctrine()->getManager(); 
-        $class = $this->container->getParameter('fos_user.model.user.class'); 
-        
-        return $em->getRepository($class); 
     }
 }

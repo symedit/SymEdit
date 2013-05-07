@@ -41,7 +41,7 @@ class UserType extends BaseType
 
     public function getName()
     {
-        return 'isometriks_symedit_user_form_type';
+        return 'symedit_user';
     }
 
 }

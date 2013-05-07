@@ -8,6 +8,7 @@
         <parameter key="isometriks_sym_edit.form.type.template.class">Isometriks\Bundle\SymEditBundle\Form\Type\TemplateType</parameter>
         <parameter key="isometriks_sym_edit.form.type.role.class">Isometriks\Bundle\SymEditBundle\Form\Type\RoleType</parameter>
         <parameter key="isometriks_sym_edit.form.type.post.class">Isometriks\Bundle\SymEditBundle\Form\PostType</parameter>
+        <parameter key="isometriks_sym_edit.form.type.user.class">Isometriks\Bundle\SymEditBundle\Form\UserType</parameter>
     </parameters>
     
     <services>
@@ -26,6 +27,11 @@
         <service id="isometriks_sym_edit.form.type.post" class="%isometriks_sym_edit.form.type.post.class%">
             <argument>%fos_user.model.user.class%</argument>
             <tag name="form.type" alias="symedit_post" />
+        </service>
+        
+        <service id="isometriks_sym_edit.form.type.user" class="%isometriks_sym_edit.form.type.user.class%">
+            <argument>%fos_user.model.user.class%</argument>
+            <tag name="form.type" alias="symedit_user" />
         </service>
     </services>
 
