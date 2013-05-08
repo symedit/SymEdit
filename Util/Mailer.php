@@ -22,6 +22,34 @@ class Mailer
         $this->mailer = $mailer;
     }
 
+    public function buildMessage(array $parameters)
+    {
+        $defaults = array(
+            'from' => $this->username, 
+        ); 
+        
+        $parameters = array_merge($defaults, $parameters); 
+        
+        $message = \Swift_Message::newInstance(); 
+        
+        foreach($parameters as $key=>$value){
+            $method = 'set' . ucfirst($key); 
+            
+            if(!method_exists($message, $method)){
+                throw new \InvalidArgumentException(sprintf('There is no method called "%s".', $method)); 
+            }
+            
+            $message->$method($value); 
+        }
+        
+        return $message; 
+    }
+    
+    public function sendMessage(\Swift_Message $message)
+    {
+        $this->mailer->send($message); 
+    }
+    
     /**
      * Shortcut to using Swift_Mailer with a templated body 
      * 
