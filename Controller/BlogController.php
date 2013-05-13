@@ -15,35 +15,46 @@ use Symfony\Component\HttpFoundation\Request;
 class BlogController extends Controller
 {
     /**
-     * @Route("/", name="blog")
+     * @Route("/", name="blog", defaults={"_format"="html"})
+     * @Route("/feed.xml", name="blog_rss", defaults={"_format"="xml"})
      * @Sitemap()
      */
-    public function indexAction(Request $request)
+    public function indexAction(Request $request, $_format)
     {
         $em = $this->getDoctrine()->getManager();
 
         $modified = $em->createQuery('SELECT MAX(p.updatedAt) as modified FROM IsometriksSymEditBundle:Post p')
                        ->getSingleScalarResult();
-
-        $response = $this->createResponse(new \DateTime($modified)); 
+        
+        $modifiedDate = new \DateTime($modified); 
+        $response = $this->createResponse($modifiedDate); 
 
         if ($response->isNotModified($request)) {
             return $response;
         }
 
-        return $this->render($this->getHostTemplate('Blog', 'index.html.twig'), array(), $response);
+        $template = sprintf('index.%s.twig', $_format); 
+        
+        return $this->render($this->getHostTemplate('Blog', $template), array(
+            'Posts' => $this->getRecentPosts(), 
+            'modified' => $modifiedDate, 
+        ), $response);
+    }
+    
+    private function getRecentPosts()
+    {
+        $em = $this->getDoctrine()->getManager();
+        $query = $em->createQuery('SELECT p FROM IsometriksSymEditBundle:Post p ORDER BY p.createdAt DESC');
+        
+        return $this->getPaginator($query);
     }
 
     public function recentAction()
     {
-        $em = $this->getDoctrine()->getManager();
-        $query = $em->createQuery('SELECT p FROM IsometriksSymEditBundle:Post p ORDER BY p.createdAt DESC');
-        $posts = $this->getPaginator($query);
-
         // TODO Cache this for ESI
 
         return $this->render($this->getHostTemplate('Blog', 'list.html.twig'), array(
-            'Posts' => $posts,
+            'Posts' => $this->getRecentPosts(),
         ));
     }
 
