@@ -1,7 +1,12 @@
-{% extends '{{{ bundle }}}:Blog:index.html.twig' %}
+{% extends '{{{ bundle }}}:Blog:base.html.twig' %}
 
 {% block title %}{{ SEO.title|default(Category.title) }}{% endblock %}
 {% block description %}{{ SEO.description|default('Blog posts in ' ~ Category.title) }}{% endblock %}
+
+{% block meta %}
+{{ parent() }}
+<link href="{{ url('blog_category_rss', {slug:Category.slug}) }}" rel="alternate" type="application/rss+xml" title="{{ block('title') }}">
+{% endblock %}
 
 {% block blog_title %}Category &raquo; {{ Category.title }}{% endblock %}
 

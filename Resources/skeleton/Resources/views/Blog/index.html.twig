@@ -1,23 +1,6 @@
-{% extends '{{{ bundle }}}:Page:base.html.twig' %}
+{% extends '{{{ bundle }}}:Blog:base.html.twig' %}
 
-{% block heading %}
-<h1>{% block blog_title %}{{ Page.tagline }}{% endblock %}</h1>
-{% endblock %}
-
-{% block content %}
-<div id="blog-content">
-    <div class="row">
-        <div class="span9">
-            {% block blog_content %}
-                {% include '{{{ bundle }}}:Blog:list.html.twig' %}
-            {% endblock %}
-            {% if Pages is defined and Pages.num > 1 %}
-                {% include '{{{ bundle }}}:Blog:paginate.html.twig' %}
-            {% endif %}
-        </div> 
-        <div class="span3">
-            {% include '{{{ bundle }}}:Blog:categories.html.twig' %}
-        </div>
-    </div>
-</div>
+{% block meta %}
+{{ parent() }}
+<link href="{{ url('blog_rss') }}" rel="alternate" type="application/rss+xml" title="{{ block('title') }}">
 {% endblock %}

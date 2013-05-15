@@ -33,7 +33,7 @@ class BlogController extends Controller
             return $response;
         }
 
-        $template = sprintf('index.%s.twig', $_format); 
+        $template = $_format === 'xml' ? 'feed.xml.twig' : 'index.html.twig'; 
         
         return $this->render($this->getHostTemplate('Blog', $template), array(
             'Posts' => $this->getRecentPosts(), 
@@ -110,10 +110,12 @@ class BlogController extends Controller
     }
 
     /**
-     * @Route("/category/{slug}/{page}", defaults={"page"="1"}, requirements={"slug"=".*?", "page"="\d+"}, name="blog_category_view")
+     * @Route("/category/{slug}/feed.xml", defaults={"page"="1", "_format"="xml"}, name="blog_category_rss")
+     * @Route("/category/{slug}/{page}", defaults={"page"="1", "_format"="html"}, requirements={"slug"=".*?", "page"="\d+"}, name="blog_category_view")
+     * 
      * @Sitemap(params={"slug"="getSlug"}, entity="IsometriksSymEditBundle:Category")
      */
-    public function categoryViewAction($slug, Request $request, $page = 1)
+    public function categoryViewAction($slug, Request $request, $_format, $page = 1)
     {
         $em = $this->getDoctrine()->getManager();
         $category = $em->getRepository('IsometriksSymEditBundle:Category')->findOneBySlug($slug);
@@ -134,17 +136,20 @@ class BlogController extends Controller
         $posts = $this->getPaginator($query, $page);
         $latest = current($posts->getIterator());
 
-        $modified = $latest === null ? null : $latest->getUpdatedAt(); 
+        $modified = $latest === null ? new \DateTime() : $latest->getUpdatedAt(); 
         $response = $this->createResponse($modified); 
 
         if ($response->isNotModified($request)) {
             return $response;
         }
 
-        return $this->render($this->getHostTemplate('Blog', 'category.html.twig'), array(
+        $template = $_format === 'xml' ? 'feed.xml.twig' : 'category.html.twig'; 
+        
+        return $this->render($this->getHostTemplate('Blog', $template), array(
             'Category' => $category,
             'SEO' => $category->getSeo(),
             'Posts' => $posts,
+            'modified' => $modified, 
             'Pages' => $this->getPages($posts, $page),
         ), $response);
     }
