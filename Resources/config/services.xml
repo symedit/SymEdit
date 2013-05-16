@@ -7,12 +7,17 @@
     <parameters>
         <parameter key="isometriks_sym_edit.finder.resource_finder.class">Isometriks\Bundle\SymEditBundle\Finder\ResourceFinder</parameter>
         <parameter key="isometriks_sym_edit.view.guesser.class">Isometriks\Bundle\SymEditBundle\Templating\TemplateGuesser</parameter>
+        <parameter key="isometriks_sym_edit.breadcrumbs.class">Isometriks\Bundle\SymEditBundle\Model\Breadcrumbs</parameter>
     </parameters>
     
     <services>        
         <service id="isometriks_sym_edit.finder.resource_finder" class="%isometriks_sym_edit.finder.resource_finder.class%">
             <argument>%isometriks_sym_edit.host_bundle%</argument>
             <argument type="service" id="kernel" />
+        </service>
+        
+        <service id="isometriks_sym_edit.breadcrumbs" class="%isometriks_sym_edit.breadcrumbs.class%">
+            
         </service>
     </services>
 

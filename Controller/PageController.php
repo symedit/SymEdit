@@ -3,32 +3,20 @@
 namespace Isometriks\Bundle\SymEditBundle\Controller;
 
 use Symfony\Component\HttpFoundation\Request;
+use Isometriks\Bundle\SymEditBundle\Model\PageInterface; 
 
 class PageController extends Controller
 {
-    public function showAction($id, Request $request)
+    public function showAction(PageInterface $_page, Request $request)
     {
-        $em = $this->getDoctrine()->getManager(); 
-        
-        if(!$page = $em->getRepository('IsometriksSymEditBundle:Page')->find($id)){
-            throw $this->createNotFoundException(sprintf('Page with ID %d not found', $id)); 
-        }
-        
-        $response = $this->createResponse($page->getUpdatedAt());  
+        $response = $this->createResponse($_page->getUpdatedAt());  
 
         if ($response->isNotModified($request)) {
             return $response;
         }
 
-        /**
-         * Insert Page variable into the Request headers
-         */
-        $request->attributes->add(array(
-            '_page' => $page,
-        ));
-
-        return $this->render($this->getHostTemplate('Page', $page->getTemplate()), array(
-            'SEO' => $page->getSeo(),
+        return $this->render($this->getHostTemplate('Page', $_page->getTemplate()), array(
+            'SEO' => $_page->getSeo(),
         ), $response);
     }
 }

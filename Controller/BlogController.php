@@ -5,6 +5,7 @@ namespace Isometriks\Bundle\SymEditBundle\Controller;
 use Symfony\Component\Routing\Annotation\Route;
 use Isometriks\Bundle\SymEditBundle\Annotation\PageController as Bind;
 use Isometriks\Bundle\SymEditBundle\Entity\Post;
+use Isometriks\Bundle\SymEditBundle\Model\BreadcrumbsInterface; 
 use Isometriks\Bundle\SitemapBundle\Annotation\Sitemap;
 use Doctrine\ORM\Tools\Pagination\Paginator;
 use Symfony\Component\HttpFoundation\Request;
@@ -49,6 +50,9 @@ class BlogController extends Controller
         return $this->getPaginator($query);
     }
 
+    /**
+     * @deprecated since version 2.3
+     */
     public function recentAction()
     {
         // TODO Cache this for ESI
@@ -76,6 +80,14 @@ class BlogController extends Controller
         if ($response->isNotModified($request)) {
             return $response;
         } 
+        
+        /**
+         * Add Breadcrumbs
+         */
+        $breadcrumbs = $this->getBreadcrumbs(); 
+        $breadcrumbs->push($post->getTitle(), 'blog_slug_view', array(
+            'slug' => $post->getSlug(),  
+        ));
         
         return $this->render($this->getHostTemplate('Blog', 'single.html.twig'), array(
             'Post' => $post,
@@ -139,9 +151,20 @@ class BlogController extends Controller
         $modified = $latest === null ? new \DateTime() : $latest->getUpdatedAt(); 
         $response = $this->createResponse($modified); 
 
+        /**
+         * If not modified return 304
+         */
         if ($response->isNotModified($request)) {
             return $response;
         }
+        
+        /**
+         * Add breadcrumbs
+         */
+        $breadcrumbs = $this->getBreadcrumbs(); 
+        $breadcrumbs->push($category->getTitle(), 'blog_category_view', array(
+            'slug' => $category->getSlug(), 
+        )); 
 
         $template = $_format === 'xml' ? 'feed.xml.twig' : 'category.html.twig'; 
         
@@ -172,6 +195,14 @@ class BlogController extends Controller
                 ->setParameter('username', $username)
                 ->getQuery();
 
+        /**
+         * Add Breadcrumbs 
+         */
+        $breadcrumbs = $this->getBreadcrumbs(); 
+        $breadcrumbs->push($user->getFullname(), 'blog_author_view', array(
+            'username' => $user->getUsername(), 
+        )); 
+        
         return $this->render($this->getHostTemplate('Blog', 'author.html.twig'), array(
             'Posts' => $query->getResult(),
             'Author' => $user,

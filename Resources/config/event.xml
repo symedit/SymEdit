@@ -7,6 +7,7 @@
     <parameters>
         <parameter key="isometriks_sym_edit.listener.page_path.class">Isometriks\Bundle\SymEditBundle\EventListener\PagePathListener</parameter>
         <parameter key="isometriks_sym_edit.listener.controller.class">Isometriks\Bundle\SymEditBundle\EventListener\ControllerListener</parameter>
+        <parameter key="isometriks_sym_edit.listener.breadcrumb.class">Isometriks\Bundle\SymEditBundle\EventListener\BreadcrumbListener</parameter>
         <parameter key="isometriks_sym_edit.listener.chunk.class">Isometriks\Bundle\SymEditBundle\EventListener\ChunkListener</parameter>
         <parameter key="isometriks_sym_edit.listener.updatable.class">Isometriks\Bundle\SymEditBundle\EventListener\UpdatableListener</parameter>
     </parameters>
@@ -17,6 +18,11 @@
             <argument type="service" id="annotation_reader" />
             <argument type="service" id="doctrine" />    
             <tag name="kernel.event_listener" event="kernel.controller" method="onKernelController" priority="24" />
+        </service>
+        
+        <service id="isometriks_sym_edit.listener.breadcrumb" class="%isometriks_sym_edit.listener.breadcrumb.class%">
+            <argument type="service" id="isometriks_sym_edit.breadcrumbs" />
+            <tag name="kernel.event_listener" event="kernel.controller" method="onKernelController" priority="12" />
         </service>
         
         <service id="isometriks_sym_edit.listener.page_path" class="%isometriks_sym_edit.listener.page_path.class%">

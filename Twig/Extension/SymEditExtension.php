@@ -50,8 +50,11 @@ class SymEditExtension extends \Twig_Extension implements ContainerAwareInterfac
             $globals['stylizer'] = $this->container->has('isometriks_stylizer.stylizer'); 
         }
         
-        // Inject the Page variable globally in case
-        // you skipped it in the controller, or didn't need it. 
+        /**
+         *  Inject the Page variable globally in case
+         *  you skipped it in the controller, or didn't need it
+         *  as well as the breadcrumbs
+         */
         if($this->container->has('request')){
             $request = $this->container->get('request'); 
             
@@ -61,7 +64,12 @@ class SymEditExtension extends \Twig_Extension implements ContainerAwareInterfac
                 $globals['Page'] = $page; 
                 $globals['SEO']  = $page->getSeo(); 
             }
+            
+            if($request->attributes->has('_breadcrumbs')){
+                $globals['Breadcrumbs'] = $request->attributes->get('_breadcrumbs'); 
+            }
         }
+        
         
         return $globals; 
     }

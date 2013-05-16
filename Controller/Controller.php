@@ -88,4 +88,14 @@ class Controller extends BaseController
     {
         return $this->get('isometriks_settings.settings'); 
     }
+    
+    /**
+     * Gets the breadcrumbs
+     * 
+     * @return \Isometriks\Bundle\SymEditBundle\Model\BreadcrumbsInterface $breadcrumbs
+     */
+    public function getBreadcrumbs()
+    {
+        return $this->get('isometriks_sym_edit.breadcrumbs'); 
+    }
 }

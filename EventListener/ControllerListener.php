@@ -17,7 +17,8 @@ class ControllerListener
     private $router;
     private $reader;
     private $doctrine;
-    private $annotationClass = 'Isometriks\\Bundle\\SymEditBundle\\Annotation\\PageController';
+    private $annotationClass = 'Isometriks\Bundle\SymEditBundle\Annotation\PageController';
+    private $controllerClass = 'Isometriks\Bundle\SymEditBundle\Controller\PageController'; 
 
     public function __construct(Router $router, Reader $reader, Registry $doctrine)
     {
@@ -35,16 +36,43 @@ class ControllerListener
         }
 
         $class = new \ReflectionClass($controller[0]);
-
-        if ($annot = $this->reader->getClassAnnotation($class, $this->annotationClass)) {
-            $em = $this->doctrine->getManager();
-            $page = $em->getRepository('IsometriksSymEditBundle:Page')->findOneBy(array(
-                'pageControllerPath' => $annot->getName()
+        $request = $event->getRequest(); 
+        $repo = $this->doctrine->getManager()->getRepository('IsometriksSymEditBundle:Page'); 
+                
+        /**
+         * The page ID is in the attributes from routing
+         */
+        if($class->getName() === $this->controllerClass){
+            
+            if(!$request->attributes->has('id')){
+                return; 
+            }
+            
+            $page = $repo->find($request->attributes->get('id')); 
+            
+        } elseif ($annot = $this->reader->getClassAnnotation($class, $this->annotationClass)) {
+            
+            $page = $repo->findOneBy(array(
+                'pageControllerPath' => $annot->getName(),
             ));
-
-            $event->getRequest()->attributes->add(array(
-                '_page' => $page
-            ));
+            
+            if(!$page){
+                return; 
+            }
+            
+        /**
+         * None of these cases, just return there is no page to add. 
+         */
+        } else {
+            
+            return; 
         }
+        
+        /**
+         * Add the page we found to the Request
+         */
+        $request->attributes->add(array(
+            '_page' => $page,
+        ));        
     }
 }
