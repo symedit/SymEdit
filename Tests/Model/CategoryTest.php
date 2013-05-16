@@ -1,18 +1,18 @@
 <?php
 
-namespace Isometriks\Bundle\SymEditBundle\Test\Entity; 
+namespace Isometriks\Bundle\SymEditBundle\Test\Model; 
 
 use Isometriks\Bundle\SymEditBundle\Tests\TestCase; 
-use Isometriks\Bundle\SymEditBundle\Entity\Category; 
+use Isometriks\Bundle\SymEditBundle\Model\Category; 
 
 class CategoryTest extends TestCase
 {
     public function testCategorySlug()
     {
-        $parent = new Category(); 
+        $parent = $this->getCategory(); 
         $parent->setName('parent-name'); 
         
-        $child = new Category(); 
+        $child = $this->getCategory(); 
         $child->setName('child-name'); 
        
         $parent->addChildren($child); 
@@ -20,4 +20,12 @@ class CategoryTest extends TestCase
         
         $this->assertEquals('parent-name/child-name', $child->getSlug()); 
     }
+    
+    /**
+     * @return Category
+     */
+    protected function getCategory()
+    {
+        return $this->getMockForAbstractClass('Isometriks\Bundle\SymEditBundle\Model\Category'); 
+    }    
 }
