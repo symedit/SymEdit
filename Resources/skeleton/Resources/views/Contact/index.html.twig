@@ -4,7 +4,8 @@
 {% block content_container %}
 <div id="content">
     <div class="container">
-        {% block heading %}<h1>{% content Page.tagline %}</h1>{% endblock %}
+        {{ block('breadcrumbs') }}
+        {{ block('heading') }}
         
         <div>
             {% content Page.content %}
