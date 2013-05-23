@@ -148,7 +148,7 @@ class BlogController extends Controller
         $posts = $this->getPaginator($query, $page);
         $latest = current($posts->getIterator());
 
-        $modified = $latest === null ? new \DateTime() : $latest->getUpdatedAt(); 
+        $modified = !$latest ? new \DateTime() : $latest->getUpdatedAt(); 
         $response = $this->createResponse($modified); 
 
         /**
