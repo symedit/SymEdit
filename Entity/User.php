@@ -51,6 +51,8 @@ class User extends BaseUser implements UserInterface
      */
     public function __construct()
     {
+        parent::__construct(); 
+        
         $this->posts = new \Doctrine\Common\Collections\ArrayCollection();
     }    
     
