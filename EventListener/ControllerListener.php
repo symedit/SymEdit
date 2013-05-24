@@ -2,7 +2,6 @@
 
 namespace Isometriks\Bundle\SymEditBundle\EventListener;
 
-use Symfony\Bundle\FrameworkBundle\Routing\Router;
 use Symfony\Component\HttpKernel\Event\FilterControllerEvent;
 use Doctrine\Common\Annotations\Reader;
 use Doctrine\Bundle\DoctrineBundle\Registry;
@@ -14,15 +13,13 @@ use Symfony\Component\HttpKernel\HttpKernel;
  */
 class ControllerListener
 {
-    private $router;
     private $reader;
     private $doctrine;
     private $annotationClass = 'Isometriks\Bundle\SymEditBundle\Annotation\PageController';
     private $controllerClass = 'Isometriks\Bundle\SymEditBundle\Controller\PageController'; 
 
-    public function __construct(Router $router, Reader $reader, Registry $doctrine)
+    public function __construct(Reader $reader, Registry $doctrine)
     {
-        $this->router = $router;
         $this->reader = $reader;
         $this->doctrine = $doctrine;
     }
