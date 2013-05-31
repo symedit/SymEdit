@@ -13,25 +13,25 @@
         
     <div class="meta">
         <span class="author">
-            <i class="icon-pencil"></i> 
+            <i class="icon-pencil"></i>
             
             {% if Post.author.gplus %}
                 <a href="{{ Post.author.gplus }}?rel=author"><img src="https://www.gstatic.com/images/icons/gplus-16.png" alt="{{ Post.author.fullname|plain }} on Google+"></a>
             {% endif %}            
             
             <a itemprop="author" href="{{ path('blog_author_view', { username: Post.author.username }) }}">{{ Post.author.fullname }}</a>
-        </span>        
+        </span>
         
         <span class="date">
             <i class="icon-time"></i>
-            {{ Post.createdAt|date('F j, Y') }}
-        </span>        
+            <span itemprop="dateCreated">{{ Post.createdAt|date('F j, Y') }}</span>
+        </span>
     </div>
         
     <div itemprop="articleBody">
         {% if Post.image %}
             <div class="image">
-                <img class="img-polaroid" src="{{ Post.image.webpath|constrain({w:300,h:400}) }}" alt="{{ Post.title }}" />
+                <img class="img-polaroid" itemprop="image" src="{{ Post.image.webpath|constrain({w:300,h:400}) }}" alt="{{ Post.title }}" />
             </div>
         {% endif %}
         {{ Post.content|raw }}
