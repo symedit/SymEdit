@@ -26,7 +26,7 @@ class Settings implements \ArrayAccess
     }
 
     /**
-     * @return ConfigData
+     * @return \Isometriks\Bundle\SettingsBundle\Loader\ConfigData
      */
     public function getConfigData()
     {

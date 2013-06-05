@@ -100,13 +100,6 @@ class SettingsType extends AbstractType
 
         return new $className($options);
     }
-    
-    public function setDefaultOptions(OptionsResolverInterface $resolver)
-    {
-        $resolver->setDefaults(array(
-            'virtual' => true, 
-        )); 
-    }
 
     public function getParent()
     {
