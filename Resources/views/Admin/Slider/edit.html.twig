@@ -1,21 +1,32 @@
-{% extends 'IsometriksSymEditBundle::base.html.twig' %}
+{% extends '@IsometriksSymEdit/tabbed.html.twig' %}
 
 {% block title %}Images &raquo; Sliders &raquo; {{ entity.name }} &raquo; Edit{% endblock %}
 
-{% block content %}
-<form class="form-horizontal" action="{{ path('admin_image_slider_update', { 'id': entity.id }) }}" method="post" {{ form_enctype(edit_form) }}>
-    {{ form_row(edit_form.name) }}
-    {{ form_row(edit_form.description) }}
-    {{ form_rest(edit_form) }}
-    <div class="form-actions">
-        <button class="btn btn-primary" type="submit">Update Slider</button>
-        <button type="button" data-toggle="form-forward" data-message="Are you sure you want to delete this slider?" data-target="#slider-delete" class="btn btn-warning">Delete Slider</button>
-    </div>
-</form>
+{% block action %}{{ path('admin_image_slider_update', { 'id': entity.id }) }}{% endblock %}
 
-<h3>Slides</h3>
-<div>
-    {% for slide in edit_form.vars.value.slides %}
+{% block tabs %}
+<li class="active">
+    <a href="#basic" data-toggle="tab">
+        <i class="icon-info-sign"></i> Basic
+    </a>
+</li>
+<li>
+    <a href="#slides" data-toggle="tab">
+        <i class="icon-columns"></i>
+        Slides
+    </a>
+</li>
+{% endblock %}
+
+{% block tab_content %}
+<div class="tab-pane active" id="basic">
+    {{ form_row(form.name) }}
+    {{ form_row(form.description) }}
+    {{ form_rest(form) }}
+</div>
+
+<div class="tab-pane" id="slides">
+    {% for slide in form.vars.value.slides %}
     <div class="well">
         <div class="row-fluid">
             <div class="span4">
@@ -29,11 +40,19 @@
         </div>
     </div>
     {% endfor %}
+        
+    <div class="form-actions">
+        <a href="{{ path('admin_image_slider_slide_new', {slider_id:entity.id}) }}" class="btn btn-success">Add New Slide</a>
+    </div>
 </div>
-<div class="form-actions">
-    <a href="{{ path('admin_image_slider_slide_new', {slider_id:entity.id}) }}" class="btn btn-success">Add New Slide</a>
-</div>
+{% endblock %}
 
+{% block form_actions %}
+<button class="btn btn-primary btn-block" type="submit">Update Slider</button>
+<button type="button" data-toggle="form-forward" data-message="Are you sure you want to delete this slider?" data-target="#slider-delete" class="btn btn-warning btn-block">Delete Slider</button>
+{% endblock %}
+
+{% block extra %}
 <form id="slider-delete" class="form-hidden" action="{{ path('admin_image_slider_delete', { 'id': entity.id }) }}" method="post">
     {{ form_widget(delete_form) }}
 </form>
