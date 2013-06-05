@@ -1,4 +1,9 @@
 <div id="slider-{{ Slider.name }}" class="carousel slide">
+    <ol class="carousel-indicators">
+        {% for slide in Slider.slides %}
+        <li data-target="#slider-{{ Slider.name }}" data-slide-to="{{ loop.index0 }}"{% if loop.first %} class="active"{% endif %}></li>
+        {% endfor %}
+    </ol>    
     <div class="carousel-inner">
         {% for slide in Slider.slides %}
             <div class="item{% if loop.first %} active{% endif %}">
