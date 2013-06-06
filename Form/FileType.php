@@ -10,7 +10,7 @@ class FileType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->addEventSubscriber(new EventListener\FileTypeSubscriber($builder->getFormFactory(), $options)); 
+        $builder->addEventSubscriber(new EventListener\FileTypeSubscriber($options)); 
     }
 
     public function setDefaultOptions(OptionsResolverInterface $resolver)

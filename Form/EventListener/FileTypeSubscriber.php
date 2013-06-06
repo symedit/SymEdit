@@ -5,17 +5,14 @@ namespace Isometriks\Bundle\MediaBundle\Form\EventListener;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface; 
 use Symfony\Component\Form\FormEvents;
 use Symfony\Component\Form\FormEvent; 
-use Symfony\Component\Form\FormFactory;
 use Isometriks\Bundle\MediaBundle\Entity\File; 
 
-class FileTypeSubscriber implements EventSubscriberInterface {
-    
-    private $factory; 
+class FileTypeSubscriber implements EventSubscriberInterface 
+{
     private $options; 
     
-    public function __construct(FormFactory $factory, array $options)
+    public function __construct(array $options)
     {
-        $this->factory = $factory; 
         $this->options = $options; 
     }
     
@@ -32,6 +29,9 @@ class FileTypeSubscriber implements EventSubscriberInterface {
         $data = $event->getData();  
         $form = $event->getForm();
         
+        /**
+         * @TODO: Need to change this to Media, not File with the new implementation
+         */
         if(!($data instanceof File)){
             return; 
         }
@@ -66,22 +66,20 @@ class FileTypeSubscriber implements EventSubscriberInterface {
         $data   = $event->getData(); 
         $form   = $event->getForm(); 
         
-        $form->add($this->factory->createNamed('file', 'file', null, array(
-            'required' => $data === null && $this->options['required'], 
-            'label' => $this->options['file_label'], 
-            'help_block' => $this->options['file_help'],
-            'auto_initialize' => false, 
-        )));
+        $form->add('file', 'file', array(
+            'required'          => $data === null && $this->options['required'], 
+            'label'             => $this->options['file_label'], 
+            'help_block'        => $this->options['file_help'],
+        ));
         
         $require_name = $form->getConfig()->getOption('require_name'); 
         
         // If name is not set, then add the field
         if(($data === null || $data->getName() === null) && $require_name){
-            $form->add($this->factory->createNamed('name', 'text', null, array(
+            $form->add('name', 'text', array(
                 'label' => $this->options['name_label'], 
-                'help_block' => $this->options['name_help'], 
-                'auto_initialize' => false, 
-            ))); 
+                'help_block' => $this->options['name_help'],
+            )); 
         }
     }
 }
