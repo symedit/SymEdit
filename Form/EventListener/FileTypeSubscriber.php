@@ -80,6 +80,7 @@ class FileTypeSubscriber implements EventSubscriberInterface {
             $form->add($this->factory->createNamed('name', 'text', null, array(
                 'label' => $this->options['name_label'], 
                 'help_block' => $this->options['name_help'], 
+                'auto_initialize' => false, 
             ))); 
         }
     }
