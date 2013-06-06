@@ -4,7 +4,7 @@ namespace Isometriks\Bundle\MediaBundle\Form\EventListener;
 
 use Symfony\Component\EventDispatcher\EventSubscriberInterface; 
 use Symfony\Component\Form\FormEvents;
-use Symfony\Component\Form\Event\DataEvent; 
+use Symfony\Component\Form\FormEvent; 
 use Symfony\Component\Form\FormFactory;
 use Isometriks\Bundle\MediaBundle\Entity\File; 
 
@@ -27,7 +27,7 @@ class FileTypeSubscriber implements EventSubscriberInterface {
         );
     }
     
-    public function postBind(DataEvent $event)
+    public function postBind(FormEvent $event)
     {
         $data = $event->getData();  
         $form = $event->getForm();
@@ -61,7 +61,7 @@ class FileTypeSubscriber implements EventSubscriberInterface {
     }
     
     
-    public function preSetData(DataEvent $event)
+    public function preSetData(FormEvent $event)
     {
         $data   = $event->getData(); 
         $form   = $event->getForm(); 
@@ -70,6 +70,7 @@ class FileTypeSubscriber implements EventSubscriberInterface {
             'required' => $data === null && $this->options['required'], 
             'label' => $this->options['file_label'], 
             'help_block' => $this->options['file_help'],
+            'auto_initialize' => false, 
         )));
         
         $require_name = $form->getConfig()->getOption('require_name'); 
