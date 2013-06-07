@@ -1,0 +1,5 @@
+{% for key, value in Settings.social if value is not empty %}
+    <a href="{{ value }}" target="_blank">
+        <img src="{{ asset('bundles/isometrikssymedit/img/social/' ~ key ~ '.png') }}" alt="{{ Settings.company.name }} on {{ key|capitalize }}">
+    </a>
+{% endfor %}
