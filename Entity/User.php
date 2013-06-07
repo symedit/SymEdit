@@ -173,7 +173,7 @@ class User extends BaseUser implements UserInterface
      */
     public function getFullname()
     {
-        return sprintf('%s %s', $this->getFirstName(), $this->getLastName());
+        return rtrim(sprintf('%s %s', $this->getFirstName(), $this->getLastName()));
     }
 
     /**
