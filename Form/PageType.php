@@ -63,7 +63,7 @@ class PageType extends AbstractType {
                 'label' => 'admin.page.template', 
             ));
         
-        $subscriber = new EventListener\PageTypeSubscriber($builder->getFormFactory()); 
+        $subscriber = new EventListener\PageTypeSubscriber(); 
         $builder->addEventSubscriber($subscriber); 
     }
 

@@ -2,20 +2,13 @@
 
 namespace Isometriks\Bundle\SymEditBundle\Form\EventListener; 
 
+use Isometriks\Bundle\SymEditBundle\Model\PageInterface; 
 use Symfony\Component\EventDispatcher\EventSubscriberInterface; 
 use Symfony\Component\Form\FormEvents;
-use Symfony\Component\Form\Event\DataEvent; 
-use Symfony\Component\Form\FormFactory;
+use Symfony\Component\Form\FormEvent; 
 use Doctrine\ORM\EntityRepository; 
 
 class PageTypeSubscriber implements EventSubscriberInterface {
-    
-    private $factory; 
-    
-    public function __construct(FormFactory $factory)
-    {
-        $this->factory = $factory; 
-    }
     
     public static function getSubscribedEvents()
     {
@@ -24,26 +17,26 @@ class PageTypeSubscriber implements EventSubscriberInterface {
         );
     }
     
-    public function preSetData(DataEvent $event)
+    public function preSetData(FormEvent $event)
     {
         $data = $event->getData(); 
         $form = $event->getForm(); 
         
-        if($data === null){
+        if($data === null || !$data instanceof PageInterface){
             return; 
         }
         
         if(!$data->getHomepage()){
             // Can't edit the name on homepage
-            $form->add($this->factory->createNamed('name', 'text', null, array(
+            $form->add('name', 'text', array(
                 'attr' => array(
                     'class' => 'span4', 
                 ), 
                 'label' => 'admin.page.name', 
-            ))); 
+            )); 
             
             // And parent can't be changed for homepage
-            $form->add($this->factory->createNamed('parent', 'entity', null, array(
+            $form->add('parent', 'entity', array(
                 'class' => 'IsometriksSymEditBundle:Page', 
                 'label' => 'admin.page.parent', 
                 
@@ -55,7 +48,7 @@ class PageTypeSubscriber implements EventSubscriberInterface {
                               ->where('p.homepage = false')
                               ->orderBy('p.path');
                 },
-            )));
+            ));
         }
     }
 }
