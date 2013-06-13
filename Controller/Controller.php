@@ -22,7 +22,6 @@ class Controller extends BaseController
                 $modified = new \DateTime(); 
             }
             
-            $response->setVary('Cookie'); 
             $response->setPublic();
             $response->setLastModified($modified); 
         }
