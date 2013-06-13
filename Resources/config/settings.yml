@@ -1,5 +1,5 @@
 company:
-    label: Company Settings
+    label: Company
     default_options:
         attr:
             class: span5
@@ -26,7 +26,7 @@ company:
                 required: false
         
 social:
-    label: Social Media Settings
+    label: Social Media
     default_options:
         required: false
         attr:
@@ -65,7 +65,7 @@ social:
                     placeholder: "http://linkedin.com"             
             
 webmaster:
-    label: Webmaster Settings
+    label: Webmaster
     role: ROLE_ADMIN_WEBMASTER
     default_options:
         required: false
@@ -108,7 +108,7 @@ webmaster:
                     class: span3
                     
 blog:
-    label: Blog Settings
+    label: Blog
     role: ROLE_ADMIN_BLOG
     settings:
         max_posts:
@@ -116,7 +116,7 @@ blog:
             default: 3
         
 advanced:
-    label: Advanced Settings
+    label: Advanced
     role: ROLE_SUPER_ADMIN
     settings:
         caching:
