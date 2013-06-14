@@ -82,6 +82,9 @@ class ControllerLoader extends AnnotatedRouteControllerLoader
                 }
                 
                 $collection->addPrefix($page->getPath());
+                $collection->addDefaults(array(
+                    '_page_id' => $page->getId(), 
+                )); 
             }
         }
 
