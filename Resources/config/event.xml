@@ -14,7 +14,6 @@
     
     <services>
         <service id="isometriks_sym_edit.listener.controller_listener" class="%isometriks_sym_edit.listener.controller.class%">
-            <argument type="service" id="annotation_reader" />
             <argument type="service" id="doctrine" />    
             <tag name="kernel.event_listener" event="kernel.controller" method="onKernelController" priority="24" />
         </service>
