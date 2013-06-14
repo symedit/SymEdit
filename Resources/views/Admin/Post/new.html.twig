@@ -5,10 +5,7 @@
 {% block action %}{{ path('admin_blog_create') }}{% endblock %}
 
 {% block tabs %}
-<li class="active"><a href="#basic" data-toggle="tab">Basic</a></li>
-<li><a href="#post-seo" data-toggle="tab">SEO</a></li>
-<li><a href="#post-summary" data-toggle="tab">Summary</a></li>
-<li><a href="#post-content" data-toggle="tab">Content</a></li>
+{% include '@IsometriksSymEdit/Admin/Post/tabs.html.twig' %}
 {% endblock %}
     
 {% block tab_content %}
