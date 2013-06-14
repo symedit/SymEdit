@@ -2,15 +2,9 @@
     <div class="navbar-inner">
         <div class="container-fluid">
 
-            <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </a>
-
             {% include 'IsometriksSymEditBundle::brand.html.twig' %}
             
-            <div class="nav-collapse">
+            <nav>
                 {% if app.user and is_granted('ROLE_ADMIN') %}
                 <ul class="nav">
                     <li>
@@ -100,7 +94,7 @@
                     </li>
                 </ul>
                 {% endif %}
-            </div>
+            </nav>
         </div>
     </div>
 </div>
