@@ -1,0 +1,8 @@
+<div class="well">
+{% for widget in widgets %}
+    <h4>{{ widget.title }}</h4>
+    <div>
+        {{ widget.content|raw }}
+    </div>
+{% endfor %}
+</div>

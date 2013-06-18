@@ -1,0 +1,237 @@
+<?php
+
+namespace Isometriks\Bundle\SymEditBundle\Model; 
+
+use Isometriks\Bundle\SymEditBundle\Widget\Strategy\WidgetStrategyInterface; 
+
+abstract class Widget implements WidgetInterface
+{ 
+    const INCLUDE_ALL = 0; 
+    const INCLUDE_ONLY = 1; 
+    const EXCLUDE_ONLY = 2; 
+    
+    /**
+     * @var integer
+     */
+    protected $id;
+    
+    /**
+     * @var string Widget Name
+     */
+    protected $name; 
+
+    /**
+     *
+     * @var string Widget Title
+     */
+    protected $title; 
+    
+    /**
+     * @var WidgetAreaInterface Widget Area
+     */
+    protected $area; 
+    
+    /**
+     * @var array
+     */
+    protected $options;
+
+    /**
+     * @var string
+     */
+    protected $strategyName; 
+    
+    /**
+     * @var string
+     */
+    protected $strategy; 
+    
+    /**
+     * @var integer 
+     */
+    protected $visibility; 
+    
+    /**
+     * @var array 
+     */
+    protected $assoc; 
+
+    public function __construct()
+    {
+        $this->setOptions(array()); 
+        $this->setVisibility(self::INCLUDE_ALL); 
+        $this->setAssoc(array()); 
+    }
+    
+    public function getId()
+    {
+        return $this->id;
+    }
+    
+    public function setName($name)
+    {
+        $this->name = $name; 
+        
+        return $this; 
+    }
+    
+    public function getName()
+    {
+        return $this->name; 
+    }
+    
+    public function setTitle($title)
+    {
+        $this->title = $title; 
+        
+        return $this; 
+    }
+    
+    public function getTitle()
+    {
+        return $this->title; 
+    }
+    
+    public function setArea(WidgetAreaInterface $area)
+    {
+        $this->area = $area;
+    }
+    
+    public function getArea()
+    {
+        return $this->area; 
+    }
+
+    public function setOptions(array $options)
+    {
+        $this->options = $options;
+    
+        return $this;
+    }
+    
+    public function setOption($option, $value)
+    {
+        $this->options[$option] = $value; 
+        
+        return $this; 
+    }
+
+    public function getOptions()
+    {
+        return $this->options;
+    }
+    
+    public function getOption($option)
+    {
+        return $this->options[$option]; 
+    }
+    
+    public function hasOption($option)
+    {
+        return isset($this->options[$option]); 
+    }
+
+    public function setStrategyName($strategyName)
+    {
+        $this->strategyName = $strategyName;
+    
+        return $this;
+    }
+
+    public function getStrategyName()
+    {
+        return $this->strategyName;
+    }
+    
+    /** 
+     * @return WidgetStrategyInterface
+     */
+    public function getStrategy()
+    {
+        return $this->strategy; 
+    }
+    
+    public function setStrategy(WidgetStrategyInterface $strategy)
+    {
+        $this->strategy = $strategy;
+        $this->strategyName = $strategy->getName(); 
+    }
+    
+    public function setVisibility($visibility)
+    {
+        $this->visibility = $visibility; 
+        
+        return $this; 
+    }
+    
+    public function getVisibility()
+    {
+        return $this->visibility; 
+    }
+    
+    public function isVisible(PageInterface $page)
+    {
+        return $this->getVisibility() === self::INCLUDE_ALL ||
+              ($this->getVisibility() === self::INCLUDE_ONLY && $this->hasAssoc($page)) ||
+              ($this->getVisibility() === self::EXCLUDE_ONLY && !$this->hasAssoc($page)); 
+    }
+    
+    
+    public function setAssoc(array $assoc)
+    {
+        $this->assoc = $assoc; 
+        
+        return $this; 
+    }
+    
+    public function addAssoc($assoc)
+    {
+        $this->assoc[] = $assoc;
+    }
+    
+    public function getAssoc()
+    {
+        return $this->assoc; 
+    }
+    
+    public function hasAssoc(PageInterface $page)
+    {
+        return $this->checkAssoc($page->getPath()) ||
+               $this->checkAssoc($page->getId()); 
+    }    
+    
+    private function checkAssoc($string)
+    {
+        /**
+         * Remove trailing slash
+         */
+        $string = rtrim($string, '/'); 
+        
+        foreach($this->assoc as $assoc){
+            
+            $assoc = rtrim($assoc, '/'); 
+            
+            /**
+             * Check for wildcard.
+             * 
+             * Have to replace by \* because preg_quote will add a slash before
+             * the star. 
+             */
+            if(strpos($assoc, '*') !== false){
+                
+                $regexp = '#'. str_replace('\*', '.+?', preg_quote($assoc)).'#i'; 
+                
+                if(preg_match($regexp, $string)){
+                    return true; 
+                }
+                
+            } elseif ($string === $assoc) {
+                
+                return true; 
+                
+            }
+        }
+        
+        return false; 
+    }
+}

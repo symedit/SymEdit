@@ -8,6 +8,7 @@ use Isometriks\Bundle\SymEditBundle\DependencyInjection\Compiler\AnnotationLoade
 use Isometriks\Bundle\SymEditBundle\DependencyInjection\Compiler\EditableExtensionCompilerPass;  
 use Isometriks\Bundle\SymEditBundle\DependencyInjection\Compiler\TwigExceptionCompilerPass; 
 use Isometriks\Bundle\SymEditBundle\DependencyInjection\Compiler\TemplateGuesserCompilerPass; 
+use Isometriks\Bundle\SymEditBundle\DependencyInjection\Compiler\WidgetStrategyCompilerPass; 
 
 class IsometriksSymEditBundle extends Bundle 
 {    
@@ -19,5 +20,6 @@ class IsometriksSymEditBundle extends Bundle
         $container->addCompilerPass(new EditableExtensionCompilerPass());
         $container->addCompilerPass(new TwigExceptionCompilerPass()); 
         $container->addCompilerPass(new TemplateGuesserCompilerPass()); 
+        $container->addCompilerPass(new WidgetStrategyCompilerPass()); 
     }
 }

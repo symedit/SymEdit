@@ -21,19 +21,23 @@ class ControllerListener
     public function onKernelController(FilterControllerEvent $event)
     { 
         $request = $event->getRequest(); 
-
-        if($request->attributes->has('_page_id')){
+        $attributes = $request->attributes; 
+        
+        /**
+         * Check if any request has a _page_id that needs to be converted
+         */
+        if($attributes->has('_page_id')){ 
             
             $repo = $this->doctrine->getManager()->getRepository('IsometriksSymEditBundle:Page'); 
             
-            $id = $request->attributes->get('_page_id'); 
-            $request->attributes->remove('_page_id');  
+            $id = $attributes->get('_page_id'); 
+            $attributes->remove('_page_id');  
  
             $page = $repo->find($id); 
             
-            $request->attributes->add(array(
+            $attributes->add(array(
                 '_page' => $page, 
             )); 
-        }       
+        }
     }
 }

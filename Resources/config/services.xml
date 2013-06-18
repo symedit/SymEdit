@@ -16,9 +16,7 @@
             <argument type="service" id="kernel" />
         </service>
         
-        <service id="isometriks_sym_edit.breadcrumbs" class="%isometriks_sym_edit.breadcrumbs.class%">
-            
-        </service>
+        <service id="isometriks_sym_edit.breadcrumbs" class="%isometriks_sym_edit.breadcrumbs.class%" />
     </services>
 
 </container>
