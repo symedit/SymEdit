@@ -5,15 +5,12 @@
 {% block action %}{{ path('admin_blog_update', {id:entity.id}) }}{% endblock %}
 
 {% block tabs %}
-<li class="active"><a href="#basic" data-toggle="tab">Basic</a></li>
-<li><a href="#post-seo" data-toggle="tab">SEO</a></li>
-<li><a href="#post-summary" data-toggle="tab">Summary</a></li>
-<li><a href="#post-content" data-toggle="tab">Content</a></li>
+{% include '@IsometriksSymEdit/Admin/Post/tabs.html.twig' %}
 {% endblock %}
     
 {% block tab_content %}
 <div class="tab-pane active" id="basic">
-    <div class="row">
+    <div class="row-fluid">
         <div class="span6">
             {{ form_row(form.title, { attr: { class: 'span12' }}) }}
             {{ form_row(form.author) }}
