@@ -14,6 +14,7 @@ abstract class File implements RootInjectableInterface
 {
     /**
      * @Assert\NotBlank()
+     * @Assert\File()
      */
     protected $file; 
     
@@ -26,7 +27,6 @@ abstract class File implements RootInjectableInterface
     
     /**
      * @ORM\Column(type="string", length=255)
-     * @Assert\NotBlank()
      */
     protected $name; 
     
@@ -63,6 +63,13 @@ abstract class File implements RootInjectableInterface
     public function getPath()
     {
         return $this->path;
+    }
+    
+    public function calculatePath()
+    {
+        if($this->file !== null){
+            $this->setPath($this->getUploadDir().'/'.$this->getUploadName()); 
+        }
     }
     
     public function getName()
@@ -179,7 +186,7 @@ abstract class File implements RootInjectableInterface
         
         if (null !== $this->file) {
             $this->removeUpload(); 
-            $this->path = $this->getUploadDir().'/'.$this->getUploadName();
+            $this->calculatePath(); 
         }
     }
     
