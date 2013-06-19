@@ -28,6 +28,11 @@ class FileTypeSubscriber implements EventSubscriberInterface
     public function bind(FormEvent $event)
     {
         $data = $event->getData(); 
+        
+        if(!$data instanceof File){
+            return; 
+        }
+        
         $data->calculatePath();  
     }
     
