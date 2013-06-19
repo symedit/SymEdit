@@ -13,6 +13,8 @@ Isometriks\Bundle\SymEditBundle\Entity\Page:
                 message: "You may only use lowercase letters, numbers, underscores or hyphens"
                 
 Isometriks\Bundle\SymEditBundle\Entity\Image:
+    constraints:
+        - Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity: path
     properties:
         name:
             - NotBlank: ~

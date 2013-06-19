@@ -91,7 +91,8 @@ class ImageController extends Controller
         $form = $this->createForm(new ImageType(), $entity);
         $form->bind($request);
 
-        if ($form->isValid()) {
+        if ($form->isValid()) {         
+            
             $em = $this->getDoctrine()->getManager();
             $em->persist($entity);
             $em->flush();
@@ -100,6 +101,8 @@ class ImageController extends Controller
             
             return $this->redirect($this->generateUrl('admin_image'));
         }
+        
+        $this->get('session')->getFlashBag()->add('error', 'Error Uploading Image'); 
 
         return array(
             'entity' => $entity,
