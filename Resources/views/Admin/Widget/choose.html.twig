@@ -1,0 +1,24 @@
+{% extends '@IsometriksSymEdit/base.html.twig' %}
+
+{% block title %}Widgets &raquo; Choose New Widget Type{% endblock %}
+
+{% block content %}
+
+<div class="well">
+    <h2 class="latch">Choose Widget</h2>
+    
+    <ul class="thumbnails">
+    {% for strategy in strategies %}
+        <li class="span4">
+            <a class="thumbnail" href="{{ path('admin_widget_new', {strategyName:strategy.name}) }}">
+                <h4>
+                    <i class="icon-plus circle"></i>
+                    {{ strategy.description }}
+                </h4>
+            </a>
+        </li>
+    {% endfor %}
+    </ul>
+</div>
+
+{% endblock %}

@@ -9,6 +9,8 @@
         <parameter key="isometriks_sym_edit.form.type.role.class">Isometriks\Bundle\SymEditBundle\Form\Type\RoleType</parameter>
         <parameter key="isometriks_sym_edit.form.type.post.class">Isometriks\Bundle\SymEditBundle\Form\PostType</parameter>
         <parameter key="isometriks_sym_edit.form.type.user.class">Isometriks\Bundle\SymEditBundle\Form\UserType</parameter>
+        <parameter key="isometriks_sym_edit.form.type.widget_area.class">Isometriks\Bundle\SymEditBundle\Form\WidgetAreaType</parameter>
+        <parameter key="isometriks_sym_edit.form.type.widget.class">Isometriks\Bundle\SymEditBundle\Form\WidgetType</parameter>
     </parameters>
     
     <services>
@@ -32,6 +34,14 @@
         <service id="isometriks_sym_edit.form.type.user" class="%isometriks_sym_edit.form.type.user.class%">
             <argument>%fos_user.model.user.class%</argument>
             <tag name="form.type" alias="symedit_user" />
+        </service>
+        
+        <service id="isometriks_sym_edit.form.type.widget_area" class="%isometriks_sym_edit.form.type.widget_area.class%">
+            <tag name="form.type" alias="symedit_widget_area" />
+        </service>
+        
+        <service id="isometriks_sym_edit.form.type.widget" class="%isometriks_sym_edit.form.type.widget.class%">
+            <tag name="form.type" alias="symedit_widget" />
         </service>
     </services>
 

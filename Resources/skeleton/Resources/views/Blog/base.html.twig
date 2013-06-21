@@ -16,7 +16,9 @@
             {% endif %}
         </div> 
         <div class="span3">
-            {% include '{{{ bundle }}}:Blog:categories.html.twig' %}
+        {% block sidebar %}
+            {% include '{{{ bundle }}}:CMS:sidebar.html.twig' %}
+        {% endblock %}
         </div>
     </div>
 </div>

@@ -97,4 +97,25 @@ class Controller extends BaseController
     {
         return $this->get('isometriks_sym_edit.breadcrumbs'); 
     }
+    
+    /**
+     * Gets the current page if there is one, or returns null
+     * 
+     * @return \Isometriks\Bundle\SymEditBundle\Model\PageInterface|null
+     */
+    public function getCurrentPage()
+    {
+        $request = $this->getRequest(); 
+        
+        if($request->attributes->has('_page')){
+            return $request->attributes->get('_page'); 
+        }
+        
+        return null; 
+    }
+    
+    protected function addFlash($type, $message)
+    {
+        $this->get('session')->getFlashBag()->add($type, $message);
+    }
 }

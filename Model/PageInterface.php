@@ -2,7 +2,7 @@
 
 namespace Isometriks\Bundle\SymEditBundle\Model;
 
-use Symfony\Component\Validator\ExecutionContext;
+use Symfony\Component\Validator\ExecutionContextInterface;
 
 interface PageInterface extends SeoInterface, UpdatableInterface
 {
@@ -167,5 +167,5 @@ interface PageInterface extends SeoInterface, UpdatableInterface
 
     public function getRoute();
 
-    public function isNameValid(ExecutionContext $context);
+    public function isNameValid(ExecutionContextInterface $context);
 }
