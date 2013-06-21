@@ -3,7 +3,7 @@
 namespace Isometriks\Bundle\SymEditBundle\Model; 
 
 use Doctrine\Common\Collections\ArrayCollection; 
-use Symfony\Component\Validator\ExecutionContext;
+use Symfony\Component\Validator\ExecutionContextInterface;
 
 abstract class Page implements PageInterface
 {
@@ -653,15 +653,15 @@ abstract class Page implements PageInterface
         }
     }
 
-    public function isNameValid(ExecutionContext $context)
+    public function isNameValid(ExecutionContextInterface $context)
     {
         if ($this->getHomepage()) {
             if ($this->getName() != '') {
-                $context->addViolationAtSubPath('name', 'The "name" field for the Homepage must be blank');
+                $context->addViolationAt('name', 'The "name" field for the Homepage must be blank');
             }
         } else {
             if ($this->getName() == '') {
-                $context->addViolationAtSubPath('name', 'The "name" field must not be blank');
+                $context->addViolationAt('name', 'The "name" field must not be blank');
             }
         }
     }

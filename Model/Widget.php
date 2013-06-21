@@ -187,6 +187,24 @@ abstract class Widget implements WidgetInterface
     public function addAssoc($assoc)
     {
         $this->assoc[] = $assoc;
+        
+        return $this; 
+    }
+    
+    public function removeAssoc($assoc)
+    {
+        foreach($this->assoc as $key=>$value){
+            if($assoc == $value){
+                unset($this->assoc[$key]); 
+            }
+        }
+        
+        /**
+         * Reset array keys
+         */
+        $this->assoc = array_values($this->assoc); 
+        
+        return $this; 
     }
     
     public function getAssoc()
@@ -200,7 +218,7 @@ abstract class Widget implements WidgetInterface
                $this->checkAssoc($page->getId()); 
     }    
     
-    private function checkAssoc($string)
+    protected function checkAssoc($string)
     {
         /**
          * Remove trailing slash
