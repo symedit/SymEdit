@@ -5,6 +5,7 @@ namespace Isometriks\Bundle\SymEditBundle\Widget;
 use Doctrine\Bundle\DoctrineBundle\Registry; 
 use Isometriks\Bundle\SymEditBundle\Model\WidgetInterface; 
 use Isometriks\Bundle\SymEditBundle\Model\WidgetAreaInterface; 
+use Isometriks\Bundle\SymEditBundle\Widget\WidgetRegistry; 
 
 class WidgetManager
 {
@@ -12,14 +13,16 @@ class WidgetManager
     private $widgetAreaRepository; 
     private $widgetClass; 
     private $widgetAreaClass; 
+    private $registry; 
     private $em; 
     
-    public function __construct($widgetClass, $widgetAreaClass, Registry $doctrine)
+    public function __construct($widgetClass, $widgetAreaClass, WidgetRegistry $registry, Registry $doctrine)
     {
         $this->widgetClass = $widgetClass; 
         $this->widgetAreaClass = $widgetAreaClass; 
         
         $this->em = $doctrine->getManager(); 
+        $this->registry = $registry; 
         
         // This will be injected directly eventually to use ODM / ORM whatever
         $this->widgetRepository = $doctrine->getManager()->getRepository($this->widgetClass); 
@@ -100,10 +103,17 @@ class WidgetManager
     /**
      * @return WidgetInterface
      */
-    public function createWidget()
+    public function createWidget($strategyName = null)
     {
         $class = $this->getWidgetClass(); 
-        return new $class(); 
+        $widget = new $class(); 
+        
+        if($strategyName !== null){
+            $widget->setStrategyName($strategyName); 
+            $this->registry->init($widget); 
+        }
+        
+        return $widget; 
     }
     
     public function getWidgetClass()

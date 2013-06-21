@@ -29,7 +29,7 @@ class HtmlStrategy extends AbstractWidgetStrategy
         )); 
     }
 
-    public function getForm(FormBuilderInterface $builder)
+    public function buildForm(FormBuilderInterface $builder)
     {
         $builder
             ->add('html', 'textarea', array(
@@ -39,8 +39,6 @@ class HtmlStrategy extends AbstractWidgetStrategy
                 'attr' => array(
                     'class' => 'wysiwyg-editor', 
                 )
-            )); 
-        
-        return $builder->getForm(); 
+            ));  
     }    
 }

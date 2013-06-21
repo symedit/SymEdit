@@ -113,4 +113,9 @@ class Controller extends BaseController
         
         return null; 
     }
+    
+    protected function addFlash($type, $message)
+    {
+        $this->get('session')->getFlashBag()->add($type, $message);
+    }
 }

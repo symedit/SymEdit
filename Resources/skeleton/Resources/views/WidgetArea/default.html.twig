@@ -1,8 +1,12 @@
-<div class="well">
+{% if widgets|length > 0 %}
+<div class="widget-container">
 {% for widget in widgets %}
-    <h4>{{ widget.title }}</h4>
-    <div>
-        {{ widget.content|raw }}
+    <div class="widget">
+        {% if widget.title is not empty %}<h4>{{ widget.title }}</h4>{% endif %}
+        <div>
+            {{ widget.content|raw }}
+        </div>
     </div>
 {% endfor %}
 </div>
+{% endif %}

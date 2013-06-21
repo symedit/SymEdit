@@ -37,8 +37,6 @@ class SymEditExtension extends \Twig_Extension implements ContainerAwareInterfac
         $globals = array(
             'Root' => $pages->findRoot(),
             'Tree' => $pages, 
-            'Blog' => $em->getRepository('IsometriksSymEditBundle:Post'),
-            'Categories' => $em->getRepository('IsometriksSymEditBundle:Category'),
             'host_bundle' => $this->hostBundle,
             'host_asset_dir' => strtolower($asset_dir), 
         );

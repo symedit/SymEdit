@@ -21,7 +21,20 @@ h6 {
 
 h1 small, h2 small, h3 small, h4 small, h5 small, h6 small {
 	font-family: @baseFontFamily;
-	color: @textColor;
+	color: @linkColor;
+        margin-left: 10px;  
+}
+
+h2 small {
+    font-size: 15px; 
+}
+
+h3 small {
+    font-size: 14px; 
+}
+
+h4 small {
+    font-size: 13px; 
 }
 
 code, pre {
@@ -528,9 +541,19 @@ input, textarea, .search-query, .uneditable-input,
 }
 
 .thumbnail {
-	border: 0 solid transparent;
-	.border-radius(0);
-	.box-shadow(none);
+	border: 1px solid fadeout(#000, 90%);
+        background-color: fadeout(#000, 95%);
+        padding: 20px 30px; 
+	.border-radius(6px);
+
+        h1, h2, h3, h4, h5, h6 {
+            color: #fff; 
+        }
+
+        &:hover {
+            background-color: fadeout(#000, 90%); 
+            text-decoration: none; 
+        }
 }
 
 .progress {
@@ -641,3 +664,13 @@ input, textarea, .search-query, .uneditable-input,
 
 // MEDIA QUERIES
 // -----------------------------------------------------
+
+
+// SymEdit Stuff
+// -----------------------------------------------------
+
+#content {
+    h1, h2, h3, h4, h5, h6 {
+        font-family: @sansFontFamily; 
+    }
+}

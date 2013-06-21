@@ -11,11 +11,9 @@ interface WidgetStrategyInterface
     public function getDescription(); 
     
     /**
-     * @return \Symfony\Component\Form\FormInterface $form
      * @param \Symfony\Component\Form\FormBuilderInterface $builder
      */
-    public function getForm(FormBuilderInterface $builder); 
-    
+    public function buildForm(FormBuilderInterface $builder); 
     
     public function execute(WidgetInterface $widget); 
     

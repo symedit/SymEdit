@@ -10,24 +10,33 @@
         <i class="icon-info-sign"></i> Basic
     </a>
 </li>
+{% if form.config is defined %}
 <li>
     <a href="#config" data-toggle="tab">
         <i class="icon-cogs"></i> Configuration
     </a>
 </li>
+{% endif %}
 {% endblock %}
 
 {% block tab_content %}
+
+{% set text = { attr: { class: 'span8' }} %}
+{% set select = { attr: { class: 'span4' }} %}
+
 <div class="tab-pane active" id="basic">
-    {{ form_row(form.title) }}
-    {{ form_row(form.area) }}
-    {{ form_row(form.visibility) }}
-    {{ form_row(form.assoc) }}
+    {{ form_row(form.basic.title, text) }}
+    {{ form_row(form.basic.name, select) }}
+    {{ form_row(form.basic.area, select) }}
+    {{ form_row(form.basic.visibility, select) }}
+    {{ form_row(form.basic.assoc, text) }}
 </div>
 
+{% if form.config is defined %}
 <div class="tab-pane" id="config">
-    {{ form_rest(form) }}
+    {{ form_widget(form.config) }}
 </div>
+{% endif %}
 {% endblock %}
 
 {% block form_actions %}

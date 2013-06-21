@@ -47,8 +47,11 @@
             {% block content_container %}
             <div class="container">
                 {% block breadcrumbs %}
+                <div class="pull-right hidden-mobile">
                     {% include '{{{ bundle }}}:CMS:breadcrumbs.html.twig' %}
+                </div>
                 {% endblock %}
+                    
                 {% block heading %}<h1>{% content Page.tagline %}</h1>{% endblock %}
                 <div id="content">
                     {% block content %}
