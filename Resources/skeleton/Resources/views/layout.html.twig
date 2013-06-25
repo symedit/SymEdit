@@ -67,19 +67,7 @@
         {% block footer %}
         <footer>
             <div class="container">
-                <div class="row-fluid">
-                    <div class="span5">
-                        Copyright&copy; {{ Settings.company.name }} {{ 'now'|date('Y') }}. All Rights Reserved.
-                    </div>
-                        
-                    <div class="span4">
-                        {{ Settings.company.address }}
-                    </div>
-                        
-                    <div class="span2 pull-right">
-                        <a href="http://riwebgurus.com">RI Web Gurus</a>
-                    </div>
-                </div>
+                {% widgetarea 'footer' %}
             </div>
         </footer>
         {% endblock %}
