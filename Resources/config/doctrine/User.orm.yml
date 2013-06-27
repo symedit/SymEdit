@@ -26,13 +26,9 @@ Isometriks\Bundle\UserBundle\Entity\User:
             unique: false
             nullable: true
             precision: 0
-        gplus:
-            type: string
-            scale: 0
-            length: 255
-            unique: false
+        social:
+            type: json_array
             nullable: true
-            precision: 0
         biography:
             type: text
             scale: 0

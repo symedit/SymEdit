@@ -18,17 +18,12 @@ class RegistrationFormType extends BaseType
             ->add('lastName', 'text', array(
                 'label' => 'Last Name',
                 'required' => false,
-            ))
-            
-            ->add('gplus', 'url', array(
-                'label' => 'Google+ Profile URL',
-                'required' => false, 
             ));                
     }   
     
     public function getName()
     {
-        return 'isometriks_symedit_user_registration';
+        return 'symedit_user_registration';
     }
 
 }

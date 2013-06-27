@@ -6,7 +6,7 @@ use Symfony\Component\Form\FormBuilderInterface;
 use FOS\UserBundle\Form\Type\ProfileFormType as BaseType;
 use Isometriks\Bundle\SymEditBundle\Form\ImageType; 
 
-class ProfileFormType extends BaseType 
+class UserProfileType extends BaseType 
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {   
@@ -24,14 +24,53 @@ class ProfileFormType extends BaseType
             ->add('lastName', 'text', array(
                 'label' => 'Last Name',
                 'required' => false, 
-            ))
-            ->add('gplus', 'url', array(
-                'label' => 'Google+ Profile URL',
-                'required' => false, 
             )); 
         
+        /**
+         * Create social tab
+         */
+        $social = $builder->create('social', 'form', array(
+            'required' => false,
+        )); 
+        
+        $social
+            ->add('facebook', 'url', array(
+                'label' => 'Facebook', 
+                'attr' => array(
+                    'placeholder' => 'http://facebook.com', 
+                ), 
+            ))          
+            ->add('twitter', 'url', array(
+                'label' => 'Twitter', 
+                'attr' => array(
+                    'placeholder' => 'http://twitter.com', 
+                ),
+            ))
+            ->add('youtube', 'url', array(
+                'label' => 'YouTube', 
+                'attr' => array(
+                    'placeholder' => 'http://youtube.com', 
+                ), 
+            ))
+            ->add('gplus', 'url', array(
+                'label' => 'Google+', 
+                'attr' => array(
+                    'placeholder' => 'http://plus.google.com', 
+                ), 
+            ))
+            ->add('linkedin', 'url', array(
+                'label' => 'LinkedIn', 
+                'attr' => array(
+                    'placeholder' => 'http://linkedin.com', 
+                ),
+            )); 
+        
+        /**
+         * Build rest of form
+         */
         $builder
                 ->add($basic)
+                ->add($social)
                 ->add('biography', 'textarea', array(
                     'required' => false,
                     'attr' => array(
@@ -48,7 +87,7 @@ class ProfileFormType extends BaseType
 
     public function getName()
     {
-        return 'isometriks_symedit_user_profile';
+        return 'symedit_user_profile';
     }
 
 }

@@ -37,9 +37,9 @@ class User extends BaseUser implements UserInterface
     protected $lastName; 
     
     /**
-     * @var string $gplus
+     * @var array $social
      */
-    protected $gplus; 
+    protected $social; 
     
     /**
      * @var string $biography
@@ -175,29 +175,6 @@ class User extends BaseUser implements UserInterface
     {
         return rtrim(sprintf('%s %s', $this->getFirstName(), $this->getLastName()));
     }
-
-    /**
-     * Set gplus
-     *
-     * @param string $gplus
-     * @return User
-     */
-    public function setGplus($gplus)
-    {
-        $this->gplus = $gplus;
-    
-        return $this;
-    }
-
-    /**
-     * Get gplus
-     *
-     * @return string 
-     */
-    public function getGplus()
-    {
-        return $this->gplus;
-    }
     
     /**
      * Get the user's biography
@@ -245,5 +222,17 @@ class User extends BaseUser implements UserInterface
     public function removePost(Post $posts)
     {
         $this->posts->removeElement($posts);
+    }
+
+    public function getSocial()
+    {
+        return $this->social; 
+    }
+
+    public function setSocial(array $social)
+    {
+        $this->social = $social; 
+        
+        return $this; 
     }
 }
