@@ -19,8 +19,19 @@ interface UserInterface
     public function getBiography(); 
     public function setBiography($biography); 
     
-    public function getGplus(); 
-    public function setGplus($gplus); 
+    /**
+     * Get social media associative array
+     * 
+     * @return array Associative array of social media URLs
+     */
+    public function getSocial(); 
+    
+    /**
+     * Sets Social Media
+     * 
+     * @param array $social
+     */
+    public function setSocial(array $social); 
     
     public function getImage(); 
     public function setImage(Image $image); 

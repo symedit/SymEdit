@@ -6,8 +6,8 @@ parameters:
     isometriks_sym_edit.entity.user_class:          %isometriks_sym_edit.security.user_class%
            
     # FOS Parameters
-    isometriks_sym_edit.fos_user.form.registration: isometriks_symedit_user_registration
-    isometriks_sym_edit.fos_user.form.profile:      isometriks_symedit_user_profile
+    isometriks_sym_edit.fos_user.form.registration: symedit_user_registration
+    isometriks_sym_edit.fos_user.form.profile:      symedit_user_profile
             
     # Admin Dir 
     isometriks_sym_edit.admin_dir:                  /sym-admin
