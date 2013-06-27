@@ -3,42 +3,38 @@
 namespace Isometriks\Bundle\SymEditBundle\Form;
 
 use Symfony\Component\Form\FormBuilderInterface;
-use Isometriks\Bundle\UserBundle\Form\RegistrationFormType as BaseType;
+use Symfony\Component\Form\AbstractType; 
+use Isometriks\Bundle\SymEditBundle\Form\EventListener\UserTypeSubscriber; 
 
-class UserType extends BaseType 
+class UserType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
-    {
-        $basic = $builder->create('basic', 'form', array(
-            'virtual' => true, 
-            'data_class' => $options['data_class'], 
-        )); 
-        
-        parent::buildForm($basic, $options); 
-        
-        /*
-         *  Set Plain Password to be not required
-         */
-        if($basic->has('plainPassword')){
-            $basic->get('plainPassword')->setRequired(false); 
+    {        
+        if(!$builder->has('basic')){
+            return; 
         }
         
-        $builder
-                ->add($basic)
-                ->add('biography', 'textarea', array(
-                    'required' => false, 
-                    'attr' => array(
-                        'class' => 'wysiwyg-editor', 
-                    ), 
-                    'widget_control_group' => false, 
-                ))
-                ->add('image', new ImageType(), array(
-                    'required' => false, 
-                    'require_name' => false, 
-                ))
-                ->add('roles', 'symedit_role'); 
+        $basic = $builder->get('basic'); 
+
+        /**
+         * Don't require current password. 
+         */
+        if($basic->has('current_password')){
+            $basic->remove('current_password'); 
+        }
+
+        /**
+         * This subscriber will require / unrequire the plainPassword field
+         * depending on if it's a new user or existing. 
+         */
+        $builder->addEventSubscriber(new UserTypeSubscriber()); 
     }
 
+    public function getParent()
+    {
+        return 'symedit_user_profile'; 
+    }
+    
     public function getName()
     {
         return 'symedit_user';
