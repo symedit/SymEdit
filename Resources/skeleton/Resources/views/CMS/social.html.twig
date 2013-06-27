@@ -1,4 +1,15 @@
-{% set social = social|default(Settings.social) %}
+{# 
+    Have to check defined, can't use default as a blank array 
+    will default it to the company when you'd rather have nothing 
+#}
+{%- if social is not defined %}
+    {% set social = Settings.social %}
+{% endif -%}
+
+{%- if name is not defined %}
+    {% set name = Settings.company.name %}
+{% endif -%}
+
 {% set name = name|default(Settings.company) %}
 {% for key, value in social if value is not empty %}
     <a href="{{ value }}" target="_blank">
