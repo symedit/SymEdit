@@ -96,11 +96,6 @@ abstract class Page implements PageInterface
      * @var ArrayCollection Children of this page
      */
     protected $children;
-    
-    /**
-     * @var ArrayCollection Chunks associated to this page
-     */
-    protected $chunks; 
 
     /**
      * @var string Template Name
@@ -664,57 +659,5 @@ abstract class Page implements PageInterface
                 $context->addViolationAt('name', 'The "name" field must not be blank');
             }
         }
-    }
-
-    /**
-     * Add chunks
-     *
-     * @param \Isometriks\Bundle\SymEditBundle\Model\ChunkInterface $chunks
-     * @return Page
-     */
-    public function addChunk(ChunkInterface $chunks)
-    {
-        $chunks->setPage($this); 
-        $this->chunks[] = $chunks;
-    
-        return $this;
-    }
-
-    /**
-     * Remove chunks
-     *
-     * @param \Isometriks\Bundle\SymEditBundle\Model\ChunkInterface $chunks
-     */
-    public function removeChunk(ChunkInterface $chunks)
-    {
-        $this->chunks->removeElement($chunks);
-    }
-
-    /**
-     * Get chunks
-     *
-     * @return \Doctrine\Common\Collections\Collection 
-     */
-    public function getChunks()
-    {
-        return $this->chunks;
-    }
-    
-    /**
-     * Get a chunk by its name
-     * 
-     * @param string $name
-     * @return \Isometriks\Bundle\SymEditBundle\Model\ChunkInterface $chunk
-     * @throws \Exception When chunk cannot be found by name
-     */
-    public function getChunk($name)
-    {
-        foreach($this->getChunks() as $chunk){
-            if($chunk->getName() === $name){
-                return $chunk; 
-            }
-        }
-        
-        return null;
-    }    
+    } 
 }

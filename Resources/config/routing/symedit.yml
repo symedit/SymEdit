@@ -14,8 +14,4 @@ symedit_pages:
     type: symedit_pages
     
 symedit_controllers:
-    resource: "@IsometriksSymEditBundle/Resources/config/routing/controllers.yml"    
-    
-symedit_editables:
-    resource: "@IsometriksSymEditBundle/Resources/config/routing/editable.yml"
-    prefix: _editable
+    resource: "@IsometriksSymEditBundle/Resources/config/routing/controllers.yml"

@@ -79,45 +79,6 @@
         </tr>
         {% endif %}
     </table>
-    
-    {% if collector.chunks|length > 0 %}
-    <h2>Chunks</h2>
-    
-    <table>
-        {% for chunk in collector.chunks %}
-        
-            <tr>
-                <th>Name</td>
-                <th>{{ chunk.name }}</td>
-            </tr>
-            
-            <tr>
-                <td>Strategy</td>
-                <td>{{ chunk.strategy }}</td>
-            </tr>
-            
-            <tr>
-                <td>Options</td>
-                <td>
-                    {% if chunk.options|length > 0 %}
-                        <table>
-                            {% for key,value in chunk.options %}
-                            <tr>
-                                <td>{{ key }}</td>
-                                <td>{{ value }}</td>
-                            </tr>
-                            {% endfor %}
-                        </table>
-                    {% endif %}
-                </td>
-            </tr>
-            
-            <tr>
-                <td colspan="2" bgcolor="#333333"></td>
-            </tr>
-        {% endfor %}
-        </table>
-    {% endif %}
 {% endif %}
 {% endblock %}
     

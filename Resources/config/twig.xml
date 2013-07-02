@@ -6,7 +6,6 @@
 
     <parameters>
         <parameter key="isometriks_sym_edit.twig.symedit_extension.class">Isometriks\Bundle\SymEditBundle\Twig\Extension\SymEditExtension</parameter>
-        <parameter key="isometriks_sym_edit.twig.editable_extension.class">Isometriks\Bundle\SymEditBundle\Twig\Extension\EditableExtension</parameter>
         <parameter key="isometriks_sym_edit.twig.controller.exception.class">Isometriks\Bundle\SymEditBundle\Controller\ExceptionController</parameter>
     </parameters>
 
@@ -17,12 +16,6 @@
             <argument>%isometriks_sym_edit.extensions.routes%</argument>
             <tag name="twig.extension" />
         </service>
-        
-        <service id="isometriks_sym_edit.twig.editable_extension" class="%isometriks_sym_edit.twig.editable_extension.class%">
-            <argument type="service" id="service_container" />
-            <tag name="twig.extension" />
-        </service>
-
     </services>
      
 </container>
