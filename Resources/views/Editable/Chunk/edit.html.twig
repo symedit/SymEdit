@@ -1,5 +1,0 @@
-<form method="post" {% if form is defined %}{{ form_enctype(form) }}{% endif %} data-editable="chunk.{{ chunk.strategyName }}" action="{{ path(chunk.strategy.updatePath, {id: chunk.id}) }}">
-{% block form %}
-{{ form_widget(form) }}
-{% endblock %}
-</form>

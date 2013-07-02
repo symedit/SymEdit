@@ -1,8 +1,0 @@
-{% extends 'IsometriksSymEditBundle:Editable/Chunk:edit.html.twig' %}
-
-{% block form %}
-    {% include 'IsometriksSymEditBundle:Editable/Chunk/image:render.html.twig' %}
-
-    {{ form_widget(form.image) }}
-    {{ form_rest(form) }}
-{% endblock %}

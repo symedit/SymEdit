@@ -23,16 +23,10 @@ class IsometriksSymEditExtension extends Extension
         $config = $this->processConfiguration($configuration, $configs);
         
         $loader = new Loader\XmlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config')); 
-        $loader->load('services.xml'); 
-        $loader->load('editable.xml');
-        $loader->load('widget.xml'); 
-        $loader->load('routing.xml'); 
-        $loader->load('form.xml');
-        $loader->load('event.xml'); 
-        $loader->load('twig.xml');
-        $loader->load('util.xml'); 
-        $loader->load('profiler.xml'); 
         
+        foreach(array('services', 'widget', 'routing', 'form', 'event', 'twig', 'util', 'profiler') as $file){
+            $loader->load($file.'.xml'); 
+        }        
         
         /**
          * Add Classes to Compile
@@ -44,11 +38,9 @@ class IsometriksSymEditExtension extends Extension
             
             // event.xml
             'Isometriks\\Bundle\\SymEditBundle\\EventListener\\ControllerListener', 
-            'Isometriks\\Bundle\\SymEditBundle\\EventListener\\ChunkListener', 
             
             // twig.xml
             'Isometriks\\Bundle\\SymEditBundle\\Twig\\Extension\\SymEditExtension',
-            'Isometriks\\Bundle\\SymEditBundle\\Twig\\Extension\\EditableExtension', 
         )); 
            
         /**

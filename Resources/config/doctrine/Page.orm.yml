@@ -139,15 +139,6 @@ Isometriks\Bundle\SymEditBundle\Entity\Page:
             orphanRemoval: false
             orderBy:
                 pageOrder: ASC
-        chunks:
-            targetEntity: Isometriks\Bundle\SymEditBundle\Entity\Chunk
-            cascade:
-                - remove
-                - persist
-            mappedBy: page
-            inversedBy: null
-            orphanRemoval: false
-            orderBy: null
     lifecycleCallbacks:
         prePersist:
             - fixPath

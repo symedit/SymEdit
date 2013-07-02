@@ -147,14 +147,6 @@ interface PageInterface extends SeoInterface, UpdatableInterface
 
     public function getActive();
 
-    public function addChunk(ChunkInterface $chunks);
-
-    public function removeChunk(ChunkInterface $chunks);
-
-    public function getChunks();
-
-    public function getChunk($name);
-
     public function getVisibleChildren();
 
     public function getBreadcrumbs();

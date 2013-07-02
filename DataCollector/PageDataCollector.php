@@ -19,15 +19,6 @@ class PageDataCollector extends DataCollector
         if ($request->attributes->has('_page')) {
 
             $page = $request->attributes->get('_page');
-            $chunks = array();
-
-            foreach ($page->getChunks() as $chunk) {
-                $chunks[] = array(
-                    'name' => $chunk->getName(),
-                    'options' => $chunk->getOptions(),
-                    'strategy' => $chunk->getStrategyName(),
-                );
-            }
 
             $this->data = array(
                 'id' => $page->getId(),
@@ -37,7 +28,6 @@ class PageDataCollector extends DataCollector
                 '_controller' => $request->attributes->get('_controller'),
                 'controller' => $page->getPageController(),
                 'controllerPath' => $page->getPageControllerPath(),
-                'chunks' => $chunks,
             );
         }
     }
@@ -45,11 +35,6 @@ class PageDataCollector extends DataCollector
     public function getPage()
     {
         return $this->data;
-    }
-
-    public function getChunks()
-    {
-        return $this->data['chunks'];
     }
 
     public function getName()
