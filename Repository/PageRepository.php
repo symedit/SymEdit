@@ -2,9 +2,9 @@
 
 namespace Isometriks\Bundle\SymEditBundle\Repository;
 
-use Doctrine\ORM\EntityRepository;
+use Gedmo\Tree\Entity\Repository\MaterializedPathRepository; 
 
-class PageRepository extends EntityRepository
+class PageRepository extends MaterializedPathRepository
 {
     public function findRoot()
     {

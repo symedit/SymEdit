@@ -28,12 +28,10 @@ class ControllerListener
          */
         if($attributes->has('_page_id')){ 
             
-            $repo = $this->doctrine->getManager()->getRepository('IsometriksSymEditBundle:Page'); 
-            
             $id = $attributes->get('_page_id'); 
             $attributes->remove('_page_id');  
- 
-            $page = $repo->find($id); 
+            
+            $page = $this->doctrine->getManager()->find('IsometriksSymEditBundle:Page', $id); 
             
             $attributes->add(array(
                 '_page' => $page, 

@@ -8,3 +8,11 @@ doctrine:
                     post_published:
                         class: Isometriks\Bundle\SymEditBundle\Filter\PostPublishedFilter
                         enabled: true
+                        
+stof_doctrine_extensions:
+    orm:
+        default:
+            timestampable: true
+            sluggable: true
+            blameable: true
+            tree: true
