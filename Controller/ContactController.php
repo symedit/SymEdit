@@ -24,16 +24,8 @@ class ContactController extends Controller
         $type = $namespace.'\\Form\\ContactType'; 
         $form = $this->createForm(new $type()); 
         
-        $response = $this->createResponse($_page->getUpdatedAt()); 
-        
         if ($request->getMethod() === 'POST') {
-
-            /**
-             * Set the response to private in case the validation fails, 
-             * preventing the errors from being cached. 
-             */
-            $response->setPrivate(); 
-            
+        
             $form->bind($request);
 
             if ($form->isValid()) {
@@ -44,18 +36,11 @@ class ContactController extends Controller
                 )); 
 
                 return $this->render($this->getHostTemplate('Contact', 'success.html.twig'));
-            }
-            
-        } elseif ($response->isNotModified($request)) {
-            
-            /**
-             * We can only return this response if it is the public one
-             */
-            return $response; 
+            }  
         }
         
         return $this->render($this->getHostTemplate('Contact', 'index.html.twig'), array(
             'form' => $form->createView(), 
-        ), $response);
+        ));
     }
 }
