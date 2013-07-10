@@ -42,7 +42,8 @@ class ContactType extends AbstractType
                 'constraints' => array(
                     new NotBlank(), 
                 ),
-            ));
+            ))
+            ->add('spamcheck', 'symedit_timed_spam');
     }
 
     public function getName()
