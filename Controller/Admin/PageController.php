@@ -3,8 +3,8 @@
 namespace Isometriks\Bundle\SymEditBundle\Controller\Admin;
 
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Symfony\Component\HttpFoundation\Response; 
+use Isometriks\Bundle\SymEditBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\JsonResponse; 
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
@@ -67,9 +67,9 @@ class PageController extends Controller
             $em->flush(); 
         }
 
-        return new Response(json_encode(array(
+        return new JsonResponse(array(
             'status' => $status, 
-        ))); 
+        )); 
     }
 
     /**
@@ -168,11 +168,10 @@ class PageController extends Controller
         $editForm->bind($request);
 
         if ($editForm->isValid()) {
-            $entity->setUpdated(); 
             $em->persist($entity);
             $em->flush();
 
-            $this->get('session')->getFlashBag()->add('notice', 'Page Updated'); 
+            $this->addFlash('notice', 'Page Updated'); 
             
             return $this->redirectEdit($request, $entity); 
         }

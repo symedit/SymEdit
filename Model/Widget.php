@@ -55,12 +55,23 @@ abstract class Widget implements WidgetInterface
      * @var array 
      */
     protected $assoc; 
+    
+    /**
+     * @var \DateTime
+     */
+    protected $createdAt; 
+    
+    /**
+     * @var \DateTime
+     */    
+    protected $updatedAt; 
 
     public function __construct()
     {
         $this->setOptions(array()); 
         $this->setVisibility(self::INCLUDE_ALL); 
         $this->setAssoc(array()); 
+        $this->setUpdatedAt(new \DateTime()); 
     }
     
     public function getId()
@@ -251,5 +262,32 @@ abstract class Widget implements WidgetInterface
         }
         
         return false; 
+    }
+    
+    /**
+     * @return \DateTime $createdAt
+     */
+    public function getCreatedAt()
+    {
+        return $this->createdAt; 
+    }
+    
+    /**
+     * @param \DateTime $updatedAt
+     * @return WidgetInterface $widget
+     */
+    public function setUpdatedAt($updatedAt)
+    {
+        $this->updatedAt = $updatedAt;
+        
+        return $this; 
+    }
+    
+    /**
+     * @return \DateTime $updatedAt
+     */
+    public function getUpdatedAt()
+    {
+        return $this->updatedAt; 
     }
 }

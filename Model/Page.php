@@ -83,6 +83,11 @@ abstract class Page implements PageInterface
     protected $pageControllerPath;
 
     /**
+     * @var \DateTime $createdAt
+     */
+    protected $createdAt; 
+    
+    /**
      * @var \DateTime $updatedAt
      */
     protected $updatedAt;
@@ -96,6 +101,21 @@ abstract class Page implements PageInterface
      * @var ArrayCollection Children of this page
      */
     protected $children;
+    
+    /**
+     * @var integer $level
+     */
+    protected $level; 
+    
+    /**
+     * @var integer $lft
+     */
+    protected $lft; 
+    
+    /**
+     * @var integer $rgt
+     */
+    protected $rgt; 
 
     /**
      * @var string Template Name
@@ -433,7 +453,17 @@ abstract class Page implements PageInterface
     {
         return $this->pageControllerPath;
     }
-
+    
+    /**
+     * Gets time created 
+     * 
+     * @return \DateTime $createdAt
+     */
+    public function getCreatedAt()
+    {
+        return $this->createdAt; 
+    }
+    
     /**
      * Set updated at
      *
@@ -458,29 +488,12 @@ abstract class Page implements PageInterface
     }
 
     /**
-     * Set path
-     *
-     * @param string $path
-     * @return Page
-     */
-    public function setPath($path)
-    {
-        $this->path = $path;
-
-        return $this;
-    }
-
-    /**
      * Get path
      *
      * @return string 
      */
     public function getPath()
     {
-        if($this->getRoot()){
-            return ''; 
-        }
-        
         $path = $this->path; 
         
         if($this->getPageController()){
@@ -598,54 +611,11 @@ abstract class Page implements PageInterface
         return $this->getChildren()->filter(function($en) {
             return $en->getDisplay();
         });
-    }
-    
-    public function getBreadcrumbs()
-    {
-        if($this->getRoot() || $this->getHomepage() || $this->getParent() === null){
-            return array(); 
-        } else {
-            return array_merge($this->getParent()->getBreadcrumbs(), array($this)); 
-        }
-    }
-   
+    }   
     
     public function getLevel()
     {
-        if($this->getRoot()){
-            return 0; 
-        } else {
-            return $this->getParent()->getLevel() + 1; 
-        }
-    }
-
-    /**
-     * PrePersist
-     */
-    public function fixPath()
-    {
-        if ($this->getRoot()) {
-            $this->setPath('');
-        } else {
-            $parent_path = $this->getParent() ? $this->getParent()->getPath() : ''; 
-            $path = rtrim($parent_path, '/') . '/' . $this->getName(); 
-            
-            $this->setPath($path); 
-        }
-    }
-
-    public function setUpdated()
-    {
-        // Set Updated at to now
-        $this->setUpdatedAt(new \DateTime());
-
-        // Set the path to be parent path/page name
-        $this->fixPath();
-
-        // In case this page's path has changed, let's fix the children too
-        foreach ($this->getChildren() as $child) {
-            $child->setUpdated();
-        }
+        return $this->level; 
     }
 
     public function isNameValid(ExecutionContextInterface $context)

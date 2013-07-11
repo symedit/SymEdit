@@ -24,6 +24,16 @@ Isometriks\Bundle\SymEditBundle\Entity\Widget:
             default: 0
         assoc:
             type: json_array
+        createdAt:
+            type: datetime
+            gedmo:
+                timestampable:
+                    on: create
+        updatedAt:
+            type: datetime
+            gedmo:
+                timestampable:
+                    on: update
         strategyName:
             type: string
             length: 255
