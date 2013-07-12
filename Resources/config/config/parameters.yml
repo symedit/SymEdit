@@ -1,10 +1,10 @@
 parameters:
-    # User Class
-    isometriks_sym_edit.security.user_class:        Isometriks\Bundle\UserBundle\Entity\User
+    # User Entity Class
+    isometriks_sym_edit.entity.user_class:          Isometriks\Bundle\UserBundle\Entity\User
     
-    # Entity Class
-    isometriks_sym_edit.entity.user_class:          %isometriks_sym_edit.security.user_class%
-           
+    # Profile Entity Class
+    isometriks_sym_edit.entity.profile_class:       Isometriks\Bundle\UserBundle\Entity\Profile
+    
     # FOS Parameters
     isometriks_sym_edit.fos_user.form.registration: symedit_user_registration
     isometriks_sym_edit.fos_user.form.profile:      symedit_user_profile
