@@ -17,7 +17,9 @@
         </service>-->
         
         <service parent="fos_user.mailer.twig_swift" id="isometriks_sym_edit.mailer" class="%isometriks_sym_edit.util.mailer.class%">
-            <argument type="service" id="isometriks_settings.settings" />
+            <call method="setSettings">
+                <argument type="service" id="isometriks_settings.settings" />
+            </call>
         </service>
     </services>
 

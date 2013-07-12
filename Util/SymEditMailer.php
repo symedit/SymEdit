@@ -8,10 +8,10 @@ use Isometriks\Bundle\SettingsBundle\Model\Settings;
 
 class SymEditMailer extends TwigSwiftMailer
 {
-    public function __construct(\Swift_Mailer $mailer, UrlGeneratorInterface $router, \Twig_Environment $twig, array $parameters, Settings $settings)
+    protected $settings;
+    
+    public function setSettings(Settings $settings)
     {
-        parent::__construct($mailer, $router, $twig, $parameters);
-        
         $this->settings = $settings;
     }
     
