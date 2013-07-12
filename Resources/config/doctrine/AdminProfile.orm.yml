@@ -1,0 +1,20 @@
+Isometriks\Bundle\UserBundle\Entity\AdminProfile:
+    type: entity
+    fields:
+        social:
+            type: json_array
+            nullable: true
+        biography:
+            type: text
+            nullable: true
+    manyToOne:
+        image:
+            targetEntity: Isometriks\Bundle\SymEditBundle\Entity\Image
+            cascade:
+                - persist
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                image_id:
+                    referencedColumnName: id
+            orphanRemoval: false
