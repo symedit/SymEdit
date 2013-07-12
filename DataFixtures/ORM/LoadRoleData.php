@@ -14,7 +14,6 @@
       {
           $roles = array(
               'ROLE_SUPER_ADMIN'     => 'Super Admin', 
-              'ROLE_ADMIN'           => 'Admin Access', 
               'ROLE_ADMIN_PAGE'      => 'Page Access', 
               'ROLE_ADMIN_PAGE_SEO'  => 'Page SEO Access', 
               'ROLE_ADMIN_WEBMASTER' => 'Webmaster Tools Access',
