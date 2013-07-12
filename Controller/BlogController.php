@@ -199,7 +199,7 @@ class BlogController extends Controller
          * Add Breadcrumbs 
          */
         $breadcrumbs = $this->getBreadcrumbs(); 
-        $breadcrumbs->push($user->getFullname(), 'blog_author_view', array(
+        $breadcrumbs->push($user->getProfile()->getFullname(), 'blog_author_view', array(
             'username' => $user->getUsername(), 
         )); 
         
