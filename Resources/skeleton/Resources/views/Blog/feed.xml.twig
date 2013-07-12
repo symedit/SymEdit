@@ -14,7 +14,7 @@
             <link>{{ url('blog_slug_view', {slug:post.slug}) }}</link>
             <guid>{{ url('blog_slug_view', {slug:post.slug}) }}</guid>
             <description>{{ post.seo.description|default(post.summary|plain(150)) }}</description>
-            <author>{{ post.author.email }} ({{ post.author.fullname }})</author>
+            <author>{{ post.author.email }} ({{ post.author.profile.fullname }})</author>
             {%- if post.categories|length > 0 %}
             <category>{{ post.categories|join(', ') }}</category>
             {%- endif %}

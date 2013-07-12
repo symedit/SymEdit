@@ -11,7 +11,6 @@
         <parameter key="isometriks_sym_edit.form.type.user.class">Isometriks\Bundle\SymEditBundle\Form\UserType</parameter>
         <parameter key="isometriks_sym_edit.form.type.widget_area.class">Isometriks\Bundle\SymEditBundle\Form\WidgetAreaType</parameter>
         <parameter key="isometriks_sym_edit.form.type.widget.class">Isometriks\Bundle\SymEditBundle\Form\WidgetType</parameter>
-        <parameter key="isometriks_sym_edit.form.type.timed_spam.class">Isometriks\Bundle\SymEditBundle\Form\Type\TimedSpamType</parameter>
     </parameters>
     
     <services>
@@ -43,10 +42,6 @@
         
         <service id="isometriks_sym_edit.form.type.widget" class="%isometriks_sym_edit.form.type.widget.class%">
             <tag name="form.type" alias="symedit_widget" />
-        </service>
-        
-        <service id="isometriks_sym_edit.form.type.timed_spam" class="%isometriks_sym_edit.form.type.timed_spam.class%">
-            <tag name="form.type" alias="symedit_timed_spam" />
         </service>
     </services>
 

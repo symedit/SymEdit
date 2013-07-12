@@ -5,7 +5,7 @@ namespace Isometriks\Bundle\SymEditBundle\Model;
 use Doctrine\Common\Collections\ArrayCollection; 
 use Symfony\Component\Validator\ExecutionContextInterface;
 
-abstract class Page implements PageInterface
+class Page implements PageInterface
 {
     /**
      * @var integer $id
@@ -487,6 +487,13 @@ abstract class Page implements PageInterface
         return $this->updatedAt;
     }
 
+    public function setPath($path)
+    {
+        $this->path = $path;
+        
+        return $this;
+    }
+    
     /**
      * Get path
      *

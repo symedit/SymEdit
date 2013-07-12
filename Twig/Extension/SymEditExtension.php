@@ -4,6 +4,7 @@ namespace Isometriks\Bundle\SymEditBundle\Twig\Extension;
 
 use Symfony\Component\DependencyInjection\ContainerInterface; 
 use Symfony\Component\DependencyInjection\ContainerAwareInterface; 
+use Isometriks\Bundle\SymEditBundle\Model\Page;
 
 class SymEditExtension extends \Twig_Extension implements ContainerAwareInterface
 {
@@ -59,13 +60,16 @@ class SymEditExtension extends \Twig_Extension implements ContainerAwareInterfac
             if($request->attributes->has('_page')){
                 $page = $request->attributes->get('_page'); 
                 $page->setActive(true, true); 
-                $globals['Page'] = $page; 
-                $globals['SEO']  = $page->getSeo(); 
+                $seo = $page->getSeo(); 
+            } else {
+                $page = new Page();
+                $page->setPath($request->getPathInfo());
+                $seo = array();
             }
             
-            if($request->attributes->has('_breadcrumbs')){
-                $globals['Breadcrumbs'] = $request->attributes->get('_breadcrumbs'); 
-            }
+            $globals['Page'] = $page;
+            $globals['SEO'] = $seo;
+            $globals['Breadcrumbs'] = $this->container->get('isometriks_sym_edit.breadcrumbs');
         }
         
         

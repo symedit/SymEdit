@@ -5,6 +5,7 @@ namespace {{{ namespace }}}\Form;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Validator\Constraints\NotBlank; 
+use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
 class ContactType extends AbstractType
 {
@@ -42,8 +43,14 @@ class ContactType extends AbstractType
                 'constraints' => array(
                     new NotBlank(), 
                 ),
-            ))
-            ->add('spamcheck', 'symedit_timed_spam');
+            ));
+    }
+    
+    public function setDefaultOptions(OptionsResolverInterface $resolver)
+    {
+        $resolver->setDefaults(array(
+            'timed_spam' => true,
+        ));
     }
 
     public function getName()

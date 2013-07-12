@@ -22,11 +22,13 @@ class IsometriksSymEditExtension extends Extension
         $configuration = new Configuration();
         $config = $this->processConfiguration($configuration, $configs);
         
-        $loader = new Loader\XmlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config')); 
+        $loader = new Loader\XmlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));         
         
-        foreach(array('services', 'widget', 'routing', 'form', 'event', 'twig', 'util', 'profiler') as $file){
+        foreach(array('services', 'user', 'widget', 'routing', 'form', 'event', 'twig', 'util', 'profiler') as $file){
             $loader->load($file.'.xml'); 
         }        
+               
+        $this->processProfileConfig($config['profile'], $container);
         
         /**
          * Add Classes to Compile
@@ -78,5 +80,10 @@ class IsometriksSymEditExtension extends Extension
          * Set the Admin Directory
          */
         $container->setParameter('isometriks_sym_edit.admin_dir', $config['admin_dir']); 
+    }
+    
+    private function processProfileConfig($config, ContainerBuilder $container)
+    {
+        $container->setParameter('isometriks_sym_edit.entity.admin_profile_class', $config['admin']);
     }
 }

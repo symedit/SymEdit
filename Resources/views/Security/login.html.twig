@@ -1,0 +1,55 @@
+{% extends 'IsometriksSymEditBundle::form.html.twig' %}
+
+{% block title %}Login to SymEdit{% endblock %}
+
+{% block breadcrumbs '' %}
+
+{% block content %}
+<div class="row-fluid">
+    <div id="symedit-login-container" class="offset4">
+        <h3>Login</h3>
+        
+        {% if error %}
+        <div class="alert">{{ error|trans({}, 'FOSUserBundle') }}</div>
+        {% endif %}
+
+        <form id="symedit-login" action="{{ path("fos_user_security_check") }}" method="post">
+            <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
+
+            <div class="input-prepend">
+                <span class="add-on"><i class="icon-user"></i></span>
+                <input type="text" id="username" name="_username" value="{{ last_username }}" required="required" placeholder="{{ 'security.login.username'|trans({}, 'FOSUserBundle') }}">
+            </div>
+
+            <br>
+            
+            <div class="input-prepend">
+                <span class="add-on"><i class="icon-lock"></i></span>
+                <input type="password" id="password" name="_password" required="required" placeholder="{{ 'security.login.password'|trans({}, 'FOSUserBundle') }}" />
+            </div>
+
+            <br>
+            {#<div class="clearfix">
+                <div class="pull-right">
+                <label class="checkbox">
+                    {{ 'security.login.remember_me'|trans({}, 'FOSUserBundle') }} 
+                    <input type="checkbox" id="remember_me" name="_remember_me" value="on" />
+                </label>
+                </div>
+            </div>#}
+            
+            <hr>
+
+            <div class="clearfix">
+                <button class="btn btn-small pull-right" type="submit" id="_submit" name="_submit">
+                    <i class="icon-unlock"></i>
+                    {{ 'security.login.submit'|trans({}, 'FOSUserBundle') }}
+                </button>
+                <div class="forgot-password">
+                    <a href="{{ path('fos_user_resetting_request') }}">Forgot Password</a>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}

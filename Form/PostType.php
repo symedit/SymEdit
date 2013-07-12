@@ -39,7 +39,7 @@ class PostType extends AbstractType {
                     'required' => false, 
                 ))
                 ->add('author', 'entity', array(
-                    'property' => 'fullname', 
+                    'property' => 'profile.fullname', 
                     'class'    => $this->userClass, 
                 ))
                 ->add('status', 'choice', array(

@@ -146,6 +146,19 @@ interface PageInterface extends SeoInterface
 
     public function getPageControllerPath();
 
+    /**
+     * Set Page's path
+     * 
+     * @param string $path
+     * @return PageInterface $page
+     */
+    public function setPath($path);
+    
+    /**
+     * Gets the page's path
+     * 
+     * @return string $path
+     */
     public function getPath();
 
     public function setParent(PageInterface $parent = null);
