@@ -8,7 +8,6 @@ use Symfony\Bundle\FrameworkBundle\Templating\TemplateReference;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request; 
 use Symfony\Component\HttpKernel\Log\DebugLoggerInterface;
-use Isometriks\Bundle\SymEditBundle\Entity\Page; 
 
 class ExceptionController extends BaseController
 {
@@ -35,7 +34,6 @@ class ExceptionController extends BaseController
 
                 if ($this->templateExists($template)) {
                     return new Response($this->twig->render($template, array(
-                        'Page' => $this->getPage(), 
                         'status_code' => $code,
                         'status_text' => isset(Response::$statusTexts[$code]) ? Response::$statusTexts[$code] : '',
                         'exception' => $exception,
@@ -46,17 +44,5 @@ class ExceptionController extends BaseController
         }
 
         return parent::showAction($request, $exception, $logger, $format);
-    }
-    
-    /**
-     * Need to inject a fake Page object so that things can still function.
-     * 
-     * @return \Isometriks\Bundle\SymEditBundle\Entity\Page
-     */
-    private function getPage()
-    {
-        $page = new Page(); 
-        
-        return $page; 
     }
 }
