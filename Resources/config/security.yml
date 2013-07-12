@@ -12,6 +12,8 @@ security:
             form_login:
                 provider: fos_userbundle
                 csrf_provider: form.csrf_provider
+                success_handler: isometriks_sym_edit.security_handler
+                use_forward: false
             logout:       true
             anonymous:    true
             remember_me:  
