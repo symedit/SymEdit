@@ -8,7 +8,7 @@ use Isometriks\Bundle\SymEditBundle\Controller\Controller;
 
 class WidgetController extends Controller
 {
-    public function renderAreaAction(Request $request, $area)
+    public function renderAreaAction(Request $request, $area, $path = null, $id = null)
     {
         $manager = $this->get('isometriks_sym_edit.widget.manager'); 
         $widgetArea = $manager->getWidgetArea($area); 
@@ -20,14 +20,11 @@ class WidgetController extends Controller
         }
         
         $response = $this->createResponse(); 
-        
-        $page = $this->getCurrentPage(); 
-        
         $widgets = array();  
         
         foreach($widgetArea->getWidgets() as $widget){
             
-            if(!$widget->isVisible($page)){
+            if(!$widget->isVisible(array($path, $id))){
                 continue; 
             }
             
