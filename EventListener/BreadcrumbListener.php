@@ -28,12 +28,12 @@ class BreadcrumbListener
             /* @var $page \Isometriks\Bundle\SymEditBundle\Model\PageInterface */
             $page = $request->attributes->get('_page'); 
             
-            while($page->getParent() !== null){
+            while($page->getParent() !== null && !$page->getHomepage()){
                 $this->breadcrumbs->unshift($page->getTitle(), $page->getRoute()); 
                 
                 $page = $page->getParent(); 
             } 
-        }
+        } 
         
         $request->attributes->add(array(
             '_breadcrumbs' => $this->breadcrumbs, 
