@@ -1,7 +1,9 @@
 fos_user:
     db_driver: orm 
     firewall_name: main
-    user_class: %isometriks_sym_edit.security.user_class%
+    user_class: %isometriks_sym_edit.entity.user_class%
+    service:
+        user_manager: isometriks_sym_edit.user_manager
     registration:
         form:
             type: %isometriks_sym_edit.fos_user.form.registration% 
