@@ -83,6 +83,13 @@ class SymEditExtension extends \Twig_Extension implements ContainerAwareInterfac
         );
     }
     
+    public function getFunctions()
+    {
+        return array(
+            'route_exists' => new \Twig_Function_Method($this, 'routeExists'),
+        );
+    }
+    
     private function getExtensions()
     {
         $extensions = array(); 
@@ -120,6 +127,13 @@ class SymEditExtension extends \Twig_Extension implements ContainerAwareInterfac
         }
 
         return $text;
+    }
+    
+    public function routeExists($name)
+    {
+        $router = $this->container->get('router');
+        
+        return array_key_exists($name, $router->getRouteCollection()->all());
     }
 
     public function setContainer(ContainerInterface $container = null)
