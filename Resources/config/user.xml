@@ -10,8 +10,13 @@
     
     <services>
         <service id="isometriks_sym_edit.user_manager" parent="fos_user.user_manager.default" class="%isometriks_sym_edit.user_manager.class%">
-            <argument>%isometriks_sym_edit.entity.profile_class%</argument>
-            <argument>%isometriks_sym_edit.entity.admin_profile_class%</argument>
+            <call method="setProfileClass">
+                <argument>%isometriks_sym_edit.entity.profile_class%</argument>
+            </call>
+            
+            <call method="setAdminProfileClass">
+                <argument>%isometriks_sym_edit.entity.admin_profile_class%</argument>
+            </call>
         </service>
     </services>
     
