@@ -20,10 +20,12 @@ class UserProfileType extends BaseType
         $basic
             ->add('firstName', 'text', array(
                 'label' => 'First Name', 
+                'property_path' => 'profile.firstName',
             ))
             ->add('lastName', 'text', array(
                 'label' => 'Last Name',
                 'required' => false, 
+                'property_path' => 'profile.lastName',
             )); 
         
         /**
@@ -31,6 +33,7 @@ class UserProfileType extends BaseType
          */
         $social = $builder->create('social', 'form', array(
             'required' => false,
+            'property_path' => 'profile.social',
         )); 
         
         $social
@@ -77,10 +80,12 @@ class UserProfileType extends BaseType
                         'class' => 'wysiwyg-editor', 
                     ), 
                     'widget_control_group' => false, 
+                    'property_path' => 'profile.biography',
                 ))
                 ->add('image', new ImageType(), array(
                     'required' => false, 
                     'require_name' => false, 
+                    'property_path' => 'profile.image',
                 ))
                 ->add('roles', 'symedit_role');
     }
