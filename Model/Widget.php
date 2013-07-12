@@ -180,11 +180,11 @@ abstract class Widget implements WidgetInterface
         return $this->visibility; 
     }
     
-    public function isVisible(PageInterface $page)
+    public function isVisible(array $strings)
     {
         return $this->getVisibility() === self::INCLUDE_ALL ||
-              ($this->getVisibility() === self::INCLUDE_ONLY && $this->hasAssoc($page)) ||
-              ($this->getVisibility() === self::EXCLUDE_ONLY && !$this->hasAssoc($page)); 
+              ($this->getVisibility() === self::INCLUDE_ONLY && $this->hasAssoc($strings)) ||
+              ($this->getVisibility() === self::EXCLUDE_ONLY && !$this->hasAssoc($strings)); 
     }
     
     
@@ -223,14 +223,23 @@ abstract class Widget implements WidgetInterface
         return $this->assoc; 
     }
     
-    public function hasAssoc(PageInterface $page)
+    public function hasAssoc(array $strings)
     {
-        return $this->checkAssoc($page->getPath()) ||
-               $this->checkAssoc($page->getId()); 
+        foreach($strings as $assoc){
+            if($this->checkAssoc($assoc)){
+                return true;
+            }
+        }
+        
+        return false;
     }    
     
     protected function checkAssoc($string)
     {
+        if(empty($string)){
+            return false;
+        }
+        
         /**
          * Remove trailing slash
          */
@@ -257,7 +266,6 @@ abstract class Widget implements WidgetInterface
             } elseif ($string === $assoc) {
                 
                 return true; 
-                
             }
         }
         

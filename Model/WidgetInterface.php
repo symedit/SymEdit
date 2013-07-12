@@ -2,7 +2,6 @@
 
 namespace Isometriks\Bundle\SymEditBundle\Model; 
 
-use Isometriks\Bundle\SymEditBundle\Model\PageInterface; 
 use Isometriks\Bundle\SymEditBundle\Widget\Strategy\WidgetStrategyInterface; 
 
 interface WidgetInterface
@@ -107,9 +106,9 @@ interface WidgetInterface
     /**
      * Checks visibility against page
      * 
-     * @param \Isometriks\Bundle\SymEditBundle\Model\PageInterface $page
+     * @param array $strings Strings to check for visibility
      */
-    public function isVisible(PageInterface $page); 
+    public function isVisible(array $strings); 
     
     /**
      * @return WidgetInterface
@@ -139,7 +138,7 @@ interface WidgetInterface
     /**
      * Check for association
      * 
-     * @param \Isometriks\Bundle\SymEditBundle\Model\PageInterface $page
+     * @param array $strings Strings to check
      */
-    public function hasAssoc(PageInterface $page); 
+    public function hasAssoc(array $strings); 
 }
