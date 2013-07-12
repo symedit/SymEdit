@@ -3,8 +3,12 @@ fos_user:
     firewall_name: main
     user_class: %isometriks_sym_edit.entity.user_class%
     service:
+        mailer: isometriks_sym_edit.mailer
         user_manager: isometriks_sym_edit.user_manager
     registration:
+        confirmation:
+            enabled: true
+            template: IsometriksSymEditBundle:Email:confirm.html.twig
         form:
             type: %isometriks_sym_edit.fos_user.form.registration% 
     profile:
