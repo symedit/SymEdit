@@ -1,59 +1,21 @@
 Isometriks\Bundle\UserBundle\Entity\User:
     type: entity
     table: users
-    fields:
+    id:
         id:
             type: integer
-            scale: 0
-            length: null
-            unique: false
-            nullable: false
-            precision: 0
-            id: true
             generator:
                 strategy: IDENTITY
-        firstName:
-            type: string
-            scale: 0
-            length: 255
-            unique: false
-            nullable: true
-            precision: 0
-        lastName:
-            type: string
-            scale: 0
-            length: 255
-            unique: false
-            nullable: true
-            precision: 0
-        social:
-            type: json_array
-            nullable: true
-        biography:
-            type: text
-            scale: 0
-            length: null
-            unique: false
-            nullable: true
-            precision: 0
-    manyToOne:
-        image:
-            targetEntity: Isometriks\Bundle\SymEditBundle\Entity\Image
-            cascade:
-                - persist
-            mappedBy: null
-            inversedBy: null
-            joinColumns:
-                image_id:
-                    referencedColumnName: id
-            orphanRemoval: false
+    oneToOne:
+        profile:
+            targetEntity: Isometriks\Bundle\SymEditBundle\Model\ProfileInterface
+            inversedBy: user
+            cascade: [persist, remove]
     oneToMany:
         posts:
             targetEntity: Isometriks\Bundle\SymEditBundle\Entity\Post
-            cascade: {  }
+            cascade: [persist, remove]
             mappedBy: author
-            inversedBy: null
             orphanRemoval: false
             orderBy:
                 createdAt: DESC
-    lifecycleCallbacks: {  }

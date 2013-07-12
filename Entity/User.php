@@ -3,10 +3,9 @@
 namespace Isometriks\Bundle\UserBundle\Entity;
 
 use FOS\UserBundle\Entity\User as BaseUser;
-use Isometriks\Bundle\SymEditBundle\Entity\Image; 
+use Isometriks\Bundle\SymEditBundle\Model\ProfileInterface;
 use Isometriks\Bundle\SymEditBundle\Entity\Post; 
 use Isometriks\Bundle\SymEditBundle\Model\UserInterface; 
-use Isometriks\Bundle\SymEditBundle\Util\Util; 
 
 
 class User extends BaseUser implements UserInterface
@@ -17,34 +16,11 @@ class User extends BaseUser implements UserInterface
     protected $id;    
     
     /**
-     * @var \Isometriks\Bundle\SymEditBundle\Entity\Image
-     */
-    protected $image;
-    
-    /**
      * @var \Doctrine\Common\Collections\ArrayCollection $posts
      */
     protected $posts; 
     
-    /**
-     * @var string $firstName
-     */
-    protected $firstName;
-
-    /**
-     * @var string $lastName
-     */
-    protected $lastName; 
-    
-    /**
-     * @var array $social
-     */
-    protected $social; 
-    
-    /**
-     * @var string $biography
-     */
-    protected $biography; 
+    protected $profile;
     
     /**
      * Constructor
@@ -74,40 +50,16 @@ class User extends BaseUser implements UserInterface
         return $this->id;
     }    
     
-    /**
-     * Actions to perform when the entity has been updated. 
-     */
-    public function setUpdated()
+    public function getProfile()
     {
-        if($image = $this->getImage()){
-            if($image->hasFile()){
-                $image->setName(Util::slugify($this->getFullname())); 
-            }
-        }
+        return $this->profile;
     }
     
-    /**
-     * Gets user's image
-     * 
-     * @return \Isometriks\Bundle\SymEditBundle\Entity\Image
-     */
-    public function getImage()
+    public function setProfile(ProfileInterface $profile)
     {
-        return $this->image; 
-    }    
-    
-    /**
-     * Set the user's image
-     * 
-     * @param \Isometriks\Bundle\UserBundle\Entity\Image $image
-     * @return \Isometriks\Bundle\UserBundle\Entity\User
-     */
-    public function setImage(Image $image)
-    {
-        $this->image = $image;
-        $this->setUpdated(); 
+        $this->profile = $profile;
         
-        return $this; 
+        return $this;
     }
     
     /**
@@ -119,86 +71,6 @@ class User extends BaseUser implements UserInterface
     {
         return $this->posts; 
     }
-    
-    /**
-     * Set firstName
-     *
-     * @param string $firstName
-     * @return User
-     */
-    public function setFirstName($firstName)
-    {
-        $this->firstName = $firstName;
-
-        return $this;
-    }
-
-    /**
-     * Get firstName
-     *
-     * @return string 
-     */
-    public function getFirstName()
-    {
-        return $this->firstName;
-    }
-
-    /**
-     * Set lastName
-     *
-     * @param string $lastName
-     * @return User
-     */
-    public function setLastName($lastName)
-    {
-        $this->lastName = $lastName;
-
-        return $this;
-    }
-
-    /**
-     * Get lastName
-     *
-     * @return string 
-     */
-    public function getLastName()
-    {
-        return $this->lastName;
-    }
-
-    /**
-     * Gets the user's full name
-     * 
-     * @return string $fullname
-     */
-    public function getFullname()
-    {
-        return rtrim(sprintf('%s %s', $this->getFirstName(), $this->getLastName()));
-    }
-    
-    /**
-     * Get the user's biography
-     * 
-     * @return string $biography
-     */
-    public function getBiography()
-    {
-        return $this->biography; 
-    }
-    
-    /**
-     * Set user biography
-     * 
-     * @param string $biography
-     * @return \Isometriks\Bundle\UserBundle\Entity\User
-     */
-    public function setBiography($biography)
-    {
-        $this->biography = $biography; 
-        
-        return $this; 
-    }
-
 
     /**
      * Add posts
@@ -222,17 +94,5 @@ class User extends BaseUser implements UserInterface
     public function removePost(Post $posts)
     {
         $this->posts->removeElement($posts);
-    }
-
-    public function getSocial()
-    {
-        return $this->social; 
-    }
-
-    public function setSocial(array $social)
-    {
-        $this->social = $social; 
-        
-        return $this; 
     }
 }
