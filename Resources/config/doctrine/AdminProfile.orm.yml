@@ -1,5 +1,6 @@
 Isometriks\Bundle\UserBundle\Entity\AdminProfile:
     type: entity
+    table: admin_profile
     fields:
         social:
             type: json_array

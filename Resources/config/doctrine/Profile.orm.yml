@@ -1,5 +1,6 @@
 Isometriks\Bundle\UserBundle\Entity\Profile:
     type: entity
+    table: profile
     inheritanceType: JOINED
     id:
         id:
@@ -11,6 +12,7 @@ Isometriks\Bundle\UserBundle\Entity\Profile:
         type: string
         length: 20
     discriminatorMap:
+        user: Profile
         admin: AdminProfile
     fields:
         firstName:
