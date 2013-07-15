@@ -69,21 +69,21 @@ class IsometriksSymEditExtension extends Extension
              */
             $directory = dirname($bundleInstance->getFileName()); 
             
-            $container->setParameter('isometriks_sym_edit.host_namespace', $namespace);  
-            $container->setParameter('isometriks_sym_edit.host_bundle', $bundle); 
-            $container->setParameter('isometriks_sym_edit.host_dir', $directory); 
+            $container->setParameter('isometriks_symedit.host_namespace', $namespace);  
+            $container->setParameter('isometriks_symedit.host_bundle', $bundle); 
+            $container->setParameter('isometriks_symedit.host_dir', $directory); 
         }
         
-        $container->setParameter('isometriks_sym_edit.extensions.routes', $config['extensions']); 
+        $container->setParameter('isometriks_symedit.extensions.routes', $config['extensions']); 
         
         /**
          * Set the Admin Directory
          */
-        $container->setParameter('isometriks_sym_edit.admin_dir', $config['admin_dir']); 
+        $container->setParameter('isometriks_symedit.admin_dir', $config['admin_dir']); 
     }
     
     private function processProfileConfig($config, ContainerBuilder $container)
     {
-        $container->setParameter('isometriks_sym_edit.entity.admin_profile_class', $config['admin']);
+        $container->setParameter('isometriks_symedit.entity.admin_profile_class', $config['admin']);
     }
 }

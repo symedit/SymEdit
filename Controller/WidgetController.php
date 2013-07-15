@@ -10,7 +10,7 @@ class WidgetController extends Controller
 {
     public function renderAreaAction(Request $request, $area, $path = null, $id = null)
     {
-        $manager = $this->get('isometriks_sym_edit.widget.manager'); 
+        $manager = $this->get('isometriks_symedit.widget.manager'); 
         $widgetArea = $manager->getWidgetArea($area); 
 
         $template = new TemplateReference($this->getHostBundle(), 'WidgetArea', $area, 'html', 'twig'); 

@@ -38,7 +38,7 @@ class WidgetController extends Controller
         if($strategyName === null){
             
             /* @var $registry \Isometriks\Bundle\SymEditBundle\Widget\WidgetRegistry */
-            $registry = $this->get('isometriks_sym_edit.widget.registry'); 
+            $registry = $this->get('isometriks_symedit.widget.registry'); 
             $strategies = $registry->getStrategies(); 
             
             return $this->render('@IsometriksSymEdit/Admin/Widget/choose.html.twig', array(
@@ -165,7 +165,7 @@ class WidgetController extends Controller
     private function getManager()
     {
         if($this->manager === null){
-            $this->manager = $manager = $this->get('isometriks_sym_edit.widget.manager');
+            $this->manager = $manager = $this->get('isometriks_symedit.widget.manager');
         }
         
         return $this->manager; 

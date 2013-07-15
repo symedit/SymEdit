@@ -46,7 +46,7 @@ class CopyTemplateCommand extends ContainerAwareCommand
         $this->overwrite = $input->getOption('overwrite') || $dialog->askConfirmation($output, '<question>Overwite Templates if they exist?</question>', false);
 
         $this->fs      = $this->getContainer()->get('filesystem'); 
-        $this->finder  = $this->getContainer()->get('isometriks_sym_edit.finder.resource_finder'); 
+        $this->finder  = $this->getContainer()->get('isometriks_symedit.finder.resource_finder'); 
         $dest          = rtrim($this->finder->getBundleDir(),'/');
         
         // Iterate through parent skeletons as well, if explicitly set, use the first one found. 

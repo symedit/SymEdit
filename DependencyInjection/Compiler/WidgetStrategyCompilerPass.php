@@ -10,6 +10,6 @@ class WidgetStrategyCompilerPass implements CompilerPassInterface
     public function process(ContainerBuilder $container)
     {
         $definitions = array_keys($container->findTaggedServiceIds('symedit.widget_strategy')); 
-        $container->setParameter('isometriks_sym_edit.widget.strategies', $definitions); 
+        $container->setParameter('isometriks_symedit.widget.strategies', $definitions); 
     }
 }

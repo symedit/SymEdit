@@ -7,7 +7,7 @@ symedit_fos:
     
 symedit_admin:
     resource: "@IsometriksSymEditBundle/Resources/config/routing/admin.yml"
-    prefix: %isometriks_sym_edit.admin_dir%
+    prefix: %isometriks_symedit.admin_dir%
       
 symedit_pages:
     resource: IsometriksSymEditBundle:Page
