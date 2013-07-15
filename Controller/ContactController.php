@@ -29,11 +29,21 @@ class ContactController extends Controller
             $form->bind($request);
 
             if ($form->isValid()) {
-
-                $mailer = $this->get('symedit.mailer'); 
-                $mailer->sendAdmin('Contact Form Submission', $this->getHostTemplate('Contact', 'contact.txt.twig'), array(
-                    'Form' => $form->getData()
-                )); 
+                
+                $data = $form->getData();
+                
+                /**
+                 * Set replyTo if it was sent so it's easier for people
+                 * to email back. 
+                 */
+                $options = empty($data['email']) ? array() : array(
+                    'replyTo' => $data['email'], 
+                );
+                
+                $mailer = $this->get('isometriks_sym_edit.mailer'); 
+                $mailer->sendAdmin($this->getHostTemplate('Contact', 'contact.html.twig'), array(
+                    'Form' => $data, 
+                ), $options); 
 
                 return $this->render($this->getHostTemplate('Contact', 'success.html.twig'));
             }  

@@ -16,9 +16,13 @@
             <argument>%swiftmailer.transport.smtp.username%</argument>
         </service>-->
         
-        <service parent="fos_user.mailer.twig_swift" id="isometriks_sym_edit.mailer" class="%isometriks_sym_edit.util.mailer.class%">
+        <service parent="fos_user.mailer.twig_swift" public="true" id="isometriks_sym_edit.mailer" class="%isometriks_sym_edit.util.mailer.class%">
             <call method="setSettings">
                 <argument type="service" id="isometriks_settings.settings" />
+            </call>
+            
+            <call method="setEmailSender">
+                <argument>%swiftmailer.transport.smtp.username%</argument>
             </call>
         </service>
     </services>
