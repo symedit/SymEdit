@@ -98,7 +98,7 @@ class LoadWidgetData extends AbstractFixture implements OrderedFixtureInterface,
      */
     private function getManager()
     {
-        return $this->container->get('isometriks_sym_edit.widget.manager'); 
+        return $this->container->get('isometriks_symedit.widget.manager'); 
     }
 
     public function getOrder()

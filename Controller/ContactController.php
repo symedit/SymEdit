@@ -40,7 +40,7 @@ class ContactController extends Controller
                     'replyTo' => $data['email'], 
                 );
                 
-                $mailer = $this->get('isometriks_sym_edit.mailer'); 
+                $mailer = $this->get('isometriks_symedit.mailer'); 
                 $mailer->sendAdmin($this->getHostTemplate('Contact', 'contact.html.twig'), array(
                     'Form' => $data, 
                 ), $options); 

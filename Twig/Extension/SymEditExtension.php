@@ -69,7 +69,7 @@ class SymEditExtension extends \Twig_Extension implements ContainerAwareInterfac
             
             $globals['Page'] = $page;
             $globals['SEO'] = $seo;
-            $globals['Breadcrumbs'] = $this->container->get('isometriks_sym_edit.breadcrumbs');
+            $globals['Breadcrumbs'] = $this->container->get('isometriks_symedit.breadcrumbs');
         }
         
         

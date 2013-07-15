@@ -11,7 +11,7 @@ class TemplateGuesserCompilerPass implements CompilerPassInterface
     {
         if($container->hasDefinition('sensio_framework_extra.view.guesser')){
             $definition = $container->getDefinition('sensio_framework_extra.view.guesser');
-            $class = $container->getParameter('isometriks_sym_edit.view.guesser.class'); 
+            $class = $container->getParameter('isometriks_symedit.view.guesser.class'); 
             
             /**
              * Change the class to our guesser
@@ -21,7 +21,7 @@ class TemplateGuesserCompilerPass implements CompilerPassInterface
             /**
              * Add the host_bundle
              */
-            $host_bundle = $container->getParameter('isometriks_sym_edit.host_bundle'); 
+            $host_bundle = $container->getParameter('isometriks_symedit.host_bundle'); 
             $definition->addArgument($host_bundle); 
         }
     }    

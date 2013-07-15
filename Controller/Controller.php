@@ -53,7 +53,7 @@ class Controller extends BaseController
      */
     public function getHostBundle()
     {
-        return $this->container->getParameter('isometriks_sym_edit.host_bundle'); 
+        return $this->container->getParameter('isometriks_symedit.host_bundle'); 
     }
     
     /**
@@ -63,7 +63,7 @@ class Controller extends BaseController
      */
     public function getHostNamespace()
     {
-        return $this->container->getParameter('isometriks_sym_edit.host_namespace'); 
+        return $this->container->getParameter('isometriks_symedit.host_namespace'); 
     }
     
     /**
@@ -95,7 +95,7 @@ class Controller extends BaseController
      */
     public function getBreadcrumbs()
     {
-        return $this->get('isometriks_sym_edit.breadcrumbs'); 
+        return $this->get('isometriks_symedit.breadcrumbs'); 
     }
     
     /**

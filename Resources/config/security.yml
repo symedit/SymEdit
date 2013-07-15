@@ -12,7 +12,7 @@ security:
             form_login:
                 provider: fos_userbundle
                 csrf_provider: form.csrf_provider
-                success_handler: isometriks_sym_edit.security_handler
+                success_handler: isometriks_symedit.security_handler
                 use_forward: false
             logout:       true
             anonymous:    true
@@ -23,7 +23,7 @@ security:
         - { path: ^/login$, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/register, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/resetting, role: IS_AUTHENTICATED_ANONYMOUSLY }
-        - { path: ^%isometriks_sym_edit.admin_dir%, role: ROLE_ADMIN }
+        - { path: ^%isometriks_symedit.admin_dir%, role: ROLE_ADMIN }
 
     role_hierarchy:
         ROLE_ADMIN:       ROLE_USER
