@@ -1,4 +1,4 @@
-{% extends '{{{ bundle }}}:Page:base.html.twig' %}
+{% extends '@SymEdit/Page/base.html.twig' %}
 
 {% block heading %}
 <h1>{% block blog_title %}{{ Page.tagline }}{% endblock %}</h1>
@@ -9,15 +9,15 @@
     <div class="row">
         <div class="span9">
             {% block blog_content %}
-                {% include '{{{ bundle }}}:Blog:list.html.twig' %}
+                {% include '@SymEdit/Blog/list.html.twig' %}
             {% endblock %}
             {% if Pages is defined and Pages.num > 1 %}
-                {% include '{{{ bundle }}}:Blog:paginate.html.twig' %}
+                {% include '@SymEdit/Blog/paginate.html.twig' %}
             {% endif %}
         </div> 
         <div class="span3">
         {% block sidebar %}
-            {% include '{{{ bundle }}}:CMS:sidebar.html.twig' %}
+            {% include '@SymEdit/CMS/sidebar.html.twig' %}
         {% endblock %}
         </div>
     </div>

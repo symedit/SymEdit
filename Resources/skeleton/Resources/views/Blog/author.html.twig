@@ -1,4 +1,4 @@
-{% extends '{{{ bundle }}}:Blog:base.html.twig' %}
+{% extends '@SymEdit/Blog/base.html.twig' %}
 
 {% block title %}{% if Author %}Posts by {{ Author.profile.fullname }}{% else %}Author Not Found{% endif %}{% endblock %}
 {% block description %}Blogs posts by {{ Author.profile.fullname }}{% endblock %}

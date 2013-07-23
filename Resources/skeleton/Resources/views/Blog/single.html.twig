@@ -1,4 +1,4 @@
-{% extends '{{{ bundle }}}:Blog:index.html.twig' %}
+{% extends '@SymEdit/Blog/index.html.twig' %}
 
 {% block title %}{{ SEO.title|default(Post.title) }}{% endblock %}
 {% block description %}{{ SEO.description|default(Post.content|striptags|slice(0,150)) }}{% endblock %}
@@ -39,7 +39,7 @@
     </div>
 
     {% if Post.published %}
-    {% include '{{{ bundle }}}:Blog:comments.html.twig' %}
+    {% include '@SymEdit/Blog/comments.html.twig' %}
     {% endif %}
 </article>
 {% endblock %}

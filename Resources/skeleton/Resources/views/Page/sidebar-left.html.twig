@@ -1,10 +1,10 @@
-{% extends '{{{ bundle }}}:Page:base.html.twig' %}
+{% extends '@SymEdit/Page/base.html.twig' %}
 
 {% block content %}
 <div class="row-fluid">
     <div class="span3">
     {% block sidebar %}
-        {% include '{{{ bundle }}}:CMS:sidebar.html.twig' %}
+        {% include '@SymEdit/CMS/sidebar.html.twig' %}
     {% endblock %}
     </div>    
     <div class="span9">
