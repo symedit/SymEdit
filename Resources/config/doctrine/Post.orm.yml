@@ -76,7 +76,7 @@ Isometriks\Bundle\SymEditBundle\Entity\Post:
             unique: false
             nullable: true
             precision: 0
-            
+
     indexes:
         slug_index:
             columns: [slug]
@@ -95,7 +95,6 @@ Isometriks\Bundle\SymEditBundle\Entity\Post:
             targetEntity: Isometriks\Bundle\SymEditBundle\Model\UserInterface
             cascade: {  }
             mappedBy: null
-            inversedBy: posts
             joinColumns:
                 author_id:
                     referencedColumnName: id
