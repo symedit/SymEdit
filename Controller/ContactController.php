@@ -1,12 +1,12 @@
 <?php
 
-namespace Isometriks\Bundle\SymEditBundle\Controller; 
+namespace Isometriks\Bundle\SymEditBundle\Controller;
 
-use Isometriks\Bundle\SymEditBundle\Annotation\PageController as Bind; 
+use Isometriks\Bundle\SymEditBundle\Annotation\PageController as Bind;
 use Isometriks\Bundle\SitemapBundle\Annotation\Sitemap;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route; 
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Request;
-use Isometriks\Bundle\SymEditBundle\Model\PageInterface; 
+use Isometriks\Bundle\SymEditBundle\Model\PageInterface;
 
 /**
  * @Bind(name="symedit-contact")
@@ -19,38 +19,38 @@ class ContactController extends Controller
      */
     public function indexAction(Request $request, PageInterface $_page)
     {
-        $namespace = $this->getHostNamespace(); 
-        
-        $type = $namespace.'\\Form\\ContactType'; 
-        $form = $this->createForm(new $type()); 
-        
+        $namespace = $this->getHostNamespace();
+
+        $type = $namespace.'\\Form\\ContactType';
+        $form = $this->createForm(new $type());
+
         if ($request->getMethod() === 'POST') {
-        
+
             $form->bind($request);
 
             if ($form->isValid()) {
-                
+
                 $data = $form->getData();
-                
+
                 /**
                  * Set replyTo if it was sent so it's easier for people
-                 * to email back. 
+                 * to email back.
                  */
                 $options = empty($data['email']) ? array() : array(
-                    'replyTo' => $data['email'], 
+                    'replyTo' => $data['email'],
                 );
-                
-                $mailer = $this->get('isometriks_symedit.mailer'); 
-                $mailer->sendAdmin($this->getHostTemplate('Contact', 'contact.html.twig'), array(
-                    'Form' => $data, 
-                ), $options); 
 
-                return $this->render($this->getHostTemplate('Contact', 'success.html.twig'));
-            }  
+                $mailer = $this->get('isometriks_symedit.mailer');
+                $mailer->sendAdmin('@SymEdit/Contact/contact.html.twig', array(
+                    'Form' => $data,
+                ), $options);
+
+                return $this->render('@SymEdit/Contact/success.html.twig');
+            }
         }
-        
-        return $this->render($this->getHostTemplate('Contact', 'index.html.twig'), array(
-            'form' => $form->createView(), 
+
+        return $this->render('@SymEdit/Contact/index.html.twig', array(
+            'form' => $form->createView(),
         ));
     }
 }

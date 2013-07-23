@@ -3,14 +3,12 @@
 namespace Isometriks\Bundle\SymEditBundle\Controller;
 
 use Symfony\Component\Routing\Annotation\Route;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Component\HttpFoundation\Request;
 
 class CrawlerController extends Controller
 {
     /**
      * @Route("/robots.{_format}", defaults={"_format"="txt"}, name="robots")
-     * @Template()
      */
     public function robotsAction()
     {
@@ -23,14 +21,13 @@ class CrawlerController extends Controller
             $allow = $env === 'prod';
         }
 
-        return array(
+        return $this->render('@SymEdit/Crawler/robots.txt.twig', array(
             'Allow' => $allow,
-        );
+        ));
     }
 
     /**
      * @Route("sitemap.{_format}", defaults={"_format"="xml"})
-     * @Template("IsometriksSitemapBundle:Sitemap:index.xml.twig")
      */
     public function sitemapAction(Request $request)
     {
@@ -50,8 +47,11 @@ class CrawlerController extends Controller
             $urls[] = sprintf('http://%s%s', $request->getHttpHost(), $page->getPath());
         }
 
-        return array(
+        $response = $this->createResponse();
+        $response->setMaxAge(60);
+
+        return $this->render('@IsometriksSitemap/Sitemap/index.xml.twig', array(
             'urls' => $urls,
-        );
+        ), $response);
     }
 }
