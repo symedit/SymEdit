@@ -10,24 +10,24 @@
     <h1>
         <a itemprop="name" href="{{ path('blog_slug_view', {slug:Post.slug}) }}">{{ Post.title }}</a>
     </h1>
-        
+
     <div class="meta">
         <span class="author">
             <i class="icon-pencil"></i>
-            
-            {% if Post.author.profile.social.gplus %}
+
+            {% if Post.author.profile.social.gplus is defined %}
                 <a href="{{ Post.author.profile.social.gplus }}?rel=author"><img src="https://www.gstatic.com/images/icons/gplus-16.png" alt="{{ Post.author.profile.fullname|plain }} on Google+"></a>
             {% endif %}
-            
+
             <a itemprop="author" href="{{ path('blog_author_view', { username: Post.author.username }) }}">{{ Post.author.profile.fullname }}</a>
         </span>
-        
+
         <span class="date">
             <i class="icon-time"></i>
             <span itemprop="dateCreated">{{ Post.createdAt|date('F j, Y') }}</span>
         </span>
     </div>
-        
+
     <div itemprop="articleBody">
         {% if Post.image %}
             <div class="image">
@@ -36,7 +36,7 @@
         {% endif %}
         {{ Post.content|raw }}
     </div>
-        
+
     {% if Post.published %}
     {% include '{{{ bundle }}}:Blog:comments.html.twig' %}
     {% endif %}
