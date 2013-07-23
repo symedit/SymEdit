@@ -1,4 +1,4 @@
-{% import '{{{ bundle }}}:CMS:nav.html.twig' as nav %}
+{% import '@SymEdit/CMS/nav.html.twig' as nav %}
 <!DOCTYPE html>
 <html lang="en-US">
     <head>
@@ -49,7 +49,7 @@
             <div class="container">
                 {% block breadcrumbs %}
                 <div class="pull-right hidden-mobile">
-                    {% include '{{{ bundle }}}:CMS:breadcrumbs.html.twig' %}
+                    {% include '@SymEdit/CMS/breadcrumbs.html.twig' %}
                 </div>
                 {% endblock %}
 
@@ -76,7 +76,7 @@
         {% block scripts %}
         <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
         <script src="{{ asset('/bundles/{{{ asset_dir }}}/bootstrap/js/bootstrap.min.js') }}"></script>
-        {% include '{{{ bundle }}}:Widget:google-analytics.html.twig' %}
+        {% include '@SymEdit/Widget/google-analytics.html.twig' %}
         {% endblock %}
     </body>
 </html>
