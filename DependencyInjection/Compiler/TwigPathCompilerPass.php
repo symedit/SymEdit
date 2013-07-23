@@ -10,15 +10,27 @@ class TwigPathCompilerPass implements CompilerPassInterface
 {
     public function process(ContainerBuilder $container)
     {
+        $hostBundle = $container->getParameter('isometriks_symedit.host_bundle');
+
         $bundles = array(
+            'host' => $hostBundle,
             'symedit' => 'IsometriksSymEditBundle',
-            'host' => $container->getParameter('isometriks_symedit.host_bundle'),
         );
 
         $locations = array(
-            'symedit' => null,
+            'app' => null,
             'host' => null,
+            'symedit' => null,
         );
+
+        /**
+         * Check the app directory
+         */
+        $rootDir = $container->getParameter('kernel.root_dir');
+
+        if(is_dir($dir = $rootDir.'/Resources/'.$hostBundle.'/views')) {
+            $locations['app'] = $dir;
+        }
 
         foreach ($container->getParameter('kernel.bundles') as $bundle => $class) {
 
@@ -32,18 +44,18 @@ class TwigPathCompilerPass implements CompilerPassInterface
             }
         }
 
+        /**
+         * Add the paths to the Twig Loader Definition
+         */
         $loader = $container->getDefinition('twig.loader.filesystem');
 
-        $this->addPath($loader, $locations['host']);
-        $this->addPath($loader, $locations['symedit']);
-    }
+        foreach($locations as $location){
 
-    private function addPath(Definition $loader, $path = null)
-    {
-        if($path === null) {
-            return;
+            if($location === null) {
+                continue;
+            }
+
+            $loader->addMethodCall('addPath', array($location, 'SymEdit'));
         }
-
-        $loader->addMethodCall('addPath', array($path, 'SymEdit'));
     }
 }
