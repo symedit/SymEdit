@@ -28,8 +28,6 @@ class IsometriksSymEditExtension extends Extension
             $loader->load($file.'.xml'); 
         }        
                
-        $this->processProfileConfig($config['profile'], $container);
-        
         /**
          * Add Classes to Compile
          */
@@ -80,10 +78,5 @@ class IsometriksSymEditExtension extends Extension
          * Set the Admin Directory
          */
         $container->setParameter('isometriks_symedit.admin_dir', $config['admin_dir']); 
-    }
-    
-    private function processProfileConfig($config, ContainerBuilder $container)
-    {
-        $container->setParameter('isometriks_symedit.entity.admin_profile_class', $config['admin']);
     }
 }
