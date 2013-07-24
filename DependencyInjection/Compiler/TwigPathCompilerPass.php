@@ -56,8 +56,7 @@ class TwigPathCompilerPass implements CompilerPassInterface
 
     protected function mapBundles($bundle)
     {
-        $reflection = new \ReflectionClass($bundle);
-        $this->addLocation(dirname($reflection->getFileName()).'/Resources/views');
+        $this->addLocation($bundle->getPath().'/Resources/views');
     }
 
     protected function addLocation($dir)
