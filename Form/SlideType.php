@@ -5,36 +5,39 @@ namespace Isometriks\Bundle\SymEditBundle\Form;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
-use Isometriks\Bundle\SymEditBundle\Entity\Image; 
+use Isometriks\Bundle\SymEditBundle\Entity\Image;
 
 class SlideType extends AbstractType
 {
     public function __construct(Image $image=null)
     {
-        $this->image = $image; 
+        $this->image = $image;
     }
-    
+
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
             ->add('caption', 'textarea', array(
-                'required' => false, 
+                'required' => false,
                 'attr' => array(
-                    'class' => 'span4', 
-                    'rows' => 5, 
+                    'class' => 'span4',
+                    'rows' => 5,
                 )
             ))
             ->add('position', 'choice', array(
-                'required' => false, 
+                'required' => false,
                 'choices' => array(
-                    '' => 'Bottom', 
-                    'left' => 'Left', 
-                    'top' => 'Top', 
+                    '' => 'Bottom',
+                    'left' => 'Left',
+                    'top' => 'Top',
                     'right' => 'Right',
                 )
             ))
             ->add('image', new ImageType(), array(
-                'widget_control_group' => false, 
+                'label' => false,
+                'file_label' => 'Slider Image',
+                'name_label' => 'Slider File Name',
+                'widget_control_group' => false,
             ))
         ;
     }
