@@ -8,6 +8,8 @@ Isometriks\Bundle\UserBundle\Entity\AdminProfile:
         biography:
             type: text
             nullable: true
+        display:
+            type: boolean
     manyToOne:
         image:
             targetEntity: Isometriks\Bundle\SymEditBundle\Entity\Image

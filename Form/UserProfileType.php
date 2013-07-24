@@ -4,70 +4,76 @@ namespace Isometriks\Bundle\UserBundle\Form;
 
 use Symfony\Component\Form\FormBuilderInterface;
 use FOS\UserBundle\Form\Type\ProfileFormType as BaseType;
-use Isometriks\Bundle\SymEditBundle\Form\ImageType; 
+use Isometriks\Bundle\SymEditBundle\Form\ImageType;
 
-class UserProfileType extends BaseType 
+class UserProfileType extends BaseType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
-    {   
+    {
         $basic = $builder->create('basic', 'form', array(
-            'virtual' => true, 
-            'data_class' => $options['data_class'], 
-        )); 
-        
-        parent::buildForm($basic, $options); 
-              
+            'virtual' => true,
+            'data_class' => $options['data_class'],
+        ));
+
+        parent::buildForm($basic, $options);
+
         $basic
             ->add('firstName', 'text', array(
-                'label' => 'First Name', 
+                'label' => 'First Name',
                 'property_path' => 'profile.firstName',
             ))
             ->add('lastName', 'text', array(
                 'label' => 'Last Name',
-                'required' => false, 
+                'required' => false,
                 'property_path' => 'profile.lastName',
-            )); 
-        
+            ))
+            ->add('display', 'checkbox', array(
+                'label' => 'Display',
+                'required' => false,
+                'property_path' => 'profile.display',
+                'help_inline' => 'Display this user on team pages',
+            ));
+
         /**
          * Create social tab
          */
         $social = $builder->create('social', 'form', array(
             'required' => false,
             'property_path' => 'profile.social',
-        )); 
-        
+        ));
+
         $social
             ->add('facebook', 'url', array(
-                'label' => 'Facebook', 
+                'label' => 'Facebook',
                 'attr' => array(
-                    'placeholder' => 'http://facebook.com', 
-                ), 
-            ))          
+                    'placeholder' => 'http://facebook.com',
+                ),
+            ))
             ->add('twitter', 'url', array(
-                'label' => 'Twitter', 
+                'label' => 'Twitter',
                 'attr' => array(
-                    'placeholder' => 'http://twitter.com', 
+                    'placeholder' => 'http://twitter.com',
                 ),
             ))
             ->add('youtube', 'url', array(
-                'label' => 'YouTube', 
+                'label' => 'YouTube',
                 'attr' => array(
-                    'placeholder' => 'http://youtube.com', 
-                ), 
+                    'placeholder' => 'http://youtube.com',
+                ),
             ))
             ->add('gplus', 'url', array(
-                'label' => 'Google+', 
+                'label' => 'Google+',
                 'attr' => array(
-                    'placeholder' => 'http://plus.google.com', 
-                ), 
+                    'placeholder' => 'http://plus.google.com',
+                ),
             ))
             ->add('linkedin', 'url', array(
-                'label' => 'LinkedIn', 
+                'label' => 'LinkedIn',
                 'attr' => array(
-                    'placeholder' => 'http://linkedin.com', 
+                    'placeholder' => 'http://linkedin.com',
                 ),
-            )); 
-        
+            ));
+
         /**
          * Build rest of form
          */
@@ -77,14 +83,14 @@ class UserProfileType extends BaseType
                 ->add('biography', 'textarea', array(
                     'required' => false,
                     'attr' => array(
-                        'class' => 'wysiwyg-editor', 
-                    ), 
-                    'widget_control_group' => false, 
+                        'class' => 'wysiwyg-editor',
+                    ),
+                    'widget_control_group' => false,
                     'property_path' => 'profile.biography',
                 ))
                 ->add('image', new ImageType(), array(
-                    'required' => false, 
-                    'require_name' => false, 
+                    'required' => false,
+                    'require_name' => false,
                     'property_path' => 'profile.image',
                 ))
                 ->add('roles', 'symedit_role');
