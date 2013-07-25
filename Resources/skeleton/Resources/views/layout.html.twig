@@ -55,6 +55,10 @@
 
                 {% block heading %}<h1>{{ Page.tagline }}</h1>{% endblock %}
                 <div id="content">
+                    {% block featured %}
+                    {% widgetarea 'featured' %}
+                    {% endblock %}
+
                     {% block content %}
                     {{ Page.content|raw }}
                     {% endblock %}
