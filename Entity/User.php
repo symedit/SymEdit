@@ -10,7 +10,8 @@ class User extends BaseUser implements UserInterface
 {
     protected $id;
     protected $profile;
-    
+    protected $admin;
+
     public function getId()
     {
         return $this->id;
@@ -24,7 +25,19 @@ class User extends BaseUser implements UserInterface
     public function setProfile(ProfileInterface $profile)
     {
         $this->profile = $profile;
-        
+
         return $this;
-    }   
+    }
+
+    public function getAdmin()
+    {
+        return $this->admin;
+    }
+
+    public function setAdmin($admin)
+    {
+        $this->admin = $admin;
+
+        return $this;
+    }
 }
