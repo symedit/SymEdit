@@ -6,6 +6,9 @@ Isometriks\Bundle\SymEditBundle\Entity\User:
             type: integer
             generator:
                 strategy: IDENTITY
+    fields:
+        admin:
+            type: boolean
     oneToOne:
         profile:
             targetEntity: Isometriks\Bundle\SymEditBundle\Model\ProfileInterface
