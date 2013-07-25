@@ -16,7 +16,7 @@
             <i class="icon-pencil"></i>
 
             {% set social = Post.author.profile.social %}
-            {% if social.gplus is defined and social.gplus is not empty %}
+            {% if social.google_plus is defined and social.google_plus is not empty %}
                 <a href="{{ Post.author.profile.social.gplus }}?rel=author"><img src="https://www.gstatic.com/images/icons/gplus-16.png" alt="{{ Post.author.profile.fullname|plain }} on Google+"></a>
             {% endif %}
 
