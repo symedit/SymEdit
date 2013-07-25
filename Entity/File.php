@@ -12,6 +12,8 @@ use Doctrine\ORM\Mapping as ORM;
  */
 abstract class File implements RootInjectableInterface
 {
+    protected $callback; 
+    
     /**
      * @Assert\NotBlank()
      * @Assert\File()
@@ -156,6 +158,20 @@ abstract class File implements RootInjectableInterface
         return $this->name.'.'.$this->file->guessExtension(); 
     }
     
+    public function setNameCallback($callback)
+    {
+        if(!is_callable($callback)){
+            throw new \Exception('Callback is not callable.'); 
+        }
+        
+        $this->callback = $callback; 
+    }
+    
+    public function getNameCallback()
+    {
+        return $this->callback; 
+    }
+    
     /**
      * Force lazy load so it's available in postRemove
      * @ORM\PreRemove()
@@ -184,6 +200,10 @@ abstract class File implements RootInjectableInterface
     {
         $this->setUpdated(); 
         
+        if(($callback = $this->callback) !== null){
+            $this->setName($callback($this)); 
+        }
+        
         if (null !== $this->file) {
             $this->removeUpload(); 
             $this->calculatePath(); 
@@ -199,7 +219,7 @@ abstract class File implements RootInjectableInterface
         if (null === $this->file) {
             return;
         }
-
+        
         $this->file->move($this->getUploadRootDir(), $this->getUploadName());
         chmod($this->getAbsolutePath(), 0644); 
 
