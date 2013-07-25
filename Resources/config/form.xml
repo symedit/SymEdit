@@ -11,37 +11,43 @@
         <parameter key="isometriks_symedit.form.type.user.class">Isometriks\Bundle\SymEditBundle\Form\UserType</parameter>
         <parameter key="isometriks_symedit.form.type.widget_area.class">Isometriks\Bundle\SymEditBundle\Form\WidgetAreaType</parameter>
         <parameter key="isometriks_symedit.form.type.widget.class">Isometriks\Bundle\SymEditBundle\Form\WidgetType</parameter>
+        <parameter key="isometriks_symedit.form.type.entity_property.class">Isometriks\Bundle\SymEditBundle\Form\Type\EntityPropertyType</parameter>
     </parameters>
-    
+
     <services>
         <service id="isometriks_symedit.form.type.template" class="%isometriks_symedit.form.type.template.class%">
             <argument type="service" id="isometriks_symedit.finder.resource_finder" />
             <argument type="service" id="kernel" />
             <tag name="form.type" alias="symedit_template" />
         </service>
-        
+
         <service id="isometriks_symedit.form.type.role" class="%isometriks_symedit.form.type.role.class%">
             <argument type="service" id="doctrine" />
             <argument type="service" id="security.context" />
             <tag name="form.type" alias="symedit_role" />
         </service>
-        
+
         <service id="isometriks_symedit.form.type.post" class="%isometriks_symedit.form.type.post.class%">
             <argument>%fos_user.model.user.class%</argument>
             <tag name="form.type" alias="symedit_post" />
         </service>
-        
+
         <service id="isometriks_symedit.form.type.user" class="%isometriks_symedit.form.type.user.class%">
             <argument>%fos_user.model.user.class%</argument>
             <tag name="form.type" alias="symedit_user" />
         </service>
-        
+
         <service id="isometriks_symedit.form.type.widget_area" class="%isometriks_symedit.form.type.widget_area.class%">
             <tag name="form.type" alias="symedit_widget_area" />
         </service>
-        
+
         <service id="isometriks_symedit.form.type.widget" class="%isometriks_symedit.form.type.widget.class%">
             <tag name="form.type" alias="symedit_widget" />
+        </service>
+
+        <service id="isometriks_symedit.form.type.entity_property" class="%isometriks_symedit.form.type.entity_property.class%">
+            <argument type="service" id="doctrine" />
+            <tag name="form.type" alias="entity_property" />
         </service>
     </services>
 
