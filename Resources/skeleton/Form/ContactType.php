@@ -4,7 +4,7 @@ namespace {{{ namespace }}}\Form;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Component\Validator\Constraints\NotBlank; 
+use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
 class ContactType extends AbstractType
@@ -14,42 +14,43 @@ class ContactType extends AbstractType
         $builder
             ->add('name', 'text', array(
                 'attr' => array(
-                    'placeholder' => 'Name', 
+                    'placeholder' => 'Name',
                 ),
                 'constraints' => array(
-                    new NotBlank(), 
-                ), 
+                    new NotBlank(),
+                ),
             ))
             ->add('email', 'email', array(
-                'required' => false, 
+                'required' => false,
                 'attr' => array(
-                    'placeholder' => 'Email', 
+                    'placeholder' => 'Email',
                 ),
             ))
             ->add('phone', 'text', array(
-                'label' => 'Phone', 
+                'label' => 'Phone',
                 'attr' => array(
-                    'placeholder' => 'Phone',   
+                    'placeholder' => 'Phone',
                 ),
                 'constraints' => array(
-                    new NotBlank(), 
+                    new NotBlank(),
                 ),
             ))
             ->add('message', 'textarea', array(
-                'label' => 'Message', 
+                'label' => 'Message',
                 'attr' => array(
-                    'placeholder' => 'Your Message', 
+                    'placeholder' => 'Your Message',
                 ),
                 'constraints' => array(
-                    new NotBlank(), 
+                    new NotBlank(),
                 ),
             ));
     }
-    
+
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
             'timed_spam' => true,
+            'honeypot' => true,
         ));
     }
 
