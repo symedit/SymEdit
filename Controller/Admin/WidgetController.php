@@ -165,7 +165,7 @@ class WidgetController extends Controller
     private function getManager()
     {
         if($this->manager === null){
-            $this->manager = $manager = $this->get('isometriks_symedit.widget.manager');
+            $this->manager = $this->get('isometriks_symedit.widget.manager');
         }
 
         return $this->manager;
