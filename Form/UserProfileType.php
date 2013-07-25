@@ -61,7 +61,7 @@ class UserProfileType extends BaseType
                     'placeholder' => 'http://youtube.com',
                 ),
             ))
-            ->add('gplus', 'url', array(
+            ->add('google_plus', 'url', array(
                 'label' => 'Google+',
                 'attr' => array(
                     'placeholder' => 'http://plus.google.com',
