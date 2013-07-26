@@ -105,6 +105,7 @@ class LoadWidgetData extends AbstractFixture implements OrderedFixtureInterface,
         $slider
             ->setName('homepage_slider')
             ->setTitle('Homepage Slider')
+            ->setOption('slider', 'homepage')
             ->setVisibility(Widget::INCLUDE_ONLY)
             ->addAssoc('/');
 
