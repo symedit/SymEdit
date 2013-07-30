@@ -23,8 +23,10 @@ class BlogController extends Controller
     public function indexAction(Request $request, $_format)
     {
         $em = $this->getDoctrine()->getManager();
+        $repo = $em->getRepository('IsometriksSymEditBundle:Post');
 
-        $modified = $em->createQuery('SELECT MAX(p.updatedAt) as modified FROM IsometriksSymEditBundle:Post p')
+        $modified = $em->createQuery('SELECT MAX(p.updatedAt) as modified FROM IsometriksSymEditBundle:Post p ORDER BY p.updatedAt DESC')
+                       ->setMaxResults($this->getMaxPosts())
                        ->getSingleScalarResult();
 
         $modifiedDate = new \DateTime($modified);
@@ -37,29 +39,9 @@ class BlogController extends Controller
         $template = $_format === 'xml' ? 'feed.xml.twig' : 'index.html.twig';
 
         return $this->render(sprintf('@SymEdit/Blog/%s', $template), array(
-            'Posts' => $this->getRecentPosts(),
+            'Posts' => $repo->getRecent($this->getMaxPosts()),
             'modified' => $modifiedDate,
         ), $response);
-    }
-
-    private function getRecentPosts()
-    {
-        $em = $this->getDoctrine()->getManager();
-        $query = $em->createQuery('SELECT p FROM IsometriksSymEditBundle:Post p ORDER BY p.createdAt DESC');
-
-        return $this->getPaginator($query);
-    }
-
-    /**
-     * @deprecated since version 2.3
-     */
-    public function recentAction()
-    {
-        // TODO Cache this for ESI
-
-        return $this->render('@SymEdit/Blog/list.html.twig', array(
-            'Posts' => $this->getRecentPosts(),
-        ));
     }
 
     /**
@@ -145,8 +127,10 @@ class BlogController extends Controller
                 ->setParameter('catId', $category->getId())
                 ->getQuery();
 
-        $posts = $this->getPaginator($query, $page);
-        $latest = current($posts->getIterator());
+        $paginator = $this->getPaginator($query, $page, 'blog_category_view');
+        $paginator->setParam('slug', $slug);
+
+        $latest = $paginator->current();
 
         $modified = !$latest ? new \DateTime() : $latest->getUpdatedAt();
         $response = $this->createResponse($modified);
@@ -171,9 +155,8 @@ class BlogController extends Controller
         return $this->render(sprintf('@SymEdit/Blog/%s', $template), array(
             'Category' => $category,
             'SEO' => $category->getSeo(),
-            'Posts' => $posts,
+            'Posts' => $paginator,
             'modified' => $modified,
-            'Pages' => $this->getPages($posts, $page),
         ), $response);
     }
 
@@ -193,7 +176,8 @@ class BlogController extends Controller
                 ->join('p.author', 'a')
                 ->where('a.username = :username')
                 ->setParameter('username', $username)
-                ->getQuery();
+                ->getQuery()
+                ->setMaxResults($this->getMaxPosts());
 
         /**
          * Add Breadcrumbs
@@ -209,6 +193,23 @@ class BlogController extends Controller
         ));
     }
 
+    /**
+     * @return Knp\Component\Pager\Pagination\PaginationInterface
+     */
+    private function getPaginator($query, $page = 1, $route = null)
+    {
+        $paginator = $this->get('knp_paginator');
+        $pagination = $paginator->paginate(
+            $query, $page, $this->getMaxPosts()
+        );
+
+        if($route !== null) {
+            $pagination->setUsedRoute($route);
+        }
+
+        return $pagination;
+    }
+
     private function getMaxPosts()
     {
         $settings = $this->getSettings();
@@ -219,31 +220,5 @@ class BlogController extends Controller
         }
 
         return $max;
-    }
-
-    /**
-     * Returns Paginator from query
-     * @param type $query
-     * @param int $page
-     * @return \Doctrine\ORM\Tools\Pagination\Paginator
-     */
-    private function getPaginator($query, $page = 1)
-    {
-        $maxPosts = $this->getMaxPosts();
-        $page = max(0, $page - 1);
-        $start = $page * $maxPosts;
-
-        $query->setFirstResult($start)
-              ->setMaxResults($maxPosts);
-
-        return new Paginator($query, true);
-    }
-
-    private function getPages(Paginator $paginator, $current = 1)
-    {
-        return array(
-            'num' => ceil(count($paginator) / $this->getMaxPosts()),
-            'cur' => $current,
-        );
     }
 }

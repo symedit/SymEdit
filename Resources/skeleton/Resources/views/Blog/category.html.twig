@@ -21,4 +21,6 @@ Category &raquo; {{ Category.title }}
     {% else %}
         There are currently no posts for this category.
     {% endif %}
+
+    {{ knp_pagination_render(Posts) }}
 {% endblock %}

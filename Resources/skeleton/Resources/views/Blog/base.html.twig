@@ -11,10 +11,7 @@
             {% block blog_content %}
                 {% include '@SymEdit/Blog/list.html.twig' %}
             {% endblock %}
-            {% if Pages is defined and Pages.num > 1 %}
-                {% include '@SymEdit/Blog/paginate.html.twig' %}
-            {% endif %}
-        </div> 
+        </div>
         <div class="span3">
         {% block sidebar %}
             {% include '@SymEdit/CMS/sidebar.html.twig' %}
