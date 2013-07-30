@@ -5,6 +5,9 @@ Isometriks\Bundle\UserBundle\Entity\AdminProfile:
         social:
             type: json_array
             nullable: true
+        summary:
+            type: text
+            nullable: true
         biography:
             type: text
             nullable: true

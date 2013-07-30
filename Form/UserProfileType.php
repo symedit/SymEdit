@@ -80,6 +80,14 @@ class UserProfileType extends BaseType
         $builder
                 ->add($basic)
                 ->add($social)
+                ->add('summary', 'textarea', array(
+                    'required' => false,
+                    'attr' => array(
+                        'class' => 'wysiwyg-editor',
+                    ),
+                    'widget_control_group' => false,
+                    'property_path' => 'profile.summary',
+                ))
                 ->add('biography', 'textarea', array(
                     'required' => false,
                     'attr' => array(

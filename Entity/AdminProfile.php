@@ -11,6 +11,8 @@ class AdminProfile extends Profile
 
     protected $social;
 
+    protected $summary;
+
     protected $biography;
 
     protected $display;
@@ -58,6 +60,18 @@ class AdminProfile extends Profile
     public function setSocial(array $social)
     {
         $this->social = $social;
+
+        return $this;
+    }
+
+    public function getSummary()
+    {
+        return $this->summary;
+    }
+
+    public function setSummary($summary)
+    {
+        $this->summary = $summary;
 
         return $this;
     }
