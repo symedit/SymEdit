@@ -101,6 +101,11 @@ class Controller extends BaseController
         return $this->get('isometriks_symedit.breadcrumbs');
     }
 
+    public function addBreadcrumb($title, $path, array $params = array())
+    {
+        $this->getBreadcrumbs()->push($title, $path, $params);
+    }
+
     /**
      * Gets the current page if there is one, or returns null
      *

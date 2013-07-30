@@ -66,8 +66,7 @@ class BlogController extends Controller
         /**
          * Add Breadcrumbs
          */
-        $breadcrumbs = $this->getBreadcrumbs();
-        $breadcrumbs->push($post->getTitle(), 'blog_slug_view', array(
+        $this->addBreadcrumb($post->getTitle(), 'blog_slug_view', array(
             'slug' => $post->getSlug(),
         ));
 
@@ -145,8 +144,7 @@ class BlogController extends Controller
         /**
          * Add breadcrumbs
          */
-        $breadcrumbs = $this->getBreadcrumbs();
-        $breadcrumbs->push($category->getTitle(), 'blog_category_view', array(
+        $this->addBreadcrumb($category->getTitle(), 'blog_category_view', array(
             'slug' => $category->getSlug(),
         ));
 
@@ -182,8 +180,7 @@ class BlogController extends Controller
         /**
          * Add Breadcrumbs
          */
-        $breadcrumbs = $this->getBreadcrumbs();
-        $breadcrumbs->push($user->getProfile()->getFullname(), 'blog_author_view', array(
+        $this->addBreadcrumb($user->getProfile()->getFullname(), 'blog_author_view', array(
             'username' => $user->getUsername(),
         ));
 
