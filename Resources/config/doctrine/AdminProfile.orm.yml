@@ -13,6 +13,14 @@ Isometriks\Bundle\UserBundle\Entity\AdminProfile:
             nullable: true
         display:
             type: boolean
+        slug:
+            type: text
+            gedmo:
+                slug:
+                    separator: "-"
+                    fields:
+                        - firstName
+                        - lastName
     manyToOne:
         image:
             targetEntity: Isometriks\Bundle\SymEditBundle\Entity\Image

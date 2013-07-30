@@ -17,6 +17,7 @@ class AdminProfile extends Profile
 
     protected $display;
 
+    protected $slug;
 
     public function __construct()
     {
@@ -109,5 +110,10 @@ class AdminProfile extends Profile
         $this->display = $display;
 
         return $this;
+    }
+
+    public function getSlug()
+    {
+        return $this->slug;
     }
 }
