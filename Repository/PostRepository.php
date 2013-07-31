@@ -7,13 +7,12 @@ use Doctrine\ORM\EntityRepository;
 class PostRepository extends EntityRepository {
 
     /**
-     * Keep it DRY
      * @return \Doctrine\ORM\Query
      */
     protected function getRecentQuery()
     {
         return $this->createQueryBuilder('p')
-                    ->orderBy('createdAt', 'DESC')
+                    ->orderBy('p.createdAt', 'DESC')
                     ->getQuery();
     }
 
