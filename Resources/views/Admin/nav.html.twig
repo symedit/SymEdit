@@ -2,15 +2,15 @@
     <div class="navbar-inner">
         <div class="container-fluid">
 
-            {% include 'IsometriksSymEditBundle::brand.html.twig' %}
-            
+            {% include '@SymEdit/Admin/brand.html.twig' %}
+
             <nav>
                 {% if app.user and is_granted('ROLE_ADMIN') %}
                 <ul class="nav">
                     <li>
                         <a href="{{ path('admin_dashboard') }}">Dashboard</a>
                     </li>
-                    
+
                     {% if is_granted('ROLE_ADMIN_PAGE') %}
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">Pages <b class="caret"></b></a>
@@ -20,7 +20,7 @@
                         </ul>
                     </li>
                     {% endif %}
-                    
+
                     {% if is_granted('ROLE_ADMIN_BLOG') %}
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">Blog <b class="caret"></b></a>
@@ -31,7 +31,7 @@
                         </ul>
                     </li>
                     {% endif %}
-                    
+
                     {% if is_granted('ROLE_ADMIN_IMAGE') %}
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">Images <b class="caret"></b></a>
@@ -42,7 +42,7 @@
                         </ul>
                     </li>
                     {% endif %}
-                    
+
                     {% if is_granted('ROLE_ADMIN_WIDGET') %}
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">Widgets <b class="caret"></b></a>
@@ -51,8 +51,8 @@
                             <li><a href="{{ path('admin_widget_new') }}"><i class="icon-edit"></i> Create New</a></li>
                         </ul>
                     </li>
-                    {% endif %}                    
-                    
+                    {% endif %}
+
                     {% if is_granted('ROLE_ADMIN_SETTING') or is_granted('ROLE_ADMIN_USER') or (is_granted('ROLE_ADMIN_STYLIZER') and stylizer) %}
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">Site <b class="caret"></b></a>
@@ -62,19 +62,19 @@
                             {% endif %}
                             {% if (is_granted('ROLE_ADMIN_STYLIZER') and stylizer) %}
                             <li><a href="{{ path('admin_stylizer') }}"><i class="icon-magic"></i> Stylizer</a></li>
-                            {% endif %}                                
+                            {% endif %}
                             {% if is_granted('ROLE_ADMIN_USER') %}
                             <li><a href="{{ path('admin_user') }}"><i class="icon-user"></i> Users</a></li>
                             {% endif %}
                         </ul>
                     </li>
                     {% endif %}
-                    
+
                     {% block nav_extensions %}
                     {% if extensions is defined and extensions|length > 0 %}
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">Extensions <b class="caret"></b></a>
-                        <ul class="dropdown-menu">                 
+                        <ul class="dropdown-menu">
                         {% for extension in extensions %}
                             <li>
                                 <a href="{{ path(extension.route) }}">
@@ -89,7 +89,7 @@
                     </li>
                     {% endif %}
                     {% endblock %}
-                    
+
                     {% block nav_extend %}{% endblock %}
                 </ul>
 
