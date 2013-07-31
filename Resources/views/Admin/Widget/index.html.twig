@@ -1,4 +1,4 @@
-{% extends '@IsometriksSymEdit/base.html.twig' %}
+{% extends '@IsometriksSymEdit/Admin/base.html.twig' %}
 
 {% block title %}Showing Widgets{% endblock %}
 
@@ -9,19 +9,19 @@
         {{ area.area }}
         <small>{{ area.description }}</small>
     </h2>
-    
+
     <ul class="thumbnails">
     {% for widget in area.widgets %}
         <li class="span3">
             <a href="{{ path('admin_widget_edit', {id:widget.id}) }}" class="thumbnail">
                 <h4>
-                    {{ widget.title|default('(No Title)') }} <br> 
+                    {{ widget.title|default('(No Title)') }} <br>
                     <small>{{ widget.strategy.description }}</small>
                 </h4>
             </a>
         </li>
     {% endfor %}
-        
+
         {#<li class="span3">
             <a href="#" class="thumbnail">
                 <h4>
