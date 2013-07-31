@@ -1,28 +1,28 @@
 <?php
 
-namespace Isometriks\Bundle\SymEditBundle\Repository; 
+namespace Isometriks\Bundle\SymEditBundle\Repository;
 
-use Doctrine\ORM\EntityRepository; 
+use Doctrine\ORM\EntityRepository;
 
 class PostRepository extends EntityRepository {
-    
+
     /**
-     * Keep it DRY
      * @return \Doctrine\ORM\Query
      */
     protected function getRecentQuery()
     {
-        return $this->getEntityManager()
-                    ->createQuery('SELECT p FROM IsometriksSymEditBundle:Post p ORDER BY p.createdAt DESC'); 
+        return $this->createQueryBuilder('p')
+                    ->orderBy('p.createdAt', 'DESC')
+                    ->getQuery();
     }
-    
+
     public function getRecent($max=3)
     {
         return $this->getRecentQuery()
                 ->setMaxResults($max)
-                ->getResult(); 
+                ->getResult();
     }
-    
+
     /**
      * Get just the most recent post
      */
@@ -30,7 +30,7 @@ class PostRepository extends EntityRepository {
     {
         return $this->getRecentQuery()
                 ->setMaxResults(1)
-                ->getSingleResult(); 
+                ->getSingleResult();
     }
-    
+
 }

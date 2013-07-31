@@ -1,11 +1,11 @@
-{% extends 'IsometriksSymEditBundle::tabbed.html.twig' %}
+{% extends '@SymEdit/Admin/tabbed.html.twig' %}
 
 {% block title %}Pages &raquo; {{ entity.title }} &raquo; Edit{% endblock %}
 
 {% block action %}{{ path('admin_page_update', { 'id': entity.id }) }}{% endblock %}
 
 {% block tabs %}
-    {% include 'IsometriksSymEditBundle:Admin/Page:tabs.html.twig' %}
+    {% include '@SymEdit/Admin/Page/tabs.html.twig' %}
 {% endblock %}
 
 {% block tab_content %}
@@ -14,7 +14,7 @@
         <div class="span6">
             {{ form_row( form.title, { attr: { class: 'span12' }} ) }}
             {% if not entity.homepage %}
-              {{ form_row(form.name, { attr: { class: 'span12' }}) }}  
+              {{ form_row(form.name, { attr: { class: 'span12' }}) }}
             {% endif %}
             {{ form_row( form.tagline, { attr: { class: 'span12' }} ) }}
         </div>

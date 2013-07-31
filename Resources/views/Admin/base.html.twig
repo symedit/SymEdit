@@ -2,10 +2,10 @@
 <html>
     <head>
         <title>{% block title %}SymEdit{% endblock %}</title>
-        {% stylesheets 
-            '@IsometriksSymEditBundle/Resources/less/bootstrap/bootstrap.less' 
+        {% stylesheets
+            '@IsometriksSymEditBundle/Resources/less/bootstrap/bootstrap.less'
             '@IsometriksSymEditBundle/Resources/less/bootstrap/responsive.less'
-            '@IsometriksSymEditBundle/Resources/less/admin.less' 
+            '@IsometriksSymEditBundle/Resources/less/admin.less'
             '@IsometriksSymEditBundle/Resources/less/widget.less'
             'bundles/isometrikssymedit/redactor/redactor.css'
             filter="cssrewrite" %}
@@ -15,48 +15,48 @@
     </head>
     <body>
 
-        {% include 'IsometriksSymEditBundle::nav.html.twig' %}
+        {% include '@SymEdit/Admin/nav.html.twig' %}
         <div id="title">
             <div class="container-fluid">
                 <div class="text">{{ block('title') }}</div>
             </div>
         </div>
-        
+
         {% if app.session.flashbag.has('notice') or app.session.flashbag.has('error') %}
         <div id="flash">
             <div class="container-fluid">
                 <div class="text">
                     {% for message in app.session.flashbag.get('notice')|default([]) %}
                         <div class="message">
-                            <i class="icon-thumbs-up icon-white"></i> {{ message }} 
+                            <i class="icon-thumbs-up icon-white"></i> {{ message }}
                         </div>
                     {% endfor %}
-                        
+
                     {% for message in app.session.flashbag.get('error')|default([]) %}
                         <div class="message">
-                            <i class="icon-warning-sign icon-white"></i> {{ message }} 
+                            <i class="icon-warning-sign icon-white"></i> {{ message }}
                         </div>
-                    {% endfor %}                        
+                    {% endfor %}
                 </div>
             </div>
         </div>
         {% endif %}
-        
+
         <div class="container-fluid">
             <div id="content">
                 {% block content %}{% endblock %}
             </div>
         </div>
-        {% javascripts 
+        {% javascripts
             'bundles/isometrikssymedit/js/jquery-1.9.1.min.js'
-            'bundles/isometrikssymedit/js/*.js' 
+            'bundles/isometrikssymedit/js/*.js'
             'bundles/isometrikssymedit/redactor/redactor.min.js'
             'bundles/isometrikssymedit/js/snippets/*.js' %}
         <script src="{{ asset_url }}" type="text/javascript"></script>
         {% endjavascripts %}
         <script>
-            Isometriks.redactor_options.imageGetJson = "{{ path('admin_image_json') }}"; 
-            Isometriks.redactor_iframe.css = '/bundles/{{ host_asset_dir }}/css/wysiwyg.css'; 
+            Isometriks.redactor_options.imageGetJson = "{{ path('admin_image_json') }}";
+            Isometriks.redactor_iframe.css = '/bundles/{{ host_asset_dir }}/css/wysiwyg.css';
         </script>
         {% block scripts %}{% endblock %}
     </body>

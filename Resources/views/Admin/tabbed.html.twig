@@ -1,4 +1,4 @@
-{% extends 'IsometriksSymEditBundle::base.html.twig' %}
+{% extends '@SymEdit/Admin/base.html.twig' %}
 
 {% block content %}
 {% if form is defined %}
@@ -12,8 +12,8 @@
         </ul>
         {% block form_actions %}{% endblock %}
     </div>
-    {% endblock %}        
-        
+    {% endblock %}
+
     <div class="tab-content has-sidebar well">
         {% block tab_content %}{% endblock %}
     </div>
