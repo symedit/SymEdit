@@ -92,7 +92,11 @@ class LoadWidgetData extends AbstractFixture implements OrderedFixtureInterface,
 
         $this->getManager()->saveWidgetArea($footer);
 
-
+        $this->addReference('widgetarea-footer', $footer);
+        $this->addReference('widget-contact_info', $contact);
+        $this->addReference('widget-about', $about);
+        
+        
         /**
          * Add Featured Area
          */
@@ -112,6 +116,9 @@ class LoadWidgetData extends AbstractFixture implements OrderedFixtureInterface,
         $featured->addWidget($slider);
 
         $this->getManager()->saveWidgetArea($featured);
+        
+        $this->addReference('widgetarea-featured', $featured);
+        $this->addReference('widget-homepage_slider', $slider);
     }
 
     /**
