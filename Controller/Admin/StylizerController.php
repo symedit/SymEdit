@@ -1,11 +1,11 @@
 <?php
 
-namespace Isometriks\Bundle\SymEditBundle\Controller\Admin; 
+namespace Isometriks\Bundle\SymEditBundle\Controller\Admin;
 
-use Symfony\Bundle\FrameworkBundle\Controller\Controller; 
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route; 
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template; 
-use Symfony\Component\HttpFoundation\Request; 
+use Isometriks\Bundle\SymEditBundle\Controller\Controller;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
+use Symfony\Component\HttpFoundation\Request;
 
 /**
  * @Route("/stylizer")
@@ -19,36 +19,36 @@ class StylizerController extends Controller
     public function indexAction(Request $request)
     {
         /**
-         * Stylizer Bundle was not added, so this page shouldn't exist. 
+         * Stylizer Bundle was not added, so this page shouldn't exist.
          */
         if(!$this->has('isometriks_stylizer.stylizer')){
-            throw $this->createNotFoundException(); 
+            throw $this->createNotFoundException();
         }
-        
-        $stylizer = $this->get('isometriks_stylizer.stylizer'); 
-        $form = $this->createForm('styles', $stylizer); 
-        
+
+        $stylizer = $this->get('isometriks_stylizer.stylizer');
+        $form = $this->createForm('styles', $stylizer);
+
         if($request->getMethod() === 'POST'){
-            
-            $form->bind($request); 
-            
+
+            $form->bind($request);
+
             if($form->isValid()){
-                
-                $stylizer->save(); 
-                $fb = $this->get('session')->getFlashBag();                 
-                
+
+                $stylizer->save();
+                $fb = $this->get('session')->getFlashBag();
+
                 if($request->request->has('dump')){
-                    $stylizer->dump(); 
-                    
-                    $fb->add('notice', 'Styles saved and dumped'); 
+                    $stylizer->dump();
+
+                    $this->addFlash('notice', 'Styles saved and dumped');
                 } else {
-                    $fb->add('notice', 'Styles Saved'); 
+                    $this->addFlash('notice', 'Styles Saved');
                 }
             }
         }
-        
+
         return array(
-            'form' => $form->createView(), 
-        ); 
+            'form' => $form->createView(),
+        );
     }
 }
