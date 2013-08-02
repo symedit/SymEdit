@@ -72,7 +72,7 @@ class WidgetController extends Controller
             $this->getManager()->saveWidget($widget);
             $this->addFlash('notice', 'Widget created successfully.');
 
-            return $this->redirect($this->generateUrl('admin_widget'));
+            return $this->redirect($this->generateUrl('admin_widget_edit', array('id' => $widget->getId())));
         }
 
         $this->addFlash('error', 'Error Creating Widget.');
