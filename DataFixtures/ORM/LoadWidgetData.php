@@ -67,6 +67,43 @@ class LoadWidgetData extends AbstractFixture implements OrderedFixtureInterface,
 
 
         /**
+         * Add Featured Area
+         */
+        $featured = $this->getManager()->createWidgetArea();
+        $featured
+            ->setArea('featured')
+            ->setDescription('Featured Widget Area at top of page');
+
+        $slider = $this->getManager()->createWidget('slider');
+        $slider
+            ->setName('homepage_slider')
+            ->setTitle('Homepage Slider')
+            ->setOption('slider', 'homepage')
+            ->setVisibility(Widget::INCLUDE_ONLY)
+            ->addAssoc('/');
+
+        $featured->addWidget($slider);
+
+        $this->getManager()->saveWidgetArea($featured);
+
+        $this->addReference('widgetarea-featured', $featured);
+        $this->addReference('widget-homepage_slider', $slider);
+
+
+        /**
+         * Add Supplemental Area
+         */
+        $supplemental = $this->getManager()->createWidgetArea();
+        $supplemental
+            ->setArea('supplemental')
+            ->setDescription('Widget area following the content region');
+
+        $this->getManager()->saveWidgetArea($supplemental);
+
+        $this->addReference('widgetarea-supplemental', $supplemental);
+
+
+        /**
          * Add Footer Area
          */
         $footer = $this->getManager()->createWidgetArea();
@@ -95,30 +132,12 @@ class LoadWidgetData extends AbstractFixture implements OrderedFixtureInterface,
         $this->addReference('widgetarea-footer', $footer);
         $this->addReference('widget-contact_info', $contact);
         $this->addReference('widget-about', $about);
-        
-        
-        /**
-         * Add Featured Area
-         */
-        $featured = $this->getManager()->createWidgetArea();
-        $featured
-            ->setArea('featured')
-            ->setDescription('Featured Widget Area at top of page');
 
-        $slider = $this->getManager()->createWidget('slider');
-        $slider
-            ->setName('homepage_slider')
-            ->setTitle('Homepage Slider')
-            ->setOption('slider', 'homepage')
-            ->setVisibility(Widget::INCLUDE_ONLY)
-            ->addAssoc('/');
 
-        $featured->addWidget($slider);
 
-        $this->getManager()->saveWidgetArea($featured);
-        
-        $this->addReference('widgetarea-featured', $featured);
-        $this->addReference('widget-homepage_slider', $slider);
+
+
+        $manager->flush();
     }
 
     /**
