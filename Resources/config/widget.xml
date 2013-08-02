@@ -19,6 +19,7 @@
         <parameter key="isometriks_symedit.widget.strategy.blog_recent_posts.class">Isometriks\Bundle\SymEditBundle\Widget\Strategy\RecentPostsStrategy</parameter>
         <parameter key="isometriks_symedit.widget.strategy.blog_categories.class">Isometriks\Bundle\SymEditBundle\Widget\Strategy\BlogCategoriesStrategy</parameter>
         <parameter key="isometriks_symedit.widget.strategy.slider.class">Isometriks\Bundle\SymEditBundle\Widget\Strategy\SliderStrategy</parameter>
+        <parameter key="isometriks_symedit.widget.strategy.google_map.class">Isometriks\Bundle\SymEditBundle\Widget\Strategy\GoogleMapStrategy</parameter>
     </parameters>
 
     <services>
@@ -51,7 +52,6 @@
         </service>
 
         <service id="isometriks_symedit.widget.strategy.template" class="%isometriks_symedit.widget.strategy.template.class%">
-            <argument>%isometriks_symedit.host_bundle%</argument>
             <argument type="service" id="twig" />
             <tag name="symedit.widget_strategy" />
         </service>
@@ -77,6 +77,11 @@
 
         <service id="isometriks_symedit.widget.strategy.slider" class="%isometriks_symedit.widget.strategy.slider.class%">
             <argument type="service" id="service_container" />
+            <tag name="symedit.widget_strategy" />
+        </service>
+
+        <service id="isometriks_symedit.widget.strategy.google_map" class="%isometriks_symedit.widget.strategy.google_map.class%">
+            <argument type="service" id="twig" />
             <tag name="symedit.widget_strategy" />
         </service>
     </services>
