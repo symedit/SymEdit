@@ -7,7 +7,6 @@ use Symfony\Component\HttpKernel\Kernel;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Isometriks\Bundle\SymEditBundle\DependencyInjection\Compiler\AnnotationLoaderCompilerPass;
 use Isometriks\Bundle\SymEditBundle\DependencyInjection\Compiler\TwigExceptionCompilerPass;
-use Isometriks\Bundle\SymEditBundle\DependencyInjection\Compiler\TemplateGuesserCompilerPass;
 use Isometriks\Bundle\SymEditBundle\DependencyInjection\Compiler\WidgetStrategyCompilerPass;
 use Isometriks\Bundle\SymEditBundle\DependencyInjection\Compiler\TwigPathCompilerPass;
 use Isometriks\Bundle\SymEditBundle\DependencyInjection\IsometriksSymEditExtension;
@@ -32,7 +31,6 @@ class IsometriksSymEditBundle extends Bundle
 
         $container->addCompilerPass(new AnnotationLoaderCompilerPass());
         $container->addCompilerPass(new TwigExceptionCompilerPass());
-        $container->addCompilerPass(new TemplateGuesserCompilerPass());
         $container->addCompilerPass(new WidgetStrategyCompilerPass());
         $container->addCompilerPass(new TwigPathCompilerPass($this->kernel));
     }
