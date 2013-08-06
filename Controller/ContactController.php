@@ -19,13 +19,9 @@ class ContactController extends Controller
      */
     public function indexAction(Request $request, PageInterface $_page)
     {
-        $namespace = $this->getHostNamespace();
-
-        $type = $namespace.'\\Form\\ContactType';
-        $form = $this->createForm(new $type());
+        $form = $this->createForm('symedit_contact');
 
         if ($request->getMethod() === 'POST') {
-
             $form->bind($request);
 
             if ($form->isValid()) {
