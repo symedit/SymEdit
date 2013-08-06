@@ -11,13 +11,9 @@ class TwigExceptionCompilerPass implements CompilerPassInterface
     {
         // Get the exception class
         $controller = $container->getParameter('isometriks_symedit.twig.controller.exception.class'); 
-        
-        // Get Host Bundle
-        $host_bundle = $container->getParameter('isometriks_symedit.host_bundle'); 
-        
+
         // Change the definition to use our class
-        $definition = $container->getDefinition('twig.controller.exception'); 
-        $definition->setClass($controller);  
-        $definition->addArgument($host_bundle); 
+        $definition = $container->getDefinition('twig.controller.exception');
+        $definition->setClass($controller);
     }
 }

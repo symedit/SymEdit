@@ -51,23 +51,23 @@
             <td>ID:</td>
             <td>{{ collector.page.id }}</td>
         </tr>
-        
+
         <tr>
             <td>Path:</td>
             <td>{{ collector.page.path }}</td>
         </tr>
-        
+
         <tr>
             <td>Title:</td>
             <td>{{ collector.page.title }}</td>
         </tr>
-        
+
         {% if collector.page.controller %}
         <tr>
             <td>Controller Path:</td>
             <td>{{ collector.page.controllerPath }}</td>
         </tr>
-        
+
         <tr>
             <td>Controller</td>
             <td>{{ collector.page._controller }}</td>
@@ -75,10 +75,9 @@
         {% else %}
         <tr>
             <td>Template:</td>
-            <td>{{ host_bundle }}:Page:{{ collector.page.template }}</td>
+            <td>@SymEdit/Page/{{ collector.page.template }}</td>
         </tr>
         {% endif %}
     </table>
 {% endif %}
 {% endblock %}
-    

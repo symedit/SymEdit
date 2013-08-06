@@ -1,6 +1,6 @@
 <?php
 
-namespace {{{ namespace }}}\Form;
+namespace Isometriks\Bundle\SymEditBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -56,6 +56,6 @@ class ContactType extends AbstractType
 
     public function getName()
     {
-        return '{{{ namespace_name }}}_contact';
+        return 'symedit_contact';
     }
 }

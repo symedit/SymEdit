@@ -47,41 +47,6 @@ class Controller extends BaseController
     }
 
     /**
-     * Gets the host bundle
-     *
-     * @return string The host bundle
-     */
-    public function getHostBundle()
-    {
-        return $this->container->getParameter('isometriks_symedit.host_bundle');
-    }
-
-    /**
-     * Gets the host namespace
-     *
-     * @return string The host namespace
-     */
-    public function getHostNamespace()
-    {
-        return $this->container->getParameter('isometriks_symedit.host_namespace');
-    }
-
-    /**
-     * Prepends the host bundle to the template in format HostBundle:Controller:template
-     *
-     * @deprecated since version 2.3
-     * @param string $controller
-     * @param string $template
-     * @return string Template in format HostBundle:Controller:template
-     */
-    public function getHostTemplate($controller, $template)
-    {
-        trigger_error('getHostTemplate deprecated. Used @SymEdit/... to reference templates.', E_USER_DEPRECATED);
-
-        return $this->getHostBundle().':'.$controller.':'.$template;
-    }
-
-    /**
      * Gets Settings
      *
      * @return \Isometriks\Bundle\SettingsBundle\Model\Settings Settings
@@ -101,6 +66,13 @@ class Controller extends BaseController
         return $this->get('isometriks_symedit.breadcrumbs');
     }
 
+    /**
+     * Adds a breadcrumb to the current request
+     *
+     * @param string $title
+     * @param string $path
+     * @param array $params
+     */
     public function addBreadcrumb($title, $path, array $params = array())
     {
         $this->getBreadcrumbs()->push($title, $path, $params);

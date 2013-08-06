@@ -17,10 +17,13 @@
         {% endblock %}
         {% block stylesheets %}
         {% stylesheets
-               'bundles/{{{ asset_dir }}}/bootstrap/css/bootstrap.min.css'
-               'bundles/{{{ asset_dir }}}/bootstrap/css/bootstrap-responsive.min.css'
-               'bundles/{{{ asset_dir }}}/css/font-awesome.min.css'
-               '@{{{ bundle }}}/Resources/less/site.less'
+               'bundles/isometrikssymedit/bootstrap/css/bootstrap.min.css'
+               'bundles/isometrikssymedit/bootstrap/css/bootstrap-responsive.min.css'
+               'bundles/isometrikssymedit/css/font-awesome.min.css'
+               '@IsometriksSymEditBundle/Resources/less/system.less'
+               '@IsometriksSymEditBundle/Resources/less/util.less'
+               '@IsometriksSymEditBundle/Resources/less/footer.less'
+               '@IsometriksSymEditBundle/Resources/less/site.less'
                filter='cssrewrite' -%}
         <link rel="stylesheet" type="text/css" href="{{ asset_url }}" />
         {% endstylesheets -%}
@@ -83,7 +86,7 @@
 
         {% block scripts %}
         <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
-        <script src="{{ asset('/bundles/{{{ asset_dir }}}/bootstrap/js/bootstrap.min.js') }}"></script>
+        <script src="{{ asset('/bundles/isometrikssymedit/bootstrap/js/bootstrap.min.js') }}"></script>
         {% include '@SymEdit/Widget/google-analytics.html.twig' %}
         {% endblock %}
     </body>

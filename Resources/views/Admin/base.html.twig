@@ -3,10 +3,10 @@
     <head>
         <title>{% block title %}SymEdit{% endblock %}</title>
         {% stylesheets
-            '@IsometriksSymEditBundle/Resources/less/bootstrap/bootstrap.less'
-            '@IsometriksSymEditBundle/Resources/less/bootstrap/responsive.less'
-            '@IsometriksSymEditBundle/Resources/less/admin.less'
-            '@IsometriksSymEditBundle/Resources/less/widget.less'
+            '@IsometriksSymEditBundle/Resources/less/admin/bootstrap/bootstrap.less'
+            '@IsometriksSymEditBundle/Resources/less/admin/bootstrap/responsive.less'
+            '@IsometriksSymEditBundle/Resources/less/admin/admin.less'
+            '@IsometriksSymEditBundle/Resources/less/admin/widget.less'
             'bundles/isometrikssymedit/redactor/redactor.css'
             filter="cssrewrite" %}
         <link rel="stylesheet" href="{{ asset_url }}" />
@@ -56,7 +56,9 @@
         {% endjavascripts %}
         <script>
             Isometriks.redactor_options.imageGetJson = "{{ path('admin_image_json') }}";
-            Isometriks.redactor_iframe.css = '/bundles/{{ host_asset_dir }}/css/wysiwyg.css';
+            {% stylesheets '@IsometriksSymEditBundle/Resources/less/wysiwyg.less' %}
+            Isometriks.redactor_iframe.css = '{{ asset_url }}';
+            {% endstylesheets %}
         </script>
         {% block scripts %}{% endblock %}
     </body>
