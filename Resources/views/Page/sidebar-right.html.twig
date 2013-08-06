@@ -1,0 +1,14 @@
+{% extends '@SymEdit/Page/base.html.twig' %}
+
+{% block content %}
+<div class="row-fluid">
+    <div class="span9">
+        {{ parent() }}
+    </div>
+    <div class="span3">
+    {% block sidebar %}
+        {% include '@SymEdit/CMS/sidebar.html.twig' %}
+    {% endblock %}
+    </div>
+</div>
+{% endblock %}

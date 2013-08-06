@@ -1,0 +1,38 @@
+{# Navigation Macros #}
+
+{% macro ul( node, options, level ) %}
+{% set visible = options.visible|default(true) %}
+{% set level = level|default(1) %}
+{% if (options.maxlevel is defined and level <= options.maxlevel) or (options.maxlevel is not defined) %}
+{% spaceless %}
+{% set children = visible ? node.visibleChildren : node.children %}
+     <ul{% if options.ulclass is defined and level == 1 %} class="{{ options.ulclass }}"{% elseif options.ulsubclass is defined and level > 1 %} class="{{ options.ulsubclass }}"{% endif %}>
+{% for child in children %}
+{% set sub_children = visible ? child.visibleChildren : child.children %}
+       <li class="{% if child.active %}active{% endif %}{% if sub_children|length > 0 and options.preliclass is defined %} {{ options.preliclass }}{% endif %}">
+        <a href="{{ path(child.route) }}"{% if options.toggleextra is defined and sub_children|length > 0 %} {{ options.toggleextra|raw }}{% endif %}>{{ child.title }}
+{% if sub_children|length > 0 %}
+  {% if options.caret is defined and (options.maxlevel is not defined or options.maxlevel > level) %}{{ options.caret|raw }}{% endif %}
+        </a>
+  {{ _self.ul( child, options, level+1 ) }}
+{% else %}
+        </a>
+{% endif %}
+       </li>
+{% endfor %}
+     </ul>
+{% endspaceless %}
+{% endif %}
+{% endmacro %}
+
+
+{% macro bootstrap( node, options ) %}
+  {% set options = options|default([])|merge({ 
+      ulclass:"nav", 
+      ulsubclass: "dropdown-menu", 
+      caret: '<b class="caret"></b>', 
+      toggleextra: 'class="dropdown-toggle disabled" data-toggle="dropdown"',
+      preliclass: "dropdown"
+  }) %}
+  {{ _self.ul(node, options) }}
+{% endmacro %}

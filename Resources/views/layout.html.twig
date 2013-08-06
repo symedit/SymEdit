@@ -1,0 +1,93 @@
+{% import '@SymEdit/CMS/nav.html.twig' as nav %}
+<!DOCTYPE html>
+<html lang="en-US">
+    <head>
+        <title>{% block title %}{{ SEO.title|default(Page.title) }}{% endblock %}</title>
+        {% block meta %}
+        <meta name="robots" content="{{ SEO.index|default('index') }}, {{ SEO.follow|default('follow') }}" />
+        <meta name="description" content="{% block description %}{{ SEO.description|default(Page.content|plain(150)) }}{% endblock %}" />
+        <meta name="keywords" content="{% block keywords %}{{ SEO.keywords|default('') }}{% endblock %}" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        {% block opengraph %}
+        <meta property="og:title" content="{{ block('title') }}" />
+        <meta property="og:url" content="{% block url %}{{ path(app.request.attributes.get('_route'), app.request.attributes.get('_route_params')) }}{% endblock %}" />
+        <meta property="og:site_name" content="{{ Settings.company.name }}" />
+        <meta property="og:description" content="{{ block('description') }}" />
+        {% endblock %}
+        {% endblock %}
+        {% block stylesheets %}
+        {% stylesheets
+               'bundles/isometrikssymedit/bootstrap/css/bootstrap.min.css'
+               'bundles/isometrikssymedit/bootstrap/css/bootstrap-responsive.min.css'
+               'bundles/isometrikssymedit/css/font-awesome.min.css'
+               '@IsometriksSymEditBundle/Resources/less/system.less'
+               '@IsometriksSymEditBundle/Resources/less/util.less'
+               '@IsometriksSymEditBundle/Resources/less/footer.less'
+               '@IsometriksSymEditBundle/Resources/less/site.less'
+               filter='cssrewrite' -%}
+        <link rel="stylesheet" type="text/css" href="{{ asset_url }}" />
+        {% endstylesheets -%}
+        {% endblock %}
+        <!--[if lt IE 9]>
+            <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+        <![endif]-->
+    </head>
+    <body>
+        <div id="wrap">
+        {% block body %}
+            {% block nav %}
+            <div class="container">
+                <nav>
+                    <div class="navbar">
+                        <div class="navbar-inner">
+                            <a class="brand" href="/">{{ Settings.company.name }}</a>
+                            {{ nav.bootstrap( Root ) }}
+                        </div>
+                    </div>
+                </nav>
+            </div>
+            {% endblock %}
+
+            {% block content_container %}
+            <div class="container">
+                {% block breadcrumbs %}
+                <div class="pull-right hidden-mobile">
+                    {% include '@SymEdit/CMS/breadcrumbs.html.twig' %}
+                </div>
+                {% endblock %}
+
+                {% block heading %}<h1>{{ Page.tagline }}</h1>{% endblock %}
+                <div id="content">
+                    {% block featured %}
+                    {% widgetarea 'featured' %}
+                    {% endblock %}
+
+                    {% block content %}
+                    {{ Page.content|raw }}
+                    {% endblock %}
+
+                    {% block supplemental %}
+                    {% widgetarea 'supplemental' %}
+                    {% endblock %}
+                </div>
+            </div>
+            {% endblock %}
+        {% endblock %}
+            <div id="push"></div>
+        </div>
+
+        {% block footer %}
+        <footer>
+            <div class="container">
+                {% widgetarea 'footer' %}
+            </div>
+        </footer>
+        {% endblock %}
+
+        {% block scripts %}
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+        <script src="{{ asset('/bundles/isometrikssymedit/bootstrap/js/bootstrap.min.js') }}"></script>
+        {% include '@SymEdit/Widget/google-analytics.html.twig' %}
+        {% endblock %}
+    </body>
+</html>
