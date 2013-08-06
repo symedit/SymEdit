@@ -1,9 +1,0 @@
-<div itemscope itemtype="http://schema.org/LocalBusiness">
-    <address itemprop="address">
-        {% set company = Settings.company %}
-        {% if company.name is not empty %}<strong>{{ company.name }}</strong><br>{% endif %}
-        {% if company.address is not empty %}{{ Settings.company.address|nl2br }} <br>{% endif %}
-        {% if company.phone is not empty %}<span itemprop="telephone">{{ Settings.company.phone }}</span> <br>{% endif %}
-        {% if company.email is not empty %}<span itemprop="email">{{ Settings.company.email }}</span>{% endif %}
-    </address>
-</div>
