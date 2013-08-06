@@ -22,7 +22,6 @@ class Configuration implements ConfigurationInterface
 
         $rootNode
             ->children()
-                ->scalarNode('host_bundle')->end()
                 ->scalarNode('admin_dir')->defaultValue('sym-admin')->end()
                 ->arrayNode('extensions')
                     ->prototype('array')
@@ -33,7 +32,7 @@ class Configuration implements ConfigurationInterface
                         ->scalarNode('icon')->defaultNull()->end()
                     ->end()
                 ->end()
-            ->end(); 
+            ->end();
 
         return $treeBuilder;
     }

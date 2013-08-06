@@ -21,23 +21,11 @@ class TwigPathCompilerPass implements CompilerPassInterface
     public function process(ContainerBuilder $container)
     {
         $rootDir = $container->getParameter('kernel.root_dir');
-        $hostBundle = $container->getParameter('isometriks_symedit.host_bundle');
-
-        /**
-         * Add root_dir/Resources/{host_bundle/views
-         */
-        $this->addLocation(sprintf('%s/Resources/%s/views', $rootDir, $hostBundle));
-
 
         /*
          * Add root_dir/Resources/IsometriksSymEditBundle/views
          */
         $this->addLocation(sprintf('%s/Resources/IsometriksSymEditBundle/views', $rootDir));
-
-        /**
-         * Add any Host Bundle directories and its descendants if any
-         */
-        array_map(array($this, 'mapBundles'), $this->kernel->getBundle($hostBundle,false));
 
         /**
          * Add the SymEdit Locations and all parents
