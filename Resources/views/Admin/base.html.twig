@@ -56,6 +56,7 @@
         {% endjavascripts %}
         <script>
             Isometriks.redactor_options.imageGetJson = "{{ path('admin_image_json') }}";
+            Isometriks.redactor_options.imageUpload = "{{ path('admin_image_quick_upload') }}";
             {% stylesheets '@IsometriksSymEditBundle/Resources/less/wysiwyg.less' %}
             Isometriks.redactor_iframe.css = '{{ asset_url }}';
             {% endstylesheets %}

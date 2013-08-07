@@ -3,14 +3,14 @@
 namespace Isometriks\Bundle\SymEditBundle\Controller\Admin;
 
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\JsonResponse; 
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Isometriks\Bundle\SymEditBundle\Entity\Image;
 use Isometriks\Bundle\SymEditBundle\Form\ImageType;
-use JMS\SecurityExtraBundle\Annotation\PreAuthorize; 
+use JMS\SecurityExtraBundle\Annotation\PreAuthorize;
 
 /**
  * Image controller.
@@ -91,18 +91,18 @@ class ImageController extends Controller
         $form = $this->createForm(new ImageType(), $entity);
         $form->bind($request);
 
-        if ($form->isValid()) {         
-            
+        if ($form->isValid()) {
+
             $em = $this->getDoctrine()->getManager();
             $em->persist($entity);
             $em->flush();
 
-            $this->get('session')->getFlashBag()->add('notice', 'Image Uploaded'); 
-            
+            $this->get('session')->getFlashBag()->add('notice', 'Image Uploaded');
+
             return $this->redirect($this->generateUrl('admin_image'));
         }
-        
-        $this->get('session')->getFlashBag()->add('error', 'Error Uploading Image'); 
+
+        $this->get('session')->getFlashBag()->add('error', 'Error Uploading Image');
 
         return array(
             'entity' => $entity,
@@ -161,8 +161,8 @@ class ImageController extends Controller
             $em->persist($entity);
             $em->flush();
 
-            $this->get('session')->getFlashBag()->add('notice', 'Image Updated'); 
-            
+            $this->get('session')->getFlashBag()->add('notice', 'Image Updated');
+
             return $this->redirect($this->generateUrl('admin_image_edit', array('id' => $id)));
         }
 
@@ -192,14 +192,14 @@ class ImageController extends Controller
                 throw $this->createNotFoundException('Unable to find Image entity.');
             }
 
-            $flashBag = $this->get('session')->getFlashBag(); 
-            
+            $flashBag = $this->get('session')->getFlashBag();
+
             try {
                 $em->remove($entity);
                 $em->flush();
-                $flashBag->add('notice', 'Image Removed'); 
+                $flashBag->add('notice', 'Image Removed');
             } catch(\Exception $e) {
-                $flashBag->add('error', 'There was an error removing the image. Make sure it is not used in a Post or a Slider.'); 
+                $flashBag->add('error', 'There was an error removing the image. Make sure it is not used in a Post or a Slider.');
             }
         }
 
@@ -213,26 +213,57 @@ class ImageController extends Controller
             ->getForm()
         ;
     }
-    
+
     /**
      * @Route("/images.{_format}", defaults={"_format"="json"}, name="admin_image_json")
      */
     public function jsonAction()
     {
-        $em = $this->getDoctrine()->getManager(); 
-        $images = $em->getRepository('IsometriksSymEditBundle:Image')->findAll(); 
-        
-        $manip = $this->get('isometriks_media.util.image_manipulator'); 
-        
-        $out = array(); 
-        
+        $em = $this->getDoctrine()->getManager();
+        $images = $em->getRepository('IsometriksSymEditBundle:Image')->findAll();
+
+        $manip = $this->get('isometriks_media.util.image_manipulator');
+
+        $out = array();
+
         foreach($images as $image){
             $out[] = array(
-                'thumb' => $manip->constrain($image->getWebPath(), array('w' => 234)), 
-                'image' => $image->getWebPath(),   
+                'thumb' => $manip->constrain($image->getWebPath(), array('w' => 234)),
+                'image' => $image->getWebPath(),
             );
         }
-        
-        return new JsonResponse($out); 
+
+        return new JsonResponse($out);
+    }
+
+    /**
+     * @Route("/quick-upload", name="admin_image_quick_upload")
+     */
+    public function quickUploadAction(Request $request)
+    {
+        $file = $request->files->get('file');
+        $name = pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME);
+
+        $entity = new Image();
+        $entity->setFile($file);
+        $entity->setName($name);
+
+        $em = $this->getDoctrine()->getManager();
+
+        try {
+            $em->persist($entity);
+            $em->flush();
+
+            return new JsonResponse(array(
+                'filelink' => $entity->getWebPath(),
+            ));
+
+        } catch (\Exception $ex) {
+
+            return new JsonResponse(array(
+                'error' => 'Error uploading, try renaming your image file.',
+            ));
+
+        }
     }
 }
