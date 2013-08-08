@@ -37,7 +37,6 @@ class WidgetController extends Controller
             $response->setLastModified($lastUpdated);
 
             if($response->isNotModified($request)) {
-                $response->setSharedMaxAge(60);
                 return $response;
             }
         }

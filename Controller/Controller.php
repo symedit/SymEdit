@@ -18,12 +18,12 @@ class Controller extends BaseController
 
         if($this->isCacheable()){
 
-            if($modified === null){
-                $modified = new \DateTime();
+            if($modified !== null){
+                $response->setLastModified($modified);
             }
 
             $response->setPublic();
-            $response->setLastModified($modified);
+            $response->setSharedMaxAge(60);
         }
 
         return $response;
@@ -38,12 +38,10 @@ class Controller extends BaseController
     public function isCacheable()
     {
         $settings = $this->getSettings();
-        $context = $this->get('security.context');
 
         $cacheable = $settings->has('advanced.caching') && $settings->get('advanced.caching') === 'cache';
-        $editable = $context->isGranted('ROLE_ADMIN_EDITABLE');
 
-        return $cacheable && !$editable;
+        return $cacheable;
     }
 
     /**
