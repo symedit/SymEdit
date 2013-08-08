@@ -1,11 +1,10 @@
-{% extends 'IsometriksSymEditBundle::base.html.twig' %}
+{% extends '@SymEdit/Admin/form.html.twig' %}
 
 {% block title %}Profile &raquo; {{ user.username }}{% endblock %}
 
 {% block content %}
-
 <h2>
-    {{ user.fullname }} 
+    {{ user.profile.fullname }}
     <small>({{ user.username }})</small>
 </h2>
 
