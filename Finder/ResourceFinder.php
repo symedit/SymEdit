@@ -1,54 +1,51 @@
 <?php
 
-namespace Isometriks\Bundle\SymEditBundle\Finder; 
+namespace Isometriks\Bundle\SymEditBundle\Finder;
 
 use Symfony\Component\HttpKernel\HttpKernelInterface;
 use Symfony\Component\Finder\Finder;
 
-class ResourceFinder {
-    
-    private $kernel; 
-    private $host_bundle; 
-    
-    public function __construct( $host_bundle, HttpKernelInterface $kernel )
+/**
+ * @todo Refactor this to TemplateFinder or something..
+ */
+class ResourceFinder
+{
+    private $kernel;
+
+    public function __construct(HttpKernelInterface $kernel)
     {
-        $this->host_bundle = $host_bundle; 
-        $this->kernel      = $kernel; 
+        $this->kernel = $kernel;
     }
-    
-    public function getTemplates($type='Page', $bundle=null)
+
+    /**
+     * Get all bundles that are, or extend SymEditBundle and start with the
+     * ancestors. As we get down to the actual bundle it should overwrite
+     * any ancestor template.
+     *
+     * @param type $type
+     * @return type
+     */
+    public function getTemplates($type = 'Page')
     {
-        $finder       = new Finder(); 
-        $template_dir = sprintf('%s/Resources/views/%s', $this->getBundleDir($bundle), $type); 
-        
-        try {
-            $files  = $finder->in($template_dir)->files()->name('*.twig'); 
-        } catch( \Exception $e ){
-            throw new \Exception(sprintf('Your %s template folder does not exist: %s', $type, $template_dir)); 
+        $dirs = $this->kernel->locateResource('@IsometriksSymEditBundle/Resources/views/'.$type, null, false);
+        $dirs = array_reverse($dirs);
+
+        $templates = array();
+
+        foreach ($dirs as $dir) {
+            foreach($this->getTemplatesFromDir($dir) as $template) {
+                $templates[$template->getRelativePathname()] = $template;
+            }
         }
-        
-        return $files; 
+
+        return $templates;
     }
-    
-    public function getBundleDir($bundle=null, $first=true)
+
+    protected function getTemplatesFromDir($dir)
     {
-        if($bundle === null){
-            $bundle = $this->host_bundle; 
-        }
-        return $this->kernel->locateResource('@'.$bundle, null, $first); 
-    }
-    
-    public function getBundleNamespace($bundle = null)
-    {
-        if($bundle === null){
-            $bundle = $this->getBundle(); 
-        }
-        
-        return $this->kernel->getBundle($bundle)->getNamespace(); 
-    }
-    
-    public function getBundle()
-    {
-        return $this->host_bundle; 
+        $finder = new Finder();
+        $files = $finder->in($dir)->files()->name('*.twig');
+
+        return $files;
     }
 }

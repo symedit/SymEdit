@@ -1,15 +1,15 @@
-{% extends 'IsometriksSymEditBundle::tabbed.html.twig' %}
+{% extends '@SymEdit/Admin/tabbed.html.twig' %}
 
 {% block title %}Users &raquo; Create New{% endblock %}
 
 {% block action %}{{ path('admin_user_create') }}{% endblock %}
 
 {% block tabs %}
-    {% include 'IsometriksSymEditBundle:Admin/User:tabs.html.twig' %}
+    {% include '@SymEdit/Admin/User/tabs.html.twig' %}
 {% endblock %}
 
 {% block tab_content %}
-    {% include 'IsometriksSymEditBundle:Admin/User:tab_content.html.twig' %}
+    {% include '@SymEdit/Admin/User/tab_content.html.twig' %}
 {% endblock %}
 
 {% block form_actions %}

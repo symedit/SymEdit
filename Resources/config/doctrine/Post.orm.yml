@@ -22,11 +22,14 @@ Isometriks\Bundle\SymEditBundle\Entity\Post:
             precision: 0
         slug:
             type: string
-            scale: 0
             length: 255
             unique: true
             nullable: false
-            precision: 0
+            gedmo:
+                slug:
+                    separator: "-"
+                    fields:
+                        - title
         content:
             type: text
             scale: 0
@@ -43,18 +46,22 @@ Isometriks\Bundle\SymEditBundle\Entity\Post:
             precision: 0
         createdAt:
             type: datetime
-            scale: 0
-            length: null
-            unique: false
-            nullable: false
-            precision: 0
+            gedmo:
+                timestampable:
+                    on: create
         updatedAt:
             type: datetime
-            scale: 0
-            length: null
-            unique: false
-            nullable: false
-            precision: 0
+            gedmo:
+                timestampable:
+                    on: update
+        publishedAt:
+            nullable: true
+            type: datetime
+            gedmo:
+                timestampable:
+                    on: change
+                    field: status
+                    value: 1
         status:
             type: integer
             scale: 0
@@ -69,6 +76,10 @@ Isometriks\Bundle\SymEditBundle\Entity\Post:
             unique: false
             nullable: true
             precision: 0
+
+    indexes:
+        slug_index:
+            columns: [slug]
     manyToOne:
         image:
             targetEntity: Isometriks\Bundle\SymEditBundle\Entity\Image
@@ -84,7 +95,6 @@ Isometriks\Bundle\SymEditBundle\Entity\Post:
             targetEntity: Isometriks\Bundle\SymEditBundle\Model\UserInterface
             cascade: {  }
             mappedBy: null
-            inversedBy: posts
             joinColumns:
                 author_id:
                     referencedColumnName: id

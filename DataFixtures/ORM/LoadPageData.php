@@ -16,10 +16,9 @@ class LoadPageData extends AbstractFixture implements OrderedFixtureInterface {
         $page_root = new Page();
         $page_root
             ->setRoot(true)
-            ->setName('root')
+            ->setName(null)
             ->setTagline('')
             ->setSummary('')
-            ->setPath('')
             ->setTitle('Root')
             ->setContent('')
             ->setPageOrder(0)
@@ -36,7 +35,7 @@ class LoadPageData extends AbstractFixture implements OrderedFixtureInterface {
             ->setHomepage(true)
             ->setParent($page_root)
             ->setTemplate('home.html.twig')
-            ->setName(null)
+            ->setName('')
             ->setTagline('Welcome to My Wonderful Website!')
             ->setTitle('Home')
             ->setContent('<p>Welcome to SymEdit</p>')

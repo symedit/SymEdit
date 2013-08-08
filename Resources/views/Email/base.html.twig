@@ -1,0 +1,25 @@
+{% block subject %}SymEdit Mailing{% endblock %}
+
+{% block body_text %}
+Blank SymEdit Mailer Message, please extend this block.
+{% endblock %}
+
+{% block body_html %}
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <title>{{ block('subject') }}</title>
+    </head>
+    <body>
+        {% block content %}
+        <table>
+            <tr>
+                <td>
+                    {{ block('body_text') }}
+                </td>
+            </tr>
+        </table>
+        {% endblock %}
+    </body>
+</html>
+{% endblock %}

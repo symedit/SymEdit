@@ -69,8 +69,8 @@ class SliderController extends Controller
             $em->persist($entity);
             $em->flush();
 
-            $this->get('session')->getFlashBag()->add('notice', 'Slider Created'); 
-            
+            $this->get('session')->getFlashBag()->add('notice', 'Slider Created');
+
             return $this->redirect($this->generateUrl('admin_image_slider_edit', array('id' => $entity->getId())));
         }
 
@@ -136,7 +136,7 @@ class SliderController extends Controller
 
         return array(
             'entity'      => $entity,
-            'edit_form'   => $editForm->createView(),
+            'form'        => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
         );
     }

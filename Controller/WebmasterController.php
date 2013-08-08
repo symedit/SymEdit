@@ -3,13 +3,11 @@
 namespace Isometriks\Bundle\SymEditBundle\Controller;
 
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 
 class WebmasterController extends Controller
 {
     /**
      * @Route("/google{request_code}.html", requirements={"request_code"="[a-z0-9]{16}"})
-     * @Template()
      */
     public function googleVerifyAction($request_code)
     {
@@ -23,9 +21,11 @@ class WebmasterController extends Controller
             }
 
             if ($code === $request_code) {
-                return array(
+
+                return $this->render('@SymEdit/Webmaster/googleVerify.html.twig', array(
                     'code' => $code,
-                );
+                ));
+
             }
         }
 
@@ -34,7 +34,6 @@ class WebmasterController extends Controller
 
     /**
      * @Route("/BingSiteAuth.{_format}", defaults={"_format"="xml"})
-     * @Template()
      */
     public function bingVerifyAction()
     {
@@ -43,9 +42,10 @@ class WebmasterController extends Controller
         if ($settings->has('webmaster.bing_verify')) {
             $code = $settings->get('webmaster.bing_verify');
 
-            return array(
+            return $this->render('@SymEdit/Webmaster/bingVerify.html.twig', array(
                 'code' => $code,
-            );
+            ));
+            
         }
 
         throw $this->createNotFoundException();

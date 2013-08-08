@@ -1,0 +1,26 @@
+{% spaceless %}
+<?xml version="1.0"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+        <title>{{ SEO.title|default(Page.title) }}</title>
+        <link>{{ url('blog') }}</link>
+        <atom:link href="{{ url('blog_rss') }}" rel="self" type="application/rss+xml" />
+        <description>{{ SEO.description|default(Page.title) }}</description>
+        <copyright>{{ Settings.company.name }} {{ 'now'|date('Y') }}</copyright>
+        <lastBuildDate>{{ modified|date('r') }}</lastBuildDate>
+        {% for post in Posts %}
+        <item>
+            <title>{{ post.seo.title|default(post.title) }}</title>
+            <link>{{ url('blog_slug_view', {slug:post.slug}) }}</link>
+            <guid>{{ url('blog_slug_view', {slug:post.slug}) }}</guid>
+            <description>{{ post.seo.description|default(post.summary|plain(150)) }}</description>
+            <author>{{ post.author.email }} ({{ post.author.profile.fullname }})</author>
+            {%- if post.categories|length > 0 %}
+            <category>{{ post.categories|join(', ') }}</category>
+            {%- endif %}
+            <pubDate>{{ post.createdAt|date('r') }}</pubDate>
+        </item>
+        {%- endfor %}
+    </channel>
+</rss>
+{% endspaceless %}

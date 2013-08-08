@@ -18,18 +18,21 @@ class Configuration implements ConfigurationInterface
     public function getConfigTreeBuilder()
     {
         $treeBuilder = new TreeBuilder();
-        $rootNode = $treeBuilder->root('isometriks_sym_edit');
+        $rootNode = $treeBuilder->root('isometriks_symedit');
 
         $rootNode
             ->children()
-                ->scalarNode('host_bundle')->end()
                 ->scalarNode('admin_dir')->defaultValue('sym-admin')->end()
-                ->arrayNode('extensions')->prototype('array')->children()
-                    ->scalarNode('route')->end()
-                    ->scalarNode('label')->end()
-                    ->scalarNode('role')->defaultValue('ROLE_ADMIN')->end()
-                    ->scalarNode('icon')->defaultNull()->end()
-            ->end(); 
+                ->arrayNode('extensions')
+                    ->prototype('array')
+                    ->children()
+                        ->scalarNode('route')->end()
+                        ->scalarNode('label')->end()
+                        ->scalarNode('role')->defaultValue('ROLE_ADMIN')->end()
+                        ->scalarNode('icon')->defaultNull()->end()
+                    ->end()
+                ->end()
+            ->end();
 
         return $treeBuilder;
     }

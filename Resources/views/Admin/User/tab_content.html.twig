@@ -2,6 +2,10 @@
     {{ form_widget(form.basic) }}
 </div>
 
+<div id="social" class="tab-pane">
+    {{ form_widget(form.social) }}
+</div>
+
 <div id="image" class="tab-pane">
     <div class="row-fluid">
         <div class="span6">
@@ -9,14 +13,18 @@
         </div>
         {% if entity is defined %}
         <div class="span6">
-            {% if entity.image %}
+            {% if entity.profile.image %}
             <div class="well">
-                <img class="img-polaroid" src="{{ entity.image|constrain({h:200}) }}" />
+                <img class="img-polaroid" src="{{ entity.profile.image|constrain({h:200}) }}" />
             </div>
             {% endif %}
         </div>
         {% endif %}
-    </div>                    
+    </div>
+</div>
+
+<div id="summary" class="tab-pane">
+    {{ form_widget(form.summary) }}
 </div>
 
 <div id="biography" class="tab-pane">

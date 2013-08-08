@@ -1,0 +1,9 @@
+{% extends '@IsometriksSymEdit/Admin/Widget/edit.html.twig' %}
+
+{% block title %}Widget &raquo; New &raquo; {{ entity.strategy.description }}{% endblock %}
+
+{% block action %}{{ path('admin_widget_create', {strategyName: entity.strategy.name}) }}{% endblock %}
+
+{% block form_actions %}
+<button class="btn btn-primary btn-block" type="submit">Create Widget</button>
+{% endblock %}

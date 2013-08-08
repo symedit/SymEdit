@@ -1,8 +1,5 @@
 {% block symedit_template_widget %}
 <div class="layout-holder well">
-    <div class="alert alert-info">
-        {{ 'admin.page.template.help'|trans({}, 'SymEdit') }}
-    </div>
 {% for layout in layouts %}
     <div class="layout-container{% if layout.active %} active{% endif %}" data-template-name="{{ layout.template }}" data-content="{{ layout.description }}" data-title="{{ layout.title }}">
         {% for row in layout.rows %}
@@ -14,10 +11,10 @@
         {% endfor %}
     </div>
 {% endfor %}
-        
-  
+
+
     {{ block('hidden_widget') }}
-        
+
     <br class="cf" />
 </div>
 {% endblock %}

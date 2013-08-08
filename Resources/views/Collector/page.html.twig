@@ -51,23 +51,23 @@
             <td>ID:</td>
             <td>{{ collector.page.id }}</td>
         </tr>
-        
+
         <tr>
             <td>Path:</td>
             <td>{{ collector.page.path }}</td>
         </tr>
-        
+
         <tr>
             <td>Title:</td>
             <td>{{ collector.page.title }}</td>
         </tr>
-        
+
         {% if collector.page.controller %}
         <tr>
             <td>Controller Path:</td>
             <td>{{ collector.page.controllerPath }}</td>
         </tr>
-        
+
         <tr>
             <td>Controller</td>
             <td>{{ collector.page._controller }}</td>
@@ -75,49 +75,9 @@
         {% else %}
         <tr>
             <td>Template:</td>
-            <td>{{ host_bundle }}:Page:{{ collector.page.template }}</td>
+            <td>@SymEdit/Page/{{ collector.page.template }}</td>
         </tr>
         {% endif %}
     </table>
-    
-    {% if collector.chunks|length > 0 %}
-    <h2>Chunks</h2>
-    
-    <table>
-        {% for chunk in collector.chunks %}
-        
-            <tr>
-                <th>Name</td>
-                <th>{{ chunk.name }}</td>
-            </tr>
-            
-            <tr>
-                <td>Strategy</td>
-                <td>{{ chunk.strategy }}</td>
-            </tr>
-            
-            <tr>
-                <td>Options</td>
-                <td>
-                    {% if chunk.options|length > 0 %}
-                        <table>
-                            {% for key,value in chunk.options %}
-                            <tr>
-                                <td>{{ key }}</td>
-                                <td>{{ value }}</td>
-                            </tr>
-                            {% endfor %}
-                        </table>
-                    {% endif %}
-                </td>
-            </tr>
-            
-            <tr>
-                <td colspan="2" bgcolor="#333333"></td>
-            </tr>
-        {% endfor %}
-        </table>
-    {% endif %}
 {% endif %}
 {% endblock %}
-    

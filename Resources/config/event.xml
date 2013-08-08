@@ -5,37 +5,30 @@
            xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
     
     <parameters>
-        <parameter key="isometriks_sym_edit.listener.page_path.class">Isometriks\Bundle\SymEditBundle\EventListener\PagePathListener</parameter>
-        <parameter key="isometriks_sym_edit.listener.controller.class">Isometriks\Bundle\SymEditBundle\EventListener\ControllerListener</parameter>
-        <parameter key="isometriks_sym_edit.listener.breadcrumb.class">Isometriks\Bundle\SymEditBundle\EventListener\BreadcrumbListener</parameter>
-        <parameter key="isometriks_sym_edit.listener.chunk.class">Isometriks\Bundle\SymEditBundle\EventListener\ChunkListener</parameter>
-        <parameter key="isometriks_sym_edit.listener.updatable.class">Isometriks\Bundle\SymEditBundle\EventListener\UpdatableListener</parameter>
+        <parameter key="isometriks_symedit.listener.page_path.class">Isometriks\Bundle\SymEditBundle\EventListener\PagePathListener</parameter>
+        <parameter key="isometriks_symedit.listener.controller.class">Isometriks\Bundle\SymEditBundle\EventListener\ControllerListener</parameter>
+        <parameter key="isometriks_symedit.listener.breadcrumb.class">Isometriks\Bundle\SymEditBundle\EventListener\BreadcrumbListener</parameter>
+        <parameter key="isometriks_symedit.listener.updatable.class">Isometriks\Bundle\SymEditBundle\EventListener\UpdatableListener</parameter>
     </parameters>
     
     <services>
-        <service id="isometriks_sym_edit.listener.controller_listener" class="%isometriks_sym_edit.listener.controller.class%">
-            <argument type="service" id="annotation_reader" />
+        <service id="isometriks_symedit.listener.controller_listener" class="%isometriks_symedit.listener.controller.class%">
             <argument type="service" id="doctrine" />    
             <tag name="kernel.event_listener" event="kernel.controller" method="onKernelController" priority="24" />
         </service>
         
-        <service id="isometriks_sym_edit.listener.breadcrumb" class="%isometriks_sym_edit.listener.breadcrumb.class%">
-            <argument type="service" id="isometriks_sym_edit.breadcrumbs" />
+        <service id="isometriks_symedit.listener.breadcrumb" class="%isometriks_symedit.listener.breadcrumb.class%">
+            <argument type="service" id="isometriks_symedit.breadcrumbs" />
             <tag name="kernel.event_listener" event="kernel.controller" method="onKernelController" priority="12" />
         </service>
         
-        <service id="isometriks_sym_edit.listener.page_path" class="%isometriks_sym_edit.listener.page_path.class%">
+        <service id="isometriks_symedit.listener.page_path" class="%isometriks_symedit.listener.page_path.class%">
             <argument type="service" id="router" />
             <tag name="doctrine.event_listener" event="postPersist" />
             <tag name="doctrine.event_listener" event="postUpdate" />
         </service>
         
-        <service id="isometriks_sym_edit.listener.chunk" class="%isometriks_sym_edit.listener.chunk.class%">
-            <argument type="service" id="service_container" />
-            <tag name="doctrine.event_listener" event="postLoad" />
-        </service>
-        
-        <service id="isometriks_sym_edit.listener.updatable" class="%isometriks_sym_edit.listener.updatable.class%">
+        <service id="isometriks_symedit.listener.updatable" class="%isometriks_symedit.listener.updatable.class%">
             <tag name="doctrine.event_listener" event="prePersist" />
             <tag name="doctrine.event_listener" event="preUpdate" />
         </service>

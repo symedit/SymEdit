@@ -1,0 +1,55 @@
+{% extends '@SymEdit/Admin/tabbed.html.twig' %}
+
+{% block title %}Widgets &raquo; {{ entity.title }} &raquo; Edit{% endblock %}
+
+{% block action %}{{ path('admin_widget_update', { 'id': entity.id }) }}{% endblock %}
+
+{% block tabs %}
+<li class="active">
+    <a href="#basic" data-toggle="tab">
+        <i class="icon-info-sign"></i> Basic
+    </a>
+</li>
+{% if form.config is defined %}
+<li>
+    <a href="#config" data-toggle="tab">
+        <i class="icon-cogs"></i> Configuration
+    </a>
+</li>
+{% endif %}
+{% endblock %}
+
+{% block tab_content %}
+
+{% set text = { attr: { class: 'span8' }} %}
+{% set select = { attr: { class: 'span4' }} %}
+
+<div class="tab-pane active" id="basic">
+    {{ form_row(form.basic.title, text) }}
+    {{ form_row(form.basic.name, select) }}
+    {{ form_row(form.basic.area, select) }}
+    {{ form_row(form.basic.visibility, select) }}
+    {{ form_row(form.basic.assoc, text) }}
+</div>
+
+{% if form.config is defined %}
+<div class="tab-pane" id="config">
+    {{ form_widget(form.config) }}
+</div>
+{% endif %}
+{% endblock %}
+
+{% block form_actions %}
+<button class="btn btn-primary btn-block" type="submit">Save Widget</button>
+<button type="button" data-toggle="form-forward" data-message="Are you sure you want to delete this widget?" data-target="#page-delete" class="btn btn-warning btn-block">Delete Widget</button>
+{% endblock %}
+
+{#{% block extra %}
+
+ =------------------  FINISH THIS -----------------------------------= 
+
+
+<form class="form-hidden" id="widget-delete" action="{{ path('admin_page_delete', { 'id': entity.id }) }}" method="post">
+    {{ form_widget(delete_form) }}
+</form>
+{% endblock %} #}

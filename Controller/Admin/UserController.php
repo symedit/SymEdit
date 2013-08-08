@@ -78,7 +78,7 @@ class UserController extends Controller
     public function createAction(Request $request)
     {
         $user_manager = $this->get('fos_user.user_manager'); 
-        $user         = $user_manager->createUser(); 
+        $user         = $user_manager->createUser(true); 
         $form         = $this->createForm('symedit_user', $user); 
         
         $form->bind($request); 

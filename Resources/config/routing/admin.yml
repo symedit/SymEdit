@@ -23,6 +23,10 @@ symedit_admin_post_controller:
     resource: "@IsometriksSymEditBundle/Controller/Admin/PostController.php"
     type: annotation
     
+symedit_admin_widget_controller:
+    resource: "@IsometriksSymEditBundle/Controller/Admin/WidgetController.php"
+    type: annotation
+    
 symedit_admin_setting_controller:
     resource: "@IsometriksSymEditBundle/Controller/Admin/SettingController.php"
     type: annotation

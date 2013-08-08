@@ -1,10 +1,10 @@
-{% extends 'IsometriksSymEditBundle::base.html.twig' %}
+{% extends '@SymEdit/Admin/base.html.twig' %}
 
 {% block title %}Dashboard{% endblock %}
 
 {% block content %}
 
-<h2>Welcome, {{ app.user.firstname }}</h2>
+<h2>Welcome, {{ app.user.profile.firstname }}</h2>
   
 <div class="row-fluid">
     <div class="span4">
@@ -40,7 +40,7 @@
     <div class="span4">
         <div class="widget">
             <div class="widget-heading">
-                <span class="title">{{ app.user.firstname }}'s Actions</span>
+                <span class="title">{{ app.user.profile.firstname }}'s Actions</span>
             </div>
             <div class="widget-content">
                 <ul>

@@ -3,73 +3,42 @@
 namespace Isometriks\Bundle\SymEditBundle\EventListener;
 
 use Symfony\Component\HttpKernel\Event\FilterControllerEvent;
-use Doctrine\Common\Annotations\Reader;
 use Doctrine\Bundle\DoctrineBundle\Registry;
-use Symfony\Component\HttpKernel\HttpKernel;
 
 /**
- * This listener checks requests for controllers. If it finds the @PageController annotation, 
- * and finds a corresponding Page, then it will inject it into the controller for you. 
+ * Checks the request for a _page_id, and then adds the actual Page 
+ * to the Request instead. 
  */
 class ControllerListener
 {
-    private $reader;
     private $doctrine;
-    private $annotationClass = 'Isometriks\Bundle\SymEditBundle\Annotation\PageController';
-    private $controllerClass = 'Isometriks\Bundle\SymEditBundle\Controller\PageController'; 
 
-    public function __construct(Reader $reader, Registry $doctrine)
+    public function __construct(Registry $doctrine)
     {
-        $this->reader = $reader;
         $this->doctrine = $doctrine;
     }
 
     public function onKernelController(FilterControllerEvent $event)
-    {
-        $controller = $event->getController();
-
-        if (!is_array($controller) || $event->getRequestType() !== HttpKernel::MASTER_REQUEST) {
-            return;
-        }
-
-        $class = new \ReflectionClass($controller[0]);
+    { 
         $request = $event->getRequest(); 
-        $repo = $this->doctrine->getManager()->getRepository('IsometriksSymEditBundle:Page'); 
-                
-        /**
-         * The page ID is in the attributes from routing
-         */
-        if($class->getName() === $this->controllerClass){
-            
-            if(!$request->attributes->has('id')){
-                return; 
-            }
-            
-            $page = $repo->find($request->attributes->get('id')); 
-            
-        } elseif ($annot = $this->reader->getClassAnnotation($class, $this->annotationClass)) {
-            
-            $page = $repo->findOneBy(array(
-                'pageControllerPath' => $annot->getName(),
-            ));
-            
-            if(!$page){
-                return; 
-            }
-            
-        /**
-         * None of these cases, just return there is no page to add. 
-         */
-        } else {
-            
-            return; 
-        }
+        $attributes = $request->attributes; 
         
         /**
-         * Add the page we found to the Request
+         * Check if any request has a _page_id that needs to be converted
          */
-        $request->attributes->add(array(
-            '_page' => $page,
-        ));        
+        if($attributes->has('_page_id')){  
+            $id = $attributes->get('_page_id');             
+            $attributes->remove('_page_id');  
+            
+            if(empty($id)){
+                return;
+            }            
+            
+            $page = $this->doctrine->getManager()->find('IsometriksSymEditBundle:Page', $id); 
+            
+            $attributes->add(array(
+                '_page' => $page, 
+            )); 
+        }
     }
 }

@@ -2,9 +2,9 @@
 
 namespace Isometriks\Bundle\SymEditBundle\Model;
 
-use Symfony\Component\Validator\ExecutionContext;
+use Symfony\Component\Validator\ExecutionContextInterface;
 
-interface PageInterface extends SeoInterface, UpdatableInterface
+interface PageInterface extends SeoInterface
 {
     /**
      * @return mixed Unique ID for Page
@@ -62,6 +62,22 @@ interface PageInterface extends SeoInterface, UpdatableInterface
     public function getSummary();
 
     /**
+     * @return \DateTime $createdAt
+     */
+    public function getCreatedAt(); 
+    
+    /**
+     * @param \DateTime $time
+     * @return PageInterface
+     */
+    public function setUpdatedAt($time); 
+    
+    /**
+     * @return \DateTime $updatedAt
+     */
+    public function getUpdatedAt(); 
+    
+    /**
      * @param string $title
      */
     public function setTitle($title);
@@ -86,6 +102,11 @@ interface PageInterface extends SeoInterface, UpdatableInterface
      */
     public function setPageOrder($pageOrder);
 
+    /**
+     * @return integer Page's level
+     */
+    public function getLevel(); 
+    
     /**
      * @return integer Page order
      */
@@ -125,8 +146,19 @@ interface PageInterface extends SeoInterface, UpdatableInterface
 
     public function getPageControllerPath();
 
+    /**
+     * Set Page's path
+     * 
+     * @param string $path
+     * @return PageInterface $page
+     */
     public function setPath($path);
-
+    
+    /**
+     * Gets the page's path
+     * 
+     * @return string $path
+     */
     public function getPath();
 
     public function setParent(PageInterface $parent = null);
@@ -147,25 +179,9 @@ interface PageInterface extends SeoInterface, UpdatableInterface
 
     public function getActive();
 
-    public function addChunk(ChunkInterface $chunks);
-
-    public function removeChunk(ChunkInterface $chunks);
-
-    public function getChunks();
-
-    public function getChunk($name);
-
     public function getVisibleChildren();
-
-    public function getBreadcrumbs();
-
-    public function getLevel();
-
-    public function fixPath();
-
-    public function setUpdated();
 
     public function getRoute();
 
-    public function isNameValid(ExecutionContext $context);
+    public function isNameValid(ExecutionContextInterface $context);
 }

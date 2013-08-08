@@ -1,5 +1,6 @@
-{% extends host_bundle ~ ':Page:base.html.twig' %}
+{% extends '@SymEdit/Page/base.html.twig' %}
 
+{% block title %}Not Found{% endblock %}
 {% block url %}{{ app.request.uri }}{% endblock %}
 
 {% block content %}

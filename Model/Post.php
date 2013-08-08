@@ -56,6 +56,11 @@ abstract class Post implements PostInterface
     protected $updatedAt; 
     
     /**
+     * @var \DateTime $publishedAt
+     */
+    protected $publishedAt; 
+    
+    /**
      * @var ArrayCollection $categories
      */
     protected $categories; 
@@ -97,7 +102,6 @@ abstract class Post implements PostInterface
     public function setTitle($title)
     {
         $this->title = $title;
-        $this->createSlug();
 
         return $this;
     }
@@ -190,7 +194,11 @@ abstract class Post implements PostInterface
     public function setImage(\Isometriks\Bundle\SymEditBundle\Entity\Image $image = null)
     {
         $this->image = $image; 
-        $this->setUpdated(); 
+        
+        if($this->image !== null){
+            $this->setUpdatedAt(new \DateTime()); 
+            $image->setNameCallback(array($this, 'getSlug')); 
+        }
         
         return $this;
     }
@@ -203,16 +211,6 @@ abstract class Post implements PostInterface
     public function getImage()
     {
         return $this->image;
-    }
-
-    protected function createSlug()
-    {
-        if ($this->getSlug() === null) {
-            $slug = Util::slugify($this->getTitle(), 50);
-            $this->setSlug($slug);
-        }
-        
-        return $this->getSlug(); 
     }
 
     /**
@@ -260,17 +258,6 @@ abstract class Post implements PostInterface
     public function getUpdatedAt()
     {
         return $this->updatedAt;
-    }
-
-    public function setUpdated()
-    {
-        $this->setUpdatedAt(new \DateTime()); 
-        
-        if($image = $this->getImage()){
-            if($image->hasFile()){
-                $image->setName($this->createSlug()); 
-            }
-        }
     }
 
     /**

@@ -37,7 +37,7 @@ class PageLoader extends BaseLoader
         foreach ($pages as $page) {
 
             $defaults = array(
-                'id' => $page->getId(),
+                '_page_id' => $page->getId(),
                 '_controller' => 'IsometriksSymEditBundle:Page:show',
             );
 

@@ -24,7 +24,6 @@ class TemplateType extends AbstractType
 
     public function buildView(FormView $view, FormInterface $form, array $options)
     {
-        $bundle = $this->finder->getBundle();
         $templates = $this->finder->getTemplates();
         $layouts = array();
 
@@ -37,7 +36,7 @@ class TemplateType extends AbstractType
 
         foreach ($templates as $template) {
             try {
-                $path = $this->kernel->locateResource(sprintf('@%s/Resources/layout/%s.yml', $bundle, $template->getFilename()));
+                $path = $this->kernel->locateResource(sprintf('@IsometriksSymEditBundle/Resources/layout/%s.yml', $template->getFilename()));
                 $layouts[$template->getFilename()] = new \SplFileInfo($path);
             } catch (\InvalidArgumentException $e) {
                 $layouts[$template->getFilename()] = null;

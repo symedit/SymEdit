@@ -1,4 +1,4 @@
-{% extends 'IsometriksSymEditBundle::base.html.twig' %}
+{% extends '@SymEdit/Admin/base.html.twig' %}
 
 {% block title %}Images &raquo; List{% endblock %}
 
@@ -7,16 +7,10 @@
 <ul class="thumbnails" id="images">
   {% for entity in entities %}
   <li class="span2">
-      <div class="widget">
-          <div class="widget-heading">
-              <span class="title">{{ entity.name }}</span>
-          </div>
-          <div class="widget-content inverse nopad">
-              <a href="{{ path('admin_image_edit', {id:entity.id}) }}">
-                  <img src="{{ entity|constrain({ w:234 }) }}">
-              </a>
-          </div>
-      </div>
+      <a href="{{ path('admin_image_edit', {id:entity.id}) }}">
+          <img src="{{ entity|constrain({ w:234 }) }}">
+      </a>
+      <div class="title">{{ entity.name }}</div>
   </li>
   {% endfor %}
 </ul>
@@ -33,12 +27,12 @@
 <script type="text/javascript">
     $(window).load(function(){
         $('#images').masonry({
-            itemSelector: 'li', 
-            isResizable: true, 
+            itemSelector: 'li',
+            isResizable: true,
             columnWidth: function( containerWidth ) {
                 return containerWidth / 6;
             }
         });
-    }); 
+    });
 </script>
 {% endblock %}

@@ -21,10 +21,10 @@ company:
                 label: Contact Email
         phone:
             default: (123)-123-1234
-        fax: 
+        fax:
             options:
                 required: false
-        
+
 social:
     label: Social Media
     default_options:
@@ -37,33 +37,33 @@ social:
             options:
                 attr:
                     placeholder: "http://facebook.com"
-            
+
         twitter:
             type: url
             options:
                 attr:
                     placeholder: "http://twitter.com"
-            
+
         youtube:
             type: url
             options:
                 attr:
                     placeholder: "http://youtube.com"
-            
-        google-plus:
+
+        google_plus:
             type: url
             options:
                 label: 'Google+'
                 attr:
                     placeholder: "http://plus.google.com"
-                    
+
         linkedin:
             type: url
             options:
                 label: LinkedIn
                 attr:
-                    placeholder: "http://linkedin.com"             
-            
+                    placeholder: "http://linkedin.com"
+
 webmaster:
     label: Webmaster
     role: ROLE_ADMIN_WEBMASTER
@@ -75,25 +75,25 @@ webmaster:
         google_analytics_enabled:
             type: choice
             default: true
-            options: 
+            options:
                 required: true
                 choices:
                     true: Enabled
                     false: Disabled
-                label: Enable Google Analytics              
+                label: Enable Google Analytics
                 attr:
                     class: ~
         google_analytics:
             options:
                 label: Google Analytics Code
                 attr:
-                    placeholder: UA-12345678                
+                    placeholder: UA-12345678
         google_verify:
             options:
                 label: Google Verification
-                attr: 
+                attr:
                     placeholder: google123456789012
-        bing_verify: 
+        bing_verify:
             options:
                 label: Bing Verification
         robots:
@@ -106,7 +106,7 @@ webmaster:
                     allow: Allow All
                 attr:
                     class: span3
-                    
+
 blog:
     label: Blog
     role: ROLE_ADMIN_BLOG
@@ -114,7 +114,7 @@ blog:
         max_posts:
             type: integer
             default: 3
-        
+
 advanced:
     label: Advanced
     role: ROLE_SUPER_ADMIN
@@ -126,4 +126,3 @@ advanced:
                 choices:
                     none: No Cache
                     cache: Cache
-        

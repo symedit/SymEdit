@@ -10,14 +10,10 @@ class TwigExceptionCompilerPass implements CompilerPassInterface
     public function process(ContainerBuilder $container)
     {
         // Get the exception class
-        $controller = $container->getParameter('isometriks_sym_edit.twig.controller.exception.class'); 
-        
-        // Get Host Bundle
-        $host_bundle = $container->getParameter('isometriks_sym_edit.host_bundle'); 
-        
+        $controller = $container->getParameter('isometriks_symedit.twig.controller.exception.class'); 
+
         // Change the definition to use our class
-        $definition = $container->getDefinition('twig.controller.exception'); 
-        $definition->setClass($controller);  
-        $definition->addArgument($host_bundle); 
+        $definition = $container->getDefinition('twig.controller.exception');
+        $definition->setClass($controller);
     }
 }

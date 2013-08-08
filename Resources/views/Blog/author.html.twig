@@ -1,0 +1,18 @@
+{% extends '@SymEdit/Blog/base.html.twig' %}
+
+{% block title %}{% if Author %}Posts by {{ Author.profile.fullname }}{% else %}Author Not Found{% endif %}{% endblock %}
+{% block description %}Blogs posts by {{ Author.profile.fullname }}{% endblock %}
+
+{% block blog_content %}
+{% if Author %}
+    <h3>{{ Author.profile.fullname }}</h3>
+    
+    <ul>
+    {% for Post in Posts %}
+        <li><a href="{{ path('blog_slug_view', {slug:Post.slug}) }}">{{ Post.title }}</a></li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <h3>Author Not Found</h3>
+{% endif %}
+{% endblock %}

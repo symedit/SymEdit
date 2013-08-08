@@ -1,0 +1,6 @@
+{% set template = is_granted('ROLE_ADMIN') ? 'Admin/tabbed.html.twig' : 'Page/base.html.twig' %}
+{% extends '@SymEdit/' ~ template %}
+
+{% block tab_content %}
+  {{ block('fos_user_content') }}
+{% endblock %}

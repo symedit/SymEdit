@@ -2,28 +2,27 @@
 
 namespace Isometriks\Bundle\SymEditBundle\Model;
 
-use Isometriks\Bundle\SymEditBundle\Entity\Image; 
-
 interface UserInterface
 {
-    public function getId(); 
+    /**
+     * @return integer Get User ID
+     */
+    public function getId();
 
-    public function getFirstName(); 
-    public function setFirstName($firstName); 
-    
-    public function getLastName();
-    public function setLastName($lastName); 
+    /**
+     * @return ProfileInterface Get User's Profile
+     */
+    public function getProfile();
 
-    public function getFullname();
-    
-    public function getBiography(); 
-    public function setBiography($biography); 
-    
-    public function getGplus(); 
-    public function setGplus($gplus); 
-    
-    public function getImage(); 
-    public function setImage(Image $image); 
-    
-    public function setUpdated(); 
+    /**
+     * Set user's profile
+     *
+     * @param \Isometriks\Bundle\SymEditBundle\Model\ProfileInterface $profile
+     * @return UserInterface
+     */
+    public function setProfile(ProfileInterface $profile);
+
+    public function getAdmin();
+
+    public function setAdmin($admin);
 }

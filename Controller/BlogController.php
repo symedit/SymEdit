@@ -5,7 +5,7 @@ namespace Isometriks\Bundle\SymEditBundle\Controller;
 use Symfony\Component\Routing\Annotation\Route;
 use Isometriks\Bundle\SymEditBundle\Annotation\PageController as Bind;
 use Isometriks\Bundle\SymEditBundle\Entity\Post;
-use Isometriks\Bundle\SymEditBundle\Model\BreadcrumbsInterface; 
+use Isometriks\Bundle\SymEditBundle\Model\BreadcrumbsInterface;
 use Isometriks\Bundle\SitemapBundle\Annotation\Sitemap;
 use Doctrine\ORM\Tools\Pagination\Paginator;
 use Symfony\Component\HttpFoundation\Request;
@@ -23,43 +23,25 @@ class BlogController extends Controller
     public function indexAction(Request $request, $_format)
     {
         $em = $this->getDoctrine()->getManager();
+        $repo = $em->getRepository('IsometriksSymEditBundle:Post');
 
-        $modified = $em->createQuery('SELECT MAX(p.updatedAt) as modified FROM IsometriksSymEditBundle:Post p')
+        $modified = $em->createQuery('SELECT MAX(p.updatedAt) as modified FROM IsometriksSymEditBundle:Post p ORDER BY p.updatedAt DESC')
+                       ->setMaxResults($this->getMaxPosts())
                        ->getSingleScalarResult();
-        
-        $modifiedDate = new \DateTime($modified); 
-        $response = $this->createResponse($modifiedDate); 
+
+        $modifiedDate = new \DateTime($modified);
+        $response = $this->createResponse($modifiedDate);
 
         if ($response->isNotModified($request)) {
             return $response;
         }
 
-        $template = $_format === 'xml' ? 'feed.xml.twig' : 'index.html.twig'; 
-        
-        return $this->render($this->getHostTemplate('Blog', $template), array(
-            'Posts' => $this->getRecentPosts(), 
-            'modified' => $modifiedDate, 
+        $template = $_format === 'xml' ? 'feed.xml.twig' : 'index.html.twig';
+
+        return $this->render(sprintf('@SymEdit/Blog/%s', $template), array(
+            'Posts' => $repo->getRecent($this->getMaxPosts()),
+            'modified' => $modifiedDate,
         ), $response);
-    }
-    
-    private function getRecentPosts()
-    {
-        $em = $this->getDoctrine()->getManager();
-        $query = $em->createQuery('SELECT p FROM IsometriksSymEditBundle:Post p ORDER BY p.createdAt DESC');
-        
-        return $this->getPaginator($query);
-    }
-
-    /**
-     * @deprecated since version 2.3
-     */
-    public function recentAction()
-    {
-        // TODO Cache this for ESI
-
-        return $this->render($this->getHostTemplate('Blog', 'list.html.twig'), array(
-            'Posts' => $this->getRecentPosts(),
-        ));
     }
 
     /**
@@ -79,17 +61,16 @@ class BlogController extends Controller
 
         if ($response->isNotModified($request)) {
             return $response;
-        } 
-        
+        }
+
         /**
          * Add Breadcrumbs
          */
-        $breadcrumbs = $this->getBreadcrumbs(); 
-        $breadcrumbs->push($post->getTitle(), 'blog_slug_view', array(
-            'slug' => $post->getSlug(),  
+        $this->addBreadcrumb($post->getTitle(), 'blog_slug_view', array(
+            'slug' => $post->getSlug(),
         ));
-        
-        return $this->render($this->getHostTemplate('Blog', 'single.html.twig'), array(
+
+        return $this->render('@SymEdit/Blog/single.html.twig', array(
             'Post' => $post,
             'SEO' => $post->getSeo(),
         ), $response);
@@ -115,7 +96,7 @@ class BlogController extends Controller
             throw $this->createNotFoundException(sprintf('Post with slug "%s" not found.', $slug));
         }
 
-        return $this->render($this->getHostTemplate('Blog', 'single.html.twig'), array(
+        return $this->render('@SymEdit/Blog/single.html.twig', array(
             'Post' => $post,
             'SEO' => $post->getSeo(),
         ));
@@ -124,7 +105,7 @@ class BlogController extends Controller
     /**
      * @Route("/category/{slug}/feed.xml", defaults={"page"="1", "_format"="xml"}, name="blog_category_rss")
      * @Route("/category/{slug}/{page}", defaults={"page"="1", "_format"="html"}, requirements={"slug"=".*?", "page"="\d+"}, name="blog_category_view")
-     * 
+     *
      * @Sitemap(params={"slug"="getSlug"}, entity="IsometriksSymEditBundle:Category")
      */
     public function categoryViewAction($slug, Request $request, $_format, $page = 1)
@@ -145,11 +126,13 @@ class BlogController extends Controller
                 ->setParameter('catId', $category->getId())
                 ->getQuery();
 
-        $posts = $this->getPaginator($query, $page);
-        $latest = current($posts->getIterator());
+        $paginator = $this->getPaginator($query, $page, 'blog_category_view');
+        $paginator->setParam('slug', $slug);
 
-        $modified = !$latest ? new \DateTime() : $latest->getUpdatedAt(); 
-        $response = $this->createResponse($modified); 
+        $latest = $paginator->current();
+
+        $modified = !$latest ? new \DateTime() : $latest->getUpdatedAt();
+        $response = $this->createResponse($modified);
 
         /**
          * If not modified return 304
@@ -157,23 +140,21 @@ class BlogController extends Controller
         if ($response->isNotModified($request)) {
             return $response;
         }
-        
+
         /**
          * Add breadcrumbs
          */
-        $breadcrumbs = $this->getBreadcrumbs(); 
-        $breadcrumbs->push($category->getTitle(), 'blog_category_view', array(
-            'slug' => $category->getSlug(), 
-        )); 
+        $this->addBreadcrumb($category->getTitle(), 'blog_category_view', array(
+            'slug' => $category->getSlug(),
+        ));
 
-        $template = $_format === 'xml' ? 'feed.xml.twig' : 'category.html.twig'; 
-        
-        return $this->render($this->getHostTemplate('Blog', $template), array(
+        $template = $_format === 'xml' ? 'feed.xml.twig' : 'category.html.twig';
+
+        return $this->render(sprintf('@SymEdit/Blog/%s', $template), array(
             'Category' => $category,
             'SEO' => $category->getSeo(),
-            'Posts' => $posts,
-            'modified' => $modified, 
-            'Pages' => $this->getPages($posts, $page),
+            'Posts' => $paginator,
+            'modified' => $modified,
         ), $response);
     }
 
@@ -193,20 +174,37 @@ class BlogController extends Controller
                 ->join('p.author', 'a')
                 ->where('a.username = :username')
                 ->setParameter('username', $username)
-                ->getQuery();
+                ->getQuery()
+                ->setMaxResults($this->getMaxPosts());
 
         /**
-         * Add Breadcrumbs 
+         * Add Breadcrumbs
          */
-        $breadcrumbs = $this->getBreadcrumbs(); 
-        $breadcrumbs->push($user->getFullname(), 'blog_author_view', array(
-            'username' => $user->getUsername(), 
-        )); 
-        
-        return $this->render($this->getHostTemplate('Blog', 'author.html.twig'), array(
+        $this->addBreadcrumb($user->getProfile()->getFullname(), 'blog_author_view', array(
+            'username' => $user->getUsername(),
+        ));
+
+        return $this->render('@SymEdit/Blog/author.html.twig', array(
             'Posts' => $query->getResult(),
             'Author' => $user,
         ));
+    }
+
+    /**
+     * @return Knp\Component\Pager\Pagination\PaginationInterface
+     */
+    private function getPaginator($query, $page = 1, $route = null)
+    {
+        $paginator = $this->get('knp_paginator');
+        $pagination = $paginator->paginate(
+            $query, $page, $this->getMaxPosts()
+        );
+
+        if($route !== null) {
+            $pagination->setUsedRoute($route);
+        }
+
+        return $pagination;
     }
 
     private function getMaxPosts()
@@ -219,31 +217,5 @@ class BlogController extends Controller
         }
 
         return $max;
-    }
-
-    /**
-     * Returns Paginator from query
-     * @param type $query
-     * @param int $page
-     * @return \Doctrine\ORM\Tools\Pagination\Paginator
-     */
-    private function getPaginator($query, $page = 1)
-    {
-        $maxPosts = $this->getMaxPosts();
-        $page = max(0, $page - 1);
-        $start = $page * $maxPosts;
-
-        $query->setFirstResult($start)
-              ->setMaxResults($maxPosts);
-
-        return new Paginator($query, true);
-    }
-
-    private function getPages(Paginator $paginator, $current = 1)
-    {
-        return array(
-            'num' => ceil(count($paginator) / $this->getMaxPosts()),
-            'cur' => $current,
-        );
     }
 }

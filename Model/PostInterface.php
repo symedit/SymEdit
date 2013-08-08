@@ -36,6 +36,5 @@ interface PostInterface extends UpdatableInterface, SeoInterface
     public function removeCategory(CategoryInterface $category); 
     public function getCategories(); 
     
-    public function setUpdated(); 
     public function isPublished(); 
 }

@@ -12,6 +12,8 @@ security:
             form_login:
                 provider: fos_userbundle
                 csrf_provider: form.csrf_provider
+                success_handler: isometriks_symedit.security_handler
+                use_forward: false
             logout:       true
             anonymous:    true
             remember_me:  
@@ -21,9 +23,19 @@ security:
         - { path: ^/login$, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/register, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/resetting, role: IS_AUTHENTICATED_ANONYMOUSLY }
-        - { path: ^%isometriks_sym_edit.admin_dir%, role: ROLE_ADMIN }
-        - { path: ^/_editable, roles: [ROLE_ADMIN, ROLE_ADMIN_EDITABLE] }
+        - { path: ^%isometriks_symedit.admin_dir%, role: ROLE_ADMIN }
 
     role_hierarchy:
         ROLE_ADMIN:       ROLE_USER
-        ROLE_SUPER_ADMIN: [ROLE_ADMIN, ROLE_SUPER_EXTEND, ROLE_ADMIN_BLOG, ROLE_ADMIN_IMAGE, ROLE_ADMIN_SETTING, ROLE_ADMIN_PAGE, ROLE_ADMIN_USER, ROLE_ADMIN_WEBMASTER, ROLE_ADMIN_EDITABLE, ROLE_ADMIN_STYLIZER]
+        ROLE_SUPER_ADMIN: 
+            - ROLE_ADMIN
+            - ROLE_SUPER_EXTEND
+            - ROLE_ADMIN_BLOG
+            - ROLE_ADMIN_WIDGET
+            - ROLE_ADMIN_IMAGE
+            - ROLE_ADMIN_SETTING
+            - ROLE_ADMIN_PAGE
+            - ROLE_ADMIN_USER
+            - ROLE_ADMIN_WEBMASTER
+            - ROLE_ADMIN_EDITABLE
+            - ROLE_ADMIN_STYLIZER

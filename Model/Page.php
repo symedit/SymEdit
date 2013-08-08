@@ -3,9 +3,9 @@
 namespace Isometriks\Bundle\SymEditBundle\Model; 
 
 use Doctrine\Common\Collections\ArrayCollection; 
-use Symfony\Component\Validator\ExecutionContext;
+use Symfony\Component\Validator\ExecutionContextInterface;
 
-abstract class Page implements PageInterface
+class Page implements PageInterface
 {
     /**
      * @var integer $id
@@ -83,6 +83,11 @@ abstract class Page implements PageInterface
     protected $pageControllerPath;
 
     /**
+     * @var \DateTime $createdAt
+     */
+    protected $createdAt; 
+    
+    /**
      * @var \DateTime $updatedAt
      */
     protected $updatedAt;
@@ -98,9 +103,19 @@ abstract class Page implements PageInterface
     protected $children;
     
     /**
-     * @var ArrayCollection Chunks associated to this page
+     * @var integer $level
      */
-    protected $chunks; 
+    protected $level; 
+    
+    /**
+     * @var integer $lft
+     */
+    protected $lft; 
+    
+    /**
+     * @var integer $rgt
+     */
+    protected $rgt; 
 
     /**
      * @var string Template Name
@@ -438,7 +453,17 @@ abstract class Page implements PageInterface
     {
         return $this->pageControllerPath;
     }
-
+    
+    /**
+     * Gets time created 
+     * 
+     * @return \DateTime $createdAt
+     */
+    public function getCreatedAt()
+    {
+        return $this->createdAt; 
+    }
+    
     /**
      * Set updated at
      *
@@ -462,19 +487,13 @@ abstract class Page implements PageInterface
         return $this->updatedAt;
     }
 
-    /**
-     * Set path
-     *
-     * @param string $path
-     * @return Page
-     */
     public function setPath($path)
     {
         $this->path = $path;
-
+        
         return $this;
     }
-
+    
     /**
      * Get path
      *
@@ -482,10 +501,6 @@ abstract class Page implements PageInterface
      */
     public function getPath()
     {
-        if($this->getRoot()){
-            return ''; 
-        }
-        
         $path = $this->path; 
         
         if($this->getPageController()){
@@ -603,118 +618,23 @@ abstract class Page implements PageInterface
         return $this->getChildren()->filter(function($en) {
             return $en->getDisplay();
         });
-    }
-    
-    public function getBreadcrumbs()
-    {
-        if($this->getRoot() || $this->getHomepage() || $this->getParent() === null){
-            return array(); 
-        } else {
-            return array_merge($this->getParent()->getBreadcrumbs(), array($this)); 
-        }
-    }
-   
+    }   
     
     public function getLevel()
     {
-        if($this->getRoot()){
-            return 0; 
-        } else {
-            return $this->getParent()->getLevel() + 1; 
-        }
+        return $this->level; 
     }
 
-    /**
-     * PrePersist
-     */
-    public function fixPath()
-    {
-        if ($this->getRoot()) {
-            $this->setPath('');
-        } else {
-            $parent_path = $this->getParent() ? $this->getParent()->getPath() : ''; 
-            $path = rtrim($parent_path, '/') . '/' . $this->getName(); 
-            
-            $this->setPath($path); 
-        }
-    }
-
-    public function setUpdated()
-    {
-        // Set Updated at to now
-        $this->setUpdatedAt(new \DateTime());
-
-        // Set the path to be parent path/page name
-        $this->fixPath();
-
-        // In case this page's path has changed, let's fix the children too
-        foreach ($this->getChildren() as $child) {
-            $child->setUpdated();
-        }
-    }
-
-    public function isNameValid(ExecutionContext $context)
+    public function isNameValid(ExecutionContextInterface $context)
     {
         if ($this->getHomepage()) {
             if ($this->getName() != '') {
-                $context->addViolationAtSubPath('name', 'The "name" field for the Homepage must be blank');
+                $context->addViolationAt('name', 'The "name" field for the Homepage must be blank');
             }
         } else {
             if ($this->getName() == '') {
-                $context->addViolationAtSubPath('name', 'The "name" field must not be blank');
+                $context->addViolationAt('name', 'The "name" field must not be blank');
             }
         }
-    }
-
-    /**
-     * Add chunks
-     *
-     * @param \Isometriks\Bundle\SymEditBundle\Model\ChunkInterface $chunks
-     * @return Page
-     */
-    public function addChunk(ChunkInterface $chunks)
-    {
-        $chunks->setPage($this); 
-        $this->chunks[] = $chunks;
-    
-        return $this;
-    }
-
-    /**
-     * Remove chunks
-     *
-     * @param \Isometriks\Bundle\SymEditBundle\Model\ChunkInterface $chunks
-     */
-    public function removeChunk(ChunkInterface $chunks)
-    {
-        $this->chunks->removeElement($chunks);
-    }
-
-    /**
-     * Get chunks
-     *
-     * @return \Doctrine\Common\Collections\Collection 
-     */
-    public function getChunks()
-    {
-        return $this->chunks;
-    }
-    
-    /**
-     * Get a chunk by its name
-     * 
-     * @param string $name
-     * @return \Isometriks\Bundle\SymEditBundle\Model\ChunkInterface $chunk
-     * @throws \Exception When chunk cannot be found by name
-     */
-    public function getChunk($name)
-    {
-        foreach($this->getChunks() as $chunk){
-            if($chunk->getName() === $name){
-                return $chunk; 
-            }
-        }
-        
-        return null;
-    }    
+    } 
 }
