@@ -82,12 +82,24 @@ class LoadWidgetData extends AbstractFixture implements OrderedFixtureInterface,
             ->setVisibility(Widget::INCLUDE_ONLY)
             ->addAssoc('/');
 
+        // Google Map for Contact Page
+        $contact_page = $this->getReference('page-contact');
+
+        $map = $this->getManager()->createWidget('google_map');
+        $map
+            ->setName('google_map_featured')
+            ->setVisibility(Widget::INCLUDE_ONLY)
+            ->addAssoc($contact_page->getId());
+
+
         $featured->addWidget($slider);
+        $featured->addWidget($map);
 
         $this->getManager()->saveWidgetArea($featured);
 
         $this->addReference('widgetarea-featured', $featured);
         $this->addReference('widget-homepage_slider', $slider);
+        $this->addReference('widget-google_map_featured', $map);
 
 
         /**
@@ -101,7 +113,6 @@ class LoadWidgetData extends AbstractFixture implements OrderedFixtureInterface,
         $this->getManager()->saveWidgetArea($supplemental);
 
         $this->addReference('widgetarea-supplemental', $supplemental);
-
 
         /**
          * Add Footer Area
