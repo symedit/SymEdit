@@ -24,6 +24,7 @@ class TeamController extends Controller
                     ->from($userClass, 'u')
                     ->join('u.profile', 'p')
                     ->where('u.admin = true')
+                    ->orderBy('p.lastName, p.firstName')
                     ->getQuery();
 
         $result = $query->getResult();
