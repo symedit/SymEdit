@@ -84,6 +84,7 @@ class UserProfileType extends BaseType
                     'required' => false,
                     'attr' => array(
                         'class' => 'wysiwyg-editor',
+                        'style' => 'min-height: 300px',
                     ),
                     'widget_control_group' => false,
                     'property_path' => 'profile.summary',
@@ -92,6 +93,7 @@ class UserProfileType extends BaseType
                     'required' => false,
                     'attr' => array(
                         'class' => 'wysiwyg-editor',
+                        'style' => 'min-height: 500px',
                     ),
                     'widget_control_group' => false,
                     'property_path' => 'profile.biography',

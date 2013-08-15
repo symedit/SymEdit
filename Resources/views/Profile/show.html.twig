@@ -1,17 +1,16 @@
-{% extends '@SymEdit/Admin/form.html.twig' %}
+{% extends 'FOSUserBundle::layout.html.twig' %}
 
-{% block title %}Profile &raquo; {{ user.username }}{% endblock %}
+{% block title %}My Profile{% endblock %}
 
 {% block content %}
-<h2>
-    {{ user.profile.fullname }}
-    <small>({{ user.username }})</small>
-</h2>
-
-<table class="table table-bordered">
+<table class="table">
     <tr>
         <th>Username:</th>
         <td>{{ user.username }}</td>
+    </tr>
+    <tr>
+        <th>Name:</th>
+        <td>{{ user.profile.fullname }}</td>
     </tr>
     <tr>
         <th>Email:</th>
