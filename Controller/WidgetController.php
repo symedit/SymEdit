@@ -28,6 +28,7 @@ class WidgetController extends Controller
 
             $widgets[] = array(
                 'id' => $widget->getId(),
+                'name' => $widget->getName(),
                 'title' => $widget->getTitle(),
                 'content' => $widget->getStrategy()->execute($widget),
             );
