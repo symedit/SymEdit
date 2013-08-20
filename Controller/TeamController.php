@@ -3,6 +3,7 @@
 namespace Isometriks\Bundle\SymEditBundle\Controller;
 
 use Isometriks\Bundle\SymEditBundle\Annotation\PageController as Bind;
+use Isometriks\Bundle\SitemapBundle\Annotation\Sitemap;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 
 /**
@@ -12,6 +13,7 @@ class TeamController extends Controller
 {
     /**
      * @Route("/", name="team")
+     * @Sitemap()
      */
     public function indexAction()
     {
@@ -53,6 +55,11 @@ class TeamController extends Controller
         if(!$profile) {
             throw $this->createNotFoundException(sprintf('Could not find user with slug "%s".', $slug));
         }
+
+        /**
+         * Add Breadcrumbs
+         */
+        $this->addBreadcrumb($profile->getFullname());
 
         return $this->render('@SymEdit/Team/view.html.twig', array(
             'user' => $profile->getUser(),

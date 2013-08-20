@@ -71,8 +71,17 @@ class Controller extends BaseController
      * @param string $path
      * @param array $params
      */
-    public function addBreadcrumb($title, $path, array $params = array())
+    public function addBreadcrumb($title, $path = null, array $params = array())
     {
+        /**
+         * If no path supplied, use the matched one
+         */
+        if($path === null || $params === null) {
+            $request = $this->getRequest();
+            $path = $request->get('_route');
+            $params = $request->get('_route_params', array());
+        }
+        
         $this->getBreadcrumbs()->push($title, $path, $params);
     }
 
