@@ -81,7 +81,7 @@ class Controller extends BaseController
             $path = $request->get('_route');
             $params = $request->get('_route_params', array());
         }
-        
+
         $this->getBreadcrumbs()->push($title, $path, $params);
     }
 
