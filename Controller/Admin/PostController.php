@@ -3,7 +3,7 @@
 namespace Isometriks\Bundle\SymEditBundle\Controller\Admin;
 
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\Form\Form; 
+use Symfony\Component\Form\Form;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -21,7 +21,7 @@ use JMS\SecurityExtraBundle\Annotation\PreAuthorize;
  */
 class PostController extends Controller
 {
-    
+
     /**
      * Lists all Post entities.
      *
@@ -31,11 +31,10 @@ class PostController extends Controller
     public function indexAction()
     {
         $em = $this->getDoctrine()->getManager();
-        $em->getFilters()->disable('post_published'); 
-                
+        $em->getFilters()->disable('post_published');
+
         $entities = $em->createQuery('SELECT p FROM IsometriksSymEditBundle:Post p ORDER BY p.createdAt DESC')
-                       ->setMaxResults(15)
-                       ->getResult(); 
+                       ->getResult();
 
         return array(
             'entities' => $entities,
@@ -51,8 +50,8 @@ class PostController extends Controller
     public function newAction()
     {
         $entity = new Post();
-        $entity->setAuthor($this->getUser()); 
-        $form   = $this->createForm('symedit_post', $entity); 
+        $entity->setAuthor($this->getUser());
+        $form   = $this->createForm('symedit_post', $entity);
 
         return array(
             'entity' => $entity,
@@ -78,8 +77,8 @@ class PostController extends Controller
             $em->persist($entity);
             $em->flush();
 
-            $this->get('session')->getFlashBag()->add('notice', 'Post Created'); 
-            
+            $this->get('session')->getFlashBag()->add('notice', 'Post Created');
+
             return $this->redirect($this->generateUrl('admin_blog_edit', array('id' => $entity->getId())));
         }
 
@@ -98,7 +97,7 @@ class PostController extends Controller
     public function editAction($id)
     {
         $em = $this->getDoctrine()->getManager();
-        $em->getFilters()->disable('post_published'); 
+        $em->getFilters()->disable('post_published');
 
         $entity = $em->getRepository('IsometriksSymEditBundle:Post')->find($id);
 
@@ -127,7 +126,7 @@ class PostController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
         $em->getFilters()->disable('post_published');
-        
+
         $entity = $em->getRepository('IsometriksSymEditBundle:Post')->find($id);
 
         if (!$entity) {
@@ -138,11 +137,11 @@ class PostController extends Controller
         $editForm = $this->createForm('symedit_post', $entity);
         $editForm->bind($request);
 
-        if ($editForm->isValid()) {     
+        if ($editForm->isValid()) {
             $em->persist($entity);
             $em->flush();
-            
-            $this->get('session')->getFlashBag()->add('notice', 'Post Updated'); 
+
+            $this->get('session')->getFlashBag()->add('notice', 'Post Updated');
 
             return $this->redirect($this->generateUrl('admin_blog_edit', array('id' => $id)));
         }
