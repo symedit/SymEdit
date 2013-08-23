@@ -40,8 +40,9 @@ class Controller extends BaseController
         $settings = $this->getSettings();
 
         $cacheable = $settings->has('advanced.caching') && $settings->get('advanced.caching') === 'cache';
+        $admin = $this->get('security.context')->isGranted('ROLE_ADMIN');
 
-        return $cacheable;
+        return $cacheable && !$admin;
     }
 
     /**
