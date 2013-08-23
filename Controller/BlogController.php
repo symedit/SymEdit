@@ -70,9 +70,7 @@ class BlogController extends Controller
         /**
          * Add Breadcrumbs
          */
-        $this->addBreadcrumb($post->getTitle(), 'blog_slug_view', array(
-            'slug' => $post->getSlug(),
-        ));
+        $this->addBreadcrumb($post->getTitle());
 
         return $this->render('@SymEdit/Blog/single.html.twig', array(
             'Post' => $post,
