@@ -22,7 +22,7 @@ class ContactController extends Controller
         $form = $this->createForm('symedit_contact');
 
         if ($request->getMethod() === 'POST') {
-            $form->bind($request);
+            $form->handleRequest($request);
 
             if ($form->isValid()) {
 
