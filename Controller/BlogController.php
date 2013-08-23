@@ -18,16 +18,18 @@ class BlogController extends Controller
     /**
      * @Route("/", name="blog", defaults={"_format"="html"})
      * @Route("/feed.xml", name="blog_rss", defaults={"_format"="xml"})
+     * @Route("/archive/{page}", name="blog_archive", requirements={"slug"=".*?", "page"="\d+"}, defaults={"page"=1, "_format"="html"})
      * @Sitemap()
      */
-    public function indexAction(Request $request, $_format)
+    public function indexAction(Request $request, $_format, $page = 1)
     {
         $em = $this->getDoctrine()->getManager();
         $repo = $em->getRepository('IsometriksSymEditBundle:Post');
 
-        $modified = $em->createQuery('SELECT MAX(p.updatedAt) as modified FROM IsometriksSymEditBundle:Post p ORDER BY p.updatedAt DESC')
-                       ->setMaxResults($this->getMaxPosts())
-                       ->getSingleScalarResult();
+        $modified = $repo->getRecentQueryBuilder()
+                         ->select('MAX(p.updatedAt) as modified')
+                         ->getQuery()
+                         ->getSingleScalarResult();
 
         $modifiedDate = new \DateTime($modified);
         $response = $this->createResponse($modifiedDate);
@@ -36,10 +38,12 @@ class BlogController extends Controller
             return $response;
         }
 
+        $paginator = $this->getPaginator($repo->getRecentQuery(), $page, 'blog_archive');
+
         $template = $_format === 'xml' ? 'feed.xml.twig' : 'index.html.twig';
 
         return $this->render(sprintf('@SymEdit/Blog/%s', $template), array(
-            'Posts' => $repo->getRecent($this->getMaxPosts()),
+            'Posts' => $paginator,
             'modified' => $modifiedDate,
         ), $response);
     }
@@ -103,8 +107,8 @@ class BlogController extends Controller
     }
 
     /**
-     * @Route("/category/{slug}/feed.xml", defaults={"page"="1", "_format"="xml"}, name="blog_category_rss")
-     * @Route("/category/{slug}/{page}", defaults={"page"="1", "_format"="html"}, requirements={"slug"=".*?", "page"="\d+"}, name="blog_category_view")
+     * @Route("/category/{slug}/feed.xml", defaults={"page"=1, "_format"="xml"}, name="blog_category_rss")
+     * @Route("/category/{slug}/{page}", defaults={"page"=1, "_format"="html"}, requirements={"slug"=".*?", "page"="\d+"}, name="blog_category_view")
      *
      * @Sitemap(params={"slug"="getSlug"}, entity="IsometriksSymEditBundle:Category")
      */
@@ -180,9 +184,7 @@ class BlogController extends Controller
         /**
          * Add Breadcrumbs
          */
-        $this->addBreadcrumb($user->getProfile()->getFullname(), 'blog_author_view', array(
-            'username' => $user->getUsername(),
-        ));
+        $this->addBreadcrumb($user->getProfile()->getFullname());
 
         return $this->render('@SymEdit/Blog/author.html.twig', array(
             'Posts' => $query->getResult(),
@@ -191,7 +193,7 @@ class BlogController extends Controller
     }
 
     /**
-     * @return Knp\Component\Pager\Pagination\PaginationInterface
+     * @return \Knp\Bundle\PaginatorBundle\Pagination\SlidingPagination
      */
     private function getPaginator($query, $page = 1, $route = null)
     {

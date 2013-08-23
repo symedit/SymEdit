@@ -9,3 +9,8 @@
 {{ parent() }}
 <link href="{{ url('blog_rss') }}" rel="alternate" type="application/rss+xml" title="{{ block('title') }}">
 {% endblock %}
+
+{% block blog_content %}
+{{ parent() }}
+{{ knp_pagination_render(Posts) }}
+{% endblock %}
