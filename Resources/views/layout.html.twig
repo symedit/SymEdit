@@ -34,6 +34,7 @@
         <![endif]-->
     </head>
     <body>
+        {% block skip_link %}<a href="#content" class="hidden">Skip to content</a>{% endblock %}
         <div id="wrap">
         {% block body %}
             {% block nav %}
