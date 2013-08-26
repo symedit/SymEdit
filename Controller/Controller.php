@@ -56,6 +56,16 @@ class Controller extends BaseController
     }
 
     /**
+     * Gets Mailer
+     *
+     * @return \Isometriks\Bundle\SymEditBundle\Util\SymEditMailer
+     */
+    public function getMailer()
+    {
+        return $this->get('isometriks_symedit.mailer');
+    }
+
+    /**
      * Gets the breadcrumbs
      *
      * @return \Isometriks\Bundle\SymEditBundle\Model\BreadcrumbsInterface $breadcrumbs

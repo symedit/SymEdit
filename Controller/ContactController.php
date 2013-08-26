@@ -36,8 +36,7 @@ class ContactController extends Controller
                     'replyTo' => $data['email'],
                 );
 
-                $mailer = $this->get('isometriks_symedit.mailer');
-                $mailer->sendAdmin('@SymEdit/Contact/contact.html.twig', array(
+                $this->getMailer()->sendAdmin('@SymEdit/Contact/contact.html.twig', array(
                     'Form' => $data,
                 ), $options);
 
