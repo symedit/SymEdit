@@ -5,52 +5,41 @@
 {% block content %}
 
 <h2>Welcome, {{ app.user.profile.firstname }}</h2>
-  
-<div class="row-fluid">
+
+<div class="row-fluid dashboard">
     <div class="span4">
-        <div class="widget">
-            <div class="widget-heading">
-                <span class="title">Setup</span>
-            </div>
-            <div class="widget-content">
-                <ul>
-                    {% if is_granted('ROLE_ADMIN_SETTING') %}<li><a href="{{ path('admin_setting') }}">Change Site Settings</a></li>{% endif %}
-                    {% if is_granted('ROLE_ADMIN_USER')    %}<li><a href="{{ path('admin_user') }}">Create Users</a></li>{% endif %}
-                    {% if is_granted('ROLE_ADMIN_BLOG')    %}<li><a href="{{ path('admin_blog_category') }}">Create Blog Categories</a></li>{% endif %}
-                </ul>
-            </div>
-        </div>
+        <h3><i class="circle icon-cog"></i> Setup</h3>
+
+        <ul>
+            {% if is_granted('ROLE_ADMIN_SETTING') %}<li><a href="{{ path('admin_setting') }}">Change Site Settings</a></li>{% endif %}
+            {% if is_granted('ROLE_ADMIN_USER')    %}<li><a href="{{ path('admin_user') }}">Create Users</a></li>{% endif %}
+            {% if is_granted('ROLE_ADMIN_BLOG')    %}<li><a href="{{ path('admin_blog_category') }}">Create Blog Categories</a></li>{% endif %}
+        </ul>
     </div>
-        
+
     <div class="span4">
-        <div class="widget">
-            <div class="widget-heading">
-                <span class="title">Common Content Updates</span>
-            </div>
-            <div class="widget-content">
-                <ul>
-                    {% if is_granted('ROLE_ADMIN_BLOG')  %}<li><a href="{{ path('admin_blog_new') }}">Post New Blog</a></li>{% endif %}
-                    {% if is_granted('ROLE_ADMIN_PAGE')  %}<li><a href="{{ path('admin_page') }}">Edit Page Content</a></li>{% endif %}
-                    {% if is_granted('ROLE_ADMIN_IMAGE') %}<li><a href="{{ path('admin_image') }}">Upload / Edit Images</a></li>{% endif %}
-                </ul>
-            </div>
-        </div>
+        <h3><i class="circle icon-pencil"></i> Content Updates</h3>
+
+        <ul>
+            {% if is_granted('ROLE_ADMIN_BLOG')  %}<li><a href="{{ path('admin_blog_new') }}">Post New Blog</a></li>{% endif %}
+            {% if is_granted('ROLE_ADMIN_PAGE')  %}<li><a href="{{ path('admin_page') }}">Edit Page Content</a></li>{% endif %}
+            {% if is_granted('ROLE_ADMIN_IMAGE') %}<li><a href="{{ path('admin_image') }}">Upload / Edit Images</a></li>{% endif %}
+            {% if is_granted('ROLE_ADMIN_WIDGET') %}
+            <li><a href="{{ path('admin_widget') }}">View / Rearrange Widgets</a></li>
+            <li><a href="{{ path('admin_widget_new') }}">Create New Widget</a></li>
+            {% endif %}
+        </ul>
     </div>
-        
+
     <div class="span4">
-        <div class="widget">
-            <div class="widget-heading">
-                <span class="title">{{ app.user.profile.firstname }}'s Actions</span>
-            </div>
-            <div class="widget-content">
-                <ul>
-                    <li><a href="{{ path('fos_user_profile_show') }}">View Profile</a></li>
-                    <li><a href="{{ path('fos_user_profile_edit') }}">Edit Profile</a></li>
-                    <li><a href="{{ path('fos_user_change_password') }}">Change Password</a></li>
-                    <li><a href="{{ path('fos_user_security_logout') }}">Logout</a></li>
-                </ul>
-            </div>
-        </div>
+        <h3><i class="circle icon-check"></i> {{ app.user.profile.firstname }}'s Actions</h3>
+
+        <ul>
+            <li><a href="{{ path('fos_user_profile_show') }}">View Profile</a></li>
+            <li><a href="{{ path('fos_user_profile_edit') }}">Edit Profile</a></li>
+            <li><a href="{{ path('fos_user_change_password') }}">Change Password</a></li>
+            <li><a href="{{ path('fos_user_security_logout') }}">Logout</a></li>
+        </ul>
     </div>
 </div>
 

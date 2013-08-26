@@ -6,17 +6,13 @@
     <div class="container">
         {{ block('breadcrumbs') }}
         {{ block('heading') }}
-        
+
         <div>
-            {{ Page.content }}
+            {{ Page.content|raw }}
         </div>
     </div>
 
-    {% if Settings.company.address is not empty %}
-    <div class="gmap-full">
-        {% include '@SymEdit/CMS/map.html.twig' with { width: '100%', height: '300px' } %}
-    </div>
-    {% endif %}
+    {{ block('featured') }}
 
     <div class="container">
     {% block content %}
@@ -26,14 +22,14 @@
                 <address>
                     <p>
                         <strong>{{ Settings.company.name }}</strong> <br>
-                        {{ Settings.company.address|nl2br }} 
+                        {{ Settings.company.address|nl2br }}
                     </p>
-                    
+
                     <p>
                         {% if Settings.company.phone %}
                         <span class="circle-icon">
                             <i class="icon-phone"></i>
-                        </span> 
+                        </span>
                         {{ Settings.company.phone }} <br>
                         {% endif %}
 
@@ -46,7 +42,7 @@
 
                         {% if Settings.company.email %}
                         <span class="circle-icon">
-                            <i class="icon-envelope"></i> 
+                            <i class="icon-envelope"></i>
                         </span>
                         <a href="mailto:{{ Settings.company.email }}">{{ Settings.company.email }}</a>
                         {% endif %}
@@ -56,33 +52,33 @@
 
             <div class="span6">
                 <h4>Send us a message</h4>
-                
+
                 {{ form_errors(form) }}
-                
+
                 <form method="post">
                     <div class="row-fluid">
                         <div class="span4">
                             <h6>Name*</h6>
                             {{ form_widget(form.name, { attr: { class: 'span12'}}) }}
                         </div>
-                            
+
                         <div class="span4">
                             <h6>Email</h6>
                             {{ form_widget(form.email, { attr: { class: 'span12'}}) }}
                         </div>
-                           
+
                         <div class="span4">
                             <h6>Phone*</h6>
                             {{ form_widget(form.phone, { attr: { class: 'span12'}}) }}
                         </div>
                     </div>
-                    
+
                     <h6>Your Message*</h6>
-                    
+
                     {{ form_widget(form.message, { attr: { rows: 5, class: 'span12' }}) }}
-                    
+
                     {{ form_rest(form) }}
-                    
+
                     <div class="form-actions">
                         <button type="submit" class="btn">Send Message</button>
                     </div>
@@ -90,6 +86,8 @@
             </div>
         </div>
     {% endblock %}
+
+    {{ block('supplemental') }}
     </div>
 </div>
 {% endblock %}

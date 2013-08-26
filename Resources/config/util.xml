@@ -7,7 +7,7 @@
     <parameters>
         <parameter key="isometriks_symedit.util.mailer.class">Isometriks\Bundle\SymEditBundle\Util\SymEditMailer</parameter>
     </parameters>
-          
+
     <services>
         <!--<service id="symedit.mailer" class="%isometriks_symedit.util.mailer.class%">
             <argument type="service" id="isometriks_settings.settings" />
@@ -15,14 +15,14 @@
             <argument type="service" id="mailer" />
             <argument>%swiftmailer.transport.smtp.username%</argument>
         </service>-->
-        
+
         <service parent="fos_user.mailer.twig_swift" public="true" id="isometriks_symedit.mailer" class="%isometriks_symedit.util.mailer.class%">
             <call method="setSettings">
                 <argument type="service" id="isometriks_settings.settings" />
             </call>
-            
+
             <call method="setEmailSender">
-                <argument>%swiftmailer.transport.smtp.username%</argument>
+                <argument>%swiftmailer.mailer.default.transport.smtp.username%</argument>
             </call>
         </service>
     </services>

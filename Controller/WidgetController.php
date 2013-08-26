@@ -13,8 +13,6 @@ class WidgetController extends Controller
         $manager = $this->get('isometriks_symedit.widget.manager');
         $widgetArea = $manager->getWidgetArea($area);
 
-        $response = $this->createResponse();
-
         $lastUpdated = null;
         $widgets = array();
 
@@ -28,17 +26,16 @@ class WidgetController extends Controller
 
             $widgets[] = array(
                 'id' => $widget->getId(),
+                'name' => $widget->getName(),
                 'title' => $widget->getTitle(),
                 'content' => $widget->getStrategy()->execute($widget),
             );
         }
 
-        if($lastUpdated !== null){
-            $response->setLastModified($lastUpdated);
+        $response = $this->createResponse($lastUpdated);
 
-            if($response->isNotModified($request)) {
-                return $response;
-            }
+        if($response->isNotModified($request)) {
+            return $response;
         }
 
         $templateName = sprintf('@SymEdit/WidgetArea/%s.html.twig', $area);

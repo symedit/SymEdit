@@ -4,16 +4,16 @@ doctrine:
             Isometriks\Bundle\SymEditBundle\Model\UserInterface: %isometriks_symedit.entity.user_class%
             Isometriks\Bundle\SymEditBundle\Model\ProfileInterface: %isometriks_symedit.entity.profile_class%
         entity_managers:
-            default:                    
+            default:
                 filters:
                     post_published:
                         class: Isometriks\Bundle\SymEditBundle\Filter\PostPublishedFilter
                         enabled: true
-                        
+
 stof_doctrine_extensions:
     orm:
         default:
             timestampable: true
             sluggable: true
-            blameable: true
+            sortable: true
             tree: true

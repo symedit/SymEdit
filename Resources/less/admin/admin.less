@@ -17,7 +17,7 @@
 }
 
 .container-fluid {
-    max-width: 1400px;
+    max-width: 1600px;
     margin: 0 auto;
 }
 
@@ -81,17 +81,18 @@
 /**
  * Icon Circles
  */
-i[class^="icon-"] {
+i[class^="icon-"], i[class*=" icon-"] {
     &.circle {
-        background-color: rgba(0,0,0,.4);
-        border: 1px solid rgba(0,0,0,.6);
-        line-height: 22px;
-        padding-top: 1px;
+        background-color: rgba(0,0,0,.3);
         margin: 0 4px;
-        width: 24px;
+        font-size: 18px;
+        line-height: 18px;
+        width: 19px;
         text-align: center;
         .rounded(40px);
         color: #fff;
+        display: inline-block;
+        padding: 8px;
     }
 }
 
@@ -288,6 +289,22 @@ body .redactor_toolbar li a.redactor_btn_bootstrap {
     content: "B";
   }
 }
+
+//////////////////////////////
+// Dashboard
+//////////////////////////////
+
+.dashboard {
+    h3 {
+        padding-bottom: 6px;
+        border-bottom: 1px solid fadeout(#fff,50%);
+    }
+
+    ul {
+        margin-left: 36px;
+    }
+}
+
 
 //////////////////////////////
 // Big Actions

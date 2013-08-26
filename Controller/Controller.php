@@ -40,8 +40,9 @@ class Controller extends BaseController
         $settings = $this->getSettings();
 
         $cacheable = $settings->has('advanced.caching') && $settings->get('advanced.caching') === 'cache';
+        $admin = $this->get('security.context')->isGranted('ROLE_ADMIN');
 
-        return $cacheable;
+        return $cacheable && !$admin;
     }
 
     /**
@@ -55,6 +56,16 @@ class Controller extends BaseController
     }
 
     /**
+     * Gets Mailer
+     *
+     * @return \Isometriks\Bundle\SymEditBundle\Util\SymEditMailer
+     */
+    public function getMailer()
+    {
+        return $this->get('isometriks_symedit.mailer');
+    }
+
+    /**
      * Gets the breadcrumbs
      *
      * @return \Isometriks\Bundle\SymEditBundle\Model\BreadcrumbsInterface $breadcrumbs
@@ -65,14 +76,33 @@ class Controller extends BaseController
     }
 
     /**
+     * Gets the user manager
+     * 
+     * @return \Isometriks\Bundle\SymEditBundle\Model\UserManagerInterface $userManager
+     */
+    public function getUserManager()
+    {
+        return $this->get('fos_user.user_manager');
+    }
+
+    /**
      * Adds a breadcrumb to the current request
      *
      * @param string $title
      * @param string $path
      * @param array $params
      */
-    public function addBreadcrumb($title, $path, array $params = array())
+    public function addBreadcrumb($title, $path = null, array $params = array())
     {
+        /**
+         * If no path supplied, use the matched one
+         */
+        if($path === null || $params === null) {
+            $request = $this->getRequest();
+            $path = $request->get('_route');
+            $params = $request->get('_route_params', array());
+        }
+
         $this->getBreadcrumbs()->push($title, $path, $params);
     }
 
