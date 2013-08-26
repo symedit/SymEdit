@@ -76,6 +76,16 @@ class Controller extends BaseController
     }
 
     /**
+     * Gets the user manager
+     * 
+     * @return \Isometriks\Bundle\SymEditBundle\Model\UserManagerInterface $userManager
+     */
+    public function getUserManager()
+    {
+        return $this->get('fos_user.user_manager');
+    }
+
+    /**
      * Adds a breadcrumb to the current request
      *
      * @param string $title

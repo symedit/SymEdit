@@ -3,8 +3,9 @@
 namespace Isometriks\Bundle\SymEditBundle\Doctrine;
 
 use FOS\UserBundle\Doctrine\UserManager as BaseUserManager;
+use Isometriks\Bundle\SymEditBundle\Model\UserManagerInterface;
 
-class UserManager extends BaseUserManager
+class UserManager extends BaseUserManager implements UserManagerInterface
 {
     protected $profileClass;
     protected $adminProfileClass;
@@ -38,5 +39,15 @@ class UserManager extends BaseUserManager
         $user->addRole($role);
 
         return $user;
+    }
+
+    public function findProfileBy(array $criteria)
+    {
+        return $this->objectManager->getRepository($this->profileClass)->findOneBy($criteria);
+    }
+
+    public function findAdminProfileBy(array $criteria)
+    {
+        return $this->objectManager->getRepository($this->adminProfileClass)->findOneBy($criteria);
     }
 }

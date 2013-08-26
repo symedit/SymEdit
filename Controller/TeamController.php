@@ -45,12 +45,9 @@ class TeamController extends Controller
      */
     public function viewAction($slug)
     {
-        $profileClass = $this->container->getParameter('isometriks_symedit.entity.admin_profile_class');
-
-        $em = $this->getDoctrine()->getManager();
-        $repo = $em->getRepository($profileClass);
-
-        $profile = $repo->findOneBySlug($slug);
+        $profile = $this->getUserManager()->findAdminProfileBy(array(
+            'slug' => $slug,
+        ));
 
         if(!$profile) {
             throw $this->createNotFoundException(sprintf('Could not find user with slug "%s".', $slug));
