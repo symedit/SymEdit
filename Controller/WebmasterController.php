@@ -42,10 +42,10 @@ class WebmasterController extends Controller
         if ($settings->has('webmaster.bing_verify')) {
             $code = $settings->get('webmaster.bing_verify');
 
-            return $this->render('@SymEdit/Webmaster/bingVerify.html.twig', array(
+            return $this->render('@SymEdit/Webmaster/bingVerify.xml.twig', array(
                 'code' => $code,
             ));
-            
+
         }
 
         throw $this->createNotFoundException();
