@@ -8,9 +8,9 @@ class PageRepository extends MaterializedPathRepository
 {
     public function findRoot()
     {
-        return $this->getEntityManager()
-                    ->createQuery('SELECT p FROM IsometriksSymEditBundle:Page p WHERE p.root = true')
-                    ->getSingleResult();
+        return $this->findOneBy(array(
+            'root' => true,
+        ));
     }
 
     /**
