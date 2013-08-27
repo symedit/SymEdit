@@ -1,5 +1,5 @@
 fos_user:
-    db_driver: orm 
+    db_driver: orm
     firewall_name: main
     user_class: %isometriks_symedit.entity.user_class%
     service:
@@ -11,6 +11,3 @@ fos_user:
             template: IsometriksSymEditBundle:Email:confirm.html.twig
         form:
             type: %isometriks_symedit.fos_user.form.registration% 
-    profile:
-        form:
-            type: %isometriks_symedit.fos_user.form.profile% 
