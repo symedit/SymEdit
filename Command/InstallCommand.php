@@ -46,7 +46,11 @@ class InstallCommand extends ContainerAwareCommand
             $output->writeln('Loading Schema...');
 
             $command = $this->getApplication()->find('doctrine:schema:update');
-            $input   = new ArrayInput(array('command'   => 'doctrine:schema:update', '--force' => true, '-n' => $force));
+            $input = new ArrayInput(array(
+                'command'   => 'doctrine:schema:update',
+                '--force' => true,
+                '-n' => $force
+            ));
             $returnCode = $command->run($input, $output);
         }
 
@@ -58,17 +62,6 @@ class InstallCommand extends ContainerAwareCommand
             $input   = new ArrayInput(array('command'   => 'doctrine:fixtures:load', '--append' => $force));
             $returnCode = $command->run($input, $output);
         }
-
-        // Copy Templates
-        /*
-        if($force || $dialog->askConfirmation($output, '<question>Copy Templates?</question>', false)){
-            $output->writeln('Copying Templates...');
-
-            $command = $this->getApplication()->find('symedit:templates:copy');
-            $input   = new ArrayInput(array('command' => 'symedit:templates:copy', '--overwrite' => $force, '-n' => $force));
-            $returnCode = $command->run($input, $output);
-        }
-        */
 
         $output->writeln('Finished.');
     }
