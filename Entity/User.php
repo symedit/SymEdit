@@ -29,7 +29,7 @@ class User extends BaseUser implements UserInterface
         return $this;
     }
 
-    public function getAdmin()
+    public function isAdmin()
     {
         return $this->admin;
     }

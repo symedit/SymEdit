@@ -22,7 +22,10 @@ interface UserInterface
      */
     public function setProfile(ProfileInterface $profile);
 
-    public function getAdmin();
+    /**
+     * @return boolean Whether or not user is an admin
+     */
+    public function isAdmin();
 
     public function setAdmin($admin);
 }
