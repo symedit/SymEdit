@@ -13,6 +13,8 @@
         <parameter key="isometriks_symedit.form.type.widget_area.class">Isometriks\Bundle\SymEditBundle\Form\WidgetAreaType</parameter>
         <parameter key="isometriks_symedit.form.type.widget.class">Isometriks\Bundle\SymEditBundle\Form\WidgetType</parameter>
         <parameter key="isometriks_symedit.form.type.entity_property.class">Isometriks\Bundle\SymEditBundle\Form\Type\EntityPropertyType</parameter>
+
+        <parameter key="isometriks_symedit.form.factory.context.class">Isometriks\Bundle\SymEditBundle\Form\Factory\ContextFormFactory</parameter>
     </parameters>
 
     <services>
@@ -53,6 +55,19 @@
         <service id="isometriks_symedit.form.type.entity_property" class="%isometriks_symedit.form.type.entity_property.class%">
             <argument type="service" id="doctrine" />
             <tag name="form.type" alias="entity_property" />
+        </service>
+
+        <!--  Form Factory -->
+
+        <service id="isometriks_symedit.form.factory.context" class="%isometriks_symedit.form.factory.context.class%">
+            <argument type="service" id="form.factory" />
+            <argument type="service" id="security.context" />
+        </service>
+
+        <service id="isometriks_symedit.form.profile" factory-method="createForm" factory-service="isometriks_symedit.form.factory.context" class="Symfony\Component\Form\Form">
+            <argument>symedit_admin_profile</argument>
+            <argument>symedit_user_profile</argument>
+            <argument>symedit_profile</argument>
         </service>
     </services>
 
