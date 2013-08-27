@@ -10,6 +10,7 @@ use Isometriks\Bundle\SymEditBundle\DependencyInjection\Compiler\TwigExceptionCo
 use Isometriks\Bundle\SymEditBundle\DependencyInjection\Compiler\WidgetStrategyCompilerPass;
 use Isometriks\Bundle\SymEditBundle\DependencyInjection\Compiler\TwigPathCompilerPass;
 use Isometriks\Bundle\SymEditBundle\DependencyInjection\IsometriksSymEditExtension;
+use Isometriks\Bundle\SymEditBundle\DependencyInjection\Compiler\ProfileTypeCompilerPass;
 
 class IsometriksSymEditBundle extends Bundle
 {
@@ -33,6 +34,7 @@ class IsometriksSymEditBundle extends Bundle
         $container->addCompilerPass(new TwigExceptionCompilerPass());
         $container->addCompilerPass(new WidgetStrategyCompilerPass());
         $container->addCompilerPass(new TwigPathCompilerPass($this->kernel));
+        $container->addCompilerPass(new ProfileTypeCompilerPass());
     }
 
     public function getContainerExtension()
