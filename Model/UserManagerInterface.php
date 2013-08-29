@@ -33,8 +33,10 @@ interface UserManagerInterface extends UserProviderInterface, BaseManager
 
     /**
      * Find admin profile by
-     * 
+     *
      * @return ProfileInterface|null $adminProfile
      */
     public function findAdminProfileBy(array $criteria);
+
+    public function findAdmins();
 }

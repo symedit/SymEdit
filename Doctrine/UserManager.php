@@ -50,4 +50,9 @@ class UserManager extends BaseUserManager implements UserManagerInterface
     {
         return $this->objectManager->getRepository($this->adminProfileClass)->findOneBy($criteria);
     }
+
+    public function findAdmins()
+    {
+        return $this->repository->findBy(array('admin' => true));
+    }
 }
