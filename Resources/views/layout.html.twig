@@ -3,21 +3,21 @@
 <html lang="en-US">
     <head>
         <title>{% block title %}{{ SEO.title|default(Page.title) }}{% endblock %}</title>
-        {% block meta %}
+{% block meta %}
         <meta charset="UTF-8">
         <meta name="robots" content="{{ SEO.index|default('index') }}, {{ SEO.follow|default('follow') }}" />
         <meta name="description" content="{% block description %}{{ SEO.description|default(Page.content|plain(150)) }}{% endblock %}" />
         <meta name="keywords" content="{% block keywords %}{{ SEO.keywords|default('') }}{% endblock %}" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        {% block opengraph %}
+{% block opengraph %}
         <meta property="og:title" content="{{ block('title') }}" />
         <meta property="og:url" content="{% block url %}{{ path(app.request.attributes.get('_route'), app.request.attributes.get('_route_params')) }}{% endblock %}" />
         <meta property="og:site_name" content="{{ Settings.company.name }}" />
         <meta property="og:description" content="{{ block('description') }}" />
-        {% endblock %}
-        {% endblock %}
-        {% block stylesheets %}
-        {% stylesheets
+{% endblock %}
+{% endblock %}
+{% block stylesheets %}
+{% stylesheets
                'bundles/isometrikssymedit/bootstrap/css/bootstrap.min.css'
                'bundles/isometrikssymedit/bootstrap/css/bootstrap-responsive.min.css'
                'bundles/isometrikssymedit/css/font-awesome.min.css'
@@ -25,10 +25,10 @@
                '@IsometriksSymEditBundle/Resources/less/util.less'
                '@IsometriksSymEditBundle/Resources/less/footer.less'
                '@IsometriksSymEditBundle/Resources/less/site.less'
-               filter='cssrewrite' -%}
+               filter='cssrewrite' %}
         <link rel="stylesheet" type="text/css" href="{{ asset_url }}" />
-        {% endstylesheets -%}
-        {% endblock %}
+{% endstylesheets -%}
+{% endblock %}
         <!--[if lt IE 9]>
             <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
         <![endif]-->
@@ -53,7 +53,7 @@
             {% block content_container %}
             <div class="container">
                 {% block breadcrumbs %}
-                <div class="pull-right hidden-mobile">
+                <div class="pull-right hidden-phone">
                     {% include '@SymEdit/CMS/breadcrumbs.html.twig' %}
                 </div>
                 {% endblock %}
