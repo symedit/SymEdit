@@ -38,5 +38,10 @@ interface UserManagerInterface extends UserProviderInterface, BaseManager
      */
     public function findAdminProfileBy(array $criteria);
 
+    /**
+     * Find one admin by criteria
+     */
+    public function findAdminBy(array $criteria);
+
     public function findAdmins();
 }
