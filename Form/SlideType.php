@@ -9,11 +9,6 @@ use Isometriks\Bundle\SymEditBundle\Entity\Image;
 
 class SlideType extends AbstractType
 {
-    public function __construct(Image $image=null)
-    {
-        $this->image = $image;
-    }
-
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
