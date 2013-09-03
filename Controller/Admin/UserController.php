@@ -3,7 +3,7 @@
 namespace Isometriks\Bundle\SymEditBundle\Controller\Admin;
 
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Isometriks\Bundle\SymEditBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
@@ -25,8 +25,7 @@ class UserController extends Controller
      */
     public function indexAction()
     {
-        $user_manager = $this->get('fos_user.user_manager');
-        $entities = $user_manager->findUsers();
+        $entities = $this->getUserManager()->findAdmins();
 
         return array(
             'entities' => $entities,
@@ -41,8 +40,7 @@ class UserController extends Controller
      */
     public function showAction($id)
     {
-        $user_manager = $this->get('fos_user.user_manager');
-        $entity = $user_manager->findUserBy(array('id' => $id));
+        $entity = $this->getUserManager()->findAdminBy(array('id' => $id));
 
         if (!$entity) {
             throw $this->createNotFoundException('Unable to find User entity.');
@@ -73,21 +71,21 @@ class UserController extends Controller
      *
      * @Route("/create", name="admin_user_create")
      * @Method("POST")
-     * @Template("IsometriksSymEditBundle:Admin/User:new.html.twig")
+     * @Template("@SymEdit/Admin/User/new.html.twig")
      */
     public function createAction(Request $request)
     {
-        $user_manager = $this->get('fos_user.user_manager');
-        $user         = $user_manager->createUser(true);
-        $form         = $this->createForm('symedit_user', $user);
+        $userManager = $this->getUserManager();
+        $user = $userManager->createUser(true);
+        $form = $this->createForm('symedit_user', $user);
 
-        $form->bind($request);
+        $form->handleRequest($request);
 
         if($form->isValid()){
             $user->setEnabled(true);
-            $user_manager->updateUser($user);
+            $userManager->updateUser($user);
 
-            $this->get('session')->getFlashBag()->add('notice', 'User Created');
+            $this->addFlash('notice', 'User Created');
 
             return $this->redirect($this->generateUrl('admin_user_show', array('id' => $user->getId())));
         }
@@ -105,8 +103,7 @@ class UserController extends Controller
      */
     public function editAction($id)
     {
-        $user_manager = $this->get('fos_user.user_manager');
-        $entity = $user_manager->findUserBy(array('id' => $id));
+        $entity = $this->getUserManager()->findAdminBy(array('id' => $id));
 
         if (!$entity) {
             throw $this->createNotFoundException('Unable to find User entity.');
@@ -126,32 +123,30 @@ class UserController extends Controller
      *
      * @Route("/{id}/update", name="admin_user_update")
      * @Method("POST")
-     * @Template("IsometriksSymEditBundle:Admin/User:edit.html.twig")
+     * @Template("@SymEdit/Admin/User/edit.html.twig")
      */
     public function updateAction(Request $request, $id)
     {
-        $user_manager = $this->get('fos_user.user_manager');
-        $user = $user_manager->findUserBy(array('id' => $id));
+        $userManager = $this->getUserManager();
+        $user = $userManager->findAdminBy(array('id' => $id));
 
         if (!$user) {
             throw $this->createNotFoundException('Unable to find Page entity.');
         }
 
         $form = $this->createForm('symedit_user', $user);
-        $form->bind($request);
+        $form->handleRequest($request);
 
         if ($form->isValid()) {
-
-            $user_manager->updateUser($user);
-
-            $this->get('session')->getFlashBag()->add('notice', 'User Updated');
+            $userManager->updateUser($user);
+            $this->addFlash('notice', 'User Updated');
 
             return $this->redirect($this->generateUrl('admin_user_edit', array('id' => $id)));
         }
 
         return array(
-            'entity'      => $user,
-            'form'        => $form->createView(),
+            'entity' => $user,
+            'form' => $form->createView(),
         );
     }
 }
