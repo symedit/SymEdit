@@ -3,7 +3,7 @@
 namespace Isometriks\Bundle\SymEditBundle\Controller\Admin;
 
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Isometriks\Bundle\SymEditBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
@@ -69,7 +69,7 @@ class SliderController extends Controller
             $em->persist($entity);
             $em->flush();
 
-            $this->get('session')->getFlashBag()->add('notice', 'Slider Created');
+            $this->addFlash('notice', 'Slider Created');
 
             return $this->redirect($this->generateUrl('admin_image_slider_edit', array('id' => $entity->getId())));
         }
@@ -125,11 +125,13 @@ class SliderController extends Controller
 
         $deleteForm = $this->createDeleteForm($id);
         $editForm = $this->createForm(new SliderType(), $entity);
-        $editForm->bind($request);
+        $editForm->handleRequest($request);
 
         if ($editForm->isValid()) {
             $em->persist($entity);
             $em->flush();
+
+            $this->addFlash('notice', 'Slider Updated');
 
             return $this->redirect($this->generateUrl('admin_image_slider_edit', array('id' => $id)));
         }
@@ -150,7 +152,7 @@ class SliderController extends Controller
     public function deleteAction(Request $request, $id)
     {
         $form = $this->createDeleteForm($id);
-        $form->bind($request);
+        $form->handleRequest($request);
 
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();
@@ -159,6 +161,8 @@ class SliderController extends Controller
             if (!$entity) {
                 throw $this->createNotFoundException('Unable to find Slider entity.');
             }
+
+            $this->addFlash('notice', 'Slider removed');
 
             $em->remove($entity);
             $em->flush();
