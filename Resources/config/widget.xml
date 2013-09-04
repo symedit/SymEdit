@@ -25,6 +25,7 @@
     <services>
 
         <service id="isometriks_symedit.twig.widget_extension" class="%isometriks_symedit.twig.widget_extension.class%">
+            <argument>%isometriks_symedit.fragment.strategy%</argument>
             <tag name="twig.extension" />
         </service>
 

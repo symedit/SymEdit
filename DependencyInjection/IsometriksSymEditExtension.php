@@ -28,6 +28,8 @@ class IsometriksSymEditExtension extends Extension
             $loader->load($file.'.xml');
         }
 
+        $this->loadFragment($config['fragment'], $container);
+
         /**
          * Add Classes to Compile
          */
@@ -48,6 +50,11 @@ class IsometriksSymEditExtension extends Extension
          * Set the Admin Directory
          */
         $container->setParameter('isometriks_symedit.admin_dir', $config['admin_dir']);
+    }
+
+    private function loadFragment($config, ContainerBuilder $container)
+    {
+        $container->setParameter('isometriks_symedit.fragment.strategy', $config['strategy']);
     }
 
     public function getAlias()

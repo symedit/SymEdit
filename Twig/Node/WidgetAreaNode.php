@@ -1,12 +1,12 @@
 <?php
 
-namespace Isometriks\Bundle\SymEditBundle\Twig\Node; 
+namespace Isometriks\Bundle\SymEditBundle\Twig\Node;
 
 class WidgetAreaNode extends \Twig_Node
 {
-    public function __construct($area, $lineno, $tag = null)
+    public function __construct($area, $strategy, $lineno, $tag = null)
     {
-        parent::__construct(array(), array('area' => $area), $lineno, $tag); 
+        parent::__construct(array(), array('area' => $area, 'strategy' => $strategy), $lineno, $tag);
     }
 
     /**
@@ -18,13 +18,13 @@ class WidgetAreaNode extends \Twig_Node
     {
         $compiler
             ->addDebugInfo($this)
-            ->write('echo $this->env->getExtension(\'http_kernel\')->renderFragmentStrategy(\'esi\',')
+            ->write('echo $this->env->getExtension(\'http_kernel\')->renderFragmentStrategy(\'' . $this->getAttribute('strategy') . '\',')
             ->write('    $this->env->getExtension(\'http_kernel\')')
             ->write('         ->controller(\'IsometriksSymEditBundle:Widget:renderArea\', array(')
             ->write('             \'area\' => \'' . $this->getAttribute('area') . '\',')
             ->write('             \'path\' => $context[\'Page\']->getPath(),')
             ->write('             \'id\'   => $context[\'Page\']->getId(),')
             ->write('         ))')
-            ->write('    );'); 
+            ->write('    );');
     }
 }
