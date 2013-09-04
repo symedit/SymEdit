@@ -59,7 +59,8 @@ class UserController extends Controller
      */
     public function newAction()
     {
-        $form = $this->createForm('symedit_user');
+        $user = $this->getUserManager()->createUser(true);
+        $form = $this->createForm('symedit_user', $user);
 
         return array(
             'form'   => $form->createView(),
