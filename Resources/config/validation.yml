@@ -1,3 +1,10 @@
+Isometriks\Bundle\SymEditBundle\Entity\User:
+    properties:
+        profile:
+            - Valid: ~
+    constraints:
+          - Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity: email
+
 Isometriks\Bundle\SymEditBundle\Model\Page:
     constraints:
         - Callback:

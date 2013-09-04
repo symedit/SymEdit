@@ -145,6 +145,8 @@ class UserController extends Controller
             return $this->redirect($this->generateUrl('admin_user_edit', array('id' => $id)));
         }
 
+        $this->addFlash('error', 'Error Updating User');
+
         return array(
             'entity' => $user,
             'form' => $form->createView(),
