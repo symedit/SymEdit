@@ -66,7 +66,7 @@ class WidgetController extends Controller
         $widget = $this->createWidget($strategyName);
         $form = $this->getWidgetForm($widget);
 
-        $form->bind($request);
+        $form->handleRequest($request);
 
         if($form->isValid()){
             $this->getManager()->saveWidget($widget);
@@ -118,7 +118,7 @@ class WidgetController extends Controller
         }
 
         $form = $this->getWidgetForm($widget);
-        $form->bind($request);
+        $form->handleRequest($request);
 
         if($form->isValid()){
             $manager->saveWidget($widget);

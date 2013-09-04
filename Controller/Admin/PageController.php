@@ -46,7 +46,7 @@ class PageController extends Controller
     public function reorderAction()
     {
         $reorder_form = $this->createForm(new PageReorderType());
-        $reorder_form->bind($this->getRequest()); 
+        $reorder_form->handleRequest($this->getRequest()); 
         $status = false; 
         
         if($reorder_form->isValid()){
@@ -101,7 +101,7 @@ class PageController extends Controller
     {
         $entity  = new Page();
         $form = $this->createForm(new PageType(), $entity);
-        $form->bind($request);
+        $form->handleRequest($request);
 
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();
@@ -165,7 +165,7 @@ class PageController extends Controller
 
         $deleteForm = $this->createDeleteForm($id);
         $editForm = $this->createForm(new PageType(), $entity);
-        $editForm->bind($request);
+        $editForm->handleRequest($request);
 
         if ($editForm->isValid()) {
             $em->persist($entity);
@@ -213,7 +213,7 @@ class PageController extends Controller
     public function deleteAction(Request $request, $id)
     {
         $form = $this->createDeleteForm($id);
-        $form->bind($request);
+        $form->handleRequest($request);
 
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();

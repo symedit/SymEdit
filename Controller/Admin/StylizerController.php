@@ -30,7 +30,7 @@ class StylizerController extends Controller
 
         if($request->getMethod() === 'POST'){
 
-            $form->bind($request);
+            $form->handleRequest($request);
 
             if($form->isValid()){
 

@@ -36,7 +36,7 @@ class DashboardController extends Controller {
     public function updateMissingAction()
     {
         $missing_form = $this->createForm(new FixMissingType()); 
-        $missing_form->bind($this->getRequest()); 
+        $missing_form->handleRequest($this->getRequest()); 
         
         $template = $missing_form->get('template')->getData();
         $em       = $this->getDoctrine()->getManager(); 

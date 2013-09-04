@@ -45,7 +45,7 @@ class SettingController extends Controller {
         $settings = $this->get('isometriks_settings.settings');
         $form     = $this->createForm('settings', $settings);
 
-        $form->bind($request);
+        $form->handleRequest($request);
 
         if ($form->isValid()) {            
             $settings->save(); 

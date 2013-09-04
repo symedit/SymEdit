@@ -62,7 +62,7 @@ class SliderController extends Controller
     {
         $entity  = new Slider();
         $form = $this->createForm(new SliderType(), $entity);
-        $form->bind($request);
+        $form->handleRequest($request);
 
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();
