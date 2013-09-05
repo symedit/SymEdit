@@ -4,17 +4,13 @@
 
 {% block content %}
   <h4>Hey {{ user.profile.firstName }},</h4>
-  
+
   <p>
       Thanks for signing up with us at {{ Settings.company.name }}!
   </p>
-  
+
   <p>
-      In order to use your new account, you'll need to 
+      In order to use your new account, you'll need to
       <a href="{{ confirmationUrl }}">confirm your email address.</a>
-  </p>
-  
-  <p>
-      {% include '@IsometriksSymEdit/Email/signature.html.twig' %}
   </p>
 {% endblock %}
