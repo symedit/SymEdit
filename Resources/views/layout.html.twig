@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html lang="en-US">
     <head>
-        <title>{% block title %}{{ SEO.title|default(Page.title) }}{% endblock %}</title>
+        <title>{% block title %}{{ SEO.title|default(Page.title)|default(Settings.company.name) }}{% endblock %}</title>
 {% block meta %}
         <meta charset="UTF-8">
         <meta name="robots" content="{{ SEO.index|default('index') }}, {{ SEO.follow|default('follow') }}" />
