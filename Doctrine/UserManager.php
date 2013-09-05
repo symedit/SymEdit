@@ -29,6 +29,9 @@ class UserManager extends BaseUserManager implements UserManagerInterface
         return $profile;
     }
 
+    /**
+     * @return \Isometriks\Bundle\SymEditBundle\Model\UserInterface
+     */
     public function createUser($admin = false)
     {
         $user = parent::createUser();
