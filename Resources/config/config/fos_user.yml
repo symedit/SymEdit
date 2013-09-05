@@ -8,6 +8,6 @@ fos_user:
     registration:
         confirmation:
             enabled: true
-            template: IsometriksSymEditBundle:Email:confirm.html.twig
+            template: "@SymEdit/Email/confirm.html.twig"
         form:
-            type: %isometriks_symedit.fos_user.form.registration% 
+            type: %isometriks_symedit.fos_user.form.registration%
