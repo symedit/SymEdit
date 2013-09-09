@@ -39,13 +39,8 @@
         {% block body %}
             {% block nav %}
             <div class="container">
-                <nav>
-                    <div class="navbar">
-                        <div class="navbar-inner">
-                            <a class="brand" href="/">{{ Settings.company.name }}</a>
-                            {{ nav.bootstrap( Root ) }}
-                        </div>
-                    </div>
+                <nav class="main-nav">
+                    {{ knp_menu_render('tree', {currentClass: 'active'}) }}
                 </nav>
             </div>
             {% endblock %}
