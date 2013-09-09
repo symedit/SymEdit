@@ -2,17 +2,19 @@
 
 namespace Isometriks\Bundle\SymEditBundle\Controller\Admin;
 
-use Symfony\Component\HttpFoundation\Request;
 use Isometriks\Bundle\SymEditBundle\Controller\Controller;
-use Symfony\Component\HttpFoundation\JsonResponse;
+use Isometriks\Bundle\SymEditBundle\Entity\Page;
+use Isometriks\Bundle\SymEditBundle\Form\PageReorderType;
+use Isometriks\Bundle\SymEditBundle\Form\PageType;
+use Isometriks\Bundle\SymEditBundle\Model\PageInterface;
+use Isometriks\Bundle\SymEditBundle\Model\PageManagerInterface;
+use JMS\SecurityExtraBundle\Annotation\PreAuthorize;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
-use Isometriks\Bundle\SymEditBundle\Model\PageInterface;
-use Isometriks\Bundle\SymEditBundle\Entity\Page;
-use Isometriks\Bundle\SymEditBundle\Form\PageType;
-use JMS\SecurityExtraBundle\Annotation\PreAuthorize;
-use Isometriks\Bundle\SymEditBundle\Form\PageReorderType;
+use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpFoundation\RedirectResponse;
+use Symfony\Component\HttpFoundation\Request;
 
 /**
  * Page controller.
@@ -182,8 +184,8 @@ class PageController extends Controller
      * from either a create form or an edit form. If it is, send the user to
      * the page instead.
      *
-     * @param \Symfony\Component\HttpFoundation\Request $request
-     * @param \Isometriks\Bundle\SymEditBundle\Entity\Page $page
+     * @param Request $request
+     * @param Page $page
      * @return RedirectResponse
      */
     private function redirectEdit(Request $request, PageInterface $page)
@@ -240,7 +242,7 @@ class PageController extends Controller
     }
 
     /**
-     * @return \Isometriks\Bundle\SymEditBundle\Model\PageManagerInterface $pageManager
+     * @return PageManagerInterface $pageManager
      */
     private function getPageManager()
     {
