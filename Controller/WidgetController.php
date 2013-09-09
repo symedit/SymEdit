@@ -13,7 +13,6 @@ class WidgetController extends Controller
         $manager = $this->get('isometriks_symedit.widget.manager');
         $widgetArea = $manager->getWidgetArea($area);
 
-        $lastUpdated = null;
         $widgets = array();
 
         foreach($widgetArea->getWidgets() as $widget){
@@ -21,8 +20,6 @@ class WidgetController extends Controller
             if(!$widget->isVisible(array($path, $id))){
                 continue;
             }
-
-            $lastUpdated = max($widget->getUpdatedAt(), $lastUpdated);
 
             $widgets[] = array(
                 'id' => $widget->getId(),
@@ -32,11 +29,7 @@ class WidgetController extends Controller
             );
         }
 
-        $response = $this->createResponse($lastUpdated);
-
-        if($response->isNotModified($request)) {
-            return $response;
-        }
+        $response = $this->createResponse();
 
         $templateName = sprintf('@SymEdit/WidgetArea/%s.html.twig', $area);
         $template = new TemplateReference($templateName);
