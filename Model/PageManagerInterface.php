@@ -4,10 +4,23 @@ namespace Isometriks\Bundle\SymEditBundle\Model;
 
 interface PageManagerInterface
 {
+    /**
+     * Creates a page
+     *
+     * @return PageInterface $page
+     */
     public function createPage();
 
+    /**
+     * Removes a page
+     */
     public function deletePage(PageInterface $page);
 
+    /**
+     * Find by primary key
+     *
+     * @return PageInterface $page
+     */
     public function find($id);
 
     /**
@@ -30,7 +43,15 @@ interface PageManagerInterface
      */
     public function findPageByPath($path);
 
+    /**
+     * Get the current page class
+     *
+     * @return PageInterface $page
+     */
     public function getClass();
 
+    /**
+     * Updates a page, will flush by default
+     */
     public function updatePage(PageInterface $page, $andFlush = true);
 }
