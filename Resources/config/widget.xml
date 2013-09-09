@@ -8,7 +8,6 @@
         <parameter key="isometriks_symedit.twig.widget_extension.class">Isometriks\Bundle\SymEditBundle\Twig\Extension\WidgetExtension</parameter>
         <parameter key="isometriks_symedit.widget.registry.class">Isometriks\Bundle\SymEditBundle\Widget\WidgetRegistry</parameter>
         <parameter key="isometriks_symedit.widget.manager.class">Isometriks\Bundle\SymEditBundle\Widget\WidgetManager</parameter>
-        <parameter key="isometriks_symedit.widget.listener.class">Isometriks\Bundle\SymEditBundle\EventListener\WidgetListener</parameter>
 
         <parameter key="isometriks_symedit.widget.class">Isometriks\Bundle\SymEditBundle\Entity\Widget</parameter>
         <parameter key="isometriks_symedit.widget_area.class">Isometriks\Bundle\SymEditBundle\Entity\WidgetArea</parameter>
@@ -39,11 +38,6 @@
             <argument>%isometriks_symedit.widget_area.class%</argument>
             <argument type="service" id="isometriks_symedit.widget.registry" />
             <argument type="service" id="doctrine" />
-        </service>
-
-        <service id="isometriks_symedit.widget.listener" class="%isometriks_symedit.widget.listener.class%">
-            <argument type="service" id="isometriks_symedit.widget.registry" />
-            <tag name="doctrine.event_listener" event="postLoad" />
         </service>
 
         <!-- Widget Strategies -->

@@ -12,8 +12,15 @@
             <argument>Isometriks\Bundle\SymEditBundle\Entity\Page</argument>
         </service>
 
+        <!-- ORM Listeners -->
+
         <service id="isometriks_symedit.listener.page_path" class="Isometriks\Bundle\SymEditBundle\Doctrine\Orm\PagePathListener">
             <argument type="service" id="router" />
+            <tag name="doctrine.event_subscriber" />
+        </service>
+
+        <service id="isometriks_symedit.widget.listener" class="Isometriks\Bundle\SymEditBundle\Doctrine\Orm\WidgetListener">
+            <argument type="service" id="isometriks_symedit.widget.registry" />
             <tag name="doctrine.event_subscriber" />
         </service>
     </services>
