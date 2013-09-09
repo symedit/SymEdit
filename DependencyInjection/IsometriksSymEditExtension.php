@@ -24,7 +24,13 @@ class IsometriksSymEditExtension extends Extension
 
         $loader = new Loader\XmlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
 
-        foreach(array('services', 'user', 'widget', 'routing', 'form', 'event', 'twig', 'util', 'profiler') as $file){
+        $configFiles = array(
+            'services', 'user', 'widget', 'routing',
+            'form', 'event', 'twig', 'util', 'profiler',
+            'orm', 'menu',
+        );
+
+        foreach($configFiles as $file){
             $loader->load($file.'.xml');
         }
 
