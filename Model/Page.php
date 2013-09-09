@@ -1,8 +1,8 @@
 <?php
 
-namespace Isometriks\Bundle\SymEditBundle\Model; 
+namespace Isometriks\Bundle\SymEditBundle\Model;
 
-use Doctrine\Common\Collections\ArrayCollection; 
+use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\Validator\ExecutionContextInterface;
 
 class Page implements PageInterface
@@ -85,15 +85,15 @@ class Page implements PageInterface
     /**
      * @var \DateTime $createdAt
      */
-    protected $createdAt; 
-    
+    protected $createdAt;
+
     /**
      * @var \DateTime $updatedAt
      */
     protected $updatedAt;
 
     /**
-     * @var Isometriks\Bundle\SymEditBundle\Entity\Page Parent page or null for root
+     * @var PageInterface Parent page or null for root
      */
     protected $parent;
 
@@ -101,32 +101,32 @@ class Page implements PageInterface
      * @var ArrayCollection Children of this page
      */
     protected $children;
-    
+
     /**
      * @var integer $level
      */
-    protected $level; 
-    
+    protected $level;
+
     /**
      * @var integer $lft
      */
-    protected $lft; 
-    
+    protected $lft;
+
     /**
      * @var integer $rgt
      */
-    protected $rgt; 
+    protected $rgt;
 
     /**
      * @var string Template Name
      */
     protected $template;
-    
+
     protected $active;
 
     public function __toString()
     {
-        return $this->getRoot() ? 'Root' : sprintf('%s %s', str_repeat('-', $this->getLevel()), $this->getTitle()); 
+        return $this->getRoot() ? 'Root' : sprintf('%s %s', str_repeat('-', $this->getLevel()), $this->getTitle());
     }
 
     /**
@@ -148,7 +148,7 @@ class Page implements PageInterface
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -171,7 +171,7 @@ class Page implements PageInterface
     /**
      * Get homepage
      *
-     * @return boolean 
+     * @return boolean
      */
     public function getHomepage()
     {
@@ -194,7 +194,7 @@ class Page implements PageInterface
     /**
      * Get root
      *
-     * @return boolean 
+     * @return boolean
      */
     public function getRoot()
     {
@@ -217,7 +217,7 @@ class Page implements PageInterface
     /**
      * Get name
      *
-     * @return string 
+     * @return string
      */
     public function getName()
     {
@@ -240,7 +240,7 @@ class Page implements PageInterface
     /**
      * Get tagline
      *
-     * @return string 
+     * @return string
      */
     public function getTagline()
     {
@@ -263,7 +263,7 @@ class Page implements PageInterface
     /**
      * Get summary
      *
-     * @return string 
+     * @return string
      */
     public function getSummary()
     {
@@ -286,7 +286,7 @@ class Page implements PageInterface
     /**
      * Get title
      *
-     * @return string 
+     * @return string
      */
     public function getTitle()
     {
@@ -309,7 +309,7 @@ class Page implements PageInterface
     /**
      * Get content
      *
-     * @return string 
+     * @return string
      */
     public function getContent()
     {
@@ -332,7 +332,7 @@ class Page implements PageInterface
     /**
      * Get seo
      *
-     * @return array 
+     * @return array
      */
     public function getSeo()
     {
@@ -355,7 +355,7 @@ class Page implements PageInterface
     /**
      * Get pageOrder
      *
-     * @return integer 
+     * @return integer
      */
     public function getPageOrder()
     {
@@ -378,7 +378,7 @@ class Page implements PageInterface
     /**
      * Get display
      *
-     * @return boolean 
+     * @return boolean
      */
     public function getDisplay()
     {
@@ -401,7 +401,7 @@ class Page implements PageInterface
     /**
      * Get crawl
      *
-     * @return boolean 
+     * @return boolean
      */
     public function getCrawl()
     {
@@ -424,7 +424,7 @@ class Page implements PageInterface
     /**
      * Get pageController
      *
-     * @return boolean 
+     * @return boolean
      */
     public function getPageController()
     {
@@ -447,23 +447,23 @@ class Page implements PageInterface
     /**
      * Get pageControllerPath
      *
-     * @return string 
+     * @return string
      */
     public function getPageControllerPath()
     {
         return $this->pageControllerPath;
     }
-    
+
     /**
-     * Gets time created 
-     * 
+     * Gets time created
+     *
      * @return \DateTime $createdAt
      */
     public function getCreatedAt()
     {
-        return $this->createdAt; 
+        return $this->createdAt;
     }
-    
+
     /**
      * Set updated at
      *
@@ -480,7 +480,7 @@ class Page implements PageInterface
     /**
      * Get updated at
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getUpdatedAt()
     {
@@ -490,40 +490,40 @@ class Page implements PageInterface
     public function setPath($path)
     {
         $this->path = $path;
-        
+
         return $this;
     }
-    
+
     /**
      * Get path
      *
-     * @return string 
+     * @return string
      */
     public function getPath()
     {
-        $path = $this->path; 
-        
+        $path = $this->path;
+
         if($this->getPageController()){
-            $path = rtrim($path, '/') . '/'; 
+            $path = rtrim($path, '/') . '/';
         }
-        
-        return $path; 
+
+        return $path;
     }
-    
+
     public function getRoute()
     {
         if($this->getHomepage()){
-            return 'homepage'; 
+            return 'homepage';
         } else {
-            return 'page' . str_replace(array('-','/'), '_', rtrim($this->getPath(), '/')); 
+            return 'page' . str_replace(array('-','/'), '_', rtrim($this->getPath(), '/'));
         }
     }
 
     /**
      * Set parent
      *
-     * @param Isometriks\Bundle\SymEditBundle\Entity\Page $parent
-     * @return Page
+     * @param PageInterface $parent
+     * @return PageInterface
      */
     public function setParent(PageInterface $parent = null)
     {
@@ -535,7 +535,7 @@ class Page implements PageInterface
     /**
      * Get parent
      *
-     * @return Isometriks\Bundle\SymEditBundle\Entity\Page 
+     * @return PageInterface
      */
     public function getParent()
     {
@@ -545,12 +545,12 @@ class Page implements PageInterface
     /**
      * Add children
      *
-     * @param Isometriks\Bundle\SymEditBundle\Entity\Page $children
+     * @param PageInterface $children
      * @return Page
      */
     public function addChildren(PageInterface $children)
     {
-        $children->setParent($this); 
+        $children->setParent($this);
         $this->children[] = $children;
 
         return $this;
@@ -559,7 +559,7 @@ class Page implements PageInterface
     /**
      * Remove children
      *
-     * @param Isometriks\Bundle\SymEditBundle\Entity\Page $children
+     * @param PageInterface $children
      */
     public function removeChildren(PageInterface $children)
     {
@@ -569,7 +569,7 @@ class Page implements PageInterface
     /**
      * Get children
      *
-     * @return Doctrine\Common\Collections\Collection 
+     * @return Doctrine\Common\Collections\Collection
      */
     public function getChildren()
     {
@@ -592,7 +592,7 @@ class Page implements PageInterface
     /**
      * Get template
      *
-     * @return string 
+     * @return string
      */
     public function getTemplate()
     {
@@ -618,11 +618,11 @@ class Page implements PageInterface
         return $this->getChildren()->filter(function($en) {
             return $en->getDisplay();
         });
-    }   
-    
+    }
+
     public function getLevel()
     {
-        return $this->level; 
+        return $this->level;
     }
 
     public function isNameValid(ExecutionContextInterface $context)
@@ -636,5 +636,5 @@ class Page implements PageInterface
                 $context->addViolationAt('name', 'The "name" field must not be blank');
             }
         }
-    } 
+    }
 }
