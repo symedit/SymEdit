@@ -8,6 +8,8 @@ interface PageManagerInterface
 
     public function deletePage(PageInterface $page);
 
+    public function find($id);
+
     /**
      * @return PageInterface
      */
