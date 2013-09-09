@@ -8,12 +8,12 @@
         <parameter key="isometriks_symedit.routing.loader.page.class">Isometriks\Bundle\SymEditBundle\Routing\PageLoader</parameter>
         <parameter key="isometriks_symedit.routing.loader.controller.class">Isometriks\Bundle\SymEditBundle\Routing\ControllerLoader</parameter>
     </parameters>
-    
+
     <services>
         <service id="isometriks_symedit.routing.loader.page" class="%isometriks_symedit.routing.loader.page.class%">
-            <argument type="service" id="doctrine.orm.entity_manager" />
+            <argument type="service" id="isometriks_symedit.page_manager" />
             <tag name="routing.loader" />
-        </service>       
+        </service>
     </services>
-    
+
 </container>

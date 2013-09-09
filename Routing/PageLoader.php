@@ -5,37 +5,36 @@ namespace Isometriks\Bundle\SymEditBundle\Routing;
 use Symfony\Component\Config\Loader\Loader as BaseLoader;
 use Symfony\Component\Routing\RouteCollection;
 use Symfony\Component\Routing\Route;
-use Doctrine\ORM\EntityManager;
+use Isometriks\Bundle\SymEditBundle\Model\PageManagerInterface;
 
 class PageLoader extends BaseLoader
 {
-    private $em;
+    private $pageManager;
 
-    public function __construct(EntityManager $em)
+    public function __construct(PageManagerInterface $pageManager)
     {
-        $this->em = $em;
+        $this->pageManager = $pageManager;
     }
 
     /**
-     * TODO: We should let PageController pages have a route anyway, even if they
-     * point to the same place. This way we can use path(page.route) to get any
-     * of the routes!
-     * 
      * @param type $resource
      * @param type $type
      * @return \Symfony\Component\Routing\RouteCollection
      */
     public function load($resource = null, $type = null)
     {
-        $repo       = $this->em->getRepository($resource);
-        $pages      = $repo->findCMSPages(true);
+        $pages = $this->pageManager->findPagesBy(array(
+            'pageController' => false,
+            'root' => false,
+            'display' => true,
+        ));
+
         $collection = new RouteCollection();
 
         /**
          * Add actual CMS Pages
          */
         foreach ($pages as $page) {
-
             $defaults = array(
                 '_page_id' => $page->getId(),
                 '_controller' => 'IsometriksSymEditBundle:Page:show',
