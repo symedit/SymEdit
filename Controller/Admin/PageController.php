@@ -3,7 +3,6 @@
 namespace Isometriks\Bundle\SymEditBundle\Controller\Admin;
 
 use Isometriks\Bundle\SymEditBundle\Controller\Controller;
-use Isometriks\Bundle\SymEditBundle\Entity\Page;
 use Isometriks\Bundle\SymEditBundle\Form\PageReorderType;
 use Isometriks\Bundle\SymEditBundle\Form\PageType;
 use Isometriks\Bundle\SymEditBundle\Model\PageInterface;
@@ -185,7 +184,7 @@ class PageController extends Controller
      * the page instead.
      *
      * @param Request $request
-     * @param Page $page
+     * @param PageInterface $page
      * @return RedirectResponse
      */
     private function redirectEdit(Request $request, PageInterface $page)
