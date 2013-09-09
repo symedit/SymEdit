@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <services>
+        <service id="isometriks_symedit.page_manager" class="Isometriks\Bundle\SymEditBundle\Doctrine\PageManager">
+            <argument type="service" id="isometriks_symedit.entity_manager" />
+            <argument>Isometriks\Bundle\SymEditBundle\Entity\Page</argument>
+        </service>
+
+        <service id="isometriks_symedit.entity_manager" factory-service="doctrine" factory-method="getManager" class="Doctrine\ORM\EntityManager">
+
+        </service>
+    </services>
+
+</container>
