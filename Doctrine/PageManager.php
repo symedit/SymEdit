@@ -34,6 +34,11 @@ class PageManager extends BaseManager
         }
     }
 
+    public function find($id)
+    {
+        return $this->repository->find($id);
+    }
+
     public function findPageBy(array $criteria)
     {
         return $this->repository->findOneBy($criteria);
