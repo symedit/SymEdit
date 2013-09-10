@@ -3,6 +3,8 @@
 namespace Isometriks\Bundle\SymEditBundle\Controller\Admin;
 
 use Isometriks\Bundle\SymEditBundle\Controller\Controller;
+use Isometriks\Bundle\SymEditBundle\Event\Events;
+use Isometriks\Bundle\SymEditBundle\Event\PageEvent;
 use Isometriks\Bundle\SymEditBundle\Form\PageReorderType;
 use Isometriks\Bundle\SymEditBundle\Form\PageType;
 use Isometriks\Bundle\SymEditBundle\Model\PageInterface;
@@ -99,20 +101,22 @@ class PageController extends Controller
     public function createAction(Request $request)
     {
         $pageManager = $this->getPageManager();
-        $entity = $pageManager->createPage();
-        $form = $this->createForm(new PageType(), $entity);
+        $page = $pageManager->createPage();
+        $form = $this->createForm(new PageType(), $page);
         $form->handleRequest($request);
 
         if ($form->isValid()) {
-
-            $pageManager->updatePage($entity);
+            $pageManager->updatePage($page);
             $this->addFlash('notice', 'Page Created');
 
-            return $this->redirectEdit($request, $entity);
+            $event = new PageEvent($page, $request);
+            $this->get('event_dispatcher')->dispatch(Events::PAGE_CREATED, $event);
+
+            return $this->redirectEdit($request, $page);
         }
 
         return array(
-            'entity' => $entity,
+            'entity' => $page,
             'form'   => $form->createView(),
         );
     }
