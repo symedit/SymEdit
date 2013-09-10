@@ -41,15 +41,11 @@
 
 {% block form_actions %}
 <button class="btn btn-primary btn-block" type="submit">Save Widget</button>
-<button type="button" data-toggle="form-forward" data-message="Are you sure you want to delete this widget?" data-target="#page-delete" class="btn btn-warning btn-block">Delete Widget</button>
+<button type="button" data-toggle="form-forward" data-message="Are you sure you want to delete this widget?" data-target="#widget-delete" class="btn btn-warning btn-block">Delete Widget</button>
 {% endblock %}
 
-{#{% block extra %}
-
- =------------------  FINISH THIS -----------------------------------= 
-
-
-<form class="form-hidden" id="widget-delete" action="{{ path('admin_page_delete', { 'id': entity.id }) }}" method="post">
+{% block extra %}
+<form class="form-hidden" id="widget-delete" action="{{ path('admin_widget_delete', { 'id': entity.id }) }}" method="post">
     {{ form_widget(delete_form) }}
 </form>
-{% endblock %} #}
+{% endblock %}

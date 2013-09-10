@@ -5,6 +5,7 @@ namespace Isometriks\Bundle\SymEditBundle\Controller\Admin;
 use Symfony\Component\HttpFoundation\Request;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Isometriks\Bundle\SymEditBundle\Controller\Controller;
 use Isometriks\Bundle\SymEditBundle\Model\WidgetInterface;
 
@@ -101,6 +102,7 @@ class WidgetController extends Controller
         return array(
             'entity' => $widget,
             'form' => $form->createView(),
+            'delete_form' => $this->createDeleteForm($id)->createView(),
         );
     }
 
@@ -134,6 +136,33 @@ class WidgetController extends Controller
             'entity' => $widget,
             'form' => $form->createView(),
         );
+    }
+
+
+    /**
+     * Deletes a Widget entity.
+     *
+     * @Route("/{id}/delete", name="admin_widget_delete")
+     * @Method("POST")
+     */
+    public function deleteAction(Request $request, $id)
+    {
+        $form = $this->createDeleteForm($id);
+        $form->handleRequest($request);
+
+        if ($form->isValid()) {
+            $widgetManager = $this->getManager();
+            $widget = $widgetManager->findWidget($id);
+
+            if (!$widget) {
+                throw $this->createNotFoundException('Unable to find Widget entity.');
+            }
+
+            $widgetManager->deleteWidget($widget);
+            $this->addFlash('notice', 'Widget Deleted');
+        }
+
+        return $this->redirect($this->generateUrl('admin_widget'));
     }
 
     /**
@@ -171,6 +200,13 @@ class WidgetController extends Controller
         return $this->manager;
     }
 
+    private function createDeleteForm($id)
+    {
+        return $this->createFormBuilder(array('id' => $id))
+            ->add('id', 'hidden')
+            ->getForm()
+        ;
+    }
 
     /**
      * @param string $strategyName
