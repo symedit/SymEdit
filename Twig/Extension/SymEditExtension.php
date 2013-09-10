@@ -23,12 +23,10 @@ class SymEditExtension extends \Twig_Extension implements ContainerAwareInterfac
 
     public function getGlobals()
     {
-        $em = $this->container->get('doctrine')->getManager();
-        $pages = $em->getRepository('IsometriksSymEditBundle:Page');
+        $pageManager = $this->container->get('isometriks_symedit.page_manager');
 
         $globals = array(
-            'Root' => $pages->findRoot(),
-            'Tree' => $pages,
+            'Root' => $pageManager->findRoot(),
         );
 
         $context = $this->container->get('security.context');
