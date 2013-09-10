@@ -54,8 +54,7 @@ class BlogController extends Controller
      */
     public function slugViewAction($slug, Request $request)
     {
-        $em = $this->getDoctrine()->getManager();
-        $post = $em->getRepository('IsometriksSymEditBundle:Post')->findOneBySlug($slug);
+        $post = $this->getPostManager()->findPostBySlug($slug);
 
         if (!$post) {
             throw $this->createNotFoundException(sprintf('Post with slug "%s" not found.', $slug));
@@ -89,10 +88,9 @@ class BlogController extends Controller
             throw $this->createNotFoundException('No preview available');
         }
 
-        $em = $this->getDoctrine()->getManager();
-        $em->getFilters()->disable('post_published');
-
-        $post = $em->getRepository('IsometriksSymEditBundle:Post')->findOneBySlug($slug);
+        $postManager = $this->getPostManager();
+        $postManager->disableStatusFilter();
+        $post = $postManager->findPostBySlug($slug);
 
         if (!$post) {
             throw $this->createNotFoundException(sprintf('Post with slug "%s" not found.', $slug));
@@ -205,6 +203,14 @@ class BlogController extends Controller
         }
 
         return $pagination;
+    }
+
+    /**
+     * @return \Isometriks\Bundle\SymEditBundle\Model\PostManagerInterface
+     */
+    private function getPostManager()
+    {
+        return $this->get('isometriks_symedit.post_manager');
     }
 
     private function getMaxPosts()
