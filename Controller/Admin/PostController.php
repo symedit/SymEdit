@@ -2,15 +2,13 @@
 
 namespace Isometriks\Bundle\SymEditBundle\Controller\Admin;
 
-use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\Form\Form;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Isometriks\Bundle\SymEditBundle\Controller\Controller;
+use Isometriks\Bundle\SymEditBundle\Model\PostManagerInterface;
+use JMS\SecurityExtraBundle\Annotation\PreAuthorize;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
-use Isometriks\Bundle\SymEditBundle\Entity\Post;
-use Isometriks\Bundle\SymEditBundle\Form\PostType;
-use JMS\SecurityExtraBundle\Annotation\PreAuthorize;
+use Symfony\Component\HttpFoundation\Request;
 
 
 /**
@@ -30,14 +28,11 @@ class PostController extends Controller
      */
     public function indexAction()
     {
-        $em = $this->getDoctrine()->getManager();
-        $em->getFilters()->disable('post_published');
-
-        $entities = $em->createQuery('SELECT p FROM IsometriksSymEditBundle:Post p ORDER BY p.createdAt DESC')
-                       ->getResult();
+        $postManager = $this->getPostManager();
+        $postManager->disableStatusFilter();
 
         return array(
-            'entities' => $entities,
+            'entities' => $postManager->findAll(),
         );
     }
 
@@ -49,12 +44,13 @@ class PostController extends Controller
      */
     public function newAction()
     {
-        $entity = new Post();
-        $entity->setAuthor($this->getUser());
-        $form   = $this->createForm('symedit_post', $entity);
+        $post = $this->getPostManager()->createPost();
+        $post->setAuthor($this->getUser());
+
+        $form = $this->createForm('symedit_post', $post);
 
         return array(
-            'entity' => $entity,
+            'entity' => $post,
             'form'   => $form->createView(),
         );
     }
@@ -68,22 +64,23 @@ class PostController extends Controller
      */
     public function createAction(Request $request)
     {
-        $entity  = new Post();
-        $form = $this->createForm('symedit_post', $entity);
+        $postManager = $this->getPostManager();
+        $post = $postManager->createPost();
+
+        $form = $this->createForm('symedit_post', $post);
         $form->handleRequest($request);
 
         if ($form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($entity);
-            $em->flush();
 
-            $this->get('session')->getFlashBag()->add('notice', 'Post Created');
+            $postManager->updatePost($post);
 
-            return $this->redirect($this->generateUrl('admin_blog_edit', array('id' => $entity->getId())));
+            $this->addFlash('notice', 'Post Created');
+
+            return $this->redirect($this->generateUrl('admin_blog_edit', array('id' => $post->getId())));
         }
 
         return array(
-            'entity' => $entity,
+            'entity' => $post,
             'form'   => $form->createView(),
         );
     }
@@ -96,20 +93,20 @@ class PostController extends Controller
      */
     public function editAction($id)
     {
-        $em = $this->getDoctrine()->getManager();
-        $em->getFilters()->disable('post_published');
+        $postManager = $this->getPostManager();
+        $postManager->disableStatusFilter();
 
-        $entity = $em->getRepository('IsometriksSymEditBundle:Post')->find($id);
+        $post = $postManager->find($id);
 
-        if (!$entity) {
+        if (!$post) {
             throw $this->createNotFoundException('Unable to find Post entity.');
         }
 
-        $editForm = $this->createForm('symedit_post', $entity);
+        $editForm = $this->createForm('symedit_post', $post);
         $deleteForm = $this->createDeleteForm($id);
 
         return array(
-            'entity'      => $entity,
+            'entity'      => $post,
             'form'        => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
         );
@@ -124,30 +121,28 @@ class PostController extends Controller
      */
     public function updateAction(Request $request, $id)
     {
-        $em = $this->getDoctrine()->getManager();
-        $em->getFilters()->disable('post_published');
+        $postManager = $this->getPostManager();
+        $postManager->disableStatusFilter();
+        $post = $postManager->find($id);
 
-        $entity = $em->getRepository('IsometriksSymEditBundle:Post')->find($id);
-
-        if (!$entity) {
+        if (!$post) {
             throw $this->createNotFoundException('Unable to find Post entity.');
         }
 
         $deleteForm = $this->createDeleteForm($id);
-        $editForm = $this->createForm('symedit_post', $entity);
+        $editForm = $this->createForm('symedit_post', $post);
         $editForm->handleRequest($request);
 
         if ($editForm->isValid()) {
-            $em->persist($entity);
-            $em->flush();
 
-            $this->get('session')->getFlashBag()->add('notice', 'Post Updated');
+            $postManager->updatePost($post);
+            $this->addFlash('notice', 'Post Updated');
 
             return $this->redirect($this->generateUrl('admin_blog_edit', array('id' => $id)));
         }
 
         return array(
-            'entity'      => $entity,
+            'entity'      => $post,
             'edit_form'   => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
         );
@@ -165,16 +160,16 @@ class PostController extends Controller
         $form->handleRequest($request);
 
         if ($form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->getFilters()->disable('post_published');
-            $entity = $em->getRepository('IsometriksSymEditBundle:Post')->find($id);
+            $postManager = $this->getPostManager();
+            $postManager->disableStatusFilter();
+            $post = $postManager->find($id);
 
-            if (!$entity) {
+            if (!$post) {
                 throw $this->createNotFoundException('Unable to find Post entity.');
             }
 
-            $em->remove($entity);
-            $em->flush();
+            $postManager->deletePost($post);
+            $this->addFlash('notice', 'Post deleted.');
         }
 
         return $this->redirect($this->generateUrl('admin_blog'));
@@ -186,5 +181,13 @@ class PostController extends Controller
             ->add('id', 'hidden')
             ->getForm()
         ;
+    }
+
+    /**
+     * @return PostManagerInterface
+     */
+    private function getPostManager()
+    {
+        return $this->get('isometriks_symedit.post_manager');
     }
 }
