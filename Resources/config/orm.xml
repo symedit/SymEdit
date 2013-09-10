@@ -6,6 +6,7 @@
 
     <parameters>
         <parameter key="isometriks_symedit.model.page.class">Isometriks\Bundle\SymEditBundle\Entity\Page</parameter>
+        <parameter key="isometriks_symedit.model.post.class">Isometriks\Bundle\SymEditBundle\Entity\Post</parameter>
     </parameters>
 
     <services>
@@ -14,6 +15,11 @@
         <service id="isometriks_symedit.page_manager" class="Isometriks\Bundle\SymEditBundle\Doctrine\PageManager">
             <argument type="service" id="isometriks_symedit.entity_manager" />
             <argument>%isometriks_symedit.model.page.class%</argument>
+        </service>
+
+        <service id="isometriks_symedit.post_manager" class="Isometriks\Bundle\SymEditBundle\Doctrine\PostManager">
+            <argument type="service" id="isometriks_symedit.entity_manager" />
+            <argument>%isometriks_symedit.model.post.class%</argument>
         </service>
 
         <!-- ORM Listeners -->
