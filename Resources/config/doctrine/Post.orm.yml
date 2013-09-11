@@ -1,7 +1,7 @@
 Isometriks\Bundle\SymEditBundle\Entity\Post:
     type: entity
     table: post
-    repositoryClass: Isometriks\Bundle\SymEditBundle\Repository\PostRepository
+    repositoryClass: Isometriks\Bundle\SymEditBundle\Doctrine\Orm\Repository\PostRepository
     fields:
         id:
             type: integer
@@ -27,6 +27,7 @@ Isometriks\Bundle\SymEditBundle\Entity\Post:
             nullable: false
             gedmo:
                 slug:
+                    unique: true
                     separator: "-"
                     fields:
                         - title

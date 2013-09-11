@@ -1,7 +1,7 @@
 Isometriks\Bundle\SymEditBundle\Entity\Category:
     type: entity
     table: category
-    repositoryClass: Isometriks\Bundle\SymEditBundle\Repository\CategoryRepository
+    repositoryClass: Isometriks\Bundle\SymEditBundle\Doctrine\Orm\Repository\CategoryRepository
     fields:
         id:
             type: integer

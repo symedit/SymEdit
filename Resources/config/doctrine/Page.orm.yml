@@ -4,7 +4,7 @@ Isometriks\Bundle\SymEditBundle\Entity\Page:
     gedmo:
         tree:
           type: materializedPath
-    repositoryClass: Isometriks\Bundle\SymEditBundle\Repository\PageRepository
+    repositoryClass: Isometriks\Bundle\SymEditBundle\Doctrine\Orm\Repository\PageRepository
     fields:
         id:
             type: integer
@@ -125,7 +125,7 @@ Isometriks\Bundle\SymEditBundle\Entity\Page:
             nullable: false
             gedmo:
                 timestampable:
-                    on: update  
+                    on: update
         level:
             type: integer
             nullable: true
