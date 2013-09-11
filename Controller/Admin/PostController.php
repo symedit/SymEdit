@@ -3,6 +3,8 @@
 namespace Isometriks\Bundle\SymEditBundle\Controller\Admin;
 
 use Isometriks\Bundle\SymEditBundle\Controller\Controller;
+use Isometriks\Bundle\SymEditBundle\Event\Events;
+use Isometriks\Bundle\SymEditBundle\Event\PostEvent;
 use Isometriks\Bundle\SymEditBundle\Model\PostManagerInterface;
 use JMS\SecurityExtraBundle\Annotation\PreAuthorize;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
@@ -73,8 +75,10 @@ class PostController extends Controller
         if ($form->isValid()) {
 
             $postManager->updatePost($post);
-
             $this->addFlash('notice', 'Post Created');
+
+            $event = new PostEvent($post, $request);
+            $this->get('event_dispatcher')->dispatch(Events::POST_CREATED, $event);
 
             return $this->redirect($this->generateUrl('admin_blog_edit', array('id' => $post->getId())));
         }
