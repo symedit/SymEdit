@@ -31,7 +31,7 @@ class PageVoter implements VoterInterface
     protected function getPage()
     {
         if($this->page === null) {
-            if($this->request->attributes->has('_page')) {
+            if(isset($this->request->attributes) && $this->request->attributes->has('_page')) {
                 $this->page = $this->request->attributes->get('_page');
             }
         }
