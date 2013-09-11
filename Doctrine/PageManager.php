@@ -21,7 +21,7 @@ class PageManager extends BaseManager
 
     public function deletePage(PageInterface $page)
     {
-        $this->objectManager->refresh($page);
+        $this->objectManager->remove($page);
         $this->objectManager->flush();
     }
 

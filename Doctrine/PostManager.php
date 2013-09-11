@@ -22,7 +22,7 @@ class PostManager extends BaseManager
 
     public function deletePost(PostInterface $post)
     {
-        $this->objectManager->refresh($post);
+        $this->objectManager->remove($post);
         $this->objectManager->flush();
     }
 
@@ -42,7 +42,7 @@ class PostManager extends BaseManager
 
     public function findAll()
     {
-        return $this->repository->findAll();
+        return $this->repository->findAllOrdered();
     }
 
     public function findPostBy(array $criteria)
