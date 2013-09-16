@@ -3,7 +3,7 @@
 <div class="row-fluid">
 {% for widget in widgets %}
     <div class="span{{ len }}">
-        <h4>{{ widget.title }}</h4>
+        {% if widget.title is not empty %}<h4>{{ widget.title }}</h4>{% endif %}
         {{ widget.content|raw }}
     </div>
 {% endfor %}

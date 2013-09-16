@@ -1,3 +1,4 @@
+{% if not Page.homepage %}
 {% set divider_str = '<span class="divider">' ~ divider|default('/') ~ '</span>' %}
 <ul class="breadcrumb">
     {% for crumb in Breadcrumbs %}
@@ -11,9 +12,10 @@
             <a href="{{ path(crumb.path, crumb.params) }}">{{ crumb.title }}</a>
             {% if not loop.last %}
             {{ divider_str|raw }}
-            {% endif %}        
+            {% endif %}
         </li>
     {% else %}
         <li class="active">Home</li>
     {% endfor %}
 </ul>
+{% endif %}

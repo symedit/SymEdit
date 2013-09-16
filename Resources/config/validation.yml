@@ -51,6 +51,8 @@ Isometriks\Bundle\SymEditBundle\Model\Slider:
             - NotBlank: ~
 
 Isometriks\Bundle\SymEditBundle\Model\Widget:
+    constraints:
+        - Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity: name
     properties:
         name:
             - Regex:
