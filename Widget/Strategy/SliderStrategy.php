@@ -24,11 +24,19 @@ class SliderStrategy extends AbstractWidgetStrategy
         $path = array(
             '_controller' => 'IsometriksSymEditBundle:Slider:index',
             'name' => $widget->getOption('slider'),
+            'thumbnails' => $widget->getOption('thumbnails'),
         );
 
         $subRequest = $request->duplicate(array(), null, $path);
 
         return $kernel->handle($subRequest, HttpKernelInterface::SUB_REQUEST)->getContent();
+    }
+
+    public function setDefaultOptions(WidgetInterface $widget)
+    {
+        $widget->setOptions(array(
+            'thumbnails' => false,
+        ));
     }
 
     public function buildForm(FormBuilderInterface $builder)
@@ -41,6 +49,11 @@ class SliderStrategy extends AbstractWidgetStrategy
                 'class' => 'IsometriksSymEditBundle:Slider',
                 'property' => 'name',
                 'property_value' => 'name',
+            ))
+            ->add('thumbnails', 'checkbox', array(
+                'label' => 'Show Thumbnails',
+                'property_path' => 'options[thumbnails]',
+                'required' => false,
             ));
     }
 
