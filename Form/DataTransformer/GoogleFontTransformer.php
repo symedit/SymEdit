@@ -14,12 +14,10 @@ class GoogleFontTransformer implements DataTransformerInterface
      */
     public function transform($value)
     {
-        if (!is_array($value)) {
-            return '';
-        }
-
-        $values = array_map('urldecode', $value);
-        return implode(',', $values);
+        $values = explode('|', $value);
+        $values = array_map('urldecode', $values);
+        
+        return implode(', ', $values);
     }
 
     public function reverseTransform($value)
