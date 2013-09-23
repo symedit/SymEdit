@@ -30,7 +30,7 @@ class StylizerExtension extends \Twig_Extension
 
         $fonts = trim($variables['google-fonts'], "'");
 
-        if ($fonts === null || empty($fonts)) {
+        if ($fonts === null || empty($fonts) || $fonts === 'none') {
             return;
         }
 
