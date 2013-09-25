@@ -8,7 +8,7 @@ Isometriks\Bundle\SymEditBundle\Entity\User:
 Isometriks\Bundle\SymEditBundle\Model\Page:
     constraints:
         - Callback:
-            methods: [isNameValid]
+            methods: [isNameValid, isParentValid]
     properties:
         title:
             - NotBlank:
