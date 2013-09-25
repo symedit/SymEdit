@@ -6,6 +6,7 @@
 
     <parameters>
         <parameter key="isometriks_symedit.form.contact.class">Isometriks\Bundle\SymEditBundle\Form\ContactType</parameter>
+        <parameter key="isometriks_symedit.form.type.page.class">Isometriks\Bundle\SymEditBundle\Form\PageType</parameter>
         <parameter key="isometriks_symedit.form.type.template.class">Isometriks\Bundle\SymEditBundle\Form\Type\TemplateType</parameter>
         <parameter key="isometriks_symedit.form.type.role.class">Isometriks\Bundle\SymEditBundle\Form\Type\RoleType</parameter>
         <parameter key="isometriks_symedit.form.type.post.class">Isometriks\Bundle\SymEditBundle\Form\PostType</parameter>
@@ -20,6 +21,11 @@
     <services>
         <service id="isometriks_symedit.form.contact" class="%isometriks_symedit.form.contact.class%">
             <tag name="form.type" alias="symedit_contact" />
+        </service>
+        
+        <service id="isometriks_symedit.form.type.page" class="%isometriks_symedit.form.type.page.class%">
+            <argument type="service" id="isometriks_symedit.page_manager" />
+            <tag name="form.type" alias="symedit_page" />
         </service>
 
         <service id="isometriks_symedit.form.type.template" class="%isometriks_symedit.form.type.template.class%">
@@ -49,6 +55,8 @@
         </service>
 
         <service id="isometriks_symedit.form.type.widget" class="%isometriks_symedit.form.type.widget.class%">
+            <argument>%isometriks_symedit.model.widget.class%</argument>
+            <argument>%isometriks_symedit.model.widget_area.class%</argument>
             <tag name="form.type" alias="symedit_widget" />
         </service>
 
