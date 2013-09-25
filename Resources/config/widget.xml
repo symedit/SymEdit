@@ -9,9 +9,6 @@
         <parameter key="isometriks_symedit.widget.registry.class">Isometriks\Bundle\SymEditBundle\Widget\WidgetRegistry</parameter>
         <parameter key="isometriks_symedit.widget.manager.class">Isometriks\Bundle\SymEditBundle\Widget\WidgetManager</parameter>
 
-        <parameter key="isometriks_symedit.widget.class">Isometriks\Bundle\SymEditBundle\Entity\Widget</parameter>
-        <parameter key="isometriks_symedit.widget_area.class">Isometriks\Bundle\SymEditBundle\Entity\WidgetArea</parameter>
-
         <parameter key="isometriks_symedit.widget.strategy.html.class">Isometriks\Bundle\SymEditBundle\Widget\Strategy\HtmlStrategy</parameter>
         <parameter key="isometriks_symedit.widget.strategy.template.class">Isometriks\Bundle\SymEditBundle\Widget\Strategy\TemplateStrategy</parameter>
         <parameter key="isometriks_symedit.widget.strategy.contact_info.class">Isometriks\Bundle\SymEditBundle\Widget\Strategy\ContactInfoStrategy</parameter>
@@ -34,8 +31,8 @@
         </service>
 
         <service id="isometriks_symedit.widget.manager" class="%isometriks_symedit.widget.manager.class%">
-            <argument>%isometriks_symedit.widget.class%</argument>
-            <argument>%isometriks_symedit.widget_area.class%</argument>
+            <argument>%isometriks_symedit.model.widget.class%</argument>
+            <argument>%isometriks_symedit.model.widget_area.class%</argument>
             <argument type="service" id="isometriks_symedit.widget.registry" />
             <argument type="service" id="doctrine" />
         </service>
@@ -43,39 +40,39 @@
         <!-- Widget Strategies -->
 
         <service id="isometriks_symedit.widget.strategy.html" class="%isometriks_symedit.widget.strategy.html.class%">
-            <tag name="symedit.widget_strategy" />
+            <tag name="symedit.widget_strategy" alias="html" />
         </service>
 
         <service id="isometriks_symedit.widget.strategy.template" class="%isometriks_symedit.widget.strategy.template.class%">
             <argument type="service" id="twig" />
-            <tag name="symedit.widget_strategy" />
+            <tag name="symedit.widget_strategy" alias="template" />
         </service>
 
         <service id="isometriks_symedit.widget.strategy.contact_info" class="%isometriks_symedit.widget.strategy.contact_info.class%"
                  parent="isometriks_symedit.widget.strategy.template">
-            <tag name="symedit.widget_strategy" />
+            <tag name="symedit.widget_strategy" alias="contact_info" />
         </service>
 
         <service id="isometriks_symedit.widget.strategy.blog_recent_posts" class="%isometriks_symedit.widget.strategy.blog_recent_posts.class%">
             <argument type="service" id="twig" />
             <argument type="service" id="doctrine" />
-            <tag name="symedit.widget_strategy" />
+            <tag name="symedit.widget_strategy" alias="blog_recent_posts" />
         </service>
 
         <service id="isometriks_symedit.widget.strategy.blog_categories" class="%isometriks_symedit.widget.strategy.blog_categories.class%">
             <argument type="service" id="twig" />
             <argument type="service" id="doctrine" />
-            <tag name="symedit.widget_strategy" />
+            <tag name="symedit.widget_strategy" alias="blog_categories" />
         </service>
 
         <service id="isometriks_symedit.widget.strategy.slider" class="%isometriks_symedit.widget.strategy.slider.class%">
             <argument type="service" id="service_container" />
-            <tag name="symedit.widget_strategy" />
+            <tag name="symedit.widget_strategy" alias="slider" />
         </service>
 
         <service id="isometriks_symedit.widget.strategy.google_map" class="%isometriks_symedit.widget.strategy.google_map.class%">
             <argument type="service" id="twig" />
-            <tag name="symedit.widget_strategy" />
+            <tag name="symedit.widget_strategy" alias="google_map" />
         </service>
     </services>
 
