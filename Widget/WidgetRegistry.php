@@ -13,11 +13,6 @@ class WidgetRegistry extends ContainerAware
     private $loadedStrategies; 
     
     /**
-     * @TODO: Force users to add a "name" attribute to the strategy in the container
-     *        This will allow us to lookup in O(1) instead since we can have
-     *        an associative array instead and not instantiate extra classes. 
-     * 
-     * 
      * @param \Symfony\Component\DependencyInjection\ContainerInterface $container
      * @param array $strategies
      */
@@ -43,6 +38,15 @@ class WidgetRegistry extends ContainerAware
     
     private function loadStrategy($name)
     {
+        /**
+         * If we passed an alias then it can load quicker
+         */
+        if (isset($this->strategies[$name])) {
+            $this->loadKey($name);
+            
+            return;
+        }
+        
         foreach($this->strategies as $key=>$id){
             $strategy = $this->loadKey($key);  
             
@@ -64,6 +68,13 @@ class WidgetRegistry extends ContainerAware
         }
         
         $this->loadedStrategies[$strategy->getName()] = $strategy; 
+        
+        /**
+         * Check if keys/alias match. If not you should fix it
+         */
+        if (is_string($key) && $strategy->getName() !== $key) {
+            throw new \Exception(sprintf('Widget tag alias (%s) does not match name (%s)', $key, $strategy->getName()));
+        }
         
         unset($this->strategies[$key]); 
         
