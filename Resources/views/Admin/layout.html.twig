@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>{% block title %}SymEdit{% endblock %}</title>
+        {% block stylesheets %}
+        {% stylesheets
+            '@IsometriksSymEditBundle/Resources/less/admin/bootstrap/bootstrap.less'
+            '@IsometriksSymEditBundle/Resources/less/admin/admin.less'
+            '@IsometriksSymEditBundle/Resources/less/admin/override.less'
+            'bundles/isometrikssymedit/redactor/redactor.css'
+            filter="cssrewrite" %}
+        <link rel="stylesheet" href="{{ asset_url }}" />
+        {% endstylesheets %}
+        <link href='http://fonts.googleapis.com/css?family=Raleway' rel='stylesheet' type='text/css'>
+        {% endblock %}
+    </head>
+    <body>
+        {% block navbar %}
+        {% include '@SymEdit/Admin/nav.html.twig' %}
+        {% endblock %}
+        
+        {% block flash %}
+        {% include '@SymEdit/Admin/flash.html.twig' %}
+        {% endblock %}
+        
+        {% block content_container %}
+        <div class="container">
+            <div id="content">
+                {% block heading %}
+                <div id="title">
+                    <h1>{{ block('title') }}</h1>
+                </div>
+                {% endblock %}
+
+                {% block content %}{% endblock %}
+            </div>
+        </div>
+        {% endblock %}
+
+        {% javascripts
+            'bundles/isometrikssymedit/js/jquery-1.9.1.min.js'
+            'bundles/isometrikssymedit/js/*.js'
+            'bundles/isometrikssymedit/redactor/redactor.min.js'
+            'bundles/isometrikssymedit/js/snippets/*.js' %}
+        <script src="{{ asset_url }}" type="text/javascript"></script>
+        {% endjavascripts %}
+        <script>
+            Isometriks.redactor_options.imageGetJson = "{{ path('admin_image_json') }}";
+            Isometriks.redactor_options.imageUpload = "{{ path('admin_image_quick_upload') }}";
+            {% stylesheets '@IsometriksSymEditBundle/Resources/less/wysiwyg.less' %}
+            Isometriks.redactor_iframe.css = '{{ asset_url }}';
+            {% endstylesheets %}
+        </script>
+        {% block scripts %}{% endblock %}
+    </body>
+</html>

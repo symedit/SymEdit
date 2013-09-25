@@ -1,13 +1,10 @@
 {% extends '@SymEdit/Admin/base.html.twig' %}
 
-{% block title %}Dashboard{% endblock %}
+{% block title %}Welcome, {{ app.user.profile.firstname }}{% endblock %}
 
 {% block content %}
-
-<h2>Welcome, {{ app.user.profile.firstname }}</h2>
-
-<div class="row-fluid dashboard">
-    <div class="span4">
+<div class="row dashboard">
+    <div class="col-md-4">
         <h3><i class="circle icon-cog"></i> Setup</h3>
 
         <ul>
@@ -17,7 +14,7 @@
         </ul>
     </div>
 
-    <div class="span4">
+    <div class="col-md-4">
         <h3><i class="circle icon-pencil"></i> Content Updates</h3>
 
         <ul>
@@ -31,7 +28,7 @@
         </ul>
     </div>
 
-    <div class="span4">
+    <div class="col-md-4">
         <h3><i class="circle icon-check"></i> {{ app.user.profile.firstname }}'s Actions</h3>
 
         <ul>
@@ -42,30 +39,4 @@
         </ul>
     </div>
 </div>
-
-  {# Missing Templates Widget #}
-
-  {% if missing_templates|length > 0 %}
-  <div class="span4 pull-right">
-      <div class="widget">
-          <div class="widget-heading">
-              <span class="title"><i class="icon-warning-sign icon-white"></i> Missing Templates</span>
-          </div>
-          <div class="widget-content">
-              <ul>
-                  {% for entity in missing_templates %}
-                      <li><a href="{{ path('admin_page_edit', {id:entity.id}) }}">{{ entity.title }}</a></li>
-                  {% endfor %}
-              </ul>
-              <form method="post" action="{{ path('admin_dashboard_update_missing') }}">
-                  {{ form_widget(missing_form.template) }}
-                  {{ form_rest(missing_form) }}
-                  <div class="form-actions">
-                      <button class="btn btn-primary">Set Template for All</button>
-                  </div>
-              </form>
-          </div>
-      </div>
-  </div>
-  {% endif %}
 {% endblock %}

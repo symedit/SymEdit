@@ -2,16 +2,6 @@
 
 {% block title %}Users &raquo; Create New{% endblock %}
 
-{% block action %}{{ path('admin_user_create') }}{% endblock %}
-
-{% block tabs %}
-    {% include '@SymEdit/Admin/User/tabs.html.twig' %}
-{% endblock %}
-
-{% block tab_content %}
-    {% include '@SymEdit/Admin/User/tab_content.html.twig' %}
-{% endblock %}
-
 {% block form_actions %}
 <button type="submit" class="btn btn-primary btn-block">Add User</button>
 {% endblock %}

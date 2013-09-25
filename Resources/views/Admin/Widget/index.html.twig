@@ -1,36 +1,38 @@
 {% extends '@IsometriksSymEdit/Admin/base.html.twig' %}
 
 {% block title %}Showing Widgets{% endblock %}
+{% block heading '' %}
 
 {% block content %}
 {% for area in areas %}
-<div class="well">
-    <h2 class="latch">
-        {{ area.area }}
-        <small>{{ area.description }}</small>
+<section class="widget-area">
+    <h2>
+        {{ area.description }}
+        <small>{{ area.area }}</small>
     </h2>
 
-    <ul class="thumbnails">
+    <div class="row">
     {% for widget in area.widgets %}
-        <li class="span3">
+        <div class="col-md-3">
             <a href="{{ path('admin_widget_edit', {id:widget.id}) }}" class="thumbnail">
                 <h4>
                     {{ widget.title|default('(No Title)') }} <br>
                     <small>{{ widget.strategy.description }}</small>
                 </h4>
             </a>
-        </li>
+        </div>
     {% endfor %}
 
-        {#<li class="span3">
+        <div class="col-md-3">
             <a href="#" class="thumbnail">
                 <h4>
-                    <i class="icon-plus circle"></i> Add Widget <br>
-                    <small>To {{ area.description }}</small>
+                    <i class="icon-plus circle pull-left"></i> 
+                    Add Widget <br>
+                    <small>to "{{ area.area }}"</small>
                 </h4>
             </a>
-        </li>#}
-    </ul>
-</div>
+        </div>
+    </div>
+</section>
 {% endfor %}
 {% endblock %}

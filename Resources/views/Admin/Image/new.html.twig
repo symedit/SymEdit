@@ -4,11 +4,11 @@
 
 {% block content %}
 
-<form class="form-horizontal" action="{{ path('admin_image_create') }}" method="post" {{ form_enctype(form) }}>
+{{ form_start(form, {attr: {class: 'form-horizontal'}}) }}
     {{ form_widget(form) }}
     <div class="form-actions">
         <button class="btn btn-primary" type="submit">Upload Image</button>
     </div>
-</form>
+{{ form_end(form) }}
 
 {% endblock %}

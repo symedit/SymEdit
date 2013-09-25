@@ -5,19 +5,23 @@
 {% block action %}{{ path('admin_setting_update') }}{% endblock %}
 
 {% block tabs %}
+<ul class="nav nav-pills nav-stacked">
 {% for group in form.groups %}
 <li{% if loop.first %} class="active"{% endif %}>
     <a href="#setting-{{ group.vars.name }}" data-toggle="tab">{{ group.vars.label }}</a>
 </li>
 {% endfor %}
+</ul>
 {% endblock %}
 
 {% block tab_content %}
+<div class="tab-content">
 {% for group in form.groups %}
     <div class="tab-pane{% if loop.first %} active{% endif %}" id="setting-{{ group.vars.name }}">
         {{ form_widget(group) }}
     </div>
 {% endfor %}
+</div>
 {% endblock %}
 
 

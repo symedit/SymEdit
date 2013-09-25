@@ -28,13 +28,13 @@
 <div class="tab-pane" id="slides">
     {% for slide in form.vars.value.slides %}
     <div class="well">
-        <div class="row-fluid">
-            <div class="span4">
+        <div class="row">
+            <div class="col-md-4">
                 <h4>Slide {{ loop.index }}</h4>
                 <p>{{ slide.caption }}</p>
                 <a href="{{ path('admin_image_slider_slide_edit', {id:slide.id}) }}" class="btn btn-primary">Edit</a>
             </div>
-            <div class="span5 pull-right">
+            <div class="col-md-5 pull-right">
                 <img src="{{ slide.image.webpath|constrain({w:300, h:120}) }}" />
             </div>
         </div>
