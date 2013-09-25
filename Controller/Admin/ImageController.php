@@ -4,7 +4,7 @@ namespace Isometriks\Bundle\SymEditBundle\Controller\Admin;
 
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\JsonResponse;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Isometriks\Bundle\SymEditBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
@@ -24,6 +24,7 @@ class ImageController extends Controller
      * Lists all Image entities.
      *
      * @Route("/", name="admin_image")
+     * @Method("GET")
      * @Template()
      */
     public function indexAction()
@@ -38,9 +39,28 @@ class ImageController extends Controller
     }
 
     /**
+     * Displays a form to create a new Image entity.
+     *
+     * @Route("/new", name="admin_image_new")
+     * @Method("GET")
+     * @Template()
+     */
+    public function newAction()
+    {
+        $entity = new Image();
+        $form = $this->createCreateForm($entity);
+
+        return array(
+            'entity' => $entity,
+            'form'   => $form->createView(),
+        );
+    }
+
+    /**
      * Finds and displays a Image entity.
      *
-     * @Route("/{id}/show", name="admin_image_show")
+     * @Route("/{id}", name="admin_image_show")
+     * @Method("GET")
      * @Template()
      */
     public function showAction($id)
@@ -61,21 +81,12 @@ class ImageController extends Controller
         );
     }
 
-    /**
-     * Displays a form to create a new Image entity.
-     *
-     * @Route("/new", name="admin_image_new")
-     * @Template()
-     */
-    public function newAction()
+    private function createCreateForm(Image $image)
     {
-        $entity = new Image();
-        $form   = $this->createForm(new ImageType(), $entity);
-
-        return array(
-            'entity' => $entity,
-            'form'   => $form->createView(),
-        );
+        return $this->createForm(new ImageType(), $image, array(
+            'action' => $this->generateUrl('admin_image_create'),
+            'method' => 'POST',
+        ));
     }
 
     /**
@@ -87,8 +98,8 @@ class ImageController extends Controller
      */
     public function createAction(Request $request)
     {
-        $entity  = new Image();
-        $form = $this->createForm(new ImageType(), $entity);
+        $entity = new Image();
+        $form = $this->createCreateForm($entity);
         $form->handleRequest($request);
 
         if ($form->isValid()) {
@@ -97,7 +108,7 @@ class ImageController extends Controller
             $em->persist($entity);
             $em->flush();
 
-            $this->get('session')->getFlashBag()->add('notice', 'Image Uploaded');
+            $this->addFlash('notice', 'Image Uploaded');
 
             return $this->redirect($this->generateUrl('admin_image'));
         }
@@ -114,19 +125,19 @@ class ImageController extends Controller
      * Displays a form to edit an existing Image entity.
      *
      * @Route("/{id}/edit", name="admin_image_edit")
+     * @Method("GET")
      * @Template()
      */
     public function editAction($id)
     {
         $em = $this->getDoctrine()->getManager();
-
         $entity = $em->getRepository('IsometriksSymEditBundle:Image')->find($id);
 
         if (!$entity) {
             throw $this->createNotFoundException('Unable to find Image entity.');
         }
 
-        $editForm = $this->createForm(new ImageType( $entity->getName() ), $entity);
+        $editForm = $this->createEditForm($entity);
         $deleteForm = $this->createDeleteForm($id);
 
         return array(
@@ -136,17 +147,24 @@ class ImageController extends Controller
         );
     }
 
+    private function createEditForm(Image $image)
+    {
+        return $this->createForm(new ImageType(), $image, array(
+            'action' => $this->generateUrl('admin_image_update', array('id' => $image->getId())),
+            'method' => 'PUT',
+        ));
+    }
+
     /**
      * Edits an existing Image entity.
      *
      * @Route("/{id}/update", name="admin_image_update")
-     * @Method("POST")
+     * @Method("PUT")
      * @Template("IsometriksSymEditBundle:Admin/Image:edit.html.twig")
      */
     public function updateAction(Request $request, $id)
     {
         $em = $this->getDoctrine()->getManager();
-
         $entity = $em->getRepository('IsometriksSymEditBundle:Image')->find($id);
 
         if (!$entity) {
@@ -154,7 +172,7 @@ class ImageController extends Controller
         }
 
         $deleteForm = $this->createDeleteForm($id);
-        $editForm = $this->createForm(new ImageType(), $entity);
+        $editForm = $this->createEditForm($entity);
         $editForm->handleRequest($request);
 
         if ($editForm->isValid()) {
@@ -167,8 +185,8 @@ class ImageController extends Controller
         }
 
         return array(
-            'entity'      => $entity,
-            'edit_form'   => $editForm->createView(),
+            'entity' => $entity,
+            'edit_form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
         );
     }
@@ -177,7 +195,7 @@ class ImageController extends Controller
      * Deletes a Image entity.
      *
      * @Route("/{id}/delete", name="admin_image_delete")
-     * @Method("POST")
+     * @Method("DELETE")
      */
     public function deleteAction(Request $request, $id)
     {
@@ -192,14 +210,12 @@ class ImageController extends Controller
                 throw $this->createNotFoundException('Unable to find Image entity.');
             }
 
-            $flashBag = $this->get('session')->getFlashBag();
-
             try {
                 $em->remove($entity);
                 $em->flush();
-                $flashBag->add('notice', 'Image Removed');
+                $this->addFlash('notice', 'Image Removed');
             } catch(\Exception $e) {
-                $flashBag->add('error', 'There was an error removing the image. Make sure it is not used in a Post or a Slider.');
+                $this->addFlash('error', 'There was an error removing the image. Make sure it is not used in a Post or a Slider.');
             }
         }
 
@@ -210,6 +226,8 @@ class ImageController extends Controller
     {
         return $this->createFormBuilder(array('id' => $id))
             ->add('id', 'hidden')
+            ->setAction($this->generateUrl('admin_image_delete', array('id' => $id)))
+            ->setMethod('DELETE')
             ->getForm()
         ;
     }

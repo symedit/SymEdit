@@ -8,6 +8,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use JMS\SecurityExtraBundle\Annotation\PreAuthorize;
+use Isometriks\Bundle\SymEditBundle\Model\UserInterface;
 
 /**
  * User controller.
@@ -36,6 +37,7 @@ class UserController extends Controller
      * Finds and displays a User entity.
      *
      * @Route("/{id}/show", name="admin_user_show")
+     * @Method("GET")
      * @Template()
      */
     public function showAction($id)
@@ -60,11 +62,19 @@ class UserController extends Controller
     public function newAction()
     {
         $user = $this->getUserManager()->createUser(true);
-        $form = $this->createForm('symedit_user', $user);
+        $form = $this->createCreateForm($user);
 
         return array(
             'form'   => $form->createView(),
         );
+    }
+    
+    private function createCreateForm(UserInterface $user)
+    {
+        return $this->createForm('symedit_user', $user, array(
+            'action' => $this->generateUrl('admin_user_create'),
+            'method' => 'POST',
+        ));
     }
 
     /**
@@ -78,7 +88,7 @@ class UserController extends Controller
     {
         $userManager = $this->getUserManager();
         $user = $userManager->createUser(true);
-        $form = $this->createForm('symedit_user', $user);
+        $form = $this->createCreateForm($user);
 
         $form->handleRequest($request);
 
@@ -100,6 +110,7 @@ class UserController extends Controller
     /**
      * Edit User
      * @Route("/{id}/edit", name="admin_user_edit")
+     * @Method("GET")
      * @Template()
      */
     public function editAction($id)
@@ -110,20 +121,28 @@ class UserController extends Controller
             throw $this->createNotFoundException('Unable to find User entity.');
         }
 
-        $form = $this->createForm('symedit_user', $entity);
+        $form = $this->createEditForm($entity);
 
         return array(
             'form'   => $form->createView(),
             'entity' => $entity,
         );
     }
+    
+    private function createEditForm(UserInterface $user)
+    {
+        return $this->createForm('symedit_user', $user, array(
+            'action' => $this->generateUrl('admin_user_update', array('id' => $user->getId())),
+            'method' => 'PUT',
+        ));
+    }
 
 
     /**
      * Edits an existing Page entity.
      *
-     * @Route("/{id}/update", name="admin_user_update")
-     * @Method("POST")
+     * @Route("/{id}", name="admin_user_update")
+     * @Method("PUT")
      * @Template("@SymEdit/Admin/User/edit.html.twig")
      */
     public function updateAction(Request $request, $id)
@@ -135,7 +154,7 @@ class UserController extends Controller
             throw $this->createNotFoundException('Unable to find Page entity.');
         }
 
-        $form = $this->createForm('symedit_user', $user);
+        $form = $this->createEditForm($user);
         $form->handleRequest($request);
 
         if ($form->isValid()) {

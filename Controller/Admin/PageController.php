@@ -6,7 +6,6 @@ use Isometriks\Bundle\SymEditBundle\Controller\Controller;
 use Isometriks\Bundle\SymEditBundle\Event\Events;
 use Isometriks\Bundle\SymEditBundle\Event\PageEvent;
 use Isometriks\Bundle\SymEditBundle\Form\PageReorderType;
-use Isometriks\Bundle\SymEditBundle\Form\PageType;
 use Isometriks\Bundle\SymEditBundle\Model\PageInterface;
 use Isometriks\Bundle\SymEditBundle\Model\PageManagerInterface;
 use JMS\SecurityExtraBundle\Annotation\PreAuthorize;
@@ -16,6 +15,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Form\FormInterface;
 
 /**
  * Page controller.
@@ -29,15 +29,16 @@ class PageController extends Controller
      * Lists all Page entities.
      *
      * @Route("/", name="admin_page")
+     * @Method("GET")
      * @Template()
      */
     public function indexAction()
     {
         $pageManager = $this->getPageManager();
         $root = $pageManager->findRoot();
-
+        
         $reorder_form = $this->createForm(new PageReorderType(), null, array('render' => true));
-
+        
         return array(
             'Root' => $root,
             'reorder_form' => $reorder_form->createView(),
@@ -81,28 +82,40 @@ class PageController extends Controller
      */
     public function newAction()
     {
-        $entity = $this->getPageManager()->createPage();
-        $form   = $this->createForm(new PageType(), $entity);
+        $page = $this->getPageManager()->createPage();
+        $form   = $this->createCreateForm($page);
 
         return array(
-            'entity' => $entity,
+            'entity' => $page,
             'form'   => $form->createView(),
             'action' => 'create',
         );
     }
 
     /**
+     * @param PageInterface $page
+     * @return FormInterface
+     */
+    private function createCreateForm(PageInterface $page)
+    {
+        return $this->createForm('symedit_page', $page, array(
+            'action' => $this->generateUrl('admin_page_create'),
+            'method' => 'POST',
+        ));
+    }
+
+    /**
      * Creates a new Page entity.
      *
-     * @Route("/create", name="admin_page_create")
+     * @Route("/", name="admin_page_create")
      * @Method("POST")
-     * @Template("IsometriksSymEditBundle:Admin/Page:new.html.twig")
+     * @Template("@SymEdit/Admin/Page/new.html.twig")
      */
     public function createAction(Request $request)
     {
         $pageManager = $this->getPageManager();
         $page = $pageManager->createPage();
-        $form = $this->createForm(new PageType(), $page);
+        $form   = $this->createCreateForm($page);
         $form->handleRequest($request);
 
         if ($form->isValid()) {
@@ -129,29 +142,37 @@ class PageController extends Controller
      */
     public function editAction($id)
     {
-        $entity = $this->getPageManager()->find($id);
+        $page = $this->getPageManager()->find($id);
 
-        if (!$entity) {
+        if (!$page) {
             throw $this->createNotFoundException('Unable to find Page entity.');
         }
 
-        $editForm = $this->createForm(new PageType(), $entity);
+        $editForm = $this->createEditForm($page);
         $deleteForm = $this->createDeleteForm($id);
 
         return array(
-            'entity'      => $entity,
+            'entity'      => $page,
             'form'        => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
             'action'      => 'update',
         );
     }
 
+    private function createEditForm(PageInterface $page)
+    {
+        return $this->createForm('symedit_page', $page, array(
+            'action' => $this->generateUrl('admin_page_update', array('id' => $page->getId())),
+            'method' => 'PUT',
+        ));
+    }
+
     /**
      * Edits an existing Page entity.
      *
-     * @Route("/{id}/update", name="admin_page_update")
-     * @Method("POST")
-     * @Template("IsometriksSymEditBundle:Admin/Page:edit.html.twig")
+     * @Route("/{id}", name="admin_page_update")
+     * @Method("PUT")
+     * @Template("@SymEdit/Admin/Page/edit.html.twig")
      */
     public function updateAction(Request $request, $id)
     {
@@ -163,7 +184,7 @@ class PageController extends Controller
         }
 
         $deleteForm = $this->createDeleteForm($id);
-        $editForm = $this->createForm(new PageType(), $entity);
+        $editForm = $this->createEditForm($entity);
         $editForm->handleRequest($request);
 
         if ($editForm->isValid()) {
@@ -205,8 +226,8 @@ class PageController extends Controller
     /**
      * Deletes a Page entity.
      *
-     * @Route("/{id}/delete", name="admin_page_delete")
-     * @Method("POST")
+     * @Route("/{id}", name="admin_page_delete")
+     * @Method("DELETE")
      */
     public function deleteAction(Request $request, $id)
     {
@@ -227,7 +248,7 @@ class PageController extends Controller
 
                 $this->addFlash('error', 'Cannot delete this page.');
 
-                return $this->redirect($this->generateUrl('admin_page'));
+                return $this->redirect($this->generateUrl('admin_page_edit', array('id' => $entity->getId())));
             }
 
             $pageManager->deletePage($entity);
@@ -240,8 +261,9 @@ class PageController extends Controller
     {
         return $this->createFormBuilder(array('id' => $id))
             ->add('id', 'hidden')
-            ->getForm()
-        ;
+            ->setAction($this->generateUrl('admin_page_delete', array('id' => $id)))
+            ->setMethod('DELETE')
+            ->getForm();
     }
 
     /**

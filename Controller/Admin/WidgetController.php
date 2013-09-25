@@ -49,13 +49,22 @@ class WidgetController extends Controller
         } else {
 
             $widget = $this->createWidget($strategyName);
-            $form = $this->getWidgetForm($widget);
+            $form = $this->createCreateForm($widget);
 
             return array(
                 'entity' => $widget,
                 'form' => $form->createView(),
             );
         }
+    }
+    
+    private function createCreateForm(WidgetInterface $widget)
+    {
+        return $this->createForm('symedit_widget', $widget, array(
+            'strategy' => $widget->getStrategy(),
+            'action' => $this->generateUrl('admin_widget_create', array('strategyName' => $widget->getStrategyName())),
+            'method' => 'POST',
+        ));
     }
 
     /**
@@ -65,7 +74,7 @@ class WidgetController extends Controller
     public function createAction(Request $request, $strategyName)
     {
         $widget = $this->createWidget($strategyName);
-        $form = $this->getWidgetForm($widget);
+        $form = $this->createCreateForm($widget);
 
         $form->handleRequest($request);
 
@@ -86,6 +95,7 @@ class WidgetController extends Controller
 
     /**
      * @Route("/{id}/edit", name="admin_widget_edit")
+     * @Method("GET")
      * @Template()
      */
     public function editAction($id)
@@ -97,7 +107,7 @@ class WidgetController extends Controller
             throw new \Exception(sprintf('Could not find widget with name "%s".', $name));
         }
 
-        $form = $this->getWidgetForm($widget);
+        $form = $this->createEditForm($widget);
 
         return array(
             'entity' => $widget,
@@ -105,9 +115,19 @@ class WidgetController extends Controller
             'delete_form' => $this->createDeleteForm($id)->createView(),
         );
     }
+    
+    private function createEditForm(WidgetInterface $widget)
+    {
+        return $this->createForm('symedit_widget', $widget, array(
+            'strategy' => $widget->getStrategy(),
+            'action' => $this->generateUrl('admin_widget_update', array('id' => $widget->getId())),
+            'method' => 'PUT',
+        ));
+    }
 
     /**
      * @Route("/{id}/update", name="admin_widget_update")
+     * @Method("PUT")
      * @Template("@IsometriksSymEdit/Admin/Widget/edit.html.twig")
      */
     public function updateAction(Request $request, $id)
@@ -119,7 +139,7 @@ class WidgetController extends Controller
             throw new \Exception(sprintf('Could not find widget with name "%s".', $name));
         }
 
-        $form = $this->getWidgetForm($widget);
+        $form = $this->createEditForm($widget);
         $form->handleRequest($request);
 
         if($form->isValid()){
@@ -163,29 +183,6 @@ class WidgetController extends Controller
         }
 
         return $this->redirect($this->generateUrl('admin_widget'));
-    }
-
-    /**
-     * Get the form for the corresponding widget.
-     *
-     * @param \Isometriks\Bundle\SymEditBundle\Model\WidgetInterface $widget
-     * @return \Symfony\Component\Form\FormInterface $form
-     */
-    private function getWidgetForm(WidgetInterface $widget)
-    {
-        $manager = $this->getManager();
-
-        /**
-         * @TODO: We should move the widget class / widget area classes
-         *        to the service definition and inject into constructor.
-         */
-        $form = $this->createForm('symedit_widget', $widget, array(
-            'strategy' => $widget->getStrategy(),
-            'widget_class' => $manager->getWidgetClass(),
-            'widget_area_class' => $manager->getWidgetAreaClass(),
-        ));
-
-        return $form;
     }
 
     /**
