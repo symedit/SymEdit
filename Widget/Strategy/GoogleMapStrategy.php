@@ -36,7 +36,6 @@ class GoogleMapStrategy extends AbstractWidgetStrategy
             ->add('address', 'textarea', array(
                 'required' => false,
                 'label' => 'Address',
-                'property_path' => 'options[address]',
                 'help_inline' => 'Leave blank for default company address',
                 'attr' => array(
                     'rows' => 5,

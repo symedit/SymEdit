@@ -33,7 +33,6 @@ class RecentPostsStrategy extends AbstractWidgetStrategy
             ->add('max', 'integer', array(
                 'label' => 'Max Posts',
                 'help_block' => 'Maximum Posts to display in Widget',
-                'property_path' => 'options[max]',
                 'constraints' => array(
                     new Range(array(
                         'min' => 1,

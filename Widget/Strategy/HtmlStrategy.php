@@ -33,7 +33,6 @@ class HtmlStrategy extends AbstractWidgetStrategy
     {
         $builder
             ->add('html', 'textarea', array(
-                'property_path' => 'options[html]', 
                 'label_render' => false, 
                 'widget_control_group' => false, 
                 'attr' => array(

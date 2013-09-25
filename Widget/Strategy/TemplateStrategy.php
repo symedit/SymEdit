@@ -32,7 +32,6 @@ class TemplateStrategy extends AbstractWidgetStrategy
             ->add('template', 'text', array(
                 'required' => true,
                 'label' => 'Template',
-                'property_path' => 'options[template]',
                 'constraints' => array(
                     new NotBlank(),
                 ),

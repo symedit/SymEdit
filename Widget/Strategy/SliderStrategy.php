@@ -45,14 +45,12 @@ class SliderStrategy extends AbstractWidgetStrategy
             ->add('slider', 'entity_property', array(
                 'label' => 'Slider',
                 'help_block' => 'Choose slider to display',
-                'property_path' => 'options[slider]',
                 'class' => 'IsometriksSymEditBundle:Slider',
                 'property' => 'name',
                 'property_value' => 'name',
             ))
             ->add('thumbnails', 'checkbox', array(
                 'label' => 'Show Thumbnails',
-                'property_path' => 'options[thumbnails]',
                 'required' => false,
             ));
     }

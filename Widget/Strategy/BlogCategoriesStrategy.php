@@ -34,7 +34,6 @@ class BlogCategoriesStrategy extends AbstractWidgetStrategy
                 'required' => false,
                 'label' => 'Display Counts',
                 'help_block' => 'Display Category counts next to label',
-                'property_path' => 'options[counts]',
             ));
     }
 
