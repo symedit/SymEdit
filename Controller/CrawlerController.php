@@ -34,21 +34,15 @@ class CrawlerController extends Controller
         $sitemap = $this->get('isometriks.sitemap');
         $urls = $sitemap->getUrls();
 
-        // Add the Page urls to it
-        // TODO: This should be recursive so anything under a non-display shouldn't display either
-        $em = $this->getDoctrine()->getManager();
-        $pages = $em->getRepository('IsometriksSymEditBundle:Page')->findBy(array(
-            'display' => true,
-            'root' => false,
-            'pageController' => false,
-        ));
-
-        foreach ($pages as $page) {
-            $urls[] = sprintf('http://%s%s', $request->getHttpHost(), $page->getPath());
+        $root = $this->get('isometriks_symedit.page_manager')->findRoot();
+        $iterator = new \RecursiveIteratorIterator($root, \RecursiveIteratorIterator::SELF_FIRST);
+        
+        foreach ($iterator as $page) {
+            $urls[] = $this->generateUrl($page->getRoute(), array(), true);
         }
 
         $response = $this->createResponse();
-        $response->setMaxAge(60);
+        $response->setMaxAge(300);
 
         return $this->render('@IsometriksSitemap/Sitemap/index.xml.twig', array(
             'urls' => $urls,
