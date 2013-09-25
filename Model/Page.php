@@ -3,6 +3,7 @@
 namespace Isometriks\Bundle\SymEditBundle\Model;
 
 use Doctrine\Common\Collections\ArrayCollection;
+use Isometriks\Bundle\SymEditBundle\Iterator\RecursivePageIterator;
 use Symfony\Component\Validator\ExecutionContextInterface;
 
 class Page implements PageInterface
@@ -625,6 +626,11 @@ class Page implements PageInterface
         return $this->level;
     }
 
+    public function getIterator()
+    {
+        return new RecursivePageIterator($this);
+    }
+    
     public function isNameValid(ExecutionContextInterface $context)
     {
         if ($this->getHomepage()) {
@@ -635,6 +641,21 @@ class Page implements PageInterface
             if ($this->getName() == '') {
                 $context->addViolationAt('name', 'The "name" field must not be blank');
             }
+        }
+    }
+
+    public function isParentValid(ExecutionContextInterface $context)
+    {
+        $page = $this;
+        
+        while($parent = $page->getParent()) {
+            if($this->getId() === $parent->getId()) {
+                $context->addViolationAt('parent', 'Choosing this parent page creates a loop. Please choose another.');
+                
+                return;
+            }
+            
+            $page = $parent;
         }
     }
 }

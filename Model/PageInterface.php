@@ -4,7 +4,7 @@ namespace Isometriks\Bundle\SymEditBundle\Model;
 
 use Symfony\Component\Validator\ExecutionContextInterface;
 
-interface PageInterface extends SeoInterface
+interface PageInterface extends SeoInterface, \IteratorAggregate
 {
     /**
      * @return mixed Unique ID for Page
