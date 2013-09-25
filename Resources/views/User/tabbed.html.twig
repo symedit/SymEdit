@@ -1,12 +1,16 @@
 {% extends '@SymEdit/User/base.html.twig' %}
 
 {% block content %}
-<form method="post" class="form-horizontal" action="{% block action '' %}" {{ form_enctype(form) }}>
+{% if form is defined %}
+{{ form_start(form, {attr: {class: 'form-horizontal'}}) }}
+{% endif %}
     <div class="row-fluid">
         <div class="span3">
-            <ul class="nav nav-pills nav-stacked">
-                {% block tabs '' %}
-            </ul>
+            {% block tabs %}
+            {% if form is defined %}
+            {{ form_tabs(form) }}
+            {% endif %}
+            {% endblock %}
 
             <div>
                 {% block form_actions '' %}
@@ -20,6 +24,8 @@
             </div>
         </div>
     </div>
-</form>
-{% block extra '' %}
+{% if form is defined %}
+{{ form_end(form) }}
+{% endif %}
+{% block extra %}{% endblock %}
 {% endblock %}

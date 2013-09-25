@@ -1,2 +1,8 @@
-{% set type = app.user.admin ? 'admin' : 'user' %}
-{% extends '@SymEdit/User/Profile/' ~ type ~ '_edit.html.twig' %}
+{% extends '@SymEdit/User/tabbed.html.twig' %}
+{% set entity = form.vars.data %}
+
+{% block title %}Profile &raquo; Edit{% endblock %}
+
+{% block form_actions %}
+<button type="submit" class="btn btn-block">Update Profile</button>
+{% endblock %}
