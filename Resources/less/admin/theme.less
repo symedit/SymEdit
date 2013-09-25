@@ -1,0 +1,60 @@
+/**
+ *  Bootstrap theme
+ */
+
+@import url('https://fonts.googleapis.com/css?family=Cabin:400,700');
+
+
+body {
+    font-family: 'Cabin', sans-serif;
+}
+
+.navbar-default {
+    border-bottom: 4px solid @blue;
+    
+    .navbar-nav {
+        > .active, > .active:hover {
+            > a {
+                background-color: @blue;
+                color: @white;
+                
+                b.caret {
+                    border-top-color: @white;
+                }
+            }
+        }
+        
+        > .active.open {
+            > a {
+                background-color: darken(@blue, 10%);
+            }
+        }
+    }
+}
+
+
+label {
+    &.col-lg-3 {
+        max-width: 200px;
+    }
+}
+
+.nav-pills {
+    [class^="icon-"] {
+        color: #fff;
+        text-shadow: 0 0 3px rgba(0,0,0,.6);
+        margin-right: 8px;
+    }
+
+    .active [class^="icon-"] {
+        text-shadow: 0 0 5px rgba(0,0,0,.8);
+    }
+}
+
+input[type="color"] {
+    padding: 0;
+    width: 30px;
+    height: 30px;
+    border: none;
+    .rounded(5px);
+}
