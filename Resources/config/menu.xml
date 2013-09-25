@@ -7,6 +7,7 @@
     <parameters>
         <parameter key="isometriks_symedit.menu.provider.tree.class">Isometriks\Bundle\SymEditBundle\Menu\Provider\TreeMenuProvider</parameter>
         <parameter key="isometriks_symedit.menu.voter.page.class">Isometriks\Bundle\SymEditBundle\Menu\Voter\PageVoter</parameter>
+        <parameter key="isometriks_symedit.menu_builder.class">Isometriks\Bundle\SymEditBundle\Menu\Builder</parameter>
     </parameters>
 
     <services>
@@ -18,6 +19,19 @@
 
         <service id="isometriks_symedit.menu.voter.page" class="%isometriks_symedit.menu.voter.page.class%">
             <tag name="knp_menu.voter" request="true" />
+        </service>
+
+        <service id="isometriks_symedit.menu_builder" class="%isometriks_symedit.menu_builder.class%">
+            <argument type="service" id="service_container" />
+            <argument>%isometriks_symedit.extensions.routes%</argument>
+        </service>
+
+        <service factory-service="isometriks_symedit.menu_builder" factory-method="adminMenu" id="isometriks_symedit.menu.admin" class="Knp\Menu\Menuitem">
+            <tag name="knp_menu.menu" alias="symedit_admin" />
+        </service>
+        
+        <service factory-service="isometriks_symedit.menu_builder" factory-method="adminUserMenu" id="isometriks_symedit.menu.admin_user" class="Knp\Menu\Menuitem">
+            <tag name="knp_menu.menu" alias="symedit_admin_user" />
         </service>
     </services>
 
