@@ -8,7 +8,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Routing\AnnotatedRouteControllerLoader;
 use Symfony\Component\Routing\RouteCollection;
 
 /**
- * @TODO: Change doctrine to the PageManager
+ * Loads Annotated routes so we can search for the PageController annotation
  */
 class ControllerLoader extends AnnotatedRouteControllerLoader
 {
@@ -24,7 +24,7 @@ class ControllerLoader extends AnnotatedRouteControllerLoader
      */
     public function __construct(Reader $reader, PageManagerInterface $pageManager)
     {
-        $this->reader = $reader;
+        parent::__construct($reader);
         $this->pageManager = $pageManager;
     }
 
