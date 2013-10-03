@@ -10,6 +10,7 @@
         <parameter key="isometriks_symedit.form.type.template.class">Isometriks\Bundle\SymEditBundle\Form\Type\TemplateType</parameter>
         <parameter key="isometriks_symedit.form.type.role.class">Isometriks\Bundle\SymEditBundle\Form\Type\RoleType</parameter>
         <parameter key="isometriks_symedit.form.type.post.class">Isometriks\Bundle\SymEditBundle\Form\PostType</parameter>
+        <parameter key="isometriks_symedit.form.type.image.class">Isometriks\Bundle\SymEditBundle\Form\ImageType</parameter>
         <parameter key="isometriks_symedit.form.type.user.class">Isometriks\Bundle\SymEditBundle\Form\UserType</parameter>
         <parameter key="isometriks_symedit.form.type.widget_area.class">Isometriks\Bundle\SymEditBundle\Form\WidgetAreaType</parameter>
         <parameter key="isometriks_symedit.form.type.widget.class">Isometriks\Bundle\SymEditBundle\Form\WidgetType</parameter>
@@ -38,6 +39,10 @@
             <argument type="service" id="doctrine" />
             <argument type="service" id="security.context" />
             <tag name="form.type" alias="symedit_role" />
+        </service>
+
+        <service id="isometriks_symedit.form.type.image" class="%isometriks_symedit.form.type.image.class%">
+            <tag name="form.type" alias="symedit_image" />
         </service>
 
         <service id="isometriks_symedit.form.type.post" class="%isometriks_symedit.form.type.post.class%">

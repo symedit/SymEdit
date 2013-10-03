@@ -3,8 +3,6 @@
 namespace Isometriks\Bundle\SymEditBundle\Form; 
 
 use Isometriks\Bundle\MediaBundle\Form\FileType;
-use Symfony\Component\Form\FormInterface;
-use Symfony\Component\Form\FormView;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
 class ImageType extends FileType
