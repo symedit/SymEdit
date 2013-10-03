@@ -27,7 +27,7 @@ class CrawlerController extends Controller
     }
 
     /**
-     * @Route("sitemap.{_format}", defaults={"_format"="xml"})
+     * @Route("sitemap.{_format}", requirements={"_format"="xml"})
      */
     public function sitemapAction(Request $request)
     {
