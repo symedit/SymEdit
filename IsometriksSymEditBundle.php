@@ -11,6 +11,7 @@ use Isometriks\Bundle\SymEditBundle\DependencyInjection\Compiler\WidgetStrategyC
 use Isometriks\Bundle\SymEditBundle\DependencyInjection\Compiler\TwigPathCompilerPass;
 use Isometriks\Bundle\SymEditBundle\DependencyInjection\IsometriksSymEditExtension;
 use Isometriks\Bundle\SymEditBundle\DependencyInjection\Compiler\ProfileTypeCompilerPass;
+use Doctrine\Bundle\DoctrineBundle\DependencyInjection\Compiler\DoctrineOrmMappingsPass;
 
 class IsometriksSymEditBundle extends Bundle
 {
@@ -35,6 +36,17 @@ class IsometriksSymEditBundle extends Bundle
         $container->addCompilerPass(new WidgetStrategyCompilerPass());
         $container->addCompilerPass(new TwigPathCompilerPass($this->kernel));
         $container->addCompilerPass(new ProfileTypeCompilerPass());
+        
+        /**
+         * Add Doctrine Mappings
+         */
+        $modelDir = realpath(__DIR__.'/Resources/config/doctrine/model');
+        $mappings = array(
+            $modelDir => 'Isometriks\Bundle\SymEditBundle\Model',
+        );
+        
+        // ORM
+        $container->addCompilerPass(DoctrineOrmMappingsPass::createYamlMappingDriver($mappings));
     }
 
     public function getContainerExtension()
