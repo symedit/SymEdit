@@ -7,7 +7,7 @@ use Isometriks\Bundle\SymEditBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
-use Isometriks\Bundle\SymEditBundle\Entity\Category;
+use Isometriks\Bundle\SymEditBundle\Model\Category;
 use Isometriks\Bundle\SymEditBundle\Model\CategoryInterface;
 use Isometriks\Bundle\SymEditBundle\Form\CategoryType;
 
@@ -29,7 +29,7 @@ class CategoryController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $root = $em->getRepository('IsometriksSymEditBundle:Category')->findRoot();
+        $root = $em->getRepository('Isometriks\Bundle\SymEditBundle\Model\Category')->findRoot();
 
         return array(
             'RootCategory' => $root,
@@ -102,7 +102,7 @@ class CategoryController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entity = $em->getRepository('IsometriksSymEditBundle:Category')->find($id);
+        $entity = $em->getRepository('Isometriks\Bundle\SymEditBundle\Model\Category')->find($id);
 
         if (!$entity) {
             throw $this->createNotFoundException('Unable to find Category entity.');
@@ -137,7 +137,7 @@ class CategoryController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entity = $em->getRepository('IsometriksSymEditBundle:Category')->find($id);
+        $entity = $em->getRepository('Isometriks\Bundle\SymEditBundle\Model\Category')->find($id);
 
         if (!$entity) {
             throw $this->createNotFoundException('Unable to find Category entity.');
@@ -177,7 +177,7 @@ class CategoryController extends Controller
 
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();
-            $entity = $em->getRepository('IsometriksSymEditBundle:Category')->find($id);
+            $entity = $em->getRepository('Isometriks\Bundle\SymEditBundle\Model\Category')->find($id);
 
             if (!$entity) {
                 throw $this->createNotFoundException('Unable to find Category entity.');

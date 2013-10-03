@@ -7,7 +7,7 @@ use Isometriks\Bundle\SymEditBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
-use Isometriks\Bundle\SymEditBundle\Entity\Slider;
+use Isometriks\Bundle\SymEditBundle\Model\Slider;
 use Isometriks\Bundle\SymEditBundle\Form\SliderType;
 
 /**
@@ -27,7 +27,7 @@ class SliderController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entities = $em->getRepository('IsometriksSymEditBundle:Slider')->findAll();
+        $entities = $em->getRepository('Isometriks\Bundle\SymEditBundle\Model\Slider')->findAll();
 
         return array(
             'entities' => $entities,
@@ -90,7 +90,7 @@ class SliderController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entity = $em->getRepository('IsometriksSymEditBundle:Slider')->find($id);
+        $entity = $em->getRepository('Isometriks\Bundle\SymEditBundle\Model\Slider')->find($id);
 
         if (!$entity) {
             throw $this->createNotFoundException('Unable to find Slider entity.');
@@ -117,7 +117,7 @@ class SliderController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entity = $em->getRepository('IsometriksSymEditBundle:Slider')->find($id);
+        $entity = $em->getRepository('Isometriks\Bundle\SymEditBundle\Model\Slider')->find($id);
 
         if (!$entity) {
             throw $this->createNotFoundException('Unable to find Slider entity.');
@@ -156,7 +156,7 @@ class SliderController extends Controller
 
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();
-            $entity = $em->getRepository('IsometriksSymEditBundle:Slider')->find($id);
+            $entity = $em->getRepository('Isometriks\Bundle\SymEditBundle\Model\Slider')->find($id);
 
             if (!$entity) {
                 throw $this->createNotFoundException('Unable to find Slider entity.');

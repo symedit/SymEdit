@@ -8,7 +8,7 @@ use Isometriks\Bundle\SymEditBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
-use Isometriks\Bundle\SymEditBundle\Entity\Image;
+use Isometriks\Bundle\SymEditBundle\Model\Image;
 use Isometriks\Bundle\SymEditBundle\Form\ImageType;
 use JMS\SecurityExtraBundle\Annotation\PreAuthorize;
 
@@ -31,7 +31,7 @@ class ImageController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entities = $em->getRepository('IsometriksSymEditBundle:Image')->findAll();
+        $entities = $em->getRepository('Isometriks\Bundle\SymEditBundle\Model\Image')->findAll();
 
         return array(
             'entities' => $entities,
@@ -67,7 +67,7 @@ class ImageController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entity = $em->getRepository('IsometriksSymEditBundle:Image')->find($id);
+        $entity = $em->getRepository('Isometriks\Bundle\SymEditBundle\Model\Image')->find($id);
 
         if (!$entity) {
             throw $this->createNotFoundException('Unable to find Image entity.');
@@ -131,7 +131,7 @@ class ImageController extends Controller
     public function editAction($id)
     {
         $em = $this->getDoctrine()->getManager();
-        $entity = $em->getRepository('IsometriksSymEditBundle:Image')->find($id);
+        $entity = $em->getRepository('Isometriks\Bundle\SymEditBundle\Model\Image')->find($id);
 
         if (!$entity) {
             throw $this->createNotFoundException('Unable to find Image entity.');
@@ -165,7 +165,7 @@ class ImageController extends Controller
     public function updateAction(Request $request, $id)
     {
         $em = $this->getDoctrine()->getManager();
-        $entity = $em->getRepository('IsometriksSymEditBundle:Image')->find($id);
+        $entity = $em->getRepository('Isometriks\Bundle\SymEditBundle\Model\Image')->find($id);
 
         if (!$entity) {
             throw $this->createNotFoundException('Unable to find Image entity.');
@@ -204,7 +204,7 @@ class ImageController extends Controller
 
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();
-            $entity = $em->getRepository('IsometriksSymEditBundle:Image')->find($id);
+            $entity = $em->getRepository('Isometriks\Bundle\SymEditBundle\Model\Image')->find($id);
 
             if (!$entity) {
                 throw $this->createNotFoundException('Unable to find Image entity.');
@@ -238,7 +238,7 @@ class ImageController extends Controller
     public function jsonAction()
     {
         $em = $this->getDoctrine()->getManager();
-        $images = $em->getRepository('IsometriksSymEditBundle:Image')->findAll();
+        $images = $em->getRepository('Isometriks\Bundle\SymEditBundle\Model\Image')->findAll();
 
         $manip = $this->get('isometriks_media.util.image_manipulator');
 

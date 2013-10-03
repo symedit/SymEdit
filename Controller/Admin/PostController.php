@@ -11,6 +11,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Component\HttpFoundation\Request;
+use Isometriks\Bundle\SymEditBundle\Model\PostInterface;
 
 
 /**
@@ -49,7 +50,7 @@ class PostController extends Controller
         $post = $this->getPostManager()->createPost();
         $post->setAuthor($this->getUser());
 
-        $form = $this->createForm('symedit_post', $post);
+        $form = $this->createCreateForm($post);
 
         return array(
             'entity' => $post,
@@ -57,6 +58,14 @@ class PostController extends Controller
         );
     }
 
+    private function createCreateForm(PostInterface $post)
+    {
+        return $this->createForm('symedit_post', $post, array(
+            'action' => $this->generateUrl('admin_blog_create'),
+            'method' => 'POST',
+        ));
+    }
+    
     /**
      * Creates a new Post entity.
      *
@@ -69,7 +78,7 @@ class PostController extends Controller
         $postManager = $this->getPostManager();
         $post = $postManager->createPost();
 
-        $form = $this->createForm('symedit_post', $post);
+        $form = $this->createCreateForm($post);
         $form->handleRequest($request);
 
         if ($form->isValid()) {
@@ -106,7 +115,7 @@ class PostController extends Controller
             throw $this->createNotFoundException('Unable to find Post entity.');
         }
 
-        $editForm = $this->createForm('symedit_post', $post);
+        $editForm = $this->createEditForm($post);
         $deleteForm = $this->createDeleteForm($id);
 
         return array(
@@ -115,12 +124,20 @@ class PostController extends Controller
             'delete_form' => $deleteForm->createView(),
         );
     }
+    
+    private function createEditForm(PostInterface $post)
+    {
+        return $this->createForm('symedit_post', $post, array(
+            'action' => $this->generateUrl('admin_blog_update', array('id' => $post->getId())),
+            'method' => 'PUT',
+        ));
+    }
 
     /**
      * Edits an existing Post entity.
      *
      * @Route("/{id}/update", name="admin_blog_update")
-     * @Method("POST")
+     * @Method("PUT")
      * @Template("IsometriksSymEditBundle:Admin/Post:edit.html.twig")
      */
     public function updateAction(Request $request, $id)
@@ -134,7 +151,7 @@ class PostController extends Controller
         }
 
         $deleteForm = $this->createDeleteForm($id);
-        $editForm = $this->createForm('symedit_post', $post);
+        $editForm = $this->createEditForm($post);
         $editForm->handleRequest($request);
 
         if ($editForm->isValid()) {
