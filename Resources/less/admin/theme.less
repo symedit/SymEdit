@@ -4,15 +4,43 @@
 
 @import url('https://fonts.googleapis.com/css?family=Cabin:400,700');
 
-
-body {
-    font-family: 'Cabin', sans-serif;
-}
-
+//
+// Navbar
+//
 .navbar-default {
+    background-color: @dark_gray;
     border-bottom: 4px solid @blue;
     
+    .navbar-brand {
+        font-family: @sans_serif;
+        color: @white;
+        text-shadow: 0 0 5px @black;
+        
+        &:hover {
+            color: @white;
+        }
+    }
+    
     .navbar-nav {
+        > .open > a, > .open > a:focus {
+            color: @white;
+            background-color: darken(@dark_gray, 5%);
+            
+            &:hover {
+                color: @white;
+                background-color: darken(@dark_gray, 10%);
+            }
+        }
+        
+        > li > a {
+            font-size: 12px;
+            color: @white;
+            
+            &:hover {
+                color: @blue;
+            }
+        }
+        
         > .active, > .active:hover {
             > a {
                 background-color: @blue;
@@ -27,11 +55,49 @@ body {
         > .active.open {
             > a {
                 background-color: darken(@blue, 10%);
+                
+                &:hover, &:focus {
+                    background-color: darken(@blue, 10%);
+                }
+                
+                b.caret {
+                    border-top-color: @white;
+                }
             }
         }
     }
 }
 
+.dropdown-menu {
+    .drop-shadow(0,10px,60px,.25);
+    
+    > li {
+        > a {
+            font-size: 13px;
+            
+            &:hover {
+                background-color: @blue;
+            }            
+        }
+    }
+}
+
+//
+// Buttons
+//
+.btn(@color) {
+    background-color: @color;
+    border-color: @color;
+    
+    &:hover {
+        background-color: darken(@color,10%);
+        border-color: @color;
+    }
+}
+
+.btn-warning {
+    .btn(@warning);
+}
 
 label {
     &.col-lg-3 {

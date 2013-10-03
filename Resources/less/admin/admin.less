@@ -1,14 +1,16 @@
 
 @white:             #ffffff;
 @black:             #000000;
-@blue:              #428bca;
+@blue:              #328b9a;
 @green:             #69AC66;
 @light_gray:        #EFEFEF;
 @dark_gray:         #444444;
+@warning:           #B32222;
 
 @sidebar_width:     180px;
 @sidebar_bg:        #335588;
 
+@sans_serif:        'Open Sans', sans-serif;
 
 // Include Others
 @import "elements.less";
@@ -41,17 +43,34 @@
 // General
 //
 
-h1, h2, h3, h4, h5, h6 {
-    font-family: 'Raleway', sans-serif;
+body {
+    font-family: @sans_serif;
+    font-size: 13px;
 }
 
+h1, h2, h3, h4, h5, h6 {
+    font-family: @sans_serif;
+}
 
+img {
+    max-width: 100%;
+}
 
 #title {
     h1 {
-        font-size: 20px;
-        margin-bottom: 12px;
+        font-size: 13px;
+        margin: 0;
+        margin-left: 20px;
+        
+        i {
+            margin-right: 5px;
+            font-size: 11px;
+        }
     }
+    
+    padding: 10px 0;
+    background-color: @blue;
+    color: @white;
 }
 
 #flash {
@@ -139,14 +158,14 @@ i[class^="icon-"], i[class*=" icon-"] {
                 color: @black;
 
                 &:hover {
-                    background-color: darken(@green, 5%);
+                    background-color: darken(@blue, 5%);
                     color: @white;
                 }
             }
 
             &.active {
                 a {
-                    background-color: @green;
+                    background-color: @blue;
                     color: @white;
                 }
             }
