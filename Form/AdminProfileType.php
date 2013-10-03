@@ -10,9 +10,9 @@ class AdminProfileType extends BaseType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $basic = $builder->create('basic', 'form', array(
-            'virtual' => true,
-            'data_class' => $options['data_class'],
+        $basic = $builder->create('basic', 'tab', array(
+            'inherit_data' => true,
+            'label' => 'Basic',
         ));
 
         parent::buildForm($basic, $options);
@@ -37,7 +37,8 @@ class AdminProfileType extends BaseType
         /**
          * Create social tab
          */
-        $social = $builder->create('social', 'form', array(
+        $social = $builder->create('social', 'tab', array(
+            'label' => 'Social',
             'required' => false,
             'property_path' => 'profile.social',
         ));
@@ -73,42 +74,70 @@ class AdminProfileType extends BaseType
                     'placeholder' => 'http://linkedin.com',
                 ),
             ));
-
+        
+        $summary = $builder->create('summary', 'tab', array(
+            'label' => 'Summary',
+            'inherit_data' => true,
+        ));
+        
+        $summary
+            ->add('summary', 'textarea', array(
+                    'required' => false,
+                    'attr' => array(
+                        'class' => 'wysiwyg-editor',
+                        'style' => 'min-height: 300px',
+                    ),
+                    'property_path' => 'profile.summary',
+              ));
+        
+        $biography = $builder->create('biography', 'tab', array(
+            'label' => 'Biography',
+            'inherit_data' => true,
+        ));
+        
+        $biography
+            ->add('biography', 'textarea', array(
+                'required' => false,
+                'attr' => array(
+                    'class' => 'wysiwyg-editor',
+                    'style' => 'min-height: 500px',
+                ),
+                'property_path' => 'profile.biography',
+            ));
+        
+        $image = $builder->create('image', 'tab', array(
+            'label' => 'Image',
+            'inherit_data' => true,
+        ));
+        
+        $image
+            ->add('image', new ImageType(), array(
+                'required' => false,
+                'require_name' => false,
+                'property_path' => 'profile.image',
+            ));
+        
+        $roles = $builder->create('roles', 'tab', array(
+            'label' => 'Roles',
+            'inherit_data' => true,
+        ));
+        
+        $roles->add('roles', 'symedit_role');
+               
         /**
          * Build rest of form
          */
         $builder
                 ->add($basic)
                 ->add($social)
-                ->add('summary', 'textarea', array(
-                    'required' => false,
-                    'attr' => array(
-                        'class' => 'wysiwyg-editor',
-                        'style' => 'min-height: 300px',
-                    ),
-                    'widget_control_group' => false,
-                    'property_path' => 'profile.summary',
-                ))
-                ->add('biography', 'textarea', array(
-                    'required' => false,
-                    'attr' => array(
-                        'class' => 'wysiwyg-editor',
-                        'style' => 'min-height: 500px',
-                    ),
-                    'widget_control_group' => false,
-                    'property_path' => 'profile.biography',
-                ))
-                ->add('image', new ImageType(), array(
-                    'required' => false,
-                    'require_name' => false,
-                    'property_path' => 'profile.image',
-                ))
-                ->add('roles', 'symedit_role');
+                ->add($summary)
+                ->add($biography)
+                ->add($image)
+                ->add($roles);
     }
 
     public function getName()
     {
         return 'symedit_admin_profile';
     }
-
 }

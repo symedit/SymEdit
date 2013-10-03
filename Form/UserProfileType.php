@@ -9,9 +9,14 @@ class UserProfileType extends BaseType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        parent::buildForm($builder, $options);
+        $basic = $builder->create('basic', 'tab', array(
+            'inherit_data' => true,
+            'label' => 'Basic',
+        ));
+        
+        parent::buildForm($basic, $options);
 
-        $builder
+        $basic
             ->add('firstName', 'text', array(
                 'label' => 'First Name',
                 'property_path' => 'profile.firstName',
@@ -21,6 +26,9 @@ class UserProfileType extends BaseType
                 'required' => false,
                 'property_path' => 'profile.lastName',
             ));
+        
+        $builder
+            ->add($basic);
     }
 
     public function getName()
