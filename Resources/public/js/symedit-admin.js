@@ -14,27 +14,19 @@ var Isometriks = (function(){
                 rows = rows.split(',');
                 var html = '';
                 for(var i=0; i<rows.length; i++){
-                    html += '<div class="span' + rows[i].trim() + '"><p>Span ' + rows[i] + '</p></div>';
+                    html += '<div class="col-md-' + rows[i].trim() + '"><p>Span ' + rows[i] + '</p></div>';
                 }
                 return html;
             }
 
-            return false;
+            return false; 
         },
 
         row: function(){
             var html;
             if(html = redactor.createSpans()){
-                this.focus();
+                this.focus(); console.log('<div class="row">' + html + '</div>');
                 this.execCommand('inserthtml', '<div class="row">' + html + '</div>');
-            }
-        },
-
-        fluidRow: function(){
-            var html;
-            if(html = redactor.createSpans()){
-                this.focus();
-                this.execCommand('inserthtml', '<div class="row-fluid">' + html + '</div>');
             }
         },
 
@@ -58,11 +50,6 @@ var Isometriks = (function(){
                     row: {
                         title: 'Insert Row',
                         callback: this.redactor.row
-                    },
-
-                    row_fluid: {
-                        title: 'Insert Fluid Row',
-                        callback: this.redactor.fluidRow
                     },
 
                     hero_unit: {
