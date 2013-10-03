@@ -1,8 +1,8 @@
 <?php
 
-namespace Isometriks\Bundle\UserBundle\Entity;
+namespace Isometriks\Bundle\UserBundle\Model;
 
-use Isometriks\Bundle\SymEditBundle\Entity\Image;
+use Isometriks\Bundle\SymEditBundle\Model\Image;
 use Isometriks\Bundle\SymEditBundle\Util\Util;
 
 class AdminProfile extends Profile
@@ -27,7 +27,7 @@ class AdminProfile extends Profile
     /**
      * Gets user's image
      *
-     * @return \Isometriks\Bundle\SymEditBundle\Entity\Image
+     * @return \Isometriks\Bundle\SymEditBundle\Model\Image
      */
     public function getImage()
     {
@@ -37,8 +37,8 @@ class AdminProfile extends Profile
     /**
      * Set the user's image
      *
-     * @param \Isometriks\Bundle\UserBundle\Entity\Image $image
-     * @return \Isometriks\Bundle\UserBundle\Entity\User
+     * @param \Isometriks\Bundle\UserBundle\Model\Image $image
+     * @return \Isometriks\Bundle\UserBundle\Model\User
      */
     public function setImage(Image $image)
     {
@@ -91,7 +91,7 @@ class AdminProfile extends Profile
      * Set user biography
      *
      * @param string $biography
-     * @return \Isometriks\Bundle\UserBundle\Entity\User
+     * @return \Isometriks\Bundle\UserBundle\Model\User
      */
     public function setBiography($biography)
     {
