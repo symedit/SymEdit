@@ -3,7 +3,7 @@
 namespace Isometriks\Bundle\SymEditBundle\Doctrine\Orm\Repository;
 
 use Doctrine\ORM\EntityRepository;
-use Isometriks\Bundle\SymEditBundle\Entity\Category;
+use Isometriks\Bundle\SymEditBundle\Model\Category;
 
 class CategoryRepository extends EntityRepository {
 
