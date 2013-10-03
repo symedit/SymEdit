@@ -19,7 +19,7 @@ class BlogCategoriesStrategy extends AbstractWidgetStrategy
 
     public function execute(WidgetInterface $widget)
     {
-        $categories = $this->doctrine->getManager()->getRepository('IsometriksSymEditBundle:Category');
+        $categories = $this->doctrine->getManager()->getRepository('Isometriks\Bundle\SymEditBundle\Model\Category');
 
         return $this->twig->render('@SymEdit/Widget/blog-categories.html.twig', array(
             'categories' => $categories,

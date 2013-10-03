@@ -45,7 +45,7 @@ class SliderStrategy extends AbstractWidgetStrategy
             ->add('slider', 'entity_property', array(
                 'label' => 'Slider',
                 'help_block' => 'Choose slider to display',
-                'class' => 'IsometriksSymEditBundle:Slider',
+                'class' => 'Isometriks\Bundle\SymEditBundle\Model\Slider',
                 'property' => 'name',
                 'property_value' => 'name',
             ))
