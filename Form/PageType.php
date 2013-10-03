@@ -5,7 +5,6 @@ namespace Isometriks\Bundle\SymEditBundle\Form;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
-use Doctrine\ORM\EntityRepository;
 use Isometriks\Bundle\SymEditBundle\Model\PageManagerInterface;
 
 class PageType extends AbstractType 
