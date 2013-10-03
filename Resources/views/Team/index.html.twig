@@ -4,14 +4,14 @@
 
 {% for user in users %}
 <section class="user-summary">
-    <div class="row-fluid">
+    <div class="row">
         {% if user.profile.image %}
-        <div class="span3">
+        <div class="col-md-3">
             <img src="{{ user.profile.image }}" class="img-circle" alt="{{ user.profile.fullname }}">
         </div>
         {% endif %}
 
-        <div class="span9">
+        <div class="col-md-9">
             <h3>{{ user.profile.fullname }}</h3>
             <p>
                 {{ user.profile.summary|raw }}

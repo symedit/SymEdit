@@ -6,11 +6,20 @@
 {% block heading '' %}
 
 {% block blog_content %}
-<article class="single" itemscope itemtype="http://schema.org/BlogPosting">
-    <h1>
+<article class="single blog-post" itemscope itemtype="http://schema.org/BlogPosting">
+    <h1 class="title">
         <a itemprop="name" href="{{ path('blog_slug_view', {slug:Post.slug}) }}">{{ Post.title }}</a>
     </h1>
 
+    <div itemprop="articleBody" class="clearfix">
+        {% if Post.image %}
+            <div class="image">
+                <img class="img-rounded" itemprop="image" src="{{ Post.image.webpath|constrain({w:300,h:400}) }}" alt="{{ Post.title }}" />
+            </div>
+        {% endif %}
+        {{ Post.content|raw }}
+    </div>
+    
     <div class="meta">
         <span class="author">
             <i class="icon-pencil"></i>
@@ -27,16 +36,7 @@
             <i class="icon-time"></i>
             <span itemprop="dateCreated">{{ Post.createdAt|date('F j, Y') }}</span>
         </span>
-    </div>
-
-    <div itemprop="articleBody">
-        {% if Post.image %}
-            <div class="image">
-                <img class="img-polaroid" itemprop="image" src="{{ Post.image.webpath|constrain({w:300,h:400}) }}" alt="{{ Post.title }}" />
-            </div>
-        {% endif %}
-        {{ Post.content|raw }}
-    </div>
+    </div>    
 
     {% if Post.published %}
     {% include '@SymEdit/Blog/comments.html.twig' %}

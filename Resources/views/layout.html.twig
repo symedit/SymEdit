@@ -18,7 +18,6 @@
 {% block stylesheets %}
 {% stylesheets
                'bundles/isometrikssymedit/bootstrap/css/bootstrap.min.css'
-               'bundles/isometrikssymedit/bootstrap/css/bootstrap-responsive.min.css'
                'bundles/isometrikssymedit/css/font-awesome.min.css'
                '@IsometriksSymEditBundle/Resources/less/system.less'
                '@IsometriksSymEditBundle/Resources/less/util.less'
@@ -33,7 +32,7 @@
         <![endif]-->
     </head>
     <body>
-        {% block skip_link %}<a href="#content" class="hidden">Skip to content</a>{% endblock %}
+        {% block skip_link %}<a href="#content" class="sr-only">Skip to content</a>{% endblock %}
         <div id="wrap">
         {% block body %}
             {% block nav %}
@@ -47,7 +46,7 @@
             {% block content_container %}
             <div class="container">
                 {% block breadcrumbs %}
-                <div class="pull-right hidden-phone">
+                <div class="pull-right hidden-sm hidden-xs">
                     {% include '@SymEdit/CMS/breadcrumbs.html.twig' %}
                 </div>
                 {% endblock %}

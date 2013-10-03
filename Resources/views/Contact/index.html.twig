@@ -16,8 +16,8 @@
 
     <div class="container">
     {% block content %}
-        <div class="row-fluid">
-            <div class="span6">
+        <div class="row">
+            <div class="col-md-6">
                 <h4>Our Contact Details</h4>
                 <address>
                     <p>
@@ -50,37 +50,37 @@
                 </address>
             </div>
 
-            <div class="span6">
+            <div class="col-md-6">
                 <h4>Send us a message</h4>
 
                 {{ form_errors(form) }}
 
                 <form method="post">
-                    <div class="row-fluid">
-                        <div class="span4">
+                    <div class="row">
+                        <div class="col-md-4">
                             <h6>Name*</h6>
-                            {{ form_widget(form.name, { attr: { class: 'span12'}}) }}
+                            {{ form_widget(form.name) }}
                         </div>
 
-                        <div class="span4">
+                        <div class="col-md-4">
                             <h6>Email</h6>
-                            {{ form_widget(form.email, { attr: { class: 'span12'}}) }}
+                            {{ form_widget(form.email) }}
                         </div>
 
-                        <div class="span4">
+                        <div class="col-md-4">
                             <h6>Phone*</h6>
-                            {{ form_widget(form.phone, { attr: { class: 'span12'}}) }}
+                            {{ form_widget(form.phone) }}
                         </div>
                     </div>
 
                     <h6>Your Message*</h6>
 
-                    {{ form_widget(form.message, { attr: { rows: 5, class: 'span12' }}) }}
+                    {{ form_widget(form.message, { attr: { rows: 5 }}) }}
 
                     {{ form_rest(form) }}
 
                     <div class="form-actions">
-                        <button type="submit" class="btn">Send Message</button>
+                        <button type="submit" class="btn btn-default">Send Message</button>
                     </div>
                 </form>
             </div>
