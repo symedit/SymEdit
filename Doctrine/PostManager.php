@@ -57,7 +57,7 @@ class PostManager extends BaseManager
 
     public function findRecentPosts($max = 3)
     {
-        die('not implemented yet..');
+        return $this->repository->getRecent($max);
     }
 
     public function enableStatusFilter()
