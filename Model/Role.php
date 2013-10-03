@@ -2,7 +2,7 @@
 
 namespace Isometriks\Bundle\SymEditBundle\Model; 
 
-abstract class Role implements RoleInterface
+class Role implements RoleInterface
 {
    /**
      * @var integer $id

@@ -2,10 +2,9 @@
 
 namespace Isometriks\Bundle\SymEditBundle\Model; 
 
-use Isometriks\Bundle\SymEditBundle\Util\Util;
 use Isometriks\Bundle\SymEditBundle\Model\UserInterface; 
 
-abstract class Post implements PostInterface
+class Post implements PostInterface
 {
     const DRAFT = 0; 
     const PUBLISHED = 1; 
@@ -26,7 +25,7 @@ abstract class Post implements PostInterface
     protected $author;
 
     /**
-     * @var Isometriks\Bundle\SymEditBundle\Entity\Image
+     * @var Isometriks\Bundle\SymEditBundle\Model\Image
      */
     protected $image;
 
@@ -188,10 +187,10 @@ abstract class Post implements PostInterface
     /**
      * Set image
      *
-     * @param Isometriks\Bundle\SymEditBundle\Entity\Image $image
+     * @param Isometriks\Bundle\SymEditBundle\Model\Image $image
      * @return Post
      */
-    public function setImage(\Isometriks\Bundle\SymEditBundle\Entity\Image $image = null)
+    public function setImage(\Isometriks\Bundle\SymEditBundle\Model\Image $image = null)
     {
         $this->image = $image; 
         
@@ -206,7 +205,7 @@ abstract class Post implements PostInterface
     /**
      * Get image
      *
-     * @return Isometriks\Bundle\SymEditBundle\Entity\Image 
+     * @return Isometriks\Bundle\SymEditBundle\Model\Image 
      */
     public function getImage()
     {
@@ -263,7 +262,7 @@ abstract class Post implements PostInterface
     /**
      * Add categories
      *
-     * @param Isometriks\Bundle\SymEditBundle\Entity\Category $categories
+     * @param Isometriks\Bundle\SymEditBundle\Model\CategoryInterface $categories
      * @return Post
      */
     public function addCategory(CategoryInterface $category)
@@ -276,7 +275,7 @@ abstract class Post implements PostInterface
     /**
      * Remove categories
      *
-     * @param Isometriks\Bundle\SymEditBundle\Entity\Category $categories
+     * @param Isometriks\Bundle\SymEditBundle\Model\CategoryInterface $categories
      */
     public function removeCategory(CategoryInterface $category)
     {

@@ -4,7 +4,7 @@ namespace Isometriks\Bundle\SymEditBundle\Model;
 
 use Doctrine\Common\Collections\ArrayCollection; 
 
-abstract class Category implements CategoryInterface
+class Category implements CategoryInterface
 {
     /**
      * @var integer $id

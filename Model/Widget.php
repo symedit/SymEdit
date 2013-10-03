@@ -4,7 +4,7 @@ namespace Isometriks\Bundle\SymEditBundle\Model;
 
 use Isometriks\Bundle\SymEditBundle\Widget\Strategy\WidgetStrategyInterface;
 
-abstract class Widget implements WidgetInterface
+class Widget implements WidgetInterface
 {
     const INCLUDE_ALL = 0;
     const INCLUDE_ONLY = 1;

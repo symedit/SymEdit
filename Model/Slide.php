@@ -2,7 +2,7 @@
 
 namespace Isometriks\Bundle\SymEditBundle\Model;
 
-abstract class Slide implements SlideInterface
+class Slide implements SlideInterface
 {
     /**
      * @var integer $id
@@ -88,10 +88,10 @@ abstract class Slide implements SlideInterface
     /**
      * Set image
      *
-     * @param Isometriks\Bundle\SymEditBundle\Entity\Image $image
+     * @param Isometriks\Bundle\SymEditBundle\Model\Image $image
      * @return Slide
      */
-    public function setImage(\Isometriks\Bundle\SymEditBundle\Entity\Image $image = null)
+    public function setImage(\Isometriks\Bundle\SymEditBundle\Model\Image $image = null)
     {
         $this->image = $image;
     
@@ -101,7 +101,7 @@ abstract class Slide implements SlideInterface
     /**
      * Get image
      *
-     * @return Isometriks\Bundle\SymEditBundle\Entity\Image 
+     * @return Isometriks\Bundle\SymEditBundle\Model\Image 
      */
     public function getImage()
     {
