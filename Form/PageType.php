@@ -121,6 +121,8 @@ class PageType extends AbstractType
                 ),
                 'required' => false,
                 'label' => 'admin.page.content',
+                'horizontal' => false,
+                'label_render' => false,                
             ));
 
 
@@ -158,7 +160,7 @@ class PageType extends AbstractType
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'Isometriks\Bundle\SymEditBundle\Entity\Page',
+            'data_class' => $this->pageManager->getClass(),
             'translation_domain' => 'SymEdit',
         ));
     }

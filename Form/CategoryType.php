@@ -23,7 +23,7 @@ class CategoryType extends AbstractType
             ))
             ->add('parent', 'entity', array(
                 'empty_value' => '(Root Category)',
-                'class' => 'Isometriks\\Bundle\\SymEditBundle\\Entity\\Category',
+                'class' => 'Isometriks\Bundle\SymEditBundle\Model\Category',
                 'required' => false,
             ));
 
@@ -46,7 +46,7 @@ class CategoryType extends AbstractType
     {
         $resolver->setDefaults(array(
             'translation_domain' => 'SymEdit',
-            'data_class' => 'Isometriks\Bundle\SymEditBundle\Entity\Category'
+            'data_class' => 'Isometriks\Bundle\SymEditBundle\Model\Category'
         ));
     }
 

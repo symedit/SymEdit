@@ -1,10 +1,11 @@
 <?php
 
-namespace Isometriks\Bundle\SymEditBundle\Form;
+namespace Isometriks\Bundle\SymEditBundle\Form; 
 
-use Symfony\Component\Form\FormBuilderInterface;
+use Isometriks\Bundle\MediaBundle\Form\FileType;
+use Symfony\Component\Form\FormInterface;
+use Symfony\Component\Form\FormView;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
-use Isometriks\Bundle\MediaBundle\Form\FileType; 
 
 class ImageType extends FileType
 {
@@ -13,17 +14,17 @@ class ImageType extends FileType
         parent::setDefaultOptions($resolver); 
         
         $resolver->setDefaults(array(
-            'data_class' => 'Isometriks\\Bundle\\SymEditBundle\\Entity\\Image', 
+            'data_class' => 'Isometriks\Bundle\SymEditBundle\Model\Image', 
             'require_name' => true, 
             'strategy' => 'input', 
             'required' => true,
             'translation_domain' => 'SymEdit', 
+            'label' => 'Image',
         ));
     }
 
     public function getName()
     {
-        return 'isometriks_bundle_symeditbundle_imagetype';
+        return 'symedit_image';
     }
-
 }

@@ -5,7 +5,7 @@ namespace Isometriks\Bundle\SymEditBundle\Form;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
-use Isometriks\Bundle\SymEditBundle\Entity\Image;
+use Isometriks\Bundle\SymEditBundle\Model\Image;
 
 class SlideType extends AbstractType
 {
@@ -15,9 +15,8 @@ class SlideType extends AbstractType
             ->add('caption', 'textarea', array(
                 'required' => false,
                 'attr' => array(
-                    'class' => 'span4',
                     'rows' => 5,
-                )
+                ),
             ))
             ->add('position', 'choice', array(
                 'required' => false,
@@ -29,10 +28,8 @@ class SlideType extends AbstractType
                 )
             ))
             ->add('image', new ImageType(), array(
-                'label' => false,
                 'file_label' => 'Slider Image',
                 'name_label' => 'Slider File Name',
-                'widget_control_group' => false,
             ))
         ;
     }
@@ -40,7 +37,7 @@ class SlideType extends AbstractType
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'Isometriks\Bundle\SymEditBundle\Entity\Slide'
+            'data_class' => 'Isometriks\Bundle\SymEditBundle\Model\Slide'
         ));
     }
 

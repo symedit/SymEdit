@@ -5,7 +5,7 @@ namespace Isometriks\Bundle\SymEditBundle\Form;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
-use Isometriks\Bundle\SymEditBundle\Entity\Post;
+use Isometriks\Bundle\SymEditBundle\Model\Post;
 
 class PostType extends AbstractType {
 
@@ -41,13 +41,14 @@ class PostType extends AbstractType {
             ))
             ->add('categories', 'entity', array(
                 'property' => 'title',
-                'class'    => 'Isometriks\\Bundle\\SymEditBundle\\Entity\\Category',
+                'class'    => 'Isometriks\Bundle\SymEditBundle\Model\Category',
                 'multiple' => true,
                 'expanded'  => true,
             ))
-            ->add('image', new ImageType(), array(
+            ->add('image', 'symedit_image', array(
                 'require_name' => false,
                 'required' => false,
+                'label' => 'Featured Image',
             ));
 
         $seo = $builder->create('seo', 'tab', array(
@@ -98,7 +99,7 @@ class PostType extends AbstractType {
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'Isometriks\Bundle\SymEditBundle\Entity\Post',
+            'data_class' => 'Isometriks\Bundle\SymEditBundle\Model\Post',
             'translation_domain' => 'SymEdit',
         ));
     }
