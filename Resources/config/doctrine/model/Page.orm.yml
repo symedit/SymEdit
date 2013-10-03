@@ -1,4 +1,4 @@
-Isometriks\Bundle\SymEditBundle\Entity\Page:
+Isometriks\Bundle\SymEditBundle\Model\Page:
     type: entity
     table: pages
     gedmo:
@@ -149,7 +149,7 @@ Isometriks\Bundle\SymEditBundle\Entity\Page:
             columns: [path]
     manyToOne:
         parent:
-            targetEntity: Isometriks\Bundle\SymEditBundle\Entity\Page
+            targetEntity: Isometriks\Bundle\SymEditBundle\Model\Page
             cascade: {  }
             mappedBy: null
             inversedBy: children
@@ -162,7 +162,7 @@ Isometriks\Bundle\SymEditBundle\Entity\Page:
                 - treeParent
     oneToMany:
         children:
-            targetEntity: Isometriks\Bundle\SymEditBundle\Entity\Page
+            targetEntity: Isometriks\Bundle\SymEditBundle\Model\Page
             cascade:
                 - remove
                 - persist

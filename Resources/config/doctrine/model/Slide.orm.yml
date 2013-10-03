@@ -1,4 +1,4 @@
-Isometriks\Bundle\SymEditBundle\Entity\Slide:
+Isometriks\Bundle\SymEditBundle\Model\Slide:
     type: entity
     table: slide
     fields:
@@ -28,7 +28,7 @@ Isometriks\Bundle\SymEditBundle\Entity\Slide:
             precision: 0
     manyToOne:
         slider:
-            targetEntity: Isometriks\Bundle\SymEditBundle\Entity\Slider
+            targetEntity: Isometriks\Bundle\SymEditBundle\Model\Slider
             cascade: {  }
             mappedBy: null
             inversedBy: slides
@@ -37,7 +37,7 @@ Isometriks\Bundle\SymEditBundle\Entity\Slide:
                     referencedColumnName: id
             orphanRemoval: false
         image:
-            targetEntity: Isometriks\Bundle\SymEditBundle\Entity\Image
+            targetEntity: Isometriks\Bundle\SymEditBundle\Model\Image
             cascade:
                 - persist
             mappedBy: null

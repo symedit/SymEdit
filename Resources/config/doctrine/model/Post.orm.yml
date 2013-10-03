@@ -1,4 +1,4 @@
-Isometriks\Bundle\SymEditBundle\Entity\Post:
+Isometriks\Bundle\SymEditBundle\Model\Post:
     type: entity
     table: post
     repositoryClass: Isometriks\Bundle\SymEditBundle\Doctrine\Orm\Repository\PostRepository
@@ -83,7 +83,7 @@ Isometriks\Bundle\SymEditBundle\Entity\Post:
             columns: [slug]
     manyToOne:
         image:
-            targetEntity: Isometriks\Bundle\SymEditBundle\Entity\Image
+            targetEntity: Isometriks\Bundle\SymEditBundle\Model\Image
             cascade:
                 - persist
             mappedBy: null
@@ -102,7 +102,7 @@ Isometriks\Bundle\SymEditBundle\Entity\Post:
             orphanRemoval: false
     manyToMany:
         categories:
-            targetEntity: Isometriks\Bundle\SymEditBundle\Entity\Category
+            targetEntity: Isometriks\Bundle\SymEditBundle\Model\Category
             cascade: {  }
             mappedBy: null
             inversedBy: posts

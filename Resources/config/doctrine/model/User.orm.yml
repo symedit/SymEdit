@@ -1,4 +1,4 @@
-Isometriks\Bundle\SymEditBundle\Entity\User:
+Isometriks\Bundle\SymEditBundle\Model\User:
     type: entity
     table: users
     id:

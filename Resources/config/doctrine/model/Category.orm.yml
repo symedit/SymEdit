@@ -1,4 +1,4 @@
-Isometriks\Bundle\SymEditBundle\Entity\Category:
+Isometriks\Bundle\SymEditBundle\Model\Category:
     type: entity
     table: category
     repositoryClass: Isometriks\Bundle\SymEditBundle\Doctrine\Orm\Repository\CategoryRepository
@@ -43,7 +43,7 @@ Isometriks\Bundle\SymEditBundle\Entity\Category:
             precision: 0
     manyToOne:
         parent:
-            targetEntity: Isometriks\Bundle\SymEditBundle\Entity\Category
+            targetEntity: Isometriks\Bundle\SymEditBundle\Model\Category
             cascade: {  }
             mappedBy: null
             inversedBy: children
@@ -54,7 +54,7 @@ Isometriks\Bundle\SymEditBundle\Entity\Category:
             orphanRemoval: false
     oneToMany:
         children:
-            targetEntity: Isometriks\Bundle\SymEditBundle\Entity\Category
+            targetEntity: Isometriks\Bundle\SymEditBundle\Model\Category
             cascade:
                 - remove
                 - persist
@@ -64,7 +64,7 @@ Isometriks\Bundle\SymEditBundle\Entity\Category:
             orderBy: null
     manyToMany:
         posts:
-            targetEntity: Isometriks\Bundle\SymEditBundle\Entity\Post
+            targetEntity: Isometriks\Bundle\SymEditBundle\Model\Post
             cascade: {  }
             mappedBy: categories
             inversedBy: null

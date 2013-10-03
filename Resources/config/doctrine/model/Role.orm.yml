@@ -1,6 +1,6 @@
-Isometriks\Bundle\SymEditBundle\Entity\Image:
+Isometriks\Bundle\SymEditBundle\Model\Role:
     type: entity
-    table: images
+    table: role
     fields:
         id:
             type: integer
@@ -12,27 +12,18 @@ Isometriks\Bundle\SymEditBundle\Entity\Image:
             id: true
             generator:
                 strategy: IDENTITY
-        path:
-            type: string
-            scale: 0
-            length: 255
-            unique: true
-            nullable: false
-            precision: 0
-        name:
+        role:
             type: string
             scale: 0
             length: 255
             unique: false
             nullable: false
             precision: 0
-        updatedAt:
-            type: datetime
+        description:
+            type: string
             scale: 0
-            length: null
+            length: 255
             unique: false
             nullable: false
             precision: 0
-    lifecycleCallbacks:
-        postRemove:
-            - removeUpload
+    lifecycleCallbacks: {  }

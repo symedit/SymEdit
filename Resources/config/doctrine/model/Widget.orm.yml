@@ -1,4 +1,4 @@
-Isometriks\Bundle\SymEditBundle\Entity\Widget:
+Isometriks\Bundle\SymEditBundle\Model\Widget:
     type: entity
     table: widget
     fields:
@@ -41,5 +41,5 @@ Isometriks\Bundle\SymEditBundle\Entity\Widget:
             column: strategy_name
     manyToOne:
         area:
-            targetEntity: Isometriks\Bundle\SymEditBundle\Entity\WidgetArea
+            targetEntity: Isometriks\Bundle\SymEditBundle\Model\WidgetArea
             inversedBy: widgets

@@ -1,6 +1,6 @@
-Isometriks\Bundle\SymEditBundle\Entity\Role:
+Isometriks\Bundle\SymEditBundle\Model\Slider:
     type: entity
-    table: role
+    table: slider
     fields:
         id:
             type: integer
@@ -12,7 +12,7 @@ Isometriks\Bundle\SymEditBundle\Entity\Role:
             id: true
             generator:
                 strategy: IDENTITY
-        role:
+        name:
             type: string
             scale: 0
             length: 255
@@ -26,4 +26,12 @@ Isometriks\Bundle\SymEditBundle\Entity\Role:
             unique: false
             nullable: false
             precision: 0
+    oneToMany:
+        slides:
+            targetEntity: Isometriks\Bundle\SymEditBundle\Model\Slide
+            cascade: {  }
+            mappedBy: slider
+            inversedBy: null
+            orphanRemoval: false
+            orderBy: null
     lifecycleCallbacks: {  }

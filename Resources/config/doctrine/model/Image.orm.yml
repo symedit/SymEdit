@@ -1,6 +1,6 @@
-Isometriks\Bundle\SymEditBundle\Entity\Slider:
+Isometriks\Bundle\SymEditBundle\Model\Image:
     type: entity
-    table: slider
+    table: images
     fields:
         id:
             type: integer
@@ -12,6 +12,13 @@ Isometriks\Bundle\SymEditBundle\Entity\Slider:
             id: true
             generator:
                 strategy: IDENTITY
+        path:
+            type: string
+            scale: 0
+            length: 255
+            unique: true
+            nullable: false
+            precision: 0
         name:
             type: string
             scale: 0
@@ -19,19 +26,13 @@ Isometriks\Bundle\SymEditBundle\Entity\Slider:
             unique: false
             nullable: false
             precision: 0
-        description:
-            type: string
+        updatedAt:
+            type: datetime
             scale: 0
-            length: 255
+            length: null
             unique: false
             nullable: false
             precision: 0
-    oneToMany:
-        slides:
-            targetEntity: Isometriks\Bundle\SymEditBundle\Entity\Slide
-            cascade: {  }
-            mappedBy: slider
-            inversedBy: null
-            orphanRemoval: false
-            orderBy: null
-    lifecycleCallbacks: {  }
+    lifecycleCallbacks:
+        postRemove:
+            - removeUpload
