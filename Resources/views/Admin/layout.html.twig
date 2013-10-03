@@ -11,7 +11,7 @@
             filter="cssrewrite" %}
         <link rel="stylesheet" href="{{ asset_url }}" />
         {% endstylesheets %}
-        <link href='http://fonts.googleapis.com/css?family=Raleway' rel='stylesheet' type='text/css'>
+        <link href='http://fonts.googleapis.com/css?family=Raleway|Open+Sans' rel='stylesheet' type='text/css'>
         {% endblock %}
     </head>
     <body>
@@ -23,15 +23,20 @@
         {% include '@SymEdit/Admin/flash.html.twig' %}
         {% endblock %}
         
+        {% block heading %}
+        <div id="title">
+            <div class="container">
+                <h1>
+                    <i class="icon-chevron-right"></i>
+                    {{ block('title') }}
+                </h1>
+            </div>
+        </div>
+        {% endblock %}        
+        
         {% block content_container %}
         <div class="container">
             <div id="content">
-                {% block heading %}
-                <div id="title">
-                    <h1>{{ block('title') }}</h1>
-                </div>
-                {% endblock %}
-
                 {% block content %}{% endblock %}
             </div>
         </div>
