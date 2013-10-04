@@ -8,19 +8,12 @@ use Symfony\Component\Validator\Constraints\NotBlank;
 
 class GoogleMapStrategy extends AbstractWidgetStrategy
 {
-    private $twig;
-
-    public function __construct(\Twig_Environment $twig)
-    {
-        $this->twig = $twig;
-    }
-
     public function execute(WidgetInterface $widget)
     {
         try {
             $address = $widget->getOption('address');
 
-            $content = $this->twig->render('@SymEdit/CMS/map.html.twig', array(
+            $content = $this->render('@SymEdit/CMS/map.html.twig', array(
                 'query' => empty($address) ? null : $address,
             ));
         } catch(\Exception $e){

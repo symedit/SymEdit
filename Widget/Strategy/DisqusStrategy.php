@@ -8,16 +8,9 @@ use Symfony\Component\Validator\Constraints\NotBlank;
 
 class DisqusStrategy extends AbstractWidgetStrategy
 {
-    private $twig;
-
-    public function __construct(\Twig_Environment $twig)
-    {
-        $this->twig = $twig;
-    }
-
     public function execute(WidgetInterface $widget)
     {
-        return $this->twig->render('@SymEdit/Widget/disqus.html.twig', array(
+        return $this->render('@SymEdit/Widget/disqus.html.twig', array(
             'shortname' => $widget->getOption('shortname'),
         ));
     }

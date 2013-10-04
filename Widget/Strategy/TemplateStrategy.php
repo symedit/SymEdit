@@ -8,17 +8,10 @@ use Symfony\Component\Validator\Constraints\NotBlank;
 
 class TemplateStrategy extends AbstractWidgetStrategy
 {
-    private $twig;
-
-    public function __construct(\Twig_Environment $twig)
-    {
-        $this->twig = $twig;
-    }
-
     public function execute(WidgetInterface $widget)
     {
         try {
-            $content = $this->twig->render($widget->getOption('template'));
+            $content = $this->render($widget->getOption('template'));
         } catch(\Exception $e){
             $content = sprintf('There was an error rendering your template: "%s"', $e->getMessage());
         }

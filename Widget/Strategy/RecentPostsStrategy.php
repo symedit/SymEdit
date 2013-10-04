@@ -4,18 +4,15 @@ namespace Isometriks\Bundle\SymEditBundle\Widget\Strategy;
 
 use Symfony\Component\Form\FormBuilderInterface;
 use Isometriks\Bundle\SymEditBundle\Model\WidgetInterface;
-use Doctrine\Bundle\DoctrineBundle\Registry;
 use Symfony\Component\Validator\Constraints\Range;
 use Isometriks\Bundle\SymEditBundle\Model\PostManagerInterface;
 
 class RecentPostsStrategy extends AbstractWidgetStrategy
 {
-    private $twig;
     private $postManager;
 
-    public function __construct(\Twig_Environment $twig, PostManagerInterface $postManager)
+    public function __construct(PostManagerInterface $postManager)
     {
-        $this->twig = $twig;
         $this->postManager = $postManager;
     }
 
@@ -23,7 +20,7 @@ class RecentPostsStrategy extends AbstractWidgetStrategy
     {
         $posts = $this->postManager->findRecentPosts($widget->getOption('max'));
 
-        return $this->twig->render('@SymEdit/Widget/blog-recent-posts.html.twig', array(
+        return $this->render('@SymEdit/Widget/blog-recent-posts.html.twig', array(
             'posts' => $posts,
         ));
     }

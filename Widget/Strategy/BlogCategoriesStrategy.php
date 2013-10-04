@@ -8,12 +8,10 @@ use Doctrine\Bundle\DoctrineBundle\Registry;
 
 class BlogCategoriesStrategy extends AbstractWidgetStrategy
 {
-    private $twig;
     private $doctrine;
 
-    public function __construct(\Twig_Environment $twig, Registry $doctrine)
+    public function __construct(Registry $doctrine)
     {
-        $this->twig = $twig;
         $this->doctrine = $doctrine;
     }
 
@@ -21,7 +19,7 @@ class BlogCategoriesStrategy extends AbstractWidgetStrategy
     {
         $categories = $this->doctrine->getManager()->getRepository('Isometriks\Bundle\SymEditBundle\Model\Category');
 
-        return $this->twig->render('@SymEdit/Widget/blog-categories.html.twig', array(
+        return $this->render('@SymEdit/Widget/blog-categories.html.twig', array(
             'categories' => $categories,
             'counts' => $widget->getOption('counts'),
         ));

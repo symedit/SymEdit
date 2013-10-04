@@ -45,7 +45,6 @@
         </service>
 
         <service id="isometriks_symedit.widget.strategy.template" class="%isometriks_symedit.widget.strategy.template.class%">
-            <argument type="service" id="twig" />
             <tag name="symedit.widget_strategy" alias="template" />
         </service>
 
@@ -55,13 +54,11 @@
         </service>
 
         <service id="isometriks_symedit.widget.strategy.blog_recent_posts" class="%isometriks_symedit.widget.strategy.blog_recent_posts.class%">
-            <argument type="service" id="twig" />
             <argument type="service" id="isometriks_symedit.post_manager" />
             <tag name="symedit.widget_strategy" alias="blog_recent_posts" />
         </service>
 
         <service id="isometriks_symedit.widget.strategy.blog_categories" class="%isometriks_symedit.widget.strategy.blog_categories.class%">
-            <argument type="service" id="twig" />
             <argument type="service" id="doctrine" />
             <tag name="symedit.widget_strategy" alias="blog_categories" />
         </service>
@@ -72,12 +69,10 @@
         </service>
 
         <service id="isometriks_symedit.widget.strategy.google_map" class="%isometriks_symedit.widget.strategy.google_map.class%">
-            <argument type="service" id="twig" />
             <tag name="symedit.widget_strategy" alias="google_map" />
         </service>
         
         <service id="isometriks_symedit.widget.strategy.disqus" class="%isometriks_symedit.widget.strategy.disqus.class%">
-            <argument type="service" id="twig" />
             <tag name="symedit.widget_strategy" alias="disqus" />
         </service>
     </services>

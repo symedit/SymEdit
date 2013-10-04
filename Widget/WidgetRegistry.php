@@ -10,6 +10,7 @@ use Isometriks\Bundle\SymEditBundle\Widget\Strategy\WidgetStrategyInterface;
 class WidgetRegistry extends ContainerAware
 {
     private $strategies;
+    private $templating;
     private $loadedStrategies; 
     
     /**
@@ -67,6 +68,7 @@ class WidgetRegistry extends ContainerAware
             throw new \Exception('Widgets must implement WidgetStrategyInterface'); 
         }
         
+        $strategy->setTemplating($this->getTemplating());
         $this->loadedStrategies[$strategy->getName()] = $strategy; 
         
         /**
@@ -79,6 +81,15 @@ class WidgetRegistry extends ContainerAware
         unset($this->strategies[$key]); 
         
         return $strategy; 
+    }
+    
+    private function getTemplating()
+    {
+        if ($this->templating === null) {
+            $this->templating = $this->container->get('templating');
+        }
+        
+        return $this->templating;
     }
     
     /**
