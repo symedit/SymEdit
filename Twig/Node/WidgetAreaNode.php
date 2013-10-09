@@ -23,7 +23,7 @@ class WidgetAreaNode extends \Twig_Node
             ->write('         ->controller(\'IsometriksSymEditBundle:Widget:renderArea\', array(')
             ->write('             \'area\' => \'' . $this->getAttribute('area') . '\',')
             ->write('             \'path\' => $context[\'Page\']->getPath(),')
-            ->write('             \'id\'   => $context[\'Page\']->getId(),')
+            ->write('             \'_page_id\'   => $context[\'Page\']->getId(),')
             ->write('         ))')
             ->write('    );');
     }
