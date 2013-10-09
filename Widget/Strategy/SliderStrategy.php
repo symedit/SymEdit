@@ -2,9 +2,10 @@
 
 namespace Isometriks\Bundle\SymEditBundle\Widget\Strategy;
 
-use Symfony\Component\Form\FormBuilderInterface;
+use Isometriks\Bundle\SymEditBundle\Model\PageInterface;
 use Isometriks\Bundle\SymEditBundle\Model\WidgetInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
+use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\HttpKernel\HttpKernelInterface;
 
 class SliderStrategy extends AbstractWidgetStrategy
@@ -16,7 +17,7 @@ class SliderStrategy extends AbstractWidgetStrategy
         $this->container = $container;
     }
 
-    public function execute(WidgetInterface $widget)
+    public function execute(WidgetInterface $widget, PageInterface $page = null)
     {
         $request = $this->container->get('request');
         $kernel = $this->container->get('http_kernel');

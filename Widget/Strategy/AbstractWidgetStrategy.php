@@ -1,9 +1,9 @@
 <?php
 
-namespace Isometriks\Bundle\SymEditBundle\Widget\Strategy; 
+namespace Isometriks\Bundle\SymEditBundle\Widget\Strategy;
 
-use Symfony\Component\Form\FormBuilderInterface; 
-use Isometriks\Bundle\SymEditBundle\Model\WidgetInterface; 
+use Isometriks\Bundle\SymEditBundle\Model\WidgetInterface;
+use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Templating\EngineInterface;
 
 abstract class AbstractWidgetStrategy implements WidgetStrategyInterface

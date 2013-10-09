@@ -2,13 +2,14 @@
 
 namespace Isometriks\Bundle\SymEditBundle\Widget\Strategy;
 
-use Symfony\Component\Form\FormBuilderInterface;
+use Isometriks\Bundle\SymEditBundle\Model\PageInterface;
 use Isometriks\Bundle\SymEditBundle\Model\WidgetInterface;
+use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Validator\Constraints\NotBlank;
 
 class TemplateStrategy extends AbstractWidgetStrategy
 {
-    public function execute(WidgetInterface $widget)
+    public function execute(WidgetInterface $widget, PageInterface $page = null)
     {
         try {
             $content = $this->render($widget->getOption('template'));

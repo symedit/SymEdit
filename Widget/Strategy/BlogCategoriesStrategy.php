@@ -2,9 +2,10 @@
 
 namespace Isometriks\Bundle\SymEditBundle\Widget\Strategy;
 
-use Symfony\Component\Form\FormBuilderInterface;
-use Isometriks\Bundle\SymEditBundle\Model\WidgetInterface;
 use Doctrine\Bundle\DoctrineBundle\Registry;
+use Isometriks\Bundle\SymEditBundle\Model\PageInterface;
+use Isometriks\Bundle\SymEditBundle\Model\WidgetInterface;
+use Symfony\Component\Form\FormBuilderInterface;
 
 class BlogCategoriesStrategy extends AbstractWidgetStrategy
 {
@@ -15,7 +16,7 @@ class BlogCategoriesStrategy extends AbstractWidgetStrategy
         $this->doctrine = $doctrine;
     }
 
-    public function execute(WidgetInterface $widget)
+    public function execute(WidgetInterface $widget, PageInterface $page = null)
     {
         $categories = $this->doctrine->getManager()->getRepository('Isometriks\Bundle\SymEditBundle\Model\Category');
 

@@ -2,10 +2,11 @@
 
 namespace Isometriks\Bundle\SymEditBundle\Widget\Strategy;
 
-use Symfony\Component\Form\FormBuilderInterface;
-use Isometriks\Bundle\SymEditBundle\Model\WidgetInterface;
-use Symfony\Component\Validator\Constraints\Range;
+use Isometriks\Bundle\SymEditBundle\Model\PageInterface;
 use Isometriks\Bundle\SymEditBundle\Model\PostManagerInterface;
+use Isometriks\Bundle\SymEditBundle\Model\WidgetInterface;
+use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\Validator\Constraints\Range;
 
 class RecentPostsStrategy extends AbstractWidgetStrategy
 {
@@ -16,7 +17,7 @@ class RecentPostsStrategy extends AbstractWidgetStrategy
         $this->postManager = $postManager;
     }
 
-    public function execute(WidgetInterface $widget)
+    public function execute(WidgetInterface $widget, PageInterface $page = null)
     {
         $posts = $this->postManager->findRecentPosts($widget->getOption('max'));
 

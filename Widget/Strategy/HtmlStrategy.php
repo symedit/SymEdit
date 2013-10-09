@@ -1,13 +1,14 @@
 <?php
 
-namespace Isometriks\Bundle\SymEditBundle\Widget\Strategy; 
+namespace Isometriks\Bundle\SymEditBundle\Widget\Strategy;
 
-use Isometriks\Bundle\SymEditBundle\Model\WidgetInterface; 
-use Symfony\Component\Form\FormBuilderInterface; 
+use Isometriks\Bundle\SymEditBundle\Model\PageInterface;
+use Isometriks\Bundle\SymEditBundle\Model\WidgetInterface;
+use Symfony\Component\Form\FormBuilderInterface;
 
 class HtmlStrategy extends AbstractWidgetStrategy
 {
-    public function execute(WidgetInterface $widget)
+    public function execute(WidgetInterface $widget, PageInterface $page = null)
     {
         return $widget->getOption('html'); 
     }

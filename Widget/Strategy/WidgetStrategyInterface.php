@@ -1,9 +1,10 @@
 <?php
 
-namespace Isometriks\Bundle\SymEditBundle\Widget\Strategy; 
+namespace Isometriks\Bundle\SymEditBundle\Widget\Strategy;
 
-use Symfony\Component\Form\FormBuilderInterface; 
-use Isometriks\Bundle\SymEditBundle\Model\WidgetInterface; 
+use Isometriks\Bundle\SymEditBundle\Model\PageInterface;
+use Isometriks\Bundle\SymEditBundle\Model\WidgetInterface;
+use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Templating\EngineInterface;
 
 interface WidgetStrategyInterface
@@ -12,11 +13,11 @@ interface WidgetStrategyInterface
     public function getDescription(); 
     
     /**
-     * @param \Symfony\Component\Form\FormBuilderInterface $builder
+     * @param FormBuilderInterface $builder
      */
     public function buildForm(FormBuilderInterface $builder); 
     
-    public function execute(WidgetInterface $widget); 
+    public function execute(WidgetInterface $widget, PageInterface $page = null); 
     
     public function setDefaultOptions(WidgetInterface $widget); 
     
