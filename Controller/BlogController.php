@@ -110,7 +110,7 @@ class BlogController extends Controller
     public function categoryViewAction($slug, Request $request, $_format, $page = 1)
     {
         $em = $this->getDoctrine()->getManager();
-        $category = $em->getRepository('IsometriksSymEditBundle:Category')->findOneBySlug($slug);
+        $category = $em->getRepository('Isometriks\Bundle\SymEditBundle\Model\Category')->findOneBySlug($slug);
 
         if (!$category) {
             throw $this->createNotFoundException(sprintf('Category with slug "%s" not found.', $slug));
@@ -118,7 +118,7 @@ class BlogController extends Controller
 
         $query = $em->createQueryBuilder()
                 ->select('p')
-                ->from('IsometriksSymEditBundle:Post', 'p')
+                ->from('Isometriks\Bundle\SymEditBundle\Model\Post', 'p')
                 ->join('p.categories', 'c')
                 ->where(':catId MEMBER OF p.categories')
                 ->orderBy('p.createdAt', 'DESC')
@@ -169,7 +169,7 @@ class BlogController extends Controller
 
         $query = $em->createQueryBuilder()
                 ->select('p')
-                ->from('IsometriksSymEditBundle:Post', 'p')
+                ->from('Isometriks\Bundle\SymEditBundle\Model\Post', 'p')
                 ->join('p.author', 'a')
                 ->where('a.username = :username')
                 ->setParameter('username', $username)
