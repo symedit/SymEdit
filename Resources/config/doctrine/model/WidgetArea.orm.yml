@@ -29,3 +29,5 @@ Isometriks\Bundle\SymEditBundle\Model\WidgetArea:
                 - persist
             targetEntity: Isometriks\Bundle\SymEditBundle\Model\Widget
             mappedBy: area
+            orderBy:
+                widgetOrder: ASC

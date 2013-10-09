@@ -2,12 +2,16 @@
 
 namespace Isometriks\Bundle\SymEditBundle\Controller\Admin;
 
-use Symfony\Component\HttpFoundation\Request;
+use Isometriks\Bundle\SymEditBundle\Controller\Controller;
+use Isometriks\Bundle\SymEditBundle\Form\WidgetReorderType;
+use Isometriks\Bundle\SymEditBundle\Model\WidgetInterface;
+use Isometriks\Bundle\SymEditBundle\Widget\WidgetManager;
+use Isometriks\Bundle\SymEditBundle\Widget\WidgetRegistry;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
-use Isometriks\Bundle\SymEditBundle\Controller\Controller;
-use Isometriks\Bundle\SymEditBundle\Model\WidgetInterface;
+use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpFoundation\Request;
 
 /**
  * @Route("/widget")
@@ -25,9 +29,44 @@ class WidgetController extends Controller
         $manager = $this->getManager();
         $areas = $manager->getWidgetAreas();
 
+        $reorderForm = $this->createForm(new WidgetReorderType(), null, array(
+            'render' => true,
+        ));
+        
         return array(
+            'reorder_form' => $reorderForm->createView(),
             'areas' => $areas,
         );
+    }
+    
+    /**
+     * @Route("/reorder", name="admin_widget_reorder")
+     */
+    public function reorderAction(Request $request)
+    {
+
+        $reorder_form = $this->createForm(new WidgetReorderType());
+        $reorder_form->handleRequest($request);
+        $status = false;
+
+        if($reorder_form->isValid()){
+            $status = true;
+            $data = $reorder_form->getData();
+            $widgetManager = $this->getManager();
+
+            foreach($data['pair'] as $id=>$order){
+                if(!$widget = $widgetManager->findWidget($id)){
+                    throw $this->createNotFoundException(sprintf('Sorting entity not found (%d)', $id));
+                }
+
+                $widget->setWidgetOrder($order);
+                $widgetManager->saveWidget($widget);
+            }
+        }
+
+        return new JsonResponse(array(
+            'status' => $status,
+        ));
     }
 
     /**
@@ -38,7 +77,7 @@ class WidgetController extends Controller
     {
         if($strategyName === null){
 
-            /* @var $registry \Isometriks\Bundle\SymEditBundle\Widget\WidgetRegistry */
+            /* @var $registry WidgetRegistry */
             $registry = $this->get('isometriks_symedit.widget.registry');
             $strategies = $registry->getStrategies();
 
@@ -186,7 +225,7 @@ class WidgetController extends Controller
     }
 
     /**
-     * @return \Isometriks\Bundle\SymEditBundle\Widget\WidgetManager $manager
+     * @return WidgetManager $manager
      */
     private function getManager()
     {
@@ -217,7 +256,7 @@ class WidgetController extends Controller
          */
         try {
             $widget = $this->getManager()->createWidget($strategyName);
-        } catch(\Excetion $e) {
+        } catch(\Exception $e) {
             throw $this->createNotFoundException(sprintf('Widget with strategy name "%s" does not exist', $strategyName));
         }
 

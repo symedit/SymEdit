@@ -39,6 +39,10 @@ Isometriks\Bundle\SymEditBundle\Model\Widget:
             length: 255
             nullable: false
             column: strategy_name
+        widgetOrder:
+            type: integer
+            default: 1000
+            nullable: false
     manyToOne:
         area:
             targetEntity: Isometriks\Bundle\SymEditBundle\Model\WidgetArea
