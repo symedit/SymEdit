@@ -43,13 +43,16 @@ class PageType extends AbstractType
          */
         $root = $this->pageManager->findRoot();
         $pageIterator = new \Isometriks\Bundle\SymEditBundle\Iterator\RecursivePageIterator($root, false);
-        $iterator = new \RecursiveIteratorIterator($pageIterator);
+        $iterator = new \RecursiveIteratorIterator($pageIterator, \RecursiveIteratorIterator::SELF_FIRST);
         
         $choices = array(
             $root->getId() => 'Root',
         );
         
         foreach ($iterator as $page) {
+            if ($page->getHomepage()) {
+                continue;
+            }
             $choices[$page->getId()] = str_repeat('--', $page->getLevel()).' '.$page->getTitle();
         }
         
