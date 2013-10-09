@@ -16,8 +16,8 @@ use JMS\SecurityExtraBundle\Annotation\PreAuthorize;
  * @Route("/setting")
  * @PreAuthorize("hasRole('ROLE_ADMIN_SETTING')")
  */
-class SettingController extends Controller {
-
+class SettingController extends Controller 
+{
     /**
      * Lists all Page entities.
      *
@@ -27,11 +27,19 @@ class SettingController extends Controller {
     public function indexAction()
     {
         $settings = $this->get('isometriks_settings.settings');        
-        $form     = $this->createForm('settings', $settings);
+        $form     = $this->createSettingsForm($settings);
 
         return array(
             'form' => $form->createView(),
         );
+    }
+    
+    protected function createSettingsForm($settings)
+    {
+        $this->createForm('settings', $settings, array(
+            'action' => $this->generateUrl('admin_settings_update'),
+            'method' => 'post',
+        ));
     }
 
     /**
@@ -43,7 +51,7 @@ class SettingController extends Controller {
     public function updateAction(Request $request)
     {
         $settings = $this->get('isometriks_settings.settings');
-        $form     = $this->createForm('settings', $settings);
+        $form     = $this->createSettingsForm($settings);
 
         $form->handleRequest($request);
 
@@ -55,5 +63,4 @@ class SettingController extends Controller {
 
         return $this->redirect($this->generateUrl('admin_setting'));
     }
-
 }
