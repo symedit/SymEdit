@@ -35,7 +35,7 @@ class SettingController extends Controller
     
     protected function createSettingsForm($settings)
     {
-        $this->createForm('settings', $settings, array(
+        return $this->createForm('settings', $settings, array(
             'action' => $this->generateUrl('admin_setting_update'),
             'method' => 'post',
         ));
