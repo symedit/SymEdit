@@ -2,10 +2,11 @@
 
 namespace Isometriks\Bundle\SymEditBundle\Form;
 
+use Isometriks\Bundle\SymEditBundle\Model\PageManagerInterface;
+use Isometriks\Bundle\SymEditBundle\Iterator\RecursivePageIterator;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
-use Isometriks\Bundle\SymEditBundle\Model\PageManagerInterface;
 
 class PageType extends AbstractType 
 {
@@ -42,7 +43,7 @@ class PageType extends AbstractType
          * default
          */
         $root = $this->pageManager->findRoot();
-        $pageIterator = new \Isometriks\Bundle\SymEditBundle\Iterator\RecursivePageIterator($root, false);
+        $pageIterator = new RecursivePageIterator($root, false);
         $iterator = new \RecursiveIteratorIterator($pageIterator, \RecursiveIteratorIterator::SELF_FIRST);
         
         $choices = array(
