@@ -22,7 +22,7 @@
             </call>
 
             <call method="setEmailSender">
-                <argument>%swiftmailer.mailer.default.transport.smtp.username%</argument>
+                <argument>%isometriks_symedit.email.sender%</argument>
             </call>
         </service>
     </services>

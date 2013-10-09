@@ -34,30 +34,24 @@ class IsometriksSymEditExtension extends Extension
             $loader->load($file.'.xml');
         }
 
+        $this->loadEmail($config['email'], $container);
         $this->loadFragment($config['fragment'], $container);
 
-        /**
-         * Add Classes to Compile
-         */
-        $this->addClassesToCompile(array(
-            // services.xml
-            'Isometriks\\Bundle\\SymEditBundle\\Finder\\ResourceFinder',
-
-            // event.xml
-            'Isometriks\\Bundle\\SymEditBundle\\EventListener\\ControllerListener',
-
-            // twig.xml
-            'Isometriks\\Bundle\\SymEditBundle\\Twig\\Extension\\SymEditExtension',
-        ));
-
         $container->setParameter('isometriks_symedit.extensions.routes', $config['extensions']);
-
-        /**
-         * Set the Admin Directory
-         */
         $container->setParameter('isometriks_symedit.admin_dir', $config['admin_dir']);
     }
 
+    /**
+     * Load Email Settings
+     */
+    private function loadEmail($config, ContainerBuilder $container)
+    {
+        $container->setParameter('isometriks_symedit.email.sender', $config['sender']);
+    }
+    
+    /**
+     * Load Fragment Settings
+     */
     private function loadFragment($config, ContainerBuilder $container)
     {
         $container->setParameter('isometriks_symedit.fragment.strategy', $config['strategy']);
