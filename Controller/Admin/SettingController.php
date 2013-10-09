@@ -7,7 +7,6 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
-use Isometriks\Bundle\SymEditBundle\Form\SettingsType;
 use JMS\SecurityExtraBundle\Annotation\PreAuthorize; 
 
 /**
@@ -37,7 +36,7 @@ class SettingController extends Controller
     protected function createSettingsForm($settings)
     {
         $this->createForm('settings', $settings, array(
-            'action' => $this->generateUrl('admin_settings_update'),
+            'action' => $this->generateUrl('admin_setting_update'),
             'method' => 'post',
         ));
     }
