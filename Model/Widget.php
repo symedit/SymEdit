@@ -60,6 +60,8 @@ class Widget implements WidgetInterface
      * @var \DateTime
      */
     protected $createdAt;
+    
+    protected $widgetOrder;
 
     /**
      * @var \DateTime
@@ -72,6 +74,7 @@ class Widget implements WidgetInterface
         $this->setVisibility(self::INCLUDE_ALL);
         $this->setAssoc(array());
         $this->setUpdatedAt(new \DateTime());
+        $this->setWidgetOrder(1000);
     }
 
     public function getId()
@@ -301,5 +304,21 @@ class Widget implements WidgetInterface
     public function getUpdatedAt()
     {
         return $this->updatedAt;
+    }
+    
+    public function getWidgetOrder()
+    {
+        return $this->widgetOrder;
+    }
+    
+    /**
+     * @param int $widgetOrder
+     * @return Widget
+     */
+    public function setWidgetOrder($widgetOrder)
+    {
+        $this->widgetOrder = $widgetOrder;
+        
+        return $this;
     }
 }
