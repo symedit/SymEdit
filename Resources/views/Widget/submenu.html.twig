@@ -1,0 +1,2 @@
+{% set menu = knp_menu_get('tree', {}, {'root': page, 'level': level}) %}
+{{ knp_menu_render(menu, {currentClass: 'active'}) }}
