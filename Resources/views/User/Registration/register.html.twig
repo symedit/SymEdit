@@ -7,7 +7,7 @@
     <legend>Register New User</legend>
     {{ form_widget(form) }}
     <div class="form-actions">
-        <input class="btn btn-primary" type="submit" value="{{ 'registration.submit'|trans({}, 'FOSUserBundle') }}" />
+        <button class="btn btn-primary" type="submit">{{ 'registration.submit'|trans({}, 'FOSUserBundle') }}</button>
     </div>
 </form>
 {% endblock %}

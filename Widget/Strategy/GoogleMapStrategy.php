@@ -3,24 +3,17 @@
 namespace Isometriks\Bundle\SymEditBundle\Widget\Strategy;
 
 use Symfony\Component\Form\FormBuilderInterface;
+use Isometriks\Bundle\SymEditBundle\Model\PageInterface;
 use Isometriks\Bundle\SymEditBundle\Model\WidgetInterface;
-use Symfony\Component\Validator\Constraints\NotBlank;
 
 class GoogleMapStrategy extends AbstractWidgetStrategy
 {
-    private $twig;
-
-    public function __construct(\Twig_Environment $twig)
-    {
-        $this->twig = $twig;
-    }
-
-    public function execute(WidgetInterface $widget)
+    public function execute(WidgetInterface $widget, PageInterface $page = null)
     {
         try {
             $address = $widget->getOption('address');
 
-            $content = $this->twig->render('@SymEdit/CMS/map.html.twig', array(
+            $content = $this->render('@SymEdit/CMS/map.html.twig', array(
                 'query' => empty($address) ? null : $address,
             ));
         } catch(\Exception $e){
@@ -36,7 +29,6 @@ class GoogleMapStrategy extends AbstractWidgetStrategy
             ->add('address', 'textarea', array(
                 'required' => false,
                 'label' => 'Address',
-                'property_path' => 'options[address]',
                 'help_inline' => 'Leave blank for default company address',
                 'attr' => array(
                     'rows' => 5,

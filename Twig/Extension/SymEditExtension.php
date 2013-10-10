@@ -3,40 +3,23 @@
 namespace Isometriks\Bundle\SymEditBundle\Twig\Extension;
 
 use Symfony\Component\DependencyInjection\ContainerInterface;
-use Symfony\Component\DependencyInjection\ContainerAwareInterface;
 use Isometriks\Bundle\SymEditBundle\Model\Page;
 
-class SymEditExtension extends \Twig_Extension implements ContainerAwareInterface
+class SymEditExtension extends \Twig_Extension
 {
-    private $extensions;
-
     /**
      * @var ContainerInterface
      */
     private $container;
 
-    public function __construct(ContainerInterface $container, array $extensions = array())
+    public function __construct(ContainerInterface $container)
     {
-        $this->setContainer($container);
-        $this->extensions = $extensions;
+        $this->container = $container;
     }
 
     public function getGlobals()
     {
-        $em = $this->container->get('doctrine')->getManager();
-        $pages = $em->getRepository('IsometriksSymEditBundle:Page');
-
-        $globals = array(
-            'Root' => $pages->findRoot(),
-            'Tree' => $pages,
-        );
-
-        $context = $this->container->get('security.context');
-
-        if($context->getToken() !== null && $context->isGranted('ROLE_ADMIN')){
-            $globals['extensions'] = $this->getExtensions();
-            $globals['stylizer'] = $this->container->has('isometriks_stylizer.stylizer');
-        }
+        $globals = array();
 
         /**
          *  Inject the Page variable globally in case
@@ -61,7 +44,6 @@ class SymEditExtension extends \Twig_Extension implements ContainerAwareInterfac
             $globals['Breadcrumbs'] = $this->container->get('isometriks_symedit.breadcrumbs');
         }
 
-
         return $globals;
     }
 
@@ -77,18 +59,6 @@ class SymEditExtension extends \Twig_Extension implements ContainerAwareInterfac
         return array(
             new \Twig_SimpleFunction('route_exists', array($this, 'routeExists')),
         );
-    }
-
-    private function getExtensions()
-    {
-        $extensions = array();
-        foreach($this->extensions as $extension){
-            if($this->container->get('security.context')->isGranted($extension['role'])){
-                $extensions[] = $extension;
-            }
-        }
-
-        return $extensions;
     }
 
     /**

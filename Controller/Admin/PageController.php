@@ -2,17 +2,20 @@
 
 namespace Isometriks\Bundle\SymEditBundle\Controller\Admin;
 
-use Symfony\Component\HttpFoundation\Request;
 use Isometriks\Bundle\SymEditBundle\Controller\Controller;
-use Symfony\Component\HttpFoundation\JsonResponse; 
+use Isometriks\Bundle\SymEditBundle\Event\Events;
+use Isometriks\Bundle\SymEditBundle\Event\PageEvent;
+use Isometriks\Bundle\SymEditBundle\Form\PageReorderType;
+use Isometriks\Bundle\SymEditBundle\Model\PageInterface;
+use Isometriks\Bundle\SymEditBundle\Model\PageManagerInterface;
+use JMS\SecurityExtraBundle\Annotation\PreAuthorize;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
-use Isometriks\Bundle\SymEditBundle\Model\PageInterface;
-use Isometriks\Bundle\SymEditBundle\Entity\Page; 
-use Isometriks\Bundle\SymEditBundle\Form\PageType;
-use JMS\SecurityExtraBundle\Annotation\PreAuthorize; 
-use Isometriks\Bundle\SymEditBundle\Form\PageReorderType; 
+use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpFoundation\RedirectResponse;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Form\FormInterface;
 
 /**
  * Page controller.
@@ -26,50 +29,49 @@ class PageController extends Controller
      * Lists all Page entities.
      *
      * @Route("/", name="admin_page")
+     * @Method("GET")
      * @Template()
      */
     public function indexAction()
     {
-        $em = $this->getDoctrine()->getManager();
-        $root = $em->getRepository('IsometriksSymEditBundle:Page')->findRoot();
+        $pageManager = $this->getPageManager();
+        $root = $pageManager->findRoot();
+        
         $reorder_form = $this->createForm(new PageReorderType(), null, array('render' => true));
         
         return array(
-            'Root' => $root, 
-            'reorder_form' => $reorder_form->createView(), 
+            'Root' => $root,
+            'reorder_form' => $reorder_form->createView(),
         );
     }
-    
+
     /**
      * @Route("/reorder", name="admin_page_reorder")
      */
     public function reorderAction()
     {
         $reorder_form = $this->createForm(new PageReorderType());
-        $reorder_form->bind($this->getRequest()); 
-        $status = false; 
-        
+        $reorder_form->handleRequest($this->getRequest());
+        $status = false;
+
         if($reorder_form->isValid()){
-            $status = true; 
-            $data = $reorder_form->getData(); 
-            $em = $this->getDoctrine()->getManager(); 
-            $repo = $em->getRepository('IsometriksSymEditBundle:Page'); 
-            
+            $status = true;
+            $data = $reorder_form->getData();
+            $pageManager = $this->getPageManager();
+
             foreach($data['pair'] as $id=>$order){
-                if(!$entity = $repo->find($id)){
-                    throw $this->createNotFoundException('Sorting entity not found'); 
+                if(!$entity = $pageManager->find($id)){
+                    throw $this->createNotFoundException('Sorting entity not found');
                 }
-                
-                $entity->setPageOrder($order); 
-                $em->persist($entity); 
+
+                $entity->setPageOrder($order);
+                $pageManager->updatePage($entity);
             }
-            
-            $em->flush(); 
         }
 
         return new JsonResponse(array(
-            'status' => $status, 
-        )); 
+            'status' => $status,
+        ));
     }
 
     /**
@@ -80,41 +82,54 @@ class PageController extends Controller
      */
     public function newAction()
     {
-        $entity = new Page();
-        $form   = $this->createForm(new PageType(), $entity);
+        $page = $this->getPageManager()->createPage();
+        $form   = $this->createCreateForm($page);
 
         return array(
-            'entity' => $entity,
+            'entity' => $page,
             'form'   => $form->createView(),
             'action' => 'create',
         );
     }
 
     /**
+     * @param PageInterface $page
+     * @return FormInterface
+     */
+    private function createCreateForm(PageInterface $page)
+    {
+        return $this->createForm('symedit_page', $page, array(
+            'action' => $this->generateUrl('admin_page_create'),
+            'method' => 'POST',
+        ));
+    }
+
+    /**
      * Creates a new Page entity.
      *
-     * @Route("/create", name="admin_page_create")
+     * @Route("/", name="admin_page_create")
      * @Method("POST")
-     * @Template("IsometriksSymEditBundle:Admin/Page:new.html.twig")
+     * @Template("@SymEdit/Admin/Page/new.html.twig")
      */
     public function createAction(Request $request)
     {
-        $entity  = new Page();
-        $form = $this->createForm(new PageType(), $entity);
-        $form->bind($request);
+        $pageManager = $this->getPageManager();
+        $page = $pageManager->createPage();
+        $form   = $this->createCreateForm($page);
+        $form->handleRequest($request);
 
         if ($form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($entity);
-            $em->flush();
+            $pageManager->updatePage($page);
+            $this->addFlash('notice', 'Page Created');
 
-            $this->get('session')->getFlashBag()->add('notice', 'Page Created'); 
-            
-            return $this->redirectEdit($request, $entity); 
+            $event = new PageEvent($page, $request);
+            $this->get('event_dispatcher')->dispatch(Events::PAGE_CREATED, $event);
+
+            return $this->redirectEdit($request, $page);
         }
 
         return array(
-            'entity' => $entity,
+            'entity' => $page,
             'form'   => $form->createView(),
         );
     }
@@ -127,53 +142,57 @@ class PageController extends Controller
      */
     public function editAction($id)
     {
-        $em = $this->getDoctrine()->getManager();
+        $page = $this->getPageManager()->find($id);
 
-        $entity = $em->getRepository('IsometriksSymEditBundle:Page')->find($id);
-
-        if (!$entity) {
+        if (!$page) {
             throw $this->createNotFoundException('Unable to find Page entity.');
         }
 
-        $editForm = $this->createForm(new PageType(), $entity);
+        $editForm = $this->createEditForm($page);
         $deleteForm = $this->createDeleteForm($id);
 
         return array(
-            'entity'      => $entity,
+            'entity'      => $page,
             'form'        => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
             'action'      => 'update',
         );
     }
 
+    private function createEditForm(PageInterface $page)
+    {
+        return $this->createForm('symedit_page', $page, array(
+            'action' => $this->generateUrl('admin_page_update', array('id' => $page->getId())),
+            'method' => 'PUT',
+        ));
+    }
+
     /**
      * Edits an existing Page entity.
      *
-     * @Route("/{id}/update", name="admin_page_update")
-     * @Method("POST")
-     * @Template("IsometriksSymEditBundle:Admin/Page:edit.html.twig")
+     * @Route("/{id}", name="admin_page_update")
+     * @Method("PUT")
+     * @Template("@SymEdit/Admin/Page/edit.html.twig")
      */
     public function updateAction(Request $request, $id)
     {
-        $em = $this->getDoctrine()->getManager();
-
-        $entity = $em->getRepository('IsometriksSymEditBundle:Page')->find($id);
+        $pageManager = $this->getPageManager();
+        $entity = $pageManager->find($id);
 
         if (!$entity) {
             throw $this->createNotFoundException('Unable to find Page entity.');
         }
 
         $deleteForm = $this->createDeleteForm($id);
-        $editForm = $this->createForm(new PageType(), $entity);
-        $editForm->bind($request);
+        $editForm = $this->createEditForm($entity);
+        $editForm->handleRequest($request);
 
         if ($editForm->isValid()) {
-            $em->persist($entity);
-            $em->flush();
 
-            $this->addFlash('notice', 'Page Updated'); 
-            
-            return $this->redirectEdit($request, $entity); 
+            $pageManager->updatePage($entity);
+            $this->addFlash('notice', 'Page Updated');
+
+            return $this->redirectEdit($request, $entity);
         }
 
         return array(
@@ -182,56 +201,57 @@ class PageController extends Controller
             'delete_form' => $deleteForm->createView(),
         );
     }
-    
-    
+
+
     /**
      * Keeping things DRY. Used to determine if the live_edit field was passed
-     * from either a create form or an edit form. If it is, send the user to 
-     * the page instead. 
-     * 
-     * @param \Symfony\Component\HttpFoundation\Request $request
-     * @param \Isometriks\Bundle\SymEditBundle\Entity\Page $page
+     * from either a create form or an edit form. If it is, send the user to
+     * the page instead.
+     *
+     * @param Request $request
+     * @param PageInterface $page
      * @return RedirectResponse
      */
     private function redirectEdit(Request $request, PageInterface $page)
     {
         if($request->request->has('live_edit')){
-            $url = $this->generateUrl($page->getRoute()); 
-        } else { 
-            $url = $this->generateUrl('admin_page_edit', array('id' => $page->getId())); 
+            $url = $this->generateUrl($page->getRoute());
+        } else {
+            $url = $this->generateUrl('admin_page_edit', array('id' => $page->getId()));
         }
-        
-        return $this->redirect($url); 
+
+        return $this->redirect($url);
     }
 
     /**
      * Deletes a Page entity.
      *
-     * @Route("/{id}/delete", name="admin_page_delete")
-     * @Method("POST")
+     * @Route("/{id}", name="admin_page_delete")
+     * @Method("DELETE")
      */
     public function deleteAction(Request $request, $id)
     {
         $form = $this->createDeleteForm($id);
-        $form->bind($request);
+        $form->handleRequest($request);
 
         if ($form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $entity = $em->getRepository('IsometriksSymEditBundle:Page')->find($id);
+
+            $pageManager = $this->getPageManager();
+            $entity = $pageManager->find($id);
 
             if (!$entity) {
                 throw $this->createNotFoundException('Unable to find Page entity.');
             }
-            
+
             // Don't delete the homepage or root!
             if($entity->getHomepage() || $entity->getRoot()){
-                $this->get('session')->getFlashBag()->add('error', 'Cannot delete this page.');
-                
-                return $this->redirect($this->generateUrl('admin_page'));  
+
+                $this->addFlash('error', 'Cannot delete this page.');
+
+                return $this->redirect($this->generateUrl('admin_page_edit', array('id' => $entity->getId())));
             }
 
-            $em->remove($entity);
-            $em->flush();
+            $pageManager->deletePage($entity);
         }
 
         return $this->redirect($this->generateUrl('admin_page'));
@@ -241,7 +261,16 @@ class PageController extends Controller
     {
         return $this->createFormBuilder(array('id' => $id))
             ->add('id', 'hidden')
-            ->getForm()
-        ;
+            ->setAction($this->generateUrl('admin_page_delete', array('id' => $id)))
+            ->setMethod('DELETE')
+            ->getForm();
+    }
+
+    /**
+     * @return PageManagerInterface $pageManager
+     */
+    private function getPageManager()
+    {
+        return $this->get('isometriks_symedit.page_manager');
     }
 }

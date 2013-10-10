@@ -1,37 +1,30 @@
-<article class="summary">
-    <h3>{{ Post.title }}</h3>
+<article class="summary blog-post">
+    <h3 class="title">
+        <a href="{{ path('blog_slug_view', {slug: Post.slug}) }}">{{ Post.title }}</a>
+        <small>
+            Posted by <a href="{{ path('blog_author_view', { username: Post.author.username }) }}">{{ Post.author.profile.fullname }}</a>
+            on {{ Post.createdAt|date('F j, Y') }}
+        </small>
+    </h3>     
     
-    <div class="meta">
-        <span class="author">
-            <i class="icon-pencil"></i> 
-            <a href="{{ path('blog_author_view', { username: Post.author.username }) }}">{{ Post.author.profile.fullname }}</a>
-        </span>
-            
-        <span class="date">
-            <i class="icon-time"></i>
-            {{ Post.createdAt|date('F j, Y') }}
-        </span>
-    </div>
-        
-    <div class="row-fluid">
+    <div class="row">
         {% if Post.image %}
-        <div class="span3">
+        <div class="col-md-3">
             <img class="img-rounded" src="{{ Post.image.webpath|constrain({w:200,h:400}) }}" alt="{{ Post.title }}" />
         </div>
         {% endif %}
         
-        <div class="span9">
-            <p class="summary">
+        <div class="{{ Post.image ? 'col-md-9' : 'col-md-12' }}">
+            <div class="summary">
                 {% if Post.summary %}
                     {{ Post.summary|raw }}
                 {% else %}
                     {{ Post.content|plain(350, '...') }}
                 {% endif %}
-            </p>
+            </div>         
+            <div class="clearfix">
+                <a class="read-more btn btn-default btn-sm" href="{{ path('blog_slug_view', { slug: Post.slug }) }}">Read Article &raquo;</a>     
+            </div>
         </div>   
-    </div>
-    
-    <div>
-        <a class="read-more btn btn-small" href="{{ path('blog_slug_view', { slug: Post.slug }) }}">Read Article &raquo;</a>
-    </div>    
+    </div>     
 </article>

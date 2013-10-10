@@ -10,6 +10,8 @@ use Isometriks\Bundle\SymEditBundle\DependencyInjection\Compiler\TwigExceptionCo
 use Isometriks\Bundle\SymEditBundle\DependencyInjection\Compiler\WidgetStrategyCompilerPass;
 use Isometriks\Bundle\SymEditBundle\DependencyInjection\Compiler\TwigPathCompilerPass;
 use Isometriks\Bundle\SymEditBundle\DependencyInjection\IsometriksSymEditExtension;
+use Isometriks\Bundle\SymEditBundle\DependencyInjection\Compiler\ProfileTypeCompilerPass;
+use Isometriks\Bundle\SymEditBundle\DependencyInjection\Compiler\DoctrineMappingsPass;
 
 class IsometriksSymEditBundle extends Bundle
 {
@@ -33,6 +35,14 @@ class IsometriksSymEditBundle extends Bundle
         $container->addCompilerPass(new TwigExceptionCompilerPass());
         $container->addCompilerPass(new WidgetStrategyCompilerPass());
         $container->addCompilerPass(new TwigPathCompilerPass($this->kernel));
+        $container->addCompilerPass(new ProfileTypeCompilerPass());
+        
+        /**
+         * Add Doctrine Mappings
+         */
+        DoctrineMappingsPass::addMappings($container, array(
+            realpath(__DIR__.'/Resources/config/doctrine/model') => 'Isometriks\Bundle\SymEditBundle\Model',
+        ));
     }
 
     public function getContainerExtension()

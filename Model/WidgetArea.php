@@ -3,9 +3,8 @@
 namespace Isometriks\Bundle\SymEditBundle\Model; 
 
 use Doctrine\Common\Collections\ArrayCollection; 
-use Isometriks\Bundle\SymEditBundle\Model\PageInterface; 
 
-abstract class WidgetArea implements WidgetAreaInterface
+class WidgetArea implements WidgetAreaInterface
 {
     protected $id; 
     protected $area; 

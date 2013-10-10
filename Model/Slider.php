@@ -2,7 +2,7 @@
 
 namespace Isometriks\Bundle\SymEditBundle\Model;
 
-abstract class Slider implements SliderInterface
+class Slider implements SliderInterface
 {
     /**
      * @var integer $id

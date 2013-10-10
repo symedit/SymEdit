@@ -1,36 +1,91 @@
-{% extends '@IsometriksSymEdit/Admin/base.html.twig' %}
+{% extends '@IsometriksSymEdit/Admin/tabbed.html.twig' %}
 
 {% block title %}Showing Widgets{% endblock %}
+{% block heading '' %}
 
-{% block content %}
-{% for area in areas %}
-<div class="well">
-    <h2 class="latch">
-        {{ area.area }}
-        <small>{{ area.description }}</small>
-    </h2>
-
-    <ul class="thumbnails">
-    {% for widget in area.widgets %}
-        <li class="span3">
-            <a href="{{ path('admin_widget_edit', {id:widget.id}) }}" class="thumbnail">
-                <h4>
-                    {{ widget.title|default('(No Title)') }} <br>
-                    <small>{{ widget.strategy.description }}</small>
-                </h4>
-            </a>
-        </li>
+{% block tabs %}
+<ul class="nav nav-pills nav-stacked">
+    {% for area in areas %}
+    <li{% if loop.first %} class="active"{% endif %}>
+        <a href="#area_{{ area.area }}" data-toggle="tab">{{ area.area }}</a>
+    </li>
     {% endfor %}
+</ul>
+{% endblock %}
 
-        {#<li class="span3">
-            <a href="#" class="thumbnail">
-                <h4>
-                    <i class="icon-plus circle"></i> Add Widget <br>
-                    <small>To {{ area.description }}</small>
-                </h4>
-            </a>
-        </li>#}
-    </ul>
+
+{% block form_actions %}
+<a href="{{ path('admin_widget_new') }}" class="btn btn-primary btn-block">New Widget</a>
+{% endblock %}
+
+{% block tab_content %}
+<div class="tab-content">
+    {% for area in areas %}
+    <section id="area_{{ area.area }}" class="{% if loop.first %}active {% endif %}tab-pane widget-area">
+        <h2>{{ area.description }}</h2>
+
+        <div class="row widget-area-sortable" data-area="{{ area.area }}">
+        {% for widget in area.widgets %}
+            <div class="col-md-3 widget" data-id="{{ widget.id }}">
+                <a href="{{ path('admin_widget_edit', {id:widget.id}) }}" class="thumbnail">
+                    <h4>
+                        {{ widget.title|default('(No Title)') }} <br>
+                        <small>{{ widget.strategy.description }}</small>
+                    </h4>
+                </a>
+            </div>
+        {% endfor %}
+
+            {#<div class="col-md-3">
+                <a href="#" class="thumbnail">
+                    <h4>
+                        <i class="icon-plus circle pull-left"></i> 
+                        Add Widget <br>
+                        <small>to "{{ area.area }}"</small>
+                    </h4>
+                </a>
+            </div>#}
+        </div>
+    </section>
+    {% endfor %}
 </div>
-{% endfor %}
+{% endblock %}
+
+{% block extra %}
+<form class="form-hidden" id="reorder-form" action="{{ path('admin_widget_reorder') }}">
+    {{ form_widget(reorder_form) }}
+</form>
+{% endblock %}
+
+{% block scripts %}
+    <script>
+        $(function(){
+            var $areas = $('.widget-area-sortable');
+            var $form = $('#reorder-form');
+            
+            function sortStop(e, ui){
+                $target = $(e.target); 
+                
+                var order = 0; 
+                var pairs = []; 
+                $target.find('>.widget').each(function(){
+                    pairs.push({
+                        name: 'isometriks_widget_reorder[pair]['+$(this).data('id')+']',
+                        value: order++
+                    });
+                }); 
+
+                var data = $form.serializeArray().concat(pairs); 
+                
+                console.log(data);
+                
+                $.post($form.attr('action'), data);
+            }
+            
+            $areas.sortable({
+                update: sortStop,
+                opacity: .6
+            }).disableSelection(); 
+        });
+    </script>
 {% endblock %}

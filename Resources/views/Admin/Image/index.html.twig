@@ -4,16 +4,15 @@
 
 {% block content %}
 
-<ul class="thumbnails" id="images">
+<div class="row" id="images">
   {% for entity in entities %}
-  <li class="span2">
-      <a href="{{ path('admin_image_edit', {id:entity.id}) }}">
+  <div class="col-md-2">
+      <a class="thumbnail" href="{{ path('admin_image_edit', {id:entity.id}) }}">
           <img src="{{ entity|constrain({ w:234 }) }}">
       </a>
-      <div class="title">{{ entity.name }}</div>
-  </li>
+  </div>
   {% endfor %}
-</ul>
+</div>
 
 <div class="form-actions">
     <a class="btn btn-primary" href="{{ path('admin_image_new') }}">

@@ -2,7 +2,7 @@
 
 namespace Isometriks\Bundle\SymEditBundle\Model; 
 
-use Isometriks\Bundle\SymEditBundle\Entity\Image; 
+use Isometriks\Bundle\SymEditBundle\Model\Image; 
 
 interface SlideInterface
 {

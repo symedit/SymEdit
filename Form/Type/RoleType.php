@@ -20,7 +20,7 @@ class RoleType extends AbstractType {
 
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
-        $roles = $this->doctrine->getManager()->getRepository('IsometriksSymEditBundle:Role')->findAll();
+        $roles = $this->doctrine->getManager()->getRepository('Isometriks\Bundle\SymEditBundle\Model\Role')->findAll();
         $choices = array();
 
         foreach ($roles as $role) {

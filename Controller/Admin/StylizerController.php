@@ -30,12 +30,11 @@ class StylizerController extends Controller
 
         if($request->getMethod() === 'POST'){
 
-            $form->bind($request);
+            $form->handleRequest($request);
 
             if($form->isValid()){
 
                 $stylizer->save();
-                $fb = $this->get('session')->getFlashBag();
 
                 if($request->request->has('dump')){
                     $stylizer->dump();

@@ -1,0 +1,49 @@
+Isometriks\Bundle\SymEditBundle\Model\Widget:
+    type: entity
+    table: widget
+    fields:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: IDENTITY
+        name:
+            type: string
+            length: 255
+            unique: true
+            nullable: false
+        title:
+            type: string
+            length: 255
+            nullable: true
+        options:
+            type: json_array
+        visibility:
+            type: integer
+            nullable: false
+            default: 0
+        assoc:
+            type: json_array
+        createdAt:
+            type: datetime
+            gedmo:
+                timestampable:
+                    on: create
+        updatedAt:
+            type: datetime
+            gedmo:
+                timestampable:
+                    on: update
+        strategyName:
+            type: string
+            length: 255
+            nullable: false
+            column: strategy_name
+        widgetOrder:
+            type: integer
+            default: 1000
+            nullable: false
+    manyToOne:
+        area:
+            targetEntity: Isometriks\Bundle\SymEditBundle\Model\WidgetArea
+            inversedBy: widgets

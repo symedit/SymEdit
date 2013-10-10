@@ -140,5 +140,9 @@ interface WidgetInterface
      * 
      * @param array $strings Strings to check
      */
-    public function hasAssoc(array $strings); 
+    public function hasAssoc(array $strings);
+    
+    public function getWidgetOrder();
+    
+    public function setWidgetOrder($widgetOrder);
 }

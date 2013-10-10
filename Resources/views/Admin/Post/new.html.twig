@@ -5,31 +5,13 @@
 {% block action %}{{ path('admin_blog_create') }}{% endblock %}
 
 {% block tabs %}
-{% include '@IsometriksSymEdit/Admin/Post/tabs.html.twig' %}
+{{ form_tabs(form) }}
 {% endblock %}
-    
+
 {% block tab_content %}
-<div class="tab-pane active" id="basic">
-    {{ form_row(form.title) }}
-    {{ form_row(form.author) }}
-    {{ form_row(form.status) }}
-    {{ form_row(form.image.file, {label: 'Featured Image'}) }}
-    {{ form_row(form.categories) }}
-</div>
-
-<div class="tab-pane" id="post-seo">
-    {{ form_widget(form.seo) }}
-</div>           
-
-<div class="tab-pane" id="post-summary">
-    {{ form_widget(form.summary) }}
-</div>
-
-<div class="tab-pane" id="post-content">
-    {{ form_widget(form.content) }}
-</div>
+{{ form_widget(form) }}
 {% endblock %}
-    
+
 {% block form_actions %}
 <button class="btn btn-primary btn-block" type="submit">Add Post</button>
 {% endblock %}

@@ -4,7 +4,7 @@ namespace Isometriks\Bundle\SymEditBundle\Controller;
 
 class SliderController extends Controller
 {
-    public function indexAction($name, $template = null)
+    public function indexAction($name, $template = null, $thumbnails = null)
     {
         if($template === null){
             $template = '@SymEdit/Widget/slider.html.twig';
@@ -19,6 +19,7 @@ class SliderController extends Controller
 
         return $this->render($template, array(
             'Slider' => $slider,
+            'thumbnails' => $thumbnails !== null && $thumbnails,
         ));
     }
 }

@@ -2,27 +2,26 @@
 
 namespace Isometriks\Bundle\SymEditBundle\Widget\Strategy;
 
-use Symfony\Component\Form\FormBuilderInterface;
+use Isometriks\Bundle\SymEditBundle\Model\PageInterface;
+use Isometriks\Bundle\SymEditBundle\Model\PostManagerInterface;
 use Isometriks\Bundle\SymEditBundle\Model\WidgetInterface;
-use Doctrine\Bundle\DoctrineBundle\Registry;
+use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Validator\Constraints\Range;
 
 class RecentPostsStrategy extends AbstractWidgetStrategy
 {
-    private $twig;
-    private $doctrine;
+    private $postManager;
 
-    public function __construct(\Twig_Environment $twig, Registry $doctrine)
+    public function __construct(PostManagerInterface $postManager)
     {
-        $this->twig = $twig;
-        $this->doctrine = $doctrine;
+        $this->postManager = $postManager;
     }
 
-    public function execute(WidgetInterface $widget)
+    public function execute(WidgetInterface $widget, PageInterface $page = null)
     {
-        $posts = $this->doctrine->getManager()->getRepository('IsometriksSymEditBundle:Post')->getRecent($widget->getOption('max'));
+        $posts = $this->postManager->findRecentPosts($widget->getOption('max'));
 
-        return $this->twig->render('@SymEdit/Widget/blog-recent-posts.html.twig', array(
+        return $this->render('@SymEdit/Widget/blog-recent-posts.html.twig', array(
             'posts' => $posts,
         ));
     }
@@ -33,7 +32,6 @@ class RecentPostsStrategy extends AbstractWidgetStrategy
             ->add('max', 'integer', array(
                 'label' => 'Max Posts',
                 'help_block' => 'Maximum Posts to display in Widget',
-                'property_path' => 'options[max]',
                 'constraints' => array(
                     new Range(array(
                         'min' => 1,

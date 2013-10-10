@@ -46,7 +46,9 @@ class SeoVirtualType extends AbstractType {
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'widget_control_group' => false, 
+            'widget_form_group' => false,
+            'horizontal' => false,
+            'label_render' => false,  
         ));
     }
 

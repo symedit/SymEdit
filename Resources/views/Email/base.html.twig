@@ -20,6 +20,10 @@ Blank SymEdit Mailer Message, please extend this block.
             </tr>
         </table>
         {% endblock %}
+        
+        {% block signature %}
+        {% include '@IsometriksSymEdit/Email/signature.html.twig' %}
+        {% endblock %}
     </body>
 </html>
 {% endblock %}

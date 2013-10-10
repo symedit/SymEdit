@@ -11,6 +11,6 @@ class AnnotationLoaderCompilerPass implements CompilerPassInterface
     {
         $definition = $container->getDefinition('sensio_framework_extra.routing.loader.annot_class');
         $definition->setClass('%isometriks_symedit.routing.loader.controller.class%');
-        $definition->addArgument($container->getDefinition('doctrine')); 
+        $definition->addArgument($container->getDefinition('isometriks_symedit.page_manager'));
     }
 }

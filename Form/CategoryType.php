@@ -10,26 +10,43 @@ class CategoryType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder
+        $basic = $builder->create('basic', 'tab', array(
+            'label' => 'Basic',
+            'inherit_data' => true,
+        ));
+
+        $basic
             ->add('title')
             ->add('name', 'text', array(
-                'label' => 'Slug', 
+                'label' => 'Slug',
                 'help_block' => 'Lowercase, numbers, hyphens and underscores.',
             ))
             ->add('parent', 'entity', array(
-                'empty_value' => '(Root Category)', 
-                'class' => 'Isometriks\\Bundle\\SymEditBundle\\Entity\\Category', 
+                'empty_value' => '(Root Category)',
+                'class' => 'Isometriks\Bundle\SymEditBundle\Model\Category',
                 'required' => false,
-            ))
-            ->add('seo', new SeoVirtualType())
-        ;
+            ));
+
+
+        $seo = $builder->create('seo', 'tab', array(
+            'label' => 'SEO',
+            'inherit_data' => true,
+        ));
+
+        $seo
+            ->add('seo', new SeoVirtualType());
+
+
+        $builder
+            ->add($basic)
+            ->add($seo);
     }
 
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'translation_domain' => 'SymEdit', 
-            'data_class' => 'Isometriks\Bundle\SymEditBundle\Entity\Category'
+            'translation_domain' => 'SymEdit',
+            'data_class' => 'Isometriks\Bundle\SymEditBundle\Model\Category'
         ));
     }
 

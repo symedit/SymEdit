@@ -5,44 +5,46 @@
 {% block action %}{{ path('admin_image_slider_update', { 'id': entity.id }) }}{% endblock %}
 
 {% block tabs %}
-<li class="active">
-    <a href="#basic" data-toggle="tab">
-        <i class="icon-info-sign"></i> Basic
-    </a>
-</li>
-<li>
-    <a href="#slides" data-toggle="tab">
-        <i class="icon-columns"></i>
-        Slides
-    </a>
-</li>
+<ul class="nav nav-tabs nav-stacked">
+    <li class="active">
+        <a href="#basic" data-toggle="tab">
+            <i class="icon-info-sign"></i> Basic
+        </a>
+    </li>
+    <li>
+        <a href="#slides" data-toggle="tab">
+            <i class="icon-columns"></i>
+            Slides
+        </a>
+    </li>
+</ul>
 {% endblock %}
 
 {% block tab_content %}
-<div class="tab-pane active" id="basic">
-    {{ form_row(form.name) }}
-    {{ form_row(form.description) }}
-    {{ form_rest(form) }}
-</div>
+<div class="tab-content">
+    <div class="tab-pane active" id="basic">
+        {{ form_widget(form) }}
+    </div>
 
-<div class="tab-pane" id="slides">
-    {% for slide in form.vars.value.slides %}
-    <div class="well">
-        <div class="row-fluid">
-            <div class="span4">
-                <h4>Slide {{ loop.index }}</h4>
-                <p>{{ slide.caption }}</p>
-                <a href="{{ path('admin_image_slider_slide_edit', {id:slide.id}) }}" class="btn btn-primary">Edit</a>
-            </div>
-            <div class="span5 pull-right">
-                <img src="{{ slide.image.webpath|constrain({w:300, h:120}) }}" />
+    <div class="tab-pane" id="slides">
+        {% for slide in form.vars.value.slides %}
+        <div class="well">
+            <div class="row">
+                <div class="col-md-4">
+                    <h4>Slide {{ loop.index }}</h4>
+                    <p>{{ slide.caption }}</p>
+                    <a href="{{ path('admin_image_slider_slide_edit', {id:slide.id}) }}" class="btn btn-primary">Edit</a>
+                </div>
+                <div class="col-md-5 pull-right">
+                    <img src="{{ slide.image.webpath|constrain({w:300, h:120}) }}" />
+                </div>
             </div>
         </div>
-    </div>
-    {% endfor %}
-        
-    <div class="form-actions">
-        <a href="{{ path('admin_image_slider_slide_new', {slider_id:entity.id}) }}" class="btn btn-success">Add New Slide</a>
+        {% endfor %}
+
+        <div class="form-actions">
+            <a href="{{ path('admin_image_slider_slide_new', {slider_id:entity.id}) }}" class="btn btn-success">Add New Slide</a>
+        </div>
     </div>
 </div>
 {% endblock %}

@@ -2,23 +2,17 @@
 
 namespace Isometriks\Bundle\SymEditBundle\Widget\Strategy;
 
-use Symfony\Component\Form\FormBuilderInterface;
+use Isometriks\Bundle\SymEditBundle\Model\PageInterface;
 use Isometriks\Bundle\SymEditBundle\Model\WidgetInterface;
+use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Validator\Constraints\NotBlank;
 
 class TemplateStrategy extends AbstractWidgetStrategy
 {
-    private $twig;
-
-    public function __construct(\Twig_Environment $twig)
-    {
-        $this->twig = $twig;
-    }
-
-    public function execute(WidgetInterface $widget)
+    public function execute(WidgetInterface $widget, PageInterface $page = null)
     {
         try {
-            $content = $this->twig->render($widget->getOption('template'));
+            $content = $this->render($widget->getOption('template'));
         } catch(\Exception $e){
             $content = sprintf('There was an error rendering your template: "%s"', $e->getMessage());
         }
@@ -32,7 +26,6 @@ class TemplateStrategy extends AbstractWidgetStrategy
             ->add('template', 'text', array(
                 'required' => true,
                 'label' => 'Template',
-                'property_path' => 'options[template]',
                 'constraints' => array(
                     new NotBlank(),
                 ),

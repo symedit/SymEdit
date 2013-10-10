@@ -1,31 +1,7 @@
-{% extends '@SymEdit/Admin/base.html.twig' %}
+{% extends '@SymEdit/Admin/tabbed.html.twig' %}
 
 {% block title %}Blog &raquo; Category &raquo; Create New{% endblock %}
 
-{% block content %}
-<form class="form-horizontal" action="{{ path('admin_blog_category_create') }}" method="post" {{ form_enctype(form) }}>
-    
-    <ul class="nav nav-tabs">
-        <li class="active"><a href="#basic" data-toggle="tab">Basic</a></li>
-        <li><a href="#category-seo" data-toggle="tab">SEO</a></li>
-    </ul>
-    
-    <div class="tab-content">
-        <div class="tab-pane active" id="basic">
-            {{ form_row(form.title) }}
-            {{ form_row(form.name) }}
-            {{ form_row(form.parent) }}
-        </div>
-            
-        <div class="tab-pane" id="category-seo">
-            {{ form_widget(form.seo) }}
-        </div> 
-    </div>
-    
-    {{ form_rest(form) }}
-            
-    <div class="form-actions">
-        <button class="btn btn-primary" type="submit">Create Category</button>
-    </div>
-</form>
+{% block form_actions %}
+<button class="btn btn-block btn-primary" type="submit">Create Category</button>
 {% endblock %}

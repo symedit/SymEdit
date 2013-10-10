@@ -28,7 +28,7 @@ class CopyTemplateCommand extends ContainerAwareCommand
         $this
             ->setName('symedit:templates:copy')
             ->addArgument('bundle', InputArgument::OPTIONAL, 'Optional Bundle to Copy From')
-            ->addOption('overwrite', null, InputOption::VALUE_NONE, 'Overwrite without asking' )
+            ->addOption('overwrite', null, InputOption::VALUE_NONE, 'Overwrite without asking')
             ->setDescription('Copy base templates from SymEdit to Host Bundle, or if Bundle Name is supplied, copy from there.')
         ;
     }

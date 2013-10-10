@@ -1,26 +1,46 @@
 {% extends '@SymEdit/Admin/base.html.twig' %}
 
+{% block content_container %}
+<div class="container">
+    <div id="content" class="has-sidebar">
+        {{ block('content') }}
+    </div>
+</div>
+{% endblock %}
+
+
 {% block content %}
 {% if form is defined %}
-<form class="form-horizontal" action="{% block action %}{% endblock %}" {% block method %}method="post"{% endblock %} {{ form_enctype(form) }}>
+{{ form_start(form, {attr: {class: 'form-horizontal'}}) }}
 {% endif %}
 
-    {% block sidebar %}
-    <div id="sidebar">
-        <ul class="nav nav-pills nav-stacked">
-            {% block tabs %}{% endblock %}
-        </ul>
-        {% block form_actions %}{% endblock %}
-    </div>
-    {% endblock %}
+    <div class="row">
+        <div class="col-lg-2 col-md-3">
+            {% block sidebar %}
+            <div id="sidebar" class="affix-top">
+                {% block tabs %}
+                {% if form is defined %}
+                {{ form_tabs(form) }}
+                {% endif %}
+                {% endblock %}
 
-    <div class="tab-content has-sidebar well">
-        {% block tab_content %}{% endblock %}
-    </div>
+                <div class="actions">
+                    {% block form_actions %}{% endblock %}
+                </div>
+            </div>
+            {% endblock %}
+        </div>
+
+        <div class="col-lg-10 col-md-9">
+            {% block tab_content %}
+            {% if form is defined %}
+            {{ form_widget(form) }}
+            {% endif %}
+            {% endblock %}
+        </div>
 
 {% if form is defined %}
-    {{ form_rest(form) }}
-</form>
+{{ form_end(form) }}
 {% endif %}
 {% block extra %}{% endblock %}
 {% endblock %}

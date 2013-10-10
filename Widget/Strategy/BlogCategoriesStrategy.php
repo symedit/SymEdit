@@ -2,26 +2,25 @@
 
 namespace Isometriks\Bundle\SymEditBundle\Widget\Strategy;
 
-use Symfony\Component\Form\FormBuilderInterface;
-use Isometriks\Bundle\SymEditBundle\Model\WidgetInterface;
 use Doctrine\Bundle\DoctrineBundle\Registry;
+use Isometriks\Bundle\SymEditBundle\Model\PageInterface;
+use Isometriks\Bundle\SymEditBundle\Model\WidgetInterface;
+use Symfony\Component\Form\FormBuilderInterface;
 
 class BlogCategoriesStrategy extends AbstractWidgetStrategy
 {
-    private $twig;
     private $doctrine;
 
-    public function __construct(\Twig_Environment $twig, Registry $doctrine)
+    public function __construct(Registry $doctrine)
     {
-        $this->twig = $twig;
         $this->doctrine = $doctrine;
     }
 
-    public function execute(WidgetInterface $widget)
+    public function execute(WidgetInterface $widget, PageInterface $page = null)
     {
-        $categories = $this->doctrine->getManager()->getRepository('IsometriksSymEditBundle:Category');
+        $categories = $this->doctrine->getManager()->getRepository('Isometriks\Bundle\SymEditBundle\Model\Category');
 
-        return $this->twig->render('@SymEdit/Widget/blog-categories.html.twig', array(
+        return $this->render('@SymEdit/Widget/blog-categories.html.twig', array(
             'categories' => $categories,
             'counts' => $widget->getOption('counts'),
         ));
@@ -34,7 +33,6 @@ class BlogCategoriesStrategy extends AbstractWidgetStrategy
                 'required' => false,
                 'label' => 'Display Counts',
                 'help_block' => 'Display Category counts next to label',
-                'property_path' => 'options[counts]',
             ));
     }
 

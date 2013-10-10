@@ -21,7 +21,7 @@ class SliderType extends AbstractType
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'Isometriks\Bundle\SymEditBundle\Entity\Slider'
+            'data_class' => 'Isometriks\Bundle\SymEditBundle\Model\Slider'
         ));
     }
 

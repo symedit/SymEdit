@@ -2,7 +2,9 @@
 
 namespace Isometriks\Bundle\SymEditBundle\Model;
 
-interface UserInterface
+use FOS\UserBundle\Model\UserInterface as BaseUserInterface;
+
+interface UserInterface extends BaseUserInterface
 {
     /**
      * @return integer Get User ID
@@ -22,7 +24,10 @@ interface UserInterface
      */
     public function setProfile(ProfileInterface $profile);
 
-    public function getAdmin();
+    /**
+     * @return boolean Whether or not user is an admin
+     */
+    public function isAdmin();
 
     public function setAdmin($admin);
 }

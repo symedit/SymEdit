@@ -1,51 +1,44 @@
-{% import '@SymEdit/CMS/nav.html.twig' as nav %}
 <!DOCTYPE html>
 <html lang="en-US">
     <head>
-        <title>{% block title %}{{ SEO.title|default(Page.title) }}{% endblock %}</title>
-        {% block meta %}
+        <title>{% block title %}{{ SEO.title|default(Page.title)|default(Settings.company.name) }}{% endblock %}</title>
+{% block meta %}
         <meta charset="UTF-8">
         <meta name="robots" content="{{ SEO.index|default('index') }}, {{ SEO.follow|default('follow') }}" />
         <meta name="description" content="{% block description %}{{ SEO.description|default(Page.content|plain(150)) }}{% endblock %}" />
         <meta name="keywords" content="{% block keywords %}{{ SEO.keywords|default('') }}{% endblock %}" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        {% block opengraph %}
+{% block opengraph %}
         <meta property="og:title" content="{{ block('title') }}" />
         <meta property="og:url" content="{% block url %}{{ path(app.request.attributes.get('_route'), app.request.attributes.get('_route_params')) }}{% endblock %}" />
         <meta property="og:site_name" content="{{ Settings.company.name }}" />
         <meta property="og:description" content="{{ block('description') }}" />
-        {% endblock %}
-        {% endblock %}
-        {% block stylesheets %}
-        {% stylesheets
+{% endblock %}
+{% endblock %}
+{% block stylesheets %}
+{% stylesheets
                'bundles/isometrikssymedit/bootstrap/css/bootstrap.min.css'
-               'bundles/isometrikssymedit/bootstrap/css/bootstrap-responsive.min.css'
                'bundles/isometrikssymedit/css/font-awesome.min.css'
                '@IsometriksSymEditBundle/Resources/less/system.less'
                '@IsometriksSymEditBundle/Resources/less/util.less'
                '@IsometriksSymEditBundle/Resources/less/footer.less'
                '@IsometriksSymEditBundle/Resources/less/site.less'
-               filter='cssrewrite' -%}
+               filter='cssrewrite' %}
         <link rel="stylesheet" type="text/css" href="{{ asset_url }}" />
-        {% endstylesheets -%}
-        {% endblock %}
+{% endstylesheets -%}
+{% endblock %}
         <!--[if lt IE 9]>
             <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
         <![endif]-->
     </head>
     <body>
-        {% block skip_link %}<a href="#content" class="hidden">Skip to content</a>{% endblock %}
+        {% block skip_link %}<a href="#content" class="sr-only">Skip to content</a>{% endblock %}
         <div id="wrap">
         {% block body %}
             {% block nav %}
             <div class="container">
-                <nav>
-                    <div class="navbar">
-                        <div class="navbar-inner">
-                            <a class="brand" href="/">{{ Settings.company.name }}</a>
-                            {{ nav.bootstrap( Root ) }}
-                        </div>
-                    </div>
+                <nav class="main-nav">
+                    {{ knp_menu_render('tree', {currentClass: 'active'}) }}
                 </nav>
             </div>
             {% endblock %}
@@ -53,7 +46,7 @@
             {% block content_container %}
             <div class="container">
                 {% block breadcrumbs %}
-                <div class="pull-right hidden-mobile">
+                <div class="pull-right hidden-sm hidden-xs">
                     {% include '@SymEdit/CMS/breadcrumbs.html.twig' %}
                 </div>
                 {% endblock %}

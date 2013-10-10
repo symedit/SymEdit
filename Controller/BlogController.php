@@ -2,13 +2,12 @@
 
 namespace Isometriks\Bundle\SymEditBundle\Controller;
 
-use Symfony\Component\Routing\Annotation\Route;
+use Isometriks\Bundle\SymEditBundle\Model\PostManagerInterface;
 use Isometriks\Bundle\SymEditBundle\Annotation\PageController as Bind;
-use Isometriks\Bundle\SymEditBundle\Entity\Post;
-use Isometriks\Bundle\SymEditBundle\Model\BreadcrumbsInterface;
 use Isometriks\Bundle\SitemapBundle\Annotation\Sitemap;
-use Doctrine\ORM\Tools\Pagination\Paginator;
+use Knp\Bundle\PaginatorBundle\Pagination\SlidingPagination;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Routing\Annotation\Route;
 
 /**
  * @Bind(name="symedit-blog")
@@ -24,7 +23,7 @@ class BlogController extends Controller
     public function indexAction(Request $request, $_format, $page = 1)
     {
         $em = $this->getDoctrine()->getManager();
-        $repo = $em->getRepository('IsometriksSymEditBundle:Post');
+        $repo = $em->getRepository($this->getPostManager()->getClass());
 
         $modified = $repo->getRecentQueryBuilder()
                          ->select('MAX(p.updatedAt) as modified')
@@ -50,13 +49,12 @@ class BlogController extends Controller
 
     /**
      * @Route("/{slug}", name="blog_slug_view", requirements={"slug"="[a-z0-9_-]+"})
-     * @Sitemap(params={"slug"="getSlug"}, entity="IsometriksSymEditBundle:Post")
+     * @Sitemap(params={"slug"="getSlug"}, entity="Isometriks\Bundle\SymEditBundle\Model\Post")
      */
     public function slugViewAction($slug, Request $request)
     {
-        $em = $this->getDoctrine()->getManager();
-        $post = $em->getRepository('IsometriksSymEditBundle:Post')->findOneBySlug($slug);
-
+        $post = $this->getPostManager()->findPostBySlug($slug);
+        
         if (!$post) {
             throw $this->createNotFoundException(sprintf('Post with slug "%s" not found.', $slug));
         }
@@ -66,7 +64,7 @@ class BlogController extends Controller
         if ($response->isNotModified($request)) {
             return $response;
         }
-
+        
         /**
          * Add Breadcrumbs
          */
@@ -89,10 +87,9 @@ class BlogController extends Controller
             throw $this->createNotFoundException('No preview available');
         }
 
-        $em = $this->getDoctrine()->getManager();
-        $em->getFilters()->disable('post_published');
-
-        $post = $em->getRepository('IsometriksSymEditBundle:Post')->findOneBySlug($slug);
+        $postManager = $this->getPostManager();
+        $postManager->disableStatusFilter();
+        $post = $postManager->findPostBySlug($slug);
 
         if (!$post) {
             throw $this->createNotFoundException(sprintf('Post with slug "%s" not found.', $slug));
@@ -108,12 +105,12 @@ class BlogController extends Controller
      * @Route("/category/{slug}/feed.xml", defaults={"page"=1, "_format"="xml"}, name="blog_category_rss")
      * @Route("/category/{slug}/{page}", defaults={"page"=1, "_format"="html"}, requirements={"slug"=".*?", "page"="\d+"}, name="blog_category_view")
      *
-     * @Sitemap(params={"slug"="getSlug"}, entity="IsometriksSymEditBundle:Category")
+     * @Sitemap(params={"slug"="getSlug"}, entity="Isometriks\Bundle\SymEditBundle\Model\Category")
      */
     public function categoryViewAction($slug, Request $request, $_format, $page = 1)
     {
         $em = $this->getDoctrine()->getManager();
-        $category = $em->getRepository('IsometriksSymEditBundle:Category')->findOneBySlug($slug);
+        $category = $em->getRepository('Isometriks\Bundle\SymEditBundle\Model\Category')->findOneBySlug($slug);
 
         if (!$category) {
             throw $this->createNotFoundException(sprintf('Category with slug "%s" not found.', $slug));
@@ -121,7 +118,7 @@ class BlogController extends Controller
 
         $query = $em->createQueryBuilder()
                 ->select('p')
-                ->from('IsometriksSymEditBundle:Post', 'p')
+                ->from('Isometriks\Bundle\SymEditBundle\Model\Post', 'p')
                 ->join('p.categories', 'c')
                 ->where(':catId MEMBER OF p.categories')
                 ->orderBy('p.createdAt', 'DESC')
@@ -172,7 +169,7 @@ class BlogController extends Controller
 
         $query = $em->createQueryBuilder()
                 ->select('p')
-                ->from('IsometriksSymEditBundle:Post', 'p')
+                ->from('Isometriks\Bundle\SymEditBundle\Model\Post', 'p')
                 ->join('p.author', 'a')
                 ->where('a.username = :username')
                 ->setParameter('username', $username)
@@ -191,7 +188,7 @@ class BlogController extends Controller
     }
 
     /**
-     * @return \Knp\Bundle\PaginatorBundle\Pagination\SlidingPagination
+     * @return SlidingPagination
      */
     private function getPaginator($query, $page = 1, $route = null)
     {
@@ -205,6 +202,14 @@ class BlogController extends Controller
         }
 
         return $pagination;
+    }
+
+    /**
+     * @return PostManagerInterface
+     */
+    private function getPostManager()
+    {
+        return $this->get('isometriks_symedit.post_manager');
     }
 
     private function getMaxPosts()

@@ -77,7 +77,7 @@ class Controller extends BaseController
 
     /**
      * Gets the user manager
-     * 
+     *
      * @return \Isometriks\Bundle\SymEditBundle\Model\UserManagerInterface $userManager
      */
     public function getUserManager()

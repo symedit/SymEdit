@@ -1,3 +1,6 @@
+
+{# Template Widget #}
+
 {% block symedit_template_widget %}
 <div class="layout-holder well">
 {% for layout in layouts %}
@@ -12,9 +15,38 @@
     </div>
 {% endfor %}
 
-
     {{ block('hidden_widget') }}
 
     <br class="cf" />
+</div>
+{% endblock %}
+
+
+{# Image Widget #}
+
+{% block symedit_image_widget_form %}
+
+{% endblock %}
+
+{% block symedit_image_widget %}
+<div class="{{ horizontal_input_wrapper_class }}">
+<div class="row">
+    <div class="col-md-6">
+        {% if form.name is defined %}
+            {{ form_row(form.name) }}
+        {% endif %}
+        
+        {% if form.file is defined %}
+            {{ form_row(form.file) }}
+        {% endif %}
+    </div>
+    
+    {% if form.vars.data is not null and form.vars.data.webpath is not empty %}
+    <div class="col-md-6">
+        <h5>Current Image</h5>
+        <img class="img-thumbnail" src="{{ form.vars.data }}">
+    </div>
+    {% endif %}
+</div>
 </div>
 {% endblock %}

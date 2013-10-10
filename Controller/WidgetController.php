@@ -4,16 +4,16 @@ namespace Isometriks\Bundle\SymEditBundle\Controller;
 
 use Symfony\Component\Templating\TemplateReference;
 use Isometriks\Bundle\SymEditBundle\Controller\Controller;
-use Symfony\Component\HttpFoundation\Request;
+use Isometriks\Bundle\SymEditBundle\Model\PageInterface;
 
 class WidgetController extends Controller
 {
-    public function renderAreaAction(Request $request, $area, $path = null, $id = null)
+    public function renderAreaAction($area, PageInterface $_page = null, $path = null)
     {
         $manager = $this->get('isometriks_symedit.widget.manager');
         $widgetArea = $manager->getWidgetArea($area);
 
-        $lastUpdated = null;
+        $id = $_page === null ? null : $_page->getId();
         $widgets = array();
 
         foreach($widgetArea->getWidgets() as $widget){
@@ -22,21 +22,21 @@ class WidgetController extends Controller
                 continue;
             }
 
-            $lastUpdated = max($widget->getUpdatedAt(), $lastUpdated);
-
+            $content = $widget->getStrategy()->execute($widget, $_page);
+            
+            if ($content === false) {
+                continue;
+            }
+            
             $widgets[] = array(
                 'id' => $widget->getId(),
                 'name' => $widget->getName(),
                 'title' => $widget->getTitle(),
-                'content' => $widget->getStrategy()->execute($widget),
+                'content' => $content,
             );
         }
 
-        $response = $this->createResponse($lastUpdated);
-
-        if($response->isNotModified($request)) {
-            return $response;
-        }
+        $response = $this->createResponse();
 
         $templateName = sprintf('@SymEdit/WidgetArea/%s.html.twig', $area);
         $template = new TemplateReference($templateName);

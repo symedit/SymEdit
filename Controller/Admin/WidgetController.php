@@ -2,11 +2,16 @@
 
 namespace Isometriks\Bundle\SymEditBundle\Controller\Admin;
 
-use Symfony\Component\HttpFoundation\Request;
+use Isometriks\Bundle\SymEditBundle\Controller\Controller;
+use Isometriks\Bundle\SymEditBundle\Form\WidgetReorderType;
+use Isometriks\Bundle\SymEditBundle\Model\WidgetInterface;
+use Isometriks\Bundle\SymEditBundle\Widget\WidgetManager;
+use Isometriks\Bundle\SymEditBundle\Widget\WidgetRegistry;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
-use Isometriks\Bundle\SymEditBundle\Controller\Controller;
-use Isometriks\Bundle\SymEditBundle\Model\WidgetInterface;
+use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpFoundation\Request;
 
 /**
  * @Route("/widget")
@@ -24,9 +29,44 @@ class WidgetController extends Controller
         $manager = $this->getManager();
         $areas = $manager->getWidgetAreas();
 
+        $reorderForm = $this->createForm(new WidgetReorderType(), null, array(
+            'render' => true,
+        ));
+        
         return array(
+            'reorder_form' => $reorderForm->createView(),
             'areas' => $areas,
         );
+    }
+    
+    /**
+     * @Route("/reorder", name="admin_widget_reorder")
+     */
+    public function reorderAction(Request $request)
+    {
+
+        $reorder_form = $this->createForm(new WidgetReorderType());
+        $reorder_form->handleRequest($request);
+        $status = false;
+
+        if($reorder_form->isValid()){
+            $status = true;
+            $data = $reorder_form->getData();
+            $widgetManager = $this->getManager();
+
+            foreach($data['pair'] as $id=>$order){
+                if(!$widget = $widgetManager->findWidget($id)){
+                    throw $this->createNotFoundException(sprintf('Sorting entity not found (%d)', $id));
+                }
+
+                $widget->setWidgetOrder($order);
+                $widgetManager->saveWidget($widget);
+            }
+        }
+
+        return new JsonResponse(array(
+            'status' => $status,
+        ));
     }
 
     /**
@@ -37,7 +77,7 @@ class WidgetController extends Controller
     {
         if($strategyName === null){
 
-            /* @var $registry \Isometriks\Bundle\SymEditBundle\Widget\WidgetRegistry */
+            /* @var $registry WidgetRegistry */
             $registry = $this->get('isometriks_symedit.widget.registry');
             $strategies = $registry->getStrategies();
 
@@ -48,13 +88,22 @@ class WidgetController extends Controller
         } else {
 
             $widget = $this->createWidget($strategyName);
-            $form = $this->getWidgetForm($widget);
+            $form = $this->createCreateForm($widget);
 
             return array(
                 'entity' => $widget,
                 'form' => $form->createView(),
             );
         }
+    }
+    
+    private function createCreateForm(WidgetInterface $widget)
+    {
+        return $this->createForm('symedit_widget', $widget, array(
+            'strategy' => $widget->getStrategy(),
+            'action' => $this->generateUrl('admin_widget_create', array('strategyName' => $widget->getStrategyName())),
+            'method' => 'POST',
+        ));
     }
 
     /**
@@ -64,9 +113,9 @@ class WidgetController extends Controller
     public function createAction(Request $request, $strategyName)
     {
         $widget = $this->createWidget($strategyName);
-        $form = $this->getWidgetForm($widget);
+        $form = $this->createCreateForm($widget);
 
-        $form->bind($request);
+        $form->handleRequest($request);
 
         if($form->isValid()){
             $this->getManager()->saveWidget($widget);
@@ -85,6 +134,7 @@ class WidgetController extends Controller
 
     /**
      * @Route("/{id}/edit", name="admin_widget_edit")
+     * @Method("GET")
      * @Template()
      */
     public function editAction($id)
@@ -96,16 +146,27 @@ class WidgetController extends Controller
             throw new \Exception(sprintf('Could not find widget with name "%s".', $name));
         }
 
-        $form = $this->getWidgetForm($widget);
+        $form = $this->createEditForm($widget);
 
         return array(
             'entity' => $widget,
             'form' => $form->createView(),
+            'delete_form' => $this->createDeleteForm($id)->createView(),
         );
+    }
+    
+    private function createEditForm(WidgetInterface $widget)
+    {
+        return $this->createForm('symedit_widget', $widget, array(
+            'strategy' => $widget->getStrategy(),
+            'action' => $this->generateUrl('admin_widget_update', array('id' => $widget->getId())),
+            'method' => 'PUT',
+        ));
     }
 
     /**
      * @Route("/{id}/update", name="admin_widget_update")
+     * @Method("PUT")
      * @Template("@IsometriksSymEdit/Admin/Widget/edit.html.twig")
      */
     public function updateAction(Request $request, $id)
@@ -117,8 +178,8 @@ class WidgetController extends Controller
             throw new \Exception(sprintf('Could not find widget with name "%s".', $name));
         }
 
-        $form = $this->getWidgetForm($widget);
-        $form->bind($request);
+        $form = $this->createEditForm($widget);
+        $form->handleRequest($request);
 
         if($form->isValid()){
             $manager->saveWidget($widget);
@@ -136,31 +197,35 @@ class WidgetController extends Controller
         );
     }
 
+
     /**
-     * Get the form for the corresponding widget.
+     * Deletes a Widget entity.
      *
-     * @param \Isometriks\Bundle\SymEditBundle\Model\WidgetInterface $widget
-     * @return \Symfony\Component\Form\FormInterface $form
+     * @Route("/{id}/delete", name="admin_widget_delete")
+     * @Method("POST")
      */
-    private function getWidgetForm(WidgetInterface $widget)
+    public function deleteAction(Request $request, $id)
     {
-        $manager = $this->getManager();
+        $form = $this->createDeleteForm($id);
+        $form->handleRequest($request);
 
-        /**
-         * @TODO: We should move the widget class / widget area classes
-         *        to the service definition and inject into constructor.
-         */
-        $form = $this->createForm('symedit_widget', $widget, array(
-            'strategy' => $widget->getStrategy(),
-            'widget_class' => $manager->getWidgetClass(),
-            'widget_area_class' => $manager->getWidgetAreaClass(),
-        ));
+        if ($form->isValid()) {
+            $widgetManager = $this->getManager();
+            $widget = $widgetManager->findWidget($id);
 
-        return $form;
+            if (!$widget) {
+                throw $this->createNotFoundException('Unable to find Widget entity.');
+            }
+
+            $widgetManager->deleteWidget($widget);
+            $this->addFlash('notice', 'Widget Deleted');
+        }
+
+        return $this->redirect($this->generateUrl('admin_widget'));
     }
 
     /**
-     * @return \Isometriks\Bundle\SymEditBundle\Widget\WidgetManager $manager
+     * @return WidgetManager $manager
      */
     private function getManager()
     {
@@ -171,6 +236,13 @@ class WidgetController extends Controller
         return $this->manager;
     }
 
+    private function createDeleteForm($id)
+    {
+        return $this->createFormBuilder(array('id' => $id))
+            ->add('id', 'hidden')
+            ->getForm()
+        ;
+    }
 
     /**
      * @param string $strategyName
@@ -184,7 +256,7 @@ class WidgetController extends Controller
          */
         try {
             $widget = $this->getManager()->createWidget($strategyName);
-        } catch(\Excetion $e) {
+        } catch(\Exception $e) {
             throw $this->createNotFoundException(sprintf('Widget with strategy name "%s" does not exist', $strategyName));
         }
 

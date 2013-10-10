@@ -5,8 +5,8 @@ namespace Isometriks\Bundle\SymEditBundle\DataFixtures\ORM;
 use Doctrine\Common\Persistence\ObjectManager;
 use Doctrine\Common\DataFixtures\AbstractFixture;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
-use Isometriks\Bundle\SymEditBundle\Entity\Page;
-use Isometriks\Bundle\SymEditBundle\Entity\Slider; 
+use Isometriks\Bundle\SymEditBundle\Model\Page;
+use Isometriks\Bundle\SymEditBundle\Model\Slider; 
 
 class LoadPageData extends AbstractFixture implements OrderedFixtureInterface {
 

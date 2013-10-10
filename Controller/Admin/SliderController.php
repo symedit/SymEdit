@@ -3,11 +3,11 @@
 namespace Isometriks\Bundle\SymEditBundle\Controller\Admin;
 
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Isometriks\Bundle\SymEditBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
-use Isometriks\Bundle\SymEditBundle\Entity\Slider;
+use Isometriks\Bundle\SymEditBundle\Model\Slider;
 use Isometriks\Bundle\SymEditBundle\Form\SliderType;
 
 /**
@@ -27,7 +27,7 @@ class SliderController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entities = $em->getRepository('IsometriksSymEditBundle:Slider')->findAll();
+        $entities = $em->getRepository('Isometriks\Bundle\SymEditBundle\Model\Slider')->findAll();
 
         return array(
             'entities' => $entities,
@@ -62,14 +62,14 @@ class SliderController extends Controller
     {
         $entity  = new Slider();
         $form = $this->createForm(new SliderType(), $entity);
-        $form->bind($request);
+        $form->handleRequest($request);
 
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();
             $em->persist($entity);
             $em->flush();
 
-            $this->get('session')->getFlashBag()->add('notice', 'Slider Created');
+            $this->addFlash('notice', 'Slider Created');
 
             return $this->redirect($this->generateUrl('admin_image_slider_edit', array('id' => $entity->getId())));
         }
@@ -90,7 +90,7 @@ class SliderController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entity = $em->getRepository('IsometriksSymEditBundle:Slider')->find($id);
+        $entity = $em->getRepository('Isometriks\Bundle\SymEditBundle\Model\Slider')->find($id);
 
         if (!$entity) {
             throw $this->createNotFoundException('Unable to find Slider entity.');
@@ -117,7 +117,7 @@ class SliderController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entity = $em->getRepository('IsometriksSymEditBundle:Slider')->find($id);
+        $entity = $em->getRepository('Isometriks\Bundle\SymEditBundle\Model\Slider')->find($id);
 
         if (!$entity) {
             throw $this->createNotFoundException('Unable to find Slider entity.');
@@ -125,11 +125,13 @@ class SliderController extends Controller
 
         $deleteForm = $this->createDeleteForm($id);
         $editForm = $this->createForm(new SliderType(), $entity);
-        $editForm->bind($request);
+        $editForm->handleRequest($request);
 
         if ($editForm->isValid()) {
             $em->persist($entity);
             $em->flush();
+
+            $this->addFlash('notice', 'Slider Updated');
 
             return $this->redirect($this->generateUrl('admin_image_slider_edit', array('id' => $id)));
         }
@@ -150,15 +152,17 @@ class SliderController extends Controller
     public function deleteAction(Request $request, $id)
     {
         $form = $this->createDeleteForm($id);
-        $form->bind($request);
+        $form->handleRequest($request);
 
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();
-            $entity = $em->getRepository('IsometriksSymEditBundle:Slider')->find($id);
+            $entity = $em->getRepository('Isometriks\Bundle\SymEditBundle\Model\Slider')->find($id);
 
             if (!$entity) {
                 throw $this->createNotFoundException('Unable to find Slider entity.');
             }
+
+            $this->addFlash('notice', 'Slider removed');
 
             $em->remove($entity);
             $em->flush();

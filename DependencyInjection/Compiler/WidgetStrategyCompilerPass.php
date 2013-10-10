@@ -9,7 +9,19 @@ class WidgetStrategyCompilerPass implements CompilerPassInterface
 {
     public function process(ContainerBuilder $container)
     {
-        $definitions = array_keys($container->findTaggedServiceIds('symedit.widget_strategy')); 
-        $container->setParameter('isometriks_symedit.widget.strategies', $definitions); 
+        $tags = $container->findTaggedServiceIds('symedit.widget_strategy'); 
+        $strategies = array();
+        
+        foreach ($tags as $id => $tags) {
+            foreach ($tags as $attr) {
+                if (!isset($attr['alias'])) {
+                    throw new \InvalidArgumentException(sprintf('Missing "alias" for widget for service id "%s"', $id));
+                }
+                
+                $strategies[$attr['alias']] = $id;
+            }
+        }
+        
+        $container->setParameter('isometriks_symedit.widget.strategies', $strategies); 
     }
 }

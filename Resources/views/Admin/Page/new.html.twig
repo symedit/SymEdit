@@ -2,51 +2,6 @@
 
 {% block title %}Create New Page{% endblock %}
 
-{% block action %}{{ path('admin_page_create') }}{% endblock %}
-
-{% block tabs %}
-    {% include '@SymEdit/Admin/Page/tabs.html.twig' %}
-{% endblock %}
-
-{% block tab_content %}
-<div class="tab-pane active" id="basic">
-    <div class="row-fluid">
-        <div class="span6">
-            {{ form_row( form.title, { attr: { class: 'span12' }} ) }}
-            {{ form_row( form.name, { attr: { class: 'span12' }} ) }}
-            {{ form_row( form.tagline, { attr: { class: 'span12' }} ) }}
-        </div>
-
-        <div class="span6">
-            {{ form_row( form.parent ) }}
-            {{ form_row( form.display ) }}
-        </div>
-    </div>
-
-    {{ form_row( form.summary ) }}
-</div>
-
-<div class="tab-pane" id="template">
-    {{ form_row( form.template ) }}
-</div>
-
-<div class="tab-pane" id="seo">
-    {{ form_widget( form.seo ) }}
-    {{ form_row( form.crawl ) }}
-</div>
-
-<div class="tab-pane" id="page_content">
-    <div class="row-fluid">
-    {{ form_widget( form.content ) }}
-    </div>
-</div>
-
-<div class="tab-pane" id="advanced">
-    {{ form_row( form.pageController ) }}
-    {{ form_row( form.pageControllerPath ) }}
-</div>
-{% endblock %}
-
 {% block form_actions %}
 <button class="btn btn-primary btn-block" type="submit">Create Page</button>
 {% endblock %}

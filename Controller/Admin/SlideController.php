@@ -3,11 +3,11 @@
 namespace Isometriks\Bundle\SymEditBundle\Controller\Admin;
 
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Isometriks\Bundle\SymEditBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
-use Isometriks\Bundle\SymEditBundle\Entity\Slide;
+use Isometriks\Bundle\SymEditBundle\Model\Slide;
 use Isometriks\Bundle\SymEditBundle\Form\SlideType;
 
 /**
@@ -19,7 +19,7 @@ class SlideController extends Controller
 {
     /**
      * Displays a form to create a new Slide entity.
-     * 
+     *
      * @Route("/{slider_id}/slide/new", name="admin_image_slider_slide_new")
      * @Template()
      */
@@ -29,7 +29,7 @@ class SlideController extends Controller
         $form   = $this->createForm(new SlideType(), $entity);
 
         return array(
-            'slider_id' => $slider_id, 
+            'slider_id' => $slider_id,
             'entity' => $entity,
             'form'   => $form->createView(),
         );
@@ -45,23 +45,23 @@ class SlideController extends Controller
     public function createAction($slider_id, Request $request)
     {
         $em = $this->getDoctrine()->getManager();
-        $slider = $em->getRepository('IsometriksSymEditBundle:Slider')->find($slider_id); 
-        
+        $slider = $em->getRepository('Isometriks\Bundle\SymEditBundle\Model\Slider')->find($slider_id);
+
         if(!$slider){
-            throw $this->createNotFoundException('Could not find slider'); 
+            throw $this->createNotFoundException('Could not find slider');
         }
-        
+
         $entity  = new Slide();
-        $entity->setSlider($slider); 
+        $entity->setSlider($slider);
         $form = $this->createForm(new SlideType(), $entity);
-        $form->bind($request);
+        $form->handleRequest($request);
 
         if ($form->isValid()) {
             $em->persist($entity);
             $em->flush();
 
-            $this->get('session')->getFlashBag()->add('notice', 'New Slide Created'); 
-            
+            $this->addFlash('notice', 'New Slide Created');
+
             return $this->redirect($this->generateUrl('admin_image_slider_edit', array('id' => $slider_id)));
         }
 
@@ -81,13 +81,13 @@ class SlideController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entity = $em->getRepository('IsometriksSymEditBundle:Slide')->find($id);
+        $entity = $em->getRepository('Isometriks\Bundle\SymEditBundle\Model\Slide')->find($id);
 
         if (!$entity) {
             throw $this->createNotFoundException('Unable to find Slide entity.');
         }
 
-        $editForm = $this->createForm(new SlideType($entity->getImage()), $entity);
+        $editForm = $this->createForm(new SlideType(), $entity);
         $deleteForm = $this->createDeleteForm($id);
 
         return array(
@@ -108,19 +108,21 @@ class SlideController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entity = $em->getRepository('IsometriksSymEditBundle:Slide')->find($id);
+        $entity = $em->getRepository('Isometriks\Bundle\SymEditBundle\Model\Slide')->find($id);
 
         if (!$entity) {
             throw $this->createNotFoundException('Unable to find Slide entity.');
         }
 
         $deleteForm = $this->createDeleteForm($id);
-        $editForm = $this->createForm(new SlideType($entity->getImage()), $entity);
-        $editForm->bind($request);
+        $editForm = $this->createForm(new SlideType(), $entity);
+        $editForm->handleRequest($request);
 
         if ($editForm->isValid()) {
             $em->persist($entity);
             $em->flush();
+
+            $this->addFlash('notice', 'Slide Updated');
 
             return $this->redirect($this->generateUrl('admin_image_slider_slide_edit', array('id' => $id)));
         }
@@ -141,15 +143,17 @@ class SlideController extends Controller
     public function deleteAction(Request $request, $id)
     {
         $form = $this->createDeleteForm($id);
-        $form->bind($request);
+        $form->handleRequest($request);
 
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();
-            $entity = $em->getRepository('IsometriksSymEditBundle:Slide')->find($id);
+            $entity = $em->getRepository('Isometriks\Bundle\SymEditBundle\Model\Slide')->find($id);
 
             if (!$entity) {
                 throw $this->createNotFoundException('Unable to find Slide entity.');
             }
+
+            $this->addFlash('notice', 'Slide Removed');
 
             $em->remove($entity);
             $em->flush();

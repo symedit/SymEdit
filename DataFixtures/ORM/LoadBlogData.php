@@ -5,8 +5,8 @@ namespace Isometriks\Bundle\SymEditBundle\DataFixtures\ORM;
 use Doctrine\Common\Persistence\ObjectManager;
 use Doctrine\Common\DataFixtures\AbstractFixture;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
-use Isometriks\Bundle\SymEditBundle\Entity\Category;
-use Isometriks\Bundle\SymEditBundle\Entity\Post; 
+use Isometriks\Bundle\SymEditBundle\Model\Category;
+use Isometriks\Bundle\SymEditBundle\Model\Post; 
 
 class LoadBlogData extends AbstractFixture implements OrderedFixtureInterface {
 
