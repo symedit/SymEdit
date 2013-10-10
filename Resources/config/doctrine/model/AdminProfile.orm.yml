@@ -1,4 +1,4 @@
-Isometriks\Bundle\UserBundle\Entity\AdminProfile:
+Isometriks\Bundle\UserBundle\Model\AdminProfile:
     type: entity
     table: admin_profile
     fields:
@@ -23,7 +23,7 @@ Isometriks\Bundle\UserBundle\Entity\AdminProfile:
                         - lastName
     manyToOne:
         image:
-            targetEntity: Isometriks\Bundle\SymEditBundle\Entity\Image
+            targetEntity: Isometriks\Bundle\SymEditBundle\Model\Image
             cascade:
                 - persist
             mappedBy: null

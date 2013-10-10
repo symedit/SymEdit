@@ -1,4 +1,4 @@
-Isometriks\Bundle\UserBundle\Entity\Profile:
+Isometriks\Bundle\UserBundle\Model\Profile:
     type: entity
     table: profile
     inheritanceType: JOINED
