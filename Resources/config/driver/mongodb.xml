@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <services>
+        <service id="isometriks_symedit.document_manager" factory-service="doctrine_mongodb" factory-method="getManager" class="Doctrine\ODM\MongoDB\DocumentManager" public="false">
+            <argument>%isometriks_symedit.model_manager_name%</argument>
+        </service>
+
+        <!-- Managers -->
+
+        <service id="isometriks_symedit.page_manager" class="Isometriks\Bundle\SymEditBundle\Doctrine\PageManager">
+            <argument type="service" id="isometriks_symedit.document_manager" />
+            <argument>%isometriks_symedit.model.page.class%</argument>
+        </service>
+
+        <service id="isometriks_symedit.post_manager" class="Isometriks\Bundle\SymEditBundle\Doctrine\PostManager">
+            <argument type="service" id="isometriks_symedit.document_manager" />
+            <argument>%isometriks_symedit.model.post.class%</argument>
+        </service>
+        
+        <service id="isometriks_symedit.widget.manager" class="%isometriks_symedit.widget.manager.class%">
+            <argument>%isometriks_symedit.model.widget.class%</argument>
+            <argument>%isometriks_symedit.model.widget_area.class%</argument>
+            <argument type="service" id="isometriks_symedit.widget.registry" />
+            <argument type="service" id="isometriks_symedit.document_manager" />
+        </service>        
+
+        <!-- Listeners -->
+
+        <service id="isometriks_symedit.listener.page_path" class="Isometriks\Bundle\SymEditBundle\Doctrine\MongoDB\PagePathListener">
+            <argument type="service" id="router" />
+            <tag name="doctrine.event_subscriber" />
+        </service>
+
+        <service id="isometriks_symedit.widget.listener" class="Isometriks\Bundle\SymEditBundle\Doctrine\MongoDB\WidgetListener">
+            <argument type="service" id="isometriks_symedit.widget.registry" />
+            <tag name="doctrine.event_subscriber" />
+        </service>
+    </services>
+</container>

@@ -27,13 +27,22 @@ class IsometriksSymEditExtension extends Extension
         $configFiles = array(
             'services', 'user', 'widget', 'routing',
             'form', 'event', 'twig', 'util', 'profiler',
-            'orm', 'menu',
+            'model', 'menu',
         );
 
         foreach($configFiles as $file){
             $loader->load($file.'.xml');
         }
 
+        /**
+         * Load DB Driver
+         */
+        $container->setParameter('isometriks_symedit.model_manager_name', $config['model_manager_name']);
+        
+        $driver = $config['db_driver'];
+        $container->setParameter('isometriks_symedit.db_driver', $driver);
+        $loader->load(sprintf('driver/%s.xml', $driver));
+        
         $this->loadEmail($config['email'], $container);
         $this->loadFragment($config['fragment'], $container);
 

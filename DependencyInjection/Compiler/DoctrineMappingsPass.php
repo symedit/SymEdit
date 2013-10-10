@@ -13,13 +13,23 @@ class DoctrineMappingsPass
         // ORM
         $ormCompilerClass = 'Doctrine\Bundle\DoctrineBundle\DependencyInjection\Compiler\DoctrineOrmMappingsPass';
         if (class_exists($ormCompilerClass)) {
-            $container->addCompilerPass(DoctrineOrmMappingsPass::createYamlMappingDriver($mappings));
+            $container->addCompilerPass(
+                DoctrineOrmMappingsPass::createYamlMappingDriver(
+                    $mappings, 
+                    array('isometriks_symedit.model_manager_name'),
+                    'isometriks_symedit.backend_type_orm'
+            ));
         }
         
-        // ODM
+        // MongoDB
         $mongoCompilerClass = 'Doctrine\Bundle\MongoDBBundle\DependencyInjection\Compiler\DoctrineMongoDBMappingsPass';
         if (class_exists($mongoCompilerClass)) {
-            $container->addCompilerPass(DoctrineMongoDBMappingsPass::createYamlMappingDriver($mappings));
+            $container->addCompilerPass(
+                DoctrineMongoDBMappingsPass::createYamlMappingDriver(
+                    $mappings, 
+                    array('isometriks_symedit.model_manager_name'),
+                    'isometriks_symedit.backend_type_mongodb'
+            ));
         }
     }
 }

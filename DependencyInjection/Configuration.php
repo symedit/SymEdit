@@ -20,8 +20,19 @@ class Configuration implements ConfigurationInterface
         $treeBuilder = new TreeBuilder();
         $rootNode = $treeBuilder->root('isometriks_symedit');
 
+        $supportedDrivers = array('orm', 'mongodb');
+        
         $rootNode
             ->children()
+                ->scalarNode('db_driver')
+                    ->validate()
+                        ->ifNotInArray($supportedDrivers)
+                        ->thenInvalid('The driver %s is not supported. Choose one of '.json_encode($supportedDrivers))
+                    ->end()
+                    ->defaultValue('orm')
+                    ->cannotBeOverwritten()
+                ->end()
+                ->scalarNode('model_manager_name')->defaultNull()->end()
                 ->scalarNode('admin_dir')->defaultValue('sym-admin')->end()
                 ->arrayNode('extensions')
                     ->prototype('array')

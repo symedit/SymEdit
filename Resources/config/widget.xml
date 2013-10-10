@@ -32,13 +32,6 @@
             <argument>%isometriks_symedit.widget.strategies%</argument>
         </service>
 
-        <service id="isometriks_symedit.widget.manager" class="%isometriks_symedit.widget.manager.class%">
-            <argument>%isometriks_symedit.model.widget.class%</argument>
-            <argument>%isometriks_symedit.model.widget_area.class%</argument>
-            <argument type="service" id="isometriks_symedit.widget.registry" />
-            <argument type="service" id="doctrine" />
-        </service>
-
         <!-- Widget Strategies -->
 
         <service id="isometriks_symedit.widget.strategy.html" class="%isometriks_symedit.widget.strategy.html.class%">

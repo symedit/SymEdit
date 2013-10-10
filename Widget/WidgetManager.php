@@ -2,7 +2,7 @@
 
 namespace Isometriks\Bundle\SymEditBundle\Widget;
 
-use Doctrine\Bundle\DoctrineBundle\Registry;
+use Doctrine\Common\Persistence\ObjectManager;
 use Isometriks\Bundle\SymEditBundle\Model\WidgetInterface;
 use Isometriks\Bundle\SymEditBundle\Model\WidgetAreaInterface;
 use Isometriks\Bundle\SymEditBundle\Widget\WidgetRegistry;
@@ -14,19 +14,19 @@ class WidgetManager
     private $widgetClass;
     private $widgetAreaClass;
     private $registry;
-    private $em;
+    private $om;
 
-    public function __construct($widgetClass, $widgetAreaClass, WidgetRegistry $registry, Registry $doctrine)
+    public function __construct($widgetClass, $widgetAreaClass, WidgetRegistry $registry, ObjectManager $om)
     {
         $this->widgetClass = $widgetClass;
         $this->widgetAreaClass = $widgetAreaClass;
 
-        $this->em = $doctrine->getManager();
+        $this->om = $om;
         $this->registry = $registry;
 
         // This will be injected directly eventually to use ODM / ORM whatever
-        $this->widgetRepository = $doctrine->getManager()->getRepository($this->widgetClass);
-        $this->widgetAreaRepository = $doctrine->getManager()->getRepository($this->widgetAreaClass);
+        $this->widgetRepository = $om->getRepository($this->widgetClass);
+        $this->widgetAreaRepository = $om->getRepository($this->widgetAreaClass);
     }
 
     /**
@@ -57,8 +57,8 @@ class WidgetManager
 
     public function saveWidgetArea(WidgetAreaInterface $area)
     {
-        $this->em->persist($area);
-        $this->em->flush($area);
+        $this->om->persist($area);
+        $this->om->flush($area);
     }
 
     /**
@@ -85,14 +85,14 @@ class WidgetManager
 
     public function saveWidget(WidgetInterface $widget)
     {
-        $this->em->persist($widget);
-        $this->em->flush($widget);
+        $this->om->persist($widget);
+        $this->om->flush($widget);
     }
 
     public function deleteWidget(WidgetInterface $widget)
     {
-        $this->em->remove($widget);
-        $this->em->flush($widget);
+        $this->om->remove($widget);
+        $this->om->flush($widget);
     }
 
     /**
