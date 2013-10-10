@@ -29,6 +29,35 @@ class RootInjectableListener
         $this->setDir($args); 
     }
     
+    public function onFlush(\Doctrine\ORM\Event\OnFlushEventArgs $eventArgs)
+    {
+        $em = $eventArgs->getEntityManager(); 
+        $uow = $em->getUnitOfWork(); 
+        
+        foreach($uow->getScheduledEntityInsertions() as $entity){
+            if($entity instanceof \Isometriks\Bundle\MediaBundle\Entity\File){
+                if(($callback = $entity->getNameCallback()) !== null){
+
+                    /**
+                     * Update the Name if there is a callback
+                     */
+                    $oldName = $entity->getName(); 
+                    $entity->setName($callback($entity)); 
+                    
+                    $uow->propertyChanged($entity, 'name', $oldName, $entity->getName()); 
+                    
+                    /**
+                     * Update the path if necessary as well
+                     */
+                    $oldPath = $entity->getPath(); 
+                    $entity->calculatePath(); 
+                    
+                    $uow->propertyChanged($entity, 'path', $oldPath, $entity->getPath()); 
+                }
+            }
+        }
+    }
+    
     public function setDir(LifecycleEventArgs $args)
     {
         $entity = $args->getEntity(); 

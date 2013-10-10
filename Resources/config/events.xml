@@ -13,6 +13,7 @@
             <argument>%kernel.root_dir%</argument>
             <tag name="doctrine.event_listener" event="postLoad" />
             <tag name="doctrine.event_listener" event="prePersist" />
+            <tag name="doctrine.event_listener" event="onFlush" />
         </service>
     </services>
 

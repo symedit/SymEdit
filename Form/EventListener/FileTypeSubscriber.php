@@ -19,9 +19,21 @@ class FileTypeSubscriber implements EventSubscriberInterface
     public static function getSubscribedEvents()
     {
         return array(
-            FormEvents::PRE_SET_DATA => 'preSetData', 
-            FormEvents::POST_BIND => 'postBind',
+            FormEvents::PRE_SET_DATA  => 'preSetData', 
+            FormEvents::POST_BIND     => 'postBind',
+            FormEvents::BIND          => 'bind', 
         );
+    }
+    
+    public function bind(FormEvent $event)
+    {
+        $data = $event->getData(); 
+        
+        if(!$data instanceof File){
+            return; 
+        }
+        
+        $data->calculatePath();  
     }
     
     public function postBind(FormEvent $event)
@@ -41,6 +53,11 @@ class FileTypeSubscriber implements EventSubscriberInterface
             return; 
         }
         
+        /**
+         * Force the file to calculate its path 
+         */
+        $data->calculatePath(); 
+        
         $strategy = $this->options['strategy'];
         if($strategy === 'callback'){
             $name = call_user_func_array($this->options['callback'], array($form)); 
@@ -59,7 +76,6 @@ class FileTypeSubscriber implements EventSubscriberInterface
             $parent->$parent_update(); 
         }
     }
-    
     
     public function preSetData(FormEvent $event)
     {
