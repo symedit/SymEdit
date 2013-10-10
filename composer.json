@@ -13,7 +13,7 @@
     },
     "target-dir": "Isometriks/Bundle/SymEditBundle",
     "require": {
-        "isometriks/user-bundle": "2.3.1",
+        "isometriks/user-bundle": "dev-master",
         "isometriks/settings-bundle": "2.3.*",
         "isometriks/sitemap-bundle": "2.3.*",
         "isometriks/media-bundle": "2.3.*",
