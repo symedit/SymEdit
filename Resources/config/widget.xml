@@ -18,6 +18,7 @@
         <parameter key="isometriks_symedit.widget.strategy.google_map.class">Isometriks\Bundle\SymEditBundle\Widget\Strategy\GoogleMapStrategy</parameter>
         <parameter key="isometriks_symedit.widget.strategy.disqus.class">Isometriks\Bundle\SymEditBundle\Widget\Strategy\DisqusStrategy</parameter>
         <parameter key="isometriks_symedit.widget.strategy.submenu.class">Isometriks\Bundle\SymEditBundle\Widget\Strategy\SubmenuStrategy</parameter>
+        <parameter key="isometriks_symedit.widget.strategy.list_children.class">Isometriks\Bundle\SymEditBundle\Widget\Strategy\ListChildrenStrategy</parameter>
     </parameters>
 
     <services>
@@ -72,6 +73,10 @@
         
         <service id="isometriks_symedit.widget.strategy.submenu" class="%isometriks_symedit.widget.strategy.submenu.class%">
             <tag name="symedit.widget_strategy" alias="submenu" />
+        </service>
+        
+        <service id="isometriks_symedit.widget.strategy.list_children" class="%isometriks_symedit.widget.strategy.list_children.class%">
+            <tag name="symedit.widget_strategy" alias="list_children" />
         </service>
     </services>
 
