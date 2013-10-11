@@ -4,6 +4,8 @@ namespace Isometriks\Bundle\SymEditBundle\Form;
 
 use Isometriks\Bundle\MediaBundle\Form\FileType;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+use Symfony\Component\Form\FormView;
+use Symfony\Component\Form\FormInterface;
 
 class ImageType extends FileType
 {
@@ -14,11 +16,16 @@ class ImageType extends FileType
         $resolver->setDefaults(array(
             'data_class' => 'Isometriks\Bundle\SymEditBundle\Model\Image', 
             'require_name' => true, 
-            'strategy' => 'input', 
             'required' => true,
             'translation_domain' => 'SymEdit', 
             'label' => 'Image',
+            'show_image' => true,
         ));
+    }
+    
+    public function buildView(FormView $view, FormInterface $form, array $options)
+    {
+        $view->vars['show_image'] = $options['show_image'];
     }
 
     public function getName()
