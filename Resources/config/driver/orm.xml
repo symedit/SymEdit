@@ -15,7 +15,7 @@
 
         <service id="isometriks_media.event_listener.media_listener" class="Isometriks\Bundle\MediaBundle\Doctrine\Orm\MediaListener">
             <argument type="service" id="isometriks_media.upload_manager" />
-            <tag name="doctrine.event_subscriber" />
+            <tag name="doctrine.event_subscriber" priority="-100" />
         </service>
     </services>
     

@@ -16,40 +16,65 @@ class UploadManager implements UploadManagerInterface
         $this->uploadDir = $uploadDir;
     }
 
-    public function preUpload(MediaInterface $file)
+    /**
+     * Prepare file for upload
+     */
+    public function preUpload(MediaInterface $media)
     {
-        die('thinkinga bout uploading..');
+        if (($callback = $media->getNameCallback()) !== null) {
+            $media->setName($callback($media));
+        }
+        
+        if ($media->getFile() !== null) {
+            $this->removeUpload($media);
+            $media->setPath($this->getUploadPath($media));
+        }
     }
 
     /**
      * Uploads the file
      *
-     * @param MediaInterface $file
+     * @param MediaInterface $media
      */
     public function upload(MediaInterface $media)
     {
-        die('actually was gonna work man!!');
-
         $file = $media->getFile();
 
         if (!$file instanceof UploadedFile) {
             return;
         }
+        
+        $absolutePath = $this->webRoot.'/'.$media->getPath(); 
 
-        $file->move($this->webRoot.'/'.$this->uploadDir, $media->getUploadName());
-        chmod($this->getAbsolutePath($media), 0644);
+        $file->move(dirname($absolutePath), $media->getUploadName());
+        chmod($absolutePath, 0644);
 
         // Mark as null to not upload again
         $media->setFile(null);
     }
 
-    public function removeUpload(MediaInterface $file)
+    public function removeUpload(MediaInterface $media)
     {
+        if ($media->getPath() === null) {
+            return;
+        }
+        
+        $absolutePath = $this->webRoot.'/'.$media->getPath();
+        
+        if(file_exists($absolutePath)){
+            unlink($absolutePath);
+        }
 
+        $info = pathinfo($absolutePath);
+        $glob = sprintf('%s/cache/%s_*', $info['dirname'], $info['filename']);
+
+        foreach (glob($glob) as $file) {
+            unlink($file);
+        }
     }
-
-    protected function getAbsolutePath(MediaInterface $media)
+    
+    public function getUploadPath(MediaInterface $media)
     {
-        return sprintf('%s/%s/%s', $this->webRoot, $this->uploadDir, $media->getUploadName());
+        return $this->uploadDir.'/'.$media->getUploadName();
     }
 }

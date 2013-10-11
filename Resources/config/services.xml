@@ -11,7 +11,8 @@
 
     <services>
         <service id="isometriks_media.util.image_manipulator" class="%isometriks_media.util.image_manipulator.class%">
-            <argument>%kernel.root_dir%</argument>
+            <argument>%isometriks_media.web_root%</argument>
+            <argument>%isometriks_media.upload_dir%</argument>
         </service>
 
         <service id="isometriks_media.upload_manager" class="%isometriks_media.upload_manager.class%">

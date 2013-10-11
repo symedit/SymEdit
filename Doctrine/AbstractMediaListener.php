@@ -15,18 +15,18 @@ abstract class AbstractMediaListener implements EventSubscriber
         $this->uploadManager = $uploadManager;
     }
 
-    protected function preUpload(MediaInterface $file)
+    protected function preUpload(MediaInterface $media)
     {
-        $this->uploadManager->preUpload($file);
+        $this->uploadManager->preUpload($media);
     }
 
-    protected function upload(MediaInterface $file)
+    protected function upload(MediaInterface $media)
     {
-        $this->uploadManager->upload($file);
+        $this->uploadManager->upload($media);
     }
 
-    protected function removeUpload(MediaInterface $file)
+    protected function removeUpload(MediaInterface $media)
     {
-        $this->uploadManager->removeUpload($file);
+        $this->uploadManager->removeUpload($media);
     }
 }

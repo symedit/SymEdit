@@ -9,25 +9,27 @@
 
 namespace Isometriks\Bundle\MediaBundle\Util;
 
-class ImageManipulator {
+use Isometriks\Bundle\MediaBundle\Model\MediaInterface;
 
-    private $rootDir;
+class ImageManipulator 
+{
+    private $webRoot;
 
-    public function __construct($rootDir)
+    public function __construct($webRoot)
     {
-        $this->rootDir = $rootDir;
+        $this->webRoot = $webRoot;
     }
 
     public function constrain($image, $args)
-    {
-        $image_src = sprintf('%s/../web/%s', $this->rootDir, $image);
+    {        
+        $image_src = sprintf('%s/%s', $this->webRoot, ltrim($image, '/'));
         $image_web = $image;
 
         $info = pathinfo($image);
         $image_dir = isset($info['dirname']) ? $info['dirname'] : null;
 
         if (!file_exists($image_src)) {
-            return $this->error($image_src);
+            return $this->error('Not Found: '. $image_src);
         }
 
         $nw = isset($args['width'])  ? $args['width']  : (isset($args['w']) ? $args['w'] : false);
@@ -36,7 +38,7 @@ class ImageManipulator {
         try {
             list( $w, $h ) = \getimagesize($image_src);
         } catch (\Exception $e) {
-            return $this->error($image_src);
+            return $this->error($e->getMessage());
         }
 
         $ratio = $w / $h;

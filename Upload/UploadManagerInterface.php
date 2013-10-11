@@ -9,21 +9,21 @@ interface UploadManagerInterface
     /**
      * Prepare upload and underlying entity so it can be stored
      * 
-     * @param MediaInterface $file
+     * @param MediaInterface $media
      */
-    public function preUpload(MediaInterface $file);
+    public function preUpload(MediaInterface $media);
     
     /**
      * Uploads the file
      * 
-     * @param MediaInterface $file
+     * @param MediaInterface $media
      */
-    public function upload(MediaInterface $file);
+    public function upload(MediaInterface $media);
 
     /**
      * Remove the upload
      * 
-     * @param MediaInterface $file
+     * @param MediaInterface $media
      */
-    public function removeUpload(MediaInterface $file);  
+    public function removeUpload(MediaInterface $media);  
 }
