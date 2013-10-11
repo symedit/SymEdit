@@ -16,11 +16,9 @@ class FileType extends AbstractType
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'require_name' => true, 
-            'strategy' => 'input', 
+            'require_name' => true,
             'required' => true,
             'callback' => null, 
-            'parent_update' => null, 
             'file_label' => 'File', 
             'file_help' => false, 
             'name_label' => 'File Name', 

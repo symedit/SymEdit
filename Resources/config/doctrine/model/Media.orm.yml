@@ -1,0 +1,12 @@
+Isometriks\Bundle\MediaBundle\Model\Media:
+    type: mappedSuperclass
+    fields:
+        path:
+            type: string
+            length: 255
+            unique: true
+        name:
+            type: string
+            length: 255
+        updatedAt:
+            type: datetime

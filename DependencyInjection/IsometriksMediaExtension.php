@@ -23,23 +23,17 @@ class IsometriksMediaExtension extends Extension
         $config = $this->processConfiguration($configuration, $configs);
 
         $loader = new Loader\XmlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
-        
-        foreach(array('util', 'events', 'twig') as $file){
-            $loader->load($file.'.xml'); 
-        }
-        
+
+        $loader->load('services.xml');
+        $loader->load('twig.xml');
+
+        $driver = $config['db_driver'];
+        $loader->load(sprintf('driver/%s.xml', $driver));
+
         /**
-         * Compile Classes
+         * Set directories
          */
-        $this->addClassesToCompile(array(
-            // events.xml
-            'Isometriks\\Bundle\MediaBundle\\EventListener\\RootInjectableListener', 
-            
-            // twig.xml
-            'Isometriks\\Bundle\\MediaBundle\\Twig\\Extension\\MediaExtension', 
-            
-            // util.xml
-            'Isometriks\\Bundle\\MediaBundle\\Util\\ImageManipulator', 
-        )); 
+        $container->setParameter('isometriks_media.web_root', rtrim($config['web_root'], '/'));
+        $container->setParameter('isometriks_media.upload_dir', ltrim($config['upload_dir'], '/'));
     }
 }
