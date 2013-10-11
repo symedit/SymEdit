@@ -2,7 +2,7 @@
 
 namespace Isometriks\Bundle\MediaBundle\Model;
 
-interface FileInterface
+interface MediaInterface
 {
     public function getUploadDir();
     

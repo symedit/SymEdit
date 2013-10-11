@@ -2,7 +2,7 @@
 
 namespace Isometriks\Bundle\MediaBundle\Model; 
 
-abstract class File implements FileInterface
+abstract class Media implements MediaInterface
 {
     protected $callback; 
     protected $file; 

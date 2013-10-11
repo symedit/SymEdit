@@ -19,15 +19,27 @@ class Configuration implements ConfigurationInterface
     {
         $treeBuilder = new TreeBuilder();
         $rootNode = $treeBuilder->root('isometriks_media');
-                
+
+        $supportedDrivers = array('orm');
+
         $rootNode
             ->children()
+                ->scalarNode('db_driver')
+                    ->validate()
+                        ->ifNotInArray($supportedDrivers)
+                        ->thenInvalid('The driver %s is not supported. Choose one of '.json_encode($supportedDrivers))
+                    ->end()
+                    ->defaultValue('orm')
+                    ->cannotBeOverwritten()
+                ->end()
+                ->scalarNode('web_root')
+                    ->defaultValue('%kernel.root_dir%/../web')
+                ->end()
                 ->scalarNode('upload_dir')
-                    ->defaultValue('%kernel.root_dir%/../web/img')
-                    ->info('Starting directory for which images should be uploaded.')
+                    ->defaultValue('img')
                 ->end()
             ->end();
-        
+
         return $treeBuilder;
     }
 }

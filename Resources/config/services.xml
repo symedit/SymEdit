@@ -6,11 +6,17 @@
 
     <parameters>
         <parameter key="isometriks_media.util.image_manipulator.class">Isometriks\Bundle\MediaBundle\Util\ImageManipulator</parameter>
+        <parameter key="isometriks_media.upload_manager.class">Isometriks\Bundle\MediaBundle\Upload\UploadManager</parameter>
     </parameters>
-          
+
     <services>
         <service id="isometriks_media.util.image_manipulator" class="%isometriks_media.util.image_manipulator.class%">
             <argument>%kernel.root_dir%</argument>
+        </service>
+
+        <service id="isometriks_media.upload_manager" class="%isometriks_media.upload_manager.class%">
+            <argument>%isometriks_media.web_root%</argument>
+            <argument>%isometriks_media.upload_dir%</argument>
         </service>
     </services>
 

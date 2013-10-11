@@ -2,28 +2,28 @@
 
 namespace Isometriks\Bundle\MediaBundle\Upload;
 
-use Isometriks\Bundle\MediaBundle\Model\FileInterface;
+use Isometriks\Bundle\MediaBundle\Model\MediaInterface;
 
 interface UploadManagerInterface
 {    
     /**
      * Prepare upload and underlying entity so it can be stored
      * 
-     * @param FileInterface $file
+     * @param MediaInterface $file
      */
-    public function preUpload(FileInterface $file);
+    public function preUpload(MediaInterface $file);
     
     /**
      * Uploads the file
      * 
-     * @param FileInterface $file
+     * @param MediaInterface $file
      */
-    public function upload(FileInterface $file);
+    public function upload(MediaInterface $file);
 
     /**
      * Remove the upload
      * 
-     * @param FileInterface $file
+     * @param MediaInterface $file
      */
-    public function removeUpload(FileInterface $file);  
+    public function removeUpload(MediaInterface $file);  
 }
