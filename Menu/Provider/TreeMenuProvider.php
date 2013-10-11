@@ -24,7 +24,8 @@ class TreeMenuProvider implements MenuProviderInterface
 
     public function get($name, array $options = array())
     {
-        $menu = $this->factory->createItem('root');
+        $rootOptions = isset($options['root_options']) ? $options['root_options'] : array();
+        $menu = $this->factory->createItem('root', $rootOptions);
         $this->populateChildren($menu, $this->getRoot($options));
 
         return $menu;
