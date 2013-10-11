@@ -3,7 +3,7 @@
 {% block title %}Widgets &raquo; Choose New Widget Type{% endblock %}
 
 {% block content %}
-<div class="row">
+<div class="row" id="choose-widget">
 {% for strategy in strategies %}
     <div class="col-md-4">
         <a class="thumbnail" href="{{ path('admin_widget_new', {strategyName:strategy.name}) }}">
