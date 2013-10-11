@@ -37,9 +37,10 @@ class IsometriksSymEditExtension extends Extension
         /**
          * Load DB Driver
          */
-        $container->setParameter('isometriks_symedit.model_manager_name', $config['model_manager_name']);
-        
         $driver = $config['db_driver'];
+        $container->setParameter('isometriks_symedit.model_manager_name', $config['model_manager_name']);
+        $container->setParameter(sprintf('%s.backend_type_%s', $this->getAlias(), $driver), true);
+        
         $container->setParameter('isometriks_symedit.db_driver', $driver);
         $loader->load(sprintf('driver/%s.xml', $driver));
         
