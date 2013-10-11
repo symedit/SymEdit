@@ -150,6 +150,7 @@ class ImageController extends Controller
     private function createEditForm(Image $image)
     {
         return $this->createForm(new ImageType(), $image, array(
+            'show_image' => false,
             'action' => $this->generateUrl('admin_image_update', array('id' => $image->getId())),
             'method' => 'PUT',
         ));
