@@ -20,6 +20,14 @@ class Configuration implements ConfigurationInterface
         $treeBuilder = new TreeBuilder();
         $rootNode = $treeBuilder->root('isometriks_media');
                 
+        $rootNode
+            ->children()
+                ->scalarNode('upload_dir')
+                    ->defaultValue('%kernel.root_dir%/../web/img')
+                    ->info('Starting directory for which images should be uploaded.')
+                ->end()
+            ->end();
+        
         return $treeBuilder;
     }
 }
