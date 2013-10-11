@@ -3,7 +3,6 @@
 namespace Isometriks\Bundle\SymEditBundle\Widget\Strategy;
 
 use Isometriks\Bundle\SymEditBundle\Model\PageInterface;
-use Isometriks\Bundle\SymEditBundle\Model\PostManagerInterface;
 use Isometriks\Bundle\SymEditBundle\Model\WidgetInterface;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Validator\Constraints\Range;
@@ -21,6 +20,7 @@ class SubmenuStrategy extends AbstractWidgetStrategy
         
         return $this->render('@SymEdit/Widget/submenu.html.twig', array(
             'page' => $page,
+            'nav_class' => $widget->getOption('nav_class'),
             'level' => $widget->getOption('level'),
         ));
     }
@@ -37,6 +37,9 @@ class SubmenuStrategy extends AbstractWidgetStrategy
                         'minMessage' => 'Minimum level is 1',
                     )),
                 ),
+            ))
+            ->add('nav_class', 'text', array(
+                'label' => 'Navigation UL Class',
             ));
     }
 
@@ -44,6 +47,7 @@ class SubmenuStrategy extends AbstractWidgetStrategy
     {
         $widget->setOptions(array(
             'level' => 1,
+            'nav_class' => 'nav nav-pills nav-stacked',
         ));
     }
 
