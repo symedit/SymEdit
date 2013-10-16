@@ -2,7 +2,7 @@
 
 namespace Isometriks\Bundle\SymEditBundle\Model;
 
-use Isometriks\Bundle\SymEditBundle\Model\Image;
+use Isometriks\Bundle\MediaBundle\Model\MediaInterface;
 
 interface PostInterface extends SeoInterface
 {
@@ -20,7 +20,7 @@ interface PostInterface extends SeoInterface
     public function setAuthor(UserInterface $author = null);
     public function getAuthor();
 
-    public function setImage(Image $image = null);
+    public function setImage(MediaInterface $image = null);
     public function getImage();
 
     public function setCreatedAt($createdAt);

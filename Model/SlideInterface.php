@@ -2,7 +2,7 @@
 
 namespace Isometriks\Bundle\SymEditBundle\Model; 
 
-use Isometriks\Bundle\SymEditBundle\Model\Image; 
+use Isometriks\Bundle\MediaBundle\Model\MediaInterface;
 
 interface SlideInterface
 {
@@ -14,7 +14,7 @@ interface SlideInterface
     public function setSlider(SliderInterface $slider); 
     public function getSlider(); 
     
-    public function setImage(Image $image); 
+    public function setImage(MediaInterface $image); 
     public function getImage(); 
     
     public function setPosition($position); 

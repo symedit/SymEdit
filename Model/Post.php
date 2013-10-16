@@ -2,7 +2,8 @@
 
 namespace Isometriks\Bundle\SymEditBundle\Model; 
 
-use Isometriks\Bundle\SymEditBundle\Model\UserInterface; 
+use Isometriks\Bundle\SymEditBundle\Model\UserInterface;
+use Isometriks\Bundle\MediaBundle\Model\MediaInterface;
 
 class Post implements PostInterface
 {
@@ -25,7 +26,7 @@ class Post implements PostInterface
     protected $author;
 
     /**
-     * @var Isometriks\Bundle\SymEditBundle\Model\Image
+     * @var MediaInterface
      */
     protected $image;
 
@@ -187,10 +188,10 @@ class Post implements PostInterface
     /**
      * Set image
      *
-     * @param Isometriks\Bundle\SymEditBundle\Model\Image $image
+     * @param MediaInterface $image
      * @return Post
      */
-    public function setImage(\Isometriks\Bundle\SymEditBundle\Model\Image $image = null)
+    public function setImage(MediaInterface $image = null)
     {
         $this->image = $image; 
         
@@ -205,7 +206,7 @@ class Post implements PostInterface
     /**
      * Get image
      *
-     * @return Isometriks\Bundle\SymEditBundle\Model\Image 
+     * @return MediaInterface
      */
     public function getImage()
     {

@@ -2,6 +2,8 @@
 
 namespace Isometriks\Bundle\SymEditBundle\Model;
 
+use Isometriks\Bundle\MediaBundle\Model\MediaInterface;
+
 class Slide implements SlideInterface
 {
     /**
@@ -25,7 +27,7 @@ class Slide implements SlideInterface
     protected $slider; 
     
     /**
-     * @var Image
+     * @var MediaInterface
      */
     protected $image; 
 
@@ -88,10 +90,10 @@ class Slide implements SlideInterface
     /**
      * Set image
      *
-     * @param Isometriks\Bundle\SymEditBundle\Model\Image $image
+     * @param MediaInterface $image
      * @return Slide
      */
-    public function setImage(\Isometriks\Bundle\SymEditBundle\Model\Image $image = null)
+    public function setImage(MediaInterface $image = null)
     {
         $this->image = $image;
     
@@ -101,7 +103,7 @@ class Slide implements SlideInterface
     /**
      * Get image
      *
-     * @return Isometriks\Bundle\SymEditBundle\Model\Image 
+     * @return MediaInterface 
      */
     public function getImage()
     {
