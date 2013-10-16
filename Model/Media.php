@@ -2,8 +2,9 @@
 
 namespace Isometriks\Bundle\MediaBundle\Model; 
 
-abstract class Media implements MediaInterface
+class Media implements MediaInterface
 {
+    protected $id;
     protected $callback; 
     protected $file; 
     protected $path;
@@ -13,6 +14,11 @@ abstract class Media implements MediaInterface
     public function __toString()
     {
         return $this->getWebPath(); 
+    }
+    
+    public function getId()
+    {
+        return $this->id;
     }
     
     /**

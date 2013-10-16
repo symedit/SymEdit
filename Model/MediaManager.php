@@ -27,6 +27,4 @@ abstract class MediaManager implements MediaManagerInterface
 
         return new $class;
     }
-
-
 }

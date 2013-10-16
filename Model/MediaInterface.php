@@ -4,6 +4,8 @@ namespace Isometriks\Bundle\MediaBundle\Model;
 
 interface MediaInterface
 {
+    public function getId();
+    
     public function setPath($path);
     
     public function getPath();
