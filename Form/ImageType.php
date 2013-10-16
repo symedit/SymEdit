@@ -9,12 +9,19 @@ use Symfony\Component\Form\FormInterface;
 
 class ImageType extends FileType
 {
+    protected $mediaClass;
+    
+    public function __construct($mediaClass)
+    {
+        $this->mediaClass = $mediaClass;
+    }
+    
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         parent::setDefaultOptions($resolver); 
         
         $resolver->setDefaults(array(
-            'data_class' => 'Isometriks\Bundle\SymEditBundle\Model\Image', 
+            'data_class' => $this->mediaClass, 
             'require_name' => true, 
             'required' => true,
             'translation_domain' => 'SymEdit', 
