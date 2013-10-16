@@ -1,9 +1,0 @@
-Isometriks\Bundle\SymEditBundle\Model\Image:
-    type: entity
-    table: images
-    fields:
-        id:
-            type: integer
-            id: true
-            generator:
-                strategy: IDENTITY

@@ -37,7 +37,7 @@ Isometriks\Bundle\SymEditBundle\Model\Slide:
                     referencedColumnName: id
             orphanRemoval: false
         image:
-            targetEntity: Isometriks\Bundle\SymEditBundle\Model\Image
+            targetEntity: Isometriks\Bundle\MediaBundle\Model\Media
             cascade:
                 - persist
             mappedBy: null
