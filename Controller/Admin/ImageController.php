@@ -8,9 +8,9 @@ use Isometriks\Bundle\SymEditBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
-use Isometriks\Bundle\SymEditBundle\Model\Image;
 use Isometriks\Bundle\SymEditBundle\Form\ImageType;
 use JMS\SecurityExtraBundle\Annotation\PreAuthorize;
+use Isometriks\Bundle\MediaBundle\Model\MediaInterface;
 
 /**
  * Image controller.
@@ -29,15 +29,22 @@ class ImageController extends Controller
      */
     public function indexAction()
     {
-        $em = $this->getDoctrine()->getManager();
-
-        $entities = $em->getRepository('Isometriks\Bundle\SymEditBundle\Model\Image')->findAll();
-
+        $mediaManager = $this->getMediaManager();
+        $entities = $mediaManager->findAll();
+        
         return array(
             'entities' => $entities,
         );
     }
 
+    /**
+     * @return \Isometriks\Bundle\MediaBundle\Model\MediaManagerInterface $mediaManager
+     */
+    protected function getMediaManager()
+    {
+        return $this->get('isometriks_media.media_manager');
+    }
+    
     /**
      * Displays a form to create a new Image entity.
      *
@@ -47,7 +54,7 @@ class ImageController extends Controller
      */
     public function newAction()
     {
-        $entity = new Image();
+        $entity = $this->getMediaManager()->createMedia();
         $form = $this->createCreateForm($entity);
 
         return array(
@@ -65,9 +72,8 @@ class ImageController extends Controller
      */
     public function showAction($id)
     {
-        $em = $this->getDoctrine()->getManager();
-
-        $entity = $em->getRepository('Isometriks\Bundle\SymEditBundle\Model\Image')->find($id);
+        $mediaManager = $this->getMediaManager();
+        $entity = $mediaManager->find($id);
 
         if (!$entity) {
             throw $this->createNotFoundException('Unable to find Image entity.');
@@ -81,9 +87,9 @@ class ImageController extends Controller
         );
     }
 
-    private function createCreateForm(Image $image)
+    private function createCreateForm(MediaInterface $image)
     {
-        return $this->createForm(new ImageType(), $image, array(
+        return $this->createForm('symedit_image', $image, array(
             'action' => $this->generateUrl('admin_image_create'),
             'method' => 'POST',
         ));
@@ -98,15 +104,14 @@ class ImageController extends Controller
      */
     public function createAction(Request $request)
     {
-        $entity = new Image();
+        $mediaManager = $this->getMediaManager();
+        $entity = $mediaManager->createMedia();
+        
         $form = $this->createCreateForm($entity);
         $form->handleRequest($request);
 
         if ($form->isValid()) {
-
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($entity);
-            $em->flush();
+            $mediaManager->saveMedia($entity);
 
             $this->addFlash('notice', 'Image Uploaded');
 
@@ -130,8 +135,8 @@ class ImageController extends Controller
      */
     public function editAction($id)
     {
-        $em = $this->getDoctrine()->getManager();
-        $entity = $em->getRepository('Isometriks\Bundle\SymEditBundle\Model\Image')->find($id);
+        $mediaManager = $this->getMediaManager();
+        $entity = $mediaManager->find($id);
 
         if (!$entity) {
             throw $this->createNotFoundException('Unable to find Image entity.');
@@ -147,9 +152,9 @@ class ImageController extends Controller
         );
     }
 
-    private function createEditForm(Image $image)
+    private function createEditForm(MediaInterface $image)
     {
-        return $this->createForm(new ImageType(), $image, array(
+        return $this->createForm('symedit_image', $image, array(
             'show_image' => false,
             'action' => $this->generateUrl('admin_image_update', array('id' => $image->getId())),
             'method' => 'PUT',
@@ -165,8 +170,8 @@ class ImageController extends Controller
      */
     public function updateAction(Request $request, $id)
     {
-        $em = $this->getDoctrine()->getManager();
-        $entity = $em->getRepository('Isometriks\Bundle\SymEditBundle\Model\Image')->find($id);
+        $mediaManager = $this->getMediaManager();
+        $entity = $mediaManager->find($id);
 
         if (!$entity) {
             throw $this->createNotFoundException('Unable to find Image entity.');
@@ -177,10 +182,9 @@ class ImageController extends Controller
         $editForm->handleRequest($request);
 
         if ($editForm->isValid()) {
-            $em->persist($entity);
-            $em->flush();
-
-            $this->get('session')->getFlashBag()->add('notice', 'Image Updated');
+            $mediaManager->saveMedia($entity);
+            
+            $this->addFlash('notice', 'Image Updated');
 
             return $this->redirect($this->generateUrl('admin_image_edit', array('id' => $id)));
         }
@@ -204,17 +208,15 @@ class ImageController extends Controller
         $form->handleRequest($request);
 
         if ($form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $entity = $em->getRepository('Isometriks\Bundle\SymEditBundle\Model\Image')->find($id);
-
+            $mediaManager = $this->getMediaManager();
+            $entity = $mediaManager->find($id);
+            
             if (!$entity) {
                 throw $this->createNotFoundException('Unable to find Image entity.');
             }
 
             try {
-                $em->remove($entity);
-                $em->flush();
-                $this->addFlash('notice', 'Image Removed');
+                $mediaManager->deleteMedia($entity);
             } catch(\Exception $e) {
                 $this->addFlash('error', 'There was an error removing the image. Make sure it is not used in a Post or a Slider.');
             }
@@ -238,11 +240,9 @@ class ImageController extends Controller
      */
     public function jsonAction()
     {
-        $em = $this->getDoctrine()->getManager();
-        $images = $em->getRepository('Isometriks\Bundle\SymEditBundle\Model\Image')->findAll();
-
+        $mediaManager = $this->getMediaManager();
+        $images = $mediaManager->findAll();
         $manip = $this->get('isometriks_media.util.image_manipulator');
-
         $out = array();
 
         foreach($images as $image){
@@ -263,18 +263,17 @@ class ImageController extends Controller
         $file = $request->files->get('file');
         $name = pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME);
 
-        $entity = new Image();
-        $entity->setFile($file);
-        $entity->setName($name);
-
-        $em = $this->getDoctrine()->getManager();
+        $mediaManager = $this->getMediaManager();
+        
+        $media = $mediaManager->createMedia();
+        $media->setFile($file);
+        $media->setName($name);
 
         try {
-            $em->persist($entity);
-            $em->flush();
+            $mediaManager->updateMedia($media);
 
             return new JsonResponse(array(
-                'filelink' => $entity->getWebPath(),
+                'filelink' => $media->getWebPath(),
             ));
 
         } catch (\Exception $ex) {
