@@ -10,6 +10,7 @@
         </service>
 
         <service id="isometriks_media.media_manager" class="Isometriks\Bundle\MediaBundle\Doctrine\MediaManager">
+            <argument>%isometriks_media.model.media.class%</argument>
             <argument type="service" id="isometriks_media.entity_manager" />
         </service>
 

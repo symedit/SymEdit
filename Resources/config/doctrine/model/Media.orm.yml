@@ -1,6 +1,12 @@
 Isometriks\Bundle\MediaBundle\Model\Media:
-    type: mappedSuperclass
+    type: entity
+    table: media
     fields:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: IDENTITY        
         path:
             type: string
             length: 255
