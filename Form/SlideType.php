@@ -5,7 +5,6 @@ namespace Isometriks\Bundle\SymEditBundle\Form;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
-use Isometriks\Bundle\SymEditBundle\Model\Image;
 
 class SlideType extends AbstractType
 {
@@ -27,7 +26,7 @@ class SlideType extends AbstractType
                     'right' => 'Right',
                 )
             ))
-            ->add('image', new ImageType(), array(
+            ->add('image', 'symedit_image', array(
                 'file_label' => 'Slider Image',
                 'name_label' => 'Slider File Name',
             ))
