@@ -64,10 +64,10 @@ class Builder
          * Images
          */
         if ($this->context->isGranted('ROLE_ADMIN_IMAGE')) {
-            $content->addChild('Images', array('dropdown_header' => true));
-            $content->addChild('Upload Image', array('route' => 'admin_image_new', 'icon' => 'upload'));
-            $content->addChild('View Images', array('route' => 'admin_image', 'icon' => 'picture'));
-            $content->addChild('Sliders', array('route' => 'admin_image_slider', 'icon' => 'film'));
+            $media = $menu->addChild('Media', array('dropdown' => true, 'caret' => true));
+            $media->addChild('View Images', array('route' => 'admin_image', 'icon' => 'picture'));
+            $media->addChild('Upload Image', array('route' => 'admin_image_new', 'icon' => 'upload'));
+            $media->addChild('Sliders', array('route' => 'admin_image_slider', 'icon' => 'film'));
         }
         
         
