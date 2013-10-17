@@ -72,7 +72,7 @@ class PageType extends AbstractType
             ))
             ->add('display', 'checkbox', array(
                 'required' => false,
-                'help_inline' => 'admin.page.display.help',
+                'help_block' => 'admin.page.display.help',
                 'label' => 'admin.page.display.label',
             ))
             ->add('summary', 'textarea', array(
@@ -105,7 +105,7 @@ class PageType extends AbstractType
             ->add('seo', new SeoVirtualType())
             ->add('crawl', 'checkbox', array(
                 'required' => false,
-                'help_inline' => 'admin.page.crawl.help',
+                'help_block' => 'admin.page.crawl.help',
                 'label' => 'admin.page.crawl.label',
             ));
 
@@ -144,7 +144,7 @@ class PageType extends AbstractType
                 'attr' => array('class' => 'span6'),
                 'required' => false,
                 'label' => 'admin.page.pagecontrollerpath.label',
-                'help_inline' => 'admin.page.pagecontrollerpath.help',
+                'help_block' => 'admin.page.pagecontrollerpath.help',
             ));
 
 
