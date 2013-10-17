@@ -13,6 +13,11 @@
             <argument>%isometriks_media.model.media.class%</argument>
             <argument type="service" id="isometriks_media.entity_manager" />
         </service>
+        
+        <service id="isometriks_media.media_gallery_manager" class="Isometriks\Bundle\MediaBundle\Doctrine\MediaGalleryManager">
+            <argument>%isometriks_media.model.media_gallery.class%</argument>
+            <argument type="service" id="isometriks_media.entity_manager" />
+        </service>
 
         <service id="isometriks_media.event_listener.media_listener" class="Isometriks\Bundle\MediaBundle\Doctrine\Orm\MediaListener">
             <argument type="service" id="isometriks_media.upload_manager" />

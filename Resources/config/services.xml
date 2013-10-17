@@ -8,6 +8,7 @@
         <parameter key="isometriks_media.util.image_manipulator.class">Isometriks\Bundle\MediaBundle\Util\ImageManipulator</parameter>
         <parameter key="isometriks_media.upload_manager.class">Isometriks\Bundle\MediaBundle\Upload\UploadManager</parameter>
         <parameter key="isometriks_media.model.media.class">Isometriks\Bundle\MediaBundle\Model\Media</parameter>
+        <parameter key="isometriks_media.model.media_gallery.class">Isometriks\Bundle\MediaBundle\Model\MediaGallery</parameter>
     </parameters>
 
     <services>

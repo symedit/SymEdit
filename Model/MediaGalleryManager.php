@@ -2,7 +2,7 @@
 
 namespace Isometriks\Bundle\MediaBundle\Model;
 
-abstract class MediaManager implements MediaManagerInterface
+abstract class MediaGalleryManager implements MediaGalleryManagerInterface
 {
     protected $class;
 
@@ -17,9 +17,9 @@ abstract class MediaManager implements MediaManagerInterface
     }
 
     /**
-     * @return MediaInterface $file
+     * @return MediaGalleryInterface $file
      */
-    public function createMedia()
+    public function createGallery()
     {
         $class = $this->getClass();
 
