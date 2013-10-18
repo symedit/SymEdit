@@ -236,7 +236,7 @@ class ImageController extends Controller
     }
 
     /**
-     * @Route("/images.{_format}", defaults={"_format"="json"}, name="admin_image_json")
+     * @Route("/images.json", name="admin_image_json")
      */
     public function jsonAction()
     {
