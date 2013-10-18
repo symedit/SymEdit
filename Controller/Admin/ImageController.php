@@ -66,7 +66,7 @@ class ImageController extends Controller
     /**
      * Finds and displays a Image entity.
      *
-     * @Route("/{id}", name="admin_image_show")
+     * @Route("/{id}", name="admin_image_show", requirements={"id"="\d+"})
      * @Method("GET")
      * @Template()
      */
