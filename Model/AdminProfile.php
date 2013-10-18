@@ -2,8 +2,9 @@
 
 namespace Isometriks\Bundle\UserBundle\Model;
 
-use Isometriks\Bundle\SymEditBundle\Model\Image;
+use Isometriks\Bundle\MediaBundle\Model\MediaInterface;
 use Isometriks\Bundle\SymEditBundle\Util\Util;
+use Isometriks\Bundle\SymEditBundle\Model\UserInterface;
 
 class AdminProfile extends Profile
 {
@@ -27,7 +28,7 @@ class AdminProfile extends Profile
     /**
      * Gets user's image
      *
-     * @return \Isometriks\Bundle\SymEditBundle\Model\Image
+     * @return MediaInterface
      */
     public function getImage()
     {
@@ -37,10 +38,10 @@ class AdminProfile extends Profile
     /**
      * Set the user's image
      *
-     * @param \Isometriks\Bundle\UserBundle\Model\Image $image
-     * @return \Isometriks\Bundle\UserBundle\Model\User
+     * @param MediaInterface $image
+     * @return UserInterface
      */
-    public function setImage(Image $image)
+    public function setImage(MediaInterface $image)
     {
         $user = $this->getUser();
 

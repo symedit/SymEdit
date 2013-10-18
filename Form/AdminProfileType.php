@@ -4,7 +4,6 @@ namespace Isometriks\Bundle\UserBundle\Form;
 
 use Symfony\Component\Form\FormBuilderInterface;
 use FOS\UserBundle\Form\Type\ProfileFormType as BaseType;
-use Isometriks\Bundle\SymEditBundle\Form\ImageType;
 
 class AdminProfileType extends BaseType
 {
@@ -111,7 +110,7 @@ class AdminProfileType extends BaseType
         ));
         
         $image
-            ->add('image', new ImageType(), array(
+            ->add('image', 'symedit_image', array(
                 'required' => false,
                 'require_name' => false,
                 'property_path' => 'profile.image',
