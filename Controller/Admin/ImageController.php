@@ -111,7 +111,7 @@ class ImageController extends Controller
         $form->handleRequest($request);
 
         if ($form->isValid()) {
-            $mediaManager->saveMedia($entity);
+            $mediaManager->updateMedia($entity);
 
             $this->addFlash('notice', 'Image Uploaded');
 
@@ -182,7 +182,7 @@ class ImageController extends Controller
         $editForm->handleRequest($request);
 
         if ($editForm->isValid()) {
-            $mediaManager->saveMedia($entity);
+            $mediaManager->updateMedia($entity);
             
             $this->addFlash('notice', 'Image Updated');
 
