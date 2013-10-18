@@ -29,7 +29,7 @@ class GoogleMapStrategy extends AbstractWidgetStrategy
             ->add('address', 'textarea', array(
                 'required' => false,
                 'label' => 'Address',
-                'help_inline' => 'Leave blank for default company address',
+                'help_block' => 'Leave blank for default company address',
                 'attr' => array(
                     'rows' => 5,
                     'cols' => 50,
