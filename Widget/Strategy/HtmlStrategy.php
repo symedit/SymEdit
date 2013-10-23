@@ -34,8 +34,8 @@ class HtmlStrategy extends AbstractWidgetStrategy
     {
         $builder
             ->add('html', 'textarea', array(
+                'horizontal' => false,
                 'label_render' => false, 
-                'widget_control_group' => false, 
                 'attr' => array(
                     'class' => 'wysiwyg-editor', 
                 )
