@@ -45,7 +45,7 @@ class Builder
          * Pages
          */
         if ($this->context->isGranted('ROLE_ADMIN_PAGE')) {
-            $content->addChild('Pages', array('dropdown_header' => true));
+            $content->addChild('Pages', array('dropdown-header' => true));
             $content->addChild('New Page', array('route' => 'admin_page_new', 'icon' => 'edit'));
             $content->addChild('List Pages', array('route' => 'admin_page', 'icon' => 'file'));
         }
@@ -54,7 +54,7 @@ class Builder
          * Blog
          */
         if ($this->context->isGranted('ROLE_ADMIN_BLOG')) {
-            $content->addChild('Blog', array('dropdown_header' => true));
+            $content->addChild('Blog', array('dropdown-header' => true));
             $content->addChild('New Post', array('route' => 'admin_blog_new', 'icon' => 'edit'));
             $content->addChild('List Posts', array('route' => 'admin_blog', 'icon' => 'th-list'));
             $content->addChild('List Categories', array('route' => 'admin_blog_category', 'icon' => 'tags'));
@@ -76,7 +76,7 @@ class Builder
          */
         if ($this->context->isGranted('ROLE_ADMIN_WIDGET')) {
             $structure = $menu->addChild('Structure', array('dropdown' => true, 'caret' => true));
-            $structure->addChild('Widgets', array('dropdown_header' => true));
+            $structure->addChild('Widgets', array('dropdown-header' => true));
             $structure->addChild('New Widget', array('route' => 'admin_widget_new', 'icon' => 'edit'));
             $structure->addChild('List Widgets', array('route' => 'admin_widget', 'icon' => 'tasks'));
         }
