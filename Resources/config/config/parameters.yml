@@ -1,6 +1,4 @@
 parameters:
-    # User Entity Class
-    isometriks_symedit.entity.user_class:          Isometriks\Bundle\SymEditBundle\Model\User
     
     # Profile Entity Class
     isometriks_symedit.entity.profile_class:       Isometriks\Bundle\UserBundle\Model\Profile

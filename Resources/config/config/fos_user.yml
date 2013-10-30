@@ -1,7 +1,7 @@
 fos_user:
     db_driver: orm
     firewall_name: main
-    user_class: %isometriks_symedit.entity.user_class%
+    user_class: Isometriks\Bundle\SymEditBundle\Model\User
     service:
         mailer: isometriks_symedit.mailer
         user_manager: isometriks_symedit.user_manager
