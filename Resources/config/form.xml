@@ -76,12 +76,11 @@
         <service id="isometriks_symedit.form.factory.context" class="%isometriks_symedit.form.factory.context.class%">
             <argument type="service" id="form.factory" />
             <argument type="service" id="security.context" />
-        </service>
-
-        <service id="isometriks_symedit.form.profile" factory-method="createForm" factory-service="isometriks_symedit.form.factory.context" class="Symfony\Component\Form\Form">
-            <argument>symedit_admin_profile</argument>
-            <argument>symedit_user_profile</argument>
-            <argument>symedit_profile</argument>
+            <argument type="collection">
+                <argument key="adminType">symedit_admin_profile</argument>
+                <argument key="userType">symedit_user_profile</argument>
+                <argument key="name">symedit_profile</argument>
+            </argument>
         </service>
     </services>
 
