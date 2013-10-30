@@ -30,7 +30,7 @@ class AdminProfileType extends BaseType
                 'label' => 'Display',
                 'required' => false,
                 'property_path' => 'profile.display',
-                'help_inline' => 'Display this user on team pages',
+                'help_block' => 'Display this user on team pages',
             ));
 
         /**
