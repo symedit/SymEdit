@@ -17,7 +17,8 @@
         "isometriks/settings-bundle": "2.3.*",
         "isometriks/sitemap-bundle": "2.3.*",
         "isometriks/media-bundle": "dev-master",
-        "knplabs/knp-menu-bundle": "dev-master"
+        "knplabs/knp-menu-bundle": "dev-master",
+        "friendsofsymfony/user-bundle": "~2.0@dev"
     },
     "suggest": {
         "isometriks/stylizer-bundle": "Allows you to use the stylizer to edit styles."
