@@ -5,6 +5,7 @@
     xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
 
     <parameters>
+        <parameter key="isometriks_symedit.model.user.class">Isometriks\Bundle\SymEditBundle\Model\User</parameter>
         <parameter key="isometriks_symedit.model.page.class">Isometriks\Bundle\SymEditBundle\Model\Page</parameter>
         <parameter key="isometriks_symedit.model.post.class">Isometriks\Bundle\SymEditBundle\Model\Post</parameter>
         <parameter key="isometriks_symedit.model.widget.class">Isometriks\Bundle\SymEditBundle\Model\Widget</parameter>

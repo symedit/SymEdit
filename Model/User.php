@@ -4,7 +4,7 @@ namespace Isometriks\Bundle\SymEditBundle\Model;
 
 use Isometriks\Bundle\SymEditBundle\Model\UserInterface;
 use Isometriks\Bundle\SymEditBundle\Model\ProfileInterface;
-use FOS\UserBundle\Entity\User as BaseUser;
+use FOS\UserBundle\Model\User as BaseUser;
 
 class User extends BaseUser implements UserInterface
 {

@@ -1,6 +1,4 @@
 parameters:
-    # User Entity Class
-    isometriks_symedit.entity.user_class:          Isometriks\Bundle\SymEditBundle\Model\User
     
     # Profile Entity Class
     isometriks_symedit.entity.profile_class:       Isometriks\Bundle\UserBundle\Model\Profile
@@ -8,7 +6,6 @@ parameters:
     
     # FOS Parameters
     isometriks_symedit.fos_user.form.registration: symedit_user_registration
-    isometriks_symedit.fos_user.form.profile:      symedit_user_profile
             
     # Admin Dir 
     isometriks_symedit.admin_dir:                  /sym-admin

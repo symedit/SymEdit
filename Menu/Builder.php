@@ -131,7 +131,7 @@ class Builder
     {
         $menu = $this->factory->createItem('root', array(
             'navbar' => true,
-            'push_right' => true,
+            'pull-right' => true,
         ));
         
         $user = $this->getUser();

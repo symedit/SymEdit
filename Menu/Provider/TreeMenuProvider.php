@@ -8,9 +8,6 @@ use Isometriks\Bundle\SymEditBundle\Model\PageInterface;
 use Knp\Menu\FactoryInterface;
 use Knp\Menu\MenuItem;
 
-/**
- * @TODO: Change this to use the iterators
- */
 class TreeMenuProvider implements MenuProviderInterface
 {
     protected $pageManager;

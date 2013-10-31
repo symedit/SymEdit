@@ -9,7 +9,7 @@ class ProfileTypeCompilerPass implements CompilerPassInterface
 {
     public function process(ContainerBuilder $container)
     {
-        $container->removeDefinition('fos_user.profile.form');
-        $container->setAlias('fos_user.profile.form', 'isometriks_symedit.form.profile');
+        $container->removeDefinition('fos_user.profile.form.factory');
+        $container->setAlias('fos_user.profile.form.factory', 'isometriks_symedit.form.factory.context');
     }
 }
