@@ -77,8 +77,8 @@
             <argument type="service" id="form.factory" />
             <argument type="service" id="security.context" />
             <argument type="collection">
-                <argument key="adminType">symedit_admin_profile</argument>
-                <argument key="userType">symedit_user_profile</argument>
+                <argument key="adminType">%isometriks_symedit.profile.admin_type%</argument>
+                <argument key="userType">%%isometriks_symedit.profile.user_type%</argument>
                 <argument key="name">symedit_profile</argument>
             </argument>
         </service>

@@ -6,6 +6,7 @@ use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\HttpKernel\DependencyInjection\Extension;
 use Symfony\Component\DependencyInjection\Loader;
+use Symfony\Component\DependencyInjection\Loader\FileLoader;
 
 /**
  * This is the class that loads and manages your bundle configuration
@@ -37,36 +38,35 @@ class IsometriksSymEditExtension extends Extension
         /**
          * Load DB Driver
          */
+        $this->loadDbDriver($container, $config, $loader);
+        
+        $this->remapParameters($container, 'email', $config['email']);
+        $this->remapParameters($container, 'fragment', $config['fragment']);
+        $this->remapParameters($container, 'profile', $config['profile']);
+        
+        $container->setParameter('isometriks_symedit.extensions.routes', $config['extensions']);
+        $container->setParameter('isometriks_symedit.admin_dir', $config['admin_dir']);
+    }
+    
+    private function loadDbDriver(ContainerBuilder $container, array $config, FileLoader $loader)
+    {
         $driver = $config['db_driver'];
         $container->setParameter('isometriks_symedit.model_manager_name', $config['model_manager_name']);
         $container->setParameter(sprintf('%s.backend_type_%s', $this->getAlias(), $driver), true);
         
         $container->setParameter('isometriks_symedit.db_driver', $driver);
-        $loader->load(sprintf('driver/%s.xml', $driver));
-        
-        $this->loadEmail($config['email'], $container);
-        $this->loadFragment($config['fragment'], $container);
-
-        $container->setParameter('isometriks_symedit.extensions.routes', $config['extensions']);
-        $container->setParameter('isometriks_symedit.admin_dir', $config['admin_dir']);
+        $loader->load(sprintf('driver/%s.xml', $driver));        
     }
 
-    /**
-     * Load Email Settings
-     */
-    private function loadEmail($config, ContainerBuilder $container)
-    {
-        $container->setParameter('isometriks_symedit.email.sender', $config['sender']);
+    private function remapParameters(ContainerBuilder $container, $path, array $config)
+    {        
+        $prefix = rtrim($this->getAlias().'.'.$path, '.');
+        
+        foreach ($config as $key => $value) {
+            $container->setParameter(sprintf('%s.%s', $prefix, $key), $value);
+        }
     }
     
-    /**
-     * Load Fragment Settings
-     */
-    private function loadFragment($config, ContainerBuilder $container)
-    {
-        $container->setParameter('isometriks_symedit.fragment.strategy', $config['strategy']);
-    }
-
     public function getAlias()
     {
         return 'isometriks_symedit';
