@@ -19,10 +19,6 @@
         {% include '@SymEdit/Admin/nav.html.twig' %}
         {% endblock %}
         
-        {% block flash %}
-        {% include '@SymEdit/Admin/flash.html.twig' %}
-        {% endblock %}
-        
         {% block heading %}
         <div id="title">
             <div class="container">
@@ -32,6 +28,10 @@
                 </h1>
             </div>
         </div>
+        {% endblock %}
+        
+        {% block flash %}
+        {% include '@SymEdit/Admin/flash.html.twig' %}
         {% endblock %}        
         
         {% block content_container %}

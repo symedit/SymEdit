@@ -4,13 +4,13 @@
         <div class="text">
             {% for message in app.session.flashbag.get('notice')|default([]) %}
                 <div class="message">
-                    <i class="icon-thumbs-up icon-white"></i> {{ message }}
+                    {{ icon('thumbs-up') }} {{ message }}
                 </div>
             {% endfor %}
 
             {% for message in app.session.flashbag.get('error')|default([]) %}
                 <div class="message">
-                    <i class="icon-warning-sign icon-white"></i> {{ message }}
+                    {{ icon('warning-sign') }} {{ message }}
                 </div>
             {% endfor %}
         </div>
