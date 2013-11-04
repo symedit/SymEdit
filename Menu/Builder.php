@@ -38,8 +38,8 @@ class Builder
             return $menu;
         }
 
-        $dashboard = $menu->addChild('dashboard', array('route' => 'admin_dashboard', 'label' => 'Dashboard'));
-        $content = $menu->addChild('Content', array('dropdown' => true, 'caret' => true));
+        $dashboard = $menu->addChild('dashboard', array('route' => 'admin_dashboard', 'label' => 'Dashboard', 'icon' => 'home'));
+        $content = $menu->addChild('Content', array('dropdown' => true, 'caret' => true, 'icon' => 'pencil'));
         
         /**
          * Pages
@@ -64,7 +64,7 @@ class Builder
          * Images
          */
         if ($this->context->isGranted('ROLE_ADMIN_IMAGE')) {
-            $media = $menu->addChild('Media', array('dropdown' => true, 'caret' => true));
+            $media = $menu->addChild('Media', array('dropdown' => true, 'caret' => true, 'icon' => 'picture'));
             $media->addChild('View Images', array('route' => 'admin_image', 'icon' => 'picture'));
             $media->addChild('Upload Image', array('route' => 'admin_image_new', 'icon' => 'upload'));
             $media->addChild('Sliders', array('route' => 'admin_image_slider', 'icon' => 'film'));
@@ -75,7 +75,7 @@ class Builder
          * Widgets
          */
         if ($this->context->isGranted('ROLE_ADMIN_WIDGET')) {
-            $structure = $menu->addChild('Structure', array('dropdown' => true, 'caret' => true));
+            $structure = $menu->addChild('Structure', array('dropdown' => true, 'caret' => true, 'icon' => 'tasks'));
             $structure->addChild('Widgets', array('dropdown-header' => true));
             $structure->addChild('New Widget', array('route' => 'admin_widget_new', 'icon' => 'edit'));
             $structure->addChild('List Widgets', array('route' => 'admin_widget', 'icon' => 'tasks'));
@@ -89,7 +89,7 @@ class Builder
         $stylizer = $this->context->isGranted('ROLE_ADMIN_STYLIZER') && $this->container->has('isometriks_stylizer.stylizer');
         
         if ($settings || $users || $stylizer) {
-            $site = $menu->addChild('Site', array('dropdown' => true, 'caret' => true));
+            $site = $menu->addChild('Site', array('dropdown' => true, 'caret' => true, 'icon' => 'wrench'));
             
             if ($settings) {
                 $site->addChild('Settings', array('route' => 'admin_setting', 'icon' => 'cogs'));
