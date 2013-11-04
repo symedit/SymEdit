@@ -24,6 +24,9 @@ admin:
             seo: SEO
             content: Content
             advanced: Advanced
+        popover:
+            title: Page Name
+            content: The Page's "Name" attribute determines the URL of the page. If the page has any parents, it will use them as well. Eg. Root > about-us > team becomes /about-us/team
             
     file:
         name:

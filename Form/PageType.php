@@ -35,6 +35,10 @@ class PageType extends AbstractType
                     'class' => 'span4',
                 ),
                 'label' => 'admin.page.name',
+                'help_label_popover' => array(
+                    'title' => 'admin.page.popover.title',
+                    'content' => 'admin.page.popover.content',
+                ),
             ));
         
         /**
@@ -68,7 +72,7 @@ class PageType extends AbstractType
             ->add('tagline', 'text', array(
                 'attr' => array('class' => 'span4'),
                 'required' => false,
-                'label' => 'admin.page.tagline'
+                'label' => 'admin.page.tagline',
             ))
             ->add('display', 'checkbox', array(
                 'required' => false,
@@ -155,7 +159,7 @@ class PageType extends AbstractType
             ->add($seo)
             ->add($content)
             ->add($advanced);
-
+        
         $subscriber = new EventListener\PageTypeSubscriber();
         $builder->addEventSubscriber($subscriber);
     }
