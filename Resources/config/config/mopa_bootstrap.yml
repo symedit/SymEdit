@@ -1,5 +1,5 @@
 mopa_bootstrap:
-    navbar: ~
+    menu: ~
     form:
         show_legend: false
         render_required_asterisk: true
