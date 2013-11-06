@@ -42,7 +42,10 @@
         {% endif %}
     </div>
     
-    {% if form.vars.show_image and form.vars.data is not null and form.vars.data.webpath is not empty %}
+    {% if form.vars is defined and 
+          form.vars.show_image and 
+          form.vars.data is not null and 
+          form.vars.data.webpath is not empty %}
     <div class="col-md-6">
         <h5>Current Image</h5>
         <img class="img-thumbnail" src="{{ form.vars.data }}">
