@@ -8,9 +8,9 @@ use Isometriks\Bundle\SymEditBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
-use Isometriks\Bundle\SymEditBundle\Form\ImageType;
 use JMS\SecurityExtraBundle\Annotation\PreAuthorize;
 use Isometriks\Bundle\MediaBundle\Model\MediaInterface;
+use Gedmo\Sluggable\Util as Sluggable;
 
 /**
  * Image controller.
@@ -262,12 +262,13 @@ class ImageController extends Controller
     {
         $file = $request->files->get('file');
         $name = pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME);
-
+        $nameSlug = Sluggable\Urlizer::urlize($name, '-');
+                
         $mediaManager = $this->getMediaManager();
         
         $media = $mediaManager->createMedia();
         $media->setFile($file);
-        $media->setName($name);
+        $media->setName($nameSlug);
 
         try {
             $mediaManager->updateMedia($media);
