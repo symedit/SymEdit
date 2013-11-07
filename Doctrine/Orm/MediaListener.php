@@ -7,6 +7,7 @@ use Isometriks\Bundle\MediaBundle\Model\MediaInterface;
 use Doctrine\ORM\Events;
 use Doctrine\ORM\Event\LifecycleEventArgs;
 use Doctrine\ORM\Event\OnFlushEventArgs;
+use Doctrine\ORM\EntityManager;
 
 class MediaListener extends AbstractMediaListener
 {
@@ -82,18 +83,60 @@ class MediaListener extends AbstractMediaListener
                 continue;
             }
             
-            if (($callback = $object->getNameCallback()) === null) {
-                continue;
+            $meta = $em->getClassMetadata(get_class($object));
+            
+            if ($callback = $object->getNameCallback()) {
+                $object->setName($callback($object));
+                $object->setPath($this->uploadManager->getUploadPath($object));
+                $uow->recomputeSingleEntityChangeSet($meta, $object);
             }
             
-            $oldName = $object->getName();
-            $object->setName($callback($object));
-            
-            $oldPath = $object->getPath();
-            $object->setPath($this->uploadManager->getUploadPath($object));
-            
-            $uow->propertyChanged($object, 'name', $oldName, $object->getName());
-            $uow->propertyChanged($object, 'path', $oldPath, $object->getPath());
+            if ($this->makePathUnique($object, $em, $meta)) {
+                $object->setPath($this->uploadManager->getUploadPath($object));
+                $uow->recomputeSingleEntityChangeSet($meta, $object);
+            }
         }
     }
+    
+    
+    
+    protected function makePathUnique(MediaInterface $media, EntityManager $em)
+    {
+        $class = get_class($media);
+        $name = $media->getName();
+        $entity = $em->getRepository($class)->findOneBy(array('name' => $name));
+        
+        /**
+         * No entity found, must be unique
+         */
+        if (!$entity) {
+            return false;
+        }
+        
+        $qb = $em->createQueryBuilder();
+        $qb->select('m.name')
+           ->from($class, 'm')
+           ->where($qb->expr()->like(
+               'm.name', $qb->expr()->literal($name . '%')
+           ))
+           ->orderBy('m.name');
+        
+        $query = $qb->getQuery();
+        $query->setHydrationMode(\Doctrine\ORM\Query::HYDRATE_ARRAY);
+        $result = $query->execute();
+        
+        $sameNames = array();
+        foreach ($result as $record) {
+            $sameNames[] = $record['name'];
+        }
+        
+        $i = 1;
+        do {
+            $newName = $name . '-' . $i++;
+        } while (in_array($newName, $sameNames));
+        
+        $media->setName($newName);
+        
+        return true;
+    }    
 }
