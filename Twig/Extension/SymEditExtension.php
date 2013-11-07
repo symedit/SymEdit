@@ -32,13 +32,13 @@ class SymEditExtension extends \Twig_Extension
             if($request->attributes->has('_page')){
                 $page = $request->attributes->get('_page');
                 $page->setActive(true, true);
-                $seo = $page->getSeo();
             } else {
                 $page = new Page();
                 $page->setPath($request->getPathInfo());
-                $seo = array();
             }
-
+            
+            $seo = $request->attributes->get('_seo', array());
+            
             $globals['Page'] = $page;
             $globals['SEO'] = $seo;
             $globals['Breadcrumbs'] = $this->container->get('isometriks_symedit.breadcrumbs');

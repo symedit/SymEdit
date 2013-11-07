@@ -15,8 +15,6 @@ class PageController extends Controller
             return $response;
         }
 
-        return $this->render(sprintf('@SymEdit/Page/%s', $_page->getTemplate()), array(
-            'SEO' => $_page->getSeo(),
-        ), $response);
+        return $this->render(sprintf('@SymEdit/Page/%s', $_page->getTemplate()), array(), $response);
     }
 }

@@ -4,6 +4,8 @@ namespace Isometriks\Bundle\SymEditBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller as BaseController;
 use Symfony\Component\HttpFoundation\Response;
+use Isometriks\Bundle\SymEditBundle\Model\Seo;
+use Isometriks\Bundle\SymEditBundle\Model\SeoInterface;
 
 class Controller extends BaseController
 {
@@ -120,6 +122,37 @@ class Controller extends BaseController
         }
 
         return null;
+    }
+    
+    /**
+     * Gets the current SEO
+     * 
+     * @return \Isometriks\Bundle\SymEditBundle\Model\SeoInterface
+     */
+    public function getSeo()
+    {
+        $request = $this->getRequest();
+        
+        return $request->attributes->get('_seo');
+    }
+    
+    /**
+     * Takes an array or Seo object
+     * 
+     * @param \Isometriks\Bundle\SymEditBundle\Model\SeoInterface|array
+     */
+    public function setSeo($seo)
+    {
+        if (is_array($seo)) {
+            $seo = new Seo($seo);
+        }
+        
+        if (!$seo instanceof SeoInterface)
+        {
+            throw new \InvalidArgumentException('Object is not an array or Seo object');
+        }
+        
+        $this->getRequest()->attributes->set('_seo', $seo);
     }
 
     protected function addFlash($type, $message)

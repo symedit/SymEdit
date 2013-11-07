@@ -4,7 +4,7 @@ namespace Isometriks\Bundle\SymEditBundle\Model;
 
 use Isometriks\Bundle\MediaBundle\Model\MediaInterface;
 
-interface PostInterface extends SeoInterface
+interface PostInterface extends SeoAbleInterface
 {
     public function getId();
 

@@ -20,8 +20,8 @@ class BlogController extends Controller
      * @Route("/archive/{page}", name="blog_archive", requirements={"slug"=".*?", "page"="\d+"}, defaults={"page"=1, "_format"="html"})
      * @Sitemap()
      */
-    public function indexAction(Request $request, $_format, $page = 1)
-    {
+    public function indexAction(Request $request, $_format, $page = null)
+    {        
         $em = $this->getDoctrine()->getManager();
         $repo = $em->getRepository($this->getPostManager()->getClass());
 
@@ -37,6 +37,16 @@ class BlogController extends Controller
             return $response;
         }
 
+        /**
+         * If no page that means we matched archive (or feed) so set SEO
+         * to noindex since this is duplicate content.
+         */
+        if ($page !== null) {
+            $this->getSeo()->setIndex(false);
+        } else {
+            $page = 1;
+        }
+        
         $paginator = $this->getPaginator($repo->getRecentQuery(), $page, 'blog_archive');
 
         $template = $_format === 'xml' ? 'feed.xml.twig' : 'index.html.twig';
@@ -55,6 +65,11 @@ class BlogController extends Controller
     {
         $post = $this->getPostManager()->findPostBySlug($slug);
         
+        /**
+         * Set SEO to be the posts
+         */
+        $this->setSeo($post->getSeo());
+        
         if (!$post) {
             throw $this->createNotFoundException(sprintf('Post with slug "%s" not found.', $slug));
         }
@@ -72,7 +87,6 @@ class BlogController extends Controller
 
         return $this->render('@SymEdit/Blog/single.html.twig', array(
             'Post' => $post,
-            'SEO' => $post->getSeo(),
         ), $response);
     }
 
@@ -115,6 +129,11 @@ class BlogController extends Controller
         if (!$category) {
             throw $this->createNotFoundException(sprintf('Category with slug "%s" not found.', $slug));
         }
+        
+        /**
+         * Set SEO to use category
+         */
+        $this->setSeo($category->getSeo());
 
         $query = $em->createQueryBuilder()
                 ->select('p')
@@ -151,7 +170,6 @@ class BlogController extends Controller
 
         return $this->render(sprintf('@SymEdit/Blog/%s', $template), array(
             'Category' => $category,
-            'SEO' => $category->getSeo(),
             'Posts' => $paginator,
             'modified' => $modified,
         ), $response);
