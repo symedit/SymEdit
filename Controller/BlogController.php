@@ -20,8 +20,8 @@ class BlogController extends Controller
      * @Route("/archive/{page}", name="blog_archive", requirements={"slug"=".*?", "page"="\d+"}, defaults={"page"=1, "_format"="html"})
      * @Sitemap()
      */
-    public function indexAction(Request $request, $_format, $page = 1)
-    {
+    public function indexAction(Request $request, $_format, $page = null)
+    {        
         $em = $this->getDoctrine()->getManager();
         $repo = $em->getRepository($this->getPostManager()->getClass());
 
@@ -37,6 +37,16 @@ class BlogController extends Controller
             return $response;
         }
 
+        /**
+         * If no page that means we matched archive (or feed) so set SEO
+         * to noindex since this is duplicate content.
+         */
+        if ($page !== null) {
+            $this->getSeo()->setIndex(false);
+        } else {
+            $page = 1;
+        }
+        
         $paginator = $this->getPaginator($repo->getRecentQuery(), $page, 'blog_archive');
 
         $template = $_format === 'xml' ? 'feed.xml.twig' : 'index.html.twig';
