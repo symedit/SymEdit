@@ -55,6 +55,11 @@ class BlogController extends Controller
     {
         $post = $this->getPostManager()->findPostBySlug($slug);
         
+        /**
+         * Set SEO to be the posts
+         */
+        $this->setSeo($post->getSeo());
+        
         if (!$post) {
             throw $this->createNotFoundException(sprintf('Post with slug "%s" not found.', $slug));
         }
@@ -72,7 +77,6 @@ class BlogController extends Controller
 
         return $this->render('@SymEdit/Blog/single.html.twig', array(
             'Post' => $post,
-            'SEO' => $post->getSeo(),
         ), $response);
     }
 
@@ -115,6 +119,11 @@ class BlogController extends Controller
         if (!$category) {
             throw $this->createNotFoundException(sprintf('Category with slug "%s" not found.', $slug));
         }
+        
+        /**
+         * Set SEO to use category
+         */
+        $this->setSeo($category->getSeo());
 
         $query = $em->createQueryBuilder()
                 ->select('p')
@@ -151,7 +160,6 @@ class BlogController extends Controller
 
         return $this->render(sprintf('@SymEdit/Blog/%s', $template), array(
             'Category' => $category,
-            'SEO' => $category->getSeo(),
             'Posts' => $paginator,
             'modified' => $modified,
         ), $response);

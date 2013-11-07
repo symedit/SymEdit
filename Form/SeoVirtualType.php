@@ -28,15 +28,15 @@ class SeoVirtualType extends AbstractType {
                 ))
                 ->add('index', 'choice', array(
                     'choices' => array(
-                        'index' => 'Index',
-                        'noindex' => 'No Index'
+                        true => 'Index',
+                        false => 'No Index'
                     ),
                     'label' => 'admin.seo.index',
                 ))
                 ->add('follow', 'choice', array(
                     'choices' => array(
-                        'follow' => 'Follow',
-                        'nofollow' => 'No Follow',
+                        true => 'Follow',
+                        false => 'No Follow',
                     ),
                     'label' => 'admin.seo.follow',
                 ))

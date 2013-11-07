@@ -2,7 +2,7 @@
 
 namespace Isometriks\Bundle\SymEditBundle\Model; 
 
-interface CategoryInterface extends SeoInterface
+interface CategoryInterface extends SeoAbleInterface
 {
     public function getId(); 
 
