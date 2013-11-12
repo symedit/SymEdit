@@ -2,30 +2,23 @@ Isometriks\Bundle\SymEditBundle\Model\Post:
     type: entity
     table: post
     repositoryClass: Isometriks\Bundle\SymEditBundle\Doctrine\Orm\Repository\PostRepository
+    gedmo:
+        loggable: true
     fields:
         id:
             type: integer
-            scale: 0
-            length: null
-            unique: false
-            nullable: false
-            precision: 0
             id: true
             generator:
                 strategy: IDENTITY
         title:
             type: string
-            scale: 0
             length: 255
-            unique: false
-            nullable: false
-            precision: 0
         slug:
             type: string
             length: 255
             unique: true
-            nullable: false
             gedmo:
+                versioned: ~
                 slug:
                     unique: true
                     separator: "-"
@@ -33,18 +26,14 @@ Isometriks\Bundle\SymEditBundle\Model\Post:
                         - title
         content:
             type: text
-            scale: 0
-            length: null
-            unique: false
             nullable: true
-            precision: 0
+            gedmo:
+                - versioned
         summary:
             type: text
-            scale: 0
-            length: null
-            unique: false
             nullable: true
-            precision: 0
+            gedmo:
+                - versioned
         createdAt:
             type: datetime
             gedmo:
@@ -65,58 +54,22 @@ Isometriks\Bundle\SymEditBundle\Model\Post:
                     value: 1
         status:
             type: integer
-            scale: 0
-            length: null
-            unique: false
-            nullable: false
-            precision: 0
         seo:
             type: json_array
-            scale: 0
-            length: null
-            unique: false
             nullable: true
-            precision: 0
-
+            gedmo:
+                - versioned
     indexes:
-        slug_index:
+        slug_idx:
             columns: [slug]
     manyToOne:
         image:
             targetEntity: Isometriks\Bundle\MediaBundle\Model\Media
             cascade:
                 - persist
-            mappedBy: null
-            inversedBy: null
-            joinColumns:
-                image_id:
-                    referencedColumnName: id
-            orphanRemoval: false
         author:
             targetEntity: Isometriks\Bundle\SymEditBundle\Model\UserInterface
-            cascade: {  }
-            mappedBy: null
-            joinColumns:
-                author_id:
-                    referencedColumnName: id
-            orphanRemoval: false
     manyToMany:
         categories:
             targetEntity: Isometriks\Bundle\SymEditBundle\Model\Category
-            cascade: {  }
-            mappedBy: null
             inversedBy: posts
-            joinTable:
-                name: post_category
-                joinColumns:
-                    -
-                        name: post_id
-                        referencedColumnName: id
-                        onDelete: CASCADE
-                inverseJoinColumns:
-                    -
-                        name: category_id
-                        referencedColumnName: id
-                        onDelete: CASCADE
-            orderBy: null
-    lifecycleCallbacks: {  }

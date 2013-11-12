@@ -3,7 +3,8 @@ Isometriks\Bundle\SymEditBundle\Model\Page:
     table: pages
     gedmo:
         tree:
-          type: materializedPath
+            type: materializedPath
+        loggable: true
     repositoryClass: Isometriks\Bundle\SymEditBundle\Doctrine\Orm\Repository\PageRepository
     fields:
         id:
@@ -13,107 +14,77 @@ Isometriks\Bundle\SymEditBundle\Model\Page:
                 strategy: IDENTITY
         homepage:
             type: boolean
-            scale: 0
-            length: null
-            unique: false
-            nullable: false
-            precision: 0
         root:
             type: boolean
-            scale: 0
-            length: null
-            unique: false
-            nullable: false
-            precision: 0
         name:
             type: string
             nullable: true
             gedmo:
                 - treePathSource
+                - versioned
         tagline:
             type: string
-            scale: 0
             length: 255
-            unique: false
             nullable: true
-            precision: 0
+            gedmo:
+                - versioned
         summary:
             type: text
-            scale: 0
-            length: null
-            unique: false
             nullable: true
-            precision: 0
+            gedmo:
+                - versioned
         path:
             type: string
             unique: true
             nullable: true
             gedmo:
+                versioned: ~
                 treePath:
                     appendId: false
                     separator: "/"
                     endsWithSeparator: false
         title:
             type: string
-            scale: 0
             length: 255
-            unique: false
-            nullable: false
-            precision: 0
+            gedmo:
+                - versioned
         content:
             type: text
-            scale: 0
-            length: null
-            unique: false
             nullable: true
-            precision: 0
+            gedmo:
+                - versioned
         seo:
             type: json_array
-            scale: 0
-            length: null
-            unique: false
             nullable: true
-            precision: 0
+            gedmo:
+                - versioned
         pageOrder:
             type: integer
-            scale: 0
-            length: null
-            unique: false
-            nullable: false
-            precision: 0
         display:
             type: boolean
-            scale: 0
-            length: null
-            unique: false
-            nullable: false
-            precision: 0
         crawl:
             type: boolean
-            scale: 0
-            length: null
-            unique: false
-            nullable: false
-            precision: 0
         pageController:
             type: boolean
-            scale: 0
-            length: null
-            unique: false
             nullable: false
-            precision: 0
+            gedmo:
+                - versioned
         pageControllerPath:
             type: string
-            scale: 0
             length: 255
-            unique: false
             nullable: true
-            precision: 0
+            gedmo:
+                - versioned
         createdAt:
             type: datetime
             nullable: false
             gedmo:
                 timestampable:
+                    on: create
+        createdBy:
+            type: string
+            gedmo:
+                blameable:
                     on: create
         updatedAt:
             type: datetime
@@ -121,32 +92,29 @@ Isometriks\Bundle\SymEditBundle\Model\Page:
             gedmo:
                 timestampable:
                     on: update
+        updatedBy:
+            type: string
+            gedmo:
+                versioned: ~
+                blameable:
+                    on: update
         level:
             type: integer
             nullable: true
             gedmo:
                 - treeLevel
-        lft:
-            type: integer
-            nullable: true
-            gedmo:
-                - treeLeft
-        rgt:
-            type: integer
-            nullable: true
-            gedmo:
-                - treeRight
+                - versioned
         template:
             type: string
             nullable: true
+            gedmo:
+                - versioned
     indexes:
-        path_index:
+        path_idx:
             columns: [path]
     manyToOne:
         parent:
             targetEntity: Isometriks\Bundle\SymEditBundle\Model\Page
-            cascade: {  }
-            mappedBy: null
             inversedBy: children
             joinColumns:
                 parent:
@@ -155,6 +123,7 @@ Isometriks\Bundle\SymEditBundle\Model\Page:
             orphanRemoval: false
             gedmo:
                 - treeParent
+                - versioned
     oneToMany:
         children:
             targetEntity: Isometriks\Bundle\SymEditBundle\Model\Page
@@ -162,10 +131,5 @@ Isometriks\Bundle\SymEditBundle\Model\Page:
                 - remove
                 - persist
             mappedBy: parent
-            inversedBy: null
-            orphanRemoval: false
             orderBy:
                 pageOrder: ASC
-#    lifecycleCallbacks:
-#        prePersist:
-#            - fixPath

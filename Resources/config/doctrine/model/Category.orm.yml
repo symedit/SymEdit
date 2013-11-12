@@ -5,53 +5,29 @@ Isometriks\Bundle\SymEditBundle\Model\Category:
     fields:
         id:
             type: integer
-            scale: 0
-            length: null
-            unique: false
-            nullable: false
-            precision: 0
             id: true
             generator:
                 strategy: IDENTITY
         name:
             type: string
-            scale: 0
             length: 255
-            unique: false
-            nullable: false
-            precision: 0
         title:
             type: string
-            scale: 0
             length: 255
-            unique: false
-            nullable: false
-            precision: 0
         slug:
             type: string
-            scale: 0
             length: 255
-            unique: false
-            nullable: false
-            precision: 0
         seo:
             type: json_array
-            scale: 0
-            length: null
-            unique: false
             nullable: true
-            precision: 0
     manyToOne:
         parent:
             targetEntity: Isometriks\Bundle\SymEditBundle\Model\Category
-            cascade: {  }
-            mappedBy: null
             inversedBy: children
             joinColumns:
                 parent:
                     referencedColumnName: id
                     onDelete: 'SET NULL'
-            orphanRemoval: false
     oneToMany:
         children:
             targetEntity: Isometriks\Bundle\SymEditBundle\Model\Category
@@ -59,17 +35,10 @@ Isometriks\Bundle\SymEditBundle\Model\Category:
                 - remove
                 - persist
             mappedBy: parent
-            inversedBy: null
-            orphanRemoval: false
-            orderBy: null
     manyToMany:
         posts:
             targetEntity: Isometriks\Bundle\SymEditBundle\Model\Post
-            cascade: {  }
             mappedBy: categories
-            inversedBy: null
-            joinTable: {  }
-            orderBy: null
     lifecycleCallbacks:
         prePersist:
             - fixSlug
