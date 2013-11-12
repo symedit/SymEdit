@@ -5,6 +5,13 @@ doctrine:
             Isometriks\Bundle\SymEditBundle\Model\ProfileInterface: %isometriks_symedit.entity.profile_class%
         entity_managers:
             default:
+                mappings:
+                    gedmo_loggable:
+                        type: annotation
+                        prefix: Gedmo\Loggable\Entity
+                        dir: "%kernel.root_dir%/../vendor/gedmo/doctrine-extensions/lib/Gedmo/Loggable/Entity"
+                        alias: GedmoLoggable # this one is optional and will default to the name set for the mapping
+                        is_bundle: false
                 filters:
                     post_published:
                         class: Isometriks\Bundle\SymEditBundle\Filter\PostPublishedFilter
@@ -17,3 +24,5 @@ stof_doctrine_extensions:
             sluggable: true
             sortable: true
             tree: true
+            loggable: true
+            blameable: true
