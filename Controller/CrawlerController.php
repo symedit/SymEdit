@@ -4,6 +4,7 @@ namespace Isometriks\Bundle\SymEditBundle\Controller;
 
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Request;
+use Isometriks\Bundle\SymEditBundle\Iterator\RecursivePageIterator;
 
 class CrawlerController extends Controller
 {
@@ -35,9 +36,10 @@ class CrawlerController extends Controller
         $urls = $sitemap->getUrls();
 
         $root = $this->get('isometriks_symedit.page_manager')->findRoot();
-        $iterator = new \RecursiveIteratorIterator($root, \RecursiveIteratorIterator::SELF_FIRST);
+        $pageIterator = new RecursivePageIterator($root);
+        $recursiveIterator = new \RecursiveIteratorIterator($pageIterator, \RecursiveIteratorIterator::SELF_FIRST);
         
-        foreach ($iterator as $page) {
+        foreach ($recursiveIterator as $page) {
             $urls[] = $this->generateUrl($page->getRoute(), array(), true);
         }
 
