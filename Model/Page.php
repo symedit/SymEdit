@@ -87,12 +87,22 @@ class Page implements PageInterface
      * @var \DateTime $createdAt
      */
     protected $createdAt;
+    
+    /**
+     * @var string $createdBy
+     */
+    protected $createdBy;
 
     /**
      * @var \DateTime $updatedAt
      */
     protected $updatedAt;
 
+    /**
+     * @var string $updatedBy
+     */
+    protected $updatedBy;
+    
     /**
      * @var PageInterface Parent page or null for root
      */
@@ -107,16 +117,6 @@ class Page implements PageInterface
      * @var integer $level
      */
     protected $level;
-
-    /**
-     * @var integer $lft
-     */
-    protected $lft;
-
-    /**
-     * @var integer $rgt
-     */
-    protected $rgt;
 
     /**
      * @var string Template Name
@@ -464,6 +464,16 @@ class Page implements PageInterface
     {
         return $this->createdAt;
     }
+    
+    /**
+     * Get created by
+     * 
+     * @return string
+     */
+    public function getCreatedBy()
+    {
+        return $this->createdBy;
+    }
 
     /**
      * Set updated at
@@ -486,6 +496,16 @@ class Page implements PageInterface
     public function getUpdatedAt()
     {
         return $this->updatedAt;
+    }
+    
+    /**
+     * Get Updated By
+     * 
+     * @return string
+     */
+    public function getUpdatedBy()
+    {
+        return $this->updatedBy;
     }
 
     public function setPath($path)

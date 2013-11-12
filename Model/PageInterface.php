@@ -67,6 +67,11 @@ interface PageInterface extends SeoAbleInterface, \IteratorAggregate
     public function getCreatedAt(); 
     
     /**
+     * @return string $createdBy
+     */
+    public function getCreatedBy();
+    
+    /**
      * @param \DateTime $time
      * @return PageInterface
      */
@@ -76,6 +81,11 @@ interface PageInterface extends SeoAbleInterface, \IteratorAggregate
      * @return \DateTime $updatedAt
      */
     public function getUpdatedAt(); 
+    
+    /**
+     * @return string $updatedBy
+     */
+    public function getUpdatedBy();    
     
     /**
      * @param string $title
