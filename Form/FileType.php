@@ -8,6 +8,13 @@ use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
 class FileType extends AbstractType
 {
+    protected $mediaClass;
+    
+    public function __construct($mediaClass)
+    {
+        $this->mediaClass = $mediaClass;
+    }
+    
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder->addEventSubscriber(new EventListener\FileTypeSubscriber($options)); 
@@ -16,6 +23,7 @@ class FileType extends AbstractType
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
+            'data_class' => $this->mediaClass,
             'require_name' => true,
             'required' => true,
             'callback' => null, 
@@ -28,7 +36,6 @@ class FileType extends AbstractType
 
     public function getName()
     {
-        return 'isometriks_bundle_mediabundle_filetype';
+        return 'isometriks_media';
     }
-
 }
