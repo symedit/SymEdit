@@ -1,0 +1,62 @@
+<?php
+
+namespace Isometriks\Bundle\SymEditBundle\Iterator;
+
+use Isometriks\Bundle\SymEditBundle\Model\PageInterface;
+
+class PageIterator implements \Iterator
+{
+    protected $children;
+    protected $display;
+    protected $position;
+    protected $length;
+    
+    public function __construct(PageInterface $page, $display = true)
+    {
+        $this->children = $page->getChildren();
+        $this->length = count($this->children);
+        $this->display = $display;
+        $this->rewind();
+    }
+    
+    /**
+     * @return PageInterface
+     */
+    public function current()
+    {
+        return $this->children[$this->position];
+    }
+
+    public function key()
+    {
+        return $this->current()->getId();
+    }
+
+    public function next()
+    {
+        $this->position++;
+        
+        while ($this->position < $this->length) {
+             if ($this->valid()) {
+                 break;
+             }
+             
+             $this->position++;
+        }
+    }
+
+    public function rewind()
+    {
+        $this->position = -1;
+        $this->next();
+    }
+
+    public function valid()
+    {
+        if (!isset($this->children[$this->position])) {
+            return false;
+        }
+        
+        return !$this->display || $this->current()->getDisplay();
+    }
+}
