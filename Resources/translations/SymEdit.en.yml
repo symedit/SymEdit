@@ -1,7 +1,11 @@
 admin:
     page:
         title: Title
-        name: Name
+        name: 
+            label: Name
+            popover:
+                title: Page Name
+                content: The Page's "Name" attribute determines the URL of the page. If the page has any parents, it will use them as well. Eg. Root > about-us > team becomes /about-us/team        
         tagline: Tagline
         template: 
             help: It is suggested that you try not to change templates once a page is already constructed, unless they have similar layouts. Templates requiring different content may not be interchangeable. 
@@ -17,17 +21,12 @@ admin:
         crawl:
             label: Crawl
             help: Show this Page on sitemap.xml?
-            
         tabs:
             basic: Basic
             template: Template
             seo: SEO
             content: Content
-            advanced: Advanced
-        popover:
-            title: Page Name
-            content: The Page's "Name" attribute determines the URL of the page. If the page has any parents, it will use them as well. Eg. Root > about-us > team becomes /about-us/team
-            
+            advanced: Advanced            
     file:
         name:
             label: Name
