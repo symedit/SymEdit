@@ -2,6 +2,7 @@
 
 namespace Isometriks\Bundle\SymEditBundle\Widget\Strategy;
 
+use Isometriks\Bundle\SymEditBundle\Iterator\PageIterator;
 use Isometriks\Bundle\SymEditBundle\Model\PageInterface;
 use Isometriks\Bundle\SymEditBundle\Model\WidgetInterface;
 
@@ -18,7 +19,7 @@ class ListChildrenStrategy extends AbstractWidgetStrategy
         
         return $this->render('@SymEdit/Widget/list-children.html.twig', array(
             'page' => $page,
-            'children' => $page->getChildren(),
+            'children' => new PageIterator($page),
         ));
     }
 
