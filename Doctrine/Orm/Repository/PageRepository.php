@@ -2,9 +2,9 @@
 
 namespace Isometriks\Bundle\SymEditBundle\Doctrine\Orm\Repository;
 
-use Gedmo\Tree\Entity\Repository\MaterializedPathRepository;
+use Gedmo\Loggable\Entity\Repository\LogEntryRepository;
 
-class PageRepository extends MaterializedPathRepository
+class PageRepository extends LogEntryRepository
 {
     public function findRoot()
     {

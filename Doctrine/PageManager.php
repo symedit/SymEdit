@@ -53,4 +53,9 @@ class PageManager extends BaseManager
     {
         return $this->repository->findRoot();
     }
+    
+    public function getLogEntries()
+    {
+        return $this->repository->getLogEntries();
+    }
 }
