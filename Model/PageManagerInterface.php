@@ -54,4 +54,11 @@ interface PageManagerInterface
      * Updates a page, will flush by default
      */
     public function updatePage(PageInterface $page, $andFlush = true);
+    
+    /**
+     * Gets log entries
+     * 
+     * @return object|array
+     */
+    public function getLogEntries();
 }
