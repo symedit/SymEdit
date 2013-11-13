@@ -2,26 +2,16 @@
 
 namespace Isometriks\Bundle\SymEditBundle\Form; 
 
-use Isometriks\Bundle\MediaBundle\Form\FileType;
+use Symfony\Component\Form\AbstractType;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 use Symfony\Component\Form\FormView;
 use Symfony\Component\Form\FormInterface;
 
-class ImageType extends FileType
-{
-    protected $mediaClass;
-    
-    public function __construct($mediaClass)
-    {
-        $this->mediaClass = $mediaClass;
-    }
-    
+class ImageType extends AbstractType
+{    
     public function setDefaultOptions(OptionsResolverInterface $resolver)
-    {
-        parent::setDefaultOptions($resolver); 
-        
+    {        
         $resolver->setDefaults(array(
-            'data_class' => $this->mediaClass, 
             'require_name' => true, 
             'required' => true,
             'translation_domain' => 'SymEdit', 
@@ -35,6 +25,11 @@ class ImageType extends FileType
         $view->vars['show_image'] = $options['show_image'];
     }
 
+    public function getParent()
+    {
+        return 'isometriks_media';
+    }
+    
     public function getName()
     {
         return 'symedit_image';
