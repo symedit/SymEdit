@@ -6,7 +6,7 @@
 
     <services>
         <service id="isometriks_media.entity_manager" factory-service="doctrine" factory-method="getManager" class="Doctrine\ORM\EntityManager" public="false">
-            <argument>%isometriks_symedit.model_manager_name%</argument>
+            <argument>%isometriks_media.model_manager_name%</argument>
         </service>
 
         <service id="isometriks_media.media_manager" class="Isometriks\Bundle\MediaBundle\Doctrine\MediaManager">

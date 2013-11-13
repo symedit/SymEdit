@@ -29,6 +29,9 @@ class IsometriksMediaExtension extends Extension
 
         $driver = $config['db_driver'];
         $loader->load(sprintf('driver/%s.xml', $driver));
+        
+        $container->setParameter('isometriks_media.model_manager_name', $config['model_manager_name']);
+        $container->setParameter(sprintf('%s.backend_type_%s', $this->getAlias(), $driver), true);        
 
         /**
          * Set directories

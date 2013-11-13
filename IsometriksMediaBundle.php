@@ -4,7 +4,7 @@ namespace Isometriks\Bundle\MediaBundle;
 
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\HttpKernel\Bundle\Bundle;
-use Isometriks\Bundle\SymEditBundle\DependencyInjection\Compiler\DoctrineMappingsPass;
+use Isometriks\Bundle\MediaBundle\DependencyInjection\Compiler\DoctrineMappingsPass;
 
 class IsometriksMediaBundle extends Bundle
 {
