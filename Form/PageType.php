@@ -20,7 +20,7 @@ class PageType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $basic = $builder->create('basic', 'tab', array(
-            'label' => 'Basic',
+            'label' => 'admin.page.tabs.basic',
             'icon' => 'info-sign',
             'inherit_data' => true,
         ));
@@ -34,10 +34,10 @@ class PageType extends AbstractType
                 'attr' => array(
                     'class' => 'span4',
                 ),
-                'label' => 'admin.page.name',
+                'label' => 'admin.page.name.label',
                 'help_label_popover' => array(
-                    'title' => 'admin.page.popover.title',
-                    'content' => 'admin.page.popover.content',
+                    'title' => 'admin.page.name.popover.title',
+                    'content' => 'admin.page.name.popover.content',
                 ),
             ));
         
@@ -89,7 +89,7 @@ class PageType extends AbstractType
             ));
 
         $template = $builder->create('template', 'tab', array(
-            'label' => 'Template',
+            'label' => 'admin.page.tabs.template',
             'icon' => 'columns',
             'inherit_data' => true,
         ));
@@ -100,7 +100,7 @@ class PageType extends AbstractType
             ));
 
         $seo = $builder->create('seo', 'tab', array(
-            'label' => 'SEO',
+            'label' => 'admin.page.tabs.seo',
             'icon' => 'search',
             'inherit_data' => true,
         ));
@@ -115,7 +115,7 @@ class PageType extends AbstractType
 
 
         $content = $builder->create('content', 'tab', array(
-            'label' => 'Content',
+            'label' => 'admin.page.tabs.content',
             'icon' => 'file',
             'inherit_data' => true,
         ));
@@ -134,7 +134,7 @@ class PageType extends AbstractType
 
 
         $advanced = $builder->create('advanced', 'tab', array(
-            'label' => 'Advanced',
+            'label' => 'admin.page.tabs.advanced',
             'icon' => 'cogs',
             'inherit_data' => true,
         ));
