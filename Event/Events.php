@@ -5,12 +5,14 @@ namespace Isometriks\Bundle\SymEditBundle\Event;
 final class Events
 {
     /**
-     * Dispatched when a new Page is created
+     * Page Events
      */
     const PAGE_CREATED = 'symedit.page.created';
+    const PAGE_VIEW    = 'symedit.page.view';
 
     /**
-     * Dispatched when a new Post is created
+     * Post Events
      */
     const POST_CREATED = 'symedit.post.created';
+    const POST_VIEW    = 'symedit.post.view';
 }
