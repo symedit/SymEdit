@@ -123,6 +123,8 @@ class BlogController extends Controller
      * @Route("/category/{slug}/{page}", defaults={"page"=1, "_format"="html"}, requirements={"slug"=".*?", "page"="\d+"}, name="blog_category_view")
      *
      * @Sitemap(params={"slug"="getSlug"}, entity="Isometriks\Bundle\SymEditBundle\Model\Category")
+     * 
+     * @TODO: Move seo stuff to a listenere that listens for category.view etc.
      */
     public function categoryViewAction($slug, Request $request, $_format, $page = 1)
     {
