@@ -1,19 +1,12 @@
 <!DOCTYPE html>
 <html lang="en-US">
     <head>
-        <title>{% block title %}{{ SEO.title|default(Page.title)|default(Settings.company.name) }}{% endblock %}</title>
+        <title>{% block title %}{{ isometriks_seo_title() }}{% endblock %}</title>
 {% block meta %}
-        <meta charset="UTF-8">
-        <meta name="robots" content="{{ SEO.index ? 'index' : 'noindex' }}, {{ SEO.follow ? 'follow' : 'nofollow' }}" />
-        <meta name="description" content="{% block description %}{{ SEO.description|default(Page.content|plain(150)) }}{% endblock %}" />
-        <meta name="keywords" content="{% block keywords %}{{ SEO.keywords|default('') }}{% endblock %}" />
+{%for meta in isometriks_seo_metas() %}
+        {{ meta|raw }}
+{% endfor %}
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-{% block opengraph %}
-        <meta property="og:title" content="{{ block('title') }}" />
-        <meta property="og:url" content="{% block url %}{{ path(app.request.attributes.get('_route'), app.request.attributes.get('_route_params')) }}{% endblock %}" />
-        <meta property="og:site_name" content="{{ Settings.company.name }}" />
-        <meta property="og:description" content="{{ block('description') }}" />
-{% endblock %}
 {% endblock %}
 {% block stylesheets %}
 {% stylesheets
