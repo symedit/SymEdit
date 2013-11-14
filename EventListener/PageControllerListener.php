@@ -9,7 +9,7 @@ use Isometriks\Bundle\SymEditBundle\Model\PageManagerInterface;
  * Checks the request for a _page_id, and then adds the actual Page
  * to the Request instead.
  */
-class ControllerListener
+class PageControllerListener
 {
     private $pageManager;
 

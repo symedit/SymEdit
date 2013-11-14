@@ -120,7 +120,6 @@ class PageController extends Controller
 
         if ($form->isValid()) {
             $pageManager->updatePage($page);
-            $this->addFlash('notice', 'Page Created');
 
             $event = new PageEvent($page, $request);
             $this->get('event_dispatcher')->dispatch(Events::PAGE_CREATED, $event);

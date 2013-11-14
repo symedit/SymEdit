@@ -1,5 +1,7 @@
 admin:
     page:
+        flash:
+            created: Page Created.
         title: Title
         name: 
             label: Name
@@ -26,7 +28,10 @@ admin:
             template: Template
             seo: SEO
             content: Content
-            advanced: Advanced            
+            advanced: Advanced
+    post:
+        flash:
+            created: Post Created.
     file:
         name:
             label: Name

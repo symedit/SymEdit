@@ -3,6 +3,7 @@
 namespace Isometriks\Bundle\SymEditBundle\Model;
 
 use Symfony\Component\Validator\ExecutionContextInterface;
+use Isometriks\Bundle\SeoBundle\Model\SeoAbleInterface;
 
 interface PageInterface extends SeoAbleInterface, \IteratorAggregate
 {

@@ -1,8 +1,5 @@
 {% extends '@SymEdit/Blog/index.html.twig' %}
 
-{% block title %}{{ SEO.title|default(Post.title) }}{% endblock %}
-{% block description %}{{ SEO.description|default(Post.content|striptags|slice(0,150)) }}{% endblock %}
-
 {% block heading '' %}
 
 {% block blog_content %}

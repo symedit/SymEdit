@@ -3,6 +3,7 @@
 namespace Isometriks\Bundle\SymEditBundle\Model;
 
 use Isometriks\Bundle\MediaBundle\Model\MediaInterface;
+use Isometriks\Bundle\SeoBundle\Model\SeoAbleInterface;
 
 interface PostInterface extends SeoAbleInterface
 {
