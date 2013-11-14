@@ -28,7 +28,7 @@ class IsometriksSymEditExtension extends Extension
         $configFiles = array(
             'services', 'user', 'widget', 'routing',
             'form', 'event', 'twig', 'util', 'profiler',
-            'model', 'menu',
+            'model', 'menu', 'seo',
         );
 
         foreach($configFiles as $file){
