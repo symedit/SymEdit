@@ -2,8 +2,9 @@
 
 namespace Isometriks\Bundle\UserBundle\Form;
 
-use Symfony\Component\Form\FormBuilderInterface;
 use FOS\UserBundle\Form\Type\ProfileFormType as BaseType;
+use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
 class AdminProfileType extends BaseType
 {
@@ -73,12 +74,12 @@ class AdminProfileType extends BaseType
                     'placeholder' => 'http://linkedin.com',
                 ),
             ));
-        
+
         $summary = $builder->create('summary', 'tab', array(
             'label' => 'Summary',
             'inherit_data' => true,
         ));
-        
+
         $summary
             ->add('summary', 'textarea', array(
                     'required' => false,
@@ -88,12 +89,12 @@ class AdminProfileType extends BaseType
                     ),
                     'property_path' => 'profile.summary',
               ));
-        
+
         $biography = $builder->create('biography', 'tab', array(
             'label' => 'Biography',
             'inherit_data' => true,
         ));
-        
+
         $biography
             ->add('biography', 'textarea', array(
                 'required' => false,
@@ -103,26 +104,26 @@ class AdminProfileType extends BaseType
                 ),
                 'property_path' => 'profile.biography',
             ));
-        
+
         $image = $builder->create('image', 'tab', array(
             'label' => 'Image',
             'inherit_data' => true,
         ));
-        
+
         $image
             ->add('image', 'symedit_image', array(
                 'required' => false,
                 'require_name' => false,
                 'property_path' => 'profile.image',
             ));
-        
+
         $roles = $builder->create('roles', 'tab', array(
             'label' => 'Roles',
             'inherit_data' => true,
         ));
-        
+
         $roles->add('roles', 'symedit_role');
-               
+
         /**
          * Build rest of form
          */
@@ -133,6 +134,15 @@ class AdminProfileType extends BaseType
                 ->add($biography)
                 ->add($image)
                 ->add($roles);
+    }
+
+    public function setDefaultOptions(OptionsResolverInterface $resolver)
+    {
+        parent::setDefaultOptions($resolver);
+
+        $resolver->setDefaults(array(
+            'tabs_class' => 'nav nav-pills nav-stacked',
+        ));
     }
 
     public function getName()

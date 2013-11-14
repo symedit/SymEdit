@@ -4,6 +4,7 @@ namespace Isometriks\Bundle\UserBundle\Form;
 
 use Symfony\Component\Form\FormBuilderInterface;
 use FOS\UserBundle\Form\Type\ProfileFormType as BaseType;
+use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
 class UserProfileType extends BaseType
 {
@@ -13,7 +14,7 @@ class UserProfileType extends BaseType
             'inherit_data' => true,
             'label' => 'Basic',
         ));
-        
+
         parent::buildForm($basic, $options);
 
         $basic
@@ -26,9 +27,18 @@ class UserProfileType extends BaseType
                 'required' => false,
                 'property_path' => 'profile.lastName',
             ));
-        
+
         $builder
             ->add($basic);
+    }
+
+    public function setDefaultOptions(OptionsResolverInterface $resolver)
+    {
+        parent::setDefaultOptions($resolver);
+
+        $resolver->setDefaults(array(
+            'tabs_class' => 'nav nav-pills nav-stacked',
+        ));
     }
 
     public function getName()
