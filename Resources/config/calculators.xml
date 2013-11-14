@@ -1,0 +1,25 @@
+<?xml version="1.0" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <!--
+    <parameters>
+    </parameters>
+    -->
+    
+    <services>        
+        <service id="isometriks_seo.event_listener.opengraph" class="Isometriks\Bundle\SeoBundle\EventListener\Seo\OpenGraphCalculator">
+            <tag name="seo.calculator" priority="-100" />
+        </service>
+        
+        <service id="isometriks_seo.event_listener.lang" class="Isometriks\Bundle\SeoBundle\EventListener\Seo\LangCalculator">
+            <tag name="seo.calculator" />
+        </service>
+        
+        <service id="isometriks_seo.event_listener.meta" class="Isometriks\Bundle\SeoBundle\EventListener\Seo\MetaCalculator">
+            <tag name="seo.calculator" priority="-100" />
+        </service>            
+    </services>
+</container>
