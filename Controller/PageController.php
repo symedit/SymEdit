@@ -2,8 +2,10 @@
 
 namespace Isometriks\Bundle\SymEditBundle\Controller;
 
-use Symfony\Component\HttpFoundation\Request;
+use Isometriks\Bundle\SymEditBundle\Event\Events;
+use Isometriks\Bundle\SymEditBundle\Event\PageEvent;
 use Isometriks\Bundle\SymEditBundle\Model\PageInterface;
+use Symfony\Component\HttpFoundation\Request;
 
 class PageController extends Controller
 {
@@ -11,6 +13,9 @@ class PageController extends Controller
     {
         $response = $this->createResponse($_page->getUpdatedAt());
 
+        $event = new PageEvent($_page, $request);
+        $this->container->get('event_dispatcher')->dispatch(Events::PAGE_VIEW, $event);
+        
         if ($response->isNotModified($request)) {
             return $response;
         }

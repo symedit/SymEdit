@@ -82,9 +82,7 @@ class PostController extends Controller
         $form->handleRequest($request);
 
         if ($form->isValid()) {
-
             $postManager->updatePost($post);
-            $this->addFlash('notice', 'Post Created');
 
             $event = new PostEvent($post, $request);
             $this->get('event_dispatcher')->dispatch(Events::POST_CREATED, $event);

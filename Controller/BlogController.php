@@ -2,9 +2,11 @@
 
 namespace Isometriks\Bundle\SymEditBundle\Controller;
 
-use Isometriks\Bundle\SymEditBundle\Model\PostManagerInterface;
-use Isometriks\Bundle\SymEditBundle\Annotation\PageController as Bind;
 use Isometriks\Bundle\SitemapBundle\Annotation\Sitemap;
+use Isometriks\Bundle\SymEditBundle\Annotation\PageController as Bind;
+use Isometriks\Bundle\SymEditBundle\Event\Events;
+use Isometriks\Bundle\SymEditBundle\Event\PostEvent;
+use Isometriks\Bundle\SymEditBundle\Model\PostManagerInterface;
 use Knp\Bundle\PaginatorBundle\Pagination\SlidingPagination;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
@@ -42,7 +44,7 @@ class BlogController extends Controller
          * to noindex since this is duplicate content.
          */
         if ($page !== null) {
-            $this->getSeo()->setIndex(false);
+            $this->getSeo()->noIndex();
         } else {
             $page = 1;
         }
@@ -65,20 +67,21 @@ class BlogController extends Controller
     {
         $post = $this->getPostManager()->findPostBySlug($slug);
         
-        /**
-         * Set SEO to be the posts
-         */
-        $this->setSeo($post->getSeo());
-        
         if (!$post) {
             throw $this->createNotFoundException(sprintf('Post with slug "%s" not found.', $slug));
         }
 
+        /**
+         * Dispatch post view event before cache kicks in so the event still fires
+         */
+        $event = new PostEvent($post, $request);
+        $this->get('event_dispatcher')->dispatch(Events::POST_VIEW, $event);         
+        
         $response = $this->createResponse($post->getUpdatedAt());
 
         if ($response->isNotModified($request)) {
             return $response;
-        }
+        }       
         
         /**
          * Add Breadcrumbs
@@ -133,8 +136,8 @@ class BlogController extends Controller
         /**
          * Set SEO to use category
          */
-        $this->setSeo($category->getSeo());
-
+        $this->getSeo()->setSubject($category);
+        
         $query = $em->createQueryBuilder()
                 ->select('p')
                 ->from('Isometriks\Bundle\SymEditBundle\Model\Post', 'p')
