@@ -2,11 +2,11 @@
 
 namespace Isometriks\Bundle\SymEditBundle\EventListener\Subscriber;
 
-use Symfony\Component\EventDispatcher\EventSubscriberInterface;
-use Isometriks\Bundle\SymEditBundle\Event\Events;
-use Symfony\Component\HttpFoundation\Session\Session;
 use Isometriks\Bundle\SeoBundle\Model\SeoInterface;
+use Isometriks\Bundle\SymEditBundle\Event\Events;
 use Isometriks\Bundle\SymEditBundle\Event\PostEvent;
+use Symfony\Component\EventDispatcher\EventSubscriberInterface;
+use Symfony\Component\HttpFoundation\Session\Session;
 
 class PostSubscriber implements EventSubscriberInterface
 {
