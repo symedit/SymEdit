@@ -61,23 +61,38 @@ img {
         font-size: 13px;
         margin: 0;
         margin-left: 20px;
-        
+
         i {
             margin-right: 5px;
             font-size: 11px;
         }
     }
-    
+
     padding: 10px 0;
     background-color: @blue;
     color: @white;
 }
 
+#title + #flash {
+    margin-top: -4px;
+}
+
 #flash {
-  background-color: @blue;
-  color: @white;
-  padding: 4px 0;
-  font-size: 13px;
+    color: @white;
+    padding: 4px 0;
+    font-size: 13px;
+
+    .flash-message {
+        padding: 4px 0;
+
+        &.message {
+            background-color: @green;
+        }
+
+        &.error {
+            background-color: @warning;
+        }
+    }
 }
 
 #content {
@@ -126,8 +141,8 @@ i[class^="icon-"], i[class*=" icon-"] {
 
 #choose-widget {
     a.thumbnail {
-        margin-bottom: 10px; 
-        
+        margin-bottom: 10px;
+
         &:hover {
             text-decoration: none;
         }
@@ -135,30 +150,30 @@ i[class^="icon-"], i[class*=" icon-"] {
 }
 
 .widget-area {
-    
+
     margin-bottom: 30px;
-    
+
     a, a:hover {
         padding-left: 20px;
         text-decoration: none;
-        
+
         .circle {
             margin: 0 20px 20px 0;
         }
     }
-    
+
     &:last-child {
         margin-bottom: 0;
     }
-    
-    
+
+
     .widget-area-sortable {
-        
+
         .widget {
             clear: both;
             margin-bottom: 12px;
         }
-    
+
         .ui-sortable-placeholder {
             visibility: visible !important;
             border: 1px dotted #888;
