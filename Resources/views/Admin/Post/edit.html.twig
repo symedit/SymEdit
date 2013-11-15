@@ -1,6 +1,6 @@
 {% extends '@SymEdit/Admin/tabbed.html.twig' %}
 
-{% block title %}Blog &raquo; {{ entity.title }} &raquo; Edit{% endblock %}
+{% block title %}Blog &raquo; {{ entity.title|default('(No Title)') }} &raquo; Edit{% endblock %}
 
 {% block action %}{{ path('admin_blog_update', {id:entity.id}) }}{% endblock %}
 
