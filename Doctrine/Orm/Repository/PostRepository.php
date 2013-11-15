@@ -11,6 +11,23 @@ class PostRepository extends EntityRepository
         return $this->getRecentQuery()->getResult();
     }
 
+    public function findPopular($max = null)
+    {
+        $qb = $this->getPopularQueryBuilder();
+
+        if ($max !== null) {
+            $qb->setMaxResults($max);
+        }
+
+        return $qb->getQuery()->getResult();
+    }
+
+    public function getPopularQueryBuilder()
+    {
+        return $this->createQueryBuilder('p')
+                    ->orderBy('p.views', 'desc');
+    }
+
     /**
      * @return \Doctrine\ORM\QueryBuilder
      */

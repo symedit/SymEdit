@@ -8,7 +8,8 @@
         <parameter key="isometriks_symedit.listener.controller.class">Isometriks\Bundle\SymEditBundle\EventListener\PageControllerListener</parameter>
         <parameter key="isometriks_symedit.listener.seo.class">Isometriks\Bundle\SymEditBundle\EventListener\SeoControllerListener</parameter>
         <parameter key="isometriks_symedit.listener.breadcrumb.class">Isometriks\Bundle\SymEditBundle\EventListener\BreadcrumbListener</parameter>
-        
+
+        <parameter key="isometriks_symedit.event_subscriber.view_count.class">Isometriks\Bundle\SymEditBundle\EventListener\Subscriber\ViewCountSubscriber</parameter>
         <parameter key="isometriks_symedit.event_subscriber.page.class">Isometriks\Bundle\SymEditBundle\EventListener\Subscriber\PageSubscriber</parameter>
         <parameter key="isometriks_symedit.event_subscriber.post.class">Isometriks\Bundle\SymEditBundle\EventListener\Subscriber\PostSubscriber</parameter>
     </parameters>
@@ -23,19 +24,25 @@
             <argument type="service" id="isometriks_symedit.breadcrumbs" />
             <tag name="kernel.event_listener" event="kernel.controller" method="onKernelController" priority="12" />
         </service>
-        
+
         <service id="isometriks_symedit.listener.seo" class="%isometriks_symedit.listener.seo.class%">
             <argument type="service" id="isometriks_seo.seo_manager" />
             <tag name="kernel.event_listener" event="kernel.controller" method="onKernelController" priority="6" />
         </service>
-        
+
         <!--  Subscribers -->
-        
+
+        <service id="isometriks_symedit.event_subscriber.view_count" class="%isometriks_symedit.event_subscriber.view_count.class%">
+            <argument type="service" id="isometriks_symedit.page_manager" />
+            <argument type="service" id="isometriks_symedit.post_manager" />
+            <tag name="kernel.event_subscriber" />
+        </service>
+
         <service id="isometriks_symedit.event_subscriber.page" class="%isometriks_symedit.event_subscriber.page.class%">
             <argument type="service" id="session" />
             <tag name="kernel.event_subscriber" />
-        </service>        
-        
+        </service>
+
         <service id="isometriks_symedit.event_subscriber.post" class="%isometriks_symedit.event_subscriber.post.class%">
             <argument type="service" id="session" />
             <argument type="service" id="isometriks_seo.seo" />

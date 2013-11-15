@@ -61,6 +61,11 @@ interface PostManagerInterface
     public function findRecentPosts($max = 3);
 
     /**
+     * @return PostInterface
+     */
+    public function findPopular($max = null);
+
+    /**
      * Get the current post class
      *
      * @return PostInterface $post

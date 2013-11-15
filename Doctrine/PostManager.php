@@ -60,6 +60,11 @@ class PostManager extends BaseManager
         return $this->repository->getRecent($max);
     }
 
+    public function findPopular($max = null)
+    {
+        return $this->repository->findPopular($max);
+    }
+
     public function enableStatusFilter()
     {
         parent::enableStatusFilter();

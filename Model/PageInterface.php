@@ -5,7 +5,7 @@ namespace Isometriks\Bundle\SymEditBundle\Model;
 use Symfony\Component\Validator\ExecutionContextInterface;
 use Isometriks\Bundle\SeoBundle\Model\SeoAbleInterface;
 
-interface PageInterface extends SeoAbleInterface, \IteratorAggregate
+interface PageInterface extends SeoAbleInterface, ViewCountableInterface, \IteratorAggregate
 {
     /**
      * @return mixed Unique ID for Page
@@ -65,29 +65,29 @@ interface PageInterface extends SeoAbleInterface, \IteratorAggregate
     /**
      * @return \DateTime $createdAt
      */
-    public function getCreatedAt(); 
-    
+    public function getCreatedAt();
+
     /**
      * @return string $createdBy
      */
     public function getCreatedBy();
-    
+
     /**
      * @param \DateTime $time
      * @return PageInterface
      */
-    public function setUpdatedAt($time); 
-    
+    public function setUpdatedAt($time);
+
     /**
      * @return \DateTime $updatedAt
      */
-    public function getUpdatedAt(); 
-    
+    public function getUpdatedAt();
+
     /**
      * @return string $updatedBy
      */
-    public function getUpdatedBy();    
-    
+    public function getUpdatedBy();
+
     /**
      * @param string $title
      */
@@ -116,8 +116,8 @@ interface PageInterface extends SeoAbleInterface, \IteratorAggregate
     /**
      * @return integer Page's level
      */
-    public function getLevel(); 
-    
+    public function getLevel();
+
     /**
      * @return integer Page order
      */
@@ -159,15 +159,15 @@ interface PageInterface extends SeoAbleInterface, \IteratorAggregate
 
     /**
      * Set Page's path
-     * 
+     *
      * @param string $path
      * @return PageInterface $page
      */
     public function setPath($path);
-    
+
     /**
      * Gets the page's path
-     * 
+     *
      * @return string $path
      */
     public function getPath();

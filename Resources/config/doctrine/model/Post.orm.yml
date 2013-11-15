@@ -59,6 +59,8 @@ Isometriks\Bundle\SymEditBundle\Model\Post:
             nullable: true
             gedmo:
                 - versioned
+        views:
+            type: integer
     indexes:
         slug_idx:
             columns: [slug]

@@ -5,7 +5,7 @@ namespace Isometriks\Bundle\SymEditBundle\Model;
 use Isometriks\Bundle\MediaBundle\Model\MediaInterface;
 use Isometriks\Bundle\SeoBundle\Model\SeoAbleInterface;
 
-interface PostInterface extends SeoAbleInterface
+interface PostInterface extends SeoAbleInterface, ViewCountableInterface
 {
     public function getId();
 
@@ -14,7 +14,7 @@ interface PostInterface extends SeoAbleInterface
 
     public function setSlug($slug);
     public function getSlug();
-            
+
     public function setContent($content);
     public function getContent();
 

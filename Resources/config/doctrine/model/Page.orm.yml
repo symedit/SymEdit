@@ -109,6 +109,8 @@ Isometriks\Bundle\SymEditBundle\Model\Page:
             nullable: true
             gedmo:
                 - versioned
+        views:
+            type: integer
     indexes:
         path_idx:
             columns: [path]

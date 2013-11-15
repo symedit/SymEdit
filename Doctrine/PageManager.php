@@ -53,9 +53,14 @@ class PageManager extends BaseManager
     {
         return $this->repository->findRoot();
     }
-    
+
     public function getLogEntries()
     {
         return $this->repository->getLogEntries();
+    }
+
+    public function findPopular($max = null)
+    {
+        return $this->repository->findPopular($max);
     }
 }

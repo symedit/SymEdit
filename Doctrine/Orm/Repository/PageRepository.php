@@ -42,4 +42,24 @@ class PageRepository extends LogEntryRepository
     {
         return $this->findOneByPath($path);
     }
+
+    public function findPopular($max = null)
+    {
+        $qb = $this->getPopularQueryBuilder();
+
+        if ($max !== null) {
+            $qb->setMaxResults($max);
+        }
+
+        return $qb->getQuery()->getResult();
+    }
+
+    public function getPopularQueryBuilder()
+    {
+        return $this->createQueryBuilder('p')
+                    ->where('p.root = false')
+                    ->andWhere('p.pageController = false')
+                    ->andWhere('p.display = true')
+                    ->orderBy('p.views', 'desc');
+    }
 }

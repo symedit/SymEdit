@@ -1,15 +1,15 @@
 <?php
 
-namespace Isometriks\Bundle\SymEditBundle\Model; 
+namespace Isometriks\Bundle\SymEditBundle\Model;
 
 use Isometriks\Bundle\SymEditBundle\Model\UserInterface;
 use Isometriks\Bundle\MediaBundle\Model\MediaInterface;
 
 class Post implements PostInterface
 {
-    const DRAFT = 0; 
-    const PUBLISHED = 1; 
-    
+    const DRAFT = 0;
+    const PUBLISHED = 1;
+
     /**
      * @var integer $id
      */
@@ -39,54 +39,60 @@ class Post implements PostInterface
      * @var string $content
      */
     protected $content;
-    
+
     /**
      * @var string $summary
      */
-    protected $summary; 
-    
+    protected $summary;
+
     /**
      * @var \DateTime $createdAt
-     */    
-    protected $createdAt; 
-    
+     */
+    protected $createdAt;
+
     /**
      * @var \DateTime $updatedAt
      */
-    protected $updatedAt; 
-    
+    protected $updatedAt;
+
     /**
      * @var \DateTime $publishedAt
      */
-    protected $publishedAt; 
-    
+    protected $publishedAt;
+
     /**
      * @var ArrayCollection $categories
      */
-    protected $categories; 
-    
+    protected $categories;
+
     /**
      * @var integer $status
      */
-    protected $status; 
-    
+    protected $status;
+
     /**
      * @var array $seo
      */
     protected $seo;
 
-    
+    /**
+     * @var integer $views
+     */
+    protected $views;
+
+
     public function __construct()
     {
-        $this->setCreatedAt(new \DateTime()); 
-        $this->setUpdatedAt(new \DateTime()); 
-        $this->setStatus(self::DRAFT); 
+        $this->setCreatedAt(new \DateTime());
+        $this->setUpdatedAt(new \DateTime());
+        $this->setStatus(self::DRAFT);
+        $this->setViews(0);
     }
-    
+
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -109,7 +115,7 @@ class Post implements PostInterface
     /**
      * Get title
      *
-     * @return string 
+     * @return string
      */
     public function getTitle()
     {
@@ -132,7 +138,7 @@ class Post implements PostInterface
     /**
      * Get slug
      *
-     * @return string 
+     * @return string
      */
     public function getSlug()
     {
@@ -155,7 +161,7 @@ class Post implements PostInterface
     /**
      * Get content
      *
-     * @return string 
+     * @return string
      */
     public function getContent()
     {
@@ -178,7 +184,7 @@ class Post implements PostInterface
     /**
      * Get author
      *
-     * @return Isometriks\Bundle\SymEditBundle\Model\UserInterface 
+     * @return Isometriks\Bundle\SymEditBundle\Model\UserInterface
      */
     public function getAuthor()
     {
@@ -193,13 +199,13 @@ class Post implements PostInterface
      */
     public function setImage(MediaInterface $image = null)
     {
-        $this->image = $image; 
-        
+        $this->image = $image;
+
         if($this->image !== null){
-            $this->setUpdatedAt(new \DateTime()); 
-            $image->setNameCallback(array($this, 'getSlug')); 
+            $this->setUpdatedAt(new \DateTime());
+            $image->setNameCallback(array($this, 'getSlug'));
         }
-        
+
         return $this;
     }
 
@@ -222,14 +228,14 @@ class Post implements PostInterface
     public function setCreatedAt($createdAt)
     {
         $this->createdAt = $createdAt;
-    
+
         return $this;
     }
 
     /**
      * Get createdAt
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getCreatedAt()
     {
@@ -246,14 +252,14 @@ class Post implements PostInterface
     public function setUpdatedAt($updatedAt)
     {
         $this->updatedAt = $updatedAt;
-    
+
         return $this;
     }
 
     /**
      * Get updatedAt
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getUpdatedAt()
     {
@@ -269,7 +275,7 @@ class Post implements PostInterface
     public function addCategory(CategoryInterface $category)
     {
         $this->categories[] = $category;
-    
+
         return $this;
     }
 
@@ -286,7 +292,7 @@ class Post implements PostInterface
     /**
      * Get categories
      *
-     * @return Doctrine\Common\Collections\Collection 
+     * @return Doctrine\Common\Collections\Collection
      */
     public function getCategories()
     {
@@ -302,14 +308,14 @@ class Post implements PostInterface
     public function setSeo(array $seo = array())
     {
         $this->seo = $seo;
-    
+
         return $this;
     }
 
     /**
      * Get seo
      *
-     * @return array 
+     * @return array
      */
     public function getSeo()
     {
@@ -325,14 +331,14 @@ class Post implements PostInterface
     public function setSummary($summary)
     {
         $this->summary = $summary;
-    
+
         return $this;
     }
 
     /**
      * Get summary
      *
-     * @return string 
+     * @return string
      */
     public function getSummary()
     {
@@ -348,27 +354,50 @@ class Post implements PostInterface
     public function setStatus($status)
     {
         $this->status = $status;
-    
+
         return $this;
     }
 
     /**
      * Get status
      *
-     * @return integer 
+     * @return integer
      */
     public function getStatus()
     {
         return $this->status;
     }
-    
+
     /**
      * Whether the post is published or not
-     * 
+     *
      * @return boolean
      */
     public function isPublished()
     {
-        return $this->status === self::PUBLISHED; 
-    }    
+        return $this->status === self::PUBLISHED;
+    }
+
+    public function addView()
+    {
+        if ($this->views === null) {
+            $this->views = 0;
+        }
+        
+        $this->views++;
+
+        return $this;
+    }
+
+    public function getViews()
+    {
+        return $this->views;
+    }
+
+    public function setViews($views)
+    {
+        $this->views = $views;
+
+        return $this;
+    }
 }

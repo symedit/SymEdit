@@ -87,7 +87,7 @@ class Page implements PageInterface
      * @var \DateTime $createdAt
      */
     protected $createdAt;
-    
+
     /**
      * @var string $createdBy
      */
@@ -102,7 +102,7 @@ class Page implements PageInterface
      * @var string $updatedBy
      */
     protected $updatedBy;
-    
+
     /**
      * @var PageInterface Parent page or null for root
      */
@@ -125,6 +125,11 @@ class Page implements PageInterface
 
     protected $active;
 
+    /**
+     * @var integer $views
+     */
+    protected $views;
+
     public function __toString()
     {
         return $this->getRoot() ? 'Root' : sprintf('%s %s', str_repeat('-', $this->getLevel()), $this->getTitle());
@@ -144,6 +149,7 @@ class Page implements PageInterface
         $this->setUpdatedAt(new \DateTime());
         $this->setPageOrder(1000);
         $this->setActive(false);
+        $this->setViews(0);
     }
 
     /**
@@ -464,10 +470,10 @@ class Page implements PageInterface
     {
         return $this->createdAt;
     }
-    
+
     /**
      * Get created by
-     * 
+     *
      * @return string
      */
     public function getCreatedBy()
@@ -497,10 +503,10 @@ class Page implements PageInterface
     {
         return $this->updatedAt;
     }
-    
+
     /**
      * Get Updated By
-     * 
+     *
      * @return string
      */
     public function getUpdatedBy()
@@ -650,7 +656,7 @@ class Page implements PageInterface
     {
         return new RecursivePageIterator($this);
     }
-    
+
     public function isNameValid(ExecutionContextInterface $context)
     {
         if ($this->getHomepage()) {
@@ -667,15 +673,34 @@ class Page implements PageInterface
     public function isParentValid(ExecutionContextInterface $context)
     {
         $page = $this;
-        
+
         while($parent = $page->getParent()) {
             if($this->getId() === $parent->getId()) {
                 $context->addViolationAt('parent', 'Choosing this parent page creates a loop. Please choose another.');
-                
+
                 return;
             }
-            
+
             $page = $parent;
         }
+    }
+
+    public function addView()
+    {
+        if ($this->views === null) {
+            $this->views = 0;
+        }
+
+        $this->views++;
+    }
+
+    public function getViews()
+    {
+        return $this->views;
+    }
+
+    public function setViews($views)
+    {
+        $this->views = $views;
     }
 }

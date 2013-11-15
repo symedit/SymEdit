@@ -54,10 +54,17 @@ interface PageManagerInterface
      * Updates a page, will flush by default
      */
     public function updatePage(PageInterface $page, $andFlush = true);
-    
+
+    /**
+     * Finds popular pages
+     *
+     * @param integer|null $max Maximum number of pages to find
+     */
+    public function findPopular($max = null);
+
     /**
      * Gets log entries
-     * 
+     *
      * @return object|array
      */
     public function getLogEntries();
