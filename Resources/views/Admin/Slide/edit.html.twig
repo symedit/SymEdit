@@ -3,9 +3,9 @@
 {% block title %}Images &raquo; Sliders &raquo; {{ entity.slider.name }} &raquo; Edit Slide{% endblock %}
 
 {% block content %}
-<form class="form-horizontal" action="{{ path('admin_image_slider_slide_update', { 'id': entity.id }) }}" method="post" {{ form_enctype(edit_form) }}>
+<form class="form-horizontal" action="{{ path('admin_image_slider_slide_update', { 'id': entity.id }) }}" method="post" {{ form_enctype(form) }}>
 
-    {{ form_widget(edit_form) }}
+    {{ form_widget(form) }}
 
     <div class="form-actions"> 
         <button class="btn btn-primary" type="submit">Update Slide</button>

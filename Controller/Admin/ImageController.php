@@ -31,7 +31,7 @@ class ImageController extends Controller
     {
         $mediaManager = $this->getMediaManager();
         $entities = $mediaManager->findAll();
-        
+
         return array(
             'entities' => $entities,
         );
@@ -44,7 +44,7 @@ class ImageController extends Controller
     {
         return $this->get('isometriks_media.media_manager');
     }
-    
+
     /**
      * Displays a form to create a new Image entity.
      *
@@ -106,7 +106,7 @@ class ImageController extends Controller
     {
         $mediaManager = $this->getMediaManager();
         $entity = $mediaManager->createMedia();
-        
+
         $form = $this->createCreateForm($entity);
         $form->handleRequest($request);
 
@@ -147,7 +147,7 @@ class ImageController extends Controller
 
         return array(
             'entity'      => $entity,
-            'edit_form'   => $editForm->createView(),
+            'form'        => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
         );
     }
@@ -183,7 +183,7 @@ class ImageController extends Controller
 
         if ($editForm->isValid()) {
             $mediaManager->updateMedia($entity);
-            
+
             $this->addFlash('notice', 'Image Updated');
 
             return $this->redirect($this->generateUrl('admin_image_edit', array('id' => $id)));
@@ -191,7 +191,7 @@ class ImageController extends Controller
 
         return array(
             'entity' => $entity,
-            'edit_form' => $editForm->createView(),
+            'form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
         );
     }
@@ -210,7 +210,7 @@ class ImageController extends Controller
         if ($form->isValid()) {
             $mediaManager = $this->getMediaManager();
             $entity = $mediaManager->find($id);
-            
+
             if (!$entity) {
                 throw $this->createNotFoundException('Unable to find Image entity.');
             }
@@ -263,9 +263,9 @@ class ImageController extends Controller
         $file = $request->files->get('file');
         $name = pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME);
         $nameSlug = Sluggable\Urlizer::urlize($name, '-');
-                
+
         $mediaManager = $this->getMediaManager();
-        
+
         $media = $mediaManager->createMedia();
         $media->setFile($file);
         $media->setName($nameSlug);
