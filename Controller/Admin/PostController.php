@@ -65,7 +65,7 @@ class PostController extends Controller
             'method' => 'POST',
         ));
     }
-    
+
     /**
      * Creates a new Post entity.
      *
@@ -122,7 +122,7 @@ class PostController extends Controller
             'delete_form' => $deleteForm->createView(),
         );
     }
-    
+
     private function createEditForm(PostInterface $post)
     {
         return $this->createForm('symedit_post', $post, array(
@@ -160,9 +160,11 @@ class PostController extends Controller
             return $this->redirect($this->generateUrl('admin_blog_edit', array('id' => $id)));
         }
 
+        $this->addFlash('error', 'Error Updating Post');
+
         return array(
             'entity'      => $post,
-            'edit_form'   => $editForm->createView(),
+            'form'        => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
         );
     }
