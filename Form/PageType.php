@@ -8,15 +8,15 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
-class PageType extends AbstractType 
+class PageType extends AbstractType
 {
     protected $pageManager;
-    
+
     public function __construct(PageManagerInterface $pageManager)
     {
         $this->pageManager = $pageManager;
     }
-    
+
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $basic = $builder->create('basic', 'tab', array(
@@ -40,7 +40,7 @@ class PageType extends AbstractType
                     'content' => 'admin.page.name.popover.content',
                 ),
             ));
-        
+
         /**
          * Fetch Page choices from the recursive iterator, we have to make sure
          * that we allow pages with display = false here so we can't use the
@@ -49,26 +49,26 @@ class PageType extends AbstractType
         $root = $this->pageManager->findRoot();
         $pageIterator = new RecursivePageIterator($root, false);
         $iterator = new \RecursiveIteratorIterator($pageIterator, \RecursiveIteratorIterator::SELF_FIRST);
-        
+
         $choices = array(
             $root->getId() => 'Root',
         );
-        
+
         foreach ($iterator as $page) {
             if ($page->getHomepage()) {
                 continue;
             }
             $choices[$page->getId()] = str_repeat('--', $page->getLevel()).' '.$page->getTitle();
         }
-        
+
         $basic->add(
             $builder->create('parent', 'choice', array(
                 'choices' => $choices,
                 'label' => 'admin.page.parent',
             ))->addModelTransformer(new DataTransformer\PageTransformer($this->pageManager))
         );
-        
-        $basic   
+
+        $basic
             ->add('tagline', 'text', array(
                 'attr' => array('class' => 'span4'),
                 'required' => false,
@@ -129,7 +129,7 @@ class PageType extends AbstractType
                 'required' => false,
                 'label' => 'admin.page.content',
                 'horizontal' => false,
-                'label_render' => false,                
+                'label_render' => false,
             ));
 
 
@@ -159,7 +159,7 @@ class PageType extends AbstractType
             ->add($seo)
             ->add($content)
             ->add($advanced);
-        
+
         $subscriber = new EventListener\PageTypeSubscriber();
         $builder->addEventSubscriber($subscriber);
     }
