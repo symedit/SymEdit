@@ -13,7 +13,7 @@
                 <div class="list-group">
                 {% for page in popularPages %}
                     <a target="_blank" class="list-group-item" href="{{ path(page.route) }}">
-                        <span class="badge">{{ page.views }}</span>
+                        <span class="badge">{{ page.views|number_format }}</span>
                         {{ page.title }}
                     </a>
                 {% endfor %}
@@ -34,7 +34,7 @@
                 <div class="list-group">
                 {% for post in popularPosts %}
                     <a target="_blank" class="list-group-item" href="{{ path('blog_slug_view', {slug: post.slug}) }}">
-                        <span class="badge">{{ post.views }}</span>
+                        <span class="badge">{{ post.views|number_format }}</span>
                         {{ post.title }}
                     </a>
                 {% else %}
