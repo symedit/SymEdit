@@ -95,6 +95,7 @@ Isometriks\Bundle\SymEditBundle\Model\Page:
                     on: update
         updatedBy:
             type: string
+            nullable: true
             gedmo:
                 versioned: ~
                 blameable:
