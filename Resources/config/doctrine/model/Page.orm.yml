@@ -83,6 +83,7 @@ Isometriks\Bundle\SymEditBundle\Model\Page:
                     on: create
         createdBy:
             type: string
+            nullable: true
             gedmo:
                 blameable:
                     on: create
