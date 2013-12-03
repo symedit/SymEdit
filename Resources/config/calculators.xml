@@ -8,18 +8,24 @@
     <parameters>
     </parameters>
     -->
-    
-    <services>        
+
+    <services>
         <service id="isometriks_seo.event_listener.opengraph" class="Isometriks\Bundle\SeoBundle\EventListener\Seo\OpenGraphCalculator">
-            <tag name="seo.calculator" priority="-100" />
+            <tag name="seo.calculator" priority="-250" />
         </service>
-        
+
         <service id="isometriks_seo.event_listener.lang" class="Isometriks\Bundle\SeoBundle\EventListener\Seo\LangCalculator">
             <tag name="seo.calculator" />
         </service>
-        
+
         <service id="isometriks_seo.event_listener.meta" class="Isometriks\Bundle\SeoBundle\EventListener\Seo\MetaCalculator">
             <tag name="seo.calculator" priority="-100" />
-        </service>            
+        </service>
+
+        <service id="isometriks_seo.event_listener.trim" class="Isometriks\Bundle\SeoBundle\EventListener\Seo\OutputCalculator">
+            <argument>%isometriks_seo.limit.title%</argument>
+            <argument>%isometriks_seo.limit.description%</argument>
+            <tag name="seo.calculator" priority="-200" />
+        </service>
     </services>
 </container>

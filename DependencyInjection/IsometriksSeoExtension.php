@@ -22,8 +22,35 @@ class IsometriksSeoExtension extends Extension
         $configuration = new Configuration();
         $config = $this->processConfiguration($configuration, $configs);
 
+        $this->remapParameters($container, $config);
+
         $loader = new Loader\XmlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
         $loader->load('services.xml');
         $loader->load('calculators.xml');
+    }
+
+    protected function remapParameters(ContainerBuilder $container, array $params = array(), $prefix = null)
+    {
+        foreach ($params as $key => $value) {
+            if (is_array($value)) {
+                $this->remapParameters($container, $value, $prefix === null ? $key : $prefix.'.'.$key);
+            } else {
+                $this->remapParameter($container, $key, $value, $prefix);
+            }
+        }
+    }
+
+    protected function remapParameter(ContainerBuilder $container, $key, $value, $prefix = null)
+    {
+        $parameterParts = array($this->getAlias());
+
+        if ($prefix !== null) {
+            $parameterParts[] = $prefix;
+        }
+
+        $parameterParts[] = $key;
+        $parameter = implode('.', $parameterParts);
+
+        $container->setParameter($parameter, $value);
     }
 }
