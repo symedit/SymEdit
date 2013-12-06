@@ -11,7 +11,7 @@ class SliderController extends Controller
         }
 
         $em = $this->getDoctrine()->getManager();
-        $slider = $em->getRepository('IsometriksSymEditBundle:Slider')->findOneByName($name);
+        $slider = $em->getRepository('Isometriks\Bundle\SymEditBundle\Model\Slider')->findOneByName($name);
 
         if (!$slider) {
             throw $this->createNotFoundException(sprintf('Slider "%s" not found.', $name));
