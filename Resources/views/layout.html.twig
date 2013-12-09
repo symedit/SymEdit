@@ -24,7 +24,7 @@
             <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
         <![endif]-->
     </head>
-    <body>
+    {% block body_tag %}<body itemscope itemtype="http://schema.org/WebPage">{% endblock %}
         {% block skip_link %}<a href="#content" class="sr-only">Skip to content</a>{% endblock %}
         <div id="wrap">
         {% block body %}
