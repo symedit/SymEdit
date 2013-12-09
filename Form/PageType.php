@@ -27,13 +27,9 @@ class PageType extends AbstractType
 
         $basic
             ->add('title', 'text', array(
-                'attr' => array('class' => 'span4'),
                 'label' => 'admin.page.title',
             ))
             ->add('name', 'text', array(
-                'attr' => array(
-                    'class' => 'span4',
-                ),
                 'label' => 'admin.page.name.label',
                 'help_label_popover' => array(
                     'title' => 'admin.page.name.popover.title',
@@ -70,7 +66,6 @@ class PageType extends AbstractType
 
         $basic
             ->add('tagline', 'text', array(
-                'attr' => array('class' => 'span4'),
                 'required' => false,
                 'label' => 'admin.page.tagline',
             ))
@@ -81,7 +76,7 @@ class PageType extends AbstractType
             ))
             ->add('summary', 'textarea', array(
                 'attr' => array(
-                    'class' => 'wysiwyg-editor span12',
+                    'class' => 'wysiwyg-editor',
                     'style' => 'height: 250px',
                  ),
                 'label' => 'admin.page.summary',
