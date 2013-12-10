@@ -19,7 +19,7 @@ var Isometriks = (function(){
                 return html;
             }
 
-            return false; 
+            return false;
         },
 
         row: function(){
