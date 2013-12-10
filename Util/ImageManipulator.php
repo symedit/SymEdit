@@ -4,14 +4,14 @@
  * This file is part of SymEdit
  *
  * (c) Craig Blanchette <craig.blanchette@gmail.com>
- * 
+ *
  */
 
 namespace Isometriks\Bundle\MediaBundle\Util;
 
 use Isometriks\Bundle\MediaBundle\Model\MediaInterface;
 
-class ImageManipulator 
+class ImageManipulator
 {
     private $webRoot;
 
@@ -21,7 +21,7 @@ class ImageManipulator
     }
 
     public function constrain($image, $args)
-    {        
+    {
         $image_src = sprintf('%s/%s', $this->webRoot, ltrim($image, '/'));
         $image_web = $image;
 
@@ -39,6 +39,10 @@ class ImageManipulator
             list( $w, $h ) = \getimagesize($image_src);
         } catch (\Exception $e) {
             return $this->error($e->getMessage());
+        }
+
+        if ($h == 0) {
+            return $this->error('no-height');
         }
 
         $ratio = $w / $h;
@@ -86,7 +90,7 @@ class ImageManipulator
 
         if (!is_dir($output_dir)) {
             mkdir($output_dir);
-            chmod($output_dir, 0755); 
+            chmod($output_dir, 0755);
         }
 
         // Does it already exist? Just return it if so!
@@ -102,7 +106,7 @@ class ImageManipulator
         \imagecopyresampled($resized, $this->loadImage($image_src), 0, 0, 0, 0, $nw, $nh, $w, $h);
 
         \imagepng($resized, $output_file);
-        chmod($output_file, 0644); 
+        chmod($output_file, 0644);
 
         return $web_file;
     }
