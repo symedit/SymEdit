@@ -4,5 +4,7 @@
 {% block title %}Profile &raquo; Edit{% endblock %}
 
 {% block form_actions %}
+{{ form_widget(form.basic.current_password, { attr: { placeholder: 'Current Password' }}) }}
+
 <button type="submit" class="btn btn-primary btn-block">Update Profile</button>
 {% endblock %}
