@@ -1,8 +1,5 @@
 company:
     label: Company
-    default_options:
-        attr:
-            class: span5
     settings:
         name:
             options:
@@ -29,8 +26,6 @@ social:
     label: Social Media
     default_options:
         required: false
-        attr:
-            class: span5
     settings:
         facebook:
             type: url
@@ -69,8 +64,6 @@ webmaster:
     role: ROLE_ADMIN_WEBMASTER
     default_options:
         required: false
-        attr:
-            class: span5
     settings:
         google_analytics_enabled:
             type: choice
@@ -104,8 +97,6 @@ webmaster:
                 choices:
                     deny: Deny All
                     allow: Allow All
-                attr:
-                    class: span3
 
 blog:
     label: Blog
