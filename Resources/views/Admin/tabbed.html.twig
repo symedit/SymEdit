@@ -15,29 +15,29 @@
 {% endif %}
 
     <div class="row">
-        <div class="col-lg-2 col-md-3">
-            {% block sidebar %}
-            <div id="sidebar" class="affix-top">
-                {% block tabs %}
-                {% if form is defined %}
-                {{ form_tabs(form) }}
-                {% endif %}
-                {% endblock %}
-
-                <div class="actions">
-                    {% block form_actions %}{% endblock %}
-                </div>
-            </div>
+        {% block sidebar %}
+        <div id="sidebar">
+            {% block tabs %}
+            {% if form is defined %}
+            {{ form_tabs(form) }}
+            {% endif %}
             {% endblock %}
-        </div>
 
-        <div class="col-lg-10 col-md-9">
+            <div class="actions">
+                {% block form_actions %}{% endblock %}
+            </div>
+        </div>
+        {% endblock %}
+
+
+        <div class="col-md-11 col-md-offset-1 col-sm-9 col-sm-offset-3">
             {% block tab_content %}
             {% if form is defined %}
             {{ form_widget(form) }}
             {% endif %}
             {% endblock %}
         </div>
+    </div>
 
 {% if form is defined %}
 {{ form_end(form) }}

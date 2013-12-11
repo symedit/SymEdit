@@ -50,6 +50,11 @@ body {
 
 h1, h2, h3, h4, h5, h6 {
     font-family: @sans_serif;
+
+    &.heading {
+        margin-top: 0;
+        margin-bottom: 20px;
+    }
 }
 
 img {
@@ -68,6 +73,8 @@ img {
         }
     }
 
+    position: relative;
+    z-index: 100;
     padding: 10px 0;
     background-color: @blue;
     color: @white;
@@ -189,27 +196,35 @@ i[class^="icon-"], i[class*=" icon-"] {
  * Sidebar
  */
 #sidebar {
-    background-color: @light_gray;
-    padding: 20px 12px;
-    .rounded(6px);
+    background-color: @dark_gray;
+    padding: 100px 12px 20px 12px;
+    width: 200px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
 
     .nav {
         li {
+            margin-bottom: 5px;
 
             a {
                 .rounded(5px);
-                color: @black;
+                color: @light_gray;
+                border: none;
 
                 &:hover {
                     background-color: darken(@blue, 5%);
                     color: @white;
+                    border: none;
                 }
             }
 
             &.active {
                 a {
-                    background-color: @blue;
+                    background-color: fadeout(@black,10%);
                     color: @white;
+                    border: none;
                 }
             }
         }
