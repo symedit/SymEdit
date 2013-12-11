@@ -42,6 +42,7 @@ social:
         youtube:
             type: url
             options:
+                label: 'YouTube'
                 attr:
                     placeholder: "http://youtube.com"
 
@@ -58,6 +59,12 @@ social:
                 label: LinkedIn
                 attr:
                     placeholder: "http://linkedin.com"
+        pinterest:
+            type: url
+            options:
+                label: Pinterest
+                attr:
+                    placeholder: "http://pinterest.com"
 
 webmaster:
     label: Webmaster
