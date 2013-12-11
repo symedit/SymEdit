@@ -1,7 +1,6 @@
 {% extends '@IsometriksSymEdit/Admin/tabbed.html.twig' %}
 
 {% block title %}Showing Widgets{% endblock %}
-{% block heading '' %}
 
 {% block tabs %}
 <ul class="nav nav-pills nav-stacked">
@@ -39,7 +38,7 @@
             {#<div class="col-md-3">
                 <a href="#" class="thumbnail">
                     <h4>
-                        <i class="icon-plus circle pull-left"></i> 
+                        <i class="icon-plus circle pull-left"></i>
                         Add Widget <br>
                         <small>to "{{ area.area }}"</small>
                     </h4>
@@ -62,30 +61,30 @@
         $(function(){
             var $areas = $('.widget-area-sortable');
             var $form = $('#reorder-form');
-            
+
             function sortStop(e, ui){
-                $target = $(e.target); 
-                
-                var order = 0; 
-                var pairs = []; 
+                $target = $(e.target);
+
+                var order = 0;
+                var pairs = [];
                 $target.find('>.widget').each(function(){
                     pairs.push({
                         name: 'isometriks_widget_reorder[pair]['+$(this).data('id')+']',
                         value: order++
                     });
-                }); 
+                });
 
-                var data = $form.serializeArray().concat(pairs); 
-                
+                var data = $form.serializeArray().concat(pairs);
+
                 console.log(data);
-                
+
                 $.post($form.attr('action'), data);
             }
-            
+
             $areas.sortable({
                 update: sortStop,
                 opacity: .6
-            }).disableSelection(); 
+            }).disableSelection();
         });
     </script>
 {% endblock %}
