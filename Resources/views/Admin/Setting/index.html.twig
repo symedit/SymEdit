@@ -16,6 +16,7 @@
 <div class="tab-content">
 {% for group in form.groups %}
     <div class="tab-pane{% if loop.first %} active{% endif %}" id="setting-{{ group.vars.name }}">
+        <h2 class="heading">{{ group.vars.label }} Settings</h2>
         {{ form_widget(group) }}
     </div>
 {% endfor %}

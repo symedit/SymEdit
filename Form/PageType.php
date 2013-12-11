@@ -120,6 +120,7 @@ class PageType extends AbstractType
                 'attr' => array(
                     'class' => 'wysiwyg-editor',
                     'style' => 'height:500px',
+                    'placeholder' => 'Page content here...',
                 ),
                 'required' => false,
                 'label' => 'admin.page.content',
@@ -163,6 +164,7 @@ class PageType extends AbstractType
     {
         $resolver->setDefaults(array(
             'data_class' => $this->pageManager->getClass(),
+            'tabs_class' => 'nav nav-stacked nav-pills',
             'translation_domain' => 'SymEdit',
         ));
     }

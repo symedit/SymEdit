@@ -6,10 +6,11 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 use Isometriks\Bundle\SymEditBundle\Model\Post;
+use Doctrine\ORM\EntityRepository;
 
-class PostType extends AbstractType {
-
-    private $userClass;
+class PostType extends AbstractType
+{
+    protected $userClass;
 
     public function __construct($userClass)
     {
@@ -21,17 +22,18 @@ class PostType extends AbstractType {
         $basic = $builder->create('basic', 'tab', array(
             'inherit_data' => true,
             'label' => 'Basic',
+            'icon' => 'info-sign',
         ));
 
         $basic
-            ->add('title', 'text', array(
-                'attr' => array(
-                    'class' => 'span5',
-                )
-            ))
+            ->add('title', 'text')
             ->add('author', 'entity', array(
                 'property' => 'profile.fullname',
                 'class'    => $this->userClass,
+                'query_builder' => function(EntityRepository $er) {
+                    return $er->createQueryBuilder('u')
+                              ->andWhere('u.admin = true');
+                },
             ))
             ->add('status', 'choice', array(
                 'choices' => array(
@@ -54,6 +56,7 @@ class PostType extends AbstractType {
         $seo = $builder->create('seo', 'tab', array(
             'inherit_data' => true,
             'label' => 'SEO',
+            'icon' => 'search',
         ));
 
         $seo
@@ -63,6 +66,7 @@ class PostType extends AbstractType {
         $summary = $builder->create('summary', 'tab', array(
             'inherit_data' => true,
             'label' => 'Summary',
+            'icon' => 'file',
         ));
 
         $summary
@@ -100,6 +104,7 @@ class PostType extends AbstractType {
     {
         $resolver->setDefaults(array(
             'data_class' => 'Isometriks\Bundle\SymEditBundle\Model\Post',
+            'tabs_class' => 'nav nav-stacked nav-pills',
             'translation_domain' => 'SymEdit',
         ));
     }
