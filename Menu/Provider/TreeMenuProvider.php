@@ -2,21 +2,27 @@
 
 namespace Isometriks\Bundle\SymEditBundle\Menu\Provider;
 
-use Knp\Menu\Provider\MenuProviderInterface;
-use Isometriks\Bundle\SymEditBundle\Model\PageManagerInterface;
+use Isometriks\Bundle\SymEditBundle\Event\Events;
+use Isometriks\Bundle\SymEditBundle\Event\MenuEvent;
 use Isometriks\Bundle\SymEditBundle\Model\PageInterface;
+use Isometriks\Bundle\SymEditBundle\Model\PageManagerInterface;
+use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Knp\Menu\FactoryInterface;
 use Knp\Menu\MenuItem;
+use Knp\Menu\NodeInterface;
+use Knp\Menu\Provider\MenuProviderInterface;
 
 class TreeMenuProvider implements MenuProviderInterface
 {
     protected $pageManager;
     protected $factory;
+    protected $eventDispatcher;
 
-    public function __construct(FactoryInterface $factory, PageManagerInterface $pageManager)
+    public function __construct(FactoryInterface $factory, PageManagerInterface $pageManager, EventDispatcherInterface $eventDispatcher)
     {
         $this->factory = $factory;
         $this->pageManager = $pageManager;
+        $this->eventDispatcher = $eventDispatcher;
     }
 
     public function get($name, array $options = array())
@@ -25,13 +31,19 @@ class TreeMenuProvider implements MenuProviderInterface
         $menu = $this->factory->createItem('root', $rootOptions);
         $this->populateChildren($menu, $this->getRoot($options));
 
-        return $menu;
+        /**
+         * Dispatch Menu Event
+         */
+        $event = new MenuEvent($menu, 'tree');
+        $this->eventDispatcher->dispatch(Events::MENU_VIEW, $event);
+
+        return $event->getRootNode();
     }
-    
+
     /**
      * Gets root elements from options
-     * 
-     * @return PageInterface 
+     *
+     * @return PageInterface
      */
     protected function getRoot(array $options)
     {
@@ -40,31 +52,31 @@ class TreeMenuProvider implements MenuProviderInterface
         } else {
             $root = $this->pageManager->findRoot();
         }
-        
+
         /**
          * If you provide a 'level' it will move up the tree until it matches
          * your desired level.
          */
         if (isset($options['level'])) {
             $level = $options['level'];
-            
+
             if ($level > ($root->getLevel()+1)) {
                 throw new \Exception(sprintf('Cannot get a level (%d) higher than this page\'s children (%d), '
                                            . 'it is impossible to tell the path', $level, ($root->getLevel()+1)));
             }
-            
+
             while ($root->getLevel() >= $level && $root->getLevel() > 0) {
                 $root = $root->getParent();
             }
         }
-        
+
         return $root;
     }
 
     /**
      *
-     * @param \Knp\Menu\NodeInterface $node
-     * @param \Isometriks\Bundle\SymEditBundle\Model\PageInterface $children
+     * @param NodeInterface $node
+     * @param PageInterface $children
      */
     protected function populateChildren(MenuItem $menu, PageInterface $parent)
     {

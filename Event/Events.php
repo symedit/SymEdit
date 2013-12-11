@@ -15,4 +15,9 @@ final class Events
      */
     const POST_CREATED = 'symedit.post.created';
     const POST_VIEW    = 'symedit.post.view';
+
+    /**
+     * Menu Events
+     */
+    const MENU_VIEW = 'symedit.menu.view';
 }

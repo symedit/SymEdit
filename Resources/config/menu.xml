@@ -14,6 +14,7 @@
         <service id="isometriks_symedit.menu.provider.tree" class="%isometriks_symedit.menu.provider.tree.class%">
             <argument type="service" id="knp_menu.factory" />
             <argument type="service" id="isometriks_symedit.page_manager" />
+            <argument type="service" id="event_dispatcher" />
             <tag name="knp_menu.provider" />
         </service>
 
@@ -29,7 +30,7 @@
         <service factory-service="isometriks_symedit.menu_builder" factory-method="adminMenu" id="isometriks_symedit.menu.admin" class="Knp\Menu\Menuitem">
             <tag name="knp_menu.menu" alias="symedit_admin" />
         </service>
-        
+
         <service factory-service="isometriks_symedit.menu_builder" factory-method="adminUserMenu" id="isometriks_symedit.menu.admin_user" class="Knp\Menu\Menuitem">
             <tag name="knp_menu.menu" alias="symedit_admin_user" />
         </service>

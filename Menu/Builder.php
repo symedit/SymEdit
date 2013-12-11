@@ -2,20 +2,24 @@
 
 namespace Isometriks\Bundle\SymEditBundle\Menu;
 
-use Symfony\Component\DependencyInjection\ContainerInterface;
+use Isometriks\Bundle\SymEditBundle\Event\Events;
+use Isometriks\Bundle\SymEditBundle\Event\MenuEvent;
 use Isometriks\Bundle\SymEditBundle\Model\UserInterface;
+use Symfony\Component\DependencyInjection\ContainerInterface;
 
 class Builder
 {
     protected $container;
     protected $factory;
     protected $context;
+    protected $eventDispatcher;
     protected $extensions;
 
     public function __construct(ContainerInterface $container, $extensions = array())
     {
         $this->factory = $container->get('knp_menu.factory');
         $this->context = $container->get('security.context');
+        $this->eventDispatcher = $container->get('event_dispatcher');
         $this->container = $container;
         $this->extensions = $extensions;
     }
@@ -124,7 +128,13 @@ class Builder
             }
         }
 
-        return $menu;
+        /**
+         * Dispatch Menu Event
+         */
+        $event = new MenuEvent($menu, 'symedit_admin');
+        $this->eventDispatcher->dispatch(Events::MENU_VIEW, $event);
+
+        return $event->getRootNode();
     }
 
     public function adminUserMenu()
@@ -146,6 +156,12 @@ class Builder
         $userMenu->addChild('Change Password', array('route' => 'fos_user_change_password', 'icon' => 'lock'));
         $userMenu->addChild('Logout', array('route' => 'fos_user_security_logout', 'icon' => 'off'));
 
-        return $menu;
+        /**
+         * Dispatch Menu Event
+         */
+        $event = new MenuEvent($menu, 'symedit_admin_user');
+        $this->eventDispatcher->dispatch(Events::MENU_VIEW, $event);
+        
+        return $event->getRootNode();
     }
 }
