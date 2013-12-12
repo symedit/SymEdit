@@ -7,6 +7,7 @@ use Isometriks\Bundle\SymEditBundle\Event\Events;
 use Isometriks\Bundle\SymEditBundle\Event\PostEvent;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\HttpFoundation\Session\Session;
+use Symfony\Component\Routing\Exception\RouteNotFoundException;
 use Symfony\Component\Routing\RouterInterface;
 
 class PostSubscriber implements EventSubscriberInterface
@@ -51,8 +52,12 @@ class PostSubscriber implements EventSubscriberInterface
         $post = $event->getPost();
 
         if ($post->isPublished()) {
-            $url = $this->router->generate('blog_slug_view', array('slug' => $post->getSlug()), true);
-            $this->session->getFlashBag()->add('share', $url);
+            try {
+                $url = $this->router->generate('blog_slug_view', array('slug' => $post->getSlug()), true);
+                $this->session->getFlashBag()->add('share', $url);
+            } catch (RouteNotFoundException $e) {
+                // The route to view posts doesn't exist, so we can't really share it.
+            }
         }
     }
 
