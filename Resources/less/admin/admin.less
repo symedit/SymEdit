@@ -90,15 +90,24 @@ img {
     font-size: 13px;
 
     .flash-message {
-        padding: 4px 0;
+        padding: 4px 0 4px 150px;
 
         &.message {
             background-color: @green;
-            padding-left: 150px;
         }
 
         &.error {
             background-color: @warning;
+        }
+
+        &.share {
+            line-height: 16px;
+            background-color: @dark_gray;
+
+            .share-text {
+                float: left;
+                margin-right: 20px;
+            }
         }
     }
 }

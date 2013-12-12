@@ -3,23 +3,23 @@ admin:
         flash:
             created: Page Created.
         title: Title
-        name: 
+        name:
             label: Name
             popover:
                 title: Page Name
-                content: The Page's "Name" attribute determines the URL of the page. If the page has any parents, it will use them as well. Eg. Root > about-us > team becomes /about-us/team        
+                content: The Page's "Name" attribute determines the URL of the page. If the page has any parents, it will use them as well. Eg. Root > about-us > team becomes /about-us/team
         tagline: Tagline
-        template: 
-            help: It is suggested that you try not to change templates once a page is already constructed, unless they have similar layouts. Templates requiring different content may not be interchangeable. 
+        template:
+            help: It is suggested that you try not to change templates once a page is already constructed, unless they have similar layouts. Templates requiring different content may not be interchangeable.
         parent: Parent
         summary: Summary
         pagecontroller: Page Controller?
-        pagecontrollerpath: 
+        pagecontrollerpath:
             label: Controller Path
             help: When a controller with the path you specify is called, it will inject this Page. Use the PageController Annotation to link them.
-        display: 
+        display:
             label: Display
-            help: Show this Page in Navigation 
+            help: Show this Page in Navigation
         crawl:
             label: Crawl
             help: Show this Page on sitemap.xml?
@@ -32,6 +32,7 @@ admin:
     post:
         flash:
             created: Post Created.
+            updated: Post Updated.
     file:
         name:
             label: Name
@@ -39,11 +40,12 @@ admin:
         file:
             label: File
             help: ''
-            
+
     seo:
         title: Title
         description: Description
         keywords: Keywords
         index: Index
         follow: Follow
-        
+    flash:
+        share: 'Share your content:'

@@ -18,7 +18,7 @@
         {% block navbar %}
         {% include '@SymEdit/Admin/nav.html.twig' %}
         {% endblock %}
-        
+
         {% block heading %}
         <div id="title">
             <div class="container">
@@ -29,11 +29,11 @@
             </div>
         </div>
         {% endblock %}
-        
+
         {% block flash %}
         {% include '@SymEdit/Admin/flash.html.twig' %}
-        {% endblock %}        
-        
+        {% endblock %}
+
         {% block content_container %}
         <div class="container">
             <div id="content">
@@ -49,6 +49,7 @@
             'bundles/isometrikssymedit/js/snippets/*.js' %}
         <script src="{{ asset_url }}" type="text/javascript"></script>
         {% endjavascripts %}
+        <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js"></script>
         <script>
             Isometriks.redactor_options.imageGetJson = "{{ path('admin_image_json') }}";
             Isometriks.redactor_options.imageUpload = "{{ path('admin_image_quick_upload') }}";
