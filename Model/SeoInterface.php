@@ -15,4 +15,8 @@ interface SeoInterface extends SeoAbleInterface
      * @return boolean
      */
     public function hasMeta($type, $key = null);
+
+    public function getSubject();
+
+    public function setSubject($subject, $replace = true);
 }
