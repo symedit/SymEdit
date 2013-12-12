@@ -18,6 +18,7 @@
         <parameter key="isometriks_symedit.widget.strategy.slider.class">Isometriks\Bundle\SymEditBundle\Widget\Strategy\SliderStrategy</parameter>
         <parameter key="isometriks_symedit.widget.strategy.google_map.class">Isometriks\Bundle\SymEditBundle\Widget\Strategy\GoogleMapStrategy</parameter>
         <parameter key="isometriks_symedit.widget.strategy.disqus.class">Isometriks\Bundle\SymEditBundle\Widget\Strategy\DisqusStrategy</parameter>
+        <parameter key="isometriks_symedit.widget.strategy.addthis.class">Isometriks\Bundle\SymEditBundle\Widget\Strategy\AddThisStrategy</parameter>
         <parameter key="isometriks_symedit.widget.strategy.submenu.class">Isometriks\Bundle\SymEditBundle\Widget\Strategy\SubmenuStrategy</parameter>
         <parameter key="isometriks_symedit.widget.strategy.list_children.class">Isometriks\Bundle\SymEditBundle\Widget\Strategy\ListChildrenStrategy</parameter>
     </parameters>
@@ -75,6 +76,10 @@
 
         <service id="isometriks_symedit.widget.strategy.disqus" class="%isometriks_symedit.widget.strategy.disqus.class%">
             <tag name="symedit.widget_strategy" alias="disqus" />
+        </service>
+
+        <service id="isometriks_symedit.widget.strategy.addthis" class="%isometriks_symedit.widget.strategy.addthis.class%">
+            <tag name="symedit.widget_strategy" alias="addthis" />
         </service>
 
         <service id="isometriks_symedit.widget.strategy.submenu" class="%isometriks_symedit.widget.strategy.submenu.class%">
