@@ -153,9 +153,10 @@ class PostController extends Controller
         $editForm->handleRequest($request);
 
         if ($editForm->isValid()) {
-
             $postManager->updatePost($post);
-            $this->addFlash('notice', 'Post Updated');
+
+            $event = new PostEvent($post, $request);
+            $this->get('event_dispatcher')->dispatch(Events::POST_UPDATED, $event);            
 
             return $this->redirect($this->generateUrl('admin_blog_edit', array('id' => $id)));
         }
