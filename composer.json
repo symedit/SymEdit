@@ -13,10 +13,10 @@
     },
     "target-dir": "Isometriks/Bundle/SymEditBundle",
     "require": {
-        "isometriks/user-bundle": "dev-master",
-        "isometriks/settings-bundle": "2.3.*",
-        "isometriks/sitemap-bundle": "2.3.*",
-        "isometriks/media-bundle": "dev-master",
+        "isometriks/user-bundle": "dev-master@dev",
+        "isometriks/settings-bundle": "dev-master@dev",
+        "isometriks/sitemap-bundle": "dev-master@dev",
+        "isometriks/media-bundle": "dev-master@dev",
         "knplabs/knp-menu-bundle": "dev-master",
         "friendsofsymfony/user-bundle": "~2.0@dev"
     },
