@@ -27,7 +27,9 @@ class AddThisStrategy extends AbstractWidgetStrategy
 
     public function setDefaultOptions(WidgetInterface $widget)
     {
-        $widget->setOption('include_script', true);
+        $widget->setOptions(array(
+            'include_script' => true,
+        ));
     }
 
     public function getName()
