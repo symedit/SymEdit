@@ -9,15 +9,13 @@
                     Most Popular Pages
                 </h3>
             </div>
-            <div class="panel-body">
-                <div class="list-group">
-                {% for page in popularPages %}
-                    <a target="_blank" class="list-group-item" href="{{ path(page.route) }}">
-                        <span class="badge">{{ page.views|number_format }}</span>
-                        {{ page.title }}
-                    </a>
-                {% endfor %}
-                </div>
+            <div class="list-group">
+            {% for page in popularPages %}
+                <a target="_blank" class="list-group-item" href="{{ path(page.route) }}">
+                    <span class="badge">{{ page.views|number_format }}</span>
+                    {{ page.title }}
+                </a>
+            {% endfor %}
             </div>
         </div>
     </div>
@@ -30,17 +28,15 @@
                     Most Popular Posts
                 </h3>
             </div>
-            <div class="panel-body">
-                <div class="list-group">
-                {% for post in popularPosts %}
-                    <a target="_blank" class="list-group-item" href="{{ path('blog_slug_view', {slug: post.slug}) }}">
-                        <span class="badge">{{ post.views|number_format }}</span>
-                        {{ post.title }}
-                    </a>
-                {% else %}
-                    <div class="list-group-item">No Posts to Display</div>
-                {% endfor %}
-                </div>
+            <div class="list-group">
+            {% for post in popularPosts %}
+                <a target="_blank" class="list-group-item" href="{{ path('blog_slug_view', {slug: post.slug}) }}">
+                    <span class="badge">{{ post.views|number_format }}</span>
+                    {{ post.title }}
+                </a>
+            {% else %}
+                <div class="list-group-item">No Posts to Display</div>
+            {% endfor %}
             </div>
         </div>
     </div>
