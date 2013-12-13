@@ -61,24 +61,19 @@
                 <form method="post">
                     <div class="row">
                         <div class="col-md-4">
-                            <h6>Name*</h6>
-                            {{ form_widget(form.name) }}
+                            {{ form_row(form.name) }}
                         </div>
 
                         <div class="col-md-4">
-                            <h6>Email</h6>
-                            {{ form_widget(form.email) }}
+                            {{ form_row(form.email) }}
                         </div>
 
                         <div class="col-md-4">
-                            <h6>Phone*</h6>
-                            {{ form_widget(form.phone) }}
+                            {{ form_row(form.phone) }}
                         </div>
                     </div>
 
-                    <h6>Your Message*</h6>
-
-                    {{ form_widget(form.message, { attr: { rows: 5 }}) }}
+                    {{ form_row(form.message) }}
 
                     {{ form_rest(form) }}
 
