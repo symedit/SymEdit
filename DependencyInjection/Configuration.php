@@ -20,11 +20,11 @@ class Configuration implements ConfigurationInterface
         $treeBuilder = new TreeBuilder();
         $rootNode = $treeBuilder->root('isometriks_symedit');
 
-        $supportedDrivers = array('orm', 'mongodb');
-        
+        $supportedDrivers = array('doctrine/orm', 'doctrine/mongodb');
+
         $rootNode
             ->children()
-                ->scalarNode('db_driver')
+                ->scalarNode('driver')
                     ->validate()
                         ->ifNotInArray($supportedDrivers)
                         ->thenInvalid('The driver %s is not supported. Choose one of '.json_encode($supportedDrivers))

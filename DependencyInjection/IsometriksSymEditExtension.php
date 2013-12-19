@@ -8,11 +8,6 @@ use Symfony\Component\HttpKernel\DependencyInjection\Extension;
 use Symfony\Component\DependencyInjection\Loader;
 use Symfony\Component\DependencyInjection\Loader\FileLoader;
 
-/**
- * This is the class that loads and manages your bundle configuration
- *
- * To learn more see {@link http://symfony.com/doc/current/cookbook/bundles/extension.html}
- */
 class IsometriksSymEditExtension extends Extension
 {
     /**
@@ -39,34 +34,34 @@ class IsometriksSymEditExtension extends Extension
          * Load DB Driver
          */
         $this->loadDbDriver($container, $config, $loader);
-        
+
         $this->remapParameters($container, 'email', $config['email']);
         $this->remapParameters($container, 'fragment', $config['fragment']);
         $this->remapParameters($container, 'profile', $config['profile']);
-        
+
         $container->setParameter('isometriks_symedit.extensions.routes', $config['extensions']);
         $container->setParameter('isometriks_symedit.admin_dir', $config['admin_dir']);
     }
-    
+
     private function loadDbDriver(ContainerBuilder $container, array $config, FileLoader $loader)
     {
-        $driver = $config['db_driver'];
+        $driver = $config['driver'];
         $container->setParameter('isometriks_symedit.model_manager_name', $config['model_manager_name']);
-        $container->setParameter(sprintf('%s.backend_type_%s', $this->getAlias(), $driver), true);
-        
-        $container->setParameter('isometriks_symedit.db_driver', $driver);
-        $loader->load(sprintf('driver/%s.xml', $driver));        
+        $container->setParameter(sprintf('%s.driver', $this->getAlias()), $driver);
+        $container->setParameter(sprintf('%s.driver.%s', $this->getAlias(), $driver), true);
+
+        $loader->load(sprintf('driver/%s.xml', $driver));
     }
 
     private function remapParameters(ContainerBuilder $container, $path, array $config)
-    {        
+    {
         $prefix = rtrim($this->getAlias().'.'.$path, '.');
-        
+
         foreach ($config as $key => $value) {
             $container->setParameter(sprintf('%s.%s', $prefix, $key), $value);
         }
     }
-    
+
     public function getAlias()
     {
         return 'isometriks_symedit';
