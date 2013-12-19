@@ -5,15 +5,15 @@ namespace Isometriks\Bundle\SymEditBundle\Routing;
 use Symfony\Component\Config\Loader\Loader as BaseLoader;
 use Symfony\Component\Routing\RouteCollection;
 use Symfony\Component\Routing\Route;
-use Isometriks\Bundle\SymEditBundle\Model\PageManagerInterface;
+use Sylius\Bundle\ResourceBundle\Model\RepositoryInterface;
 
 class PageLoader extends BaseLoader
 {
-    private $pageManager;
+    protected $pageRepository;
 
-    public function __construct(PageManagerInterface $pageManager)
+    public function __construct(RepositoryInterface $pageRepository)
     {
-        $this->pageManager = $pageManager;
+        $this->pageRepository = $pageRepository;
     }
 
     /**
@@ -23,7 +23,7 @@ class PageLoader extends BaseLoader
      */
     public function load($resource = null, $type = null)
     {
-        $pages = $this->pageManager->findPagesBy(array(
+        $pages = $this->pageRepository->findBy(array(
             'pageController' => false,
             'root' => false,
             'display' => true,

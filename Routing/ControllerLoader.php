@@ -3,7 +3,7 @@
 namespace Isometriks\Bundle\SymEditBundle\Routing;
 
 use Doctrine\Common\Annotations\Reader;
-use Isometriks\Bundle\SymEditBundle\Model\PageManagerInterface;
+use Sylius\Bundle\ResourceBundle\Model\RepositoryInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Routing\AnnotatedRouteControllerLoader;
 use Symfony\Component\Routing\RouteCollection;
 
@@ -13,19 +13,19 @@ use Symfony\Component\Routing\RouteCollection;
 class ControllerLoader extends AnnotatedRouteControllerLoader
 {
 
-    protected $pageManager;
+    protected $pageRepository;
     protected $controllerAnnotationClass = 'Isometriks\\Bundle\\SymEditBundle\\Annotation\\PageController';
 
     /**
      * Constructor.
      *
      * @param Reader $reader
-     * @param PageManagerInterface $pageManager
+     * @param RepositoryInterface $pageRepository
      */
-    public function __construct(Reader $reader, PageManagerInterface $pageManager)
+    public function __construct(Reader $reader, RepositoryInterface $pageRepository)
     {
         parent::__construct($reader);
-        $this->pageManager = $pageManager;
+        $this->pageRepository = $pageRepository;
     }
 
     public function load($class, $type = null)
@@ -36,7 +36,7 @@ class ControllerLoader extends AnnotatedRouteControllerLoader
         if ($annot = $this->reader->getClassAnnotation($class, $this->controllerAnnotationClass)) {
             $path = $annot->getName();
 
-            $page = $this->pageManager->findPageBy(array(
+            $page = $this->pageRepository->findOneBy(array(
                 'pageController' => true,
                 'pageControllerPath' => $path
             ));
