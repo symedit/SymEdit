@@ -1,10 +1,8 @@
 doctrine:
     orm:
-        resolve_target_entities:
-            Isometriks\Bundle\SymEditBundle\Model\UserInterface: Isometriks\Bundle\SymEditBundle\Model\User
-            Isometriks\Bundle\SymEditBundle\Model\ProfileInterface: %isometriks_symedit.entity.profile_class%
         entity_managers:
             default:
+                auto_mapping: true
                 mappings:
                     gedmo_loggable:
                         type: annotation
@@ -12,10 +10,6 @@ doctrine:
                         dir: "%kernel.root_dir%/../vendor/gedmo/doctrine-extensions/lib/Gedmo/Loggable/Entity"
                         alias: GedmoLoggable # this one is optional and will default to the name set for the mapping
                         is_bundle: false
-                filters:
-                    post_published:
-                        class: Isometriks\Bundle\SymEditBundle\Filter\PostPublishedFilter
-                        enabled: true
 
 stof_doctrine_extensions:
     orm:
