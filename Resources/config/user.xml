@@ -7,17 +7,17 @@
     <parameters>
         <parameter key="isometriks_symedit.user_manager.class">Isometriks\Bundle\SymEditBundle\Doctrine\UserManager</parameter>
     </parameters>
-    
+
     <services>
         <service id="isometriks_symedit.user_manager" parent="fos_user.user_manager.default" class="%isometriks_symedit.user_manager.class%">
             <call method="setProfileClass">
-                <argument>%isometriks_symedit.entity.profile_class%</argument>
+                <argument>%isometriks_symedit.model.profile.class%</argument>
             </call>
-            
+
             <call method="setAdminProfileClass">
-                <argument>%isometriks_symedit.entity.admin_profile_class%</argument>
+                <argument>%isometriks_symedit.model.admin_profile.class%</argument>
             </call>
         </service>
     </services>
-    
+
 </container>
