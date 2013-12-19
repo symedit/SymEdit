@@ -45,5 +45,5 @@ Isometriks\Bundle\SymEditBundle\Model\Widget:
             nullable: false
     manyToOne:
         area:
-            targetEntity: Isometriks\Bundle\SymEditBundle\Model\WidgetArea
+            targetEntity: Isometriks\Bundle\SymEditBundle\Model\WidgetAreaInterface
             inversedBy: widgets

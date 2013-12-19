@@ -73,5 +73,13 @@ Isometriks\Bundle\SymEditBundle\Model\Post:
             targetEntity: Isometriks\Bundle\SymEditBundle\Model\UserInterface
     manyToMany:
         categories:
-            targetEntity: Isometriks\Bundle\SymEditBundle\Model\Category
+            joinTable:
+                name: post_category
+                joinColumns:
+                    category_id:
+                        referenceColumnName: id
+                inverseJoinColumns:
+                    post_id:
+                        referenceColumnName: id
+            targetEntity: Isometriks\Bundle\SymEditBundle\Model\CategoryInterface
             inversedBy: posts

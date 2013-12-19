@@ -22,7 +22,7 @@ Isometriks\Bundle\SymEditBundle\Model\Category:
             nullable: true
     manyToOne:
         parent:
-            targetEntity: Isometriks\Bundle\SymEditBundle\Model\Category
+            targetEntity: Isometriks\Bundle\SymEditBundle\Model\CategoryInterface
             inversedBy: children
             joinColumns:
                 parent:
@@ -30,14 +30,14 @@ Isometriks\Bundle\SymEditBundle\Model\Category:
                     onDelete: 'SET NULL'
     oneToMany:
         children:
-            targetEntity: Isometriks\Bundle\SymEditBundle\Model\Category
+            targetEntity: Isometriks\Bundle\SymEditBundle\Model\CategoryInterface
             cascade:
                 - remove
                 - persist
             mappedBy: parent
     manyToMany:
         posts:
-            targetEntity: Isometriks\Bundle\SymEditBundle\Model\Post
+            targetEntity: Isometriks\Bundle\SymEditBundle\Model\PostInterface
             mappedBy: categories
     lifecycleCallbacks:
         prePersist:

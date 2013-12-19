@@ -28,7 +28,7 @@ Isometriks\Bundle\SymEditBundle\Model\Slider:
             precision: 0
     oneToMany:
         slides:
-            targetEntity: Isometriks\Bundle\SymEditBundle\Model\Slide
+            targetEntity: Isometriks\Bundle\SymEditBundle\Model\SlideInterface
             cascade: {  }
             mappedBy: slider
             inversedBy: null
