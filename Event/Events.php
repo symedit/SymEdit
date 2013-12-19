@@ -7,18 +7,19 @@ final class Events
     /**
      * Page Events
      */
-    const PAGE_CREATED = 'symedit.page.created';
-    const PAGE_VIEW    = 'symedit.page.view';
+    const PAGE_CREATED  = 'isometriks_symedit.page.create';
+    const PAGE_UPDATED  = 'isometriks_symedit.page.update';
+    const PAGE_VIEW     = 'isometriks_symedit.page.view';
 
     /**
      * Post Events
      */
-    const POST_CREATED = 'symedit.post.created';
-    const POST_UPDATED = 'symedit.post.updated';
-    const POST_VIEW    = 'symedit.post.view';
+    const POST_CREATED  = 'isometriks_symedit.post.create';
+    const POST_UPDATED  = 'isometriks_symedit.post.update';
+    const POST_VIEW     = 'isometriks_symedit.post.view';
 
     /**
      * Menu Events
      */
-    const MENU_VIEW = 'symedit.menu.view';
+    const MENU_VIEW     = 'isometriks_symedit.menu.view';
 }
