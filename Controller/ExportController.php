@@ -15,10 +15,17 @@ class ExportController extends Controller
      */
     public function indexAction()
     {
-        $repository = $this->get('isometriks_symedit.repository.page');
-        $pages = $repository->findBy(array(
-            'root' => false,
-        ));
+        if ($this->container->has('isometriks_symedit.repository.page')) {
+            $repository = $this->get('isometriks_symedit.repository.page');
+            $pages = $repository->findBy(array(
+                'root' => false,
+            ));
+        } else {
+            $repository = $this->get('isometriks_symedit.page_manager');
+            $pages = $repository->findPagesBy(array(
+                'root' => false,
+            ));
+        }
 
         $fh = fopen('php://temp', 'w+');
 
