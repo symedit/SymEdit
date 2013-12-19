@@ -50,7 +50,7 @@ class Builder
          */
         if ($this->context->isGranted('ROLE_ADMIN_PAGE')) {
             $content->addChild('Pages', array('dropdown-header' => true));
-            $content->addChild('New Page', array('route' => 'admin_page_new', 'icon' => 'edit'));
+            $content->addChild('New Page', array('route' => 'admin_page_create', 'icon' => 'edit'));
             $content->addChild('List Pages', array('route' => 'admin_page', 'icon' => 'file'));
         }
 
@@ -59,8 +59,8 @@ class Builder
          */
         if ($this->context->isGranted('ROLE_ADMIN_BLOG')) {
             $content->addChild('Blog', array('dropdown-header' => true));
-            $content->addChild('New Post', array('route' => 'admin_blog_new', 'icon' => 'edit'));
-            $content->addChild('List Posts', array('route' => 'admin_blog', 'icon' => 'th-list'));
+            $content->addChild('New Post', array('route' => 'admin_post_create', 'icon' => 'edit'));
+            $content->addChild('List Posts', array('route' => 'admin_post', 'icon' => 'th-list'));
             $content->addChild('List Categories', array('route' => 'admin_blog_category', 'icon' => 'tags'));
         }
 
@@ -161,7 +161,7 @@ class Builder
          */
         $event = new MenuEvent($menu, 'symedit_admin_user');
         $this->eventDispatcher->dispatch(Events::MENU_VIEW, $event);
-        
+
         return $event->getRootNode();
     }
 }
