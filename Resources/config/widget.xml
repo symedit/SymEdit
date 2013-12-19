@@ -51,12 +51,12 @@
         </service>
 
         <service id="isometriks_symedit.widget.strategy.blog_recent_posts" class="%isometriks_symedit.widget.strategy.blog_recent_posts.class%">
-            <argument type="service" id="isometriks_symedit.post_manager" />
+            <argument type="service" id="isometriks_symedit.repository.post" />
             <tag name="symedit.widget_strategy" alias="blog_recent_posts" />
         </service>
 
         <service id="isometriks_symedit.widget.strategy.blog_popular_posts" class="%isometriks_symedit.widget.strategy.blog_popular_posts.class%">
-            <argument type="service" id="isometriks_symedit.post_manager" />
+            <argument type="service" id="isometriks_symedit.repository.post" />
             <tag name="symedit.widget_strategy" alias="blog_popular_posts" />
         </service>
 
