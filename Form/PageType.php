@@ -2,7 +2,7 @@
 
 namespace Isometriks\Bundle\SymEditBundle\Form;
 
-use Isometriks\Bundle\SymEditBundle\Model\PageManagerInterface;
+use Sylius\Bundle\ResourceBundle\Model\RepositoryInterface;
 use Isometriks\Bundle\SymEditBundle\Iterator\RecursivePageIterator;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -10,11 +10,11 @@ use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
 class PageType extends AbstractType
 {
-    protected $pageManager;
+    protected $pageRepository;
 
-    public function __construct(PageManagerInterface $pageManager)
+    public function __construct(RepositoryInterface $pageRepository)
     {
-        $this->pageManager = $pageManager;
+        $this->pageRepository = $pageRepository;
     }
 
     public function buildForm(FormBuilderInterface $builder, array $options)
@@ -42,7 +42,7 @@ class PageType extends AbstractType
          * that we allow pages with display = false here so we can't use the
          * default
          */
-        $root = $this->pageManager->findRoot();
+        $root = $this->pageRepository->findOneBy(array('root' => true));
         $pageIterator = new RecursivePageIterator($root, false);
         $iterator = new \RecursiveIteratorIterator($pageIterator, \RecursiveIteratorIterator::SELF_FIRST);
 
@@ -61,7 +61,7 @@ class PageType extends AbstractType
             $builder->create('parent', 'choice', array(
                 'choices' => $choices,
                 'label' => 'admin.page.parent',
-            ))->addModelTransformer(new DataTransformer\PageTransformer($this->pageManager))
+            ))->addModelTransformer(new DataTransformer\PageTransformer($this->pageRepository))
         );
 
         $basic
@@ -163,7 +163,7 @@ class PageType extends AbstractType
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => $this->pageManager->getClass(),
+            'data_class' => $this->pageRepository->getClassName(),
             'tabs_class' => 'nav nav-stacked nav-pills',
             'translation_domain' => 'SymEdit',
         ));
@@ -171,6 +171,6 @@ class PageType extends AbstractType
 
     public function getName()
     {
-        return 'symedit_page';
+        return 'isometriks_symedit_page';
     }
 }

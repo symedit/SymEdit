@@ -23,10 +23,10 @@
         <service id="isometriks_symedit.form.contact" class="%isometriks_symedit.form.contact.class%">
             <tag name="form.type" alias="symedit_contact" />
         </service>
-        
+
         <service id="isometriks_symedit.form.type.page" class="%isometriks_symedit.form.type.page.class%">
-            <argument type="service" id="isometriks_symedit.page_manager" />
-            <tag name="form.type" alias="symedit_page" />
+            <argument type="service" id="isometriks_symedit.repository.page" />
+            <tag name="form.type" alias="isometriks_symedit_page" />
         </service>
 
         <service id="isometriks_symedit.form.type.template" class="%isometriks_symedit.form.type.template.class%">
