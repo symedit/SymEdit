@@ -4,6 +4,7 @@ namespace Isometriks\Bundle\SymEditBundle\EventListener\Subscriber;
 
 use Isometriks\Bundle\SeoBundle\Model\SeoInterface;
 use Isometriks\Bundle\SymEditBundle\Event\Events;
+use Sylius\Bundle\ResourceBundle\Event\ResourceEvent;
 use Isometriks\Bundle\SymEditBundle\Event\PostEvent;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\HttpFoundation\Session\Session;
@@ -32,7 +33,7 @@ class PostSubscriber implements EventSubscriberInterface
         );
     }
 
-    public function postCreated(PostEvent $event)
+    public function postCreated(ResourceEvent $event)
     {
         /**
          * Add Created Notice
@@ -41,15 +42,15 @@ class PostSubscriber implements EventSubscriberInterface
         $this->addShare($event);
     }
 
-    public function postUpdated(PostEvent $event)
+    public function postUpdated(ResourceEvent $event)
     {
         $this->session->getFlashBag()->add('notice', 'admin.post.flash.updated');
         $this->addShare($event);
     }
 
-    protected function addShare(PostEvent $event)
+    protected function addShare(ResourceEvent $event)
     {
-        $post = $event->getPost();
+        $post = $event->getSubject();
 
         if ($post->isPublished()) {
             try {
