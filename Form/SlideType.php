@@ -26,7 +26,7 @@ class SlideType extends AbstractType
                     'right' => 'Right',
                 )
             ))
-            ->add('image', 'symedit_image', array(
+            ->add('image', 'isometriks_symedit_image', array(
                 'file_label' => 'Slider Image',
                 'name_label' => 'Slider File Name',
             ))

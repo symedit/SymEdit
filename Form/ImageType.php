@@ -32,6 +32,6 @@ class ImageType extends AbstractType
     
     public function getName()
     {
-        return 'symedit_image';
+        return 'isometriks_symedit_image';
     }
 }

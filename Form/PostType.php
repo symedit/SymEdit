@@ -47,7 +47,7 @@ class PostType extends AbstractType
                 'multiple' => true,
                 'expanded'  => true,
             ))
-            ->add('image', 'symedit_image', array(
+            ->add('image', 'isometriks_symedit_image', array(
                 'require_name' => false,
                 'required' => false,
                 'label' => 'Featured Image',
@@ -111,7 +111,7 @@ class PostType extends AbstractType
 
     public function getName()
     {
-        return 'symedit_post';
+        return 'isometriks_symedit_post';
     }
 
 }
