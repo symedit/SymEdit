@@ -2,6 +2,7 @@
 
 namespace Isometriks\Bundle\SymEditBundle;
 
+use Sylius\Bundle\ResourceBundle\DependencyInjection\Compiler\ResolveDoctrineTargetEntitiesPass;
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 use Symfony\Component\HttpKernel\Kernel;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
@@ -29,14 +30,25 @@ class IsometriksSymEditBundle extends Bundle
 
     public function build(ContainerBuilder $container)
     {
-        parent::build($container);
+        $interfaces = array(
+            'Isometriks\Bundle\SymEditBundle\Model\UserInterface'       => 'isometriks_symedit.model.user.class',
+            'Isometriks\Bundle\SymEditBundle\Model\ProfileInterface'    => 'isometriks_symedit.model.profile.class',
+            'Isometriks\Bundle\SymEditBundle\Model\PageInterface'       => 'isometriks_symedit.model.page.class',
+            'Isometriks\Bundle\SymEditBundle\Model\PostInterface'       => 'isometriks_symedit.model.post.class',
+            'Isometriks\Bundle\SymEditBundle\Model\CategoryInterface'   => 'isometriks_symedit.model.category.class',
+            'Isometriks\Bundle\SymEditBundle\Model\SlideInterface'      => 'isometriks_symedit.model.slide.class',
+            'Isometriks\Bundle\SymEditBundle\Model\SliderInterface'     => 'isometriks_symedit.model.slider.class',
+            'Isometriks\Bundle\SymEditBundle\Model\WidgetAreaInterface' => 'isometriks_symedit.model.widget_area.class',
+            'Isometriks\Bundle\SymEditBundle\Model\WidgetInterface'     => 'isometriks_symedit.model.widget.class',
+        );
 
+        $container->addCompilerPass(new ResolveDoctrineTargetEntitiesPass('isometriks_symedit', $interfaces));
         $container->addCompilerPass(new AnnotationLoaderCompilerPass());
         $container->addCompilerPass(new TwigExceptionCompilerPass());
         $container->addCompilerPass(new WidgetStrategyCompilerPass());
         $container->addCompilerPass(new TwigPathCompilerPass($this->kernel));
         $container->addCompilerPass(new ProfileTypeCompilerPass());
-        
+
         /**
          * Add Doctrine Mappings
          */
