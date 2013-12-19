@@ -6,4 +6,6 @@ imports:
     - { resource: "@IsometriksSymEditBundle/Resources/config/config/jms_security_extra.yml" }
     - { resource: "@IsometriksSymEditBundle/Resources/config/config/mopa_bootstrap.yml" }
     - { resource: "@IsometriksSymEditBundle/Resources/config/config/knp_paginator.yml" }
+    - { resource: "@IsometriksSymEditBundle/Resources/config/config/white_october_pagerfanta.yml" }
     - { resource: "@IsometriksSymEditBundle/Resources/config/config/twig.yml" }
+    - { resource: "@IsometriksSymEditBundle/Resources/config/config/resources.yml" }
