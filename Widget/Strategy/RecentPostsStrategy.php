@@ -3,23 +3,32 @@
 namespace Isometriks\Bundle\SymEditBundle\Widget\Strategy;
 
 use Isometriks\Bundle\SymEditBundle\Model\PageInterface;
-use Isometriks\Bundle\SymEditBundle\Model\PostManagerInterface;
+use Isometriks\Bundle\SymEditBundle\Model\Post;
 use Isometriks\Bundle\SymEditBundle\Model\WidgetInterface;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Validator\Constraints\Range;
+use Sylius\Bundle\ResourceBundle\Model\RepositoryInterface;
 
 class RecentPostsStrategy extends AbstractWidgetStrategy
 {
-    private $postManager;
+    private $postRepository;
 
-    public function __construct(PostManagerInterface $postManager)
+    public function __construct(RepositoryInterface $postRepository)
     {
-        $this->postManager = $postManager;
+        $this->postRepository = $postRepository;
     }
 
     public function execute(WidgetInterface $widget, PageInterface $page = null)
     {
-        $posts = $this->postManager->findRecentPosts($widget->getOption('max'));
+        $criteria = array(
+            'status' => Post::PUBLISHED,
+        );
+
+        $sorting = array(
+            'createdAt' => 'DESC',
+        );
+
+        $posts = $this->postRepository->findBy($criteria, $sorting, $widget->getOption('max'));
 
         return $this->render('@SymEdit/Widget/blog-recent-posts.html.twig', array(
             'posts' => $posts,
