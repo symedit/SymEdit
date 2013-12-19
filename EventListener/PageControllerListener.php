@@ -3,7 +3,7 @@
 namespace Isometriks\Bundle\SymEditBundle\EventListener;
 
 use Symfony\Component\HttpKernel\Event\FilterControllerEvent;
-use Isometriks\Bundle\SymEditBundle\Model\PageManagerInterface;
+use Sylius\Bundle\ResourceBundle\Model\RepositoryInterface;
 
 /**
  * Checks the request for a _page_id, and then adds the actual Page
@@ -11,11 +11,11 @@ use Isometriks\Bundle\SymEditBundle\Model\PageManagerInterface;
  */
 class PageControllerListener
 {
-    private $pageManager;
+    private $pageRepository;
 
-    public function __construct(PageManagerInterface $pageManager)
+    public function __construct(RepositoryInterface $pageRepository)
     {
-        $this->pageManager = $pageManager;
+        $this->pageRepository = $pageRepository;
     }
 
     public function onKernelController(FilterControllerEvent $event)
@@ -34,7 +34,7 @@ class PageControllerListener
                 return;
             }
 
-            $page = $this->pageManager->find($id);
+            $page = $this->pageRepository->find($id);
 
             $attributes->add(array(
                 '_page' => $page,
