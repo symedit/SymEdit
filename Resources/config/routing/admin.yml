@@ -1,48 +1,46 @@
-# We need to explicitly define the SymEdit routes, 
+# We need to explicitly define the SymEdit routes,
 # When you extend the bundle and have your own "Admin" directory
 # it will just use only those controllers. If any of these are replaced it
-# will override correctly. 
+# will override correctly.
+
+symedit_admin_page_controller:
+    resource: "@IsometriksSymEditBundle/Resources/config/routing/admin/page.yml"
+
+symedit_admin_post_controller:
+    resource: "@IsometriksSymEditBundle/Resources/config/routing/admin/post.yml"
 
 symedit_admin_dashboard_controller:
     resource: "@IsometriksSymEditBundle/Controller/Admin/DashboardController.php"
     type: annotation
-    
+
 symedit_admin_category_controller:
     resource: "@IsometriksSymEditBundle/Controller/Admin/CategoryController.php"
     type: annotation
-    
+
 symedit_admin_image_controller:
     resource: "@IsometriksSymEditBundle/Controller/Admin/ImageController.php"
     type: annotation
-    
-symedit_admin_page_controller:
-    resource: "@IsometriksSymEditBundle/Controller/Admin/PageController.php"
-    type: annotation
-    
-symedit_admin_post_controller:
-    resource: "@IsometriksSymEditBundle/Controller/Admin/PostController.php"
-    type: annotation
-    
+
 symedit_admin_widget_controller:
     resource: "@IsometriksSymEditBundle/Controller/Admin/WidgetController.php"
     type: annotation
-    
+
 symedit_admin_setting_controller:
     resource: "@IsometriksSymEditBundle/Controller/Admin/SettingController.php"
     type: annotation
-    
+
 symedit_admin_slide_controller:
     resource: "@IsometriksSymEditBundle/Controller/Admin/SlideController.php"
     type: annotation
-    
+
 symedit_admin_slider_controller:
     resource: "@IsometriksSymEditBundle/Controller/Admin/SliderController.php"
     type: annotation
-    
+
 symedit_admin_user_controller:
     resource: "@IsometriksSymEditBundle/Controller/Admin/UserController.php"
     type: annotation
-    
+
 symedit_admin_stylizer_controller:
     resource: "@IsometriksSymEditBundle/Controller/Admin/StylizerController.php"
     type: annotation

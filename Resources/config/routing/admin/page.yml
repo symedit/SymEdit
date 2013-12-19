@@ -1,0 +1,32 @@
+admin_page:
+    pattern: /page
+    methods: [GET]
+    defaults:
+        _controller: isometriks_symedit.controller.page:indexAction
+        _sylius:
+            template: @SymEdit/Admin/Page/index.html.twig
+
+admin_page_create:
+    pattern: /page/new
+    methods: [GET, POST]
+    defaults:
+        _controller: isometriks_symedit.controller.page:createAction
+        _sylius:
+            template: @SymEdit/Admin/Page/new.html.twig
+
+admin_page_update:
+    pattern: /page/{id}/edit
+    methods: [GET, PUT, POST]
+    defaults:
+        _controller: isometriks_symedit.controller.page:updateAction
+        _sylius:
+            template: @SymEdit/Admin/Page/edit.html.twig
+            redirect:
+                route: admin_page_update
+                parameters: { id: $id }
+
+admin_page_reorder:
+    pattern: /page/reorder
+    methods: [POST]
+    defaults:
+        _controller: isometriks_symedit.controller.page:reorderAction
