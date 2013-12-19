@@ -15,11 +15,15 @@ class PageController extends Controller
 
         $event = new PageEvent($_page, $request);
         $this->container->get('event_dispatcher')->dispatch(Events::PAGE_VIEW, $event);
-        
+
         if ($response->isNotModified($request)) {
             return $response;
         }
 
-        return $this->render(sprintf('@SymEdit/Page/%s', $_page->getTemplate()), array(), $response);
+        if (($template = $_page->getTemplate()) === null) {
+            throw new \Exception('Page does not have a template, cannot render');
+        }
+
+        return $this->render(sprintf('@SymEdit/Page/%s', $template), array(), $response);
     }
 }
