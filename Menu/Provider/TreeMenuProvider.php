@@ -5,7 +5,7 @@ namespace Isometriks\Bundle\SymEditBundle\Menu\Provider;
 use Isometriks\Bundle\SymEditBundle\Event\Events;
 use Isometriks\Bundle\SymEditBundle\Event\MenuEvent;
 use Isometriks\Bundle\SymEditBundle\Model\PageInterface;
-use Isometriks\Bundle\SymEditBundle\Model\PageManagerInterface;
+use Sylius\Bundle\ResourceBundle\Model\RepositoryInterface;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Knp\Menu\FactoryInterface;
 use Knp\Menu\MenuItem;
@@ -14,14 +14,14 @@ use Knp\Menu\Provider\MenuProviderInterface;
 
 class TreeMenuProvider implements MenuProviderInterface
 {
-    protected $pageManager;
+    protected $pageRepository;
     protected $factory;
     protected $eventDispatcher;
 
-    public function __construct(FactoryInterface $factory, PageManagerInterface $pageManager, EventDispatcherInterface $eventDispatcher)
+    public function __construct(FactoryInterface $factory, RepositoryInterface $pageRepository, EventDispatcherInterface $eventDispatcher)
     {
         $this->factory = $factory;
-        $this->pageManager = $pageManager;
+        $this->pageRepository = $pageRepository;
         $this->eventDispatcher = $eventDispatcher;
     }
 
@@ -50,7 +50,7 @@ class TreeMenuProvider implements MenuProviderInterface
         if (isset($options['root']) && $options['root'] instanceof PageInterface) {
             $root = $options['root'];
         } else {
-            $root = $this->pageManager->findRoot();
+            $root = $this->pageRepository->findOneBy(array('root' => true));
         }
 
         /**
