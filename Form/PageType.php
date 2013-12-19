@@ -61,7 +61,7 @@ class PageType extends AbstractType
             $builder->create('parent', 'choice', array(
                 'choices' => $choices,
                 'label' => 'admin.page.parent',
-            ))->addModelTransformer(new DataTransformer\PageTransformer($this->pageRepository))
+            ))->addModelTransformer(new DataTransformer\RepositoryTransformer($this->pageRepository))
         );
 
         $basic
