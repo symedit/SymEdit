@@ -30,17 +30,18 @@ class ExportController extends Controller
         $fh = fopen('php://temp', 'w+');
 
         fputcsv($fh, array(
-            'id', 'path', 'title', 'tagline', 'meta description', 'seo title', 'index', 'follow',
+            'id', 'path', 'title', 'tagline', 'meta description', 'meta keywords', 'seo title', 'index', 'follow',
         ));
 
         foreach ($pages as $page) {
 
-            $seo = array_merge(array(
+            $seo = array_replace(array(
                 'description' => '',
+                'keywords' => '',
                 'title' => '',
                 'index' => '',
                 'follow' => '',
-            ), $page->getSeo());
+            ), (array)$page->getSeo());
 
             $data = array(
                 'id' => $page->getId(),
