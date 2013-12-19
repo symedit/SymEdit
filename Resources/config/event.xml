@@ -16,7 +16,7 @@
 
     <services>
         <service id="isometriks_symedit.listener.controller_listener" class="%isometriks_symedit.listener.controller.class%">
-            <argument type="service" id="isometriks_symedit.page_manager" />
+            <argument type="service" id="isometriks_symedit.repository.page" />
             <tag name="kernel.event_listener" event="kernel.controller" method="onKernelController" priority="24" />
         </service>
 
@@ -33,8 +33,8 @@
         <!--  Subscribers -->
 
         <service id="isometriks_symedit.event_subscriber.view_count" class="%isometriks_symedit.event_subscriber.view_count.class%">
-            <argument type="service" id="isometriks_symedit.page_manager" />
-            <argument type="service" id="isometriks_symedit.post_manager" />
+            <argument type="service" id="isometriks_symedit.repository.page" />
+            <argument type="service" id="isometriks_symedit.repository.post" />
             <tag name="kernel.event_subscriber" />
         </service>
 

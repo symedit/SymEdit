@@ -11,7 +11,7 @@
 
     <services>
         <service id="isometriks_symedit.routing.loader.page" class="%isometriks_symedit.routing.loader.page.class%">
-            <argument type="service" id="isometriks_symedit.page_manager" />
+            <argument type="service" id="isometriks_symedit.repository.page" />
             <tag name="routing.loader" />
         </service>
     </services>

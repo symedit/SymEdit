@@ -13,7 +13,7 @@
     <services>
         <service id="isometriks_symedit.menu.provider.tree" class="%isometriks_symedit.menu.provider.tree.class%">
             <argument type="service" id="knp_menu.factory" />
-            <argument type="service" id="isometriks_symedit.page_manager" />
+            <argument type="service" id="isometriks_symedit.repository.page" />
             <argument type="service" id="event_dispatcher" />
             <tag name="knp_menu.provider" />
         </service>
