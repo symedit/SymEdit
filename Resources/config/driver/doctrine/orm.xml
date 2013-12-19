@@ -11,22 +11,12 @@
 
         <!-- Managers -->
 
-        <service id="isometriks_symedit.page_manager" class="Isometriks\Bundle\SymEditBundle\Doctrine\PageManager">
-            <argument type="service" id="isometriks_symedit.entity_manager" />
-            <argument>%isometriks_symedit.model.page.class%</argument>
-        </service>
-
-        <service id="isometriks_symedit.post_manager" class="Isometriks\Bundle\SymEditBundle\Doctrine\PostManager">
-            <argument type="service" id="isometriks_symedit.entity_manager" />
-            <argument>%isometriks_symedit.model.post.class%</argument>
-        </service>
-        
         <service id="isometriks_symedit.widget.manager" class="%isometriks_symedit.widget.manager.class%">
             <argument>%isometriks_symedit.model.widget.class%</argument>
             <argument>%isometriks_symedit.model.widget_area.class%</argument>
             <argument type="service" id="isometriks_symedit.widget.registry" />
             <argument type="service" id="isometriks_symedit.entity_manager" />
-        </service>          
+        </service>
 
         <!-- Listeners -->
 
