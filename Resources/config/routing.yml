@@ -1,0 +1,3 @@
+symedit_seo_export:
+    resource: "@SymEditSeoExportBundle/Controller/ExportController.php"
+    type: annotation
