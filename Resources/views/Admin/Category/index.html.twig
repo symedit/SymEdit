@@ -5,7 +5,7 @@
   <ul>
       {% for child in node.children %}
           <li>
-              <a href="{{ path('admin_blog_category_edit', {id:child.id}) }}">
+              <a href="{{ path('admin_category_update', {id:child.id}) }}">
                   <i class="icon-tag icon-white"></i> {{ child.title }}
               </a>
               {{ _self.tree( child ) }}
@@ -19,10 +19,10 @@
 
 {% block content %}
 <div class="tree">
-     {{ _self.tree( RootCategory ) }}
+     {{ _self.tree(root) }}
 </div>
 
 <div class="form-actions">
-    <a class="btn btn-primary" href="{{ path('admin_blog_category_new') }}">New Category</a>
+    <a class="btn btn-primary" href="{{ path('admin_category_create') }}">New Category</a>
 </div>
 {% endblock %}
