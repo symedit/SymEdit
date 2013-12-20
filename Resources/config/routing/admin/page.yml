@@ -13,6 +13,9 @@ admin_page_create:
         _controller: isometriks_symedit.controller.page:createAction
         _sylius:
             template: @SymEdit/Admin/Page/new.html.twig
+            redirect:
+                route: admin_page_update
+                parameters: ~
 
 admin_page_update:
     pattern: /page/{id}/edit
