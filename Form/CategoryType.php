@@ -46,12 +46,11 @@ class CategoryType extends AbstractType
     {
         $resolver->setDefaults(array(
             'translation_domain' => 'SymEdit',
-            'data_class' => 'Isometriks\Bundle\SymEditBundle\Model\Category'
         ));
     }
 
     public function getName()
     {
-        return 'isometriks_bundle_symeditbundle_categorytype';
+        return 'isometriks_symedit_category';
     }
 }
