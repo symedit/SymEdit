@@ -5,22 +5,15 @@
            xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
 
     <parameters>
-        <parameter key="isometriks_symedit.form.contact.class">Isometriks\Bundle\SymEditBundle\Form\ContactType</parameter>
-        <parameter key="isometriks_symedit.form.type.page.class">Isometriks\Bundle\SymEditBundle\Form\PageType</parameter>
+        <parameter key="isometriks_symedit.form.type.contact.class">Isometriks\Bundle\SymEditBundle\Form\ContactType</parameter>
         <parameter key="isometriks_symedit.form.type.template.class">Isometriks\Bundle\SymEditBundle\Form\Type\TemplateType</parameter>
         <parameter key="isometriks_symedit.form.type.role.class">Isometriks\Bundle\SymEditBundle\Form\Type\RoleType</parameter>
-        <parameter key="isometriks_symedit.form.type.post.class">Isometriks\Bundle\SymEditBundle\Form\PostType</parameter>
-        <parameter key="isometriks_symedit.form.type.image.class">Isometriks\Bundle\SymEditBundle\Form\ImageType</parameter>
-        <parameter key="isometriks_symedit.form.type.user.class">Isometriks\Bundle\SymEditBundle\Form\UserType</parameter>
-        <parameter key="isometriks_symedit.form.type.widget_area.class">Isometriks\Bundle\SymEditBundle\Form\WidgetAreaType</parameter>
-        <parameter key="isometriks_symedit.form.type.widget.class">Isometriks\Bundle\SymEditBundle\Form\WidgetType</parameter>
         <parameter key="isometriks_symedit.form.type.entity_property.class">Isometriks\Bundle\SymEditBundle\Form\Type\EntityPropertyType</parameter>
-
         <parameter key="isometriks_symedit.form.factory.context.class">Isometriks\Bundle\SymEditBundle\Form\Factory\ContextFormFactory</parameter>
     </parameters>
 
     <services>
-        <service id="isometriks_symedit.form.contact" class="%isometriks_symedit.form.contact.class%">
+        <service id="isometriks_symedit.form.type.contact" class="%isometriks_symedit.form.type.contact.class%">
             <tag name="form.type" alias="symedit_contact" />
         </service>
 
@@ -42,12 +35,16 @@
         </service>
 
         <service id="isometriks_symedit.form.type.image" class="%isometriks_symedit.form.type.image.class%">
-            <tag name="form.type" alias="symedit_image" />
+            <tag name="form.type" alias="isometriks_symedit_image" />
         </service>
 
         <service id="isometriks_symedit.form.type.post" class="%isometriks_symedit.form.type.post.class%">
             <argument>%fos_user.model.user.class%</argument>
-            <tag name="form.type" alias="symedit_post" />
+            <tag name="form.type" alias="isometriks_symedit_post" />
+        </service>
+
+        <service id="isometriks_symedit.form.type.category" class="%isometriks_symedit.form.type.category.class%">
+            <tag name="form.type" alias="isometriks_symedit_category" />
         </service>
 
         <service id="isometriks_symedit.form.type.user" class="%isometriks_symedit.form.type.user.class%">
@@ -76,9 +73,9 @@
             <argument type="service" id="form.factory" />
             <argument type="service" id="security.context" />
             <argument type="collection">
-                <argument key="adminType">%isometriks_symedit.profile.admin_type%</argument>
-                <argument key="userType">%%isometriks_symedit.profile.user_type%</argument>
-                <argument key="name">symedit_profile</argument>
+                <argument key="adminType">isometriks_symedit_admin_profile</argument>
+                <argument key="userType">isometriks_symedit_profile</argument>
+                <argument key="name">isometriks_symedit_profile</argument>
             </argument>
         </service>
     </services>
