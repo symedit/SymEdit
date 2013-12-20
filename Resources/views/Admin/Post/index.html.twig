@@ -3,6 +3,14 @@
 {% block title %}Blog &raquo; List{% endblock %}
 
 {% block content %}
+
+<a class="pull-right btn btn-primary" href="{{ path('admin_post_create') }}">
+    {{ icon('plus') }}
+    Create New Post
+</a>
+
+<h1>Listing Posts</h1>
+
 <table class="table records_list">
     <thead>
         <tr>
@@ -14,24 +22,26 @@
         </tr>
     </thead>
     <tbody>
-    {% for entity in entities %}
+    {% for post in posts %}
             <tr>
-                <td><a href="{{ path('admin_blog_edit', { 'id': entity.id }) }}">{{ entity.title }}</a></td>
-                <td>{{ entity.createdAt|date('F j, Y') }}</td>
+                <td><a href="{{ path('admin_post_update', { 'id': post.id }) }}">{{ post.title }}</a></td>
+                <td>{{ post.createdAt|date('F j, Y') }}</td>
                 <td>
-                    {% for category in entity.categories %}
+                    {% for category in post.categories %}
                         <span class="label">{{ category.title }}</span>
                     {% endfor %}
                 </td>
-                <td>{{ entity.slug }}</td>
+                <td>{{ post.slug }}</td>
                 <td>
-                    <a class="btn btn-primary btn-sm" href="{{ path('admin_blog_edit', { 'id': entity.id }) }}">Edit</a>
+                    <a class="btn btn-primary btn-sm" href="{{ path('admin_post_update', { 'id': post.id }) }}">Edit</a>
                 </td>
             </tr>
     {% endfor %}
         </tbody>
     </table>
 
-    <a class="btn btn-primary" href="{{ path('admin_blog_new') }}">Create New Post</a>
+    <div>
+        {{ pagerfanta(posts) }}
+    </div>
 
 {% endblock %}
