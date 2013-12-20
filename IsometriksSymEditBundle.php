@@ -13,6 +13,7 @@ use Isometriks\Bundle\SymEditBundle\DependencyInjection\Compiler\TwigPathCompile
 use Isometriks\Bundle\SymEditBundle\DependencyInjection\IsometriksSymEditExtension;
 use Isometriks\Bundle\SymEditBundle\DependencyInjection\Compiler\ProfileTypeCompilerPass;
 use Isometriks\Bundle\SymEditBundle\DependencyInjection\Compiler\DoctrineMappingsPass;
+use Sylius\Bundle\ResourceBundle\SyliusResourceBundle;
 
 class IsometriksSymEditBundle extends Bundle
 {
@@ -26,6 +27,13 @@ class IsometriksSymEditBundle extends Bundle
         }
 
         $this->kernel = $kernel;
+    }
+
+    public static function getSupportedDrivers()
+    {
+        return array(
+            SyliusResourceBundle::DRIVER_DOCTRINE_ORM,
+        );
     }
 
     public function build(ContainerBuilder $container)
