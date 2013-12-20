@@ -16,6 +16,9 @@ admin_post_create:
         _controller: isometriks_symedit.controller.post:createAction
         _sylius:
             template: @SymEdit/Admin/Post/new.html.twig
+            redirect:
+                route: admin_post_update
+                parameters: ~
 
 admin_post_update:
     pattern: /post/{id}/edit
