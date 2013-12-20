@@ -71,9 +71,12 @@ class PostType extends AbstractType
 
         $summary
             ->add('summary', 'textarea', array(
+                'horizontal' => false,
+                'label_render' => false,
                 'attr' => array(
                     'class' => 'wysiwyg-editor',
                     'style' => 'height:300px',
+                    'placeholder' => 'Post Summary...',
                 ),
                 'required' => false,
             ));
@@ -86,9 +89,12 @@ class PostType extends AbstractType
 
         $content
             ->add('content', 'textarea', array(
+                'horizontal' => false,
+                'label_render' => false,
                 'attr' => array(
                     'class' => 'wysiwyg-editor',
                     'style' => 'height:500px',
+                    'placeholder' => 'Post Content...',
                 ),
                 'required' => false,
             ));
@@ -103,7 +109,6 @@ class PostType extends AbstractType
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'Isometriks\Bundle\SymEditBundle\Model\Post',
             'tabs_class' => 'nav nav-stacked nav-pills',
             'translation_domain' => 'SymEdit',
         ));
