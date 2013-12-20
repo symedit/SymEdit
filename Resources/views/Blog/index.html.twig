@@ -12,5 +12,5 @@
 
 {% block blog_content %}
 {{ parent() }}
-{{ knp_pagination_render(Posts) }}
+{{ pagerfanta(Posts) }}
 {% endblock %}
