@@ -61,7 +61,7 @@ class Builder
             $content->addChild('Blog', array('dropdown-header' => true));
             $content->addChild('New Post', array('route' => 'admin_post_create', 'icon' => 'edit'));
             $content->addChild('List Posts', array('route' => 'admin_post', 'icon' => 'th-list'));
-            $content->addChild('List Categories', array('route' => 'admin_blog_category', 'icon' => 'tags'));
+            $content->addChild('List Categories', array('route' => 'admin_category', 'icon' => 'tags'));
         }
 
         /**
@@ -70,7 +70,7 @@ class Builder
         if ($this->context->isGranted('ROLE_ADMIN_IMAGE')) {
             $media = $menu->addChild('Media', array('dropdown' => true, 'caret' => true, 'icon' => 'picture'));
             $media->addChild('View Images', array('route' => 'admin_image', 'icon' => 'picture'));
-            $media->addChild('Upload Image', array('route' => 'admin_image_new', 'icon' => 'upload'));
+            $media->addChild('Upload Image', array('route' => 'admin_image_create', 'icon' => 'upload'));
             $media->addChild('Sliders', array('route' => 'admin_image_slider', 'icon' => 'film'));
         }
 
@@ -96,7 +96,7 @@ class Builder
             $site = $menu->addChild('Site', array('dropdown' => true, 'caret' => true, 'icon' => 'wrench'));
 
             if ($settings) {
-                $site->addChild('Settings', array('route' => 'admin_setting', 'icon' => 'cogs'));
+                $site->addChild('Settings', array('route' => 'admin_settings', 'icon' => 'cogs'));
             }
 
             if ($users) {
