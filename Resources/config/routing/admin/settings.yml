@@ -1,0 +1,23 @@
+admin_settings:
+    pattern: /settings.{_format}
+    methods: [GET]
+    requirements:
+        _format: html|json
+    defaults:
+        _format: html
+        _controller: isometriks_symedit.controller.settings:indexAction
+        _sylius:
+            template: @SymEdit/Admin/Settings/index.html.twig
+            paginate: false
+            limit: false
+
+admin_settings_update:
+    pattern: /settings/edit
+    methods: [GET, PUT, POST]
+    defaults:
+        _controller: isometriks_symedit.controller.settings:updateAction
+        _sylius:
+            template: @SymEdit/Admin/Settings/index.html.twig
+            redirect:
+                route: admin_settings_update
+                parameters: { id: $id }

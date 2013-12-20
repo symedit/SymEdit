@@ -2,7 +2,7 @@ admin_post:
     pattern: /post
     methods: [GET]
     defaults:
-        _controller: symedit.controller.post:indexAction
+        _controller: isometriks_symedit.controller.post:indexAction
         _sylius:
             template: @SymEdit/Admin/Post/index.html.twig
             paginate: 10
@@ -13,7 +13,7 @@ admin_post_create:
     pattern: /post/new
     methods: [GET, POST]
     defaults:
-        _controller: symedit.controller.post:createAction
+        _controller: isometriks_symedit.controller.post:createAction
         _sylius:
             template: @SymEdit/Admin/Post/new.html.twig
 
@@ -21,7 +21,7 @@ admin_post_update:
     pattern: /post/{id}/edit
     methods: [GET, PUT, POST]
     defaults:
-        _controller: symedit.controller.post:updateAction
+        _controller: isometriks_symedit.controller.post:updateAction
         _sylius:
             template: @SymEdit/Admin/Post/edit.html.twig
             redirect:

@@ -1,0 +1,29 @@
+admin_category:
+    pattern: /category
+    methods: [GET]
+    defaults:
+        _controller: isometriks_symedit.controller.category:indexAction
+        _sylius:
+            template: @SymEdit/Admin/Category/index.html.twig
+            paginate: false
+            limit: false
+
+admin_category_create:
+    pattern: /category/new
+    methods: [GET, POST]
+    defaults:
+        _controller: isometriks_symedit.controller.category:createAction
+        _sylius:
+            template: @SymEdit/Admin/Category/new.html.twig
+            redirect: admin_category
+
+admin_category_update:
+    pattern: /category/{id}/edit
+    methods: [GET, PUT, POST]
+    defaults:
+        _controller: isometriks_symedit.controller.category:updateAction
+        _sylius:
+            template: @SymEdit/Admin/Category/edit.html.twig
+            redirect:
+                route: admin_category_update
+                parameters: { id: $id }
