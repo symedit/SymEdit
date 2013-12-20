@@ -2,6 +2,7 @@ admin:
     page:
         flash:
             created: Page Created.
+            updated: Page Updated.
         title: Title
         name:
             label: Name
