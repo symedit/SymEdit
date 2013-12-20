@@ -1,0 +1,58 @@
+<?xml version="1.0" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <services>
+        <!-- Page -->
+        <service id="isometriks_symedit.controller.page" class="%isometriks_symedit.controller.page.class%">
+            <argument>isometriks_symedit</argument>
+            <argument>page</argument>
+            <argument />
+            <call method="setContainer">
+                <argument type="service" id="service_container" />
+            </call>
+        </service>
+
+        <!-- Post -->
+        <service id="isometriks_symedit.controller.post" class="%isometriks_symedit.controller.post.class%">
+            <argument>isometriks_symedit</argument>
+            <argument>post</argument>
+            <argument />
+            <call method="setContainer">
+                <argument type="service" id="service_container" />
+            </call>
+        </service>
+
+        <!-- Category -->
+        <service id="isometriks_symedit.controller.category" class="%isometriks_symedit.controller.category.class%">
+            <argument>isometriks_symedit</argument>
+            <argument>category</argument>
+            <argument />
+            <call method="setContainer">
+                <argument type="service" id="service_container" />
+            </call>
+        </service>
+
+        <!-- Image -->
+        <service id="isometriks_symedit.controller.image" class="%isometriks_symedit.controller.image.class%">
+            <argument>isometriks_symedit</argument>
+            <argument>image</argument>
+            <argument />
+            <call method="setContainer">
+                <argument type="service" id="service_container" />
+            </call>
+        </service>
+
+        <!-- Settings -->
+        <service id="isometriks_symedit.controller.settings" class="%isometriks_symedit.controller.settings.class%">
+            <argument>isometriks_symedit</argument>
+            <argument>settings</argument>
+            <argument />
+            <call method="setContainer">
+                <argument type="service" id="service_container" />
+            </call>
+        </service>
+    </services>
+</container>
