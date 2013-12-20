@@ -2,57 +2,56 @@
 
 namespace Isometriks\Bundle\SymEditBundle\DependencyInjection;
 
+use Sylius\Bundle\ResourceBundle\DependencyInjection\SyliusResourceExtension;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
-use Symfony\Component\Config\FileLocator;
-use Symfony\Component\HttpKernel\DependencyInjection\Extension;
-use Symfony\Component\DependencyInjection\Loader;
-use Symfony\Component\DependencyInjection\Loader\FileLoader;
 
-class IsometriksSymEditExtension extends Extension
+class IsometriksSymEditExtension extends SyliusResourceExtension
 {
+    protected $configFiles = array(
+        'services', 'user', 'widget', 'routing',
+        'form', 'event', 'twig', 'util', 'profiler',
+        'menu', 'seo', 'controllers',
+    );
+
     /**
      * {@inheritDoc}
      */
     public function load(array $configs, ContainerBuilder $container)
     {
-        $configuration = new Configuration();
-        $config = $this->processConfiguration($configuration, $configs);
+        $this->configDir = __DIR__.'/../Resources/config/';
 
-        $loader = new Loader\XmlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
-
-        $configFiles = array(
-            'services', 'user', 'widget', 'routing',
-            'form', 'event', 'twig', 'util', 'profiler',
-            'model', 'menu', 'seo',
-        );
-
-        foreach($configFiles as $file){
-            $loader->load($file.'.xml');
-        }
-
-        /**
-         * Load DB Driver
-         */
-        $this->loadDbDriver($container, $config, $loader);
+        list($config, $loader) = $this->configure($configs, new Configuration(), $container, self::CONFIGURE_LOADER | self::CONFIGURE_DATABASE | self::CONFIGURE_PARAMETERS);
 
         $this->remapParameters($container, 'email', $config['email']);
         $this->remapParameters($container, 'fragment', $config['fragment']);
-        $this->remapParameters($container, 'profile', $config['profile']);
 
+        $container->setParameter('isometriks_symedit.model_manager_name', $config['model_manager_name']);
         $container->setParameter('isometriks_symedit.extensions.routes', $config['extensions']);
         $container->setParameter('isometriks_symedit.admin_dir', $config['admin_dir']);
     }
 
-    private function loadDbDriver(ContainerBuilder $container, array $config, FileLoader $loader)
+    /**
+     * Remap class parameters.
+     *
+     * @param array            $classes
+     * @param ContainerBuilder $container
+     */
+    protected function mapClassParameters(array $classes, ContainerBuilder $container)
     {
-        $driver = $config['driver'];
-        $container->setParameter('isometriks_symedit.model_manager_name', $config['model_manager_name']);
-        $container->setParameter(sprintf('%s.driver', $this->getAlias()), $driver);
-        $container->setParameter(sprintf('%s.driver.%s', $this->getAlias(), $driver), true);
-
-        $loader->load(sprintf('driver/%s.xml', $driver));
+        foreach ($classes as $model => $serviceClasses) {
+            foreach ($serviceClasses as $service => $class) {
+                $container->setParameter(sprintf('isometriks_symedit.%s.%s.class', $service === 'form' ? 'form.type' : $service, $model), $class);
+            }
+        }
     }
 
+    /**
+     * Maps parameters to their equivalent path in their arrays
+     *
+     * @param ContainerBuilder $container
+     * @param string $path
+     * @param array $config
+     */
     private function remapParameters(ContainerBuilder $container, $path, array $config)
     {
         $prefix = rtrim($this->getAlias().'.'.$path, '.');
