@@ -9,7 +9,7 @@
     </parameters>
 
     <services>
-        <service id="isometriks_symedit.user_manager" parent="fos_user.user_manager.default" class="%isometriks_symedit.user_manager.class%">
+        <service id="isometriks_symedit.manager.user" public="true" parent="fos_user.user_manager.default" class="%isometriks_symedit.user_manager.class%">
             <call method="setProfileClass">
                 <argument>%isometriks_symedit.model.profile.class%</argument>
             </call>
