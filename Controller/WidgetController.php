@@ -10,8 +10,8 @@ class WidgetController extends Controller
 {
     public function renderAreaAction($area, PageInterface $_page = null, $path = null)
     {
-        $manager = $this->get('isometriks_symedit.widget.manager');
-        $widgetArea = $manager->getWidgetArea($area);
+        $repository = $this->get('isometriks_symedit.repository.widget_area');
+        $widgetArea = $repository->findOneByArea($area);
 
         $id = $_page === null ? null : $_page->getId();
         $widgets = array();
@@ -23,11 +23,11 @@ class WidgetController extends Controller
             }
 
             $content = $widget->getStrategy()->execute($widget, $_page);
-            
+
             if ($content === false) {
                 continue;
             }
-            
+
             $widgets[] = array(
                 'id' => $widget->getId(),
                 'name' => $widget->getName(),
