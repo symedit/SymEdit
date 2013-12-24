@@ -6,11 +6,6 @@ use Symfony\Component\Config\Definition\Builder\ArrayNodeDefinition;
 use Symfony\Component\Config\Definition\Builder\TreeBuilder;
 use Symfony\Component\Config\Definition\ConfigurationInterface;
 
-/**
- * This is the class that validates and merges configuration from your app/config files
- *
- * To learn more see {@link http://symfony.com/doc/current/cookbook/bundles/extension.html#cookbook-bundles-extension-config-class}
- */
 class Configuration implements ConfigurationInterface
 {
     /**
@@ -84,7 +79,7 @@ class Configuration implements ConfigurationInterface
                             ->addDefaultsIfNotSet()
                             ->children()
                                 ->scalarNode('model')->defaultValue('Isometriks\Bundle\SymEditBundle\Model\User')->end()
-                                ->scalarNode('controller')->defaultValue('Isometriks\Bundle\SymEditBundle\Controller\ResourceController')->end()
+                                ->scalarNode('controller')->defaultValue('Isometriks\Bundle\SymEditBundle\Controller\Admin\UserController')->end()
                                 ->scalarNode('repository')->end()
                                 ->scalarNode('form')->defaultValue('Isometriks\Bundle\SymEditBundle\Form\UserType')->end()
                             ->end()
@@ -129,7 +124,7 @@ class Configuration implements ConfigurationInterface
                             ->addDefaultsIfNotSet()
                             ->children()
                                 ->scalarNode('model')->defaultValue('Isometriks\Bundle\SymEditBundle\Model\Widget')->end()
-                                ->scalarNode('controller')->defaultValue('Isometriks\Bundle\SymEditBundle\Controller\Admin\WidgeController')->end()
+                                ->scalarNode('controller')->defaultValue('Isometriks\Bundle\SymEditBundle\Controller\Admin\WidgetController')->end()
                                 ->scalarNode('respository')->end()
                                 ->scalarNode('form')->defaultValue('Isometriks\Bundle\SymEditBundle\Form\WidgetType')->end()
                             ->end()
