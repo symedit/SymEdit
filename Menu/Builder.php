@@ -81,7 +81,7 @@ class Builder
         if ($this->context->isGranted('ROLE_ADMIN_WIDGET')) {
             $structure = $menu->addChild('Structure', array('dropdown' => true, 'caret' => true, 'icon' => 'tasks'));
             $structure->addChild('Widgets', array('dropdown-header' => true));
-            $structure->addChild('New Widget', array('route' => 'admin_widget_new', 'icon' => 'edit'));
+            $structure->addChild('New Widget', array('route' => 'admin_widget_create', 'icon' => 'edit'));
             $structure->addChild('List Widgets', array('route' => 'admin_widget', 'icon' => 'tasks'));
         }
 
