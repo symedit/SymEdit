@@ -61,7 +61,7 @@
         </service>
 
         <service id="isometriks_symedit.widget.strategy.blog_categories" class="%isometriks_symedit.widget.strategy.blog_categories.class%">
-            <argument type="service" id="doctrine" />
+            <argument type="service" id="isometriks_symedit.repository.category" />
             <tag name="symedit.widget_strategy" alias="blog_categories" />
         </service>
 
