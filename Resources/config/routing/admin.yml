@@ -9,24 +9,25 @@ symedit_admin_page_controller:
 symedit_admin_post_controller:
     resource: "@IsometriksSymEditBundle/Resources/config/routing/admin/post.yml"
 
-symedit_admin_dashboard_controller:
-    resource: "@IsometriksSymEditBundle/Controller/Admin/DashboardController.php"
-    type: annotation
+symedit_admin_image_controller:
+    resource: "@IsometriksSymEditBundle/Resources/config/routing/admin/image.yml"
 
 symedit_admin_category_controller:
-    resource: "@IsometriksSymEditBundle/Controller/Admin/CategoryController.php"
-    type: annotation
+    resource: "@IsometriksSymEditBundle/Resources/config/routing/admin/category.yml"
 
-symedit_admin_image_controller:
-    resource: "@IsometriksSymEditBundle/Controller/Admin/ImageController.php"
-    type: annotation
+symedit_admin_settings_controller:
+    resource: "@IsometriksSymEditBundle/Resources/config/routing/admin/settings.yml"
+
+symedit_admin_user_controller:
+    resource: "@IsometriksSymEditBundle/Resources/config/routing/admin/user.yml"
 
 symedit_admin_widget_controller:
-    resource: "@IsometriksSymEditBundle/Controller/Admin/WidgetController.php"
-    type: annotation
+    resource: "@IsometriksSymEditBundle/Resources/config/routing/admin/widget.yml"
 
-symedit_admin_setting_controller:
-    resource: "@IsometriksSymEditBundle/Controller/Admin/SettingController.php"
+# Below not converted
+
+symedit_admin_dashboard_controller:
+    resource: "@IsometriksSymEditBundle/Controller/Admin/DashboardController.php"
     type: annotation
 
 symedit_admin_slide_controller:
@@ -35,10 +36,6 @@ symedit_admin_slide_controller:
 
 symedit_admin_slider_controller:
     resource: "@IsometriksSymEditBundle/Controller/Admin/SliderController.php"
-    type: annotation
-
-symedit_admin_user_controller:
-    resource: "@IsometriksSymEditBundle/Controller/Admin/UserController.php"
     type: annotation
 
 symedit_admin_stylizer_controller:
