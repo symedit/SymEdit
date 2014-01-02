@@ -1,4 +1,7 @@
 admin:
+    resource:
+        confirm_delete: Are you sure you wish to delete this resource?
+
     # Pages
     page:
         flash:
@@ -47,6 +50,19 @@ admin:
                 label: Preview Not Available
                 help: Cannot preview, blog not active.
             delete: Delete Post
+
+    # Categories
+    category:
+        actions:
+            save: Save Category
+            delete: Delete Category
+            create: Create Category
+
+    # Widgets
+    widget:
+        actions:
+            save: Save Widget
+            delete: Delete Widget
     file:
         name:
             label: Name
