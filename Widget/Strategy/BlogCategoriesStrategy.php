@@ -5,23 +5,24 @@ namespace Isometriks\Bundle\SymEditBundle\Widget\Strategy;
 use Doctrine\Bundle\DoctrineBundle\Registry;
 use Isometriks\Bundle\SymEditBundle\Model\PageInterface;
 use Isometriks\Bundle\SymEditBundle\Model\WidgetInterface;
+use Sylius\Bundle\ResourceBundle\Model\RepositoryInterface;
 use Symfony\Component\Form\FormBuilderInterface;
 
 class BlogCategoriesStrategy extends AbstractWidgetStrategy
 {
-    private $doctrine;
+    protected $repository;
 
-    public function __construct(Registry $doctrine)
+    public function __construct(RepositoryInterface $repository)
     {
-        $this->doctrine = $doctrine;
+        $this->repository = $repository;
     }
 
     public function execute(WidgetInterface $widget, PageInterface $page = null)
     {
-        $categories = $this->doctrine->getManager()->getRepository('Isometriks\Bundle\SymEditBundle\Model\Category');
+        $root = $this->repository->findRoot();
 
         return $this->render('@SymEdit/Widget/blog-categories.html.twig', array(
-            'categories' => $categories,
+            'root' => $root,
             'counts' => $widget->getOption('counts'),
         ));
     }

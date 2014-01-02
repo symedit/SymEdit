@@ -3,23 +3,23 @@
 namespace Isometriks\Bundle\SymEditBundle\Widget\Strategy;
 
 use Isometriks\Bundle\SymEditBundle\Model\PageInterface;
-use Isometriks\Bundle\SymEditBundle\Model\PostManagerInterface;
 use Isometriks\Bundle\SymEditBundle\Model\WidgetInterface;
+use Sylius\Bundle\ResourceBundle\Model\RepositoryInterface;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Validator\Constraints\Range;
 
 class PopularPostsStrategy extends AbstractWidgetStrategy
 {
-    private $postManager;
+    protected $postRepository;
 
-    public function __construct(PostManagerInterface $postManager)
+    public function __construct(RepositoryInterface $postRepository)
     {
-        $this->postManager = $postManager;
+        $this->postRepository = $postRepository;
     }
 
     public function execute(WidgetInterface $widget, PageInterface $page = null)
     {
-        $posts = $this->postManager->findPopular($widget->getOption('max'));
+        $posts = $this->postRepository->findPopular($widget->getOption('max'));
 
         return $this->render('@SymEdit/Widget/blog-popular-posts.html.twig', array(
             'posts' => $posts,
