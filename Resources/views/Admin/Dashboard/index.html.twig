@@ -18,7 +18,7 @@
         <h3><i class="circle icon-pencil"></i> Content Updates</h3>
 
         <ul>
-            {% if is_granted('ROLE_ADMIN_BLOG')  %}<li><a href="{{ path('admin_blog_new') }}">Post New Blog</a></li>{% endif %}
+            {% if is_granted('ROLE_ADMIN_BLOG')  %}<li><a href="{{ path('admin_post_create') }}">Post New Blog</a></li>{% endif %}
             {% if is_granted('ROLE_ADMIN_PAGE')  %}<li><a href="{{ path('admin_page') }}">Edit Page Content</a></li>{% endif %}
             {% if is_granted('ROLE_ADMIN_IMAGE') %}<li><a href="{{ path('admin_image') }}">Upload / Edit Images</a></li>{% endif %}
             {% if is_granted('ROLE_ADMIN_WIDGET') %}
