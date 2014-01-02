@@ -1,0 +1,15 @@
+robots:
+    pattern: /robots.{_format}
+    requirements:
+        _format: txt
+    defaults:
+        _controller: IsometriksSymEditBundle:Crawler:robots
+        _format: txt
+
+sitemap:
+    pattern: /sitemap.{_format}
+    requirements:
+        _format: xml
+    defaults:
+        _controller: IsometriksSymEditBundle:Crawler:sitemap
+        _format: xml

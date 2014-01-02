@@ -1,0 +1,4 @@
+contact:
+    pattern: /
+    defaults:
+        _controller: IsometriksSymEditBundle:Contact:index

@@ -1,0 +1,52 @@
+blog:
+    pattern: /
+    defaults:
+        _controller: IsometriksSymEditBundle:Blog:index
+        _format: html
+
+blog_rss:
+    pattern: /feed.xml
+    defaults:
+        _controller: IsometriksSymEditBundle:Blog:index
+        _format: xml
+
+blog_archive:
+    pattern: /archive/{page}
+    defaults:
+        _controller: IsometriksSymEditBundle:Blog:index
+        _format: html
+        page: 1
+
+blog_slug_view:
+    pattern: /{slug}
+    requirements:
+        slug: "[a-z0-9_-]+"
+    defaults:
+        _controller: IsometriksSymEditBundle:Blog:slugView
+
+blog_preview:
+    pattern: /preview/{slug}
+    defaults:
+        _controller: IsometriksSymEditBundle:Blog:preview
+
+blog_category_view:
+    pattern: /category/{slug}/{page}
+    requirements:
+        page: \d+
+        slug: "[a-z0-9_-]+?"
+    defaults:
+        _controller: IsometriksSymEditBundle:Blog:categoryView
+        _format: html
+        page: 1
+
+blog_category_rss:
+    pattern: /category/{slug}/feed.{_format}
+    defaults:
+        _controller: IsometriksSymEditBundle:Blog:categoryView
+        _format: xml
+        page: 1
+
+blog_author_view:
+    pattern: /user/{username}
+    defaults:
+        _controller: IsometriksSymEditBundle:Blog:authorView

@@ -1,0 +1,14 @@
+webmaster_google_verify:
+    pattern: /google{request_code}.html
+    requirements:
+        request_code: "[a-z0-9]{16}"
+    defaults:
+        _controller: IsometriksSymEditBundle:Webmaster:googleVerify
+
+webmaster_bing_verify:
+    pattern: /BingSiteAuth.{_format}
+    requirements:
+        _format: xml
+    defaults:
+        _controller: IsometriksSymEditBundle:Webmaster:bingVerify
+        _format: xml

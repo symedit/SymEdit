@@ -1,8 +1,3 @@
-# We need to explicitly define the SymEdit routes,
-# When you extend the bundle and have your own "Admin" directory
-# it will just use only those controllers. If any of these are replaced it
-# will override correctly.
-
 symedit_admin_page_controller:
     resource: "@IsometriksSymEditBundle/Resources/config/routing/admin/page.yml"
     prefix: /page
