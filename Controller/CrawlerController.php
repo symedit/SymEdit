@@ -2,16 +2,12 @@
 
 namespace Isometriks\Bundle\SymEditBundle\Controller;
 
-use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Request;
 use Isometriks\Bundle\SymEditBundle\Iterator\RecursivePageIterator;
 
 class CrawlerController extends Controller
 {
-    /**
-     * @Route("/robots.{_format}", defaults={"_format"="txt"}, name="robots")
-     */
-    public function robotsAction()
+    function robotsAction()
     {
         $settings = $this->get('isometriks_settings.settings');
 
@@ -27,18 +23,15 @@ class CrawlerController extends Controller
         ));
     }
 
-    /**
-     * @Route("sitemap.{_format}", requirements={"_format"="xml"})
-     */
     public function sitemapAction(Request $request)
     {
         $sitemap = $this->get('isometriks.sitemap');
         $urls = $sitemap->getUrls();
 
-        $root = $this->get('isometriks_symedit.page_manager')->findRoot();
+        $root = $this->get('isometriks_symedit.repository.page')->findRoot();
         $pageIterator = new RecursivePageIterator($root);
         $recursiveIterator = new \RecursiveIteratorIterator($pageIterator, \RecursiveIteratorIterator::SELF_FIRST);
-        
+
         foreach ($recursiveIterator as $page) {
             $urls[] = $this->generateUrl($page->getRoute(), array(), true);
         }
