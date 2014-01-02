@@ -1,3 +1,0 @@
-knp_paginator:
-    template:
-        pagination: @SymEdit/CMS/pagination.html.twig

@@ -4,13 +4,13 @@ fos_user:
     user_class: Isometriks\Bundle\SymEditBundle\Model\User
     service:
         mailer: isometriks_symedit.mailer
-        user_manager: isometriks_symedit.user_manager
+        user_manager: isometriks_symedit.manager.user
     registration:
         confirmation:
             enabled: true
             template: "@SymEdit/Email/confirm.html.twig"
         form:
-            type: %isometriks_symedit.fos_user.form.registration%
+            type: symedit_user_registration
     resetting:
         email:
             template: "@SymEdit/Email/resetting.html.twig"
