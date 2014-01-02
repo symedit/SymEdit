@@ -5,7 +5,6 @@ namespace Isometriks\Bundle\SymEditBundle\Controller\Admin;
 use Isometriks\Bundle\SymEditBundle\Form\PageReorderType;
 use JMS\SecurityExtraBundle\Annotation\PreAuthorize;
 use Sylius\Bundle\ResourceBundle\Controller\ResourceController;
-use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 
 /**
@@ -21,7 +20,7 @@ class PageController extends ResourceController
     public function indexAction(Request $request)
     {
         $pageRepository = $this->getRepository();
-        $root = $pageRepository->findOneBy(array('root' => true));
+        $root = $pageRepository->findRoot();
 
         $reorderForm = $this->createForm(new PageReorderType(), null, array('render' => true));
 
@@ -38,18 +37,18 @@ class PageController extends ResourceController
 
     public function reorderAction()
     {
-        $reorder_form = $this->createForm(new PageReorderType());
-        $reorder_form->handleRequest($this->getRequest());
+        $reorderForm = $this->createForm(new PageReorderType());
+        $reorderForm->handleRequest($this->getRequest());
         $status = false;
 
-        if($reorder_form->isValid()){
+        if($reorderForm->isValid()){
             $status = true;
-            $data = $reorder_form->getData();
+            $data = $reorderForm->getData();
             $repository = $this->getRepository();
             $manager = $this->getManager();
 
-            foreach($data['pair'] as $id=>$order){
-                if(!$entity = $repository->find($id)){
+            foreach ($data['pair'] as $id=>$order) {
+                if (!$entity = $repository->find($id)) {
                     throw $this->createNotFoundException('Sorting entity not found');
                 }
 
@@ -60,42 +59,13 @@ class PageController extends ResourceController
             $manager->flush();
         }
 
+        $view = $this->view()
+            ->setFormat('json')
+            ->setTemplateVar('status')
+            ->setData(array(
+                'status' => $status
+            ));
 
-        return new JsonResponse(array(
-            'status' => $status,
-        ));
+        return $this->handleView($view);
     }
-
-
-    /**
-     * Deletes a Page entity.
-     *
-
-    public function deleteAction(Request $request, $id)
-    {
-        $form = $this->createDeleteForm($id);
-        $form->handleRequest($request);
-
-        if ($form->isValid()) {
-
-            $pageManager = $this->getPageManager();
-            $entity = $pageManager->find($id);
-
-            if (!$entity) {
-                throw $this->createNotFoundException('Unable to find Page entity.');
-            }
-
-            // Don't delete the homepage or root!
-            if($entity->getHomepage() || $entity->getRoot()){
-
-                $this->addFlash('error', 'Cannot delete this page.');
-
-                return $this->redirect($this->generateUrl('admin_page_edit', array('id' => $entity->getId())));
-            }
-
-            $pageManager->deletePage($entity);
-        }
-
-        return $this->redirect($this->generateUrl('admin_page'));
-    }*/
 }
