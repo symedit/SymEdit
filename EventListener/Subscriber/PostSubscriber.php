@@ -27,8 +27,8 @@ class PostSubscriber implements EventSubscriberInterface
     public static function getSubscribedEvents()
     {
         return array(
-            Events::POST_CREATED => 'postCreated',
-            Events::POST_UPDATED => 'postUpdated',
+            Events::POST_CREATE => 'postCreated',
+            Events::POST_UPDATE => 'postUpdated',
             Events::POST_VIEW => 'postView',
         );
     }
