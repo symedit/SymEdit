@@ -22,6 +22,6 @@ class WidgetExtension extends \Twig_Extension
     
     public function getName()
     {
-        return 'symedit_widget';
+        return 'isometriks_symedit_widget';
     }
 }
