@@ -1,5 +1,5 @@
 admin_image:
-    pattern: /image
+    pattern: /
     methods: [GET]
     defaults:
         _controller: isometriks_symedit.controller.image:indexAction
@@ -9,7 +9,7 @@ admin_image:
             limit: false
 
 admin_image_json:
-    pattern: /images.{_format}
+    pattern: /list.{_format}
     requirements:
         _format: json
     defaults:
@@ -19,7 +19,7 @@ admin_image_json:
             paginate: false
 
 admin_image_create:
-    pattern: /image/new
+    pattern: /new
     methods: [GET, POST]
     defaults:
         _controller: isometriks_symedit.controller.image:createAction
@@ -28,13 +28,13 @@ admin_image_create:
             redirect: admin_image
 
 admin_image_quick_upload:
-    pattern: /image/quick-upload
+    pattern: /quick-upload
     methods: [POST]
     defaults:
         _controller: isometriks_symedit.controller.image:quickUploadAction
 
 admin_image_update:
-    pattern: /image/{id}/edit
+    pattern: /{id}/edit
     methods: [GET, PUT, POST]
     defaults:
         _controller: isometriks_symedit.controller.image:updateAction

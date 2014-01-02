@@ -1,5 +1,5 @@
 admin_widget:
-    pattern: /widget
+    pattern: /
     methods: [GET]
     defaults:
         _controller: isometriks_symedit.controller.widget:indexAction
@@ -7,7 +7,7 @@ admin_widget:
             template: @SymEdit/Admin/Widget/index.html.twig
 
 admin_widget_choose:
-    pattern: /widget/new
+    pattern: /new
     methods: [GET]
     defaults:
         _controller: isometriks_symedit.controller.widget:chooseAction
@@ -15,7 +15,7 @@ admin_widget_choose:
             template: @SymEdit/Admin/Widget/choose.html.twig
 
 admin_widget_create:
-    pattern: /widget/new/{strategyName}
+    pattern: /new/{strategyName}
     methods: [GET, POST]
     defaults:
         _controller: isometriks_symedit.controller.widget:createAction
@@ -26,7 +26,7 @@ admin_widget_create:
                 parameters: ~
 
 admin_widget_update:
-    pattern: /widget/{id}/edit
+    pattern: /{id}/edit
     methods: [GET, PUT, POST]
     defaults:
         _controller: isometriks_symedit.controller.widget:updateAction
@@ -37,7 +37,7 @@ admin_widget_update:
                 parameters: { id: $id }
 
 admin_widget_delete:
-    pattern: /widget/{id}/delete
+    pattern: /{id}/delete
     methods: [DELETE]
     defaults:
         _controller: isometriks_symedit.controller.widget:deleteAction
@@ -45,7 +45,7 @@ admin_widget_delete:
             redirect: admin_widget
 
 admin_widget_reorder:
-    pattern: /widget/reorder
+    pattern: /reorder
     methods: [POST]
     defaults:
         _controller: isometriks_symedit.controller.widget:reorderAction

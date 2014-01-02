@@ -1,5 +1,5 @@
 admin_page:
-    pattern: /page
+    pattern: /
     methods: [GET]
     defaults:
         _controller: isometriks_symedit.controller.page:indexAction
@@ -7,7 +7,7 @@ admin_page:
             template: @SymEdit/Admin/Page/index.html.twig
 
 admin_page_create:
-    pattern: /page/new
+    pattern: /new
     methods: [GET, POST]
     defaults:
         _controller: isometriks_symedit.controller.page:createAction
@@ -18,7 +18,7 @@ admin_page_create:
                 parameters: ~
 
 admin_page_update:
-    pattern: /page/{id}/edit
+    pattern: /{id}/edit
     methods: [GET, PUT, POST]
     defaults:
         _controller: isometriks_symedit.controller.page:updateAction
@@ -29,7 +29,7 @@ admin_page_update:
                 parameters: { id: $id }
 
 admin_page_delete:
-    pattern: /page/{id}/delete
+    pattern: /{id}/delete
     methods: [DELETE]
     defaults:
         _controller: isometriks_symedit.controller.page:deleteAction
@@ -37,7 +37,7 @@ admin_page_delete:
             redirect: admin_page
 
 admin_page_reorder:
-    pattern: /page/reorder
+    pattern: /reorder
     methods: [POST]
     defaults:
         _controller: isometriks_symedit.controller.page:reorderAction

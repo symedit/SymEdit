@@ -5,24 +5,31 @@
 
 symedit_admin_page_controller:
     resource: "@IsometriksSymEditBundle/Resources/config/routing/admin/page.yml"
+    prefix: /page
 
 symedit_admin_post_controller:
     resource: "@IsometriksSymEditBundle/Resources/config/routing/admin/post.yml"
+    prefix: /post
 
 symedit_admin_image_controller:
     resource: "@IsometriksSymEditBundle/Resources/config/routing/admin/image.yml"
+    prefix: /image
 
 symedit_admin_category_controller:
     resource: "@IsometriksSymEditBundle/Resources/config/routing/admin/category.yml"
+    prefix: /category
 
 symedit_admin_settings_controller:
     resource: "@IsometriksSymEditBundle/Resources/config/routing/admin/settings.yml"
+    prefix: /settings
 
 symedit_admin_user_controller:
     resource: "@IsometriksSymEditBundle/Resources/config/routing/admin/user.yml"
+    prefix: /user
 
 symedit_admin_widget_controller:
     resource: "@IsometriksSymEditBundle/Resources/config/routing/admin/widget.yml"
+    prefix: /widget
 
 # Below not converted
 

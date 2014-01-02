@@ -1,10 +1,7 @@
 admin_settings:
-    pattern: /settings.{_format}
+    pattern: /
     methods: [GET]
-    requirements:
-        _format: html|json|xml
     defaults:
-        _format: html
         _controller: isometriks_symedit.controller.settings:indexAction
         _sylius:
             form: settings
@@ -13,7 +10,7 @@ admin_settings:
             limit: false
 
 admin_settings_update:
-    pattern: /settings
+    pattern: /
     methods: [PUT, POST]
     defaults:
         _controller: isometriks_symedit.controller.settings:updateAction

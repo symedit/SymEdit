@@ -1,5 +1,5 @@
 admin_category:
-    pattern: /category
+    pattern: /
     methods: [GET]
     defaults:
         _controller: isometriks_symedit.controller.category:indexAction
@@ -9,7 +9,7 @@ admin_category:
             limit: false
 
 admin_category_create:
-    pattern: /category/new
+    pattern: /new
     methods: [GET, POST]
     defaults:
         _controller: isometriks_symedit.controller.category:createAction
@@ -18,7 +18,7 @@ admin_category_create:
             redirect: admin_category
 
 admin_category_update:
-    pattern: /category/{id}/edit
+    pattern: /{id}/edit
     methods: [GET, PUT, POST]
     defaults:
         _controller: isometriks_symedit.controller.category:updateAction
@@ -29,7 +29,7 @@ admin_category_update:
                 parameters: { id: $id }
 
 admin_category_delete:
-    pattern: /category/{id}/delete
+    pattern: /{id}/delete
     methods: [DELETE]
     defaults:
         _controller: isometriks_symedit.controller.category:deleteAction

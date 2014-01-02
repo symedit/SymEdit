@@ -1,5 +1,5 @@
 admin_post:
-    pattern: /post
+    pattern: /
     methods: [GET]
     defaults:
         _controller: isometriks_symedit.controller.post:indexAction
@@ -10,7 +10,7 @@ admin_post:
                 createdAt: desc
 
 admin_post_create:
-    pattern: /post/new
+    pattern: /new
     methods: [GET, POST]
     defaults:
         _controller: isometriks_symedit.controller.post:createAction
@@ -21,7 +21,7 @@ admin_post_create:
                 parameters: ~
 
 admin_post_update:
-    pattern: /post/{id}/edit
+    pattern: /{id}/edit
     methods: [GET, PUT, POST]
     defaults:
         _controller: isometriks_symedit.controller.post:updateAction
@@ -32,7 +32,7 @@ admin_post_update:
                 parameters: { id: $id }
 
 admin_post_delete:
-    pattern: /post/{id}/delete
+    pattern: /{id}/delete
     methods: [DELETE]
     defaults:
         _controller: isometriks_symedit.controller.post:deleteAction
