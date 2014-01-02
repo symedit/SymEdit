@@ -49,7 +49,7 @@
 
         <service id="isometriks_symedit.form.type.user" class="%isometriks_symedit.form.type.user.class%">
             <argument>%fos_user.model.user.class%</argument>
-            <tag name="form.type" alias="symedit_user" />
+            <tag name="form.type" alias="isometriks_symedit_user" />
         </service>
 
         <service id="isometriks_symedit.form.type.widget_area" class="%isometriks_symedit.form.type.widget_area.class%">
@@ -59,7 +59,7 @@
         <service id="isometriks_symedit.form.type.widget" class="%isometriks_symedit.form.type.widget.class%">
             <argument>%isometriks_symedit.model.widget.class%</argument>
             <argument>%isometriks_symedit.model.widget_area.class%</argument>
-            <tag name="form.type" alias="symedit_widget" />
+            <tag name="form.type" alias="isometriks_symedit_widget" />
         </service>
 
         <service id="isometriks_symedit.form.type.entity_property" class="%isometriks_symedit.form.type.entity_property.class%">
