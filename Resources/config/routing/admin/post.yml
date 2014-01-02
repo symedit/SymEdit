@@ -30,3 +30,11 @@ admin_post_update:
             redirect:
                 route: admin_post_update
                 parameters: { id: $id }
+
+admin_post_delete:
+    pattern: /post/{id}/delete
+    methods: [DELETE]
+    defaults:
+        _controller: isometriks_symedit.controller.post:deleteAction
+        _sylius:
+            redirect: admin_post

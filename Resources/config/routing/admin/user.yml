@@ -1,0 +1,37 @@
+admin_user:
+    pattern: /user
+    methods: [GET]
+    defaults:
+        _controller: isometriks_symedit.controller.user:indexAction
+        _sylius:
+            template: @SymEdit/Admin/User/index.html.twig
+
+admin_user_create:
+    pattern: /user/new
+    methods: [GET, POST]
+    defaults:
+        _controller: isometriks_symedit.controller.user:createAction
+        _sylius:
+            template: @SymEdit/Admin/User/new.html.twig
+            redirect:
+                route: admin_user_update
+                parameters: ~
+
+admin_user_show:
+    pattern: /user/{id}
+    methods: [GET]
+    defaults:
+        _controller: isometriks_symedit.controller.user:showAction
+        _sylius:
+            template: @SymEdit/Admin/User/show.html.twig
+
+admin_user_update:
+    pattern: /user/{id}/edit
+    methods: [GET, PUT, POST]
+    defaults:
+        _controller: isometriks_symedit.controller.user:updateAction
+        _sylius:
+            template: @SymEdit/Admin/User/edit.html.twig
+            redirect:
+                route: admin_user_update
+                parameters: { id: $id }

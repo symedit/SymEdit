@@ -27,3 +27,11 @@ admin_category_update:
             redirect:
                 route: admin_category_update
                 parameters: { id: $id }
+
+admin_category_delete:
+    pattern: /category/{id}/delete
+    methods: [DELETE]
+    defaults:
+        _controller: isometriks_symedit.controller.category:deleteAction
+        _sylius:
+            redirect: admin_category

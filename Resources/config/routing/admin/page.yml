@@ -28,6 +28,14 @@ admin_page_update:
                 route: admin_page_update
                 parameters: { id: $id }
 
+admin_page_delete:
+    pattern: /page/{id}/delete
+    methods: [DELETE]
+    defaults:
+        _controller: isometriks_symedit.controller.page:deleteAction
+        _sylius:
+            redirect: admin_page
+
 admin_page_reorder:
     pattern: /page/reorder
     methods: [POST]
