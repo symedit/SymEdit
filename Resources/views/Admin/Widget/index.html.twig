@@ -14,7 +14,7 @@
 
 
 {% block form_actions %}
-<a href="{{ path('admin_widget_new') }}" class="btn btn-primary btn-block">New Widget</a>
+<a href="{{ path('admin_widget_create') }}" class="btn btn-primary btn-block">New Widget</a>
 {% endblock %}
 
 {% block tab_content %}
@@ -26,7 +26,7 @@
         <div class="row widget-area-sortable" data-area="{{ area.area }}">
         {% for widget in area.widgets %}
             <div class="col-md-3 widget" data-id="{{ widget.id }}">
-                <a href="{{ path('admin_widget_edit', {id:widget.id}) }}" class="thumbnail">
+                <a href="{{ path('admin_widget_update', {id:widget.id}) }}" class="thumbnail">
                     <h4>
                         {{ widget.title|default('(No Title)') }} <br>
                         <small>{{ widget.strategy.description }}</small>
@@ -48,12 +48,6 @@
     </section>
     {% endfor %}
 </div>
-{% endblock %}
-
-{% block extra %}
-<form class="form-hidden" id="reorder-form" action="{{ path('admin_widget_reorder') }}">
-    {{ form_widget(reorder_form) }}
-</form>
 {% endblock %}
 
 {% block scripts %}

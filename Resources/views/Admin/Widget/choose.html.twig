@@ -6,9 +6,9 @@
 <div class="row" id="choose-widget">
 {% for strategy in strategies %}
     <div class="col-md-4">
-        <a class="thumbnail" href="{{ path('admin_widget_new', {strategyName:strategy.name}) }}">
+        <a class="thumbnail" href="{{ path('admin_widget_create', {strategyName:strategy.name}) }}">
             <h4>
-                <i class="icon-plus circle"></i>
+                {{ icon('plus') }}
                 {{ strategy.description }}
             </h4>
         </a>
