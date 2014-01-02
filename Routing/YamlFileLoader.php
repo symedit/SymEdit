@@ -39,11 +39,11 @@ class YamlFileLoader extends BaseYamlFileLoader
         $importedCollection = new RouteCollection();
         parent::parseImport($importedCollection, $config, $path, $file);
 
-        $this->pageControllerLoader->prepareCollection($importedCollection, $pageControllerPath, $defaultRoute);
+        $finalCollection = $this->pageControllerLoader->prepareCollection($importedCollection, $pageControllerPath, $defaultRoute);
 
         /**
          * Add resulting collection to the main collection
          */
-        $collection->addCollection($importedCollection);
+        $collection->addCollection($finalCollection);
     }
 }

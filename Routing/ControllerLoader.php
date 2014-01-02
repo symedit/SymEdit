@@ -36,7 +36,7 @@ class ControllerLoader extends AnnotatedRouteControllerLoader
             $pageControllerPath = $annot->getName();
             $defaultRouteName = $annot->getDefault();
 
-            $this->pageControllerLoader->prepareCollection($collection, $pageControllerPath, $defaultRouteName);
+            $collection = $this->pageControllerLoader->prepareCollection($collection, $pageControllerPath, $defaultRouteName);
         }
 
         return $collection;
