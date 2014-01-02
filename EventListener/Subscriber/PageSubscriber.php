@@ -2,10 +2,11 @@
 
 namespace Isometriks\Bundle\SymEditBundle\EventListener\Subscriber;
 
-use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Isometriks\Bundle\SymEditBundle\Event\Events;
-use Symfony\Component\HttpFoundation\Session\Session;
+use Isometriks\Bundle\SymEditBundle\Model\PageInterface;
 use Sylius\Bundle\ResourceBundle\Event\ResourceEvent;
+use Symfony\Component\EventDispatcher\EventSubscriberInterface;
+use Symfony\Component\HttpFoundation\Session\Session;
 
 class PageSubscriber implements EventSubscriberInterface
 {
@@ -19,18 +20,32 @@ class PageSubscriber implements EventSubscriberInterface
     public static function getSubscribedEvents()
     {
         return array(
-            Events::PAGE_CREATED => 'pageCreated',
-            Events::PAGE_UPDATED => 'pageUpdated',
+            Events::PAGE_CREATE => 'pageCreate',
+            Events::PAGE_UPDATE => 'pageUpdate',
+            Events::PAGE_PRE_DELETE => 'pagePreDelete',
         );
     }
 
-    public function pageCreated(ResourceEvent $event)
+    public function pageCreate(ResourceEvent $event)
     {
         $this->session->getFlashBag()->add('notice', 'admin.page.flash.created');
     }
 
-    public function pageUpdated(ResourceEvent $event)
+    public function pageUpdate(ResourceEvent $event)
     {
         $this->session->getFlashBag()->add('notice', 'admin.page.flash.updated');
+    }
+
+    public function pagePreDelete(ResourceEvent $event)
+    {
+        /* @var $page PageInterface */
+        $page = $event->getSubject();
+
+        /**
+         * Don't allow deletion of homepage / root
+         */
+        if ($page->getHomepage() || $page->getRoot()) {
+            $event->stop('Cannot delete');
+        }
     }
 }
