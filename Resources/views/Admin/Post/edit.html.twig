@@ -1,32 +1,20 @@
 {% extends '@SymEdit/Admin/tabbed.html.twig' %}
+{% import '@SymEdit/Admin/macro.html.twig' as macro %}
 
-{% block title %}Blog &raquo; {{ entity.title|default('(No Title)') }} &raquo; Edit{% endblock %}
-
-{% block action %}{{ path('admin_blog_update', {id:entity.id}) }}{% endblock %}
-
-{% block tabs %}
-{{ form_tabs(form) }}
-{% endblock %}
-
-{% block tab_content %}
-{{ form_widget(form) }}
-{% endblock %}
+{% block title %}Blog &raquo; {{ post.title|default('(No Title)') }} &raquo; Edit{% endblock %}
 
 {% block form_actions %}
-<button class="btn btn-primary btn-block" type="submit">Update Post</button>
+<button class="btn btn-primary btn-block" type="submit">{{ 'admin.post.actions.save'|trans }}</button>
 
 {% if route_exists('blog_preview') %}
-<a target="_blank" class="btn btn-info btn-block" href="{{ path('blog_preview', { slug: entity.slug }) }}">Preview Post</a>
+<a target="_blank" class="btn btn-info btn-block" href="{{ path('blog_preview', { slug: post.slug }) }}">{{ 'admin.post.actions.preview'|trans }}</a>
 {% else %}
-<a class="btn btn-info btn-block disabled" href="#" title="Cannot preview, not active blog.">Cannot Preview</a>
+<a class="btn btn-info btn-block disabled" href="#" title="{{ 'admin.post.actions.no_preview.help' }}">{{ 'admin.post.actions.no_preview.label'|trans }}</a>
 {% endif %}
 
-<button type="button" data-toggle="form-forward" data-message="Are you sure you want to delete this post?" data-target="#post-delete" class="btn btn-warning btn-block">Delete Post</button>
+{{ macro.delete_button('post_delete', 'admin.post.actions.delete') }}
 {% endblock %}
 
-
 {% block extra %}
-<form id="post-delete" class="form-hidden" action="{{ path('admin_blog_delete', { 'id': entity.id }) }}" method="post">
-    {{ form_widget(delete_form) }}
-</form>
+{{ macro.delete_form('post_delete', path('admin_post_delete', {'id': post.id})) }}
 {% endblock %}
