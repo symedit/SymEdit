@@ -1,7 +1,6 @@
 Isometriks\Bundle\SymEditBundle\Model\Post:
     type: entity
     table: post
-    repositoryClass: Isometriks\Bundle\SymEditBundle\Doctrine\Orm\Repository\PostRepository
     gedmo:
         loggable: true
     fields:
