@@ -42,7 +42,7 @@ class PageType extends AbstractType
          * that we allow pages with display = false here so we can't use the
          * default
          */
-        $root = $this->pageRepository->findOneBy(array('root' => true));
+        $root = $this->pageRepository->findRoot();
         $pageIterator = new RecursivePageIterator($root, false);
         $iterator = new \RecursiveIteratorIterator($pageIterator, \RecursiveIteratorIterator::SELF_FIRST);
 
@@ -163,9 +163,7 @@ class PageType extends AbstractType
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => $this->pageRepository->getClassName(),
             'tabs_class' => 'nav nav-stacked nav-pills',
-            'translation_domain' => 'SymEdit',
         ));
     }
 

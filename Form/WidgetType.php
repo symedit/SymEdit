@@ -92,6 +92,6 @@ class WidgetType extends AbstractType
 
     public function getName()
     {
-        return 'symedit_widget';
+        return 'isometriks_symedit_widget';
     }
 }

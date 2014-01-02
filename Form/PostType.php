@@ -110,7 +110,6 @@ class PostType extends AbstractType
     {
         $resolver->setDefaults(array(
             'tabs_class' => 'nav nav-stacked nav-pills',
-            'translation_domain' => 'SymEdit',
         ));
     }
 

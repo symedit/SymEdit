@@ -4,7 +4,6 @@ namespace Isometriks\Bundle\SymEditBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
 class CategoryType extends AbstractType
 {
@@ -40,13 +39,6 @@ class CategoryType extends AbstractType
         $builder
             ->add($basic)
             ->add($seo);
-    }
-
-    public function setDefaultOptions(OptionsResolverInterface $resolver)
-    {
-        $resolver->setDefaults(array(
-            'translation_domain' => 'SymEdit',
-        ));
     }
 
     public function getName()

@@ -37,7 +37,6 @@ class UserType extends AbstractType
 
     public function getName()
     {
-        return 'symedit_user';
+        return 'isometriks_symedit_user';
     }
-
 }
