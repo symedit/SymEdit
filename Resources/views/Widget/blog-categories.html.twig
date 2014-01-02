@@ -14,5 +14,5 @@
 {% endmacro %}
 
 <div class="category-list">
-    {{ _self.tree(categories.findRoot(), Category|default(null), counts) }}
+    {{ _self.tree(root, Category|default(null), counts) }}
 </div>
