@@ -1,0 +1,51 @@
+admin_widget:
+    pattern: /widget
+    methods: [GET]
+    defaults:
+        _controller: isometriks_symedit.controller.widget:indexAction
+        _sylius:
+            template: @SymEdit/Admin/Widget/index.html.twig
+
+admin_widget_choose:
+    pattern: /widget/new
+    methods: [GET]
+    defaults:
+        _controller: isometriks_symedit.controller.widget:chooseAction
+        _sylius:
+            template: @SymEdit/Admin/Widget/choose.html.twig
+
+admin_widget_create:
+    pattern: /widget/new/{strategyName}
+    methods: [GET, POST]
+    defaults:
+        _controller: isometriks_symedit.controller.widget:createAction
+        _sylius:
+            template: @SymEdit/Admin/Widget/new.html.twig
+            redirect:
+                route: admin_widget_update
+                parameters: ~
+
+admin_widget_update:
+    pattern: /widget/{id}/edit
+    methods: [GET, PUT, POST]
+    defaults:
+        _controller: isometriks_symedit.controller.widget:updateAction
+        _sylius:
+            template: @SymEdit/Admin/Widget/edit.html.twig
+            redirect:
+                route: admin_widget_update
+                parameters: { id: $id }
+
+admin_widget_delete:
+    pattern: /widget/{id}/delete
+    methods: [DELETE]
+    defaults:
+        _controller: isometriks_symedit.controller.widget:deleteAction
+        _sylius:
+            redirect: admin_widget
+
+admin_widget_reorder:
+    pattern: /widget/reorder
+    methods: [POST]
+    defaults:
+        _controller: isometriks_symedit.controller.widget:reorderAction
