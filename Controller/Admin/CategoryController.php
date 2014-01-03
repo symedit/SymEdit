@@ -18,10 +18,7 @@ class CategoryController extends ResourceController
      */
     public function indexAction(Request $request)
     {
-        $repository = $this->getRepository();
-        $rootCategory = $repository->createNew();
-        $roots = $repository->findBy(array('parent' => null));
-        $rootCategory->setChildren($roots);
+        $rootCategory = $this->getRepository()->findRoot();
 
         $view = $this
             ->view()
