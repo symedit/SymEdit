@@ -5,37 +5,37 @@
 {% block blog_content %}
 <article class="single blog-post" itemscope itemtype="http://schema.org/BlogPosting">
     <h1 class="title">
-        <a itemprop="name" href="{{ path('blog_slug_view', {slug:Post.slug}) }}">{{ Post.title }}</a>
+        <a itemprop="name" href="{{ path('blog_slug_view', {slug:post.slug}) }}">{{ post.title }}</a>
     </h1>
 
     <div itemprop="articleBody" class="clearfix">
-        {% if Post.image %}
+        {% if post.image %}
             <div class="image">
-                <img class="img-rounded" itemprop="image" src="{{ Post.image.webpath|constrain({w:300,h:400}) }}" alt="{{ Post.title }}" />
+                <img class="img-rounded" itemprop="image" src="{{ post.image.webpath|constrain({w:300,h:400}) }}" alt="{{ post.title }}" />
             </div>
         {% endif %}
-        {{ Post.content|raw }}
+        {{ post.content|raw }}
     </div>
     
     <div class="meta">
         <span class="author">
             <i class="icon-pencil"></i>
 
-            {% set profile = Post.author.profile %}
+            {% set profile = post.author.profile %}
             {% if profile.social.google_plus is defined and profile.social.google_plus is not empty %}
                 <a href="{{ profile.social.google_plus }}?rel=author"><img src="https://www.gstatic.com/images/icons/gplus-16.png" alt="{{ profile.fullname|plain }} on Google+"></a>
             {% endif %}
 
-            <a itemprop="author" href="{{ path('blog_author_view', { username: Post.author.username }) }}">{{ Post.author.profile.fullname }}</a>
+            <a itemprop="author" href="{{ path('blog_author_view', { username: post.author.username }) }}">{{ post.author.profile.fullname }}</a>
         </span>
 
         <span class="date">
             <i class="icon-time"></i>
-            <span itemprop="dateCreated">{{ Post.createdAt|date('F j, Y') }}</span>
+            <span itemprop="dateCreated">{{ post.createdAt|date('F j, Y') }}</span>
         </span>
     </div>    
 
-    {% if Post.published %}
+    {% if post.published %}
     {% include '@SymEdit/Blog/comments.html.twig' %}
     {% endif %}
 </article>

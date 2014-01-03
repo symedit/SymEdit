@@ -8,7 +8,7 @@
         <description>{{ SEO.description|default(Page.title) }}</description>
         <copyright>{{ Settings.company.name }} {{ 'now'|date('Y') }}</copyright>
         <lastBuildDate>{{ modified|date('r') }}</lastBuildDate>
-        {% for post in Posts %}
+        {% for post in posts %}
         <item>
             <title>{{ post.seo.title|default(post.title) }}</title>
             <link>{{ url('blog_slug_view', {slug:post.slug}) }}</link>
