@@ -2,17 +2,11 @@
 
 namespace Isometriks\Bundle\SymEditBundle\Controller;
 
-use Isometriks\Bundle\SymEditBundle\Annotation\PageController as Bind;
 use Isometriks\Bundle\SitemapBundle\Annotation\Sitemap;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 
-/**
- * @Bind(name="symedit-team")
- */
 class TeamController extends Controller
 {
     /**
-     * @Route("/", name="team")
      * @Sitemap()
      */
     public function indexAction()
@@ -40,9 +34,6 @@ class TeamController extends Controller
         ));
     }
 
-    /**
-     * @Route("/{slug}", name="team_view_slug")
-     */
     public function viewAction($slug)
     {
         $profile = $this->getUserManager()->findAdminProfileBy(array(
