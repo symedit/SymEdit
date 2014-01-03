@@ -11,19 +11,29 @@
     </parameters>
 
     <services>
+        <service id="isometriks_symedit.controller.user" class="%isometriks_symedit.controller.user.class%">
+            <argument>isometriks_symedit</argument>
+            <argument>user</argument>
+            <argument />
+            <call method="setContainer">
+                <argument type="service" id="service_container" />
+            </call>
+            <argument />
+        </service>
+
         <service id="isometriks_symedit.form.type.registration" class="%isometriks_symedit.form.type.registration.class%">
             <argument>%fos_user.model.user.class%</argument>
-            <tag name="form.type" alias="symedit_user_registration" />
+            <tag name="form.type" alias="isometriks_symedit_user_registration" />
         </service>
 
         <service id="isometriks_symedit.form.type.admin_profile" class="%isometriks_symedit.form.type.admin_profile.class%">
             <argument>%fos_user.model.user.class%</argument>
-            <tag name="form.type" alias="symedit_admin_profile" />
+            <tag name="form.type" alias="isometriks_symedit_admin_profile" />
         </service>
 
         <service id="isometriks_symedit.form.type.user_profile" class="%isometriks_symedit.form.type.user_profile.class%">
             <argument>%fos_user.model.user.class%</argument>
-            <tag name="form.type" alias="symedit_user_profile" />
+            <tag name="form.type" alias="isometriks_symedit_user_profile" />
         </service>
     </services>
 

@@ -12,8 +12,8 @@ Isometriks\Bundle\UserBundle\Model\Profile:
         type: string
         length: 20
     discriminatorMap:
-        user: Profile
-        admin: AdminProfile
+        user: Isometriks\Bundle\UserBundle\Model\Profile
+        admin: Isometriks\Bundle\UserBundle\Model\AdminProfile
     fields:
         firstName:
             type: string

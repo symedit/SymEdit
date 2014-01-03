@@ -43,7 +43,7 @@ class UserProfileType extends BaseType
 
     public function getName()
     {
-        return 'symedit_user_profile';
+        return 'isometriks_symedit_user_profile';
     }
 
 }

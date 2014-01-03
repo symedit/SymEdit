@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <parameters>
+        <parameter key="isometriks_symedit.repository.user.class">Sylius\Bundle\ResourceBundle\Doctrine\ORM\EntityRepository</parameter>
+    </parameters>
+
+    <services>
+        <service id="isometriks_user.entity_manager" factory-service="doctrine" factory-method="getManager" class="Doctrine\ORM\EntityManager">
+            <argument>%isometriks_user.model_manager_name%</argument>
+        </service>
+
+        <!-- User -->
+        <service id="isometriks_symedit.repository.user" class="%isometriks_symedit.repository.user.class%">
+            <argument type="service" id="isometriks_user.entity_manager" />
+            <argument type="service">
+                <service
+                    factory-service="isometriks_user.entity_manager"
+                    factory-method="getClassMetadata"
+                    class="Doctrine\ORM\Mapping\ClassMetadata">
+                    <argument>%isometriks_symedit.model.user.class%</argument>
+                </service>
+            </argument>
+        </service>
+    </services>
+</container>
