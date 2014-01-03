@@ -17,7 +17,6 @@ class ImageController extends Controller
 {
     /**
      * Deletes a Image entity.
-     *
      */
     public function deleteAction(Request $request, $id)
     {
@@ -52,9 +51,6 @@ class ImageController extends Controller
         ;
     }
 
-    /**
-     * @Route("/images.json", name="admin_image_json")
-     */
     public function jsonAction()
     {
         $mediaManager = $this->getMediaManager();
@@ -72,9 +68,6 @@ class ImageController extends Controller
         return new JsonResponse($out);
     }
 
-    /**
-     * @Route("/quick-upload", name="admin_image_quick_upload")
-     */
     public function quickUploadAction(Request $request)
     {
         $file = $request->files->get('file');
@@ -99,7 +92,6 @@ class ImageController extends Controller
             return new JsonResponse(array(
                 'error' => 'Error uploading, try renaming your image file.',
             ));
-
         }
     }
 }
