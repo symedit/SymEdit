@@ -4,7 +4,6 @@ namespace Isometriks\Bundle\SymEditBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
 class SliderType extends AbstractType
 {
@@ -12,21 +11,17 @@ class SliderType extends AbstractType
     {
         $builder
             ->add('name', 'text', array(
-                'help_block' => 'Lowercase letters, numbers, hypens or underscores.', 
+                'label' => 'admin.slider.name.label',
+                'help_block' => 'admin.slider.name.help',
             ))
-            ->add('description', 'textarea')
+            ->add('description', 'textarea', array(
+                'label' => 'admin.slider.description.label',
+            ))
         ;
-    }
-
-    public function setDefaultOptions(OptionsResolverInterface $resolver)
-    {
-        $resolver->setDefaults(array(
-            'data_class' => 'Isometriks\Bundle\SymEditBundle\Model\Slider'
-        ));
     }
 
     public function getName()
     {
-        return 'isometriks_bundle_symeditbundle_slidertype';
+        return 'isometriks_symedit_slider';
     }
 }
