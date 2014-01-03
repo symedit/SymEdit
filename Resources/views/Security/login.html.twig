@@ -15,7 +15,6 @@
 
         <form id="symedit-login" class="col-md-4" action="{{ path("fos_user_security_check") }}" method="post">
             <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
-            <input type="hidden" name="_target_path" value="{{ app.request.headers.get('referer')|default(path('homepage')) }}" />
 
             <div class="input-group">
                 <span class="input-group-addon"><i class="icon-user"></i></span>
@@ -30,14 +29,13 @@
             </div>
 
             <br>
-            {#<div class="clearfix">
-                <div class="pull-right">
+
+            <div class="clearfix">
                 <label class="checkbox">
                     {{ 'security.login.remember_me'|trans({}, 'FOSUserBundle') }}
                     <input type="checkbox" id="remember_me" name="_remember_me" value="on" />
                 </label>
-                </div>
-            </div>#}
+            </div>
 
             <hr>
 
