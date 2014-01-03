@@ -15,6 +15,11 @@ abstract class AbstractPagePathListener implements EventSubscriber
         $this->router = $router;
     }
 
+    /**
+     * @TODO: Maybe we should move to dynamic routing?
+     *
+     * @param type $args
+     */
     protected function updateRoutes($args)
     {
         $entity = $args->getEntity();
