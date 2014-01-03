@@ -62,7 +62,7 @@ class SlideController extends Controller
 
             $this->addFlash('notice', 'New Slide Created');
 
-            return $this->redirect($this->generateUrl('admin_image_slider_edit', array('id' => $slider_id)));
+            return $this->redirect($this->generateUrl('admin_image_slider_update', array('id' => $slider_id)));
         }
 
         return array(
