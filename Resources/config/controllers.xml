@@ -25,17 +25,6 @@
             </call>
         </service>
 
-        <!-- User -->
-        <service id="isometriks_symedit.controller.user" class="%isometriks_symedit.controller.user.class%">
-            <argument>isometriks_symedit</argument>
-            <argument>user</argument>
-            <argument />
-            <call method="setContainer">
-                <argument type="service" id="service_container" />
-            </call>
-            <argument />
-        </service>
-
         <!-- Category -->
         <service id="isometriks_symedit.controller.category" class="%isometriks_symedit.controller.category.class%">
             <argument>isometriks_symedit</argument>
@@ -70,6 +59,16 @@
         <service id="isometriks_symedit.controller.widget" class="%isometriks_symedit.controller.widget.class%">
             <argument>isometriks_symedit</argument>
             <argument>widget</argument>
+            <argument />
+            <call method="setContainer">
+                <argument type="service" id="service_container" />
+            </call>
+        </service>
+
+        <!-- Slider -->
+        <service id="isometriks_symedit.controller.slider" class="%isometriks_symedit.controller.slider.class%">
+            <argument>isometriks_symedit</argument>
+            <argument>slider</argument>
             <argument />
             <call method="setContainer">
                 <argument type="service" id="service_container" />

@@ -39,8 +39,6 @@ class IsometriksSymEditBundle extends Bundle
     public function build(ContainerBuilder $container)
     {
         $interfaces = array(
-            'Isometriks\Bundle\SymEditBundle\Model\UserInterface'       => 'isometriks_symedit.model.user.class',
-            'Isometriks\Bundle\SymEditBundle\Model\ProfileInterface'    => 'isometriks_symedit.model.profile.class',
             'Isometriks\Bundle\SymEditBundle\Model\PageInterface'       => 'isometriks_symedit.model.page.class',
             'Isometriks\Bundle\SymEditBundle\Model\PostInterface'       => 'isometriks_symedit.model.post.class',
             'Isometriks\Bundle\SymEditBundle\Model\CategoryInterface'   => 'isometriks_symedit.model.category.class',
