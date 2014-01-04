@@ -19,6 +19,9 @@ class PageVoter implements VoterInterface
         $this->request = $request;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public function matchItem(ItemInterface $item)
     {
         if ($page = $this->getPage()) {
@@ -28,6 +31,11 @@ class PageVoter implements VoterInterface
         return false;
     }
 
+    /**
+     * Get current page if there is one
+     *
+     * @return Isometriks\Bundle\SymEditBundle\Model\PageInterface|null $page
+     */
     protected function getPage()
     {
         if($this->page === null) {
