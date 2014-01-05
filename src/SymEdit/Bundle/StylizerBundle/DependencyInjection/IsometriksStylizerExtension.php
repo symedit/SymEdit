@@ -1,6 +1,6 @@
 <?php
 
-namespace Isometriks\Bundle\StylizerBundle\DependencyInjection;
+namespace SymEdit\Bundle\StylizerBundle\DependencyInjection;
 
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\Config\FileLocator;

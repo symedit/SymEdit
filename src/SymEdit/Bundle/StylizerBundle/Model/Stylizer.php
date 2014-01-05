@@ -1,10 +1,10 @@
 <?php
 
-namespace Isometriks\Bundle\StylizerBundle\Model; 
+namespace SymEdit\Bundle\StylizerBundle\Model; 
 
-use Isometriks\Bundle\StylizerBundle\Loader\Loader; 
-use Isometriks\Bundle\StylizerBundle\Dumper\Dumper; 
-use Isometriks\Bundle\StylizerBundle\Loader\ConfigData; 
+use SymEdit\Bundle\StylizerBundle\Loader\Loader; 
+use SymEdit\Bundle\StylizerBundle\Dumper\Dumper; 
+use SymEdit\Bundle\StylizerBundle\Loader\ConfigData; 
 use Symfony\Component\Yaml\Yaml; 
 use Symfony\Component\Filesystem\Filesystem; 
 

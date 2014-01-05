@@ -1,6 +1,6 @@
 <?php
 
-namespace Isometriks\Bundle\StylizerBundle\Injector; 
+namespace SymEdit\Bundle\StylizerBundle\Injector; 
 
 use Symfony\Bundle\AsseticBundle\FilterManager;  
 

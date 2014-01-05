@@ -1,6 +1,6 @@
 <?php
 
-namespace Isometriks\Bundle\StylizerBundle\Command; 
+namespace SymEdit\Bundle\StylizerBundle\Command; 
 
 use Symfony\Bundle\AsseticBundle\Command\DumpCommand as BaseCommand; 
 use Symfony\Component\Console\Input\InputInterface; 

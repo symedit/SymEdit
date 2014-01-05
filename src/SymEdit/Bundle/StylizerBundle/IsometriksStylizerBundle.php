@@ -1,10 +1,10 @@
 <?php
 
-namespace Isometriks\Bundle\StylizerBundle;
+namespace SymEdit\Bundle\StylizerBundle;
 
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 use Symfony\Component\DependencyInjection\ContainerBuilder; 
-use Isometriks\Bundle\StylizerBundle\DependencyInjection\Compiler\InjectorCompilerPass; 
+use SymEdit\Bundle\StylizerBundle\DependencyInjection\Compiler\InjectorCompilerPass; 
 
 class IsometriksStylizerBundle extends Bundle
 {

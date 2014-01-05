@@ -1,6 +1,6 @@
 <?php
 
-namespace Isometriks\Bundle\StylizerBundle\Form\Type; 
+namespace SymEdit\Bundle\StylizerBundle\Form\Type; 
 
 use Symfony\Component\Form\AbstractType; 
 use Symfony\Component\OptionsResolver\OptionsResolverInterface; 

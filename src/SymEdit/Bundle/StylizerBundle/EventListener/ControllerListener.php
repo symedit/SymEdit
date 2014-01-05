@@ -1,10 +1,10 @@
 <?php
 
-namespace Isometriks\Bundle\StylizerBundle\EventListener;
+namespace SymEdit\Bundle\StylizerBundle\EventListener;
 
 use Symfony\Component\HttpKernel\Event\FilterControllerEvent;
 use Symfony\Component\HttpKernel\HttpKernel;
-use Isometriks\Bundle\StylizerBundle\Model\Stylizer; 
+use SymEdit\Bundle\StylizerBundle\Model\Stylizer; 
 
 use Symfony\Component\HttpKernel\Event\GetResponseEvent; 
 

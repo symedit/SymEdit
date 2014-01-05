@@ -1,11 +1,11 @@
 <?php
 
-namespace Isometriks\Bundle\StylizerBundle\Form\Type;
+namespace SymEdit\Bundle\StylizerBundle\Form\Type;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
-use Isometriks\Bundle\StylizerBundle\Model\Stylizer;
-use Isometriks\Bundle\StylizerBundle\Loader\GroupData;
+use SymEdit\Bundle\StylizerBundle\Model\Stylizer;
+use SymEdit\Bundle\StylizerBundle\Loader\GroupData;
 use Symfony\Component\Validator\Constraints\NotBlank;
 
 class StylesType extends AbstractType

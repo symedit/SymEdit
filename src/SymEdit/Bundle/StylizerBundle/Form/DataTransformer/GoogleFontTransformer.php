@@ -1,6 +1,6 @@
 <?php
 
-namespace Isometriks\Bundle\StylizerBundle\Form\DataTransformer;
+namespace SymEdit\Bundle\StylizerBundle\Form\DataTransformer;
 
 use Symfony\Component\Form\DataTransformerInterface;
 

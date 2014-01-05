@@ -1,8 +1,8 @@
 <?php
 
-namespace Isometriks\Bundle\StylizerBundle\Twig\Extension;
+namespace SymEdit\Bundle\StylizerBundle\Twig\Extension;
 
-use Isometriks\Bundle\StylizerBundle\Model\Stylizer;
+use SymEdit\Bundle\StylizerBundle\Model\Stylizer;
 
 class StylizerExtension extends \Twig_Extension
 {

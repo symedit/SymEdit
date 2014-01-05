@@ -1,8 +1,8 @@
 <?php
 
-namespace Isometriks\Bundle\StylizerBundle\Form\Type;
+namespace SymEdit\Bundle\StylizerBundle\Form\Type;
 
-use Isometriks\Bundle\StylizerBundle\Form\DataTransformer\GoogleFontTransformer;
+use SymEdit\Bundle\StylizerBundle\Form\DataTransformer\GoogleFontTransformer;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;

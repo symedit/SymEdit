@@ -1,6 +1,6 @@
 <?php
 
-namespace Isometriks\Bundle\StylizerBundle\Dumper;
+namespace SymEdit\Bundle\StylizerBundle\Dumper;
 
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\Console\Command\Command;
@@ -8,8 +8,8 @@ use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Input\ArrayInput;
 use Symfony\Component\Console\Output\NullOutput;
 use Symfony\Bundle\AsseticBundle\FilterManager;
-use Isometriks\Bundle\StylizerBundle\Injector\InjectorInterface;
-use Isometriks\Bundle\StylizerBundle\Loader\Loader;
+use SymEdit\Bundle\StylizerBundle\Injector\InjectorInterface;
+use SymEdit\Bundle\StylizerBundle\Loader\Loader;
 
 class Dumper
 {
