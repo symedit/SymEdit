@@ -2,7 +2,7 @@ admin_page:
     pattern: /
     methods: [GET]
     defaults:
-        _controller: isometriks_symedit.controller.page:indexAction
+        _controller: symedit.controller.page:indexAction
         _sylius:
             template: @SymEdit/Admin/Page/index.html.twig
 
@@ -10,7 +10,7 @@ admin_page_create:
     pattern: /new
     methods: [GET, POST]
     defaults:
-        _controller: isometriks_symedit.controller.page:createAction
+        _controller: symedit.controller.page:createAction
         _sylius:
             template: @SymEdit/Admin/Page/new.html.twig
             redirect:
@@ -21,7 +21,7 @@ admin_page_update:
     pattern: /{id}/edit
     methods: [GET, PUT, POST]
     defaults:
-        _controller: isometriks_symedit.controller.page:updateAction
+        _controller: symedit.controller.page:updateAction
         _sylius:
             template: @SymEdit/Admin/Page/edit.html.twig
             redirect:
@@ -32,7 +32,7 @@ admin_page_delete:
     pattern: /{id}/delete
     methods: [DELETE]
     defaults:
-        _controller: isometriks_symedit.controller.page:deleteAction
+        _controller: symedit.controller.page:deleteAction
         _sylius:
             redirect: admin_page
 
@@ -40,4 +40,4 @@ admin_page_reorder:
     pattern: /reorder
     methods: [POST]
     defaults:
-        _controller: isometriks_symedit.controller.page:reorderAction
+        _controller: symedit.controller.page:reorderAction

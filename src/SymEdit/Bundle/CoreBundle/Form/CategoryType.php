@@ -43,6 +43,6 @@ class CategoryType extends AbstractType
 
     public function getName()
     {
-        return 'isometriks_symedit_category';
+        return 'symedit_category';
     }
 }

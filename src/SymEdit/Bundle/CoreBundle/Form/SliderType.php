@@ -22,6 +22,6 @@ class SliderType extends AbstractType
 
     public function getName()
     {
-        return 'isometriks_symedit_slider';
+        return 'symedit_slider';
     }
 }

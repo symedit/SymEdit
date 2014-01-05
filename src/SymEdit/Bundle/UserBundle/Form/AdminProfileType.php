@@ -111,7 +111,7 @@ class AdminProfileType extends BaseType
         ));
 
         $image
-            ->add('image', 'isometriks_symedit_image', array(
+            ->add('image', 'symedit_image', array(
                 'required' => false,
                 'require_name' => false,
                 'property_path' => 'profile.image',
@@ -147,6 +147,6 @@ class AdminProfileType extends BaseType
 
     public function getName()
     {
-        return 'isometriks_symedit_admin_profile';
+        return 'symedit_admin_profile';
     }
 }

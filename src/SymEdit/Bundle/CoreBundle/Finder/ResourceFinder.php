@@ -27,7 +27,7 @@ class ResourceFinder
      */
     public function getTemplates($type = 'Page')
     {
-        $dirs = $this->kernel->locateResource('@IsometriksSymEditBundle/Resources/views/'.$type, null, false);
+        $dirs = $this->kernel->locateResource('@SymEditBundle/Resources/views/'.$type, null, false);
         $dirs = array_reverse($dirs);
 
         $templates = array();

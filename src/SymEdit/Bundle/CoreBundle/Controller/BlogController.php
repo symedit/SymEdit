@@ -185,7 +185,7 @@ class BlogController extends Controller
      */
     protected function getPostRepository()
     {
-        return $this->get('isometriks_symedit.repository.post');
+        return $this->get('symedit.repository.post');
     }
 
     /**

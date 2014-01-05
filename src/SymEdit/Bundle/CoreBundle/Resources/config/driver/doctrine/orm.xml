@@ -5,127 +5,127 @@
     xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
 
     <parameters>
-        <parameter key="isometriks_symedit.repository.page.class">SymEdit\Bundle\CoreBundle\Doctrine\ORM\PageRepository</parameter>
-        <parameter key="isometriks_symedit.repository.post.class">SymEdit\Bundle\CoreBundle\Doctrine\ORM\PostRepository</parameter>
-        <parameter key="isometriks_symedit.repository.category.class">SymEdit\Bundle\CoreBundle\Doctrine\ORM\CategoryRepository</parameter>
-        <parameter key="isometriks_symedit.repository.image.class">Sylius\Bundle\ResourceBundle\Doctrine\ORM\EntityRepository</parameter>
-        <parameter key="isometriks_symedit.repository.widget.class">SymEdit\Bundle\CoreBundle\Doctrine\ORM\WidgetRepository</parameter>
-        <parameter key="isometriks_symedit.repository.widget_area.class">Sylius\Bundle\ResourceBundle\Doctrine\ORM\EntityRepository</parameter>
-        <parameter key="isometriks_symedit.repository.slider.class">Sylius\Bundle\ResourceBundle\Doctrine\ORM\EntityRepository</parameter>
+        <parameter key="symedit.repository.page.class">SymEdit\Bundle\CoreBundle\Doctrine\ORM\PageRepository</parameter>
+        <parameter key="symedit.repository.post.class">SymEdit\Bundle\CoreBundle\Doctrine\ORM\PostRepository</parameter>
+        <parameter key="symedit.repository.category.class">SymEdit\Bundle\CoreBundle\Doctrine\ORM\CategoryRepository</parameter>
+        <parameter key="symedit.repository.image.class">Sylius\Bundle\ResourceBundle\Doctrine\ORM\EntityRepository</parameter>
+        <parameter key="symedit.repository.widget.class">SymEdit\Bundle\CoreBundle\Doctrine\ORM\WidgetRepository</parameter>
+        <parameter key="symedit.repository.widget_area.class">Sylius\Bundle\ResourceBundle\Doctrine\ORM\EntityRepository</parameter>
+        <parameter key="symedit.repository.slider.class">Sylius\Bundle\ResourceBundle\Doctrine\ORM\EntityRepository</parameter>
     </parameters>
 
     <services>
-        <service id="isometriks_symedit.entity_manager" factory-service="doctrine" factory-method="getManager" class="Doctrine\ORM\EntityManager">
-            <argument>%isometriks_symedit.model_manager_name%</argument>
+        <service id="symedit.entity_manager" factory-service="doctrine" factory-method="getManager" class="Doctrine\ORM\EntityManager">
+            <argument>%symedit.model_manager_name%</argument>
         </service>
 
         <!-- Page -->
-        <service id="isometriks_symedit.manager.page" alias="isometriks_symedit.entity_manager" />
-        <service id="isometriks_symedit.repository.page" class="%isometriks_symedit.repository.page.class%">
-            <argument type="service" id="isometriks_symedit.manager.page" />
+        <service id="symedit.manager.page" alias="symedit.entity_manager" />
+        <service id="symedit.repository.page" class="%symedit.repository.page.class%">
+            <argument type="service" id="symedit.manager.page" />
             <argument type="service">
                 <service
-                    factory-service="isometriks_symedit.manager.page"
+                    factory-service="symedit.manager.page"
                     factory-method="getClassMetadata"
                     class="Doctrine\ORM\Mapping\ClassMetadata">
-                    <argument>%isometriks_symedit.model.page.class%</argument>
+                    <argument>%symedit.model.page.class%</argument>
                 </service>
             </argument>
         </service>
 
         <!-- Post -->
-        <service id="isometriks_symedit.manager.post" alias="isometriks_symedit.entity_manager" />
-        <service id="isometriks_symedit.repository.post" class="%isometriks_symedit.repository.post.class%">
-            <argument type="service" id="isometriks_symedit.manager.post" />
+        <service id="symedit.manager.post" alias="symedit.entity_manager" />
+        <service id="symedit.repository.post" class="%symedit.repository.post.class%">
+            <argument type="service" id="symedit.manager.post" />
             <argument type="service">
                 <service
-                    factory-service="isometriks_symedit.manager.post"
+                    factory-service="symedit.manager.post"
                     factory-method="getClassMetadata"
                     class="Doctrine\ORM\Mapping\ClassMetadata">
-                    <argument>%isometriks_symedit.model.post.class%</argument>
+                    <argument>%symedit.model.post.class%</argument>
                 </service>
             </argument>
         </service>
 
         <!-- Category -->
-        <service id="isometriks_symedit.manager.category" alias="isometriks_symedit.entity_manager" />
-        <service id="isometriks_symedit.repository.category" class="%isometriks_symedit.repository.category.class%">
-            <argument type="service" id="isometriks_symedit.manager.category" />
+        <service id="symedit.manager.category" alias="symedit.entity_manager" />
+        <service id="symedit.repository.category" class="%symedit.repository.category.class%">
+            <argument type="service" id="symedit.manager.category" />
             <argument type="service">
                 <service
-                    factory-service="isometriks_symedit.manager.category"
+                    factory-service="symedit.manager.category"
                     factory-method="getClassMetadata"
                     class="Doctrine\ORM\Mapping\ClassMetadata">
-                    <argument>%isometriks_symedit.model.category.class%</argument>
+                    <argument>%symedit.model.category.class%</argument>
                 </service>
             </argument>
         </service>
 
         <!-- Image -->
-        <service id="isometriks_symedit.manager.image" alias="isometriks_symedit.entity_manager" />
-        <service id="isometriks_symedit.repository.image" class="%isometriks_symedit.repository.image.class%">
-            <argument type="service" id="isometriks_symedit.manager.image" />
+        <service id="symedit.manager.image" alias="symedit.entity_manager" />
+        <service id="symedit.repository.image" class="%symedit.repository.image.class%">
+            <argument type="service" id="symedit.manager.image" />
             <argument type="service">
                 <service
-                    factory-service="isometriks_symedit.manager.image"
+                    factory-service="symedit.manager.image"
                     factory-method="getClassMetadata"
                     class="Doctrine\ORM\Mapping\ClassMetadata">
-                    <argument>%isometriks_symedit.model.image.class%</argument>
+                    <argument>%symedit.model.image.class%</argument>
                 </service>
             </argument>
         </service>
 
         <!-- Widget -->
-        <service id="isometriks_symedit.manager.widget" alias="isometriks_symedit.entity_manager" />
-        <service id="isometriks_symedit.repository.widget" class="%isometriks_symedit.repository.widget.class%">
-            <argument type="service" id="isometriks_symedit.manager.widget" />
+        <service id="symedit.manager.widget" alias="symedit.entity_manager" />
+        <service id="symedit.repository.widget" class="%symedit.repository.widget.class%">
+            <argument type="service" id="symedit.manager.widget" />
             <argument type="service">
                 <service
-                    factory-service="isometriks_symedit.manager.widget"
+                    factory-service="symedit.manager.widget"
                     factory-method="getClassMetadata"
                     class="Doctrine\ORM\Mapping\ClassMetadata">
-                    <argument>%isometriks_symedit.model.widget.class%</argument>
+                    <argument>%symedit.model.widget.class%</argument>
                 </service>
             </argument>
-            <argument type="service" id="isometriks_symedit.widget.registry" />
+            <argument type="service" id="symedit.widget.registry" />
         </service>
 
         <!-- Widget Area -->
-        <service id="isometriks_symedit.manager.widget_area" alias="isometriks_symedit.entity_manager" />
-        <service id="isometriks_symedit.repository.widget_area" class="%isometriks_symedit.repository.widget_area.class%">
-            <argument type="service" id="isometriks_symedit.manager.widget_area" />
+        <service id="symedit.manager.widget_area" alias="symedit.entity_manager" />
+        <service id="symedit.repository.widget_area" class="%symedit.repository.widget_area.class%">
+            <argument type="service" id="symedit.manager.widget_area" />
             <argument type="service">
                 <service
-                    factory-service="isometriks_symedit.manager.widget_area"
+                    factory-service="symedit.manager.widget_area"
                     factory-method="getClassMetadata"
                     class="Doctrine\ORM\Mapping\ClassMetadata">
-                    <argument>%isometriks_symedit.model.widget_area.class%</argument>
+                    <argument>%symedit.model.widget_area.class%</argument>
                 </service>
             </argument>
         </service>
 
         <!-- Slider -->
-        <service id="isometriks_symedit.manager.slider" alias="isometriks_symedit.entity_manager" />
-        <service id="isometriks_symedit.repository.slider" class="%isometriks_symedit.repository.slider.class%">
-            <argument type="service" id="isometriks_symedit.manager.slider" />
+        <service id="symedit.manager.slider" alias="symedit.entity_manager" />
+        <service id="symedit.repository.slider" class="%symedit.repository.slider.class%">
+            <argument type="service" id="symedit.manager.slider" />
             <argument type="service">
                 <service
-                    factory-service="isometriks_symedit.manager.slider"
+                    factory-service="symedit.manager.slider"
                     factory-method="getClassMetadata"
                     class="Doctrine\ORM\Mapping\ClassMetadata">
-                    <argument>%isometriks_symedit.model.slider.class%</argument>
+                    <argument>%symedit.model.slider.class%</argument>
                 </service>
             </argument>
         </service>
 
         <!-- Listeners -->
-        <service id="isometriks_symedit.listener.page_path" class="SymEdit\Bundle\CoreBundle\Doctrine\ORM\PagePathListener">
+        <service id="symedit.listener.page_path" class="SymEdit\Bundle\CoreBundle\Doctrine\ORM\PagePathListener">
             <argument type="service" id="router" />
             <tag name="doctrine.event_subscriber" />
         </service>
 
-        <service id="isometriks_symedit.widget.listener" class="SymEdit\Bundle\CoreBundle\Doctrine\ORM\WidgetListener">
-            <argument type="service" id="isometriks_symedit.widget.registry" />
+        <service id="symedit.widget.listener" class="SymEdit\Bundle\CoreBundle\Doctrine\ORM\WidgetListener">
+            <argument type="service" id="symedit.widget.registry" />
             <tag name="doctrine.event_subscriber" />
         </service>
     </services>

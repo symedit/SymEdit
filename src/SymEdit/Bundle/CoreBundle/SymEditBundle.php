@@ -23,7 +23,7 @@ class SymEditBundle extends Bundle
     {
         if($kernel === null) {
             throw new \RuntimeException('When you register the SymEdit bundle, be sure to include "$this" in the parameters => '
-                                      . 'new Isometriks\\Bundle\\SymEditBundle\\IsometriksSymEditBundle($this)');
+                                      . 'new Isometriks\\Bundle\\SymEditBundle\\SymEditBundle($this)');
         }
 
         $this->kernel = $kernel;
@@ -39,13 +39,13 @@ class SymEditBundle extends Bundle
     public function build(ContainerBuilder $container)
     {
         $interfaces = array(
-            'SymEdit\Bundle\CoreBundle\Model\PageInterface'       => 'isometriks_symedit.model.page.class',
-            'SymEdit\Bundle\CoreBundle\Model\PostInterface'       => 'isometriks_symedit.model.post.class',
-            'SymEdit\Bundle\CoreBundle\Model\CategoryInterface'   => 'isometriks_symedit.model.category.class',
-            'SymEdit\Bundle\CoreBundle\Model\SlideInterface'      => 'isometriks_symedit.model.slide.class',
-            'SymEdit\Bundle\CoreBundle\Model\SliderInterface'     => 'isometriks_symedit.model.slider.class',
-            'SymEdit\Bundle\CoreBundle\Model\WidgetAreaInterface' => 'isometriks_symedit.model.widget_area.class',
-            'SymEdit\Bundle\CoreBundle\Model\WidgetInterface'     => 'isometriks_symedit.model.widget.class',
+            'SymEdit\Bundle\CoreBundle\Model\PageInterface'       => 'symedit.model.page.class',
+            'SymEdit\Bundle\CoreBundle\Model\PostInterface'       => 'symedit.model.post.class',
+            'SymEdit\Bundle\CoreBundle\Model\CategoryInterface'   => 'symedit.model.category.class',
+            'SymEdit\Bundle\CoreBundle\Model\SlideInterface'      => 'symedit.model.slide.class',
+            'SymEdit\Bundle\CoreBundle\Model\SliderInterface'     => 'symedit.model.slider.class',
+            'SymEdit\Bundle\CoreBundle\Model\WidgetAreaInterface' => 'symedit.model.widget_area.class',
+            'SymEdit\Bundle\CoreBundle\Model\WidgetInterface'     => 'symedit.model.widget.class',
         );
 
         $container->addCompilerPass(new ResolveDoctrineTargetEntitiesPass('symedit', $interfaces));

@@ -10,7 +10,7 @@ class WidgetController extends Controller
 {
     public function renderAreaAction($area, PageInterface $_page = null, $path = null)
     {
-        $repository = $this->get('isometriks_symedit.repository.widget_area');
+        $repository = $this->get('symedit.repository.widget_area');
         $widgetArea = $repository->findOneByArea($area);
 
         $id = $_page === null ? null : $_page->getId();

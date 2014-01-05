@@ -37,7 +37,7 @@ class PageLoader extends BaseLoader
         foreach ($pages as $page) {
             $defaults = array(
                 '_page_id' => $page->getId(),
-                '_controller' => 'IsometriksSymEditBundle:Page:show',
+                '_controller' => 'SymEditBundle:Page:show',
             );
 
             $collection->add($page->getRoute(), new Route($page->getPath(), $defaults));

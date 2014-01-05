@@ -2,7 +2,7 @@ admin_category:
     pattern: /
     methods: [GET]
     defaults:
-        _controller: isometriks_symedit.controller.category:indexAction
+        _controller: symedit.controller.category:indexAction
         _sylius:
             template: @SymEdit/Admin/Category/index.html.twig
             paginate: false
@@ -12,7 +12,7 @@ admin_category_create:
     pattern: /new
     methods: [GET, POST]
     defaults:
-        _controller: isometriks_symedit.controller.category:createAction
+        _controller: symedit.controller.category:createAction
         _sylius:
             template: @SymEdit/Admin/Category/new.html.twig
             redirect: admin_category
@@ -21,7 +21,7 @@ admin_category_update:
     pattern: /{id}/edit
     methods: [GET, PUT, POST]
     defaults:
-        _controller: isometriks_symedit.controller.category:updateAction
+        _controller: symedit.controller.category:updateAction
         _sylius:
             template: @SymEdit/Admin/Category/edit.html.twig
             redirect:
@@ -32,6 +32,6 @@ admin_category_delete:
     pattern: /{id}/delete
     methods: [DELETE]
     defaults:
-        _controller: isometriks_symedit.controller.category:deleteAction
+        _controller: symedit.controller.category:deleteAction
         _sylius:
             redirect: admin_category

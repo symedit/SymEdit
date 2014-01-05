@@ -23,8 +23,8 @@ class SymEditUserBundle extends Bundle
         parent::build($container);
 
         $interfaces = array(
-            'SymEdit\Bundle\CoreBundle\Model\UserInterface'    => 'isometriks_symedit.model.user.class',
-            'SymEdit\Bundle\CoreBundle\Model\ProfileInterface' => 'isometriks_symedit.model.profile.class',
+            'SymEdit\Bundle\CoreBundle\Model\UserInterface'    => 'symedit.model.user.class',
+            'SymEdit\Bundle\CoreBundle\Model\ProfileInterface' => 'symedit.model.profile.class',
         );
 
         $container->addCompilerPass(new ResolveDoctrineTargetEntitiesPass('symedit_user', $interfaces));

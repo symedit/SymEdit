@@ -32,11 +32,11 @@ class UserType extends AbstractType
 
     public function getParent()
     {
-        return 'isometriks_symedit_admin_profile';
+        return 'symedit_admin_profile';
     }
 
     public function getName()
     {
-        return 'isometriks_symedit_user';
+        return 'symedit_user';
     }
 }

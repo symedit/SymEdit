@@ -23,7 +23,7 @@ class SliderStrategy extends AbstractWidgetStrategy
         $kernel = $this->container->get('http_kernel');
 
         $path = array(
-            '_controller' => 'IsometriksSymEditBundle:Slider:index',
+            '_controller' => 'SymEditBundle:Slider:index',
             'name' => $widget->getOption('slider'),
             'thumbnails' => $widget->getOption('thumbnails'),
         );

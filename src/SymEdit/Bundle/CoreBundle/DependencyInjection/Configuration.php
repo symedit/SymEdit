@@ -14,7 +14,7 @@ class Configuration implements ConfigurationInterface
     public function getConfigTreeBuilder()
     {
         $treeBuilder = new TreeBuilder();
-        $rootNode = $treeBuilder->root('isometriks_symedit');
+        $rootNode = $treeBuilder->root('symedit');
 
         $supportedDrivers = array('doctrine/orm', 'doctrine/mongodb');
 

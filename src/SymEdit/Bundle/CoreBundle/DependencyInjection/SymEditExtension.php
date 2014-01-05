@@ -25,7 +25,7 @@ class SymEditExtension extends SymEditResourceExtension
         $this->remapParameters($container, 'fragment', $config['fragment']);
 
         $container->setParameter('symedit.model_manager_name', $config['model_manager_name']);
-        $container->setParameter('extensions.routes', $config['extensions']);
+        $container->setParameter('symedit.extensions.routes', $config['extensions']);
         $container->setParameter('symedit.admin_dir', $config['admin_dir']);
     }
 

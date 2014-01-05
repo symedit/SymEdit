@@ -5,26 +5,26 @@
            xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
 
     <parameters>
-        <parameter key="isometriks_symedit.seo.page.class">SymEdit\Bundle\CoreBundle\EventListener\Seo\PageCalculator</parameter>
-        <parameter key="isometriks_symedit.seo.post.class">SymEdit\Bundle\CoreBundle\EventListener\Seo\PostCalculator</parameter>
-        <parameter key="isometriks_symedit.seo.category.class">SymEdit\Bundle\CoreBundle\EventListener\Seo\CategoryCalculator</parameter>
-        <parameter key="isometriks_symedit.seo.opengraph.class">SymEdit\Bundle\CoreBundle\EventListener\Seo\OpenGraphCalculator</parameter>
+        <parameter key="symedit.seo.page.class">SymEdit\Bundle\CoreBundle\EventListener\Seo\PageCalculator</parameter>
+        <parameter key="symedit.seo.post.class">SymEdit\Bundle\CoreBundle\EventListener\Seo\PostCalculator</parameter>
+        <parameter key="symedit.seo.category.class">SymEdit\Bundle\CoreBundle\EventListener\Seo\CategoryCalculator</parameter>
+        <parameter key="symedit.seo.opengraph.class">SymEdit\Bundle\CoreBundle\EventListener\Seo\OpenGraphCalculator</parameter>
     </parameters>
 
     <services>
-        <service id="isometriks_symedit.seo.page" class="%isometriks_symedit.seo.page.class%">
+        <service id="symedit.seo.page" class="%symedit.seo.page.class%">
             <tag name="seo.calculator" />
         </service>
 
-        <service id="isometriks_symedit.seo.post" class="%isometriks_symedit.seo.post.class%">
+        <service id="symedit.seo.post" class="%symedit.seo.post.class%">
             <tag name="seo.calculator" />
         </service>
 
-        <service id="isometriks_symedit.seo.category" class="%isometriks_symedit.seo.category.class%">
+        <service id="symedit.seo.category" class="%symedit.seo.category.class%">
             <tag name="seo.calculator" />
         </service>
 
-        <service id="isometriks_symedit.seo.opengraph" class="%isometriks_symedit.seo.opengraph.class%">
+        <service id="symedit.seo.opengraph" class="%symedit.seo.opengraph.class%">
             <argument type="service" id="isometriks_settings.settings" />
             <tag name="seo.calculator" />
         </service>

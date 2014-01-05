@@ -5,14 +5,14 @@
            xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
 
     <parameters>
-        <parameter key="isometriks_symedit.form.type.registration.class">SymEdit\Bundle\UserBundle\Form\RegistrationFormType</parameter>
-        <parameter key="isometriks_symedit.form.type.admin_profile.class">SymEdit\Bundle\UserBundle\Form\AdminProfileType</parameter>
-        <parameter key="isometriks_symedit.form.type.user_profile.class">SymEdit\Bundle\UserBundle\Form\UserProfileType</parameter>
+        <parameter key="symedit.form.type.registration.class">SymEdit\Bundle\UserBundle\Form\RegistrationFormType</parameter>
+        <parameter key="symedit.form.type.admin_profile.class">SymEdit\Bundle\UserBundle\Form\AdminProfileType</parameter>
+        <parameter key="symedit.form.type.user_profile.class">SymEdit\Bundle\UserBundle\Form\UserProfileType</parameter>
     </parameters>
 
     <services>
-        <service id="isometriks_symedit.controller.user" class="%isometriks_symedit.controller.user.class%">
-            <argument>isometriks_symedit</argument>
+        <service id="symedit.controller.user" class="%symedit.controller.user.class%">
+            <argument>symedit</argument>
             <argument>user</argument>
             <argument />
             <call method="setContainer">
@@ -21,19 +21,19 @@
             <argument />
         </service>
 
-        <service id="isometriks_symedit.form.type.registration" class="%isometriks_symedit.form.type.registration.class%">
+        <service id="symedit.form.type.registration" class="%symedit.form.type.registration.class%">
             <argument>%fos_user.model.user.class%</argument>
-            <tag name="form.type" alias="isometriks_symedit_user_registration" />
+            <tag name="form.type" alias="symedit_user_registration" />
         </service>
 
-        <service id="isometriks_symedit.form.type.admin_profile" class="%isometriks_symedit.form.type.admin_profile.class%">
+        <service id="symedit.form.type.admin_profile" class="%symedit.form.type.admin_profile.class%">
             <argument>%fos_user.model.user.class%</argument>
-            <tag name="form.type" alias="isometriks_symedit_admin_profile" />
+            <tag name="form.type" alias="symedit_admin_profile" />
         </service>
 
-        <service id="isometriks_symedit.form.type.user_profile" class="%isometriks_symedit.form.type.user_profile.class%">
+        <service id="symedit.form.type.user_profile" class="%symedit.form.type.user_profile.class%">
             <argument>%fos_user.model.user.class%</argument>
-            <tag name="form.type" alias="isometriks_symedit_user_profile" />
+            <tag name="form.type" alias="symedit_user_profile" />
         </service>
     </services>
 

@@ -41,7 +41,7 @@ class SymEditExtension extends \Twig_Extension
             
             $globals['Page'] = $page;
             $globals['SEO'] = $seo;
-            $globals['Breadcrumbs'] = $this->container->get('isometriks_symedit.breadcrumbs');
+            $globals['Breadcrumbs'] = $this->container->get('symedit.breadcrumbs');
         }
 
         return $globals;

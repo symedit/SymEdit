@@ -64,7 +64,7 @@ class Controller extends BaseController
      */
     public function getMailer()
     {
-        return $this->get('isometriks_symedit.mailer');
+        return $this->get('symedit.mailer');
     }
 
     /**
@@ -74,7 +74,7 @@ class Controller extends BaseController
      */
     public function getBreadcrumbs()
     {
-        return $this->get('isometriks_symedit.breadcrumbs');
+        return $this->get('symedit.breadcrumbs');
     }
 
     /**

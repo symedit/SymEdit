@@ -169,6 +169,6 @@ class PageType extends AbstractType
 
     public function getName()
     {
-        return 'isometriks_symedit_page';
+        return 'symedit_page';
     }
 }

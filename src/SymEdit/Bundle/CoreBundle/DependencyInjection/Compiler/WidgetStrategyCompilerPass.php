@@ -22,6 +22,6 @@ class WidgetStrategyCompilerPass implements CompilerPassInterface
             }
         }
         
-        $container->setParameter('isometriks_symedit.widget.strategies', $strategies); 
+        $container->setParameter('symedit.widget.strategies', $strategies); 
     }
 }

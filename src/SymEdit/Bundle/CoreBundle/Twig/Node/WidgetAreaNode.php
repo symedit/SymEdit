@@ -20,7 +20,7 @@ class WidgetAreaNode extends \Twig_Node
             ->addDebugInfo($this)
             ->write('echo $this->env->getExtension(\'http_kernel\')->renderFragmentStrategy(\'' . $this->getAttribute('strategy') . '\',')
             ->write('    $this->env->getExtension(\'http_kernel\')')
-            ->write('         ->controller(\'IsometriksSymEditBundle:Widget:renderArea\', array(')
+            ->write('         ->controller(\'SymEditBundle:Widget:renderArea\', array(')
             ->write('             \'area\' => \'' . $this->getAttribute('area') . '\',')
             ->write('             \'path\' => $context[\'Page\']->getPath(),')
             ->write('             \'_page_id\'   => is_numeric($context[\'Page\']->getId()) ? $context[\'Page\']->getId() : \'\',')

@@ -3,8 +3,8 @@ fos_user:
     firewall_name: main
     user_class: SymEdit\Bundle\CoreBundle\Model\User
     service:
-        mailer: isometriks_symedit.mailer
-        user_manager: isometriks_symedit.manager.user
+        mailer: symedit.mailer
+        user_manager: symedit.manager.user
     registration:
         confirmation:
             enabled: true

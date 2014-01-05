@@ -28,7 +28,7 @@ class CrawlerController extends Controller
         $sitemap = $this->get('isometriks.sitemap');
         $urls = $sitemap->getUrls();
 
-        $root = $this->get('isometriks_symedit.repository.page')->findRoot();
+        $root = $this->get('symedit.repository.page')->findRoot();
         $pageIterator = new RecursivePageIterator($root);
         $recursiveIterator = new \RecursiveIteratorIterator($pageIterator, \RecursiveIteratorIterator::SELF_FIRST);
 

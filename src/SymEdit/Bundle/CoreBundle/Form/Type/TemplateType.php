@@ -36,7 +36,7 @@ class TemplateType extends AbstractType
 
         foreach ($templates as $template) {
             try {
-                $path = $this->kernel->locateResource(sprintf('@IsometriksSymEditBundle/Resources/layout/%s.yml', $template->getFilename()));
+                $path = $this->kernel->locateResource(sprintf('@SymEditBundle/Resources/layout/%s.yml', $template->getFilename()));
                 $layouts[$template->getFilename()] = new \SplFileInfo($path);
             } catch (\InvalidArgumentException $e) {
                 $layouts[$template->getFilename()] = null;

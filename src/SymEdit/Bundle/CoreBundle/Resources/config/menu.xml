@@ -5,33 +5,33 @@
     xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
 
     <parameters>
-        <parameter key="isometriks_symedit.menu.provider.tree.class">SymEdit\Bundle\CoreBundle\Menu\Provider\TreeMenuProvider</parameter>
-        <parameter key="isometriks_symedit.menu.voter.page.class">SymEdit\Bundle\CoreBundle\Menu\Voter\PageVoter</parameter>
-        <parameter key="isometriks_symedit.menu_builder.class">SymEdit\Bundle\CoreBundle\Menu\Builder</parameter>
+        <parameter key="symedit.menu.provider.tree.class">SymEdit\Bundle\CoreBundle\Menu\Provider\TreeMenuProvider</parameter>
+        <parameter key="symedit.menu.voter.page.class">SymEdit\Bundle\CoreBundle\Menu\Voter\PageVoter</parameter>
+        <parameter key="symedit.menu_builder.class">SymEdit\Bundle\CoreBundle\Menu\Builder</parameter>
     </parameters>
 
     <services>
-        <service id="isometriks_symedit.menu.provider.tree" class="%isometriks_symedit.menu.provider.tree.class%">
+        <service id="symedit.menu.provider.tree" class="%symedit.menu.provider.tree.class%">
             <argument type="service" id="knp_menu.factory" />
-            <argument type="service" id="isometriks_symedit.repository.page" />
+            <argument type="service" id="symedit.repository.page" />
             <argument type="service" id="event_dispatcher" />
             <tag name="knp_menu.provider" />
         </service>
 
-        <service id="isometriks_symedit.menu.voter.page" class="%isometriks_symedit.menu.voter.page.class%">
+        <service id="symedit.menu.voter.page" class="%symedit.menu.voter.page.class%">
             <tag name="knp_menu.voter" request="true" />
         </service>
 
-        <service id="isometriks_symedit.menu_builder" class="%isometriks_symedit.menu_builder.class%">
+        <service id="symedit.menu_builder" class="%symedit.menu_builder.class%">
             <argument type="service" id="service_container" />
-            <argument>%isometriks_symedit.extensions.routes%</argument>
+            <argument>%symedit.extensions.routes%</argument>
         </service>
 
-        <service factory-service="isometriks_symedit.menu_builder" factory-method="adminMenu" id="isometriks_symedit.menu.admin" class="Knp\Menu\Menuitem">
+        <service factory-service="symedit.menu_builder" factory-method="adminMenu" id="symedit.menu.admin" class="Knp\Menu\Menuitem">
             <tag name="knp_menu.menu" alias="symedit_admin" />
         </service>
 
-        <service factory-service="isometriks_symedit.menu_builder" factory-method="adminUserMenu" id="isometriks_symedit.menu.admin_user" class="Knp\Menu\Menuitem">
+        <service factory-service="symedit.menu_builder" factory-method="adminUserMenu" id="symedit.menu.admin_user" class="Knp\Menu\Menuitem">
             <tag name="knp_menu.menu" alias="symedit_admin_user" />
         </service>
     </services>

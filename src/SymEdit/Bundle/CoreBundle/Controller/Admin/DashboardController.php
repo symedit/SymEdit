@@ -19,8 +19,8 @@ class DashboardController extends Controller
      */
     public function indexAction()
     {
-        $pageManager = $this->get('isometriks_symedit.repository.page');
-        $postManager = $this->get('isometriks_symedit.repository.post');
+        $pageManager = $this->get('symedit.repository.page');
+        $postManager = $this->get('symedit.repository.post');
 
         return array(
             'popularPages' => $pageManager->findPopular(5),

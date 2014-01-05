@@ -2,7 +2,7 @@ admin_image_slider:
     pattern: /
     methods: [GET]
     defaults:
-        _controller: isometriks_symedit.controller.slider:indexAction
+        _controller: symedit.controller.slider:indexAction
         _sylius:
             template: @SymEdit/Admin/Slider/index.html.twig
             paginate: 10
@@ -11,7 +11,7 @@ admin_image_slider_create:
     pattern: /new
     methods: [GET, POST]
     defaults:
-        _controller: isometriks_symedit.controller.slider:createAction
+        _controller: symedit.controller.slider:createAction
         _sylius:
             template: @SymEdit/Admin/Slider/new.html.twig
             redirect:
@@ -22,7 +22,7 @@ admin_image_slider_update:
     pattern: /{id}/edit
     methods: [GET, PUT, POST]
     defaults:
-        _controller: isometriks_symedit.controller.slider:updateAction
+        _controller: symedit.controller.slider:updateAction
         _sylius:
             template: @SymEdit/Admin/Slider/edit.html.twig
             redirect:
@@ -33,6 +33,6 @@ admin_image_slider_delete:
     pattern: /{id}/delete
     methods: [DELETE]
     defaults:
-        _controller: isometriks_symedit.controller.slider:deleteAction
+        _controller: symedit.controller.slider:deleteAction
         _sylius:
             redirect: admin_image_slider

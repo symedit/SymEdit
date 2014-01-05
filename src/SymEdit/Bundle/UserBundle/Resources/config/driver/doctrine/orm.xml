@@ -5,7 +5,7 @@
     xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
 
     <parameters>
-        <parameter key="isometriks_symedit.repository.user.class">Sylius\Bundle\ResourceBundle\Doctrine\ORM\EntityRepository</parameter>
+        <parameter key="symedit.repository.user.class">Sylius\Bundle\ResourceBundle\Doctrine\ORM\EntityRepository</parameter>
     </parameters>
 
     <services>
@@ -14,14 +14,14 @@
         </service>
 
         <!-- User -->
-        <service id="isometriks_symedit.repository.user" class="%isometriks_symedit.repository.user.class%">
+        <service id="symedit.repository.user" class="%symedit.repository.user.class%">
             <argument type="service" id="symedit_user.entity_manager" />
             <argument type="service">
                 <service
                     factory-service="symedit_user.entity_manager"
                     factory-method="getClassMetadata"
                     class="Doctrine\ORM\Mapping\ClassMetadata">
-                    <argument>%isometriks_symedit.model.user.class%</argument>
+                    <argument>%symedit.model.user.class%</argument>
                 </service>
             </argument>
         </service>

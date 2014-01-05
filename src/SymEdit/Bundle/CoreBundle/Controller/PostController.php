@@ -46,7 +46,7 @@ class PostController extends ResourceController
      */
     public function showAuthorAction(Request $request, $username)
     {
-        $author = $this->get('isometriks_symedit.repository.user')->findOneBy(array(
+        $author = $this->get('symedit.repository.user')->findOneBy(array(
             'username' => $username,
         ));
 
@@ -67,7 +67,7 @@ class PostController extends ResourceController
 
     public function showCategoryAction(Request $request, $slug)
     {
-        $category = $this->get('isometriks_symedit.repository.category')->findOneBy(array(
+        $category = $this->get('symedit.repository.category')->findOneBy(array(
             'slug' => $slug,
         ));
 

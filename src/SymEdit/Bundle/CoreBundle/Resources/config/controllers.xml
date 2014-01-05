@@ -6,8 +6,8 @@
 
     <services>
         <!-- Page -->
-        <service id="isometriks_symedit.controller.page" class="%isometriks_symedit.controller.page.class%">
-            <argument>isometriks_symedit</argument>
+        <service id="symedit.controller.page" class="%symedit.controller.page.class%">
+            <argument>symedit</argument>
             <argument>page</argument>
             <argument />
             <call method="setContainer">
@@ -16,8 +16,8 @@
         </service>
 
         <!-- Post -->
-        <service id="isometriks_symedit.controller.post" class="%isometriks_symedit.controller.post.class%">
-            <argument>isometriks_symedit</argument>
+        <service id="symedit.controller.post" class="%symedit.controller.post.class%">
+            <argument>symedit</argument>
             <argument>post</argument>
             <argument />
             <call method="setContainer">
@@ -26,8 +26,8 @@
         </service>
 
         <!-- Category -->
-        <service id="isometriks_symedit.controller.category" class="%isometriks_symedit.controller.category.class%">
-            <argument>isometriks_symedit</argument>
+        <service id="symedit.controller.category" class="%symedit.controller.category.class%">
+            <argument>symedit</argument>
             <argument>category</argument>
             <argument />
             <call method="setContainer">
@@ -36,8 +36,8 @@
         </service>
 
         <!-- Image -->
-        <service id="isometriks_symedit.controller.image" class="%isometriks_symedit.controller.image.class%">
-            <argument>isometriks_symedit</argument>
+        <service id="symedit.controller.image" class="%symedit.controller.image.class%">
+            <argument>symedit</argument>
             <argument>image</argument>
             <argument />
             <call method="setContainer">
@@ -46,8 +46,8 @@
         </service>
 
         <!-- Settings -->
-        <service id="isometriks_symedit.controller.settings" class="%isometriks_symedit.controller.settings.class%">
-            <argument>isometriks_symedit</argument>
+        <service id="symedit.controller.settings" class="%symedit.controller.settings.class%">
+            <argument>symedit</argument>
             <argument>settings</argument>
             <argument />
             <call method="setContainer">
@@ -56,8 +56,8 @@
         </service>
 
         <!-- Widgets -->
-        <service id="isometriks_symedit.controller.widget" class="%isometriks_symedit.controller.widget.class%">
-            <argument>isometriks_symedit</argument>
+        <service id="symedit.controller.widget" class="%symedit.controller.widget.class%">
+            <argument>symedit</argument>
             <argument>widget</argument>
             <argument />
             <call method="setContainer">
@@ -66,8 +66,8 @@
         </service>
 
         <!-- Slider -->
-        <service id="isometriks_symedit.controller.slider" class="%isometriks_symedit.controller.slider.class%">
-            <argument>isometriks_symedit</argument>
+        <service id="symedit.controller.slider" class="%symedit.controller.slider.class%">
+            <argument>symedit</argument>
             <argument>slider</argument>
             <argument />
             <call method="setContainer">

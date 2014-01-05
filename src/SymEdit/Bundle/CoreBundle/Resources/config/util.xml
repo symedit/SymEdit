@@ -5,24 +5,24 @@
            xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
 
     <parameters>
-        <parameter key="isometriks_symedit.util.mailer.class">SymEdit\Bundle\CoreBundle\Util\SymEditMailer</parameter>
+        <parameter key="symedit.util.mailer.class">SymEdit\Bundle\CoreBundle\Util\SymEditMailer</parameter>
     </parameters>
 
     <services>
-        <!--<service id="symedit.mailer" class="%isometriks_symedit.util.mailer.class%">
+        <!--<service id="symedit.mailer" class="%symedit.util.mailer.class%">
             <argument type="service" id="isometriks_settings.settings" />
             <argument type="service" id="templating" />
             <argument type="service" id="mailer" />
             <argument>%swiftmailer.transport.smtp.username%</argument>
         </service>-->
 
-        <service parent="fos_user.mailer.twig_swift" public="true" id="isometriks_symedit.mailer" class="%isometriks_symedit.util.mailer.class%">
+        <service parent="fos_user.mailer.twig_swift" public="true" id="symedit.mailer" class="%symedit.util.mailer.class%">
             <call method="setSettings">
                 <argument type="service" id="isometriks_settings.settings" />
             </call>
 
             <call method="setEmailSender">
-                <argument>%isometriks_symedit.email.sender%</argument>
+                <argument>%symedit.email.sender%</argument>
             </call>
         </service>
     </services>

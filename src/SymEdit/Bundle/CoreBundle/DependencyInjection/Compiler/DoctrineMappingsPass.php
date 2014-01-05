@@ -16,8 +16,8 @@ class DoctrineMappingsPass
             $container->addCompilerPass(
                 DoctrineOrmMappingsPass::createYamlMappingDriver(
                     $mappings,
-                    array('isometriks_symedit.model_manager_name'),
-                    'isometriks_symedit.driver.doctrine/orm'
+                    array('symedit.model_manager_name'),
+                    'symedit.driver.doctrine/orm'
             ));
         }
 
@@ -27,8 +27,8 @@ class DoctrineMappingsPass
             $container->addCompilerPass(
                 DoctrineMongoDBMappingsPass::createYamlMappingDriver(
                     $mappings,
-                    array('isometriks_symedit.model_manager_name'),
-                    'isometriks_symedit.driver.doctrine/mongodb'
+                    array('symedit.model_manager_name'),
+                    'symedit.driver.doctrine/mongodb'
             ));
         }
     }

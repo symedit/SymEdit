@@ -40,7 +40,7 @@ class SlideController extends Controller
      *
      * @Route("/{slider_id}/slide/create", name="admin_image_slider_slide_create")
      * @Method("POST")
-     * @Template("IsometriksSymEditBundle:Admin/Slide:new.html.twig")
+     * @Template("SymEditBundle:Admin/Slide:new.html.twig")
      */
     public function createAction($slider_id, Request $request)
     {
@@ -102,7 +102,7 @@ class SlideController extends Controller
      *
      * @Route("/slide/{id}/update", name="admin_image_slider_slide_update")
      * @Method("POST")
-     * @Template("IsometriksSymEditBundle:Admin/Slide:edit.html.twig")
+     * @Template("SymEditBundle:Admin/Slide:edit.html.twig")
      */
     public function updateAction(Request $request, $id)
     {

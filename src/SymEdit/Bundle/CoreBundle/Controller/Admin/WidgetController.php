@@ -15,7 +15,7 @@ class WidgetController extends ResourceController
 {
     public function indexAction(Request $request)
     {
-        $areas = $this->get('isometriks_symedit.repository.widget_area')->findAll();
+        $areas = $this->get('symedit.repository.widget_area')->findAll();
 
         $reorderForm = $this->createForm(new WidgetReorderType(), null, array(
             'method' => 'POST',
@@ -87,7 +87,7 @@ class WidgetController extends ResourceController
     public function chooseAction()
     {
         /* @var $registry WidgetRegistry */
-        $registry = $this->get('isometriks_symedit.widget.registry');
+        $registry = $this->get('symedit.widget.registry');
         $strategies = $registry->getStrategies();
 
         $view = $this

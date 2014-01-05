@@ -5,11 +5,11 @@
            xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
 
     <parameters>
-        <parameter key="isometriks_symedit.data_collector.page.class">SymEdit\Bundle\CoreBundle\DataCollector\PageDataCollector</parameter>
+        <parameter key="symedit.data_collector.page.class">SymEdit\Bundle\CoreBundle\DataCollector\PageDataCollector</parameter>
     </parameters>
     
     <services>
-        <service id="isometriks_symedit.data_collector.page" class="%isometriks_symedit.data_collector.page.class%">
+        <service id="symedit.data_collector.page" class="%symedit.data_collector.page.class%">
             <tag name="data_collector" template="SymEditBundle:Collector:page.html.twig" id="symedit_page" />
         </service>       
     </services>

@@ -42,18 +42,18 @@ class CopyTemplateCommand extends ContainerAwareCommand
 
         $source_bundle = $input->getArgument('bundle');
         if($not_first = !$source_bundle){
-            $source_bundle = 'IsometriksSymEditBundle';
+            $source_bundle = 'SymEditBundle';
         }
 
         // Ask to overwrite templates
         $this->overwrite = $input->getOption('overwrite') || $dialog->askConfirmation($output, '<question>Overwite Templates if they exist?</question>', false);
 
         $this->fs      = $this->getContainer()->get('filesystem');
-        $this->finder  = $this->getContainer()->get('isometriks_symedit.finder.resource_finder');
+        $this->finder  = $this->getContainer()->get('symedit.finder.resource_finder');
         $dest          = rtrim($this->finder->getBundleDir(),'/');
 
         // Iterate through parent skeletons as well, if explicitly set, use the first one found.
-        $parents = $this->finder->getBundleDir('IsometriksSymEditBundle', !$not_first);
+        $parents = $this->finder->getBundleDir('SymEditBundle', !$not_first);
 
         if(!is_array($parents)){
             $parents = array($parents);

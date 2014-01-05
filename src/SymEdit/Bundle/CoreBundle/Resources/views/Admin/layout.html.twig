@@ -4,9 +4,9 @@
         <title>{% block title %}SymEdit{% endblock %}</title>
         {% block stylesheets %}
         {% stylesheets
-            '@IsometriksSymEditBundle/Resources/less/admin/bootstrap/bootstrap.less'
-            '@IsometriksSymEditBundle/Resources/less/admin/admin.less'
-            '@IsometriksSymEditBundle/Resources/less/admin/override.less'
+            '@SymEditBundle/Resources/less/admin/bootstrap/bootstrap.less'
+            '@SymEditBundle/Resources/less/admin/admin.less'
+            '@SymEditBundle/Resources/less/admin/override.less'
             'bundles/isometrikssymedit/redactor/redactor.css'
             filter="cssrewrite" %}
         <link rel="stylesheet" href="{{ asset_url }}" />
@@ -53,7 +53,7 @@
         <script>
             Isometriks.redactor_options.imageGetJson = "{{ path('admin_image_json') }}";
             Isometriks.redactor_options.imageUpload = "{{ path('admin_image_quick_upload') }}";
-            {% stylesheets '@IsometriksSymEditBundle/Resources/less/wysiwyg.less' %}
+            {% stylesheets '@SymEditBundle/Resources/less/wysiwyg.less' %}
             Isometriks.redactor_iframe.css = '{{ asset_url }}';
             {% endstylesheets %}
         </script>

@@ -1,7 +1,7 @@
 blog:
     pattern: /
     defaults:
-        _controller: isometriks_symedit.controller.post:indexAction
+        _controller: symedit.controller.post:indexAction
         _format: html
         _sylius:
             template: SymEditBundle:Blog:index.html.twig
@@ -13,7 +13,7 @@ blog:
 blog_rss:
     pattern: /feed.xml
     defaults:
-        _controller: isometriks_symedit.controller.post:indexAction
+        _controller: symedit.controller.post:indexAction
         _format: rss
         _sylius:
             paginate: false
@@ -32,7 +32,7 @@ blog_slug_view:
     requirements:
         slug: "[a-z0-9_-]+"
     defaults:
-        _controller: isometriks_symedit.controller.post:showAction
+        _controller: symedit.controller.post:showAction
         _sylius:
             template: SymEditBundle:Blog:single.html.twig
             criteria:
@@ -45,7 +45,7 @@ blog_category_view:
         page: \d+
         slug: "[a-z0-9_-]+?"
     defaults:
-        _controller: isometriks_symedit.controller.post:showCategoryAction
+        _controller: symedit.controller.post:showCategoryAction
         _format: html
         _sylius:
             template: SymEditBundle:Blog:category.html.twig
@@ -54,7 +54,7 @@ blog_category_view:
 blog_category_rss:
     pattern: /category/{slug}/feed.xml
     defaults:
-        _controller: isometriks_symedit.controller.post:showCategoryAction
+        _controller: symedit.controller.post:showCategoryAction
         page: 1
         _sylius:
             template: SymEditBundle:Blog:feed.xml.twig
@@ -62,7 +62,7 @@ blog_category_rss:
 blog_author_view:
     pattern: /user/{username}
     defaults:
-        _controller: isometriks_symedit.controller.post:showAuthorAction
+        _controller: symedit.controller.post:showAuthorAction
         _sylius:
             template: SymEditBundle:Blog:author.html.twig
             criteria:
