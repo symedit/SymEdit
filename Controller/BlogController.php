@@ -6,67 +6,46 @@ use Isometriks\Bundle\SitemapBundle\Annotation\Sitemap;
 use Isometriks\Bundle\SymEditBundle\Annotation\PageController as Bind;
 use Isometriks\Bundle\SymEditBundle\Event\Events;
 use Isometriks\Bundle\SymEditBundle\Event\PostEvent;
-use Isometriks\Bundle\SymEditBundle\Model\PostManagerInterface;
 use Knp\Bundle\PaginatorBundle\Pagination\SlidingPagination;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
+use Sylius\Bundle\ResourceBundle\Model\RepositoryInterface;
+use Isometriks\Bundle\SymEditBundle\Model\Post;
 
-/**
- * @Bind(name="symedit-blog")
- */
 class BlogController extends Controller
 {
     /**
-     * @Route("/", name="blog", defaults={"_format"="html"})
-     * @Route("/feed.xml", name="blog_rss", defaults={"_format"="xml"})
-     * @Route("/archive/{page}", name="blog_archive", requirements={"slug"=".*?", "page"="\d+"}, defaults={"page"=1, "_format"="html"})
      * @Sitemap()
      */
     public function indexAction(Request $request, $_format, $page = null)
-    {        
-        $em = $this->getDoctrine()->getManager();
-        $repo = $em->getRepository($this->getPostManager()->getClass());
+    {
+        $postRepository = $this->getPostRepository();
 
-        $modified = $repo->getRecentQueryBuilder()
-                         ->select('MAX(p.updatedAt) as modified')
-                         ->getQuery()
-                         ->getSingleScalarResult();
+        $criteria = array(
+            'status' => Post::PUBLISHED,
+        );
 
-        $modifiedDate = new \DateTime($modified);
-        $response = $this->createResponse($modifiedDate);
+        $sorting = array(
+            'createdAt' => 'DESC',
+        );
 
-        if ($response->isNotModified($request)) {
-            return $response;
-        }
-
-        /**
-         * If no page that means we matched archive (or feed) so set SEO
-         * to noindex since this is duplicate content.
-         */
-        if ($page !== null) {
-            $this->getSeo()->noIndex();
-        } else {
-            $page = 1;
-        }
-        
-        $paginator = $this->getPaginator($repo->getRecentQuery(), $page, 'blog_archive');
+        $posts = $postRepository->createPaginator($criteria, $sorting);
+        $posts->setMaxPerPage($this->getMaxPosts());
 
         $template = $_format === 'xml' ? 'feed.xml.twig' : 'index.html.twig';
 
         return $this->render(sprintf('@SymEdit/Blog/%s', $template), array(
-            'Posts' => $paginator,
-            'modified' => $modifiedDate,
-        ), $response);
+            'posts' => $posts,
+        ));
     }
 
     /**
-     * @Route("/{slug}", name="blog_slug_view", requirements={"slug"="[a-z0-9_-]+"})
      * @Sitemap(params={"slug"="getSlug"}, entity="Isometriks\Bundle\SymEditBundle\Model\Post")
      */
     public function slugViewAction($slug, Request $request)
     {
-        $post = $this->getPostManager()->findPostBySlug($slug);
-        
+        $post = $this->getPostRepository()->findOneBySlug($slug);
+
         if (!$post) {
             throw $this->createNotFoundException(sprintf('Post with slug "%s" not found.', $slug));
         }
@@ -75,14 +54,14 @@ class BlogController extends Controller
          * Dispatch post view event before cache kicks in so the event still fires
          */
         $event = new PostEvent($post, $request);
-        $this->get('event_dispatcher')->dispatch(Events::POST_VIEW, $event);         
-        
+        $this->get('event_dispatcher')->dispatch(Events::POST_VIEW, $event);
+
         $response = $this->createResponse($post->getUpdatedAt());
 
         if ($response->isNotModified($request)) {
             return $response;
-        }       
-        
+        }
+
         /**
          * Add Breadcrumbs
          */
@@ -93,9 +72,6 @@ class BlogController extends Controller
         ), $response);
     }
 
-    /**
-     * @Route("/preview/{slug}", name="blog_preview")
-     */
     public function previewAction($slug)
     {
         $context = $this->get('security.context');
@@ -104,7 +80,7 @@ class BlogController extends Controller
             throw $this->createNotFoundException('No preview available');
         }
 
-        $postManager = $this->getPostManager();
+        $postManager = $this->getPostRepository();
         $postManager->disableStatusFilter();
         $post = $postManager->findPostBySlug($slug);
 
@@ -119,11 +95,8 @@ class BlogController extends Controller
     }
 
     /**
-     * @Route("/category/{slug}/feed.xml", defaults={"page"=1, "_format"="xml"}, name="blog_category_rss")
-     * @Route("/category/{slug}/{page}", defaults={"page"=1, "_format"="html"}, requirements={"slug"=".*?", "page"="\d+"}, name="blog_category_view")
-     *
      * @Sitemap(params={"slug"="getSlug"}, entity="Isometriks\Bundle\SymEditBundle\Model\Category")
-     * 
+     *
      * @TODO: Move seo stuff to a listenere that listens for category.view etc.
      */
     public function categoryViewAction($slug, Request $request, $_format, $page = 1)
@@ -134,12 +107,12 @@ class BlogController extends Controller
         if (!$category) {
             throw $this->createNotFoundException(sprintf('Category with slug "%s" not found.', $slug));
         }
-        
+
         /**
          * Set SEO to use category
          */
         $this->getSeo()->setSubject($category);
-        
+
         $query = $em->createQueryBuilder()
                 ->select('p')
                 ->from('Isometriks\Bundle\SymEditBundle\Model\Post', 'p')
@@ -180,9 +153,6 @@ class BlogController extends Controller
         ), $response);
     }
 
-    /**
-     * @Route("/user/{username}", name="blog_author_view")
-     */
     public function authorViewAction($username)
     {
         $em = $this->getDoctrine()->getManager();
@@ -211,6 +181,14 @@ class BlogController extends Controller
     }
 
     /**
+     * @return RepositoryInterface
+     */
+    protected function getPostRepository()
+    {
+        return $this->get('isometriks_symedit.repository.post');
+    }
+
+    /**
      * @return SlidingPagination
      */
     private function getPaginator($query, $page = 1, $route = null)
@@ -225,14 +203,6 @@ class BlogController extends Controller
         }
 
         return $pagination;
-    }
-
-    /**
-     * @return PostManagerInterface
-     */
-    private function getPostManager()
-    {
-        return $this->get('isometriks_symedit.post_manager');
     }
 
     private function getMaxPosts()
