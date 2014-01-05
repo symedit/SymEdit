@@ -1,15 +1,15 @@
 {
-    "name": "isometriks/settings-bundle",
-    "description": "Runtime Settings for Symfony2", 
-    "type": "symfony-bundle", 
+    "name": "symedit/settings-bundle",
+    "description": "Runtime Settings for Symfony2",
+    "type": "symfony-bundle",
     "authors": [
         {
-            "name": "Craig Blanchette", 
+            "name": "Craig Blanchette",
             "email": "craig.blanchette@gmail.com"
         }
     ],
     "autoload": {
-        "psr-0": { "Isometriks\\Bundle\\SettingsBundle": "" }
-    }, 
-    "target-dir": "Isometriks/Bundle/SettingsBundle"
+        "psr-0": { "SymEdit\\Bundle\\SettingsBundle": "" }
+    },
+    "target-dir": "SymEdit/Bundle/SettingsBundle"
 }

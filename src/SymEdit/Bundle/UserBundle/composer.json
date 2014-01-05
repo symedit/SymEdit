@@ -1,15 +1,15 @@
 {
-    "name": "isometriks/user-bundle",
-    "description": "User Bundle for SymEdit", 
-    "type": "symfony-bundle", 
+    "name": "symedit/user-bundle",
+    "description": "User Bundle for SymEdit",
+    "type": "symfony-bundle",
     "authors": [
         {
-            "name": "Craig Blanchette", 
+            "name": "Craig Blanchette",
             "email": "craig.blanchette@gmail.com"
         }
     ],
     "autoload": {
-        "psr-0": { "Isometriks\\Bundle\\UserBundle": "" }
-    }, 
-    "target-dir": "Isometriks/Bundle/UserBundle"
+        "psr-0": { "SymEdit\\Bundle\\UserBundle": "" }
+    },
+    "target-dir": "SymEdit/Bundle/UserBundle"
 }

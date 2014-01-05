@@ -1,5 +1,5 @@
 {
-    "name": "isometriks/symedit-bundle",
+    "name": "symedit/core-bundle",
     "description": "CMS For Symfony2",
     "type": "symfony-bundle",
     "authors": [
@@ -9,18 +9,18 @@
         }
     ],
     "autoload": {
-        "psr-0": { "Isometriks\\Bundle\\SymEditBundle": "" }
+        "psr-0": { "SymEdit\\Bundle\\CoreBundle": "" }
     },
-    "target-dir": "Isometriks/Bundle/SymEditBundle",
+    "target-dir": "SymEdit/Bundle/CoreBundle",
     "require": {
-        "isometriks/user-bundle": "dev-master@dev",
-        "isometriks/settings-bundle": "dev-master@dev",
+        "symedit/user-bundle": "dev-master@dev",
+        "symedit/settings-bundle": "dev-master@dev",
         "isometriks/sitemap-bundle": "dev-master@dev",
         "isometriks/media-bundle": "dev-master@dev",
         "knplabs/knp-menu-bundle": "dev-master",
         "friendsofsymfony/user-bundle": "~2.0@dev"
     },
     "suggest": {
-        "isometriks/stylizer-bundle": "Allows you to use the stylizer to edit styles."
+        "symedit/stylizer-bundle": "Allows you to use the stylizer to edit styles."
     }
 }
