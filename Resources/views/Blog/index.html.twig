@@ -1,0 +1,16 @@
+{% extends '@SymEdit/Blog/base.html.twig' %}
+
+{% block blog_title %}
+{{ parent() }}
+<a href="{{ path('blog_rss') }}"><img src="{{ asset('/bundles/isometrikssymedit/img/social/rss.png') }}" alt="{{ Page.tagline }} - RSS Feed"></a>
+{% endblock %}
+
+{% block meta %}
+{{ parent() }}
+<link href="{{ url('blog_rss') }}" rel="alternate" type="application/rss+xml" title="{{ block('title') }}">
+{% endblock %}
+
+{% block blog_content %}
+{{ parent() }}
+{{ pagerfanta(posts) }}
+{% endblock %}

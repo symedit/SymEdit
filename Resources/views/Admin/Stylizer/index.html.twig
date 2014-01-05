@@ -1,0 +1,36 @@
+{% extends '@SymEdit/Admin/tabbed.html.twig' %}
+
+{% block title %}Stylizer &raquo; Edit Styles{% endblock %}
+
+{% block action %}{{ path('admin_stylizer') }}{% endblock %}
+
+{% block tabs %}
+<ul class="nav nav-pills nav-stacked">
+    {% for group in form.groups %}
+    <li{% if loop.first %} class="active"{% endif %}>
+        <a href="#group-{{ group.vars.name }}" data-toggle="tab">
+        {% if group.vars.extra.icon is defined %}
+            <i class="icon-{{ group.vars.extra.icon }}"></i>
+        {% endif %}
+            {{ group.vars.label }}
+        </a>
+    </li>
+    {% endfor %}
+</ul>
+{% endblock %}
+
+{% block tab_content %}
+<div class="tab-content">
+{% for group in form.groups %}
+    <div class="tab-pane{% if loop.first %} active{% endif %}" id="group-{{ group.vars.name }}">
+        {{ form_widget(group) }}
+    </div>
+{% endfor %}
+</div>
+{% endblock %}
+
+
+{% block form_actions %}
+<button class="btn btn-primary btn-block" type="submit">Save</button>
+<button name="dump" type="submit" class="btn btn-info btn-block">Save and Dump</button>
+{% endblock %}

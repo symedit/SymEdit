@@ -1,0 +1,12 @@
+{% if widgets|length > 0 %}
+<div class="widget-container widget-area-{{ area }}">
+{% for widget in widgets %}
+    <div class="widget {{ widget.name }}">
+        {% if widget.title is not empty %}<h4>{{ widget.title }}</h4>{% endif %}
+        <div>
+            {{ widget.content|raw }}
+        </div>
+    </div>
+{% endfor %}
+</div>
+{% endif %}

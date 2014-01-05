@@ -1,0 +1,60 @@
+
+{# Template Widget #}
+
+{% block symedit_template_widget %}
+<div class="layout-holder well">
+    <h3>Choose a Layout</h3>
+{% for layout in layouts %}
+    <div class="layout-container{% if layout.active %} active{% endif %}" data-template-name="{{ layout.template }}" data-content="{{ layout.description }}" data-title="{{ layout.title }}">
+        {% for row in layout.rows %}
+        <div class="r">
+            {% for col in row %}
+            <div class="{{ col }}"></div>
+            {% endfor %}
+        </div>
+        {% endfor %}
+    </div>
+{% endfor %}
+
+    {{ block('hidden_widget') }}
+
+    <br class="cf" />
+</div>
+{% endblock %}
+
+
+{# Image Widget #}
+
+{% block isometriks_symedit_image_widget_form %}
+
+{% endblock %}
+
+{% block isometriks_symedit_image_widget %}
+{% if horizontal %}
+<div class="{{ horizontal_input_wrapper_class }}">
+{% endif %}
+    <div class="row">
+        <div class="col-md-6">
+            {% if form.name is defined %}
+                {{ form_row(form.name) }}
+            {% endif %}
+
+            {% if form.file is defined %}
+                {{ form_row(form.file) }}
+            {% endif %}
+        </div>
+
+        {% if form.vars is defined and
+              form.vars.show_image and
+              form.vars.data is not null and
+              form.vars.data.webpath is not empty %}
+        <div class="col-md-6">
+            <h5>Current Image</h5>
+            <img class="img-thumbnail" src="{{ form.vars.data }}">
+        </div>
+        {% endif %}
+    </div>
+{% if horizontal %}
+</div>
+{% endif %}
+{% endblock %}

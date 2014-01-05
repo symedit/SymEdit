@@ -1,0 +1,19 @@
+{% macro tree(node, active) %}
+  {% if node.children|length > 0 %}
+  <ul>
+      {% for child in node.children %}
+          <li{% if active is not null and active == child %} class="active"{% endif %}>
+              <a href="{{ path('blog_category_view', {slug:child.slug}) }}">
+                  <span class="badge badge-info">{{ child.total }}</span> {{ child.title }}
+              </a>
+              {{ _self.tree( child, active ) }}
+          </li>
+      {% endfor %}
+  </ul>
+  {% endif %}
+{% endmacro %}
+
+<div class="category-list">
+    <h4>Blog Categories</h4>
+    {{ _self.tree(Categories.findRoot(), Category|default(null)) }}
+</div>

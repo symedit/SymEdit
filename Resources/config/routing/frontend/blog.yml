@@ -1,0 +1,69 @@
+blog:
+    pattern: /
+    defaults:
+        _controller: isometriks_symedit.controller.post:indexAction
+        _format: html
+        _sylius:
+            template: IsometriksSymEditBundle:Blog:index.html.twig
+            criteria:
+                status: 1
+            sorting:
+                createdAt: DESC
+
+blog_rss:
+    pattern: /feed.xml
+    defaults:
+        _controller: isometriks_symedit.controller.post:indexAction
+        _format: rss
+        _sylius:
+            paginate: false
+
+blog_archive:
+    pattern: /archive/{page}
+    defaults:
+        _controller: IsometriksSymEditBundle:Blog:index
+        _format: html
+        _seo:
+            index: false
+        page: 1
+
+blog_slug_view:
+    pattern: /{slug}
+    requirements:
+        slug: "[a-z0-9_-]+"
+    defaults:
+        _controller: isometriks_symedit.controller.post:showAction
+        _sylius:
+            template: IsometriksSymEditBundle:Blog:single.html.twig
+            criteria:
+                slug: $slug
+                status: 1
+
+blog_category_view:
+    pattern: /category/{slug}/{page}
+    requirements:
+        page: \d+
+        slug: "[a-z0-9_-]+?"
+    defaults:
+        _controller: isometriks_symedit.controller.post:showCategoryAction
+        _format: html
+        _sylius:
+            template: IsometriksSymEditBundle:Blog:category.html.twig
+        page: 1
+
+blog_category_rss:
+    pattern: /category/{slug}/feed.xml
+    defaults:
+        _controller: isometriks_symedit.controller.post:showCategoryAction
+        page: 1
+        _sylius:
+            template: IsometriksSymEditBundle:Blog:feed.xml.twig
+
+blog_author_view:
+    pattern: /user/{username}
+    defaults:
+        _controller: isometriks_symedit.controller.post:showAuthorAction
+        _sylius:
+            template: IsometriksSymEditBundle:Blog:author.html.twig
+            criteria:
+                author.username: $slug

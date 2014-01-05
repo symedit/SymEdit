@@ -1,0 +1,11 @@
+{% extends '@IsometriksSymEdit/Email/base.html.twig' %}
+
+{% block subject %}{{ Settings.company.name }} - Password Reset{% endblock %}
+
+{% block content %}
+  <h4>Hey {{ user.profile.firstName }},</h4>
+
+  <p>
+      To reset your password, <a href="{{ confirmationUrl }}">please follow this link.</a>
+  </p>
+{% endblock %}

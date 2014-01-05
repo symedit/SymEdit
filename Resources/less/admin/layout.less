@@ -1,0 +1,87 @@
+@import "elements.less";
+
+// Layouts for templates
+
+@image-text:            'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAARCAYAAADUryzEAAAABHNCSVQICAgIfAhkiAAAAAlwSFlzAAALEgAACxIB0t1+/AAAABx0RVh0U29mdHdhcmUAQWRvYmUgRmlyZXdvcmtzIENTNui8sowAAAAWdEVYdENyZWF0aW9uIFRpbWUAMDIvMTMvMTMmhRDsAAAALElEQVQ4jWM0Njb+z0ABYKJEMwMDAwPj////KXIB46gXRr3AMOoFBobB4AUAglsdlA1zFvsAAAAASUVORK5CYII=';
+@image-form:            'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA4AAAARCAYAAADtyJ2fAAAABHNCSVQICAgIfAhkiAAAAAlwSFlzAAALEgAACxIB0t1+/AAAABx0RVh0U29mdHdhcmUAQWRvYmUgRmlyZXdvcmtzIENTNui8sowAAAAWdEVYdENyZWF0aW9uIFRpbWUAMDIvMTMvMTMmhRDsAAAAVElEQVQoke2TwQnAUAhDk9KN1P0H0J3SYykf/iHQnpqj4WEMyIgQDB0OBACUZG08d2ZmguQyl3SDmfkwZwYk0d0LWFUv3biLapdjR/1b3ciP+vlbXdD+MbYC6Z/6AAAAAElFTkSuQmCC';
+@image-image:           'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAARCAYAAADUryzEAAAABHNCSVQICAgIfAhkiAAAAAlwSFlzAAALEgAACxIB0t1+/AAAABx0RVh0U29mdHdhcmUAQWRvYmUgRmlyZXdvcmtzIENTNui8sowAAAAWdEVYdENyZWF0aW9uIFRpbWUAMDIvMTMvMTMmhRDsAAAAKklEQVQ4jWM0Njb+z0ABYKJEM1UMYPz///8Q98KoAaMGMDAwMDAO/dwIAHgBB0yjM4K8AAAAAElFTkSuQmCC';
+
+.layout-holder {
+    .cf {
+        clear:both;
+    }
+}
+
+.layout-container {
+    background-color: #fff;
+    display: table;
+    width: 44px;
+    border: 2px solid #333;
+    padding: 3px 1px;
+    border-spacing: 2px 1px;
+    margin: 5px;
+    float: left;
+
+    &.active {
+        border: 4px solid @red;
+        margin-top: 3px;
+        .drop-shadow(0,0,10px,.7);
+    }
+
+    > .r {
+        > div {
+            display: table-cell;
+            height: 17px;
+            width: 1%;
+        }
+
+        /////////////////////////////////
+        // Text
+        /////////////////////////////////
+        .t,.h {
+            background-image: url('@{image-text}');
+        }
+
+        /////////////////////////////////
+        // Half text
+        /////////////////////////////////
+        .h {
+            background-position: 0 -9px;
+            background-repeat: repeat-x;
+        }
+
+        /////////////////////////////////
+        // Image
+        /////////////////////////////////
+        .i {
+            background-image: url('@{image-image}');
+            position: relative;
+
+            &:after {
+                content: " ";
+                height: 100%;
+                border-right: 2px solid #333;
+                position: absolute;
+                right: 0;
+            }
+
+            &:before {
+                content: " ";
+                height: 100%;
+                border-left: 2px solid #333;
+                position: absolute;
+                left: 0;
+            }
+        }
+
+        /////////////////////////////////
+        // Form
+        /////////////////////////////////
+        .f {
+            background-image: url('@{image-form}');
+            border-left: 1px solid #333;
+            border-right: 1px solid #333;
+        }
+    }
+}
+

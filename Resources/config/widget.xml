@@ -1,0 +1,94 @@
+<?xml version="1.0" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <parameters>
+        <parameter key="isometriks_symedit.twig.widget_extension.class">Isometriks\Bundle\SymEditBundle\Twig\Extension\WidgetExtension</parameter>
+        <parameter key="isometriks_symedit.widget.registry.class">Isometriks\Bundle\SymEditBundle\Widget\WidgetRegistry</parameter>
+        <parameter key="isometriks_symedit.widget.manager.class">Isometriks\Bundle\SymEditBundle\Widget\WidgetManager</parameter>
+
+        <parameter key="isometriks_symedit.widget.strategy.html.class">Isometriks\Bundle\SymEditBundle\Widget\Strategy\HtmlStrategy</parameter>
+        <parameter key="isometriks_symedit.widget.strategy.template.class">Isometriks\Bundle\SymEditBundle\Widget\Strategy\TemplateStrategy</parameter>
+        <parameter key="isometriks_symedit.widget.strategy.contact_info.class">Isometriks\Bundle\SymEditBundle\Widget\Strategy\ContactInfoStrategy</parameter>
+        <parameter key="isometriks_symedit.widget.strategy.blog_recent_posts.class">Isometriks\Bundle\SymEditBundle\Widget\Strategy\RecentPostsStrategy</parameter>
+        <parameter key="isometriks_symedit.widget.strategy.blog_popular_posts.class">Isometriks\Bundle\SymEditBundle\Widget\Strategy\PopularPostsStrategy</parameter>
+        <parameter key="isometriks_symedit.widget.strategy.blog_categories.class">Isometriks\Bundle\SymEditBundle\Widget\Strategy\BlogCategoriesStrategy</parameter>
+        <parameter key="isometriks_symedit.widget.strategy.slider.class">Isometriks\Bundle\SymEditBundle\Widget\Strategy\SliderStrategy</parameter>
+        <parameter key="isometriks_symedit.widget.strategy.google_map.class">Isometriks\Bundle\SymEditBundle\Widget\Strategy\GoogleMapStrategy</parameter>
+        <parameter key="isometriks_symedit.widget.strategy.disqus.class">Isometriks\Bundle\SymEditBundle\Widget\Strategy\DisqusStrategy</parameter>
+        <parameter key="isometriks_symedit.widget.strategy.addthis.class">Isometriks\Bundle\SymEditBundle\Widget\Strategy\AddThisStrategy</parameter>
+        <parameter key="isometriks_symedit.widget.strategy.submenu.class">Isometriks\Bundle\SymEditBundle\Widget\Strategy\SubmenuStrategy</parameter>
+        <parameter key="isometriks_symedit.widget.strategy.list_children.class">Isometriks\Bundle\SymEditBundle\Widget\Strategy\ListChildrenStrategy</parameter>
+    </parameters>
+
+    <services>
+
+        <service id="isometriks_symedit.twig.widget_extension" class="%isometriks_symedit.twig.widget_extension.class%">
+            <argument>%isometriks_symedit.fragment.strategy%</argument>
+            <tag name="twig.extension" />
+        </service>
+
+        <service id="isometriks_symedit.widget.registry" class="%isometriks_symedit.widget.registry.class%">
+            <argument type="service" id="service_container" />
+            <argument>%isometriks_symedit.widget.strategies%</argument>
+        </service>
+
+        <!-- Widget Strategies -->
+
+        <service id="isometriks_symedit.widget.strategy.html" class="%isometriks_symedit.widget.strategy.html.class%">
+            <tag name="symedit.widget_strategy" alias="html" />
+        </service>
+
+        <service id="isometriks_symedit.widget.strategy.template" class="%isometriks_symedit.widget.strategy.template.class%">
+            <tag name="symedit.widget_strategy" alias="template" />
+        </service>
+
+        <service id="isometriks_symedit.widget.strategy.contact_info" class="%isometriks_symedit.widget.strategy.contact_info.class%"
+                 parent="isometriks_symedit.widget.strategy.template">
+            <tag name="symedit.widget_strategy" alias="contact_info" />
+        </service>
+
+        <service id="isometriks_symedit.widget.strategy.blog_recent_posts" class="%isometriks_symedit.widget.strategy.blog_recent_posts.class%">
+            <argument type="service" id="isometriks_symedit.repository.post" />
+            <tag name="symedit.widget_strategy" alias="blog_recent_posts" />
+        </service>
+
+        <service id="isometriks_symedit.widget.strategy.blog_popular_posts" class="%isometriks_symedit.widget.strategy.blog_popular_posts.class%">
+            <argument type="service" id="isometriks_symedit.repository.post" />
+            <tag name="symedit.widget_strategy" alias="blog_popular_posts" />
+        </service>
+
+        <service id="isometriks_symedit.widget.strategy.blog_categories" class="%isometriks_symedit.widget.strategy.blog_categories.class%">
+            <argument type="service" id="isometriks_symedit.repository.category" />
+            <tag name="symedit.widget_strategy" alias="blog_categories" />
+        </service>
+
+        <service id="isometriks_symedit.widget.strategy.slider" class="%isometriks_symedit.widget.strategy.slider.class%">
+            <argument type="service" id="service_container" />
+            <tag name="symedit.widget_strategy" alias="slider" />
+        </service>
+
+        <service id="isometriks_symedit.widget.strategy.google_map" class="%isometriks_symedit.widget.strategy.google_map.class%">
+            <tag name="symedit.widget_strategy" alias="google_map" />
+        </service>
+
+        <service id="isometriks_symedit.widget.strategy.disqus" class="%isometriks_symedit.widget.strategy.disqus.class%">
+            <tag name="symedit.widget_strategy" alias="disqus" />
+        </service>
+
+        <service id="isometriks_symedit.widget.strategy.addthis" class="%isometriks_symedit.widget.strategy.addthis.class%">
+            <tag name="symedit.widget_strategy" alias="addthis" />
+        </service>
+
+        <service id="isometriks_symedit.widget.strategy.submenu" class="%isometriks_symedit.widget.strategy.submenu.class%">
+            <tag name="symedit.widget_strategy" alias="submenu" />
+        </service>
+
+        <service id="isometriks_symedit.widget.strategy.list_children" class="%isometriks_symedit.widget.strategy.list_children.class%">
+            <tag name="symedit.widget_strategy" alias="list_children" />
+        </service>
+    </services>
+
+</container>

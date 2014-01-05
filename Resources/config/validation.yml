@@ -1,0 +1,60 @@
+Isometriks\Bundle\SymEditBundle\Model\User:
+    properties:
+        profile:
+            - Valid: ~
+    constraints:
+          - Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity: email
+
+Isometriks\Bundle\SymEditBundle\Model\Page:
+    constraints:
+        - Callback:
+            methods: [isNameValid, isParentValid]
+    properties:
+        title:
+            - NotBlank:
+                message: "You must provide a Title for this Page"
+        name:
+            - Regex:
+                pattern: "/^[a-z0-9_-]+$/"
+                message: "You may only use lowercase letters, numbers, underscores or hyphens"
+
+Isometriks\Bundle\MediaBundle\Model\Media:
+    constraints:
+        - Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity: path
+    properties:
+        name:
+            - NotBlank: ~
+            - Regex:
+                pattern: "/^[a-z0-9_-]+$/"
+                message: "You may only use lowercase letters, numbers, underscores or hyphens"
+
+Isometriks\Bundle\SymEditBundle\Model\Category:
+    properties:
+        name:
+            - NotBlank: ~
+            - Regex:
+                pattern: "/^[a-z0-9_-]+$/"
+                message: "You may only use lowercase letters, numbers, underscores or hyphens"
+
+Isometriks\Bundle\SymEditBundle\Model\Post:
+    properties:
+        title:
+            - NotBlank: ~
+
+Isometriks\Bundle\SymEditBundle\Model\Slider:
+    properties:
+        name:
+            - Regex:
+                pattern: "/^[a-z0-9_-]+$/"
+                message: "You may only use lowercase letters, numbers, underscores or hyphens"
+        description:
+            - NotBlank: ~
+
+Isometriks\Bundle\SymEditBundle\Model\Widget:
+    constraints:
+        - Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity: name
+    properties:
+        name:
+            - Regex:
+                pattern: "/^[a-z0-9_-]+$/"
+                message: "You may only use lowercase letters, numbers, underscores or hyphens"

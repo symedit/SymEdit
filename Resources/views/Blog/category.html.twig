@@ -1,0 +1,23 @@
+{% extends '@SymEdit/Blog/base.html.twig' %}
+
+{% block meta %}
+{{ parent() }}
+<link href="{{ url('blog_category_rss', {slug:category.slug}) }}" rel="alternate" type="application/rss+xml" title="{{ block('title') }}">
+{% endblock %}
+
+{% block blog_title %}
+Category &raquo; {{ category.title }}
+<a href="{{ path('blog_category_rss', {slug:category.slug}) }}">
+    <img src="{{ asset('/bundles/isometrikssymedit/img/social/rss.png') }}" alt="{{ Page.tagline }} - {{ category.title }} - RSS Feed">
+</a>
+{% endblock %}
+
+{% block blog_content %}
+    {% if posts|length > 0 %}
+        {% include '@SymEdit/Blog/list.html.twig' %}
+    {% else %}
+        There are currently no posts for this category.
+    {% endif %}
+
+    {{ pagerfanta(posts) }}
+{% endblock %}

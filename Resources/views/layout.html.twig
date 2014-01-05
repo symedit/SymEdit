@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en-US">
+    <head>
+        <title>{% block title %}{{ isometriks_seo_title() }}{% endblock %}</title>
+{% block meta %}
+{%for meta in isometriks_seo_metas() %}
+        {{ meta|raw }}
+{% endfor %}
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+{% endblock %}
+{% block stylesheets %}
+{% stylesheets
+               'bundles/isometrikssymedit/bootstrap/css/bootstrap.min.css'
+               'bundles/isometrikssymedit/css/font-awesome.min.css'
+               '@IsometriksSymEditBundle/Resources/less/system.less'
+               '@IsometriksSymEditBundle/Resources/less/util.less'
+               '@IsometriksSymEditBundle/Resources/less/footer.less'
+               '@IsometriksSymEditBundle/Resources/less/site.less'
+               filter='cssrewrite' %}
+        <link rel="stylesheet" type="text/css" href="{{ asset_url }}" />
+{% endstylesheets -%}
+{% endblock %}
+        <!--[if lt IE 9]>
+            <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+        <![endif]-->
+    </head>
+    {% block body_tag %}<body itemscope itemtype="http://schema.org/WebPage">{% endblock %}
+        {% block skip_link %}<a href="#content" class="sr-only">Skip to content</a>{% endblock %}
+        <div id="wrap">
+        {% block body %}
+            {% block nav %}
+            <div class="container">
+                <nav class="main-nav">
+                    {{ knp_menu_render('tree', {currentClass: 'active'}) }}
+                </nav>
+            </div>
+            {% endblock %}
+
+            {% block content_container %}
+            <div class="container">
+                {% block breadcrumbs %}
+                <div class="pull-right hidden-sm hidden-xs">
+                    {% include '@SymEdit/CMS/breadcrumbs.html.twig' %}
+                </div>
+                {% endblock %}
+
+                {% block heading %}<h1>{{ Page.tagline }}</h1>{% endblock %}
+                <div id="content">
+                    {% block featured %}
+                    {% widgetarea 'featured' %}
+                    {% endblock %}
+
+                    {% block content %}
+                    {{ Page.content|raw }}
+                    {% endblock %}
+
+                    {% block supplemental %}
+                    {% widgetarea 'supplemental' %}
+                    {% endblock %}
+                </div>
+            </div>
+            {% endblock %}
+        {% endblock %}
+            <div id="push"></div>
+        </div>
+
+        {% block footer %}
+        <footer id="footer">
+            <div class="container">
+                {% widgetarea 'footer' %}
+            </div>
+        </footer>
+        {% endblock %}
+
+        {% block scripts %}
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+        <script src="{{ asset('/bundles/isometrikssymedit/bootstrap/js/bootstrap.min.js') }}"></script>
+        {% include '@SymEdit/Widget/google-analytics.html.twig' %}
+        {% endblock %}
+    </body>
+</html>

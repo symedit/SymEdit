@@ -1,0 +1,26 @@
+Isometriks\Bundle\SymEditBundle\Model\WidgetArea:
+    type: entity
+    table: widget_area
+    fields:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: IDENTITY
+        area:
+            type: string
+            length: 255
+            unique: true
+        description:
+            type: string
+            length: 255
+            unique: false
+            nullable: true
+    oneToMany:
+        widgets:
+            cascade:
+                - persist
+            targetEntity: Isometriks\Bundle\SymEditBundle\Model\WidgetInterface
+            mappedBy: area
+            orderBy:
+                widgetOrder: ASC

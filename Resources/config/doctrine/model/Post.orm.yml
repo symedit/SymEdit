@@ -1,0 +1,84 @@
+Isometriks\Bundle\SymEditBundle\Model\Post:
+    type: entity
+    table: post
+    gedmo:
+        loggable: true
+    fields:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: IDENTITY
+        title:
+            type: string
+            length: 255
+        slug:
+            type: string
+            length: 255
+            unique: true
+            gedmo:
+                versioned: ~
+                slug:
+                    unique: true
+                    separator: "-"
+                    fields:
+                        - title
+        content:
+            type: text
+            nullable: true
+            gedmo:
+                - versioned
+        summary:
+            type: text
+            nullable: true
+            gedmo:
+                - versioned
+        createdAt:
+            type: datetime
+            gedmo:
+                timestampable:
+                    on: create
+        updatedAt:
+            type: datetime
+            gedmo:
+                timestampable:
+                    on: update
+        publishedAt:
+            nullable: true
+            type: datetime
+            gedmo:
+                timestampable:
+                    on: change
+                    field: status
+                    value: 1
+        status:
+            type: integer
+        seo:
+            type: json_array
+            nullable: true
+            gedmo:
+                - versioned
+        views:
+            type: integer
+    indexes:
+        slug_idx:
+            columns: [slug]
+    manyToOne:
+        image:
+            targetEntity: Isometriks\Bundle\MediaBundle\Model\Media
+            cascade:
+                - persist
+        author:
+            targetEntity: Isometriks\Bundle\SymEditBundle\Model\UserInterface
+    manyToMany:
+        categories:
+            joinTable:
+                name: post_category
+                joinColumns:
+                    category_id:
+                        referenceColumnName: id
+                inverseJoinColumns:
+                    post_id:
+                        referenceColumnName: id
+            targetEntity: Isometriks\Bundle\SymEditBundle\Model\CategoryInterface
+            inversedBy: posts

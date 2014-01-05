@@ -1,0 +1,13 @@
+{% extends '@SymEdit/Admin/tabbed.html.twig' %}
+{% import '@SymEdit/Admin/macro.html.twig' as macro %}
+
+{% block title %}Blog &raquo; Category &raquo; {{ category.title }} &raquo; Edit{% endblock %}
+
+{% block form_actions %}
+<button class="btn btn-primary btn-block" type="submit">{{ 'admin.category.actions.save'|trans }}</button>
+{{ macro.delete_button('category_delete', 'admin.category.actions.delete') }}
+{% endblock %}
+
+{% block extra %}
+{{ macro.delete_form('category_delete', path('admin_category_delete', {id:category.id})) }}
+{% endblock %}

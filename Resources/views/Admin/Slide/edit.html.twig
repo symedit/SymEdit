@@ -1,0 +1,22 @@
+{% extends '@SymEdit/Admin/base.html.twig' %}
+
+{% block title %}Images &raquo; Sliders &raquo; {{ entity.slider.name }} &raquo; Edit Slide{% endblock %}
+
+{% block content %}
+<form class="form-horizontal" action="{{ path('admin_image_slider_slide_update', { 'id': entity.id }) }}" method="post" {{ form_enctype(form) }}>
+
+    {{ form_widget(form) }}
+
+    <div class="form-actions"> 
+        <button class="btn btn-primary" type="submit">Update Slide</button>
+        <button type="button" data-toggle="form-forward" data-message="Are you sure you want to delete this slide?" data-target="#slide-delete" class="btn btn-warning">Delete Slide</button>
+    </div>
+</form>
+
+
+<form id="slide-delete" class="form-hidden" action="{{ path('admin_image_slider_slide_delete', { 'id': entity.id }) }}" method="post">
+    {{ form_widget(delete_form) }}
+    <button type="submit">Delete</button>
+</form>
+{% endblock %}
+

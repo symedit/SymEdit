@@ -1,0 +1,27 @@
+{% extends '@SymEdit/Page/base.html.twig' %}
+
+{% block content %}
+
+{% for user in users %}
+<section class="user-summary">
+    <div class="row">
+        {% if user.profile.image %}
+        <div class="col-md-3">
+            <img src="{{ user.profile.image }}" class="img-circle" alt="{{ user.profile.fullname }}">
+        </div>
+        {% endif %}
+
+        <div class="col-md-9">
+            <h3>{{ user.profile.fullname }}</h3>
+            <p>
+                {{ user.profile.summary|raw }}
+            </p>
+            <div class="social">
+                {% include '@SymEdit/CMS/social.html.twig' with { name:user.profile.fullname, social:user.profile.social } %}
+            </div>
+        </div>
+    </div>
+</section>
+{% endfor %}
+
+{% endblock %}

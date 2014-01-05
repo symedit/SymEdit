@@ -1,0 +1,138 @@
+Isometriks\Bundle\SymEditBundle\Model\Page:
+    type: entity
+    table: pages
+    gedmo:
+        tree:
+            type: materializedPath
+        loggable: true
+    fields:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: IDENTITY
+        homepage:
+            type: boolean
+        root:
+            type: boolean
+        name:
+            type: string
+            nullable: true
+            gedmo:
+                - treePathSource
+                - versioned
+        tagline:
+            type: string
+            length: 255
+            nullable: true
+            gedmo:
+                - versioned
+        summary:
+            type: text
+            nullable: true
+            gedmo:
+                - versioned
+        path:
+            type: string
+            unique: true
+            nullable: true
+            gedmo:
+                versioned: ~
+                treePath:
+                    appendId: false
+                    separator: "/"
+                    endsWithSeparator: false
+        title:
+            type: string
+            length: 255
+            gedmo:
+                - versioned
+        content:
+            type: text
+            nullable: true
+            gedmo:
+                - versioned
+        seo:
+            type: json_array
+            nullable: true
+            gedmo:
+                - versioned
+        pageOrder:
+            type: integer
+        display:
+            type: boolean
+        crawl:
+            type: boolean
+        pageController:
+            type: boolean
+            nullable: false
+            gedmo:
+                - versioned
+        pageControllerPath:
+            type: string
+            length: 255
+            nullable: true
+            gedmo:
+                - versioned
+        createdAt:
+            type: datetime
+            nullable: false
+            gedmo:
+                timestampable:
+                    on: create
+        createdBy:
+            type: string
+            nullable: true
+            gedmo:
+                blameable:
+                    on: create
+        updatedAt:
+            type: datetime
+            nullable: false
+            gedmo:
+                timestampable:
+                    on: update
+        updatedBy:
+            type: string
+            nullable: true
+            gedmo:
+                versioned: ~
+                blameable:
+                    on: update
+        level:
+            type: integer
+            nullable: true
+            gedmo:
+                - treeLevel
+                - versioned
+        template:
+            type: string
+            nullable: true
+            gedmo:
+                - versioned
+        views:
+            type: integer
+    indexes:
+        path_idx:
+            columns: [path]
+    manyToOne:
+        parent:
+            targetEntity: Isometriks\Bundle\SymEditBundle\Model\Page
+            inversedBy: children
+            joinColumns:
+                parent:
+                    referencedColumnName: id
+                    onDelete: 'SET NULL'
+            orphanRemoval: false
+            gedmo:
+                - treeParent
+                - versioned
+    oneToMany:
+        children:
+            targetEntity: Isometriks\Bundle\SymEditBundle\Model\Page
+            cascade:
+                - remove
+                - persist
+            mappedBy: parent
+            orderBy:
+                pageOrder: ASC

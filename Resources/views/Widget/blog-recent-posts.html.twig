@@ -1,0 +1,7 @@
+<ul class="post-list">
+{% for post in posts %}
+    <li>
+        <a href="{{ path('blog_slug_view', { slug: post.slug }) }}">{{ post.title }}</a>
+    </li>
+{% endfor %}
+</ul>

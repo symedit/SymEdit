@@ -1,0 +1,2 @@
+symedit_routes:
+    resource: "@IsometriksSymEditBundle/Resources/config/routing/symedit.yml"

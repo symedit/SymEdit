@@ -1,0 +1,66 @@
+{% extends '@SymEdit/Admin/tabbed.html.twig' %}
+{% import '@SymEdit/Admin/macro.html.twig' as macro %}
+
+{% block title %}Images &raquo; Sliders &raquo; {{ slider.name }} &raquo; Edit{% endblock %}
+
+{% block tabs %}
+<ul class="nav nav-pills nav-stacked">
+    <li class="active">
+        <a href="#basic" data-toggle="tab">
+            <i class="icon-info-sign"></i> Basic
+        </a>
+    </li>
+    <li>
+        <a href="#slides" data-toggle="tab">
+            <i class="icon-columns"></i>
+            Slides
+        </a>
+    </li>
+</ul>
+{% endblock %}
+
+{% block tab_content %}
+<div class="tab-content">
+    <div class="tab-pane active" id="basic">
+        <h2>Slider Details</h2>
+        
+        {{ form_widget(form) }}
+    </div>
+
+    <div class="tab-pane" id="slides">
+        <div class="pull-right">
+            <a href="{{ path('admin_image_slider_slide_new', {slider_id:slider.id}) }}" class="btn btn-success">
+                {{ icon('plus') }}
+                Add New Slide
+            </a>
+        </div>
+
+        <h2>Current Slides</h2>
+
+        {% for slide in slider.slides %}
+        <div class="well">
+            <div class="row">
+                <div class="col-md-4">
+                    <h4>Slide {{ loop.index }}</h4>
+                    <p>{{ slide.caption }}</p>
+                    <a href="{{ path('admin_image_slider_slide_edit', {id:slide.id}) }}" class="btn btn-primary">Edit</a>
+                </div>
+                <div class="col-md-5 pull-right">
+                    <img class="img-thumbnail" src="{{ slide.image.webpath|constrain({w:300, h:120}) }}" />
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
+
+{% block form_actions %}
+<button class="btn btn-primary btn-block" type="submit">{{ 'admin.slider.actions.save'|trans }}</button>
+{{ macro.delete_button('slider_delete', 'admin.slider.actions.delete') }}
+{% endblock %}
+
+{% block extra %}
+{{ macro.delete_form('slider_delete', path('admin_image_slider_delete', {'id': slider.id})) }}
+{% endblock %}
+

@@ -1,0 +1,93 @@
+admin:
+    resource:
+        confirm_delete: Are you sure you wish to delete this resource?
+
+    # Pages
+    page:
+        flash:
+            created: Page Created.
+            updated: Page Updated.
+        title: Title
+        name:
+            label: Name
+            popover:
+                title: Page Name
+                content: The Page's "Name" attribute determines the URL of the page. If the page has any parents, it will use them as well. Eg. Root > about-us > team becomes /about-us/team
+        tagline: Tagline
+        template:
+            help: It is suggested that you try not to change templates once a page is already constructed, unless they have similar layouts. Templates requiring different content may not be interchangeable.
+        parent: Parent
+        summary: Summary
+        pagecontroller: Page Controller?
+        pagecontrollerpath:
+            label: Controller Path
+            help: When a controller with the path you specify is called, it will inject this Page. Use the PageController Annotation to link them.
+        display:
+            label: Display
+            help: Show this Page in Navigation
+        crawl:
+            label: Crawl
+            help: Show this Page on sitemap.xml?
+        tabs:
+            basic: Basic
+            template: Template
+            seo: SEO
+            content: Content
+            advanced: Advanced
+        actions:
+            save: Save Page
+            delete: Delete Page
+
+    # Posts
+    post:
+        flash:
+            created: Post Created.
+            updated: Post Updated.
+        actions:
+            save: Save Post
+            preview: Preview Post
+            no_preview:
+                label: Preview Not Available
+                help: Cannot preview, blog not active.
+            delete: Delete Post
+
+    # Categories
+    category:
+        actions:
+            save: Save Category
+            delete: Delete Category
+            create: Create Category
+
+    # Sliders
+    slider:
+        name:
+            label: Name
+            help: Lowercase letters, numbers, hypens or underscores.
+        description:
+            label: Description
+        actions:
+            save: Save Slider
+            delete: Delete Slider
+            create: Create Slider
+
+    # Widgets
+    widget:
+        actions:
+            save: Save Widget
+            delete: Delete Widget
+    file:
+        name:
+            label: Name
+            help: Letters, numbers, underscores, and hyphens
+        file:
+            label: File
+            help: ''
+
+    seo:
+        title: Title
+        description: Description
+        keywords: Keywords
+        index: Index
+        follow: Follow
+    flash:
+        share: 'Share your content:'

@@ -1,0 +1,11 @@
+{% extends '@SymEdit/Page/base.html.twig' %}
+
+{% block title 'Server Error' %}
+{% block url %}{{ app.request.uri }}{% endblock %}
+
+{% block content %}
+<div class="hero-unit">
+  <h1>Oops,</h1>
+  <p>The server has encountered an error. We are working on a solution to this issue.</p>
+</div>
+{% endblock %}

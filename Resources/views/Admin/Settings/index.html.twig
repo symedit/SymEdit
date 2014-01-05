@@ -1,0 +1,29 @@
+{% extends '@SymEdit/Admin/tabbed.html.twig' %}
+
+{% block title %}Settings{% endblock %}
+
+{% block tabs %}
+<ul class="nav nav-pills nav-stacked">
+{% for group in form.groups %}
+<li{% if loop.first %} class="active"{% endif %}>
+    <a href="#setting-{{ group.vars.name }}" data-toggle="tab">{{ group.vars.label }}</a>
+</li>
+{% endfor %}
+</ul>
+{% endblock %}
+
+{% block tab_content %}
+<div class="tab-content">
+{% for group in form.groups %}
+    <div class="tab-pane{% if loop.first %} active{% endif %}" id="setting-{{ group.vars.name }}">
+        <h2 class="heading">{{ group.vars.label }} Settings</h2>
+        {{ form_widget(group) }}
+    </div>
+{% endfor %}
+</div>
+{% endblock %}
+
+
+{% block form_actions %}
+<button type="submit" class="btn btn-block btn-primary">Update Settings</button>
+{% endblock %}

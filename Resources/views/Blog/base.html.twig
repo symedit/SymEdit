@@ -1,0 +1,22 @@
+{% extends '@SymEdit/Page/base.html.twig' %}
+
+{% block heading %}
+<h1>{% block blog_title %}{{ Page.tagline }}{% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+<div id="blog-content">
+    <div class="row">
+        <div class="col-md-9">
+            {% block blog_content %}
+                {% include '@SymEdit/Blog/list.html.twig' %}
+            {% endblock %}
+        </div>
+        <div class="col-md-3">
+        {% block sidebar %}
+            {% include '@SymEdit/CMS/sidebar.html.twig' %}
+        {% endblock %}
+        </div>
+    </div>
+</div>
+{% endblock %}

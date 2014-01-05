@@ -1,0 +1,34 @@
+{% if app.session.flashbag.has('notice') or app.session.flashbag.has('error') %}
+<div id="flash">
+    {% for url in app.session.flashbag.get('share')|default([]) %}
+        <div class="flash-message share">
+            <div class="container">
+                <div class="share-text">{{ 'admin.flash.share'|trans }}</div>
+                <div class="addthis_toolbox addthis_default_style" addthis:url="{{ url }}">
+                    <a class="addthis_button_preferred_1"></a>
+                    <a class="addthis_button_preferred_2"></a>
+                    <a class="addthis_button_preferred_3"></a>
+                    <a class="addthis_button_compact"></a>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+
+    {% for message in app.session.flashbag.get('notice')|default([]) %}
+        <div class="flash-message message">
+            <div class="container">
+                {{ icon('thumbs-up') }} {{ message|trans }}
+            </div>
+        </div>
+    {% endfor %}
+
+
+    {% for message in app.session.flashbag.get('error')|default([]) %}
+        <div class="flash-message error">
+            <div class="container">
+                {{ icon('warning-sign') }} {{ message|trans }}
+            </div>
+        </div>
+    {% endfor %}
+</div>
+{% endif %}

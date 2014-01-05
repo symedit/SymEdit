@@ -1,0 +1,4 @@
+isometriks_settings:
+    twig:
+        global: true
+        global_variable: Settings

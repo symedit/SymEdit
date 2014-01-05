@@ -1,0 +1,25 @@
+Isometriks\Bundle\SymEditBundle\Model\Slide:
+    type: entity
+    table: slide
+    fields:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: IDENTITY
+        caption:
+            type: string
+            nullable: true
+        position:
+            type: string
+            length: 50
+            nullable: true
+    manyToOne:
+        slider:
+            targetEntity: Isometriks\Bundle\SymEditBundle\Model\SliderInterface
+            mappedBy: null
+            inversedBy: slides
+        image:
+            targetEntity: Isometriks\Bundle\MediaBundle\Model\Media
+            cascade:
+                - persist

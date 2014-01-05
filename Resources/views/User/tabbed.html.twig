@@ -1,0 +1,31 @@
+{% extends '@SymEdit/User/base.html.twig' %}
+
+{% block content %}
+{% if form is defined %}
+{{ form_start(form, {attr: {class: 'form-horizontal'}}) }}
+{% endif %}
+    <div class="row">
+        <div class="col-md-3">
+            {% block tabs %}
+            {% if form is defined %}
+            {{ form_tabs(form) }}
+            {% endif %}
+            {% endblock %}
+
+            <div>
+                {% block form_actions '' %}
+            </div>
+        </div>
+
+        <div class="col-md-9">
+            <div class="tab-content well">
+                {% block tab_content '' %}
+                {{ form_rest(form) }}
+            </div>
+        </div>
+    </div>
+{% if form is defined %}
+{{ form_end(form) }}
+{% endif %}
+{% block extra %}{% endblock %}
+{% endblock %}

@@ -1,0 +1,3 @@
+{% set options = { childrenAttributes: { class: nav_class }} %}
+{% set menu = knp_menu_get('tree', {}, {root: page, level: level, root_options: options}) %}
+{{ knp_menu_render(menu, {currentClass: 'active'}) }}

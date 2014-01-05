@@ -1,0 +1,15 @@
+{% extends '@SymEdit/Admin/tabbed.html.twig' %}
+{% import '@SymEdit/Admin/macro.html.twig' as macro %}
+
+{% block title %}Pages &raquo; {{ page.title }} &raquo; Edit{% endblock %}
+
+{% block form_actions %}
+<button class="btn btn-primary btn-block" type="submit">{{ 'admin.page.actions.save'|trans }}</button>
+{% if not page.homepage %}{{ macro.delete_button('page_delete', 'admin.page.actions.delete') }}{% endif %}
+{% endblock %}
+
+{% block extra %}
+{% if not page.homepage %}
+{{ macro.delete_form('page_delete', path('admin_page_delete', {id: page.id})) }}
+{% endif %}
+{% endblock %}

@@ -1,0 +1,10 @@
+{% embed '@MopaBootstrap/Navbar/navbar.html.twig' with { fixedTop: true } %}
+    {% block brand %}
+        {% include '@SymEdit/Admin/brand.html.twig' %}
+    {% endblock %}
+
+    {% block menu %}
+        {{ mopa_bootstrap_menu('symedit_admin') }}
+        {{ mopa_bootstrap_menu('symedit_admin_user') }}
+    {% endblock %}
+{% endembed %}

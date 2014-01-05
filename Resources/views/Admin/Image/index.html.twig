@@ -1,0 +1,37 @@
+{% extends '@SymEdit/Admin/base.html.twig' %}
+
+{% block title %}Images &raquo; List{% endblock %}
+
+{% block content %}
+
+<div class="row" id="images">
+  {% for image in images %}
+  <div class="col-md-2">
+      <a class="thumbnail" href="{{ path('admin_image_update', {id:image.id}) }}">
+          <img src="{{ image|constrain({ w:234 }) }}">
+      </a>
+  </div>
+  {% endfor %}
+</div>
+
+<div class="form-actions">
+    <a class="btn btn-primary" href="{{ path('admin_image_create') }}">
+        Add New Image
+    </a>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script src="{{ asset('bundles/isometrikssymedit/js/jquery.masonry.min.js') }}"></script>
+<script type="text/javascript">
+    $(window).load(function(){
+        $('#images').masonry({
+            itemSelector: 'li',
+            isResizable: true,
+            columnWidth: function( containerWidth ) {
+                return containerWidth / 6;
+            }
+        });
+    });
+</script>
+{% endblock %}

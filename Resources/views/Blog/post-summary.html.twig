@@ -1,0 +1,30 @@
+<article class="summary blog-post">
+    <h3 class="title">
+        <a href="{{ path('blog_slug_view', {slug: post.slug}) }}">{{ post.title }}</a>
+        <small>
+            Posted by <a href="{{ path('blog_author_view', { username: post.author.username }) }}">{{ post.author.profile.fullname }}</a>
+            on {{ post.createdAt|date('F j, Y') }}
+        </small>
+    </h3>     
+    
+    <div class="row">
+        {% if post.image %}
+        <div class="col-md-3">
+            <img class="img-rounded" src="{{ post.image.webpath|constrain({w:200,h:400}) }}" alt="{{ post.title }}" />
+        </div>
+        {% endif %}
+        
+        <div class="{{ post.image ? 'col-md-9' : 'col-md-12' }}">
+            <div class="summary">
+                {% if post.summary %}
+                    {{ post.summary|raw }}
+                {% else %}
+                    {{ post.content|plain(350, '...') }}
+                {% endif %}
+            </div>         
+            <div class="clearfix">
+                <a class="read-more btn btn-default btn-sm" href="{{ path('blog_slug_view', { slug: post.slug }) }}">Read Article &raquo;</a>     
+            </div>
+        </div>   
+    </div>     
+</article>

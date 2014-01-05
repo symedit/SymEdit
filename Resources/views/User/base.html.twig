@@ -1,0 +1,57 @@
+{% extends '@SymEdit/Page/base.html.twig' %}
+
+{% block breadcrumbs '' %}
+
+{% block content_container %}
+<div class="container">
+    <div class="user-action" id="content">
+        {% if app.session.flashbag.has('notice') or app.session.flashbag.has('error') %}
+        <div id="flash">
+            <div class="container-fluid">
+                <div class="text">
+                    {% for message in app.session.flashbag.get('notice')|default([]) %}
+                        <div class="alert alert-success">
+                            <button type="button" class="close" data-dismiss="alert">&times;</button>
+                            <h4><i class="icon-thumbs-up"></i> Great!</h4>
+                            {{ message }}
+                        </div>
+                    {% endfor %}
+
+                    {% for message in app.session.flashbag.get('error')|default([]) %}
+                        <div class="alert alert-block">
+                            <button type="button" class="close" data-dismiss="alert">&times;</button>
+                            <h4><i class="icon-warning"></i> Great!</h4>
+                            {{ message }}
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+        {% endif %}
+
+        {% block heading %}<h1>{% block heading_text %}{{ block('title') }}{% endblock %}</h1>{% endblock %}
+        {% block fos_user_content %}{{ block('content') }}{% endblock %}
+    </div>
+</div>
+{% endblock %}
+
+
+{% block stylesheets %}
+{{ parent() }}
+{% stylesheets 'bundles/isometrikssymedit/redactor/redactor.css' %}
+<link rel="stylesheet" href="{{ asset_url }}">
+{% endstylesheets %}
+{% endblock %}
+
+{% block scripts %}
+{{ parent() }}
+
+{% javascripts 'bundles/isometrikssymedit/redactor/redactor.min.js' %}
+<script src="{{ asset_url }}"></script>
+{% endjavascripts %}
+<script>
+    $('.wysiwyg-editor').redactor({
+        minHeight: 300
+    });
+</script>
+{% endblock %}

@@ -1,0 +1,45 @@
+Isometriks\Bundle\SymEditBundle\Model\Category:
+    type: entity
+    table: category
+    fields:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: IDENTITY
+        name:
+            type: string
+            length: 255
+        title:
+            type: string
+            length: 255
+        slug:
+            type: string
+            length: 255
+        seo:
+            type: json_array
+            nullable: true
+    manyToOne:
+        parent:
+            targetEntity: Isometriks\Bundle\SymEditBundle\Model\CategoryInterface
+            inversedBy: children
+            joinColumns:
+                parent:
+                    referencedColumnName: id
+                    onDelete: 'SET NULL'
+    oneToMany:
+        children:
+            targetEntity: Isometriks\Bundle\SymEditBundle\Model\CategoryInterface
+            cascade:
+                - remove
+                - persist
+            mappedBy: parent
+    manyToMany:
+        posts:
+            targetEntity: Isometriks\Bundle\SymEditBundle\Model\PostInterface
+            mappedBy: categories
+            orderBy:
+                createdAt: DESC
+    lifecycleCallbacks:
+        prePersist:
+            - fixSlug

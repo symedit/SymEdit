@@ -1,0 +1,26 @@
+{% extends '@SymEdit/User/base.html.twig' %}
+
+{% block title %}My Profile{% endblock %}
+
+{% block content %}
+<table class="table">
+    <tr>
+        <th>Username:</th>
+        <td>{{ user.username }}</td>
+    </tr>
+    <tr>
+        <th>Name:</th>
+        <td>{{ user.profile.fullname }}</td>
+    </tr>
+    <tr>
+        <th>Email:</th>
+        <td>{{ user.email }}</td>
+    </tr>
+    <tr>
+        <th>Last Login:</th>
+        <td>{{ user.lastLogin is null ? 'Never' : user.lastLogin|date('F jS, Y @ g:ia') }}</td>
+    </tr>
+</table>
+
+<a class="btn btn-primary" href="{{ path('fos_user_profile_edit') }}">Edit Profile</a>
+{% endblock %}

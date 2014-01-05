@@ -1,0 +1,12 @@
+{% for child in children %}
+<div class="child-listing">
+    <h4>
+        <a href="{{ path(child.route) }}">{{ child.title }}</a>
+    </h4>
+    {% if child.summary is not empty %}
+    <div class="summary">
+        {{ child.summary|raw }}
+    </div>
+    {% endif %}
+</div>
+{% endfor %}
