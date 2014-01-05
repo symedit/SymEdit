@@ -2,7 +2,6 @@
 
 namespace Isometriks\Bundle\SymEditBundle\Widget\Strategy;
 
-use Doctrine\Bundle\DoctrineBundle\Registry;
 use Isometriks\Bundle\SymEditBundle\Model\PageInterface;
 use Isometriks\Bundle\SymEditBundle\Model\WidgetInterface;
 use Sylius\Bundle\ResourceBundle\Model\RepositoryInterface;

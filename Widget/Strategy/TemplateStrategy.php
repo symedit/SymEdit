@@ -13,7 +13,7 @@ class TemplateStrategy extends AbstractWidgetStrategy
     {
         try {
             $content = $this->render($widget->getOption('template'));
-        } catch(\Exception $e){
+        } catch (\Exception $e) {
             $content = sprintf('There was an error rendering your template: "%s"', $e->getMessage());
         }
 

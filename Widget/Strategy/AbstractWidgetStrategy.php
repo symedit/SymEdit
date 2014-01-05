@@ -12,20 +12,20 @@ abstract class AbstractWidgetStrategy implements WidgetStrategyInterface
      * @var EngineInterface
      */
     protected $templating;
-    
+
     public function setDefaultOptions(WidgetInterface $widget)
     {
     }
-    
+
     public function buildForm(FormBuilderInterface $builder)
     {
     }
-    
+
     public function setTemplating(EngineInterface $templating)
     {
         $this->templating = $templating;
     }
-    
+
     /**
      * @return EngineInterface
      */
@@ -33,7 +33,7 @@ abstract class AbstractWidgetStrategy implements WidgetStrategyInterface
     {
         return $this->templating;
     }
-    
+
     public function render($name, array $parameters = array())
     {
         return $this->templating->render($name, $parameters);

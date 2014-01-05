@@ -38,8 +38,8 @@ class WidgetManager
     }
 
     /**
-     * @param string $area
-     * @return \Isometriks\Bundle\SymEditBundle\Model\WidgetAreaInterface
+     * @param  string                                                     $area
+     * @return \Isometriks\Bundle\SymEditBundle\Model\WidgetAreaInterface $widgetArea
      * @throws \Exception
      */
     public function getWidgetArea($area)
@@ -48,7 +48,7 @@ class WidgetManager
             'area' => $area,
         ));
 
-        if($widgetArea === null){
+        if ($widgetArea === null) {
             throw new \Exception(sprintf('Could not find widget area "%s".', $area));
         }
 
@@ -67,6 +67,7 @@ class WidgetManager
     public function createWidgetArea()
     {
         $class = $this->getWidgetAreaClass();
+
         return new $class();
     }
 
@@ -96,7 +97,7 @@ class WidgetManager
     }
 
     /**
-     * @param type $id
+     * @param  type            $id
      * @return WidgetInterface
      */
     public function findWidget($id)
@@ -105,7 +106,7 @@ class WidgetManager
     }
 
     /**
-     * @param array $conditions
+     * @param  array           $conditions
      * @return WidgetInterface
      * @throws \Exception
      */
@@ -122,7 +123,7 @@ class WidgetManager
         $class = $this->getWidgetClass();
         $widget = new $class();
 
-        if($strategyName !== null){
+        if ($strategyName !== null) {
             $widget->setStrategyName($strategyName);
             $this->registry->init($widget);
         }

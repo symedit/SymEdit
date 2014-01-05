@@ -16,7 +16,7 @@ class ListChildrenStrategy extends AbstractWidgetStrategy
         if ($page === null) {
             return false;
         }
-        
+
         return $this->render('@SymEdit/Widget/list-children.html.twig', array(
             'page' => $page,
             'children' => new PageIterator($page),

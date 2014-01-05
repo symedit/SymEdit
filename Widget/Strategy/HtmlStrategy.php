@@ -10,24 +10,24 @@ class HtmlStrategy extends AbstractWidgetStrategy
 {
     public function execute(WidgetInterface $widget, PageInterface $page = null)
     {
-        return $widget->getOption('html'); 
+        return $widget->getOption('html');
     }
 
     public function getName()
     {
-        return 'html'; 
+        return 'html';
     }
 
     public function getDescription()
     {
-        return 'Plain HTML'; 
+        return 'Plain HTML';
     }
-    
+
     public function setDefaultOptions(WidgetInterface $widget)
     {
         $widget->setOptions(array(
-            'html' => 'New HTML Widget', 
-        )); 
+            'html' => 'New HTML Widget',
+        ));
     }
 
     public function buildForm(FormBuilderInterface $builder)
@@ -35,10 +35,10 @@ class HtmlStrategy extends AbstractWidgetStrategy
         $builder
             ->add('html', 'textarea', array(
                 'horizontal' => false,
-                'label_render' => false, 
+                'label_render' => false,
                 'attr' => array(
-                    'class' => 'wysiwyg-editor', 
+                    'class' => 'wysiwyg-editor',
                 )
-            ));  
-    }    
+            ));
+    }
 }

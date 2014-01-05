@@ -17,7 +17,7 @@ class SubmenuStrategy extends AbstractWidgetStrategy
         if ($page === null) {
             return false;
         }
-        
+
         return $this->render('@SymEdit/Widget/submenu.html.twig', array(
             'page' => $page,
             'nav_class' => $widget->getOption('nav_class'),
