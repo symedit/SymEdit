@@ -8,7 +8,7 @@ use Sylius\Bundle\ResourceBundle\SyliusResourceBundle;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 
-class IsometriksUserBundle extends Bundle
+class SymEditUserBundle extends Bundle
 {
     public static function getSupportedDrivers()
     {
