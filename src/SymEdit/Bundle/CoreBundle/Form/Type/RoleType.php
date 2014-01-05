@@ -1,6 +1,6 @@
 <?php
 
-namespace Isometriks\Bundle\SymEditBundle\Form\Type;
+namespace SymEdit\Bundle\CoreBundle\Form\Type;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
@@ -20,7 +20,7 @@ class RoleType extends AbstractType {
 
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
-        $roles = $this->doctrine->getManager()->getRepository('Isometriks\Bundle\SymEditBundle\Model\Role')->findAll();
+        $roles = $this->doctrine->getManager()->getRepository('SymEdit\Bundle\CoreBundle\Model\Role')->findAll();
         $choices = array();
 
         foreach ($roles as $role) {

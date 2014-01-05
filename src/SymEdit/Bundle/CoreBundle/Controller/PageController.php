@@ -1,10 +1,10 @@
 <?php
 
-namespace Isometriks\Bundle\SymEditBundle\Controller;
+namespace SymEdit\Bundle\CoreBundle\Controller;
 
 use FOS\RestBundle\Controller\FOSRestController;
-use Isometriks\Bundle\SymEditBundle\Event\Events;
-use Isometriks\Bundle\SymEditBundle\Model\PageInterface;
+use SymEdit\Bundle\CoreBundle\Event\Events;
+use SymEdit\Bundle\CoreBundle\Model\PageInterface;
 use Sylius\Bundle\ResourceBundle\Event\ResourceEvent;
 use Symfony\Component\HttpFoundation\Request;
 

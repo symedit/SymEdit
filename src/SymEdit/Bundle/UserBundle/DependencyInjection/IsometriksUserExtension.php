@@ -3,7 +3,7 @@
 namespace Isometriks\Bundle\UserBundle\DependencyInjection;
 
 use Symfony\Component\DependencyInjection\ContainerBuilder;
-use Isometriks\Bundle\SymEditBundle\DependencyInjection\SymEditResourceExtension;
+use SymEdit\Bundle\CoreBundle\DependencyInjection\SymEditResourceExtension;
 
 /**
  * This is the class that loads and manages your bundle configuration

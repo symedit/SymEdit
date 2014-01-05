@@ -1,6 +1,6 @@
 <?php
 
-namespace Isometriks\Bundle\SymEditBundle\Util;
+namespace SymEdit\Bundle\CoreBundle\Util;
 
 use FOS\UserBundle\Mailer\TwigSwiftMailer;
 use Isometriks\Bundle\SettingsBundle\Model\Settings;

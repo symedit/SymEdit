@@ -1,10 +1,10 @@
 <?php
 
-namespace Isometriks\Bundle\SymEditBundle\EventListener;
+namespace SymEdit\Bundle\CoreBundle\EventListener;
 
 use Symfony\Component\HttpKernel\Event\FilterControllerEvent;
 use Symfony\Component\HttpKernel\HttpKernel;
-use Isometriks\Bundle\SymEditBundle\Model\BreadcrumbsInterface; 
+use SymEdit\Bundle\CoreBundle\Model\BreadcrumbsInterface; 
 
 class BreadcrumbListener
 {
@@ -25,7 +25,7 @@ class BreadcrumbListener
 
         if($request->attributes->has('_page')){
             
-            /* @var $page \Isometriks\Bundle\SymEditBundle\Model\PageInterface */
+            /* @var $page \SymEdit\Bundle\CoreBundle\Model\PageInterface */
             $page = $request->attributes->get('_page'); 
             
             while($page->getParent() !== null && !$page->getHomepage()){

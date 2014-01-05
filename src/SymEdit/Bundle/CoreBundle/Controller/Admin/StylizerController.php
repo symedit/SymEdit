@@ -1,8 +1,8 @@
 <?php
 
-namespace Isometriks\Bundle\SymEditBundle\Controller\Admin;
+namespace SymEdit\Bundle\CoreBundle\Controller\Admin;
 
-use Isometriks\Bundle\SymEditBundle\Controller\Controller;
+use SymEdit\Bundle\CoreBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Component\HttpFoundation\Request;

@@ -1,6 +1,6 @@
 <?php
 
-namespace Isometriks\Bundle\SymEditBundle\Model;
+namespace SymEdit\Bundle\CoreBundle\Model;
 
 class Template
 {
@@ -29,7 +29,7 @@ class Template
     }
 
     /**
-     * @return \Isometriks\Bundle\SymEditBundle\Model\Layout
+     * @return \SymEdit\Bundle\CoreBundle\Model\Layout
      */
     public function getLayout()
     {

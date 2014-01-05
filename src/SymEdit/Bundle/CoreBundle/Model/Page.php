@@ -1,9 +1,9 @@
 <?php
 
-namespace Isometriks\Bundle\SymEditBundle\Model;
+namespace SymEdit\Bundle\CoreBundle\Model;
 
 use Doctrine\Common\Collections\ArrayCollection;
-use Isometriks\Bundle\SymEditBundle\Iterator\RecursivePageIterator;
+use SymEdit\Bundle\CoreBundle\Iterator\RecursivePageIterator;
 use Symfony\Component\Validator\ExecutionContextInterface;
 
 class Page implements PageInterface

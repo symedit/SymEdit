@@ -1,10 +1,10 @@
 <?php
 
-namespace Isometriks\Bundle\SymEditBundle\Controller\Admin;
+namespace SymEdit\Bundle\CoreBundle\Controller\Admin;
 
-use Isometriks\Bundle\SymEditBundle\Controller\ResourceController;
-use Isometriks\Bundle\SymEditBundle\Form\WidgetReorderType;
-use Isometriks\Bundle\SymEditBundle\Widget\WidgetRegistry;
+use SymEdit\Bundle\CoreBundle\Controller\ResourceController;
+use SymEdit\Bundle\CoreBundle\Form\WidgetReorderType;
+use SymEdit\Bundle\CoreBundle\Widget\WidgetRegistry;
 use JMS\SecurityExtraBundle\Annotation\PreAuthorize;
 use Symfony\Component\HttpFoundation\Request;
 

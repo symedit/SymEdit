@@ -1,12 +1,12 @@
 <?php
 
-namespace Isometriks\Bundle\SymEditBundle\DataFixtures\ORM;
+namespace SymEdit\Bundle\CoreBundle\DataFixtures\ORM;
 
 use Doctrine\Common\Persistence\ObjectManager;
 use Doctrine\Common\DataFixtures\AbstractFixture;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
-use Isometriks\Bundle\SymEditBundle\Model\Page;
-use Isometriks\Bundle\SymEditBundle\Model\Slider; 
+use SymEdit\Bundle\CoreBundle\Model\Page;
+use SymEdit\Bundle\CoreBundle\Model\Slider; 
 
 class LoadPageData extends AbstractFixture implements OrderedFixtureInterface {
 

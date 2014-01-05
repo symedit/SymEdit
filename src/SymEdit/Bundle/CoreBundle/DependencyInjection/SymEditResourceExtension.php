@@ -1,6 +1,6 @@
 <?php
 
-namespace Isometriks\Bundle\SymEditBundle\DependencyInjection;
+namespace SymEdit\Bundle\CoreBundle\DependencyInjection;
 
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Sylius\Bundle\ResourceBundle\DependencyInjection\SyliusResourceExtension;

@@ -1,9 +1,9 @@
 <?php
 
-namespace Isometriks\Bundle\SymEditBundle\Test\Model; 
+namespace SymEdit\Bundle\CoreBundle\Test\Model; 
 
-use Isometriks\Bundle\SymEditBundle\Tests\TestCase; 
-use Isometriks\Bundle\SymEditBundle\Model\Breadcrumbs; 
+use SymEdit\Bundle\CoreBundle\Tests\TestCase; 
+use SymEdit\Bundle\CoreBundle\Model\Breadcrumbs; 
 
 class BreadcrumbTest extends TestCase
 {

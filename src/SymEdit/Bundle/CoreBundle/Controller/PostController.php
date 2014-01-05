@@ -1,6 +1,6 @@
 <?php
 
-namespace Isometriks\Bundle\SymEditBundle\Controller;
+namespace SymEdit\Bundle\CoreBundle\Controller;
 
 use Symfony\Component\HttpFoundation\Request;
 

@@ -1,4 +1,4 @@
-Isometriks\Bundle\SymEditBundle\Model\Role:
+SymEdit\Bundle\CoreBundle\Model\Role:
     type: entity
     table: role
     fields:

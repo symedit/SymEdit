@@ -1,6 +1,6 @@
 <?php
 
-namespace Isometriks\Bundle\SymEditBundle\Event;
+namespace SymEdit\Bundle\CoreBundle\Event;
 
 final class Events
 {

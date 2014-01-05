@@ -1,9 +1,9 @@
 <?php
 
-namespace Isometriks\Bundle\SymEditBundle\EventListener\Subscriber;
+namespace SymEdit\Bundle\CoreBundle\EventListener\Subscriber;
 
-use Isometriks\Bundle\SymEditBundle\Event\Events;
-use Isometriks\Bundle\SymEditBundle\Model\PageInterface;
+use SymEdit\Bundle\CoreBundle\Event\Events;
+use SymEdit\Bundle\CoreBundle\Model\PageInterface;
 use Sylius\Bundle\ResourceBundle\Event\ResourceEvent;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\HttpFoundation\Session\Session;

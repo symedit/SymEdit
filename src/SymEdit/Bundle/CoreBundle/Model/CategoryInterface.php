@@ -1,6 +1,6 @@
 <?php
 
-namespace Isometriks\Bundle\SymEditBundle\Model;
+namespace SymEdit\Bundle\CoreBundle\Model;
 
 use Isometriks\Bundle\SeoBundle\Model\SeoAbleInterface;
 

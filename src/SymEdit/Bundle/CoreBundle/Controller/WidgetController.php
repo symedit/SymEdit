@@ -1,10 +1,10 @@
 <?php
 
-namespace Isometriks\Bundle\SymEditBundle\Controller;
+namespace SymEdit\Bundle\CoreBundle\Controller;
 
 use Symfony\Component\Templating\TemplateReference;
-use Isometriks\Bundle\SymEditBundle\Controller\Controller;
-use Isometriks\Bundle\SymEditBundle\Model\PageInterface;
+use SymEdit\Bundle\CoreBundle\Controller\Controller;
+use SymEdit\Bundle\CoreBundle\Model\PageInterface;
 
 class WidgetController extends Controller
 {

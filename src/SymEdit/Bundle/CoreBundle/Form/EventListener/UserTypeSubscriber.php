@@ -1,6 +1,6 @@
 <?php
 
-namespace Isometriks\Bundle\SymEditBundle\Form\EventListener; 
+namespace SymEdit\Bundle\CoreBundle\Form\EventListener; 
 
 use Symfony\Component\EventDispatcher\EventSubscriberInterface; 
 use Symfony\Component\Form\FormEvents;

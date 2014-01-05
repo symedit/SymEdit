@@ -2,7 +2,7 @@
 
 namespace Isometriks\Bundle\UserBundle\Controller;
 
-use Isometriks\Bundle\SymEditBundle\Controller\ResourceController;
+use SymEdit\Bundle\CoreBundle\Controller\ResourceController;
 use JMS\SecurityExtraBundle\Annotation\PreAuthorize;
 
 /**

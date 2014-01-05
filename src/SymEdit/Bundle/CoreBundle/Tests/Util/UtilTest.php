@@ -1,9 +1,9 @@
 <?php
 
-namespace Isometriks\Bundle\SymEditBundle\Tests\Util; 
+namespace SymEdit\Bundle\CoreBundle\Tests\Util; 
 
-use Isometriks\Bundle\SymEditBundle\Tests\TestCase; 
-use Isometriks\Bundle\SymEditBundle\Util\Util; 
+use SymEdit\Bundle\CoreBundle\Tests\TestCase; 
+use SymEdit\Bundle\CoreBundle\Util\Util; 
 
 class UtilTest extends TestCase
 {

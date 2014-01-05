@@ -1,13 +1,13 @@
 <?php
 
-namespace Isometriks\Bundle\SymEditBundle\DataFixtures\ORM;
+namespace SymEdit\Bundle\CoreBundle\DataFixtures\ORM;
 
 use Doctrine\Common\Persistence\ObjectManager;
 use Doctrine\Common\DataFixtures\AbstractFixture;
 use Symfony\Component\DependencyInjection\ContainerAwareInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
-use Isometriks\Bundle\SymEditBundle\Model\Widget;
+use SymEdit\Bundle\CoreBundle\Model\Widget;
 
 class LoadWidgetData extends AbstractFixture implements OrderedFixtureInterface, ContainerAwareInterface
 {
@@ -152,7 +152,7 @@ class LoadWidgetData extends AbstractFixture implements OrderedFixtureInterface,
     }
 
     /**
-     * @return \Isometriks\Bundle\SymEditBundle\Widget\WidgetManager
+     * @return \SymEdit\Bundle\CoreBundle\Widget\WidgetManager
      */
     private function getManager()
     {

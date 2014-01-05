@@ -1,6 +1,6 @@
 <?php
 
-namespace Isometriks\Bundle\SymEditBundle\Model;
+namespace SymEdit\Bundle\CoreBundle\Model;
 
 use Isometriks\Bundle\MediaBundle\Model\MediaInterface;
 
@@ -67,7 +67,7 @@ class Slide implements SlideInterface
     /**
      * Set slider
      *
-     * @param  Isometriks\Bundle\SymEditBundle\Model\SliderInterface $slider
+     * @param  SymEdit\Bundle\CoreBundle\Model\SliderInterface $slider
      * @return Slide
      */
     public function setSlider(SliderInterface $slider = null)
@@ -80,7 +80,7 @@ class Slide implements SlideInterface
     /**
      * Get slider
      *
-     * @return Isometriks\Bundle\SymEditBundle\Model\SliderInterface
+     * @return SymEdit\Bundle\CoreBundle\Model\SliderInterface
      */
     public function getSlider()
     {

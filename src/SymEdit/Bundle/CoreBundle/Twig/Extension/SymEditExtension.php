@@ -1,9 +1,9 @@
 <?php
 
-namespace Isometriks\Bundle\SymEditBundle\Twig\Extension;
+namespace SymEdit\Bundle\CoreBundle\Twig\Extension;
 
 use Symfony\Component\DependencyInjection\ContainerInterface;
-use Isometriks\Bundle\SymEditBundle\Model\Page;
+use SymEdit\Bundle\CoreBundle\Model\Page;
 
 class SymEditExtension extends \Twig_Extension
 {

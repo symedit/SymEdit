@@ -1,4 +1,4 @@
-Isometriks\Bundle\SymEditBundle\Model\Post:
+SymEdit\Bundle\CoreBundle\Model\Post:
     type: entity
     table: post
     gedmo:
@@ -69,7 +69,7 @@ Isometriks\Bundle\SymEditBundle\Model\Post:
             cascade:
                 - persist
         author:
-            targetEntity: Isometriks\Bundle\SymEditBundle\Model\UserInterface
+            targetEntity: SymEdit\Bundle\CoreBundle\Model\UserInterface
     manyToMany:
         categories:
             joinTable:
@@ -80,5 +80,5 @@ Isometriks\Bundle\SymEditBundle\Model\Post:
                 inverseJoinColumns:
                     post_id:
                         referenceColumnName: id
-            targetEntity: Isometriks\Bundle\SymEditBundle\Model\CategoryInterface
+            targetEntity: SymEdit\Bundle\CoreBundle\Model\CategoryInterface
             inversedBy: posts

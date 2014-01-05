@@ -1,10 +1,10 @@
 <?php
 
-namespace Isometriks\Bundle\SymEditBundle\Doctrine;
+namespace SymEdit\Bundle\CoreBundle\Doctrine;
 
 use Doctrine\Common\EventSubscriber;
-use Isometriks\Bundle\SymEditBundle\Model\WidgetInterface;
-use Isometriks\Bundle\SymEditBundle\Widget\WidgetRegistry;
+use SymEdit\Bundle\CoreBundle\Model\WidgetInterface;
+use SymEdit\Bundle\CoreBundle\Widget\WidgetRegistry;
 
 abstract class AbstractWidgetListener implements EventSubscriber
 {

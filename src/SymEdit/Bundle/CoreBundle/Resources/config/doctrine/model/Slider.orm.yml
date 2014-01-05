@@ -1,4 +1,4 @@
-Isometriks\Bundle\SymEditBundle\Model\Slider:
+SymEdit\Bundle\CoreBundle\Model\Slider:
     type: entity
     table: slider
     fields:
@@ -28,7 +28,7 @@ Isometriks\Bundle\SymEditBundle\Model\Slider:
             precision: 0
     oneToMany:
         slides:
-            targetEntity: Isometriks\Bundle\SymEditBundle\Model\SlideInterface
+            targetEntity: SymEdit\Bundle\CoreBundle\Model\SlideInterface
             cascade: {  }
             mappedBy: slider
             inversedBy: null

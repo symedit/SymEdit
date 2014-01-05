@@ -1,11 +1,11 @@
-Isometriks\Bundle\SymEditBundle\Model\User:
+SymEdit\Bundle\CoreBundle\Model\User:
     properties:
         profile:
             - Valid: ~
     constraints:
           - Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity: email
 
-Isometriks\Bundle\SymEditBundle\Model\Page:
+SymEdit\Bundle\CoreBundle\Model\Page:
     constraints:
         - Callback:
             methods: [isNameValid, isParentValid]
@@ -28,7 +28,7 @@ Isometriks\Bundle\MediaBundle\Model\Media:
                 pattern: "/^[a-z0-9_-]+$/"
                 message: "You may only use lowercase letters, numbers, underscores or hyphens"
 
-Isometriks\Bundle\SymEditBundle\Model\Category:
+SymEdit\Bundle\CoreBundle\Model\Category:
     properties:
         name:
             - NotBlank: ~
@@ -36,12 +36,12 @@ Isometriks\Bundle\SymEditBundle\Model\Category:
                 pattern: "/^[a-z0-9_-]+$/"
                 message: "You may only use lowercase letters, numbers, underscores or hyphens"
 
-Isometriks\Bundle\SymEditBundle\Model\Post:
+SymEdit\Bundle\CoreBundle\Model\Post:
     properties:
         title:
             - NotBlank: ~
 
-Isometriks\Bundle\SymEditBundle\Model\Slider:
+SymEdit\Bundle\CoreBundle\Model\Slider:
     properties:
         name:
             - Regex:
@@ -50,7 +50,7 @@ Isometriks\Bundle\SymEditBundle\Model\Slider:
         description:
             - NotBlank: ~
 
-Isometriks\Bundle\SymEditBundle\Model\Widget:
+SymEdit\Bundle\CoreBundle\Model\Widget:
     constraints:
         - Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity: name
     properties:

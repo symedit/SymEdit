@@ -1,11 +1,11 @@
 <?php
 
-namespace Isometriks\Bundle\SymEditBundle\EventListener\Subscriber;
+namespace SymEdit\Bundle\CoreBundle\EventListener\Subscriber;
 
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
-use Isometriks\Bundle\SymEditBundle\Event\Events;
+use SymEdit\Bundle\CoreBundle\Event\Events;
 use Sylius\Bundle\ResourceBundle\Event\ResourceEvent;
-use Isometriks\Bundle\SymEditBundle\Event\PostEvent;
+use SymEdit\Bundle\CoreBundle\Event\PostEvent;
 use Sylius\Bundle\ResourceBundle\Model\RepositoryInterface;
 
 /**

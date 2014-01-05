@@ -1,4 +1,4 @@
-Isometriks\Bundle\SymEditBundle\Model\User:
+SymEdit\Bundle\CoreBundle\Model\User:
     type: entity
     table: users
     id:
@@ -11,6 +11,6 @@ Isometriks\Bundle\SymEditBundle\Model\User:
             type: boolean
     oneToOne:
         profile:
-            targetEntity: Isometriks\Bundle\SymEditBundle\Model\ProfileInterface
+            targetEntity: SymEdit\Bundle\CoreBundle\Model\ProfileInterface
             inversedBy: user
             cascade: [persist, remove]

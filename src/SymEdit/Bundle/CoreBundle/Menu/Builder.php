@@ -1,10 +1,10 @@
 <?php
 
-namespace Isometriks\Bundle\SymEditBundle\Menu;
+namespace SymEdit\Bundle\CoreBundle\Menu;
 
-use Isometriks\Bundle\SymEditBundle\Event\Events;
-use Isometriks\Bundle\SymEditBundle\Event\MenuEvent;
-use Isometriks\Bundle\SymEditBundle\Model\UserInterface;
+use SymEdit\Bundle\CoreBundle\Event\Events;
+use SymEdit\Bundle\CoreBundle\Event\MenuEvent;
+use SymEdit\Bundle\CoreBundle\Model\UserInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 class Builder

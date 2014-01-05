@@ -7,7 +7,7 @@
  *
  */
 
-namespace Isometriks\Bundle\SymEditBundle\Command;
+namespace SymEdit\Bundle\CoreBundle\Command;
 
 use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
 use Symfony\Component\Console\Input\InputInterface;

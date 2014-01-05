@@ -1,6 +1,6 @@
 <?php
 
-namespace Isometriks\Bundle\SymEditBundle\Tests;
+namespace SymEdit\Bundle\CoreBundle\Tests;
 
 class TestCase extends \PHPUnit_Framework_TestCase
 {

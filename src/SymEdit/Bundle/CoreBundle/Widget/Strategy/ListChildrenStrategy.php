@@ -1,10 +1,10 @@
 <?php
 
-namespace Isometriks\Bundle\SymEditBundle\Widget\Strategy;
+namespace SymEdit\Bundle\CoreBundle\Widget\Strategy;
 
-use Isometriks\Bundle\SymEditBundle\Iterator\PageIterator;
-use Isometriks\Bundle\SymEditBundle\Model\PageInterface;
-use Isometriks\Bundle\SymEditBundle\Model\WidgetInterface;
+use SymEdit\Bundle\CoreBundle\Iterator\PageIterator;
+use SymEdit\Bundle\CoreBundle\Model\PageInterface;
+use SymEdit\Bundle\CoreBundle\Model\WidgetInterface;
 
 class ListChildrenStrategy extends AbstractWidgetStrategy
 {

@@ -1,12 +1,12 @@
 <?php
 
-namespace Isometriks\Bundle\SymEditBundle\Form;
+namespace SymEdit\Bundle\CoreBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
-use Isometriks\Bundle\SymEditBundle\Form\DataTransformer\WidgetAssociationTransformer;
-use Isometriks\Bundle\SymEditBundle\Model\Widget;
+use SymEdit\Bundle\CoreBundle\Form\DataTransformer\WidgetAssociationTransformer;
+use SymEdit\Bundle\CoreBundle\Model\Widget;
 
 class WidgetType extends AbstractType
 {

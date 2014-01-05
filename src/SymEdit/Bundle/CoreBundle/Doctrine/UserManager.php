@@ -1,9 +1,9 @@
 <?php
 
-namespace Isometriks\Bundle\SymEditBundle\Doctrine;
+namespace SymEdit\Bundle\CoreBundle\Doctrine;
 
 use FOS\UserBundle\Doctrine\UserManager as BaseUserManager;
-use Isometriks\Bundle\SymEditBundle\Model\UserManagerInterface;
+use SymEdit\Bundle\CoreBundle\Model\UserManagerInterface;
 
 class UserManager extends BaseUserManager implements UserManagerInterface
 {
@@ -30,7 +30,7 @@ class UserManager extends BaseUserManager implements UserManagerInterface
     }
 
     /**
-     * @return \Isometriks\Bundle\SymEditBundle\Model\UserInterface
+     * @return \SymEdit\Bundle\CoreBundle\Model\UserInterface
      */
     public function createUser($admin = false)
     {

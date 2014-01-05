@@ -1,11 +1,11 @@
 <?php
 
-namespace Isometriks\Bundle\SymEditBundle\EventListener\Subscriber;
+namespace SymEdit\Bundle\CoreBundle\EventListener\Subscriber;
 
 use Isometriks\Bundle\SeoBundle\Model\SeoInterface;
-use Isometriks\Bundle\SymEditBundle\Event\Events;
+use SymEdit\Bundle\CoreBundle\Event\Events;
 use Sylius\Bundle\ResourceBundle\Event\ResourceEvent;
-use Isometriks\Bundle\SymEditBundle\Event\PostEvent;
+use SymEdit\Bundle\CoreBundle\Event\PostEvent;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\HttpFoundation\Session\Session;
 use Symfony\Component\Routing\Exception\RouteNotFoundException;

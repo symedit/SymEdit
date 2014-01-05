@@ -1,6 +1,6 @@
 <?php
 
-namespace Isometriks\Bundle\SymEditBundle\Menu\Voter;
+namespace SymEdit\Bundle\CoreBundle\Menu\Voter;
 
 use Knp\Menu\ItemInterface;
 use Knp\Menu\Matcher\Voter\VoterInterface;
@@ -34,7 +34,7 @@ class PageVoter implements VoterInterface
     /**
      * Get current page if there is one
      *
-     * @return Isometriks\Bundle\SymEditBundle\Model\PageInterface|null $page
+     * @return SymEdit\Bundle\CoreBundle\Model\PageInterface|null $page
      */
     protected function getPage()
     {

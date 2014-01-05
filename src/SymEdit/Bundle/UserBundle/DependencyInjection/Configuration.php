@@ -42,7 +42,7 @@ class Configuration implements ConfigurationInterface
                         ->arrayNode('user')
                             ->addDefaultsIfNotSet()
                             ->children()
-                                ->scalarNode('model')->defaultValue('Isometriks\Bundle\SymEditBundle\Model\User')->end()
+                                ->scalarNode('model')->defaultValue('SymEdit\Bundle\CoreBundle\Model\User')->end()
                                 ->scalarNode('controller')->defaultValue('Isometriks\Bundle\UserBundle\Controller\UserController')->end()
                                 ->scalarNode('repository')->end()
                                 ->scalarNode('form')->defaultValue('Isometriks\Bundle\UserBundle\Form\UserType')->end()

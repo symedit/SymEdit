@@ -22,5 +22,5 @@ Isometriks\Bundle\UserBundle\Model\Profile:
             nullable: true
     oneToOne:
         user:
-            targetEntity: Isometriks\Bundle\SymEditBundle\Model\UserInterface
+            targetEntity: SymEdit\Bundle\CoreBundle\Model\UserInterface
             mappedBy: profile

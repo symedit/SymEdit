@@ -1,10 +1,10 @@
 <?php
 
-namespace Isometriks\Bundle\SymEditBundle\Doctrine\MongoDB;
+namespace SymEdit\Bundle\CoreBundle\Doctrine\MongoDB;
 
 use Doctrine\ODM\MongoDB\Event\LifecycleEventArgs;
 use Doctrine\ODM\MongoDB\Events;
-use Isometriks\Bundle\SymEditBundle\Doctrine\AbstractWidgetListener;
+use SymEdit\Bundle\CoreBundle\Doctrine\AbstractWidgetListener;
 
 class WidgetListener extends AbstractWidgetListener
 {

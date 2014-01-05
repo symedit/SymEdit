@@ -1,8 +1,8 @@
 <?php
 
-namespace Isometriks\Bundle\SymEditBundle\Iterator;
+namespace SymEdit\Bundle\CoreBundle\Iterator;
 
-use Isometriks\Bundle\SymEditBundle\Model\PageInterface;
+use SymEdit\Bundle\CoreBundle\Model\PageInterface;
 
 class PageIterator implements \Iterator
 {

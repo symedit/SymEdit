@@ -1,11 +1,11 @@
 <?php
 
-namespace Isometriks\Bundle\SymEditBundle\Controller;
+namespace SymEdit\Bundle\CoreBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller as BaseController;
 use Symfony\Component\HttpFoundation\Response;
-use Isometriks\Bundle\SymEditBundle\Model\Seo;
-use Isometriks\Bundle\SymEditBundle\Model\SeoInterface;
+use SymEdit\Bundle\CoreBundle\Model\Seo;
+use SymEdit\Bundle\CoreBundle\Model\SeoInterface;
 
 class Controller extends BaseController
 {
@@ -60,7 +60,7 @@ class Controller extends BaseController
     /**
      * Gets Mailer
      *
-     * @return \Isometriks\Bundle\SymEditBundle\Util\SymEditMailer
+     * @return \SymEdit\Bundle\CoreBundle\Util\SymEditMailer
      */
     public function getMailer()
     {
@@ -70,7 +70,7 @@ class Controller extends BaseController
     /**
      * Gets the breadcrumbs
      *
-     * @return \Isometriks\Bundle\SymEditBundle\Model\BreadcrumbsInterface $breadcrumbs
+     * @return \SymEdit\Bundle\CoreBundle\Model\BreadcrumbsInterface $breadcrumbs
      */
     public function getBreadcrumbs()
     {
@@ -80,7 +80,7 @@ class Controller extends BaseController
     /**
      * Gets the user manager
      *
-     * @return \Isometriks\Bundle\SymEditBundle\Model\UserManagerInterface $userManager
+     * @return \SymEdit\Bundle\CoreBundle\Model\UserManagerInterface $userManager
      */
     public function getUserManager()
     {
@@ -111,7 +111,7 @@ class Controller extends BaseController
     /**
      * Gets the current page if there is one, or returns null
      *
-     * @return \Isometriks\Bundle\SymEditBundle\Model\PageInterface|null
+     * @return \SymEdit\Bundle\CoreBundle\Model\PageInterface|null
      */
     public function getCurrentPage()
     {

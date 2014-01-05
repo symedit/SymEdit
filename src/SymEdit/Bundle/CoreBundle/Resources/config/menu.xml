@@ -5,9 +5,9 @@
     xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
 
     <parameters>
-        <parameter key="isometriks_symedit.menu.provider.tree.class">Isometriks\Bundle\SymEditBundle\Menu\Provider\TreeMenuProvider</parameter>
-        <parameter key="isometriks_symedit.menu.voter.page.class">Isometriks\Bundle\SymEditBundle\Menu\Voter\PageVoter</parameter>
-        <parameter key="isometriks_symedit.menu_builder.class">Isometriks\Bundle\SymEditBundle\Menu\Builder</parameter>
+        <parameter key="isometriks_symedit.menu.provider.tree.class">SymEdit\Bundle\CoreBundle\Menu\Provider\TreeMenuProvider</parameter>
+        <parameter key="isometriks_symedit.menu.voter.page.class">SymEdit\Bundle\CoreBundle\Menu\Voter\PageVoter</parameter>
+        <parameter key="isometriks_symedit.menu_builder.class">SymEdit\Bundle\CoreBundle\Menu\Builder</parameter>
     </parameters>
 
     <services>

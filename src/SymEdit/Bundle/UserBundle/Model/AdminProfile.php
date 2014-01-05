@@ -3,8 +3,8 @@
 namespace Isometriks\Bundle\UserBundle\Model;
 
 use Isometriks\Bundle\MediaBundle\Model\MediaInterface;
-use Isometriks\Bundle\SymEditBundle\Util\Util;
-use Isometriks\Bundle\SymEditBundle\Model\UserInterface;
+use SymEdit\Bundle\CoreBundle\Util\Util;
+use SymEdit\Bundle\CoreBundle\Model\UserInterface;
 
 class AdminProfile extends Profile
 {

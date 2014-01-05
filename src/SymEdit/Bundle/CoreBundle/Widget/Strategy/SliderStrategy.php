@@ -1,9 +1,9 @@
 <?php
 
-namespace Isometriks\Bundle\SymEditBundle\Widget\Strategy;
+namespace SymEdit\Bundle\CoreBundle\Widget\Strategy;
 
-use Isometriks\Bundle\SymEditBundle\Model\PageInterface;
-use Isometriks\Bundle\SymEditBundle\Model\WidgetInterface;
+use SymEdit\Bundle\CoreBundle\Model\PageInterface;
+use SymEdit\Bundle\CoreBundle\Model\WidgetInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\HttpKernel\HttpKernelInterface;
@@ -46,7 +46,7 @@ class SliderStrategy extends AbstractWidgetStrategy
             ->add('slider', 'entity_property', array(
                 'label' => 'Slider',
                 'help_block' => 'Choose slider to display',
-                'class' => 'Isometriks\Bundle\SymEditBundle\Model\Slider',
+                'class' => 'SymEdit\Bundle\CoreBundle\Model\Slider',
                 'property' => 'name',
                 'property_value' => 'name',
             ))

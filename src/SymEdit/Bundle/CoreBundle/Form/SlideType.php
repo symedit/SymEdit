@@ -1,6 +1,6 @@
 <?php
 
-namespace Isometriks\Bundle\SymEditBundle\Form;
+namespace SymEdit\Bundle\CoreBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -36,7 +36,7 @@ class SlideType extends AbstractType
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'Isometriks\Bundle\SymEditBundle\Model\Slide'
+            'data_class' => 'SymEdit\Bundle\CoreBundle\Model\Slide'
         ));
     }
 

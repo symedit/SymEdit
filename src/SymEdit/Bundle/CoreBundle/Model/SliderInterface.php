@@ -1,6 +1,6 @@
 <?php
 
-namespace Isometriks\Bundle\SymEditBundle\Model;
+namespace SymEdit\Bundle\CoreBundle\Model;
 
 interface SliderInterface
 {
@@ -44,7 +44,7 @@ interface SliderInterface
     /**
      * Add slides
      *
-     * @param  Isometriks\Bundle\SymEditBundle\Model\SlideInterface $slides
+     * @param  SymEdit\Bundle\CoreBundle\Model\SlideInterface $slides
      * @return Slider
      */
     public function addSlide(SlideInterface $slide);
@@ -52,7 +52,7 @@ interface SliderInterface
     /**
      * Remove slides
      *
-     * @param Isometriks\Bundle\SymEditBundle\Model\SlideInterface $slides
+     * @param SymEdit\Bundle\CoreBundle\Model\SlideInterface $slides
      */
     public function removeSlide(SlideInterface $slide);
 

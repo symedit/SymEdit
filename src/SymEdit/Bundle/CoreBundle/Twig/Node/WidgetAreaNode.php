@@ -1,6 +1,6 @@
 <?php
 
-namespace Isometriks\Bundle\SymEditBundle\Twig\Node;
+namespace SymEdit\Bundle\CoreBundle\Twig\Node;
 
 class WidgetAreaNode extends \Twig_Node
 {

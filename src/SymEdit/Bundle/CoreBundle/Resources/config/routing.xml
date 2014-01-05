@@ -5,10 +5,10 @@
            xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
 
     <parameters>
-        <parameter key="isometriks_symedit.routing.loader.page.class">Isometriks\Bundle\SymEditBundle\Routing\PageLoader</parameter>
-        <parameter key="isometriks_symedit.routing.loader.controller.class">Isometriks\Bundle\SymEditBundle\Routing\ControllerLoader</parameter>
-        <parameter key="isometriks_symedit.routing.loader.yaml.class">Isometriks\Bundle\SymEditBundle\Routing\YamlFileLoader</parameter>
-        <parameter key="isometriks_symedit.routing.loader.page_controller.class">Isometriks\Bundle\SymEditBundle\Routing\PageControllerLoader</parameter>
+        <parameter key="isometriks_symedit.routing.loader.page.class">SymEdit\Bundle\CoreBundle\Routing\PageLoader</parameter>
+        <parameter key="isometriks_symedit.routing.loader.controller.class">SymEdit\Bundle\CoreBundle\Routing\ControllerLoader</parameter>
+        <parameter key="isometriks_symedit.routing.loader.yaml.class">SymEdit\Bundle\CoreBundle\Routing\YamlFileLoader</parameter>
+        <parameter key="isometriks_symedit.routing.loader.page_controller.class">SymEdit\Bundle\CoreBundle\Routing\PageControllerLoader</parameter>
     </parameters>
 
     <services>

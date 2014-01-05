@@ -5,8 +5,8 @@
            xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
 
     <parameters>
-        <parameter key="isometriks_symedit.twig.symedit_extension.class">Isometriks\Bundle\SymEditBundle\Twig\Extension\SymEditExtension</parameter>
-        <parameter key="isometriks_symedit.twig.controller.exception.class">Isometriks\Bundle\SymEditBundle\Controller\ExceptionController</parameter>
+        <parameter key="isometriks_symedit.twig.symedit_extension.class">SymEdit\Bundle\CoreBundle\Twig\Extension\SymEditExtension</parameter>
+        <parameter key="isometriks_symedit.twig.controller.exception.class">SymEdit\Bundle\CoreBundle\Controller\ExceptionController</parameter>
     </parameters>
 
     <services>

@@ -1,6 +1,6 @@
 <?php
 
-namespace Isometriks\Bundle\SymEditBundle\EventListener;
+namespace SymEdit\Bundle\CoreBundle\EventListener;
 
 use Symfony\Component\HttpKernel\Event\FilterControllerEvent;
 use Isometriks\Bundle\SeoBundle\Model\SeoManagerInterface;

@@ -1,6 +1,6 @@
 <?php
 
-namespace Isometriks\Bundle\SymEditBundle\Routing;
+namespace SymEdit\Bundle\CoreBundle\Routing;
 
 use Doctrine\Common\Annotations\Reader;
 use Sensio\Bundle\FrameworkExtraBundle\Routing\AnnotatedRouteControllerLoader;

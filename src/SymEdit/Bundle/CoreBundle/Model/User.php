@@ -1,9 +1,9 @@
 <?php
 
-namespace Isometriks\Bundle\SymEditBundle\Model;
+namespace SymEdit\Bundle\CoreBundle\Model;
 
-use Isometriks\Bundle\SymEditBundle\Model\UserInterface;
-use Isometriks\Bundle\SymEditBundle\Model\ProfileInterface;
+use SymEdit\Bundle\CoreBundle\Model\UserInterface;
+use SymEdit\Bundle\CoreBundle\Model\ProfileInterface;
 use FOS\UserBundle\Model\User as BaseUser;
 
 class User extends BaseUser implements UserInterface

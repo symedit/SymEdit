@@ -1,8 +1,8 @@
 <?php
 
-namespace Isometriks\Bundle\SymEditBundle\Controller\Admin;
+namespace SymEdit\Bundle\CoreBundle\Controller\Admin;
 
-use Isometriks\Bundle\SymEditBundle\Form\PageReorderType;
+use SymEdit\Bundle\CoreBundle\Form\PageReorderType;
 use JMS\SecurityExtraBundle\Annotation\PreAuthorize;
 use Sylius\Bundle\ResourceBundle\Controller\ResourceController;
 use Symfony\Component\HttpFoundation\Request;

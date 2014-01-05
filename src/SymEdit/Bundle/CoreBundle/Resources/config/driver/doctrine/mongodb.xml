@@ -20,12 +20,12 @@
 
         <!-- Listeners -->
 
-        <service id="isometriks_symedit.listener.page_path" class="Isometriks\Bundle\SymEditBundle\Doctrine\MongoDB\PagePathListener">
+        <service id="isometriks_symedit.listener.page_path" class="SymEdit\Bundle\CoreBundle\Doctrine\MongoDB\PagePathListener">
             <argument type="service" id="router" />
             <tag name="doctrine.event_subscriber" />
         </service>
 
-        <service id="isometriks_symedit.widget.listener" class="Isometriks\Bundle\SymEditBundle\Doctrine\MongoDB\WidgetListener">
+        <service id="isometriks_symedit.widget.listener" class="SymEdit\Bundle\CoreBundle\Doctrine\MongoDB\WidgetListener">
             <argument type="service" id="isometriks_symedit.widget.registry" />
             <tag name="doctrine.event_subscriber" />
         </service>

@@ -1,6 +1,6 @@
 <?php
 
-namespace Isometriks\Bundle\SymEditBundle\Model;
+namespace SymEdit\Bundle\CoreBundle\Model;
 
 use FOS\UserBundle\Model\UserInterface as BaseUserInterface;
 
@@ -19,7 +19,7 @@ interface UserInterface extends BaseUserInterface
     /**
      * Set user's profile
      *
-     * @param  \Isometriks\Bundle\SymEditBundle\Model\ProfileInterface $profile
+     * @param  \SymEdit\Bundle\CoreBundle\Model\ProfileInterface $profile
      * @return UserInterface
      */
     public function setProfile(ProfileInterface $profile);

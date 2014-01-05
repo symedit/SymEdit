@@ -1,6 +1,6 @@
 <?php
 
-namespace Isometriks\Bundle\SymEditBundle\Layout; 
+namespace SymEdit\Bundle\CoreBundle\Layout; 
 
 class Layout
 {

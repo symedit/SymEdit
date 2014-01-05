@@ -1,8 +1,8 @@
 <?php
 
-namespace Isometriks\Bundle\SymEditBundle\Event;
+namespace SymEdit\Bundle\CoreBundle\Event;
 
-use Isometriks\Bundle\SymEditBundle\Model\PageInterface;
+use SymEdit\Bundle\CoreBundle\Model\PageInterface;
 use Symfony\Component\EventDispatcher\Event;
 use Symfony\Component\HttpFoundation\Request;
 

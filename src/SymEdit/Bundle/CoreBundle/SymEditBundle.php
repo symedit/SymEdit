@@ -1,18 +1,18 @@
 <?php
 
-namespace Isometriks\Bundle\SymEditBundle;
+namespace SymEdit\Bundle\CoreBundle;
 
 use Sylius\Bundle\ResourceBundle\DependencyInjection\Compiler\ResolveDoctrineTargetEntitiesPass;
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 use Symfony\Component\HttpKernel\Kernel;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
-use Isometriks\Bundle\SymEditBundle\DependencyInjection\Compiler\AnnotationLoaderCompilerPass;
-use Isometriks\Bundle\SymEditBundle\DependencyInjection\Compiler\TwigExceptionCompilerPass;
-use Isometriks\Bundle\SymEditBundle\DependencyInjection\Compiler\WidgetStrategyCompilerPass;
-use Isometriks\Bundle\SymEditBundle\DependencyInjection\Compiler\TwigPathCompilerPass;
-use Isometriks\Bundle\SymEditBundle\DependencyInjection\IsometriksSymEditExtension;
-use Isometriks\Bundle\SymEditBundle\DependencyInjection\Compiler\ProfileTypeCompilerPass;
-use Isometriks\Bundle\SymEditBundle\DependencyInjection\Compiler\DoctrineMappingsPass;
+use SymEdit\Bundle\CoreBundle\DependencyInjection\Compiler\AnnotationLoaderCompilerPass;
+use SymEdit\Bundle\CoreBundle\DependencyInjection\Compiler\TwigExceptionCompilerPass;
+use SymEdit\Bundle\CoreBundle\DependencyInjection\Compiler\WidgetStrategyCompilerPass;
+use SymEdit\Bundle\CoreBundle\DependencyInjection\Compiler\TwigPathCompilerPass;
+use SymEdit\Bundle\CoreBundle\DependencyInjection\IsometriksSymEditExtension;
+use SymEdit\Bundle\CoreBundle\DependencyInjection\Compiler\ProfileTypeCompilerPass;
+use SymEdit\Bundle\CoreBundle\DependencyInjection\Compiler\DoctrineMappingsPass;
 use Sylius\Bundle\ResourceBundle\SyliusResourceBundle;
 
 class SymEditBundle extends Bundle
@@ -39,13 +39,13 @@ class SymEditBundle extends Bundle
     public function build(ContainerBuilder $container)
     {
         $interfaces = array(
-            'Isometriks\Bundle\SymEditBundle\Model\PageInterface'       => 'isometriks_symedit.model.page.class',
-            'Isometriks\Bundle\SymEditBundle\Model\PostInterface'       => 'isometriks_symedit.model.post.class',
-            'Isometriks\Bundle\SymEditBundle\Model\CategoryInterface'   => 'isometriks_symedit.model.category.class',
-            'Isometriks\Bundle\SymEditBundle\Model\SlideInterface'      => 'isometriks_symedit.model.slide.class',
-            'Isometriks\Bundle\SymEditBundle\Model\SliderInterface'     => 'isometriks_symedit.model.slider.class',
-            'Isometriks\Bundle\SymEditBundle\Model\WidgetAreaInterface' => 'isometriks_symedit.model.widget_area.class',
-            'Isometriks\Bundle\SymEditBundle\Model\WidgetInterface'     => 'isometriks_symedit.model.widget.class',
+            'SymEdit\Bundle\CoreBundle\Model\PageInterface'       => 'isometriks_symedit.model.page.class',
+            'SymEdit\Bundle\CoreBundle\Model\PostInterface'       => 'isometriks_symedit.model.post.class',
+            'SymEdit\Bundle\CoreBundle\Model\CategoryInterface'   => 'isometriks_symedit.model.category.class',
+            'SymEdit\Bundle\CoreBundle\Model\SlideInterface'      => 'isometriks_symedit.model.slide.class',
+            'SymEdit\Bundle\CoreBundle\Model\SliderInterface'     => 'isometriks_symedit.model.slider.class',
+            'SymEdit\Bundle\CoreBundle\Model\WidgetAreaInterface' => 'isometriks_symedit.model.widget_area.class',
+            'SymEdit\Bundle\CoreBundle\Model\WidgetInterface'     => 'isometriks_symedit.model.widget.class',
         );
 
         $container->addCompilerPass(new ResolveDoctrineTargetEntitiesPass('isometriks_symedit', $interfaces));
@@ -59,7 +59,7 @@ class SymEditBundle extends Bundle
          * Add Doctrine Mappings
          */
         DoctrineMappingsPass::addMappings($container, array(
-            realpath(__DIR__.'/Resources/config/doctrine/model') => 'Isometriks\Bundle\SymEditBundle\Model',
+            realpath(__DIR__.'/Resources/config/doctrine/model') => 'SymEdit\Bundle\CoreBundle\Model',
         ));
     }
 

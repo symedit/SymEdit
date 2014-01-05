@@ -1,11 +1,11 @@
 <?php
 
-namespace Isometriks\Bundle\SymEditBundle\Form;
+namespace SymEdit\Bundle\CoreBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
-use Isometriks\Bundle\SymEditBundle\Model\Post;
+use SymEdit\Bundle\CoreBundle\Model\Post;
 use Doctrine\ORM\EntityRepository;
 
 class PostType extends AbstractType
@@ -43,7 +43,7 @@ class PostType extends AbstractType
             ))
             ->add('categories', 'entity', array(
                 'property' => 'title',
-                'class'    => 'Isometriks\Bundle\SymEditBundle\Model\Category',
+                'class'    => 'SymEdit\Bundle\CoreBundle\Model\Category',
                 'multiple' => true,
                 'expanded'  => true,
             ))

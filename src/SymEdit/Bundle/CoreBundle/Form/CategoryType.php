@@ -1,6 +1,6 @@
 <?php
 
-namespace Isometriks\Bundle\SymEditBundle\Form;
+namespace SymEdit\Bundle\CoreBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -22,7 +22,7 @@ class CategoryType extends AbstractType
             ))
             ->add('parent', 'entity', array(
                 'empty_value' => '(Root Category)',
-                'class' => 'Isometriks\Bundle\SymEditBundle\Model\Category',
+                'class' => 'SymEdit\Bundle\CoreBundle\Model\Category',
                 'required' => false,
             ));
 

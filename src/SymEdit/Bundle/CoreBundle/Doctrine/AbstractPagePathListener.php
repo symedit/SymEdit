@@ -1,9 +1,9 @@
 <?php
 
-namespace Isometriks\Bundle\SymEditBundle\Doctrine;
+namespace SymEdit\Bundle\CoreBundle\Doctrine;
 
 use Doctrine\Common\EventSubscriber;
-use Isometriks\Bundle\SymEditBundle\Model\PageInterface;
+use SymEdit\Bundle\CoreBundle\Model\PageInterface;
 use Symfony\Bundle\FrameworkBundle\Routing\Router;
 
 abstract class AbstractPagePathListener implements EventSubscriber

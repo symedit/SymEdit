@@ -1,6 +1,6 @@
 <?php
 
-namespace Isometriks\Bundle\SymEditBundle\Model;
+namespace SymEdit\Bundle\CoreBundle\Model;
 
 use FOS\UserBundle\Model\UserManagerInterface as BaseManager;
 use Symfony\Component\Security\Core\User\UserProviderInterface;

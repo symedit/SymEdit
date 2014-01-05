@@ -1,9 +1,9 @@
 <?php
 
-namespace Isometriks\Bundle\SymEditBundle\Filter;
+namespace SymEdit\Bundle\CoreBundle\Filter;
 
 use Doctrine\ORM\Query\Filter\SQLFilter;
-use Isometriks\Bundle\SymEditBundle\Model\Post;
+use SymEdit\Bundle\CoreBundle\Model\Post;
 use Doctrine\ORM\Mapping\ClassMetadata;
 
 class PostPublishedFilter extends SQLFilter

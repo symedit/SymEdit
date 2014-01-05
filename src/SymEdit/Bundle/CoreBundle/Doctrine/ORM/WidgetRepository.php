@@ -1,10 +1,10 @@
 <?php
 
-namespace Isometriks\Bundle\SymEditBundle\Doctrine\ORM;
+namespace SymEdit\Bundle\CoreBundle\Doctrine\ORM;
 
 use Doctrine\ORM\Mapping\ClassMetadata;
 use Sylius\Bundle\ResourceBundle\Doctrine\ORM\EntityRepository;
-use Isometriks\Bundle\SymEditBundle\Widget\WidgetRegistry;
+use SymEdit\Bundle\CoreBundle\Widget\WidgetRegistry;
 
 class WidgetRepository extends EntityRepository
 {

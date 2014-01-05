@@ -1,10 +1,10 @@
 <?php
 
-namespace Isometriks\Bundle\SymEditBundle\Menu\Provider;
+namespace SymEdit\Bundle\CoreBundle\Menu\Provider;
 
-use Isometriks\Bundle\SymEditBundle\Event\Events;
-use Isometriks\Bundle\SymEditBundle\Event\MenuEvent;
-use Isometriks\Bundle\SymEditBundle\Model\PageInterface;
+use SymEdit\Bundle\CoreBundle\Event\Events;
+use SymEdit\Bundle\CoreBundle\Event\MenuEvent;
+use SymEdit\Bundle\CoreBundle\Model\PageInterface;
 use Sylius\Bundle\ResourceBundle\Model\RepositoryInterface;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Knp\Menu\FactoryInterface;

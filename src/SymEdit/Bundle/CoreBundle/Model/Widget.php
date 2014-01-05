@@ -1,8 +1,8 @@
 <?php
 
-namespace Isometriks\Bundle\SymEditBundle\Model;
+namespace SymEdit\Bundle\CoreBundle\Model;
 
-use Isometriks\Bundle\SymEditBundle\Widget\Strategy\WidgetStrategyInterface;
+use SymEdit\Bundle\CoreBundle\Widget\Strategy\WidgetStrategyInterface;
 
 class Widget implements WidgetInterface
 {

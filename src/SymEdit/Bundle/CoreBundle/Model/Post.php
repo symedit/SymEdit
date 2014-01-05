@@ -1,8 +1,8 @@
 <?php
 
-namespace Isometriks\Bundle\SymEditBundle\Model;
+namespace SymEdit\Bundle\CoreBundle\Model;
 
-use Isometriks\Bundle\SymEditBundle\Model\UserInterface;
+use SymEdit\Bundle\CoreBundle\Model\UserInterface;
 use Isometriks\Bundle\MediaBundle\Model\MediaInterface;
 
 class Post implements PostInterface
@@ -170,7 +170,7 @@ class Post implements PostInterface
     /**
      * Set author
      *
-     * @param  Isometriks\Bundle\SymEditBundle\Model\UserInterface $author
+     * @param  SymEdit\Bundle\CoreBundle\Model\UserInterface $author
      * @return Post
      */
     public function setAuthor(UserInterface $author = null)
@@ -183,7 +183,7 @@ class Post implements PostInterface
     /**
      * Get author
      *
-     * @return Isometriks\Bundle\SymEditBundle\Model\UserInterface
+     * @return SymEdit\Bundle\CoreBundle\Model\UserInterface
      */
     public function getAuthor()
     {
@@ -267,7 +267,7 @@ class Post implements PostInterface
     /**
      * Add categories
      *
-     * @param  Isometriks\Bundle\SymEditBundle\Model\CategoryInterface $categories
+     * @param  SymEdit\Bundle\CoreBundle\Model\CategoryInterface $categories
      * @return Post
      */
     public function addCategory(CategoryInterface $category)
@@ -280,7 +280,7 @@ class Post implements PostInterface
     /**
      * Remove categories
      *
-     * @param Isometriks\Bundle\SymEditBundle\Model\CategoryInterface $categories
+     * @param SymEdit\Bundle\CoreBundle\Model\CategoryInterface $categories
      */
     public function removeCategory(CategoryInterface $category)
     {

@@ -1,10 +1,10 @@
 <?php
 
-namespace Isometriks\Bundle\SymEditBundle\Controller;
+namespace SymEdit\Bundle\CoreBundle\Controller;
 
 use Isometriks\Bundle\SitemapBundle\Annotation\Sitemap;
 use Symfony\Component\HttpFoundation\Request;
-use Isometriks\Bundle\SymEditBundle\Model\PageInterface;
+use SymEdit\Bundle\CoreBundle\Model\PageInterface;
 
 class ContactController extends Controller
 {

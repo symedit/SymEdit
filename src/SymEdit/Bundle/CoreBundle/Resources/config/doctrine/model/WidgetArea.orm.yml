@@ -1,4 +1,4 @@
-Isometriks\Bundle\SymEditBundle\Model\WidgetArea:
+SymEdit\Bundle\CoreBundle\Model\WidgetArea:
     type: entity
     table: widget_area
     fields:
@@ -20,7 +20,7 @@ Isometriks\Bundle\SymEditBundle\Model\WidgetArea:
         widgets:
             cascade:
                 - persist
-            targetEntity: Isometriks\Bundle\SymEditBundle\Model\WidgetInterface
+            targetEntity: SymEdit\Bundle\CoreBundle\Model\WidgetInterface
             mappedBy: area
             orderBy:
                 widgetOrder: ASC

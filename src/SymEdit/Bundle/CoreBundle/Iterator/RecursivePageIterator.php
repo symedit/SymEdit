@@ -1,6 +1,6 @@
 <?php
 
-namespace Isometriks\Bundle\SymEditBundle\Iterator;
+namespace SymEdit\Bundle\CoreBundle\Iterator;
 
 class RecursivePageIterator extends PageIterator implements \RecursiveIterator
 {

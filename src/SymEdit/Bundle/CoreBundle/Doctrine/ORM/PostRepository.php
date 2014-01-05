@@ -1,9 +1,9 @@
 <?php
 
-namespace Isometriks\Bundle\SymEditBundle\Doctrine\ORM;
+namespace SymEdit\Bundle\CoreBundle\Doctrine\ORM;
 
 use Doctrine\ORM\QueryBuilder;
-use Isometriks\Bundle\SymEditBundle\Model\CategoryInterface;
+use SymEdit\Bundle\CoreBundle\Model\CategoryInterface;
 use Sylius\Bundle\ResourceBundle\Doctrine\ORM\EntityRepository;
 
 class PostRepository extends EntityRepository

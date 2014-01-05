@@ -1,8 +1,8 @@
 <?php
 
-namespace Isometriks\Bundle\SymEditBundle\Model;
+namespace SymEdit\Bundle\CoreBundle\Model;
 
-use Isometriks\Bundle\SymEditBundle\Widget\Strategy\WidgetStrategyInterface;
+use SymEdit\Bundle\CoreBundle\Widget\Strategy\WidgetStrategyInterface;
 
 interface WidgetInterface
 {
@@ -26,7 +26,7 @@ interface WidgetInterface
 
     /**
      * @return WidgetInterface
-     * @param  \Isometriks\Bundle\SymEditBundle\Model\WidgetAreaInterface $area
+     * @param  \SymEdit\Bundle\CoreBundle\Model\WidgetAreaInterface $area
      */
     public function setArea(WidgetAreaInterface $area);
 
@@ -86,7 +86,7 @@ interface WidgetInterface
 
     /**
      * @return WidgetInterface
-     * @param  \Isometriks\Bundle\SymEditBundle\Widget\Strategy\WidgetStrategyInterface $strategy
+     * @param  \SymEdit\Bundle\CoreBundle\Widget\Strategy\WidgetStrategyInterface $strategy
      */
     public function setStrategy(WidgetStrategyInterface $strategy);
 

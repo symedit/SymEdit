@@ -1,8 +1,8 @@
 <?php
 
-namespace Isometriks\Bundle\SymEditBundle\Twig\TokenParser;
+namespace SymEdit\Bundle\CoreBundle\Twig\TokenParser;
 
-use Isometriks\Bundle\SymEditBundle\Twig\Node\WidgetAreaNode;
+use SymEdit\Bundle\CoreBundle\Twig\Node\WidgetAreaNode;
 
 class WidgetAreaTokenParser extends \Twig_TokenParser
 {

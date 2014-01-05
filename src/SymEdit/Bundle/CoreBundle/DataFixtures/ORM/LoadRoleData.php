@@ -1,11 +1,11 @@
 <?php
 
-  namespace Isometriks\Bundle\SymEditBundle\DataFixtures\ORM;
+  namespace SymEdit\Bundle\CoreBundle\DataFixtures\ORM;
 
   use Doctrine\Common\Persistence\ObjectManager;
   use Doctrine\Common\DataFixtures\AbstractFixture;
   use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
-  use Isometriks\Bundle\SymEditBundle\Model\Role;
+  use SymEdit\Bundle\CoreBundle\Model\Role;
 
   class LoadRoleData extends AbstractFixture implements OrderedFixtureInterface
   {

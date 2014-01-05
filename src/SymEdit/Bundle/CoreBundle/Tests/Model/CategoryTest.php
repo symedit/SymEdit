@@ -1,9 +1,9 @@
 <?php
 
-namespace Isometriks\Bundle\SymEditBundle\Test\Model; 
+namespace SymEdit\Bundle\CoreBundle\Test\Model; 
 
-use Isometriks\Bundle\SymEditBundle\Tests\TestCase; 
-use Isometriks\Bundle\SymEditBundle\Model\Category; 
+use SymEdit\Bundle\CoreBundle\Tests\TestCase; 
+use SymEdit\Bundle\CoreBundle\Model\Category; 
 
 class CategoryTest extends TestCase
 {
@@ -26,6 +26,6 @@ class CategoryTest extends TestCase
      */
     protected function getCategory()
     {
-        return $this->getMockForAbstractClass('Isometriks\Bundle\SymEditBundle\Model\Category'); 
+        return $this->getMockForAbstractClass('SymEdit\Bundle\CoreBundle\Model\Category'); 
     }    
 }

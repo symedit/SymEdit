@@ -1,4 +1,4 @@
-Isometriks\Bundle\SymEditBundle\Model\Slide:
+SymEdit\Bundle\CoreBundle\Model\Slide:
     type: entity
     table: slide
     fields:
@@ -16,7 +16,7 @@ Isometriks\Bundle\SymEditBundle\Model\Slide:
             nullable: true
     manyToOne:
         slider:
-            targetEntity: Isometriks\Bundle\SymEditBundle\Model\SliderInterface
+            targetEntity: SymEdit\Bundle\CoreBundle\Model\SliderInterface
             mappedBy: null
             inversedBy: slides
         image:

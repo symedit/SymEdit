@@ -1,14 +1,14 @@
 <?php
 
-namespace Isometriks\Bundle\SymEditBundle\Controller\Admin;
+namespace SymEdit\Bundle\CoreBundle\Controller\Admin;
 
 use Symfony\Component\HttpFoundation\Request;
-use Isometriks\Bundle\SymEditBundle\Controller\Controller;
+use SymEdit\Bundle\CoreBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
-use Isometriks\Bundle\SymEditBundle\Model\Slide;
-use Isometriks\Bundle\SymEditBundle\Form\SlideType;
+use SymEdit\Bundle\CoreBundle\Model\Slide;
+use SymEdit\Bundle\CoreBundle\Form\SlideType;
 
 /**
  * Slide controller.
@@ -45,7 +45,7 @@ class SlideController extends Controller
     public function createAction($slider_id, Request $request)
     {
         $em = $this->getDoctrine()->getManager();
-        $slider = $em->getRepository('Isometriks\Bundle\SymEditBundle\Model\Slider')->find($slider_id);
+        $slider = $em->getRepository('SymEdit\Bundle\CoreBundle\Model\Slider')->find($slider_id);
 
         if(!$slider){
             throw $this->createNotFoundException('Could not find slider');
@@ -81,7 +81,7 @@ class SlideController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entity = $em->getRepository('Isometriks\Bundle\SymEditBundle\Model\Slide')->find($id);
+        $entity = $em->getRepository('SymEdit\Bundle\CoreBundle\Model\Slide')->find($id);
 
         if (!$entity) {
             throw $this->createNotFoundException('Unable to find Slide entity.');
@@ -108,7 +108,7 @@ class SlideController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entity = $em->getRepository('Isometriks\Bundle\SymEditBundle\Model\Slide')->find($id);
+        $entity = $em->getRepository('SymEdit\Bundle\CoreBundle\Model\Slide')->find($id);
 
         if (!$entity) {
             throw $this->createNotFoundException('Unable to find Slide entity.');
@@ -147,7 +147,7 @@ class SlideController extends Controller
 
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();
-            $entity = $em->getRepository('Isometriks\Bundle\SymEditBundle\Model\Slide')->find($id);
+            $entity = $em->getRepository('SymEdit\Bundle\CoreBundle\Model\Slide')->find($id);
 
             if (!$entity) {
                 throw $this->createNotFoundException('Unable to find Slide entity.');

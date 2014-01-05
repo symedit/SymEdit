@@ -1,10 +1,10 @@
 <?php
 
-namespace Isometriks\Bundle\SymEditBundle\EventListener\Seo;
+namespace SymEdit\Bundle\CoreBundle\EventListener\Seo;
 
 use Isometriks\Bundle\SeoBundle\Event\SeoEvent;
 use Isometriks\Bundle\SeoBundle\Model\SeoCalculatorInterface;
-use Isometriks\Bundle\SymEditBundle\Model\PostInterface;
+use SymEdit\Bundle\CoreBundle\Model\PostInterface;
 
 class PostCalculator implements SeoCalculatorInterface
 {

@@ -1,6 +1,6 @@
 <?php
 
-namespace Isometriks\Bundle\SymEditBundle\Form\Factory;
+namespace SymEdit\Bundle\CoreBundle\Form\Factory;
 
 use Symfony\Component\Form\FormFactoryInterface;
 use Symfony\Component\Security\Core\SecurityContext;
@@ -27,7 +27,7 @@ class ContextFormFactory implements FactoryInterface
     }
 
     /**
-     * @return \Isometriks\Bundle\SymEditBundle\Model\UserInterface $user
+     * @return \SymEdit\Bundle\CoreBundle\Model\UserInterface $user
      */
     public function getUser()
     {

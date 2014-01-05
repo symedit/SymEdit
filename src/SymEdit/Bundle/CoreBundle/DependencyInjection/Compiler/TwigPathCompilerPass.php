@@ -1,6 +1,6 @@
 <?php
 
-namespace Isometriks\Bundle\SymEditBundle\DependencyInjection\Compiler;
+namespace SymEdit\Bundle\CoreBundle\DependencyInjection\Compiler;
 
 use Symfony\Component\HttpKernel\Kernel;
 use Symfony\Component\DependencyInjection\Compiler\CompilerPassInterface;

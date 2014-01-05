@@ -1,6 +1,6 @@
 <?php
 
-namespace Isometriks\Bundle\SymEditBundle\Form\DataTransformer; 
+namespace SymEdit\Bundle\CoreBundle\Form\DataTransformer; 
 
 use Symfony\Component\Form\DataTransformerInterface; 
 

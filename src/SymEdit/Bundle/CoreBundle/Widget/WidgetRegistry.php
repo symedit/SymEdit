@@ -1,11 +1,11 @@
 <?php
 
-namespace Isometriks\Bundle\SymEditBundle\Widget;
+namespace SymEdit\Bundle\CoreBundle\Widget;
 
 use Symfony\Component\DependencyInjection\ContainerAware;
 use Symfony\Component\DependencyInjection\ContainerInterface;
-use Isometriks\Bundle\SymEditBundle\Model\WidgetInterface;
-use Isometriks\Bundle\SymEditBundle\Widget\Strategy\WidgetStrategyInterface;
+use SymEdit\Bundle\CoreBundle\Model\WidgetInterface;
+use SymEdit\Bundle\CoreBundle\Widget\Strategy\WidgetStrategyInterface;
 
 class WidgetRegistry extends ContainerAware
 {
@@ -114,7 +114,7 @@ class WidgetRegistry extends ContainerAware
     /**
      * Initiates the Widget with the strategy default options
      *
-     * @param \Isometriks\Bundle\SymEditBundle\Model\WidgetInterface $widget
+     * @param \SymEdit\Bundle\CoreBundle\Model\WidgetInterface $widget
      */
     public function init(WidgetInterface $widget)
     {

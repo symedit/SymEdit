@@ -1,6 +1,6 @@
 <?php
 
-namespace Isometriks\Bundle\SymEditBundle\Routing;
+namespace SymEdit\Bundle\CoreBundle\Routing;
 
 use Sylius\Bundle\ResourceBundle\Model\RepositoryInterface;
 use Symfony\Component\Routing\RouteCollection;

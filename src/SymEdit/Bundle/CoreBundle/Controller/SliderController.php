@@ -1,6 +1,6 @@
 <?php
 
-namespace Isometriks\Bundle\SymEditBundle\Controller;
+namespace SymEdit\Bundle\CoreBundle\Controller;
 
 class SliderController extends Controller
 {
@@ -11,7 +11,7 @@ class SliderController extends Controller
         }
 
         $em = $this->getDoctrine()->getManager();
-        $slider = $em->getRepository('Isometriks\Bundle\SymEditBundle\Model\Slider')->findOneByName($name);
+        $slider = $em->getRepository('SymEdit\Bundle\CoreBundle\Model\Slider')->findOneByName($name);
 
         if (!$slider) {
             throw $this->createNotFoundException(sprintf('Slider "%s" not found.', $name));

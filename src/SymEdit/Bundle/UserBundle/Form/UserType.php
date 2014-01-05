@@ -4,7 +4,7 @@ namespace Isometriks\Bundle\UserBundle\Form;
 
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\AbstractType;
-use Isometriks\Bundle\SymEditBundle\Form\EventListener\UserTypeSubscriber;
+use SymEdit\Bundle\CoreBundle\Form\EventListener\UserTypeSubscriber;
 
 class UserType extends AbstractType
 {

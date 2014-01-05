@@ -1,6 +1,6 @@
 <?php
 
-namespace Isometriks\Bundle\SymEditBundle\Form\Type;
+namespace SymEdit\Bundle\CoreBundle\Form\Type;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormView;
@@ -8,8 +8,8 @@ use Symfony\Component\Form\FormInterface;
 use Symfony\Component\HttpKernel\Kernel;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 use Symfony\Component\Yaml\Yaml;
-use Isometriks\Bundle\SymEditBundle\Finder\ResourceFinder;
-use Isometriks\Bundle\SymEditBundle\Layout\Layout;
+use SymEdit\Bundle\CoreBundle\Finder\ResourceFinder;
+use SymEdit\Bundle\CoreBundle\Layout\Layout;
 
 class TemplateType extends AbstractType
 {

@@ -5,22 +5,22 @@
            xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
 
     <parameters>
-        <parameter key="isometriks_symedit.twig.widget_extension.class">Isometriks\Bundle\SymEditBundle\Twig\Extension\WidgetExtension</parameter>
-        <parameter key="isometriks_symedit.widget.registry.class">Isometriks\Bundle\SymEditBundle\Widget\WidgetRegistry</parameter>
-        <parameter key="isometriks_symedit.widget.manager.class">Isometriks\Bundle\SymEditBundle\Widget\WidgetManager</parameter>
+        <parameter key="isometriks_symedit.twig.widget_extension.class">SymEdit\Bundle\CoreBundle\Twig\Extension\WidgetExtension</parameter>
+        <parameter key="isometriks_symedit.widget.registry.class">SymEdit\Bundle\CoreBundle\Widget\WidgetRegistry</parameter>
+        <parameter key="isometriks_symedit.widget.manager.class">SymEdit\Bundle\CoreBundle\Widget\WidgetManager</parameter>
 
-        <parameter key="isometriks_symedit.widget.strategy.html.class">Isometriks\Bundle\SymEditBundle\Widget\Strategy\HtmlStrategy</parameter>
-        <parameter key="isometriks_symedit.widget.strategy.template.class">Isometriks\Bundle\SymEditBundle\Widget\Strategy\TemplateStrategy</parameter>
-        <parameter key="isometriks_symedit.widget.strategy.contact_info.class">Isometriks\Bundle\SymEditBundle\Widget\Strategy\ContactInfoStrategy</parameter>
-        <parameter key="isometriks_symedit.widget.strategy.blog_recent_posts.class">Isometriks\Bundle\SymEditBundle\Widget\Strategy\RecentPostsStrategy</parameter>
-        <parameter key="isometriks_symedit.widget.strategy.blog_popular_posts.class">Isometriks\Bundle\SymEditBundle\Widget\Strategy\PopularPostsStrategy</parameter>
-        <parameter key="isometriks_symedit.widget.strategy.blog_categories.class">Isometriks\Bundle\SymEditBundle\Widget\Strategy\BlogCategoriesStrategy</parameter>
-        <parameter key="isometriks_symedit.widget.strategy.slider.class">Isometriks\Bundle\SymEditBundle\Widget\Strategy\SliderStrategy</parameter>
-        <parameter key="isometriks_symedit.widget.strategy.google_map.class">Isometriks\Bundle\SymEditBundle\Widget\Strategy\GoogleMapStrategy</parameter>
-        <parameter key="isometriks_symedit.widget.strategy.disqus.class">Isometriks\Bundle\SymEditBundle\Widget\Strategy\DisqusStrategy</parameter>
-        <parameter key="isometriks_symedit.widget.strategy.addthis.class">Isometriks\Bundle\SymEditBundle\Widget\Strategy\AddThisStrategy</parameter>
-        <parameter key="isometriks_symedit.widget.strategy.submenu.class">Isometriks\Bundle\SymEditBundle\Widget\Strategy\SubmenuStrategy</parameter>
-        <parameter key="isometriks_symedit.widget.strategy.list_children.class">Isometriks\Bundle\SymEditBundle\Widget\Strategy\ListChildrenStrategy</parameter>
+        <parameter key="isometriks_symedit.widget.strategy.html.class">SymEdit\Bundle\CoreBundle\Widget\Strategy\HtmlStrategy</parameter>
+        <parameter key="isometriks_symedit.widget.strategy.template.class">SymEdit\Bundle\CoreBundle\Widget\Strategy\TemplateStrategy</parameter>
+        <parameter key="isometriks_symedit.widget.strategy.contact_info.class">SymEdit\Bundle\CoreBundle\Widget\Strategy\ContactInfoStrategy</parameter>
+        <parameter key="isometriks_symedit.widget.strategy.blog_recent_posts.class">SymEdit\Bundle\CoreBundle\Widget\Strategy\RecentPostsStrategy</parameter>
+        <parameter key="isometriks_symedit.widget.strategy.blog_popular_posts.class">SymEdit\Bundle\CoreBundle\Widget\Strategy\PopularPostsStrategy</parameter>
+        <parameter key="isometriks_symedit.widget.strategy.blog_categories.class">SymEdit\Bundle\CoreBundle\Widget\Strategy\BlogCategoriesStrategy</parameter>
+        <parameter key="isometriks_symedit.widget.strategy.slider.class">SymEdit\Bundle\CoreBundle\Widget\Strategy\SliderStrategy</parameter>
+        <parameter key="isometriks_symedit.widget.strategy.google_map.class">SymEdit\Bundle\CoreBundle\Widget\Strategy\GoogleMapStrategy</parameter>
+        <parameter key="isometriks_symedit.widget.strategy.disqus.class">SymEdit\Bundle\CoreBundle\Widget\Strategy\DisqusStrategy</parameter>
+        <parameter key="isometriks_symedit.widget.strategy.addthis.class">SymEdit\Bundle\CoreBundle\Widget\Strategy\AddThisStrategy</parameter>
+        <parameter key="isometriks_symedit.widget.strategy.submenu.class">SymEdit\Bundle\CoreBundle\Widget\Strategy\SubmenuStrategy</parameter>
+        <parameter key="isometriks_symedit.widget.strategy.list_children.class">SymEdit\Bundle\CoreBundle\Widget\Strategy\ListChildrenStrategy</parameter>
     </parameters>
 
     <services>

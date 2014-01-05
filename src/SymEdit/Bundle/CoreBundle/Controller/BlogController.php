@@ -1,16 +1,16 @@
 <?php
 
-namespace Isometriks\Bundle\SymEditBundle\Controller;
+namespace SymEdit\Bundle\CoreBundle\Controller;
 
 use Isometriks\Bundle\SitemapBundle\Annotation\Sitemap;
-use Isometriks\Bundle\SymEditBundle\Annotation\PageController as Bind;
-use Isometriks\Bundle\SymEditBundle\Event\Events;
-use Isometriks\Bundle\SymEditBundle\Event\PostEvent;
+use SymEdit\Bundle\CoreBundle\Annotation\PageController as Bind;
+use SymEdit\Bundle\CoreBundle\Event\Events;
+use SymEdit\Bundle\CoreBundle\Event\PostEvent;
 use Knp\Bundle\PaginatorBundle\Pagination\SlidingPagination;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Sylius\Bundle\ResourceBundle\Model\RepositoryInterface;
-use Isometriks\Bundle\SymEditBundle\Model\Post;
+use SymEdit\Bundle\CoreBundle\Model\Post;
 
 class BlogController extends Controller
 {
@@ -40,7 +40,7 @@ class BlogController extends Controller
     }
 
     /**
-     * @Sitemap(params={"slug"="getSlug"}, entity="Isometriks\Bundle\SymEditBundle\Model\Post")
+     * @Sitemap(params={"slug"="getSlug"}, entity="SymEdit\Bundle\CoreBundle\Model\Post")
      */
     public function slugViewAction($slug, Request $request)
     {
@@ -95,14 +95,14 @@ class BlogController extends Controller
     }
 
     /**
-     * @Sitemap(params={"slug"="getSlug"}, entity="Isometriks\Bundle\SymEditBundle\Model\Category")
+     * @Sitemap(params={"slug"="getSlug"}, entity="SymEdit\Bundle\CoreBundle\Model\Category")
      *
      * @TODO: Move seo stuff to a listenere that listens for category.view etc.
      */
     public function categoryViewAction($slug, Request $request, $_format, $page = 1)
     {
         $em = $this->getDoctrine()->getManager();
-        $category = $em->getRepository('Isometriks\Bundle\SymEditBundle\Model\Category')->findOneBySlug($slug);
+        $category = $em->getRepository('SymEdit\Bundle\CoreBundle\Model\Category')->findOneBySlug($slug);
 
         if (!$category) {
             throw $this->createNotFoundException(sprintf('Category with slug "%s" not found.', $slug));
@@ -115,7 +115,7 @@ class BlogController extends Controller
 
         $query = $em->createQueryBuilder()
                 ->select('p')
-                ->from('Isometriks\Bundle\SymEditBundle\Model\Post', 'p')
+                ->from('SymEdit\Bundle\CoreBundle\Model\Post', 'p')
                 ->join('p.categories', 'c')
                 ->where(':catId MEMBER OF p.categories')
                 ->orderBy('p.createdAt', 'DESC')
@@ -162,7 +162,7 @@ class BlogController extends Controller
 
         $query = $em->createQueryBuilder()
                 ->select('p')
-                ->from('Isometriks\Bundle\SymEditBundle\Model\Post', 'p')
+                ->from('SymEdit\Bundle\CoreBundle\Model\Post', 'p')
                 ->join('p.author', 'a')
                 ->where('a.username = :username')
                 ->setParameter('username', $username)

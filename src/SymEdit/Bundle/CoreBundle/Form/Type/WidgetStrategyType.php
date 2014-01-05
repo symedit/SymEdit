@@ -1,10 +1,10 @@
 <?php
 
-namespace Isometriks\Bundle\SymEditBundle\Form\Type;
+namespace SymEdit\Bundle\CoreBundle\Form\Type;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
-use Isometriks\Bundle\SymEditBundle\Widget\WidgetRegistry; 
+use SymEdit\Bundle\CoreBundle\Widget\WidgetRegistry; 
 
 class WidgetStrategyType extends AbstractType 
 {

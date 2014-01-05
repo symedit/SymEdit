@@ -1,10 +1,10 @@
 <?php
 
-namespace Isometriks\Bundle\SymEditBundle\Controller\Admin;
+namespace SymEdit\Bundle\CoreBundle\Controller\Admin;
 
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\JsonResponse;
-use Isometriks\Bundle\SymEditBundle\Controller\Controller;
+use SymEdit\Bundle\CoreBundle\Controller\Controller;
 use JMS\SecurityExtraBundle\Annotation\PreAuthorize;
 use Gedmo\Sluggable\Util as Sluggable;
 

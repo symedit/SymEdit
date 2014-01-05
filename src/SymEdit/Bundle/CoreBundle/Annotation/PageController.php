@@ -1,6 +1,6 @@
 <?php
 
-namespace Isometriks\Bundle\SymEditBundle\Annotation;
+namespace SymEdit\Bundle\CoreBundle\Annotation;
 
 /**
  * @Annotation

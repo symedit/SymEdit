@@ -1,9 +1,9 @@
 <?php
 
-namespace Isometriks\Bundle\SymEditBundle\Controller;
+namespace SymEdit\Bundle\CoreBundle\Controller;
 
 use Symfony\Component\HttpFoundation\Request;
-use Isometriks\Bundle\SymEditBundle\Iterator\RecursivePageIterator;
+use SymEdit\Bundle\CoreBundle\Iterator\RecursivePageIterator;
 
 class CrawlerController extends Controller
 {

@@ -1,6 +1,6 @@
 <?php
 
-namespace Isometriks\Bundle\SymEditBundle\Doctrine\ORM;
+namespace SymEdit\Bundle\CoreBundle\Doctrine\ORM;
 
 use Sylius\Bundle\ResourceBundle\Doctrine\ORM\EntityRepository;
 

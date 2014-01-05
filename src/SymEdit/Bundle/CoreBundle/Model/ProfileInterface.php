@@ -1,6 +1,6 @@
 <?php
 
-namespace Isometriks\Bundle\SymEditBundle\Model;
+namespace SymEdit\Bundle\CoreBundle\Model;
 
 interface ProfileInterface
 {
@@ -41,7 +41,7 @@ interface ProfileInterface
     public function getFullname();
 
     /**
-     * @return \Isometriks\Bundle\SymEditBundle\Model\UserInterface Return the user that this profile is for
+     * @return \SymEdit\Bundle\CoreBundle\Model\UserInterface Return the user that this profile is for
      */
     public function getUser();
 }

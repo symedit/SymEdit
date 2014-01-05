@@ -1,8 +1,8 @@
 <?php
 
-namespace Isometriks\Bundle\SymEditBundle\Controller\Admin;
+namespace SymEdit\Bundle\CoreBundle\Controller\Admin;
 
-use Isometriks\Bundle\SymEditBundle\Controller\ResourceController;
+use SymEdit\Bundle\CoreBundle\Controller\ResourceController;
 use JMS\SecurityExtraBundle\Annotation\PreAuthorize;
 use Symfony\Component\HttpFoundation\Request;
 

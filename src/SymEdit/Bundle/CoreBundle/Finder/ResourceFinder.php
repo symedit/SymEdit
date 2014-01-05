@@ -1,6 +1,6 @@
 <?php
 
-namespace Isometriks\Bundle\SymEditBundle\Finder;
+namespace SymEdit\Bundle\CoreBundle\Finder;
 
 use Symfony\Component\HttpKernel\HttpKernelInterface;
 use Symfony\Component\Finder\Finder;

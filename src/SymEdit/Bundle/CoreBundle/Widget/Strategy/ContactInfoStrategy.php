@@ -1,9 +1,9 @@
 <?php
 
-namespace Isometriks\Bundle\SymEditBundle\Widget\Strategy;
+namespace SymEdit\Bundle\CoreBundle\Widget\Strategy;
 
 use Symfony\Component\Form\FormBuilderInterface;
-use Isometriks\Bundle\SymEditBundle\Model\WidgetInterface;
+use SymEdit\Bundle\CoreBundle\Model\WidgetInterface;
 
 class ContactInfoStrategy extends TemplateStrategy
 {
