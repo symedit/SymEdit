@@ -38,15 +38,6 @@
             <tag name="form.type" alias="symedit_image" />
         </service>
 
-        <service id="symedit.form.type.post" class="%symedit.form.type.post.class%">
-            <argument>%fos_user.model.user.class%</argument>
-            <tag name="form.type" alias="symedit_post" />
-        </service>
-
-        <service id="symedit.form.type.category" class="%symedit.form.type.category.class%">
-            <tag name="form.type" alias="symedit_category" />
-        </service>
-
         <service id="symedit.form.type.user" class="%symedit.form.type.user.class%">
             <argument>%fos_user.model.user.class%</argument>
             <tag name="form.type" alias="symedit_user" />

@@ -1,6 +1,6 @@
 <?php
 
-namespace SymEdit\Bundle\CoreBundle\Model;
+namespace SymEdit\Bundle\BlogBundle\Model;
 
 use SymEdit\Bundle\CoreBundle\Model\UserInterface;
 use Isometriks\Bundle\MediaBundle\Model\MediaInterface;

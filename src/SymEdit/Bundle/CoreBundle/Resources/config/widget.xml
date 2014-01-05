@@ -12,9 +12,6 @@
         <parameter key="symedit.widget.strategy.html.class">SymEdit\Bundle\CoreBundle\Widget\Strategy\HtmlStrategy</parameter>
         <parameter key="symedit.widget.strategy.template.class">SymEdit\Bundle\CoreBundle\Widget\Strategy\TemplateStrategy</parameter>
         <parameter key="symedit.widget.strategy.contact_info.class">SymEdit\Bundle\CoreBundle\Widget\Strategy\ContactInfoStrategy</parameter>
-        <parameter key="symedit.widget.strategy.blog_recent_posts.class">SymEdit\Bundle\CoreBundle\Widget\Strategy\RecentPostsStrategy</parameter>
-        <parameter key="symedit.widget.strategy.blog_popular_posts.class">SymEdit\Bundle\CoreBundle\Widget\Strategy\PopularPostsStrategy</parameter>
-        <parameter key="symedit.widget.strategy.blog_categories.class">SymEdit\Bundle\CoreBundle\Widget\Strategy\BlogCategoriesStrategy</parameter>
         <parameter key="symedit.widget.strategy.slider.class">SymEdit\Bundle\CoreBundle\Widget\Strategy\SliderStrategy</parameter>
         <parameter key="symedit.widget.strategy.google_map.class">SymEdit\Bundle\CoreBundle\Widget\Strategy\GoogleMapStrategy</parameter>
         <parameter key="symedit.widget.strategy.disqus.class">SymEdit\Bundle\CoreBundle\Widget\Strategy\DisqusStrategy</parameter>
@@ -48,21 +45,6 @@
         <service id="symedit.widget.strategy.contact_info" class="%symedit.widget.strategy.contact_info.class%"
                  parent="symedit.widget.strategy.template">
             <tag name="symedit.widget_strategy" alias="contact_info" />
-        </service>
-
-        <service id="symedit.widget.strategy.blog_recent_posts" class="%symedit.widget.strategy.blog_recent_posts.class%">
-            <argument type="service" id="symedit.repository.post" />
-            <tag name="symedit.widget_strategy" alias="blog_recent_posts" />
-        </service>
-
-        <service id="symedit.widget.strategy.blog_popular_posts" class="%symedit.widget.strategy.blog_popular_posts.class%">
-            <argument type="service" id="symedit.repository.post" />
-            <tag name="symedit.widget_strategy" alias="blog_popular_posts" />
-        </service>
-
-        <service id="symedit.widget.strategy.blog_categories" class="%symedit.widget.strategy.blog_categories.class%">
-            <argument type="service" id="symedit.repository.category" />
-            <tag name="symedit.widget_strategy" alias="blog_categories" />
         </service>
 
         <service id="symedit.widget.strategy.slider" class="%symedit.widget.strategy.slider.class%">

@@ -1,10 +1,11 @@
 <?php
 
-namespace SymEdit\Bundle\CoreBundle\Widget\Strategy;
+namespace SymEdit\Bundle\BlogBundle\Widget\Strategy;
 
+use Sylius\Bundle\ResourceBundle\Model\RepositoryInterface;
 use SymEdit\Bundle\CoreBundle\Model\PageInterface;
 use SymEdit\Bundle\CoreBundle\Model\WidgetInterface;
-use Sylius\Bundle\ResourceBundle\Model\RepositoryInterface;
+use SymEdit\Bundle\CoreBundle\Widget\Strategy\AbstractWidgetStrategy;
 use Symfony\Component\Form\FormBuilderInterface;
 
 class BlogCategoriesStrategy extends AbstractWidgetStrategy

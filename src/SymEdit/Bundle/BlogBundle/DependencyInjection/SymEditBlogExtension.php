@@ -1,6 +1,6 @@
 <?php
 
-namespace SymEdit\Bundle\UserBundle\DependencyInjection;
+namespace SymEdit\Bundle\BlogBundle\DependencyInjection;
 
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use SymEdit\Bundle\CoreBundle\DependencyInjection\SymEditResourceExtension;
@@ -10,8 +10,12 @@ use SymEdit\Bundle\CoreBundle\DependencyInjection\SymEditResourceExtension;
  *
  * To learn more see {@link http://symfony.com/doc/current/cookbook/bundles/extension.html}
  */
-class SymEditUserExtension extends SymEditResourceExtension
+class SymEditBlogExtension extends SymEditResourceExtension
 {
+    protected $configFiles = array(
+        'services', 'form', 'widget',
+    );
+
     /**
      * {@inheritdoc}
      */
@@ -21,18 +25,15 @@ class SymEditUserExtension extends SymEditResourceExtension
 
         list($config) = $this->configure($config, new Configuration(), $container, self::CONFIGURE_LOADER | self::CONFIGURE_DATABASE | self::CONFIGURE_PARAMETERS);
 
-        $container->setParameter('symedit_user.model_manager_name', $config['model_manager_name']);
+        $container->setParameter('symedit_blog.model_manager_name', $config['model_manager_name']);
 
         if (isset($config['resources'])) {
             $this->createResourceServices($config['resources'], $container);
         }
     }
 
-    /**
-     * {@inheritDoc}
-     */
     public function getAlias()
     {
-        return 'symedit_user';
+        return 'symedit_blog';
     }
 }

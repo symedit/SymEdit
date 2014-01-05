@@ -1,6 +1,6 @@
 <?php
 
-namespace SymEdit\Bundle\CoreBundle\Model;
+namespace SymEdit\Bundle\BlogBundle\Model;
 
 use Doctrine\Common\Collections\ArrayCollection;
 

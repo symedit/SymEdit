@@ -1,0 +1,17 @@
+<?xml version="1.0" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <services>
+        <service id="symedit.form.type.post" class="%symedit.form.type.post.class%">
+            <argument>%fos_user.model.user.class%</argument>
+            <tag name="form.type" alias="symedit_post" />
+        </service>
+
+        <service id="symedit.form.type.category" class="%symedit.form.type.category.class%">
+            <tag name="form.type" alias="symedit_category" />
+        </service>
+    </services>
+</container>
