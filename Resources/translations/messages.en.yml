@@ -58,6 +58,18 @@ admin:
             delete: Delete Category
             create: Create Category
 
+    # Sliders
+    slider:
+        name:
+            label: Name
+            help: Lowercase letters, numbers, hypens or underscores.
+        description:
+            label: Description
+        actions:
+            save: Save Slider
+            delete: Delete Slider
+            create: Create Slider
+
     # Widgets
     widget:
         actions:
