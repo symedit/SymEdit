@@ -1,0 +1,34 @@
+Isometriks\Bundle\UserBundle\Model\AdminProfile:
+    type: entity
+    table: admin_profile
+    fields:
+        social:
+            type: json_array
+            nullable: true
+        summary:
+            type: text
+            nullable: true
+        biography:
+            type: text
+            nullable: true
+        display:
+            type: boolean
+        slug:
+            type: text
+            gedmo:
+                slug:
+                    separator: "-"
+                    fields:
+                        - firstName
+                        - lastName
+    manyToOne:
+        image:
+            targetEntity: Isometriks\Bundle\MediaBundle\Model\Media
+            cascade:
+                - persist
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                image_id:
+                    referencedColumnName: id
+            orphanRemoval: false

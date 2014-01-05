@@ -1,0 +1,40 @@
+<?xml version="1.0" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <parameters>
+        <parameter key="isometriks_symedit.form.type.registration.class">Isometriks\Bundle\UserBundle\Form\RegistrationFormType</parameter>
+        <parameter key="isometriks_symedit.form.type.admin_profile.class">Isometriks\Bundle\UserBundle\Form\AdminProfileType</parameter>
+        <parameter key="isometriks_symedit.form.type.user_profile.class">Isometriks\Bundle\UserBundle\Form\UserProfileType</parameter>
+    </parameters>
+
+    <services>
+        <service id="isometriks_symedit.controller.user" class="%isometriks_symedit.controller.user.class%">
+            <argument>isometriks_symedit</argument>
+            <argument>user</argument>
+            <argument />
+            <call method="setContainer">
+                <argument type="service" id="service_container" />
+            </call>
+            <argument />
+        </service>
+
+        <service id="isometriks_symedit.form.type.registration" class="%isometriks_symedit.form.type.registration.class%">
+            <argument>%fos_user.model.user.class%</argument>
+            <tag name="form.type" alias="isometriks_symedit_user_registration" />
+        </service>
+
+        <service id="isometriks_symedit.form.type.admin_profile" class="%isometriks_symedit.form.type.admin_profile.class%">
+            <argument>%fos_user.model.user.class%</argument>
+            <tag name="form.type" alias="isometriks_symedit_admin_profile" />
+        </service>
+
+        <service id="isometriks_symedit.form.type.user_profile" class="%isometriks_symedit.form.type.user_profile.class%">
+            <argument>%fos_user.model.user.class%</argument>
+            <tag name="form.type" alias="isometriks_symedit_user_profile" />
+        </service>
+    </services>
+
+</container>

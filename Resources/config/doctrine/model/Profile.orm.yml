@@ -1,0 +1,26 @@
+Isometriks\Bundle\UserBundle\Model\Profile:
+    type: entity
+    table: profile
+    inheritanceType: JOINED
+    id:
+        id:
+            type: integer
+            generator:
+                strategy: IDENTITY
+    discriminatorColumn:
+        name: discr
+        type: string
+        length: 20
+    discriminatorMap:
+        user: Isometriks\Bundle\UserBundle\Model\Profile
+        admin: Isometriks\Bundle\UserBundle\Model\AdminProfile
+    fields:
+        firstName:
+            type: string
+        lastName:
+            type: string
+            nullable: true
+    oneToOne:
+        user:
+            targetEntity: Isometriks\Bundle\SymEditBundle\Model\UserInterface
+            mappedBy: profile
