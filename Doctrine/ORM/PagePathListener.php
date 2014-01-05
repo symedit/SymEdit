@@ -8,7 +8,7 @@ use Isometriks\Bundle\SymEditBundle\Doctrine\AbstractPagePathListener;
 
 class PagePathListener extends AbstractPagePathListener
 {
-    public function getSubscribedEvents()
+    public function getSubscribedEvents() 
     {
         return array(
             Events::postPersist,
