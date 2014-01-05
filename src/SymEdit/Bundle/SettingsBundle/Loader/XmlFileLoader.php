@@ -1,6 +1,6 @@
 <?php
 
-namespace Isometriks\Bundle\SettingsBundle\Loader;
+namespace SymEdit\Bundle\SettingsBundle\Loader;
 
 use Symfony\Component\Yaml\Yaml;
 

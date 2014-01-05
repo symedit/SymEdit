@@ -1,4 +1,4 @@
-Isometriks\Bundle\SettingsBundle\Model\Settings:
+SymEdit\Bundle\SettingsBundle\Model\Settings:
     properties:
         settings:
             expose: true

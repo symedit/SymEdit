@@ -1,10 +1,10 @@
 <?php
 
-namespace Isometriks\Bundle\SettingsBundle\Model;
+namespace SymEdit\Bundle\SettingsBundle\Model;
 
-use Isometriks\Bundle\SettingsBundle\Loader\LoaderInterface;
-use Isometriks\Bundle\SettingsBundle\Loader\ConfigData;
-use Isometriks\Bundle\SettingsBundle\Exception\InvalidSettingException;
+use SymEdit\Bundle\SettingsBundle\Loader\LoaderInterface;
+use SymEdit\Bundle\SettingsBundle\Loader\ConfigData;
+use SymEdit\Bundle\SettingsBundle\Exception\InvalidSettingException;
 use Symfony\Component\Config\ConfigCache;
 use Symfony\Component\Yaml\Yaml;
 
@@ -26,7 +26,7 @@ class Settings implements \ArrayAccess
     }
 
     /**
-     * @return \Isometriks\Bundle\SettingsBundle\Loader\ConfigData
+     * @return \SymEdit\Bundle\SettingsBundle\Loader\ConfigData
      */
     public function getConfigData()
     {

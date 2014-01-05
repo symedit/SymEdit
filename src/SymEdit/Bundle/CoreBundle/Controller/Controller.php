@@ -50,7 +50,7 @@ class Controller extends BaseController
     /**
      * Gets Settings
      *
-     * @return \Isometriks\Bundle\SettingsBundle\Model\Settings Settings
+     * @return \SymEdit\Bundle\SettingsBundle\Model\Settings Settings
      */
     public function getSettings()
     {

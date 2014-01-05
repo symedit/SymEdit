@@ -1,6 +1,6 @@
 <?php
 
-namespace Isometriks\Bundle\SettingsBundle;
+namespace SymEdit\Bundle\SettingsBundle;
 
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 

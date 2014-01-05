@@ -1,6 +1,6 @@
 <?php
 
-namespace Isometriks\Bundle\SettingsBundle\CacheWarmer;
+namespace SymEdit\Bundle\SettingsBundle\CacheWarmer;
 
 use Symfony\Component\HttpKernel\CacheWarmer\CacheWarmerInterface;
 

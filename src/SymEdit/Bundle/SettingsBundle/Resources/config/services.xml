@@ -6,11 +6,11 @@
 
     <parameters>
         <parameter key="isometriks_settings.cache_folder">isometriks_settings</parameter>
-        <parameter key="isometriks_settings.loader.loader_chain.class">Isometriks\Bundle\SettingsBundle\Loader\LoaderChain</parameter>
-        <parameter key="isometriks_settings.loader.yaml_files_loader.class">Isometriks\Bundle\SettingsBundle\Loader\YamlFilesLoader</parameter>
-        <parameter key="isometriks_settings.loader.xml_files_loader.class">Isometriks\Bundle\SettingsBundle\Loader\XmlFilesLoader</parameter>
-        <parameter key="isometriks_settings.settings.class">Isometriks\Bundle\SettingsBundle\Model\Settings</parameter>
-        <parameter key="isometriks_settings.form.settings.class">Isometriks\Bundle\SettingsBundle\Form\Type\SettingsType</parameter>
+        <parameter key="isometriks_settings.loader.loader_chain.class">SymEdit\Bundle\SettingsBundle\Loader\LoaderChain</parameter>
+        <parameter key="isometriks_settings.loader.yaml_files_loader.class">SymEdit\Bundle\SettingsBundle\Loader\YamlFilesLoader</parameter>
+        <parameter key="isometriks_settings.loader.xml_files_loader.class">SymEdit\Bundle\SettingsBundle\Loader\XmlFilesLoader</parameter>
+        <parameter key="isometriks_settings.settings.class">SymEdit\Bundle\SettingsBundle\Model\Settings</parameter>
+        <parameter key="isometriks_settings.form.settings.class">SymEdit\Bundle\SettingsBundle\Form\Type\SettingsType</parameter>
     </parameters>
 
     <services>

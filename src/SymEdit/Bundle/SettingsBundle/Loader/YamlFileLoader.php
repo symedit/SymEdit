@@ -1,9 +1,9 @@
 <?php
 
-namespace Isometriks\Bundle\SettingsBundle\Loader;
+namespace SymEdit\Bundle\SettingsBundle\Loader;
 
 use Symfony\Component\Yaml\Yaml;
-use Isometriks\Bundle\SettingsBundle\Exception\InvalidSettingException;
+use SymEdit\Bundle\SettingsBundle\Exception\InvalidSettingException;
 
 class YamlFileLoader extends FileLoader
 {

@@ -5,7 +5,7 @@
            xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
 
     <parameters>
-        <parameter key="isometriks_settings.twig.extension.class">Isometriks\Bundle\SettingsBundle\Twig\Extension\SettingsBundleExtension</parameter>
+        <parameter key="isometriks_settings.twig.extension.class">SymEdit\Bundle\SettingsBundle\Twig\Extension\SettingsBundleExtension</parameter>
     </parameters>
 
     <services>

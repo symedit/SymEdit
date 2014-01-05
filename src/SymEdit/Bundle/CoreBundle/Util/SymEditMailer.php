@@ -3,7 +3,7 @@
 namespace SymEdit\Bundle\CoreBundle\Util;
 
 use FOS\UserBundle\Mailer\TwigSwiftMailer;
-use Isometriks\Bundle\SettingsBundle\Model\Settings;
+use SymEdit\Bundle\SettingsBundle\Model\Settings;
 
 class SymEditMailer extends TwigSwiftMailer
 {

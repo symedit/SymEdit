@@ -1,8 +1,8 @@
 <?php
 
-namespace Isometriks\Bundle\SettingsBundle\Loader; 
+namespace SymEdit\Bundle\SettingsBundle\Loader; 
 
-use Isometriks\Bundle\SettingsBundle\Exception\DuplicateSettingException; 
+use SymEdit\Bundle\SettingsBundle\Exception\DuplicateSettingException; 
 
 class GroupData
 {

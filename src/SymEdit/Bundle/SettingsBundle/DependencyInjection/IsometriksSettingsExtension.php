@@ -1,12 +1,12 @@
 <?php
 
-namespace Isometriks\Bundle\SettingsBundle\DependencyInjection;
+namespace SymEdit\Bundle\SettingsBundle\DependencyInjection;
 
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\HttpKernel\DependencyInjection\Extension;
 use Symfony\Component\DependencyInjection\Loader;
-use Isometriks\Bundle\SettingsBundle\DependencyInjection\Loader\YamlSettingLoader; 
+use SymEdit\Bundle\SettingsBundle\DependencyInjection\Loader\YamlSettingLoader; 
 
 /**
  * This is the class that loads and manages your bundle configuration

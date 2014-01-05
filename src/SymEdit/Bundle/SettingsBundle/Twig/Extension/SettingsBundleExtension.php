@@ -1,8 +1,8 @@
 <?php
 
-namespace Isometriks\Bundle\SettingsBundle\Twig\Extension; 
+namespace SymEdit\Bundle\SettingsBundle\Twig\Extension; 
 
-use Isometriks\Bundle\SettingsBundle\Model\Settings; 
+use SymEdit\Bundle\SettingsBundle\Model\Settings; 
 
 class SettingsBundleExtension extends \Twig_Extension
 {

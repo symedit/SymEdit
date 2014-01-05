@@ -1,11 +1,11 @@
 <?php
 
-namespace Isometriks\Bundle\SettingsBundle\Form\Type;
+namespace SymEdit\Bundle\SettingsBundle\Form\Type;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 use Symfony\Component\Form\FormBuilderInterface;
-use Isometriks\Bundle\SettingsBundle\Model\Settings;
+use SymEdit\Bundle\SettingsBundle\Model\Settings;
 use Symfony\Component\Security\Core\SecurityContext;
 
 class SettingsType extends AbstractType

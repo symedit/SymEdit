@@ -4,7 +4,7 @@ namespace SymEdit\Bundle\CoreBundle\EventListener\Seo;
 
 use Isometriks\Bundle\SeoBundle\Event\SeoEvent;
 use Isometriks\Bundle\SeoBundle\Model\SeoCalculatorInterface;
-use Isometriks\Bundle\SettingsBundle\Model\Settings;
+use SymEdit\Bundle\SettingsBundle\Model\Settings;
 
 class OpenGraphCalculator implements SeoCalculatorInterface
 {

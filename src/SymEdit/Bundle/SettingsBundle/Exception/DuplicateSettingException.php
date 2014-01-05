@@ -1,6 +1,6 @@
 <?php
 
-namespace Isometriks\Bundle\SettingsBundle\Exception; 
+namespace SymEdit\Bundle\SettingsBundle\Exception; 
 
 class DuplicateSettingException extends \Exception
 {
