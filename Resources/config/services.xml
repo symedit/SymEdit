@@ -1,0 +1,65 @@
+<?xml version="1.0" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <parameters>
+        <parameter key="isometriks_stylizer.assetic.command.class">Isometriks\Bundle\StylizerBundle\Command\DumpCommand</parameter>
+        <parameter key="isometriks_stylizer.dumper.class">Isometriks\Bundle\StylizerBundle\Dumper\Dumper</parameter>
+        <parameter key="isometriks_stylizer.injector.lessphp.class">Isometriks\Bundle\StylizerBundle\Injector\LessPhpInjector</parameter>
+        <parameter key="isometriks_stylizer.loader.class">Isometriks\Bundle\StylizerBundle\Loader\Loader</parameter>
+        <parameter key="isometriks_stylizer.stylizer.class">Isometriks\Bundle\StylizerBundle\Model\Stylizer</parameter>
+        <parameter key="isometriks_stylizer.form.styles.class">Isometriks\Bundle\StylizerBundle\Form\Type\StylesType</parameter>
+        <parameter key="isometriks_stylizer.form.color.class">Isometriks\Bundle\StylizerBundle\Form\Type\ColorType</parameter>
+        <parameter key="isometriks_stylizer.form.google_font.class">Isometriks\Bundle\StylizerBundle\Form\Type\GoogleFontType</parameter>
+    </parameters>
+
+
+    <services>
+        <service id="isometriks_stylizer.assetic.command" class="%isometriks_stylizer.assetic.command.class%">
+            <call method="setContainer"><argument type="service" id="service_container" /></call>
+        </service>
+
+        <service id="isometriks_stylizer.loader" class="%isometriks_stylizer.loader.class%">
+            <argument>%kernel.root_dir%</argument>
+            <argument>%isometriks_stylizer.loader.files.yaml%</argument>
+        </service>
+
+        <service id="isometriks_stylizer.dumper" class="%isometriks_stylizer.dumper.class%">
+            <argument type="service" id="service_container" />
+            <argument type="service" id="assetic.filter_manager" />
+            <argument type="service" id="isometriks_stylizer.assetic.command" />
+            <argument>%isometriks_stylizer.injectors%</argument>
+        </service>
+
+        <service id="isometriks_stylizer.injector.lessphp" class="%isometriks_stylizer.injector.lessphp.class%">
+            <tag name="stylizer.injector" />
+        </service>
+
+        <service id="isometriks_stylizer.stylizer" class="%isometriks_stylizer.stylizer.class%">
+            <argument type="service" id="isometriks_stylizer.loader" />
+            <argument type="service" id="isometriks_stylizer.dumper" />
+            <argument>%kernel.root_dir%</argument>
+            <argument>%assetic.cache_dir%/assets</argument>
+        </service>
+
+        <service id="isometriks_stylizer.form.styles" class="%isometriks_stylizer.form.styles.class%">
+            <argument type="service" id="isometriks_stylizer.stylizer" />
+            <tag name="form.type" alias="styles" />
+        </service>
+
+        <service id="isometriks_stylizer.form.color" class="%isometriks_stylizer.form.color.class%">
+            <tag name="form.type" alias="color" />
+        </service>
+
+        <service id="isometriks_stylizer.form.google_font" class="%isometriks_stylizer.form.google_font.class%">
+            <tag name="form.type" alias="google_font" />
+        </service>
+
+        <service id="isometriks_stylizer.twig.stylizer_extension" class="Isometriks\Bundle\StylizerBundle\Twig\Extension\StylizerExtension">
+            <argument type="service" id="isometriks_stylizer.stylizer" />
+            <tag name="twig.extension" />
+        </service>
+    </services>
+</container>
