@@ -4,59 +4,59 @@ namespace Isometriks\Bundle\SettingsBundle\Form\Type;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
-use Symfony\Component\Form\FormBuilderInterface; 
-use Isometriks\Bundle\SettingsBundle\Model\Settings; 
-use Symfony\Component\Security\Core\SecurityContext; 
+use Symfony\Component\Form\FormBuilderInterface;
+use Isometriks\Bundle\SettingsBundle\Model\Settings;
+use Symfony\Component\Security\Core\SecurityContext;
 
 class SettingsType extends AbstractType
 {
     private $settings;
-    private $context; 
-    
+    private $context;
+
     public function __construct(Settings $settings, SecurityContext $context)
     {
         $this->settings = $settings;
-        $this->context = $context; 
+        $this->context = $context;
     }
-    
+
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $groups = $builder->create('groups', 'form', array(
-            'virtual' => true, 
-        )); 
-        
-        $config = $this->settings->getConfigData(); 
-        
+            'virtual' => true,
+        ));
+
+        $config = $this->settings->getConfigData();
+
         foreach($config->getGroups() as $group){
-            
+
             if($role = $group->getRole()){
                 if(!$this->context->isGranted($role)){
-                    continue; 
+                    continue;
                 }
             }
-            
+
             $groupForm = $builder->create($group->getName(), 'form', array(
-                'virtual' => true, 
-                'label' => $group->getLabel(), 
-            ));   
-            
+                'virtual' => true,
+                'label' => $group->getLabel(),
+            ));
+
             foreach($group->getSettings() as $setting){
                 $groupForm->add($setting->getName(), $setting->getType(), array_replace_recursive(
-                    $group->getDefaultOptions(), 
+                    $group->getDefaultOptions(),
                     array(
-                        'property_path' => sprintf('[%s][%s]', $group->getName(), $setting->getName()), 
+                        'property_path' => sprintf('[%s][%s]', $group->getName(), $setting->getName()),
                     // TODO Constraints
-                    ), 
+                    ),
                     $setting->getOptions()
                 ));
             }
-            
-            $groups->add($groupForm); 
+
+            $groups->add($groupForm);
         }
-        
-        $builder->add($groups);  
+
+        $builder->add($groups);
     }
-    
+
     public function parseNodes(array $nodes)
     {
         $values = array();
@@ -81,7 +81,7 @@ class SettingsType extends AbstractType
 
         return $values;
     }
-    
+
     private function newConstraint($name, $options)
     {
         if (strpos($name, '\\') !== false && class_exists($name)) {
@@ -99,6 +99,13 @@ class SettingsType extends AbstractType
         }
 
         return new $className($options);
+    }
+
+    public function setDefaultOptions(OptionsResolverInterface $resolver)
+    {
+        $resolver->setDefaults(array(
+            'method' => 'PUT',
+        ));
     }
 
     public function getParent()
