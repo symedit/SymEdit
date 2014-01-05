@@ -4,20 +4,22 @@ namespace Isometriks\Bundle\SymEditBundle\EventListener\Subscriber;
 
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Isometriks\Bundle\SymEditBundle\Event\Events;
-use Isometriks\Bundle\SymEditBundle\Event\PageEvent;
+use Sylius\Bundle\ResourceBundle\Event\ResourceEvent;
 use Isometriks\Bundle\SymEditBundle\Event\PostEvent;
-use Isometriks\Bundle\SymEditBundle\Model\PostManagerInterface;
-use Isometriks\Bundle\SymEditBundle\Model\PageManagerInterface;
+use Sylius\Bundle\ResourceBundle\Model\RepositoryInterface;
 
+/**
+ * @TODO: Need to fix this..
+ */
 class ViewCountSubscriber implements EventSubscriberInterface
 {
-    protected $pageManager;
-    protected $postManager;
+    protected $pageRepository;
+    protected $postRepository;
 
-    public function __construct(PageManagerInterface $pageManager, PostManagerInterface $postManager)
+    public function __construct(RepositoryInterface $pageRepository, RepositoryInterface $postRepository)
     {
-        $this->pageManager = $pageManager;
-        $this->postManager = $postManager;
+        $this->pageRepository = $pageRepository;
+        $this->postRepository = $postRepository;
     }
 
     public static function getSubscribedEvents()
@@ -28,15 +30,15 @@ class ViewCountSubscriber implements EventSubscriberInterface
         );
     }
 
-    public function pageView(PageEvent $event)
+    public function pageView(ResourceEvent $event)
     {
-        $page = $event->getPage();
+        $page = $event->getSubject();
 
         /**
          * Add View
          */
         $page->addView();
-        $this->pageManager->updatePage($page);
+        //$this->pageRepository->updatePage($page);
     }
 
     public function postView(PostEvent $event)
@@ -47,6 +49,6 @@ class ViewCountSubscriber implements EventSubscriberInterface
          * Add View
          */
         $post->addView();
-        $this->postManager->updatePost($post);
+        //$this->postRepository->updatePost($post);
     }
 }
