@@ -2,14 +2,11 @@
 
 namespace Isometriks\Bundle\SymEditBundle\Controller\Admin;
 
-use JMS\SecurityExtraBundle\Annotation\PreAuthorize;
 use Sylius\Bundle\ResourceBundle\Controller\ResourceController;
 use Symfony\Component\HttpFoundation\Request;
 
 /**
  * Category controller.
- *
- * @PreAuthorize("hasRole('ROLE_ADMIN_BLOG')")
  */
 class CategoryController extends ResourceController
 {
