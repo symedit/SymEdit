@@ -1,8 +1,8 @@
 <?php
 
-namespace Isometriks\Bundle\SymEditBundle\Model; 
+namespace Isometriks\Bundle\SymEditBundle\Model;
 
-use Doctrine\Common\Collections\ArrayCollection; 
+use Doctrine\Common\Collections\ArrayCollection;
 
 class Category implements CategoryInterface
 {
@@ -35,16 +35,18 @@ class Category implements CategoryInterface
      * @var Array of CategoryInterface
      */
     protected $children;
-    
 
-    protected $posts; 
-    
+    /**
+     * @var ArrayCollection
+     */
+    protected $posts;
+
     /**
      * @var array $seo
      */
     protected $seo;
-    
-    
+
+
     /**
      * Constructor
      */
@@ -52,17 +54,17 @@ class Category implements CategoryInterface
     {
         $this->children = new ArrayCollection();
         $this->posts = new ArrayCollection();
-    }    
-    
+    }
+
     public function __toString()
     {
         return $this->getTitle();
     }
-    
+
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -78,14 +80,14 @@ class Category implements CategoryInterface
     public function setName($name)
     {
         $this->name = $name;
-    
+
         return $this;
     }
 
     /**
      * Get name
      *
-     * @return string 
+     * @return string
      */
     public function getName()
     {
@@ -101,14 +103,14 @@ class Category implements CategoryInterface
     public function setTitle($title)
     {
         $this->title = $title;
-    
+
         return $this;
     }
 
     /**
      * Get title
      *
-     * @return string 
+     * @return string
      */
     public function getTitle()
     {
@@ -124,45 +126,45 @@ class Category implements CategoryInterface
     public function setSlug($slug)
     {
         $this->slug = $slug;
-    
+
         return $this;
     }
 
     /**
      * Get slug
      *
-     * @return string 
+     * @return string
      */
     public function getSlug()
     {
         return $this->slug;
     }
-    
+
     public function getRoot()
     {
-        return $this->getParent() === null; 
+        return $this->getParent() === null;
     }
-    
+
     /**
      * PrePersist
      */
     public function fixSlug()
     {
-        $slug = $this->getParent() ? $this->getParent()->getSlug() .'/' . $this->getName() : $this->getName(); 
+        $slug = $this->getParent() ? $this->getParent()->getSlug() .'/' . $this->getName() : $this->getName();
         $this->setSlug($slug);
     }
-    
+
     public function setUpdated()
-    { 
+    {
         // Set the slug to be parent slug/post name
-        $this->fixSlug(); 
-                
+        $this->fixSlug();
+
         // In case this category's slug has changed, let's fix the children too
         foreach ($this->getChildren() as $child) {
-            $child->setUpdated(); 
+            $child->setUpdated();
         }
     }
-    
+
     /**
      * Set parent
      *
@@ -172,14 +174,14 @@ class Category implements CategoryInterface
     public function setParent(CategoryInterface $parent = null)
     {
         $this->parent = $parent;
-    
+
         return $this;
     }
 
     /**
      * Get parent
      *
-     * @return \Isometriks\Bundle\SymEditBundle\Model\CategoryInterface 
+     * @return \Isometriks\Bundle\SymEditBundle\Model\CategoryInterface
      */
     public function getParent()
     {
@@ -194,9 +196,9 @@ class Category implements CategoryInterface
      */
     public function addChildren(CategoryInterface $children)
     {
-        $children->setParent($this); 
+        $children->setParent($this);
         $this->children[] = $children;
-    
+
         return $this;
     }
 
@@ -209,22 +211,22 @@ class Category implements CategoryInterface
     {
         $this->children->removeElement($children);
     }
-    
+
     public function setChildren($children)
     {
-        $this->children = $children; 
+        $this->children = $children;
     }
 
     /**
      * Get children
      *
-     * @return Doctrine\Common\Collections\Collection 
+     * @return Doctrine\Common\Collections\Collection
      */
     public function getChildren()
     {
         return $this->children;
     }
-    
+
     /**
      * Set seo
      *
@@ -234,14 +236,14 @@ class Category implements CategoryInterface
     public function setSeo(array $seo = array())
     {
         $this->seo = $seo;
-    
+
         return $this;
     }
 
     /**
      * Get seo
      *
-     * @return array 
+     * @return array
      */
     public function getSeo()
     {
@@ -257,7 +259,7 @@ class Category implements CategoryInterface
     public function addPost(Post $post)
     {
         $this->posts[] = $post;
-    
+
         return $this;
     }
 
@@ -274,15 +276,22 @@ class Category implements CategoryInterface
     /**
      * Get posts
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getPosts()
     {
         return $this->posts;
     }
     
+    public function getPublishedPosts()
+    {
+        return $this->posts->filter(function(PostInterface $post) {
+            return $post->isPublished();
+        });
+    }
+
     public function getTotal()
     {
-        return $this->posts->count(); 
+        return $this->posts->count();
     }
 }
