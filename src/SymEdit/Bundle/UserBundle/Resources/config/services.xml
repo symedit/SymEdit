@@ -6,8 +6,6 @@
 
     <parameters>
         <parameter key="symedit.form.type.registration.class">SymEdit\Bundle\UserBundle\Form\RegistrationFormType</parameter>
-        <parameter key="symedit.form.type.admin_profile.class">SymEdit\Bundle\UserBundle\Form\AdminProfileType</parameter>
-        <parameter key="symedit.form.type.user_profile.class">SymEdit\Bundle\UserBundle\Form\UserProfileType</parameter>
     </parameters>
 
     <services>
@@ -31,7 +29,7 @@
             <tag name="form.type" alias="symedit_admin_profile" />
         </service>
 
-        <service id="symedit.form.type.user_profile" class="%symedit.form.type.user_profile.class%">
+        <service id="symedit.form.type.user_profile" class="%symedit.form.type.profile.class%">
             <argument>%fos_user.model.user.class%</argument>
             <tag name="form.type" alias="symedit_user_profile" />
         </service>

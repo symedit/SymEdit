@@ -1,6 +1,6 @@
 <?php
 
-namespace SymEdit\Bundle\UserBundle\Form;
+namespace SymEdit\Bundle\UserBundle\Form\Type;
 
 use FOS\UserBundle\Form\Type\ProfileFormType as BaseType;
 use Symfony\Component\Form\FormBuilderInterface;
