@@ -10,8 +10,8 @@
 {% endblock %}
 {% block stylesheets %}
 {% stylesheets
-               'bundles/isometrikssymedit/bootstrap/css/bootstrap.min.css'
-               'bundles/isometrikssymedit/css/font-awesome.min.css'
+               'bundles/symedit/bootstrap/css/bootstrap.min.css'
+               'bundles/symedit/css/font-awesome.min.css'
                '@SymEditBundle/Resources/less/system.less'
                '@SymEditBundle/Resources/less/util.less'
                '@SymEditBundle/Resources/less/footer.less'
@@ -74,7 +74,7 @@
 
         {% block scripts %}
         <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-        <script src="{{ asset('/bundles/isometrikssymedit/bootstrap/js/bootstrap.min.js') }}"></script>
+        <script src="{{ asset('/bundles/symedit/bootstrap/js/bootstrap.min.js') }}"></script>
         {% include '@SymEdit/Widget/google-analytics.html.twig' %}
         {% endblock %}
     </body>

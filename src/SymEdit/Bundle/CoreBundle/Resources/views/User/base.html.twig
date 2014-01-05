@@ -38,7 +38,7 @@
 
 {% block stylesheets %}
 {{ parent() }}
-{% stylesheets 'bundles/isometrikssymedit/redactor/redactor.css' %}
+{% stylesheets 'bundles/symedit/redactor/redactor.css' %}
 <link rel="stylesheet" href="{{ asset_url }}">
 {% endstylesheets %}
 {% endblock %}
@@ -46,7 +46,7 @@
 {% block scripts %}
 {{ parent() }}
 
-{% javascripts 'bundles/isometrikssymedit/redactor/redactor.min.js' %}
+{% javascripts 'bundles/symedit/redactor/redactor.min.js' %}
 <script src="{{ asset_url }}"></script>
 {% endjavascripts %}
 <script>
