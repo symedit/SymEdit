@@ -4,12 +4,12 @@
     xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
 
     <parameters>
-        <parameter key="isometriks_stylizer.listener.controller.class">SymEdit\Bundle\StylizerBundle\EventListener\ControllerListener</parameter>
+        <parameter key="symedit_stylizer.listener.controller.class">SymEdit\Bundle\StylizerBundle\EventListener\ControllerListener</parameter>
     </parameters>
 
     <services>
-        <service id="isometriks_stylizer.listener.controller" class="%isometriks_stylizer.listener.controller.class%">
-            <argument type="service" id="isometriks_stylizer.stylizer" />   
+        <service id="symedit_stylizer.listener.controller" class="%symedit_stylizer.listener.controller.class%">
+            <argument type="service" id="symedit_stylizer.stylizer" />   
             <tag name="kernel.event_listener" event="kernel.controller" method="onKernelController" priority="100" />
         </service>
     </services>

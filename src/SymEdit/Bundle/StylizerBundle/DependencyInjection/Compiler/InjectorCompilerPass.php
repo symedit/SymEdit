@@ -10,6 +10,6 @@ class InjectorCompilerPass implements CompilerPassInterface
     public function process(ContainerBuilder $container)
     {
         $definitions = array_keys($container->findTaggedServiceIds('stylizer.injector')); 
-        $container->setParameter('isometriks_stylizer.injectors', $definitions); 
+        $container->setParameter('symedit_stylizer.injectors', $definitions); 
     }
 }

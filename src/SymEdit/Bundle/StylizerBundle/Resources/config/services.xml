@@ -5,60 +5,60 @@
     xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
 
     <parameters>
-        <parameter key="isometriks_stylizer.assetic.command.class">SymEdit\Bundle\StylizerBundle\Command\DumpCommand</parameter>
-        <parameter key="isometriks_stylizer.dumper.class">SymEdit\Bundle\StylizerBundle\Dumper\Dumper</parameter>
-        <parameter key="isometriks_stylizer.injector.lessphp.class">SymEdit\Bundle\StylizerBundle\Injector\LessPhpInjector</parameter>
-        <parameter key="isometriks_stylizer.loader.class">SymEdit\Bundle\StylizerBundle\Loader\Loader</parameter>
-        <parameter key="isometriks_stylizer.stylizer.class">SymEdit\Bundle\StylizerBundle\Model\Stylizer</parameter>
-        <parameter key="isometriks_stylizer.form.styles.class">SymEdit\Bundle\StylizerBundle\Form\Type\StylesType</parameter>
-        <parameter key="isometriks_stylizer.form.color.class">SymEdit\Bundle\StylizerBundle\Form\Type\ColorType</parameter>
-        <parameter key="isometriks_stylizer.form.google_font.class">SymEdit\Bundle\StylizerBundle\Form\Type\GoogleFontType</parameter>
+        <parameter key="symedit_stylizer.assetic.command.class">SymEdit\Bundle\StylizerBundle\Command\DumpCommand</parameter>
+        <parameter key="symedit_stylizer.dumper.class">SymEdit\Bundle\StylizerBundle\Dumper\Dumper</parameter>
+        <parameter key="symedit_stylizer.injector.lessphp.class">SymEdit\Bundle\StylizerBundle\Injector\LessPhpInjector</parameter>
+        <parameter key="symedit_stylizer.loader.class">SymEdit\Bundle\StylizerBundle\Loader\Loader</parameter>
+        <parameter key="symedit_stylizer.stylizer.class">SymEdit\Bundle\StylizerBundle\Model\Stylizer</parameter>
+        <parameter key="symedit_stylizer.form.styles.class">SymEdit\Bundle\StylizerBundle\Form\Type\StylesType</parameter>
+        <parameter key="symedit_stylizer.form.color.class">SymEdit\Bundle\StylizerBundle\Form\Type\ColorType</parameter>
+        <parameter key="symedit_stylizer.form.google_font.class">SymEdit\Bundle\StylizerBundle\Form\Type\GoogleFontType</parameter>
     </parameters>
 
 
     <services>
-        <service id="isometriks_stylizer.assetic.command" class="%isometriks_stylizer.assetic.command.class%">
+        <service id="symedit_stylizer.assetic.command" class="%symedit_stylizer.assetic.command.class%">
             <call method="setContainer"><argument type="service" id="service_container" /></call>
         </service>
 
-        <service id="isometriks_stylizer.loader" class="%isometriks_stylizer.loader.class%">
+        <service id="symedit_stylizer.loader" class="%symedit_stylizer.loader.class%">
             <argument>%kernel.root_dir%</argument>
-            <argument>%isometriks_stylizer.loader.files.yaml%</argument>
+            <argument>%symedit_stylizer.loader.files.yaml%</argument>
         </service>
 
-        <service id="isometriks_stylizer.dumper" class="%isometriks_stylizer.dumper.class%">
+        <service id="symedit_stylizer.dumper" class="%symedit_stylizer.dumper.class%">
             <argument type="service" id="service_container" />
             <argument type="service" id="assetic.filter_manager" />
-            <argument type="service" id="isometriks_stylizer.assetic.command" />
-            <argument>%isometriks_stylizer.injectors%</argument>
+            <argument type="service" id="symedit_stylizer.assetic.command" />
+            <argument>%symedit_stylizer.injectors%</argument>
         </service>
 
-        <service id="isometriks_stylizer.injector.lessphp" class="%isometriks_stylizer.injector.lessphp.class%">
+        <service id="symedit_stylizer.injector.lessphp" class="%symedit_stylizer.injector.lessphp.class%">
             <tag name="stylizer.injector" />
         </service>
 
-        <service id="isometriks_stylizer.stylizer" class="%isometriks_stylizer.stylizer.class%">
-            <argument type="service" id="isometriks_stylizer.loader" />
-            <argument type="service" id="isometriks_stylizer.dumper" />
+        <service id="symedit_stylizer.stylizer" class="%symedit_stylizer.stylizer.class%">
+            <argument type="service" id="symedit_stylizer.loader" />
+            <argument type="service" id="symedit_stylizer.dumper" />
             <argument>%kernel.root_dir%</argument>
             <argument>%assetic.cache_dir%/assets</argument>
         </service>
 
-        <service id="isometriks_stylizer.form.styles" class="%isometriks_stylizer.form.styles.class%">
-            <argument type="service" id="isometriks_stylizer.stylizer" />
+        <service id="symedit_stylizer.form.styles" class="%symedit_stylizer.form.styles.class%">
+            <argument type="service" id="symedit_stylizer.stylizer" />
             <tag name="form.type" alias="styles" />
         </service>
 
-        <service id="isometriks_stylizer.form.color" class="%isometriks_stylizer.form.color.class%">
+        <service id="symedit_stylizer.form.color" class="%symedit_stylizer.form.color.class%">
             <tag name="form.type" alias="color" />
         </service>
 
-        <service id="isometriks_stylizer.form.google_font" class="%isometriks_stylizer.form.google_font.class%">
+        <service id="symedit_stylizer.form.google_font" class="%symedit_stylizer.form.google_font.class%">
             <tag name="form.type" alias="google_font" />
         </service>
 
-        <service id="isometriks_stylizer.twig.stylizer_extension" class="SymEdit\Bundle\StylizerBundle\Twig\Extension\StylizerExtension">
-            <argument type="service" id="isometriks_stylizer.stylizer" />
+        <service id="symedit_stylizer.twig.stylizer_extension" class="SymEdit\Bundle\StylizerBundle\Twig\Extension\StylizerExtension">
+            <argument type="service" id="symedit_stylizer.stylizer" />
             <tag name="twig.extension" />
         </service>
     </services>

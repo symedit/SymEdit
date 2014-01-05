@@ -24,7 +24,7 @@ class GroupType extends AbstractType
     
     public function getName()
     {
-        return 'isometriks_stylizer_grouptype'; 
+        return 'symedit_stylizer_grouptype'; 
     }    
     
     public function getParent()

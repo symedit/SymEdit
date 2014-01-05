@@ -12,7 +12,7 @@ use Symfony\Component\DependencyInjection\Loader;
  *
  * To learn more see {@link http://symfony.com/doc/current/cookbook/bundles/extension.html}
  */
-class IsometriksStylizerExtension extends Extension
+class SymEditStylizerExtension extends Extension
 {
     /**
      * {@inheritDoc}
@@ -22,36 +22,44 @@ class IsometriksStylizerExtension extends Extension
         $configuration = new Configuration();
         $config = $this->processConfiguration($configuration, $configs);
         $loader = new Loader\XmlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
-        
-        $bundles = $container->getParameter('kernel.bundles'); 
-        $yamlFiles = $this->getYamlStyleFiles($bundles); 
-        
-        $container->setParameter('isometriks_stylizer.loader.files.yaml', $yamlFiles);
-        
+
+        $bundles = $container->getParameter('kernel.bundles');
+        $yamlFiles = $this->getYamlStyleFiles($bundles);
+
+        $container->setParameter('symedit_stylizer.loader.files.yaml', $yamlFiles);
+
         $loader->load('services.xml');
-        
-        $env = $container->getParameter('kernel.environment'); 
-        
+
+        $env = $container->getParameter('kernel.environment');
+
         /**
          * This plugs into the AsseticController when in dev mode
          */
         if(strtolower($env) !== 'prod'){
-            $loader->load('services_dev.xml'); 
+            $loader->load('services_dev.xml');
         }
     }
-    
+
     private function getYamlStyleFiles($bundles)
     {
-        $files = array(); 
+        $files = array();
         foreach($bundles as $bundle){
-            $class = new \ReflectionClass($bundle); 
-            $dir = dirname($class->getFileName()); 
-            $file = $dir.'/Resources/config/styles.yml'; 
+            $class = new \ReflectionClass($bundle);
+            $dir = dirname($class->getFileName());
+            $file = $dir.'/Resources/config/styles.yml';
             if(file_exists($file)){
-                $files[] = $file; 
+                $files[] = $file;
             }
         }
-        
+
         return $files;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getAlias()
+    {
+        return 'symedit_stylizer';
     }
 }
