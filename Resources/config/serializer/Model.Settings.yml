@@ -1,0 +1,4 @@
+Isometriks\Bundle\SettingsBundle\Model\Settings:
+    properties:
+        settings:
+            expose: true
