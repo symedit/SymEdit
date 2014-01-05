@@ -1,6 +1,6 @@
 <?php
 
-namespace Isometriks\Bundle\UserBundle\Model;
+namespace SymEdit\Bundle\UserBundle\Model;
 
 use SymEdit\Bundle\CoreBundle\Model\Profile as BaseProfile;
 

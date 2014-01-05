@@ -1,6 +1,6 @@
 <?php
 
-namespace Isometriks\Bundle\UserBundle\Form;
+namespace SymEdit\Bundle\UserBundle\Form;
 
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\AbstractType;

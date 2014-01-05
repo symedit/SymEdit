@@ -1,6 +1,6 @@
 <?php
 
-namespace Isometriks\Bundle\UserBundle\Model;
+namespace SymEdit\Bundle\UserBundle\Model;
 
 use Isometriks\Bundle\MediaBundle\Model\MediaInterface;
 use SymEdit\Bundle\CoreBundle\Util\Util;
@@ -92,7 +92,7 @@ class AdminProfile extends Profile
      * Set user biography
      *
      * @param string $biography
-     * @return \Isometriks\Bundle\UserBundle\Model\User
+     * @return \SymEdit\Bundle\UserBundle\Model\User
      */
     public function setBiography($biography)
     {

@@ -1,4 +1,4 @@
-Isometriks\Bundle\UserBundle\Model\Profile:
+SymEdit\Bundle\UserBundle\Model\Profile:
     type: entity
     table: profile
     inheritanceType: JOINED
@@ -12,8 +12,8 @@ Isometriks\Bundle\UserBundle\Model\Profile:
         type: string
         length: 20
     discriminatorMap:
-        user: Isometriks\Bundle\UserBundle\Model\Profile
-        admin: Isometriks\Bundle\UserBundle\Model\AdminProfile
+        user: SymEdit\Bundle\UserBundle\Model\Profile
+        admin: SymEdit\Bundle\UserBundle\Model\AdminProfile
     fields:
         firstName:
             type: string

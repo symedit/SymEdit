@@ -5,9 +5,9 @@
            xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
 
     <parameters>
-        <parameter key="isometriks_symedit.form.type.registration.class">Isometriks\Bundle\UserBundle\Form\RegistrationFormType</parameter>
-        <parameter key="isometriks_symedit.form.type.admin_profile.class">Isometriks\Bundle\UserBundle\Form\AdminProfileType</parameter>
-        <parameter key="isometriks_symedit.form.type.user_profile.class">Isometriks\Bundle\UserBundle\Form\UserProfileType</parameter>
+        <parameter key="isometriks_symedit.form.type.registration.class">SymEdit\Bundle\UserBundle\Form\RegistrationFormType</parameter>
+        <parameter key="isometriks_symedit.form.type.admin_profile.class">SymEdit\Bundle\UserBundle\Form\AdminProfileType</parameter>
+        <parameter key="isometriks_symedit.form.type.user_profile.class">SymEdit\Bundle\UserBundle\Form\UserProfileType</parameter>
     </parameters>
 
     <services>

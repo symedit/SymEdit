@@ -1,6 +1,6 @@
 <?php
 
-namespace Isometriks\Bundle\UserBundle;
+namespace SymEdit\Bundle\UserBundle;
 
 use SymEdit\Bundle\CoreBundle\DependencyInjection\Compiler\DoctrineMappingsPass;
 use Sylius\Bundle\ResourceBundle\DependencyInjection\Compiler\ResolveDoctrineTargetEntitiesPass;
@@ -32,7 +32,7 @@ class IsometriksUserBundle extends Bundle
          * Add Doctrine Mappings
          */
         DoctrineMappingsPass::addMappings($container, array(
-            realpath(__DIR__.'/Resources/config/doctrine/model') => 'Isometriks\Bundle\UserBundle\Model',
+            realpath(__DIR__.'/Resources/config/doctrine/model') => 'SymEdit\Bundle\UserBundle\Model',
         ));
     }
 

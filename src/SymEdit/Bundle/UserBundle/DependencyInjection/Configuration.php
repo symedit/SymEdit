@@ -1,6 +1,6 @@
 <?php
 
-namespace Isometriks\Bundle\UserBundle\DependencyInjection;
+namespace SymEdit\Bundle\UserBundle\DependencyInjection;
 
 use Symfony\Component\Config\Definition\Builder\ArrayNodeDefinition;
 use Symfony\Component\Config\Definition\Builder\TreeBuilder;
@@ -43,23 +43,23 @@ class Configuration implements ConfigurationInterface
                             ->addDefaultsIfNotSet()
                             ->children()
                                 ->scalarNode('model')->defaultValue('SymEdit\Bundle\CoreBundle\Model\User')->end()
-                                ->scalarNode('controller')->defaultValue('Isometriks\Bundle\UserBundle\Controller\UserController')->end()
+                                ->scalarNode('controller')->defaultValue('SymEdit\Bundle\UserBundle\Controller\UserController')->end()
                                 ->scalarNode('repository')->end()
-                                ->scalarNode('form')->defaultValue('Isometriks\Bundle\UserBundle\Form\UserType')->end()
+                                ->scalarNode('form')->defaultValue('SymEdit\Bundle\UserBundle\Form\UserType')->end()
                             ->end()
                         ->end()
                         ->arrayNode('profile')
                             ->addDefaultsIfNotSet()
                             ->children()
-                                ->scalarNode('model')->defaultValue('Isometriks\Bundle\UserBundle\Model\Profile')->end()
-                                ->scalarNode('form')->defaultValue('Isometriks\Bundle\UserBundle\Form\ProfileType')->end()
+                                ->scalarNode('model')->defaultValue('SymEdit\Bundle\UserBundle\Model\Profile')->end()
+                                ->scalarNode('form')->defaultValue('SymEdit\Bundle\UserBundle\Form\ProfileType')->end()
                             ->end()
                         ->end()
                         ->arrayNode('admin_profile')
                             ->addDefaultsIfNotSet()
                             ->children()
-                                ->scalarNode('model')->defaultValue('Isometriks\Bundle\UserBundle\Model\AdminProfile')->end()
-                                ->scalarNode('form')->defaultValue('Isometriks\Bundle\UserBundle\Form\AdminProfileType')->end()
+                                ->scalarNode('model')->defaultValue('SymEdit\Bundle\UserBundle\Model\AdminProfile')->end()
+                                ->scalarNode('form')->defaultValue('SymEdit\Bundle\UserBundle\Form\AdminProfileType')->end()
                             ->end()
                         ->end()
                     ->end()

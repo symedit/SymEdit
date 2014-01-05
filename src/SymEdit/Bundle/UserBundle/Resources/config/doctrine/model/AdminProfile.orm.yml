@@ -1,4 +1,4 @@
-Isometriks\Bundle\UserBundle\Model\AdminProfile:
+SymEdit\Bundle\UserBundle\Model\AdminProfile:
     type: entity
     table: admin_profile
     fields:

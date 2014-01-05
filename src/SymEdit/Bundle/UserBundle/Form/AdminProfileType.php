@@ -1,6 +1,6 @@
 <?php
 
-namespace Isometriks\Bundle\UserBundle\Form;
+namespace SymEdit\Bundle\UserBundle\Form;
 
 use FOS\UserBundle\Form\Type\ProfileFormType as BaseType;
 use Symfony\Component\Form\FormBuilderInterface;
