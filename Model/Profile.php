@@ -8,12 +8,12 @@ class Profile implements ProfileInterface
     protected $firstName;
     protected $lastName;
     protected $user;
-    
+
     public function getId()
     {
         return $this->id;
     }
-    
+
     public function setFirstName($firstName)
     {
         $this->firstName = $firstName;
@@ -41,8 +41,8 @@ class Profile implements ProfileInterface
     public function getFullname()
     {
         return rtrim(sprintf('%s %s', $this->getFirstName(), $this->getLastName()));
-    }   
-    
+    }
+
     public function getUser()
     {
         return $this->user;

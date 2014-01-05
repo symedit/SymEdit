@@ -1,78 +1,78 @@
 <?php
 
-namespace Isometriks\Bundle\SymEditBundle\Model; 
+namespace Isometriks\Bundle\SymEditBundle\Model;
 
-use Doctrine\Common\Collections\ArrayCollection; 
+use Doctrine\Common\Collections\ArrayCollection;
 
 class WidgetArea implements WidgetAreaInterface
 {
-    protected $id; 
-    protected $area; 
-    protected $description; 
-    protected $widgets; 
-    
+    protected $id;
+    protected $area;
+    protected $description;
+    protected $widgets;
+
     public function __construct()
     {
-        $this->widgets = new ArrayCollection(); 
+        $this->widgets = new ArrayCollection();
     }
-    
+
     public function getId()
     {
         return $this->id;
     }
-    
+
     public function getArea()
     {
         return $this->area;
     }
-    
+
     public function setArea($area)
     {
-        $this->area = $area; 
-        
-        return $this; 
+        $this->area = $area;
+
+        return $this;
     }
-    
+
     public function setDescription($description)
     {
-        $this->description = $description; 
-        
-        return $this; 
+        $this->description = $description;
+
+        return $this;
     }
-    
+
     public function getDescription()
     {
-        return $this->description; 
+        return $this->description;
     }
-    
+
     public function getWidgets()
     {
         return $this->widgets;
     }
-    
+
     public function addWidget(WidgetInterface $widget)
     {
-        $widget->setArea($this); 
+        $widget->setArea($this);
         $this->widgets->add($widget);
-        
-        return $this; 
+
+        return $this;
     }
-    
+
     public function removeWidget(WidgetInterface $widget)
     {
         $this->widgets->removeElement($widget);
-        
-        return $this; 
+
+        return $this;
     }
-    
+
     public function setWidgets(ArrayCollection $widgets)
     {
-        foreach($widgets as $widget){
-            $widget->setArea($this); 
+        foreach ($widgets as $widget) {
+            $widget->setArea($this);
         }
-        
-        $this->widgets = $widgets; 
-        
+
+        $this->widgets = $widgets;
+
         return $this;
     }
 }

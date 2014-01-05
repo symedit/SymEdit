@@ -73,7 +73,7 @@ interface PageInterface extends SeoAbleInterface, ViewCountableInterface, \Itera
     public function getCreatedBy();
 
     /**
-     * @param \DateTime $time
+     * @param  \DateTime     $time
      * @return PageInterface
      */
     public function setUpdatedAt($time);
@@ -160,7 +160,7 @@ interface PageInterface extends SeoAbleInterface, ViewCountableInterface, \Itera
     /**
      * Set Page's path
      *
-     * @param string $path
+     * @param  string        $path
      * @return PageInterface $page
      */
     public function setPath($path);

@@ -1,6 +1,6 @@
 <?php
 
-namespace Isometriks\Bundle\SymEditBundle\Model; 
+namespace Isometriks\Bundle\SymEditBundle\Model;
 
 class Role implements RoleInterface
 {
@@ -19,16 +19,15 @@ class Role implements RoleInterface
      */
     protected $description;
 
-
     public function __toString()
     {
-        return $this->getRole(); 
+        return $this->getRole();
     }
-    
+
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -38,20 +37,20 @@ class Role implements RoleInterface
     /**
      * Set role
      *
-     * @param string $role
+     * @param  string $role
      * @return Role
      */
     public function setRole($role)
     {
         $this->role = $role;
-    
+
         return $this;
     }
 
     /**
      * Get role
      *
-     * @return string 
+     * @return string
      */
     public function getRole()
     {
@@ -61,23 +60,23 @@ class Role implements RoleInterface
     /**
      * Set description
      *
-     * @param string $description
+     * @param  string $description
      * @return Role
      */
     public function setDescription($description)
     {
         $this->description = $description;
-    
+
         return $this;
     }
 
     /**
      * Get description
      *
-     * @return string 
+     * @return string
      */
     public function getDescription()
     {
         return $this->description;
-    }    
+    }
 }

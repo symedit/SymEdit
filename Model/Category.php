@@ -46,7 +46,6 @@ class Category implements CategoryInterface
      */
     protected $seo;
 
-
     /**
      * Constructor
      */
@@ -74,7 +73,7 @@ class Category implements CategoryInterface
     /**
      * Set name
      *
-     * @param string $name
+     * @param  string   $name
      * @return Category
      */
     public function setName($name)
@@ -97,7 +96,7 @@ class Category implements CategoryInterface
     /**
      * Set title
      *
-     * @param string $title
+     * @param  string   $title
      * @return Category
      */
     public function setTitle($title)
@@ -120,7 +119,7 @@ class Category implements CategoryInterface
     /**
      * Set slug
      *
-     * @param string $slug
+     * @param  string   $slug
      * @return Category
      */
     public function setSlug($slug)
@@ -168,8 +167,8 @@ class Category implements CategoryInterface
     /**
      * Set parent
      *
-     * @param \Isometriks\Bundle\SymEditBundle\Model\CategoryInterface $parent
-     * @return \Isometriks\Bundle\SymEditBundle\Model\CategoryInterface
+     * @param  CategoryInterface $parent
+     * @return CategoryInterface
      */
     public function setParent(CategoryInterface $parent = null)
     {
@@ -181,7 +180,7 @@ class Category implements CategoryInterface
     /**
      * Get parent
      *
-     * @return \Isometriks\Bundle\SymEditBundle\Model\CategoryInterface
+     * @return CategoryInterface
      */
     public function getParent()
     {
@@ -191,7 +190,7 @@ class Category implements CategoryInterface
     /**
      * Add children
      *
-     * @param \Isometriks\Bundle\SymEditBundle\Model\CategoryInterface $children
+     * @param  CategoryInterface $children
      * @return Category
      */
     public function addChildren(CategoryInterface $children)
@@ -205,7 +204,7 @@ class Category implements CategoryInterface
     /**
      * Remove children
      *
-     * @param \Isometriks\Bundle\SymEditBundle\Model\CategoryInterface $children
+     * @param CategoryInterface $children
      */
     public function removeChildren(CategoryInterface $children)
     {
@@ -230,7 +229,7 @@ class Category implements CategoryInterface
     /**
      * Set seo
      *
-     * @param array $seo
+     * @param  array $seo
      * @return Post
      */
     public function setSeo(array $seo = array())
@@ -253,8 +252,8 @@ class Category implements CategoryInterface
     /**
      * Add posts
      *
-     * @param \Isometriks\Bundle\SymEditBundle\Model\PostInterface $posts
-     * @return \Isometriks\Bundle\SymEditBundle\Model\CategoryInterface
+     * @param  PostInterface     $posts
+     * @return CategoryInterface
      */
     public function addPost(Post $post)
     {
@@ -266,7 +265,7 @@ class Category implements CategoryInterface
     /**
      * Remove posts
      *
-     * @param \Isometriks\Bundle\SymEditBundle\Model\PostInterface $posts
+     * @param PostInterface $posts
      */
     public function removePost(Post $post)
     {
@@ -282,10 +281,10 @@ class Category implements CategoryInterface
     {
         return $this->posts;
     }
-    
+
     public function getPublishedPosts()
     {
-        return $this->posts->filter(function(PostInterface $post) {
+        return $this->posts->filter(function (PostInterface $post) {
             return $post->isPublished();
         });
     }

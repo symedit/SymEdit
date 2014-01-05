@@ -7,14 +7,14 @@ interface SliderInterface
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId();
 
     /**
      * Set name
      *
-     * @param string $name
+     * @param  string $name
      * @return Slider
      */
     public function setName($name);
@@ -22,14 +22,14 @@ interface SliderInterface
     /**
      * Get name
      *
-     * @return string 
+     * @return string
      */
     public function getName();
 
     /**
      * Set description
      *
-     * @param string $description
+     * @param  string $description
      * @return Slider
      */
     public function setDescription($description);
@@ -37,14 +37,14 @@ interface SliderInterface
     /**
      * Get description
      *
-     * @return string 
+     * @return string
      */
     public function getDescription();
-    
+
     /**
      * Add slides
      *
-     * @param Isometriks\Bundle\SymEditBundle\Model\SlideInterface $slides
+     * @param  Isometriks\Bundle\SymEditBundle\Model\SlideInterface $slides
      * @return Slider
      */
     public function addSlide(SlideInterface $slide);
@@ -59,7 +59,7 @@ interface SliderInterface
     /**
      * Get slides
      *
-     * @return Doctrine\Common\Collections\Collection 
+     * @return Doctrine\Common\Collections\Collection
      */
     public function getSlides();
 }

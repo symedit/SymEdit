@@ -12,7 +12,7 @@ interface ProfileInterface
     /**
      * Set user's first name
      *
-     * @param string $firstName
+     * @param  string           $firstName
      * @return ProfileInterface
      */
     public function setFirstName($firstName);
@@ -25,7 +25,7 @@ interface ProfileInterface
     /**
      * Set User's last name
      *
-     * @param string $lastName
+     * @param  string           $lastName
      * @return ProfileInterface
      */
     public function setLastName($lastName);

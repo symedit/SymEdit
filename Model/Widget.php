@@ -60,7 +60,7 @@ class Widget implements WidgetInterface
      * @var \DateTime
      */
     protected $createdAt;
-    
+
     protected $widgetOrder;
 
     /**
@@ -137,7 +137,7 @@ class Widget implements WidgetInterface
 
     public function getOption($option)
     {
-        if(!isset($this->options[$option])) {
+        if (!isset($this->options[$option])) {
             return null;
         }
 
@@ -194,7 +194,6 @@ class Widget implements WidgetInterface
               ($this->getVisibility() === self::EXCLUDE_ONLY && !$this->hasAssoc($strings));
     }
 
-
     public function setAssoc(array $assoc)
     {
         $this->assoc = $assoc;
@@ -211,8 +210,8 @@ class Widget implements WidgetInterface
 
     public function removeAssoc($assoc)
     {
-        foreach($this->assoc as $key=>$value){
-            if($assoc == $value){
+        foreach ($this->assoc as $key=>$value) {
+            if ($assoc == $value) {
                 unset($this->assoc[$key]);
             }
         }
@@ -232,8 +231,8 @@ class Widget implements WidgetInterface
 
     public function hasAssoc(array $strings)
     {
-        foreach($strings as $assoc){
-            if($this->checkAssoc($assoc)){
+        foreach ($strings as $assoc) {
+            if ($this->checkAssoc($assoc)) {
                 return true;
             }
         }
@@ -243,7 +242,7 @@ class Widget implements WidgetInterface
 
     protected function checkAssoc($string)
     {
-        if(empty($string)){
+        if (empty($string)) {
             return false;
         }
 
@@ -252,7 +251,7 @@ class Widget implements WidgetInterface
          */
         $string = rtrim($string, '/');
 
-        foreach($this->assoc as $assoc){
+        foreach ($this->assoc as $assoc) {
 
             $assoc = rtrim($assoc, '/');
 
@@ -262,16 +261,15 @@ class Widget implements WidgetInterface
              * Have to replace by \* because preg_quote will add a slash before
              * the star.
              */
-            if(strpos($assoc, '*') !== false){
+            if (strpos($assoc, '*') !== false) {
 
                 $regexp = '#'. str_replace('\*', '.+?', preg_quote($assoc)).'#i';
 
-                if(preg_match($regexp, $string)){
+                if (preg_match($regexp, $string)) {
                     return true;
                 }
 
             } elseif ($string === $assoc) {
-
                 return true;
             }
         }
@@ -288,7 +286,7 @@ class Widget implements WidgetInterface
     }
 
     /**
-     * @param \DateTime $updatedAt
+     * @param  \DateTime       $updatedAt
      * @return WidgetInterface $widget
      */
     public function setUpdatedAt($updatedAt)
@@ -305,20 +303,20 @@ class Widget implements WidgetInterface
     {
         return $this->updatedAt;
     }
-    
+
     public function getWidgetOrder()
     {
         return $this->widgetOrder;
     }
-    
+
     /**
-     * @param int $widgetOrder
+     * @param  int    $widgetOrder
      * @return Widget
      */
     public function setWidgetOrder($widgetOrder)
     {
         $this->widgetOrder = $widgetOrder;
-        
+
         return $this;
     }
 }

@@ -15,26 +15,26 @@ class Slide implements SlideInterface
      * @var string $caption
      */
     protected $caption;
-    
+
     /**
      * @var string $position
      */
-    protected $position; 
+    protected $position;
 
     /**
      * @var Slider
      */
-    protected $slider; 
-    
+    protected $slider;
+
     /**
      * @var MediaInterface
      */
-    protected $image; 
+    protected $image;
 
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -44,20 +44,20 @@ class Slide implements SlideInterface
     /**
      * Set caption
      *
-     * @param string $caption
+     * @param  string $caption
      * @return Slide
      */
     public function setCaption($caption)
     {
         $this->caption = $caption;
-    
+
         return $this;
     }
 
     /**
      * Get caption
      *
-     * @return string 
+     * @return string
      */
     public function getCaption()
     {
@@ -67,13 +67,13 @@ class Slide implements SlideInterface
     /**
      * Set slider
      *
-     * @param Isometriks\Bundle\SymEditBundle\Model\SliderInterface $slider
+     * @param  Isometriks\Bundle\SymEditBundle\Model\SliderInterface $slider
      * @return Slide
      */
     public function setSlider(SliderInterface $slider = null)
     {
         $this->slider = $slider;
-    
+
         return $this;
     }
 
@@ -90,20 +90,20 @@ class Slide implements SlideInterface
     /**
      * Set image
      *
-     * @param MediaInterface $image
+     * @param  MediaInterface $image
      * @return Slide
      */
     public function setImage(MediaInterface $image = null)
     {
         $this->image = $image;
-    
+
         return $this;
     }
 
     /**
      * Get image
      *
-     * @return MediaInterface 
+     * @return MediaInterface
      */
     public function getImage()
     {
@@ -113,20 +113,20 @@ class Slide implements SlideInterface
     /**
      * Set position
      *
-     * @param string $position
+     * @param  string $position
      * @return Slide
      */
     public function setPosition($position)
     {
         $this->position = $position;
-    
+
         return $this;
     }
 
     /**
      * Get position
      *
-     * @return string 
+     * @return string
      */
     public function getPosition()
     {

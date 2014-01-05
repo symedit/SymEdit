@@ -1,53 +1,53 @@
 <?php
 
-namespace Isometriks\Bundle\SymEditBundle\Model; 
+namespace Isometriks\Bundle\SymEditBundle\Model;
 
-use Doctrine\Common\Collections\ArrayCollection; 
+use Doctrine\Common\Collections\ArrayCollection;
 
 interface WidgetAreaInterface
 {
-    public function getId(); 
-    
+    public function getId();
+
     /**
      * @return string Area slug
      */
-    public function getArea(); 
-    
+    public function getArea();
+
     /**
      * Set area slug
-     * 
+     *
      * @param string $area
      */
-    public function setArea($area); 
-    
+    public function setArea($area);
+
     /**
      * @param string $description
      */
-    public function setDescription($description); 
-    
+    public function setDescription($description);
+
     /**
      * @return string Description
      */
-    public function getDescription(); 
-    
+    public function getDescription();
+
     /**
      * @param WidgetInterface $widget
      */
-    public function addWidget(WidgetInterface $widget); 
-    
+    public function addWidget(WidgetInterface $widget);
+
     /**
      * @param WidgetInterface $widget
      */
-    public function removeWidget(WidgetInterface $widget); 
-    
+    public function removeWidget(WidgetInterface $widget);
+
     /**
      * @return WidgetInterface
      */
-    public function getWidgets(); 
-    
+    public function getWidgets();
+
     /**
-     * @param \Doctrine\Common\Collections\ArrayCollection $widgets
+     * @param  \Doctrine\Common\Collections\ArrayCollection $widgets
      * @return WidgetAreaInterface
      */
-    public function setWidgets(ArrayCollection $widgets); 
+    public function setWidgets(ArrayCollection $widgets);
 }

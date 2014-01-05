@@ -80,7 +80,6 @@ class Post implements PostInterface
      */
     protected $views;
 
-
     public function __construct()
     {
         $this->setCreatedAt(new \DateTime());
@@ -102,7 +101,7 @@ class Post implements PostInterface
     /**
      * Set title
      *
-     * @param string $title
+     * @param  string $title
      * @return Post
      */
     public function setTitle($title)
@@ -125,7 +124,7 @@ class Post implements PostInterface
     /**
      * Set slug
      *
-     * @param string $slug
+     * @param  string $slug
      * @return Post
      */
     public function setSlug($slug)
@@ -148,7 +147,7 @@ class Post implements PostInterface
     /**
      * Set content
      *
-     * @param string $content
+     * @param  string $content
      * @return Post
      */
     public function setContent($content)
@@ -171,7 +170,7 @@ class Post implements PostInterface
     /**
      * Set author
      *
-     * @param Isometriks\Bundle\SymEditBundle\Model\UserInterface $author
+     * @param  Isometriks\Bundle\SymEditBundle\Model\UserInterface $author
      * @return Post
      */
     public function setAuthor(UserInterface $author = null)
@@ -194,14 +193,14 @@ class Post implements PostInterface
     /**
      * Set image
      *
-     * @param MediaInterface $image
+     * @param  MediaInterface $image
      * @return Post
      */
     public function setImage(MediaInterface $image = null)
     {
         $this->image = $image;
 
-        if($this->image !== null){
+        if ($this->image !== null) {
             $this->setUpdatedAt(new \DateTime());
             $image->setNameCallback(array($this, 'getSlug'));
         }
@@ -222,7 +221,7 @@ class Post implements PostInterface
     /**
      * Set createdAt
      *
-     * @param \DateTime $createdAt
+     * @param  \DateTime $createdAt
      * @return Post
      */
     public function setCreatedAt($createdAt)
@@ -242,11 +241,10 @@ class Post implements PostInterface
         return $this->createdAt;
     }
 
-
     /**
      * Set updatedAt
      *
-     * @param \DateTime $updatedAt
+     * @param  \DateTime $updatedAt
      * @return Post
      */
     public function setUpdatedAt($updatedAt)
@@ -269,7 +267,7 @@ class Post implements PostInterface
     /**
      * Add categories
      *
-     * @param Isometriks\Bundle\SymEditBundle\Model\CategoryInterface $categories
+     * @param  Isometriks\Bundle\SymEditBundle\Model\CategoryInterface $categories
      * @return Post
      */
     public function addCategory(CategoryInterface $category)
@@ -302,7 +300,7 @@ class Post implements PostInterface
     /**
      * Set seo
      *
-     * @param array $seo
+     * @param  array $seo
      * @return Post
      */
     public function setSeo(array $seo = array())
@@ -325,7 +323,7 @@ class Post implements PostInterface
     /**
      * Set summary
      *
-     * @param string $summary
+     * @param  string $summary
      * @return Post
      */
     public function setSummary($summary)
@@ -348,7 +346,7 @@ class Post implements PostInterface
     /**
      * Set status
      *
-     * @param integer $status
+     * @param  integer $status
      * @return Post
      */
     public function setStatus($status)
@@ -383,7 +381,7 @@ class Post implements PostInterface
         if ($this->views === null) {
             $this->views = 0;
         }
-        
+
         $this->views++;
 
         return $this;

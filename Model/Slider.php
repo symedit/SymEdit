@@ -18,16 +18,16 @@ class Slider implements SliderInterface
      * @var string $description
      */
     protected $description;
-    
+
     /**
-     * @var type 
+     * @var type
      */
-    protected $slides; 
+    protected $slides;
 
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -37,20 +37,20 @@ class Slider implements SliderInterface
     /**
      * Set name
      *
-     * @param string $name
+     * @param  string $name
      * @return Slider
      */
     public function setName($name)
     {
         $this->name = $name;
-    
+
         return $this;
     }
 
     /**
      * Get name
      *
-     * @return string 
+     * @return string
      */
     public function getName()
     {
@@ -60,26 +60,26 @@ class Slider implements SliderInterface
     /**
      * Set description
      *
-     * @param string $description
+     * @param  string $description
      * @return Slider
      */
     public function setDescription($description)
     {
         $this->description = $description;
-    
+
         return $this;
     }
 
     /**
      * Get description
      *
-     * @return string 
+     * @return string
      */
     public function getDescription()
     {
         return $this->description;
     }
-    
+
     /**
      * Constructor
      */
@@ -87,17 +87,17 @@ class Slider implements SliderInterface
     {
         $this->slides = new \Doctrine\Common\Collections\ArrayCollection();
     }
-    
+
     /**
      * Add slides
      *
-     * @param Isometriks\Bundle\SymEditBundle\Model\SlideInterface $slides
+     * @param  Isometriks\Bundle\SymEditBundle\Model\SlideInterface $slides
      * @return Slider
      */
     public function addSlide(SlideInterface $slide)
     {
         $this->slides[] = $slide;
-    
+
         return $this;
     }
 
@@ -114,7 +114,7 @@ class Slider implements SliderInterface
     /**
      * Get slides
      *
-     * @return Doctrine\Common\Collections\Collection 
+     * @return Doctrine\Common\Collections\Collection
      */
     public function getSlides()
     {

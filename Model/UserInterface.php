@@ -19,7 +19,7 @@ interface UserInterface extends BaseUserInterface
     /**
      * Set user's profile
      *
-     * @param \Isometriks\Bundle\SymEditBundle\Model\ProfileInterface $profile
+     * @param  \Isometriks\Bundle\SymEditBundle\Model\ProfileInterface $profile
      * @return UserInterface
      */
     public function setProfile(ProfileInterface $profile);

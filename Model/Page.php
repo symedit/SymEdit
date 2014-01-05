@@ -165,7 +165,7 @@ class Page implements PageInterface
     /**
      * Set homepage
      *
-     * @param boolean $homepage
+     * @param  boolean $homepage
      * @return Page
      */
     public function setHomepage($homepage)
@@ -188,7 +188,7 @@ class Page implements PageInterface
     /**
      * Set root
      *
-     * @param boolean $root
+     * @param  boolean $root
      * @return Page
      */
     public function setRoot($root)
@@ -211,7 +211,7 @@ class Page implements PageInterface
     /**
      * Set name
      *
-     * @param string $name
+     * @param  string $name
      * @return Page
      */
     public function setName($name)
@@ -234,7 +234,7 @@ class Page implements PageInterface
     /**
      * Set tagline
      *
-     * @param string $tagline
+     * @param  string $tagline
      * @return Page
      */
     public function setTagline($tagline)
@@ -257,7 +257,7 @@ class Page implements PageInterface
     /**
      * Set summary
      *
-     * @param string $summary
+     * @param  string $summary
      * @return Page
      */
     public function setSummary($summary)
@@ -280,7 +280,7 @@ class Page implements PageInterface
     /**
      * Set title
      *
-     * @param string $title
+     * @param  string $title
      * @return Page
      */
     public function setTitle($title)
@@ -303,7 +303,7 @@ class Page implements PageInterface
     /**
      * Set content
      *
-     * @param string $content
+     * @param  string $content
      * @return Page
      */
     public function setContent($content)
@@ -326,7 +326,7 @@ class Page implements PageInterface
     /**
      * Set seo
      *
-     * @param array $seo
+     * @param  array $seo
      * @return Page
      */
     public function setSeo(array $seo = array())
@@ -349,7 +349,7 @@ class Page implements PageInterface
     /**
      * Set pageOrder
      *
-     * @param integer $pageOrder
+     * @param  integer $pageOrder
      * @return Page
      */
     public function setPageOrder($pageOrder)
@@ -372,7 +372,7 @@ class Page implements PageInterface
     /**
      * Set display
      *
-     * @param boolean $display
+     * @param  boolean $display
      * @return Page
      */
     public function setDisplay($display)
@@ -395,7 +395,7 @@ class Page implements PageInterface
     /**
      * Set crawl
      *
-     * @param boolean $crawl
+     * @param  boolean $crawl
      * @return Page
      */
     public function setCrawl($crawl)
@@ -418,7 +418,7 @@ class Page implements PageInterface
     /**
      * Set pageController
      *
-     * @param boolean $pageController
+     * @param  boolean $pageController
      * @return Page
      */
     public function setPageController($pageController)
@@ -441,7 +441,7 @@ class Page implements PageInterface
     /**
      * Set pageControllerPath
      *
-     * @param string $pageControllerPath
+     * @param  string $pageControllerPath
      * @return Page
      */
     public function setPageControllerPath($pageControllerPath)
@@ -484,7 +484,7 @@ class Page implements PageInterface
     /**
      * Set updated at
      *
-     * @param \DateTime $time
+     * @param  \DateTime $time
      * @return Page
      */
     public function setUpdatedAt($time)
@@ -530,7 +530,7 @@ class Page implements PageInterface
     {
         $path = $this->path;
 
-        if($this->getPageController()){
+        if ($this->getPageController()) {
             $path = rtrim($path, '/') . '/';
         }
 
@@ -539,7 +539,7 @@ class Page implements PageInterface
 
     public function getRoute()
     {
-        if($this->getHomepage()){
+        if ($this->getHomepage()) {
             return 'homepage';
         } else {
             return 'page' . str_replace(array('-','/'), '_', rtrim($this->getPath(), '/'));
@@ -549,7 +549,7 @@ class Page implements PageInterface
     /**
      * Set parent
      *
-     * @param PageInterface $parent
+     * @param  PageInterface $parent
      * @return PageInterface
      */
     public function setParent(PageInterface $parent = null)
@@ -572,7 +572,7 @@ class Page implements PageInterface
     /**
      * Add children
      *
-     * @param PageInterface $children
+     * @param  PageInterface $children
      * @return Page
      */
     public function addChildren(PageInterface $children)
@@ -606,7 +606,7 @@ class Page implements PageInterface
     /**
      * Set template
      *
-     * @param string $template
+     * @param  string $template
      * @return Page
      */
     public function setTemplate($template)
@@ -642,7 +642,7 @@ class Page implements PageInterface
 
     public function getVisibleChildren()
     {
-        return $this->getChildren()->filter(function($en) {
+        return $this->getChildren()->filter(function ($en) {
             return $en->getDisplay();
         });
     }
@@ -674,8 +674,8 @@ class Page implements PageInterface
     {
         $page = $this;
 
-        while($parent = $page->getParent()) {
-            if($this->getId() === $parent->getId()) {
+        while ($parent = $page->getParent()) {
+            if ($this->getId() === $parent->getId()) {
                 $context->addViolationAt('parent', 'Choosing this parent page creates a loop. Please choose another.');
 
                 return;
