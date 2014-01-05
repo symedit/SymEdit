@@ -16,6 +16,10 @@
         <th>Email:</th>
         <td>{{ user.email }}</td>
     </tr>
+    <tr>
+        <th>Last Login:</th>
+        <td>{{ user.lastLogin is null ? 'Never' : user.lastLogin|date('F jS, Y @ g:ia') }}</td>
+    </tr>
 </table>
 
 <a class="btn btn-primary" href="{{ path('fos_user_profile_edit') }}">Edit Profile</a>
