@@ -14,6 +14,7 @@
 <table class="table table-striped">
     <thead>
         <tr>
+            <th width="40"></th>
             <th>Title</th>
             <th>Posted</th>
             <th>Categories</th>
@@ -24,11 +25,12 @@
     <tbody>
     {% for post in posts %}
             <tr>
+                <td>{{ icon(post.published ? 'eye-open' : 'eye-close') }}</td>
                 <td><a href="{{ path('admin_post_update', { 'id': post.id }) }}">{{ post.title }}</a></td>
                 <td>{{ post.createdAt|date('F j, Y') }}</td>
                 <td>
                     {% for category in post.categories %}
-                        <span class="label">{{ category.title }}</span>
+                        <span class="label label-info">{{ category.title }}</span>
                     {% endfor %}
                 </td>
                 <td>{{ post.slug }}</td>
