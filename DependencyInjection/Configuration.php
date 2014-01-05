@@ -88,7 +88,7 @@ class Configuration implements ConfigurationInterface
                             ->addDefaultsIfNotSet()
                             ->children()
                                 ->scalarNode('model')->defaultValue('Isometriks\Bundle\SymEditBundle\Model\Post')->end()
-                                ->scalarNode('controller')->defaultValue('Isometriks\Bundle\SymEditBundle\Controller\ResourceController')->end()
+                                ->scalarNode('controller')->defaultValue('Isometriks\Bundle\SymEditBundle\Controller\PostController')->end()
                                 ->scalarNode('respository')->end()
                                 ->scalarNode('form')->defaultValue('Isometriks\Bundle\SymEditBundle\Form\PostType')->end()
                             ->end()
