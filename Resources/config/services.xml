@@ -7,7 +7,6 @@
     <parameters>
         <parameter key="isometriks_symedit.finder.resource_finder.class">Isometriks\Bundle\SymEditBundle\Finder\ResourceFinder</parameter>
         <parameter key="isometriks_symedit.breadcrumbs.class">Isometriks\Bundle\SymEditBundle\Model\Breadcrumbs</parameter>
-        <parameter key="isometriks_symedit.security_handler.class">Isometriks\Bundle\SymEditBundle\Handler\SecurityHandler</parameter>
     </parameters>
 
     <services>
@@ -16,11 +15,6 @@
         </service>
 
         <service id="isometriks_symedit.breadcrumbs" class="%isometriks_symedit.breadcrumbs.class%" />
-
-        <service id="isometriks_symedit.security_handler" class="%isometriks_symedit.security_handler.class%">
-            <argument type="service" id="router" />
-            <argument type="service" id="security.context" />
-        </service>
     </services>
 
 </container>

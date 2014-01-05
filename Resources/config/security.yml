@@ -12,13 +12,13 @@ security:
             form_login:
                 provider: fos_userbundle
                 csrf_provider: form.csrf_provider
-                success_handler: isometriks_symedit.security_handler
                 use_forward: false
+                use_referer: true
             logout:       true
             anonymous:    true
-            remember_me:  
+            remember_me:
                 key: "%secret%"
-            
+
     access_control:
         - { path: ^/login$, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/register, role: IS_AUTHENTICATED_ANONYMOUSLY }
@@ -27,7 +27,7 @@ security:
 
     role_hierarchy:
         ROLE_ADMIN:       ROLE_USER
-        ROLE_SUPER_ADMIN: 
+        ROLE_SUPER_ADMIN:
             - ROLE_ADMIN
             - ROLE_SUPER_EXTEND
             - ROLE_ADMIN_BLOG
