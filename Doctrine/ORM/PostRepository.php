@@ -2,6 +2,8 @@
 
 namespace Isometriks\Bundle\SymEditBundle\Doctrine\ORM;
 
+use Doctrine\ORM\QueryBuilder;
+use Isometriks\Bundle\SymEditBundle\Model\CategoryInterface;
 use Sylius\Bundle\ResourceBundle\Doctrine\ORM\EntityRepository;
 
 class PostRepository extends EntityRepository
@@ -22,24 +24,27 @@ class PostRepository extends EntityRepository
         return $qb->getQuery()->getResult();
     }
 
+    public function findByCategoryQueryBuilder(CategoryInterface $category)
+    {
+        return $this->getQueryBuilder()
+                  ->where(':category MEMBER OF o.categories')
+                  ->setParameter('category', $category);
+    }
+
+    public function findByCategory(CategoryInterface $category)
+    {
+        return $this->findByCategoryQueryBuilder($category)->getQuery()->getResult();
+    }
+
     public function getPopularQueryBuilder()
     {
         return $this->createQueryBuilder('p')
                     ->orderBy('p.views', 'desc');
     }
 
-    /**
-     * @return \Doctrine\ORM\QueryBuilder
-     */
-    public function getRecentQueryBuilder()
-    {
-        return $this->createQueryBuilder('p')
-                    ->orderBy('p.createdAt', 'DESC');
-    }
-
     public function getRecentQuery()
     {
-        return $this->getRecentQueryBuilder()->getQuery();
+        return $this->getQueryBuilder()->getQuery();
     }
 
     public function getRecent($max=3)
@@ -57,5 +62,14 @@ class PostRepository extends EntityRepository
         return $this->getRecentQuery()
                 ->setMaxResults(1)
                 ->getSingleResult();
+    }
+
+    /**
+     * @return QueryBuilder
+     */
+    public function getQueryBuilder()
+    {
+        return parent::getQueryBuilder()
+                   ->orderBy(sprintf('%s.createdAt', $this->getAlias()), 'DESC');
     }
 }
