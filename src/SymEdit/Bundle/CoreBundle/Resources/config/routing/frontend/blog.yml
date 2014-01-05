@@ -4,7 +4,7 @@ blog:
         _controller: isometriks_symedit.controller.post:indexAction
         _format: html
         _sylius:
-            template: IsometriksSymEditBundle:Blog:index.html.twig
+            template: SymEditBundle:Blog:index.html.twig
             criteria:
                 status: 1
             sorting:
@@ -21,7 +21,7 @@ blog_rss:
 blog_archive:
     pattern: /archive/{page}
     defaults:
-        _controller: IsometriksSymEditBundle:Blog:index
+        _controller: SymEditBundle:Blog:index
         _format: html
         _seo:
             index: false
@@ -34,7 +34,7 @@ blog_slug_view:
     defaults:
         _controller: isometriks_symedit.controller.post:showAction
         _sylius:
-            template: IsometriksSymEditBundle:Blog:single.html.twig
+            template: SymEditBundle:Blog:single.html.twig
             criteria:
                 slug: $slug
                 status: 1
@@ -48,7 +48,7 @@ blog_category_view:
         _controller: isometriks_symedit.controller.post:showCategoryAction
         _format: html
         _sylius:
-            template: IsometriksSymEditBundle:Blog:category.html.twig
+            template: SymEditBundle:Blog:category.html.twig
         page: 1
 
 blog_category_rss:
@@ -57,13 +57,13 @@ blog_category_rss:
         _controller: isometriks_symedit.controller.post:showCategoryAction
         page: 1
         _sylius:
-            template: IsometriksSymEditBundle:Blog:feed.xml.twig
+            template: SymEditBundle:Blog:feed.xml.twig
 
 blog_author_view:
     pattern: /user/{username}
     defaults:
         _controller: isometriks_symedit.controller.post:showAuthorAction
         _sylius:
-            template: IsometriksSymEditBundle:Blog:author.html.twig
+            template: SymEditBundle:Blog:author.html.twig
             criteria:
                 author.username: $slug

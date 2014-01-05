@@ -3,7 +3,7 @@ robots:
     requirements:
         _format: txt
     defaults:
-        _controller: IsometriksSymEditBundle:Crawler:robots
+        _controller: SymEditBundle:Crawler:robots
         _format: txt
 
 sitemap:
@@ -11,5 +11,5 @@ sitemap:
     requirements:
         _format: xml
     defaults:
-        _controller: IsometriksSymEditBundle:Crawler:sitemap
+        _controller: SymEditBundle:Crawler:sitemap
         _format: xml

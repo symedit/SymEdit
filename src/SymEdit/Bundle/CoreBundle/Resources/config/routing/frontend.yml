@@ -1,23 +1,23 @@
 symedit_blog_controller:
-    resource: "@IsometriksSymEditBundle/Resources/config/routing/frontend/blog.yml"
+    resource: "@SymEditBundle/Resources/config/routing/frontend/blog.yml"
     defaults:
         _symedit:
             page_controller: symedit-blog
 
 symedit_contact_controller:
-    resource: "@IsometriksSymEditBundle/Resources/config/routing/frontend/contact.yml"
+    resource: "@SymEditBundle/Resources/config/routing/frontend/contact.yml"
     defaults:
         _symedit:
             page_controller: symedit-contact
 
 symedit_team_controller:
-    resource: "@IsometriksSymEditBundle/Resources/config/routing/frontend/team.yml"
+    resource: "@SymEditBundle/Resources/config/routing/frontend/team.yml"
     defaults:
         _symedit:
             page_controller: symedit-team
 
 symedit_crawler_controller:
-    resource: "@IsometriksSymEditBundle/Resources/config/routing/frontend/crawler.yml"
+    resource: "@SymEditBundle/Resources/config/routing/frontend/crawler.yml"
 
 symedit_webmaster_controller:
-    resource: "@IsometriksSymEditBundle/Resources/config/routing/frontend/webmaster.yml"
+    resource: "@SymEditBundle/Resources/config/routing/frontend/webmaster.yml"

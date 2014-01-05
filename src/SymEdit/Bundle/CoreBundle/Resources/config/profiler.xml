@@ -10,7 +10,7 @@
     
     <services>
         <service id="isometriks_symedit.data_collector.page" class="%isometriks_symedit.data_collector.page.class%">
-            <tag name="data_collector" template="IsometriksSymEditBundle:Collector:page.html.twig" id="symedit_page" />
+            <tag name="data_collector" template="SymEditBundle:Collector:page.html.twig" id="symedit_page" />
         </service>       
     </services>
     

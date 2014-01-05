@@ -3,15 +3,15 @@
 # child bundles and just include this from there.
 
 symedit_fos:
-    resource: "@IsometriksSymEditBundle/Resources/config/routing/fos.yml"
+    resource: "@SymEditBundle/Resources/config/routing/fos.yml"
 
 symedit_admin:
-    resource: "@IsometriksSymEditBundle/Resources/config/routing/admin.yml"
+    resource: "@SymEditBundle/Resources/config/routing/admin.yml"
     prefix: %isometriks_symedit.admin_dir%
 
 symedit_pages:
-    resource: IsometriksSymEditBundle:Page
+    resource: SymEditBundle:Page
     type: symedit_pages
 
 symedit_controllers:
-    resource: "@IsometriksSymEditBundle/Resources/config/routing/frontend.yml"
+    resource: "@SymEditBundle/Resources/config/routing/frontend.yml"

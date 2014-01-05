@@ -1,9 +1,9 @@
 team:
     pattern: /
     defaults:
-        _controller: IsometriksSymEditBundle:Team:index
+        _controller: SymEditBundle:Team:index
 
 team_view_slug:
     pattern: /{slug}
     defaults:
-        _controller: IsometriksSymEditBundle:Team:view
+        _controller: SymEditBundle:Team:view

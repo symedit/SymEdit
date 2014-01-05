@@ -3,12 +3,12 @@ webmaster_google_verify:
     requirements:
         request_code: "[a-z0-9]{16}"
     defaults:
-        _controller: IsometriksSymEditBundle:Webmaster:googleVerify
+        _controller: SymEditBundle:Webmaster:googleVerify
 
 webmaster_bing_verify:
     pattern: /BingSiteAuth.{_format}
     requirements:
         _format: xml
     defaults:
-        _controller: IsometriksSymEditBundle:Webmaster:bingVerify
+        _controller: SymEditBundle:Webmaster:bingVerify
         _format: xml

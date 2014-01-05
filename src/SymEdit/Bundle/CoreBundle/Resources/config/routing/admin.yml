@@ -1,45 +1,45 @@
 symedit_admin_page_controller:
-    resource: "@IsometriksSymEditBundle/Resources/config/routing/admin/page.yml"
+    resource: "@SymEditBundle/Resources/config/routing/admin/page.yml"
     prefix: /page
 
 symedit_admin_post_controller:
-    resource: "@IsometriksSymEditBundle/Resources/config/routing/admin/post.yml"
+    resource: "@SymEditBundle/Resources/config/routing/admin/post.yml"
     prefix: /post
 
 symedit_admin_image_controller:
-    resource: "@IsometriksSymEditBundle/Resources/config/routing/admin/image.yml"
+    resource: "@SymEditBundle/Resources/config/routing/admin/image.yml"
     prefix: /image
 
 symedit_admin_category_controller:
-    resource: "@IsometriksSymEditBundle/Resources/config/routing/admin/category.yml"
+    resource: "@SymEditBundle/Resources/config/routing/admin/category.yml"
     prefix: /category
 
 symedit_admin_settings_controller:
-    resource: "@IsometriksSymEditBundle/Resources/config/routing/admin/settings.yml"
+    resource: "@SymEditBundle/Resources/config/routing/admin/settings.yml"
     prefix: /settings
 
 symedit_admin_user_controller:
-    resource: "@IsometriksSymEditBundle/Resources/config/routing/admin/user.yml"
+    resource: "@SymEditBundle/Resources/config/routing/admin/user.yml"
     prefix: /user
 
 symedit_admin_widget_controller:
-    resource: "@IsometriksSymEditBundle/Resources/config/routing/admin/widget.yml"
+    resource: "@SymEditBundle/Resources/config/routing/admin/widget.yml"
     prefix: /widget
 
 symedit_admin_slider_controller:
-    resource: "@IsometriksSymEditBundle/Resources/config/routing/admin/slider.yml"
+    resource: "@SymEditBundle/Resources/config/routing/admin/slider.yml"
     prefix: /image/slider
 
 # Below not converted
 
 symedit_admin_dashboard_controller:
-    resource: "@IsometriksSymEditBundle/Controller/Admin/DashboardController.php"
+    resource: "@SymEditBundle/Controller/Admin/DashboardController.php"
     type: annotation
 
 symedit_admin_slide_controller:
-    resource: "@IsometriksSymEditBundle/Controller/Admin/SlideController.php"
+    resource: "@SymEditBundle/Controller/Admin/SlideController.php"
     type: annotation
 
 symedit_admin_stylizer_controller:
-    resource: "@IsometriksSymEditBundle/Controller/Admin/StylizerController.php"
+    resource: "@SymEditBundle/Controller/Admin/StylizerController.php"
     type: annotation

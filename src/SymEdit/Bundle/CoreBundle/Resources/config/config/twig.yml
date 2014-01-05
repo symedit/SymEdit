@@ -1,4 +1,4 @@
 twig:
     form:
         resources:
-            - 'IsometriksSymEditBundle:Form:fields.html.twig'
+            - 'SymEditBundle:Form:fields.html.twig'

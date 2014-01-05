@@ -1,2 +1,2 @@
 imports:
-    - { resource: "@IsometriksSymEditBundle/Resources/config/config/symedit.yml" }
+    - { resource: "@SymEditBundle/Resources/config/config/symedit.yml" }
