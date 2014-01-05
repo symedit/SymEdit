@@ -33,7 +33,7 @@ class SymEditResourceExtension extends SyliusResourceExtension
     {
         foreach ($classes as $model => $serviceClasses) {
             foreach ($serviceClasses as $service => $class) {
-                $container->setParameter(sprintf('isometriks_symedit.%s.%s.class', $service === 'form' ? 'form.type' : $service, $model), $class);
+                $container->setParameter(sprintf('symedit.%s.%s.class', $service === 'form' ? 'form.type' : $service, $model), $class);
             }
         }
     }

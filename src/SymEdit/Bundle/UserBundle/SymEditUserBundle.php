@@ -2,9 +2,10 @@
 
 namespace SymEdit\Bundle\UserBundle;
 
-use SymEdit\Bundle\CoreBundle\DependencyInjection\Compiler\DoctrineMappingsPass;
 use Sylius\Bundle\ResourceBundle\DependencyInjection\Compiler\ResolveDoctrineTargetEntitiesPass;
 use Sylius\Bundle\ResourceBundle\SyliusResourceBundle;
+use SymEdit\Bundle\CoreBundle\DependencyInjection\Compiler\DoctrineMappingsPass;
+use SymEdit\Bundle\UserBundle\DependencyInjection\SymEditUserExtension;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 
@@ -26,7 +27,7 @@ class SymEditUserBundle extends Bundle
             'SymEdit\Bundle\CoreBundle\Model\ProfileInterface' => 'isometriks_symedit.model.profile.class',
         );
 
-        $container->addCompilerPass(new ResolveDoctrineTargetEntitiesPass('isometriks_user', $interfaces));
+        $container->addCompilerPass(new ResolveDoctrineTargetEntitiesPass('symedit_user', $interfaces));
 
         /**
          * Add Doctrine Mappings
@@ -34,6 +35,11 @@ class SymEditUserBundle extends Bundle
         DoctrineMappingsPass::addMappings($container, array(
             realpath(__DIR__.'/Resources/config/doctrine/model') => 'SymEdit\Bundle\UserBundle\Model',
         ));
+    }
+
+    public function getContainerExtension()
+    {
+        return new SymEditUserExtension();
     }
 
     public function getParent()

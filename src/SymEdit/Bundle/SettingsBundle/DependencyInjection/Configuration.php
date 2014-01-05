@@ -16,14 +16,14 @@ class Configuration implements ConfigurationInterface
     public function getConfigTreeBuilder()
     {
         $treeBuilder = new TreeBuilder();
-        $rootNode = $treeBuilder->root('isometriks_settings');
-        
+        $rootNode = $treeBuilder->root('sym_edit_settings');
+
         $rootNode->children()
             ->arrayNode('twig')->addDefaultsIfNotSet()->children()
                 ->booleanNode('global')->defaultFalse()->end()
                 ->scalarNode('global_variable')->defaultValue('Settings')->end()
             ->end()
-        ->end(); 
+        ->end();
 
         return $treeBuilder;
     }

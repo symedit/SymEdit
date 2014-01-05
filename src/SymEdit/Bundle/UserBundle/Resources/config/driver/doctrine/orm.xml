@@ -9,16 +9,16 @@
     </parameters>
 
     <services>
-        <service id="isometriks_user.entity_manager" factory-service="doctrine" factory-method="getManager" class="Doctrine\ORM\EntityManager">
-            <argument>%isometriks_user.model_manager_name%</argument>
+        <service id="symedit_user.entity_manager" factory-service="doctrine" factory-method="getManager" class="Doctrine\ORM\EntityManager">
+            <argument>%symedit_user.model_manager_name%</argument>
         </service>
 
         <!-- User -->
         <service id="isometriks_symedit.repository.user" class="%isometriks_symedit.repository.user.class%">
-            <argument type="service" id="isometriks_user.entity_manager" />
+            <argument type="service" id="symedit_user.entity_manager" />
             <argument type="service">
                 <service
-                    factory-service="isometriks_user.entity_manager"
+                    factory-service="symedit_user.entity_manager"
                     factory-method="getClassMetadata"
                     class="Doctrine\ORM\Mapping\ClassMetadata">
                     <argument>%isometriks_symedit.model.user.class%</argument>

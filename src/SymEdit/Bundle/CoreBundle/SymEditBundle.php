@@ -10,7 +10,7 @@ use SymEdit\Bundle\CoreBundle\DependencyInjection\Compiler\AnnotationLoaderCompi
 use SymEdit\Bundle\CoreBundle\DependencyInjection\Compiler\TwigExceptionCompilerPass;
 use SymEdit\Bundle\CoreBundle\DependencyInjection\Compiler\WidgetStrategyCompilerPass;
 use SymEdit\Bundle\CoreBundle\DependencyInjection\Compiler\TwigPathCompilerPass;
-use SymEdit\Bundle\CoreBundle\DependencyInjection\IsometriksSymEditExtension;
+use SymEdit\Bundle\CoreBundle\DependencyInjection\SymEditExtension;
 use SymEdit\Bundle\CoreBundle\DependencyInjection\Compiler\ProfileTypeCompilerPass;
 use SymEdit\Bundle\CoreBundle\DependencyInjection\Compiler\DoctrineMappingsPass;
 use Sylius\Bundle\ResourceBundle\SyliusResourceBundle;
@@ -48,7 +48,7 @@ class SymEditBundle extends Bundle
             'SymEdit\Bundle\CoreBundle\Model\WidgetInterface'     => 'isometriks_symedit.model.widget.class',
         );
 
-        $container->addCompilerPass(new ResolveDoctrineTargetEntitiesPass('isometriks_symedit', $interfaces));
+        $container->addCompilerPass(new ResolveDoctrineTargetEntitiesPass('symedit', $interfaces));
         $container->addCompilerPass(new AnnotationLoaderCompilerPass());
         $container->addCompilerPass(new TwigExceptionCompilerPass());
         $container->addCompilerPass(new WidgetStrategyCompilerPass());
@@ -65,6 +65,6 @@ class SymEditBundle extends Bundle
 
     public function getContainerExtension()
     {
-        return new IsometriksSymEditExtension();
+        return new SymEditExtension();
     }
 }

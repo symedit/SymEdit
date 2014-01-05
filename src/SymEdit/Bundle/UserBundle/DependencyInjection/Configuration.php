@@ -14,7 +14,7 @@ class Configuration implements ConfigurationInterface
     public function getConfigTreeBuilder()
     {
         $treeBuilder = new TreeBuilder();
-        $rootNode = $treeBuilder->root('isometriks_user');
+        $rootNode = $treeBuilder->root('symedit_user');
 
         $rootNode
             ->children()
