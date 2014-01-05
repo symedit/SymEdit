@@ -18,7 +18,7 @@ class Configuration implements ConfigurationInterface
     public function getConfigTreeBuilder()
     {
         $treeBuilder = new TreeBuilder();
-        $rootNode = $treeBuilder->root('sym_edit_seo_export');
+        $rootNode = $treeBuilder->root('symedit_seo_export');
 
         // Here you should define the parameters that are allowed to
         // configure your bundle. See the documentation linked above for
