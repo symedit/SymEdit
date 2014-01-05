@@ -5,9 +5,9 @@
            xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
 
     <parameters>
-        <parameter key="symedit.widget.strategy.blog_recent_posts.class">SymEdit\Bundle\CoreBundle\Widget\Strategy\RecentPostsStrategy</parameter>
-        <parameter key="symedit.widget.strategy.blog_popular_posts.class">SymEdit\Bundle\CoreBundle\Widget\Strategy\PopularPostsStrategy</parameter>
-        <parameter key="symedit.widget.strategy.blog_categories.class">SymEdit\Bundle\CoreBundle\Widget\Strategy\BlogCategoriesStrategy</parameter>
+        <parameter key="symedit.widget.strategy.blog_recent_posts.class">SymEdit\Bundle\BlogBundle\Widget\Strategy\RecentPostsStrategy</parameter>
+        <parameter key="symedit.widget.strategy.blog_popular_posts.class">SymEdit\Bundle\BlogBundle\Widget\Strategy\PopularPostsStrategy</parameter>
+        <parameter key="symedit.widget.strategy.blog_categories.class">SymEdit\Bundle\BlogBundle\Widget\Strategy\BlogCategoriesStrategy</parameter>
     </parameters>
 
     <services>

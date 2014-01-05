@@ -40,8 +40,6 @@ class SymEditBundle extends Bundle
     {
         $interfaces = array(
             'SymEdit\Bundle\CoreBundle\Model\PageInterface'       => 'symedit.model.page.class',
-            'SymEdit\Bundle\CoreBundle\Model\PostInterface'       => 'symedit.model.post.class',
-            'SymEdit\Bundle\CoreBundle\Model\CategoryInterface'   => 'symedit.model.category.class',
             'SymEdit\Bundle\CoreBundle\Model\SlideInterface'      => 'symedit.model.slide.class',
             'SymEdit\Bundle\CoreBundle\Model\SliderInterface'     => 'symedit.model.slider.class',
             'SymEdit\Bundle\CoreBundle\Model\WidgetAreaInterface' => 'symedit.model.widget_area.class',

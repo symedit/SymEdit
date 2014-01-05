@@ -1,6 +1,6 @@
 <?php
 
-namespace SymEdit\Bundle\CoreBundle\Form;
+namespace SymEdit\Bundle\BlogBundle\Form\Type;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -22,7 +22,7 @@ class CategoryType extends AbstractType
             ))
             ->add('parent', 'entity', array(
                 'empty_value' => '(Root Category)',
-                'class' => 'SymEdit\Bundle\CoreBundle\Model\Category',
+                'class' => 'SymEdit\Bundle\BlogBundle\Model\Category',
                 'required' => false,
             ));
 

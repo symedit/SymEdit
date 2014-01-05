@@ -10,7 +10,7 @@ use Knp\Bundle\PaginatorBundle\Pagination\SlidingPagination;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Sylius\Bundle\ResourceBundle\Model\RepositoryInterface;
-use SymEdit\Bundle\CoreBundle\Model\Post;
+use SymEdit\Bundle\BlogBundle\Model\Post;
 
 class BlogController extends Controller
 {
@@ -40,7 +40,7 @@ class BlogController extends Controller
     }
 
     /**
-     * @Sitemap(params={"slug"="getSlug"}, entity="SymEdit\Bundle\CoreBundle\Model\Post")
+     * @Sitemap(params={"slug"="getSlug"}, entity="SymEdit\Bundle\BlogBundle\Model\Post")
      */
     public function slugViewAction($slug, Request $request)
     {
@@ -95,14 +95,14 @@ class BlogController extends Controller
     }
 
     /**
-     * @Sitemap(params={"slug"="getSlug"}, entity="SymEdit\Bundle\CoreBundle\Model\Category")
+     * @Sitemap(params={"slug"="getSlug"}, entity="SymEdit\Bundle\BlogBundle\Model\Category")
      *
      * @TODO: Move seo stuff to a listenere that listens for category.view etc.
      */
     public function categoryViewAction($slug, Request $request, $_format, $page = 1)
     {
         $em = $this->getDoctrine()->getManager();
-        $category = $em->getRepository('SymEdit\Bundle\CoreBundle\Model\Category')->findOneBySlug($slug);
+        $category = $em->getRepository('SymEdit\Bundle\BlogBundle\Model\Category')->findOneBySlug($slug);
 
         if (!$category) {
             throw $this->createNotFoundException(sprintf('Category with slug "%s" not found.', $slug));
@@ -115,7 +115,7 @@ class BlogController extends Controller
 
         $query = $em->createQueryBuilder()
                 ->select('p')
-                ->from('SymEdit\Bundle\CoreBundle\Model\Post', 'p')
+                ->from('SymEdit\Bundle\BlogBundle\Model\Post', 'p')
                 ->join('p.categories', 'c')
                 ->where(':catId MEMBER OF p.categories')
                 ->orderBy('p.createdAt', 'DESC')
@@ -162,7 +162,7 @@ class BlogController extends Controller
 
         $query = $em->createQueryBuilder()
                 ->select('p')
-                ->from('SymEdit\Bundle\CoreBundle\Model\Post', 'p')
+                ->from('SymEdit\Bundle\BlogBundle\Model\Post', 'p')
                 ->join('p.author', 'a')
                 ->where('a.username = :username')
                 ->setParameter('username', $username)

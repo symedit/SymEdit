@@ -1,7 +1,8 @@
 <?php
 
-namespace SymEdit\Bundle\CoreBundle\Controller;
+namespace SymEdit\Bundle\BlogBundle\Controller;
 
+use SymEdit\Bundle\CoreBundle\Controller\ResourceController;
 use Symfony\Component\HttpFoundation\Request;
 
 class PostController extends ResourceController

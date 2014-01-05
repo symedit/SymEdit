@@ -3,7 +3,7 @@
 namespace SymEdit\Bundle\CoreBundle\Filter;
 
 use Doctrine\ORM\Query\Filter\SQLFilter;
-use SymEdit\Bundle\CoreBundle\Model\Post;
+use SymEdit\Bundle\BlogBundle\Model\Post;
 use Doctrine\ORM\Mapping\ClassMetadata;
 
 class PostPublishedFilter extends SQLFilter

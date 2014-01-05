@@ -1,4 +1,4 @@
-SymEdit\Bundle\CoreBundle\Model\Post:
+SymEdit\Bundle\BlogBundle\Model\Post:
     type: entity
     table: post
     gedmo:
@@ -80,5 +80,5 @@ SymEdit\Bundle\CoreBundle\Model\Post:
                 inverseJoinColumns:
                     post_id:
                         referenceColumnName: id
-            targetEntity: SymEdit\Bundle\CoreBundle\Model\CategoryInterface
+            targetEntity: SymEdit\Bundle\BlogBundle\Model\CategoryInterface
             inversedBy: posts

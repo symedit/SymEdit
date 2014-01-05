@@ -3,7 +3,7 @@
 namespace SymEdit\Bundle\CoreBundle\Doctrine\ORM;
 
 use Doctrine\ORM\QueryBuilder;
-use SymEdit\Bundle\CoreBundle\Model\CategoryInterface;
+use SymEdit\Bundle\BlogBundle\Model\CategoryInterface;
 use Sylius\Bundle\ResourceBundle\Doctrine\ORM\EntityRepository;
 
 class PostRepository extends EntityRepository

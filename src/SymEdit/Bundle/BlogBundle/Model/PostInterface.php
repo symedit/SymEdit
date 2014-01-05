@@ -4,6 +4,8 @@ namespace SymEdit\Bundle\BlogBundle\Model;
 
 use Isometriks\Bundle\MediaBundle\Model\MediaInterface;
 use Isometriks\Bundle\SeoBundle\Model\SeoAbleInterface;
+use SymEdit\Bundle\CoreBundle\Model\ViewCountableInterface;
+use SymEdit\Bundle\CoreBundle\Model\UserInterface;
 
 interface PostInterface extends SeoAbleInterface, ViewCountableInterface
 {

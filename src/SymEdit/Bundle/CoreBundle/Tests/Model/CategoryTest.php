@@ -3,7 +3,7 @@
 namespace SymEdit\Bundle\CoreBundle\Test\Model; 
 
 use SymEdit\Bundle\CoreBundle\Tests\TestCase; 
-use SymEdit\Bundle\CoreBundle\Model\Category; 
+use SymEdit\Bundle\BlogBundle\Model\Category; 
 
 class CategoryTest extends TestCase
 {
@@ -26,6 +26,6 @@ class CategoryTest extends TestCase
      */
     protected function getCategory()
     {
-        return $this->getMockForAbstractClass('SymEdit\Bundle\CoreBundle\Model\Category'); 
+        return $this->getMockForAbstractClass('SymEdit\Bundle\BlogBundle\Model\Category'); 
     }    
 }

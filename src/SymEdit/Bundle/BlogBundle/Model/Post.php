@@ -267,7 +267,7 @@ class Post implements PostInterface
     /**
      * Add categories
      *
-     * @param  SymEdit\Bundle\CoreBundle\Model\CategoryInterface $categories
+     * @param  SymEdit\Bundle\BlogBundle\Model\CategoryInterface $categories
      * @return Post
      */
     public function addCategory(CategoryInterface $category)
@@ -280,7 +280,7 @@ class Post implements PostInterface
     /**
      * Remove categories
      *
-     * @param SymEdit\Bundle\CoreBundle\Model\CategoryInterface $categories
+     * @param SymEdit\Bundle\BlogBundle\Model\CategoryInterface $categories
      */
     public function removeCategory(CategoryInterface $category)
     {

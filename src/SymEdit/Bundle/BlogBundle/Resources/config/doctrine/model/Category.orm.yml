@@ -1,4 +1,4 @@
-SymEdit\Bundle\CoreBundle\Model\Category:
+SymEdit\Bundle\BlogBundle\Model\Category:
     type: entity
     table: category
     fields:
@@ -21,7 +21,7 @@ SymEdit\Bundle\CoreBundle\Model\Category:
             nullable: true
     manyToOne:
         parent:
-            targetEntity: SymEdit\Bundle\CoreBundle\Model\CategoryInterface
+            targetEntity: SymEdit\Bundle\BlogBundle\Model\CategoryInterface
             inversedBy: children
             joinColumns:
                 parent:
@@ -29,14 +29,14 @@ SymEdit\Bundle\CoreBundle\Model\Category:
                     onDelete: 'SET NULL'
     oneToMany:
         children:
-            targetEntity: SymEdit\Bundle\CoreBundle\Model\CategoryInterface
+            targetEntity: SymEdit\Bundle\BlogBundle\Model\CategoryInterface
             cascade:
                 - remove
                 - persist
             mappedBy: parent
     manyToMany:
         posts:
-            targetEntity: SymEdit\Bundle\CoreBundle\Model\PostInterface
+            targetEntity: SymEdit\Bundle\BlogBundle\Model\PostInterface
             mappedBy: categories
             orderBy:
                 createdAt: DESC

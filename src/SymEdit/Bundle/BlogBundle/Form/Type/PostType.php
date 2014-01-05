@@ -1,11 +1,11 @@
 <?php
 
-namespace SymEdit\Bundle\CoreBundle\Form;
+namespace SymEdit\Bundle\BlogBundle\Form\Type;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
-use SymEdit\Bundle\CoreBundle\Model\Post;
+use SymEdit\Bundle\BlogBundle\Model\Post;
 use Doctrine\ORM\EntityRepository;
 
 class PostType extends AbstractType
@@ -43,7 +43,7 @@ class PostType extends AbstractType
             ))
             ->add('categories', 'entity', array(
                 'property' => 'title',
-                'class'    => 'SymEdit\Bundle\CoreBundle\Model\Category',
+                'class'    => 'SymEdit\Bundle\BlogBundle\Model\Category',
                 'multiple' => true,
                 'expanded'  => true,
             ))

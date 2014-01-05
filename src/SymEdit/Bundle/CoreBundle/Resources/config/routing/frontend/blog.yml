@@ -18,14 +18,15 @@ blog_rss:
         _sylius:
             paginate: false
 
-blog_archive:
-    pattern: /archive/{page}
-    defaults:
-        _controller: SymEditBundle:Blog:index
-        _format: html
-        _seo:
-            index: false
-        page: 1
+# @TODO Reactivate this..
+#blog_archive:
+#    pattern: /archive/{page}
+#    defaults:
+#        _controller: SymEditBundle:Blog:index
+#        _format: html
+#        _seo:
+#            index: false
+#        page: 1
 
 blog_slug_view:
     pattern: /{slug}

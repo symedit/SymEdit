@@ -2,7 +2,7 @@
 
 namespace SymEdit\Bundle\CoreBundle\Event;
 
-use SymEdit\Bundle\CoreBundle\Model\PostInterface;
+use SymEdit\Bundle\BlogBundle\Model\PostInterface;
 use Symfony\Component\EventDispatcher\Event;
 use Symfony\Component\HttpFoundation\Request;
 

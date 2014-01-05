@@ -4,7 +4,7 @@ namespace SymEdit\Bundle\CoreBundle\EventListener\Seo;
 
 use Isometriks\Bundle\SeoBundle\Event\SeoEvent;
 use Isometriks\Bundle\SeoBundle\Model\SeoCalculatorInterface;
-use SymEdit\Bundle\CoreBundle\Model\CategoryInterface;
+use SymEdit\Bundle\BlogBundle\Model\CategoryInterface;
 
 class CategoryCalculator implements SeoCalculatorInterface
 {
