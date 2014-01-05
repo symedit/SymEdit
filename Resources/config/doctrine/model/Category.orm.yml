@@ -38,6 +38,8 @@ Isometriks\Bundle\SymEditBundle\Model\Category:
         posts:
             targetEntity: Isometriks\Bundle\SymEditBundle\Model\PostInterface
             mappedBy: categories
+            orderBy:
+                createdAt: DESC
     lifecycleCallbacks:
         prePersist:
             - fixSlug
