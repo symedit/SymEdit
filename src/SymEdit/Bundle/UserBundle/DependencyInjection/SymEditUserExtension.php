@@ -12,6 +12,10 @@ use SymEdit\Bundle\CoreBundle\DependencyInjection\SymEditResourceExtension;
  */
 class SymEditUserExtension extends SymEditResourceExtension
 {
+    protected $configFiles = array(
+        'services', 'form',
+    );
+
     /**
      * {@inheritdoc}
      */
