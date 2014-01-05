@@ -1,0 +1,15 @@
+{
+    "name": "symedit/seo-export-bundle",
+    "description": "Export SEO to CSV",
+    "type": "symfony-bundle",
+    "authors": [
+        {
+            "name": "Craig Blanchette",
+            "email": "craig.blanchette@gmail.com"
+        }
+    ],
+    "autoload": {
+        "psr-0": { "SymEdit\\Bundle\\SeoExportBundle": "" }
+    },
+    "target-dir": "SymEdit/Bundle/SeoExportBundle"
+}
