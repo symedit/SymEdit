@@ -2,13 +2,13 @@
 
 {% block meta %}
 {{ parent() }}
-<link href="{{ url('blog_category_rss', {slug:Category.slug}) }}" rel="alternate" type="application/rss+xml" title="{{ block('title') }}">
+<link href="{{ url('blog_category_rss', {slug:category.slug}) }}" rel="alternate" type="application/rss+xml" title="{{ block('title') }}">
 {% endblock %}
 
 {% block blog_title %}
-Category &raquo; {{ Category.title }}
-<a href="{{ path('blog_category_rss', {slug:Category.slug}) }}">
-    <img src="{{ asset('/bundles/isometrikssymedit/img/social/rss.png') }}" alt="{{ Page.tagline }} - {{ Category.title }} - RSS Feed">
+Category &raquo; {{ category.title }}
+<a href="{{ path('blog_category_rss', {slug:category.slug}) }}">
+    <img src="{{ asset('/bundles/isometrikssymedit/img/social/rss.png') }}" alt="{{ Page.tagline }} - {{ category.title }} - RSS Feed">
 </a>
 {% endblock %}
 
@@ -19,5 +19,5 @@ Category &raquo; {{ Category.title }}
         There are currently no posts for this category.
     {% endif %}
 
-    {{ knp_pagination_render(posts) }}
+    {{ pagerfanta(posts) }}
 {% endblock %}
