@@ -4,6 +4,7 @@ blog:
         _controller: symedit.controller.post:indexAction
         _format: html
         _sylius:
+            paginate: "#blog.max_posts#"
             template: SymEditBundle:Blog:index.html.twig
             criteria:
                 status: 1
