@@ -36,6 +36,8 @@ class RequestListener
 
             return $value;
         }
+
+        return $value;
     }
 
     protected function replaceString($string)
