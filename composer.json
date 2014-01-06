@@ -1,0 +1,27 @@
+{
+    "name": "symedit/symedit",
+    "type": "library",
+    "description": "SymEdit - Symfony2 Content Management System (CMS)",
+    "homepage": "http://symedit.com",
+    "authors": [
+        {
+            "name": "Craig Blanchette",
+            "email": "craig.blanchette@gmail.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.3.3",
+        "twig/twig": "~1.11"
+    },
+    "replace": {
+        "symedit/blog-bundle": "self.version",
+        "symedit/core-bundle": "self.version",
+        "symedit/resource-bundle": "self.version",
+        "symedit/seo-export-bundle": "self.version",
+        "symedit/settings-bundle": "self.version",
+        "symedit/stylizer-bundle": "self.version",
+        "symedit/user-bundle": "self.version",
+        "symedit/widget-bundle": "self.version",
+        "symedit/widget-bridge": "self.version"
+    }
+}
