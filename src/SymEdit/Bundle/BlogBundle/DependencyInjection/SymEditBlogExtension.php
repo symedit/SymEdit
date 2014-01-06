@@ -1,15 +1,19 @@
 <?php
 
+/*
+ * This file is part of the SymEdit package.
+ *
+ * (c) Craig Blanchette <craig.blanchette@gmail.com>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
 namespace SymEdit\Bundle\BlogBundle\DependencyInjection;
 
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use SymEdit\Bundle\ResourceBundle\DependencyInjection\SymEditResourceExtension;
 
-/**
- * This is the class that loads and manages your bundle configuration
- *
- * To learn more see {@link http://symfony.com/doc/current/cookbook/bundles/extension.html}
- */
 class SymEditBlogExtension extends SymEditResourceExtension
 {
     protected $configFiles = array(
