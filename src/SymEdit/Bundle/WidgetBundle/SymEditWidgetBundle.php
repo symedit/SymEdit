@@ -4,7 +4,7 @@ namespace SymEdit\Bundle\WidgetBundle;
 
 use Sylius\Bundle\ResourceBundle\DependencyInjection\Compiler\ResolveDoctrineTargetEntitiesPass;
 use Sylius\Bundle\ResourceBundle\SyliusResourceBundle;
-use SymEdit\Bundle\CoreBundle\DependencyInjection\Compiler\DoctrineMappingsPass;
+use SymEdit\Bundle\ResourceBundle\DependencyInjection\Compiler\DoctrineMappingsPass;
 use SymEdit\Bundle\WidgetBundle\DependencyInjection\Compiler\WidgetStrategyCompilerPass;
 use SymEdit\Bundle\WidgetBundle\DependencyInjection\SymEditWidgetExtension;
 use Symfony\Component\DependencyInjection\ContainerBuilder;

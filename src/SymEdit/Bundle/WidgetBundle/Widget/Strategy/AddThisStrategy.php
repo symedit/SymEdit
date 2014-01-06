@@ -2,13 +2,12 @@
 
 namespace SymEdit\Bundle\WidgetBundle\Widget\Strategy;
 
-use SymEdit\Bundle\CoreBundle\Model\PageInterface;
 use SymEdit\Bundle\WidgetBundle\Model\WidgetInterface;
 use Symfony\Component\Form\FormBuilderInterface;
 
 class AddThisStrategy extends AbstractWidgetStrategy
 {
-    public function execute(WidgetInterface $widget, PageInterface $page = null)
+    public function execute(WidgetInterface $widget)
     {
         return $this->render('@SymEdit/Widget/addthis.html.twig', array(
             'include_script' => $widget->getOption('include_script'),

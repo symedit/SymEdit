@@ -2,14 +2,13 @@
 
 namespace SymEdit\Bundle\WidgetBundle\Widget\Strategy;
 
-use SymEdit\Bundle\CoreBundle\Model\PageInterface;
 use SymEdit\Bundle\WidgetBundle\Model\WidgetInterface;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Validator\Constraints\NotBlank;
 
 class DisqusStrategy extends AbstractWidgetStrategy
 {
-    public function execute(WidgetInterface $widget, PageInterface $page = null)
+    public function execute(WidgetInterface $widget)
     {
         return $this->render('@SymEdit/Widget/disqus.html.twig', array(
             'shortname' => $widget->getOption('shortname'),

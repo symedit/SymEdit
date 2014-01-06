@@ -11,7 +11,7 @@ use SymEdit\Bundle\CoreBundle\DependencyInjection\Compiler\TwigExceptionCompiler
 use SymEdit\Bundle\CoreBundle\DependencyInjection\Compiler\TwigPathCompilerPass;
 use SymEdit\Bundle\CoreBundle\DependencyInjection\SymEditExtension;
 use SymEdit\Bundle\CoreBundle\DependencyInjection\Compiler\ProfileTypeCompilerPass;
-use SymEdit\Bundle\CoreBundle\DependencyInjection\Compiler\DoctrineMappingsPass;
+use SymEdit\Bundle\ResourceBundle\DependencyInjection\Compiler\DoctrineMappingsPass;
 use Sylius\Bundle\ResourceBundle\SyliusResourceBundle;
 
 class SymEditBundle extends Bundle

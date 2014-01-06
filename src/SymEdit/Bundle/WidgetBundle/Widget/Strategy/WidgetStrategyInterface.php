@@ -2,7 +2,6 @@
 
 namespace SymEdit\Bundle\WidgetBundle\Widget\Strategy;
 
-use SymEdit\Bundle\CoreBundle\Model\PageInterface;
 use SymEdit\Bundle\WidgetBundle\Model\WidgetInterface;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Templating\EngineInterface;
@@ -21,9 +20,8 @@ interface WidgetStrategyInterface
      * Executes the strategy
      *
      * @param WidgetInterface $widget The widget to be rendered
-     * @param PageInterface $page $name If a page is currently active it will be passed
      */
-    public function execute(WidgetInterface $widget, PageInterface $page = null);
+    public function execute(WidgetInterface $widget);
 
     public function setDefaultOptions(WidgetInterface $widget);
 
