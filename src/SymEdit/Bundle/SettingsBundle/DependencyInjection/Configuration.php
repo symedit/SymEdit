@@ -1,12 +1,21 @@
 <?php
 
+/*
+ * This file is part of the SymEdit package.
+ *
+ * (c) Craig Blanchette <craig.blanchette@gmail.com>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
 namespace SymEdit\Bundle\SettingsBundle\DependencyInjection;
 
 use Symfony\Component\Config\Definition\Builder\TreeBuilder;
 use Symfony\Component\Config\Definition\ConfigurationInterface;
 
 /**
- * IsometriksSettings Configuration
+ * SymEditSettings Configuration
  */
 class Configuration implements ConfigurationInterface
 {
@@ -16,7 +25,7 @@ class Configuration implements ConfigurationInterface
     public function getConfigTreeBuilder()
     {
         $treeBuilder = new TreeBuilder();
-        $rootNode = $treeBuilder->root('sym_edit_settings');
+        $rootNode = $treeBuilder->root('symedit_settings');
 
         $rootNode->children()
             ->arrayNode('twig')->addDefaultsIfNotSet()->children()
