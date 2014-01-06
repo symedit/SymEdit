@@ -1,10 +1,11 @@
 <?php
 
-namespace SymEdit\Bundle\CoreBundle\Doctrine\ORM;
+namespace SymEdit\Bundle\WidgetBundle\Doctrine\ORM;
 
 use Doctrine\ORM\Mapping\ClassMetadata;
 use Sylius\Bundle\ResourceBundle\Doctrine\ORM\EntityRepository;
-use SymEdit\Bundle\CoreBundle\Widget\WidgetRegistry;
+use SymEdit\Bundle\WidgetBundle\Model\WidgetInterface;
+use SymEdit\Bundle\WidgetBundle\Widget\WidgetRegistry;
 
 class WidgetRepository extends EntityRepository
 {

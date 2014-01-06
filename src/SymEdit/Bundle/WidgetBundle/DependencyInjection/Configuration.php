@@ -2,6 +2,7 @@
 
 namespace SymEdit\Bundle\WidgetBundle\DependencyInjection;
 
+use Symfony\Component\Config\Definition\Builder\ArrayNodeDefinition;
 use Symfony\Component\Config\Definition\Builder\TreeBuilder;
 use Symfony\Component\Config\Definition\ConfigurationInterface;
 
@@ -20,8 +21,56 @@ class Configuration implements ConfigurationInterface
         $treeBuilder = new TreeBuilder();
         $rootNode = $treeBuilder->root('symedit_widget');
 
+        $rootNode
+            ->children()
+                ->scalarNode('driver')->defaultValue('doctrine/orm')->end()
+                ->scalarNode('model_manager_name')->defaultNull()->end()
+                ->arrayNode('fragment')
+                    ->info('Fragment stategy to use')
+                    ->addDefaultsIfNotSet()
+                    ->children()
+                        ->scalarNode('strategy')->defaultValue('inline')->end()
+                    ->end()
+                ->end()
+            ->end();
 
+        $this->addClassesSection($rootNode);
 
         return $treeBuilder;
+    }
+
+
+    /**
+     * Add classes config to be processed by the Sylius Resource Bundle
+     *
+     * @param ArrayNodeDefinition $node
+     */
+    private function addClassesSection(ArrayNodeDefinition $node)
+    {
+        $node
+            ->children()
+                ->arrayNode('classes')
+                    ->addDefaultsIfNotSet()
+                    ->children()
+                        ->arrayNode('widget')
+                            ->addDefaultsIfNotSet()
+                            ->children()
+                                ->scalarNode('model')->defaultValue('SymEdit\Bundle\WidgetBundle\Model\Widget')->end()
+                                ->scalarNode('controller')->defaultValue('SymEdit\Bundle\WidgetBundle\Controller\WidgetController')->end()
+                                ->scalarNode('respository')->end()
+                                ->scalarNode('form')->defaultValue('SymEdit\Bundle\WidgetBundle\Form\WidgetType')->end()
+                            ->end()
+                        ->end()
+                        ->arrayNode('widget_area')
+                            ->addDefaultsIfNotSet()
+                            ->children()
+                                ->scalarNode('model')->defaultValue('SymEdit\Bundle\WidgetBundle\Model\WidgetArea')->end()
+                                ->scalarNode('repository')->end()
+                                ->scalarNode('form')->defaultValue('SymEdit\Bundle\WidgetBundle\Form\WidgetAreaType')->end()
+                            ->end()
+                        ->end()
+                    ->end()
+                ->end()
+            ->end();
     }
 }

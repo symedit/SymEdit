@@ -43,5 +43,4 @@
             <tag name="symedit_widget.widget_strategy" alias="addthis" />
         </service>
     </services>
-
 </container>

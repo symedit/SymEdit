@@ -1,8 +1,8 @@
 <?php
 
-namespace SymEdit\Bundle\CoreBundle\Twig\Extension;
+namespace SymEdit\Bundle\WidgetBundle\Twig\Extension;
 
-use SymEdit\Bundle\CoreBundle\Twig\TokenParser;
+use SymEdit\Bundle\WidgetBundle\Twig\TokenParser;
 
 class WidgetExtension extends \Twig_Extension
 {

@@ -13,17 +13,17 @@
     <services>
         <service id="symedit.widget.strategy.blog_recent_posts" class="%symedit.widget.strategy.blog_recent_posts.class%">
             <argument type="service" id="symedit.repository.post" />
-            <tag name="symedit.widget_strategy" alias="blog_recent_posts" />
+            <tag name="symedit_widget.widget_strategy" alias="blog_recent_posts" />
         </service>
 
         <service id="symedit.widget.strategy.blog_popular_posts" class="%symedit.widget.strategy.blog_popular_posts.class%">
             <argument type="service" id="symedit.repository.post" />
-            <tag name="symedit.widget_strategy" alias="blog_popular_posts" />
+            <tag name="symedit_widget.widget_strategy" alias="blog_popular_posts" />
         </service>
 
         <service id="symedit.widget.strategy.blog_categories" class="%symedit.widget.strategy.blog_categories.class%">
             <argument type="service" id="symedit.repository.category" />
-            <tag name="symedit.widget_strategy" alias="blog_categories" />
+            <tag name="symedit_widget.widget_strategy" alias="blog_categories" />
         </service>
     </services>
 </container>

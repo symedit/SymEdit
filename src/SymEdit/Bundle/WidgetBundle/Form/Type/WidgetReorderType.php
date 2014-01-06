@@ -1,6 +1,6 @@
 <?php
 
-namespace SymEdit\Bundle\CoreBundle\Form;
+namespace SymEdit\Bundle\WidgetBundle\Form\Type;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;

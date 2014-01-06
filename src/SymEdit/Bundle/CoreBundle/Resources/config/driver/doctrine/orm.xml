@@ -7,8 +7,6 @@
     <parameters>
         <parameter key="symedit.repository.page.class">SymEdit\Bundle\CoreBundle\Doctrine\ORM\PageRepository</parameter>
         <parameter key="symedit.repository.image.class">Sylius\Bundle\ResourceBundle\Doctrine\ORM\EntityRepository</parameter>
-        <parameter key="symedit.repository.widget.class">SymEdit\Bundle\CoreBundle\Doctrine\ORM\WidgetRepository</parameter>
-        <parameter key="symedit.repository.widget_area.class">Sylius\Bundle\ResourceBundle\Doctrine\ORM\EntityRepository</parameter>
         <parameter key="symedit.repository.slider.class">Sylius\Bundle\ResourceBundle\Doctrine\ORM\EntityRepository</parameter>
     </parameters>
 
@@ -45,35 +43,6 @@
             </argument>
         </service>
 
-        <!-- Widget -->
-        <service id="symedit.manager.widget" alias="symedit.entity_manager" />
-        <service id="symedit.repository.widget" class="%symedit.repository.widget.class%">
-            <argument type="service" id="symedit.manager.widget" />
-            <argument type="service">
-                <service
-                    factory-service="symedit.manager.widget"
-                    factory-method="getClassMetadata"
-                    class="Doctrine\ORM\Mapping\ClassMetadata">
-                    <argument>%symedit.model.widget.class%</argument>
-                </service>
-            </argument>
-            <argument type="service" id="symedit.widget.registry" />
-        </service>
-
-        <!-- Widget Area -->
-        <service id="symedit.manager.widget_area" alias="symedit.entity_manager" />
-        <service id="symedit.repository.widget_area" class="%symedit.repository.widget_area.class%">
-            <argument type="service" id="symedit.manager.widget_area" />
-            <argument type="service">
-                <service
-                    factory-service="symedit.manager.widget_area"
-                    factory-method="getClassMetadata"
-                    class="Doctrine\ORM\Mapping\ClassMetadata">
-                    <argument>%symedit.model.widget_area.class%</argument>
-                </service>
-            </argument>
-        </service>
-
         <!-- Slider -->
         <service id="symedit.manager.slider" alias="symedit.entity_manager" />
         <service id="symedit.repository.slider" class="%symedit.repository.slider.class%">
@@ -93,11 +62,5 @@
             <argument type="service" id="router" />
             <tag name="doctrine.event_subscriber" />
         </service>
-
-        <service id="symedit.widget.listener" class="SymEdit\Bundle\CoreBundle\Doctrine\ORM\WidgetListener">
-            <argument type="service" id="symedit.widget.registry" />
-            <tag name="doctrine.event_subscriber" />
-        </service>
     </services>
-
 </container>

@@ -1,0 +1,20 @@
+<?xml version="1.0" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <services>
+        <service id="symedit.form.type.widget_area" class="%symedit.form.type.widget_area.class%">
+            <tag name="form.type" alias="symedit_widget_area" />
+        </service>
+
+        <service id="symedit.form.type.widget" class="%symedit.form.type.widget.class%">
+            <argument>%symedit.model.widget.class%</argument>
+            <argument>%symedit.model.widget_area.class%</argument>
+            <tag name="form.type" alias="symedit_widget" />
+        </service>
+
+    </services>
+
+</container>

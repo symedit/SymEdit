@@ -8,7 +8,6 @@ use Symfony\Component\HttpKernel\Kernel;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use SymEdit\Bundle\CoreBundle\DependencyInjection\Compiler\AnnotationLoaderCompilerPass;
 use SymEdit\Bundle\CoreBundle\DependencyInjection\Compiler\TwigExceptionCompilerPass;
-use SymEdit\Bundle\CoreBundle\DependencyInjection\Compiler\WidgetStrategyCompilerPass;
 use SymEdit\Bundle\CoreBundle\DependencyInjection\Compiler\TwigPathCompilerPass;
 use SymEdit\Bundle\CoreBundle\DependencyInjection\SymEditExtension;
 use SymEdit\Bundle\CoreBundle\DependencyInjection\Compiler\ProfileTypeCompilerPass;
@@ -42,14 +41,11 @@ class SymEditBundle extends Bundle
             'SymEdit\Bundle\CoreBundle\Model\PageInterface'       => 'symedit.model.page.class',
             'SymEdit\Bundle\CoreBundle\Model\SlideInterface'      => 'symedit.model.slide.class',
             'SymEdit\Bundle\CoreBundle\Model\SliderInterface'     => 'symedit.model.slider.class',
-            'SymEdit\Bundle\CoreBundle\Model\WidgetAreaInterface' => 'symedit.model.widget_area.class',
-            'SymEdit\Bundle\CoreBundle\Model\WidgetInterface'     => 'symedit.model.widget.class',
         );
 
         $container->addCompilerPass(new ResolveDoctrineTargetEntitiesPass('symedit', $interfaces));
         $container->addCompilerPass(new AnnotationLoaderCompilerPass());
         $container->addCompilerPass(new TwigExceptionCompilerPass());
-        $container->addCompilerPass(new WidgetStrategyCompilerPass());
         $container->addCompilerPass(new TwigPathCompilerPass($this->kernel));
         $container->addCompilerPass(new ProfileTypeCompilerPass());
 

@@ -1,6 +1,6 @@
 <?php
 
-namespace SymEdit\Bundle\CoreBundle\Form\DataTransformer; 
+namespace SymEdit\Bundle\WidgetBundle\Form\DataTransformer; 
 
 use Symfony\Component\Form\DataTransformerInterface; 
 

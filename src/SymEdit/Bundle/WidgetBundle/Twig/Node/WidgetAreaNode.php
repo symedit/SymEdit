@@ -1,6 +1,6 @@
 <?php
 
-namespace SymEdit\Bundle\CoreBundle\Twig\Node;
+namespace SymEdit\Bundle\WidgetBundle\Twig\Node;
 
 class WidgetAreaNode extends \Twig_Node
 {

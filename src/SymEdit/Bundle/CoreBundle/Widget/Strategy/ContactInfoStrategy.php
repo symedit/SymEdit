@@ -2,8 +2,9 @@
 
 namespace SymEdit\Bundle\CoreBundle\Widget\Strategy;
 
+use SymEdit\Bundle\WidgetBundle\Model\WidgetInterface;
+use SymEdit\Bundle\WidgetBundle\Widget\Strategy\TemplateStrategy;
 use Symfony\Component\Form\FormBuilderInterface;
-use SymEdit\Bundle\CoreBundle\Model\WidgetInterface;
 
 class ContactInfoStrategy extends TemplateStrategy
 {

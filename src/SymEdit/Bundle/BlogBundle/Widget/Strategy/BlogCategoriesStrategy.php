@@ -4,8 +4,8 @@ namespace SymEdit\Bundle\BlogBundle\Widget\Strategy;
 
 use Sylius\Bundle\ResourceBundle\Model\RepositoryInterface;
 use SymEdit\Bundle\CoreBundle\Model\PageInterface;
-use SymEdit\Bundle\CoreBundle\Model\WidgetInterface;
-use SymEdit\Bundle\CoreBundle\Widget\Strategy\AbstractWidgetStrategy;
+use SymEdit\Bundle\WidgetBundle\Model\WidgetInterface;
+use SymEdit\Bundle\WidgetBundle\Widget\Strategy\AbstractWidgetStrategy;
 use Symfony\Component\Form\FormBuilderInterface;
 
 class BlogCategoriesStrategy extends AbstractWidgetStrategy

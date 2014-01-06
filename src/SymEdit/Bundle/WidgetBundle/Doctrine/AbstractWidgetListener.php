@@ -1,10 +1,10 @@
 <?php
 
-namespace SymEdit\Bundle\CoreBundle\Doctrine;
+namespace SymEdit\Bundle\WidgetBundle\Doctrine;
 
 use Doctrine\Common\EventSubscriber;
-use SymEdit\Bundle\CoreBundle\Model\WidgetInterface;
-use SymEdit\Bundle\CoreBundle\Widget\WidgetRegistry;
+use SymEdit\Bundle\WidgetBundle\Model\WidgetInterface;
+use SymEdit\Bundle\WidgetBundle\Widget\WidgetRegistry;
 
 abstract class AbstractWidgetListener implements EventSubscriber
 {

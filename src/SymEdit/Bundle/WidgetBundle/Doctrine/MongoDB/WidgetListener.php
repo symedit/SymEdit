@@ -1,10 +1,10 @@
 <?php
 
-namespace SymEdit\Bundle\CoreBundle\Doctrine\MongoDB;
+namespace SymEdit\Bundle\WidgetBundle\Doctrine\MongoDB;
 
 use Doctrine\ODM\MongoDB\Event\LifecycleEventArgs;
 use Doctrine\ODM\MongoDB\Events;
-use SymEdit\Bundle\CoreBundle\Doctrine\AbstractWidgetListener;
+use SymEdit\Bundle\WidgetBundle\Doctrine\AbstractWidgetListener;
 
 class WidgetListener extends AbstractWidgetListener
 {

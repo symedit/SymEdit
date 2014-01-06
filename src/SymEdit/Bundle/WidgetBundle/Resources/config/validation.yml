@@ -1,0 +1,8 @@
+SymEdit\Bundle\WidgetBundle\Model\Widget:
+    constraints:
+        - Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity: name
+    properties:
+        name:
+            - Regex:
+                pattern: "/^[a-z0-9_-]+$/"
+                message: "You may only use lowercase letters, numbers, underscores or hyphens"

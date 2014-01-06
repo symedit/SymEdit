@@ -1,8 +1,8 @@
 <?php
 
-namespace SymEdit\Bundle\CoreBundle\Twig\TokenParser;
+namespace SymEdit\Bundle\WidgetBundle\Twig\TokenParser;
 
-use SymEdit\Bundle\CoreBundle\Twig\Node\WidgetAreaNode;
+use SymEdit\Bundle\WidgetBundle\Twig\Node\WidgetAreaNode;
 
 class WidgetAreaTokenParser extends \Twig_TokenParser
 {

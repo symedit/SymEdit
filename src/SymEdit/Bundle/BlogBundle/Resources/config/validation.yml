@@ -1,0 +1,12 @@
+SymEdit\Bundle\BlogBundle\Model\Category:
+    properties:
+        name:
+            - NotBlank: ~
+            - Regex:
+                pattern: "/^[a-z0-9_-]+$/"
+                message: "You may only use lowercase letters, numbers, underscores or hyphens"
+
+SymEdit\Bundle\BlogBundle\Model\Post:
+    properties:
+        title:
+            - NotBlank: ~

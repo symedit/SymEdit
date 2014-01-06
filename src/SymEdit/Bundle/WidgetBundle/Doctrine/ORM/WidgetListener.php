@@ -1,10 +1,10 @@
 <?php
 
-namespace SymEdit\Bundle\CoreBundle\Doctrine\ORM;
+namespace SymEdit\Bundle\WidgetBundle\Doctrine\ORM;
 
 use Doctrine\ORM\Event\LifecycleEventArgs;
 use Doctrine\ORM\Events;
-use SymEdit\Bundle\CoreBundle\Doctrine\AbstractWidgetListener;
+use SymEdit\Bundle\WidgetBundle\Doctrine\AbstractWidgetListener;
 
 class WidgetListener extends AbstractWidgetListener
 {

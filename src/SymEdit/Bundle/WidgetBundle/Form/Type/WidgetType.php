@@ -1,12 +1,12 @@
 <?php
 
-namespace SymEdit\Bundle\CoreBundle\Form;
+namespace SymEdit\Bundle\WidgetBundle\Form\Type;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
-use SymEdit\Bundle\CoreBundle\Form\DataTransformer\WidgetAssociationTransformer;
-use SymEdit\Bundle\CoreBundle\Model\Widget;
+use SymEdit\Bundle\WidgetBundle\Form\DataTransformer\WidgetAssociationTransformer;
+use SymEdit\Bundle\WidgetBundle\Model\Widget;
 
 class WidgetType extends AbstractType
 {

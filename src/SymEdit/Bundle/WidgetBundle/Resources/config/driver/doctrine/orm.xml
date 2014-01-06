@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <parameters>
+        <parameter key="symedit.repository.widget.class">SymEdit\Bundle\WidgetBundle\Doctrine\ORM\WidgetRepository</parameter>
+        <parameter key="symedit.repository.widget_area.class">Sylius\Bundle\ResourceBundle\Doctrine\ORM\EntityRepository</parameter>
+    </parameters>
+
+    <services>
+        <service id="symedit_widget.entity_manager" factory-service="doctrine" factory-method="getManager" class="Doctrine\ORM\EntityManager">
+            <argument>%symedit_widget.model_manager_name%</argument>
+        </service>
+
+        <!-- Widget -->
+        <service id="symedit.manager.widget" alias="symedit_widget.entity_manager" />
+        <service id="symedit.repository.widget" class="%symedit.repository.widget.class%">
+            <argument type="service" id="symedit.manager.widget" />
+            <argument type="service">
+                <service
+                    factory-service="symedit.manager.widget"
+                    factory-method="getClassMetadata"
+                    class="Doctrine\ORM\Mapping\ClassMetadata">
+                    <argument>%symedit.model.widget.class%</argument>
+                </service>
+            </argument>
+            <argument type="service" id="symedit_widget.widget.registry" />
+        </service>
+
+        <!-- Widget Area -->
+        <service id="symedit.manager.widget_area" alias="symedit_widget.entity_manager" />
+        <service id="symedit.repository.widget_area" class="%symedit.repository.widget_area.class%">
+            <argument type="service" id="symedit.manager.widget_area" />
+            <argument type="service">
+                <service
+                    factory-service="symedit.manager.widget_area"
+                    factory-method="getClassMetadata"
+                    class="Doctrine\ORM\Mapping\ClassMetadata">
+                    <argument>%symedit.model.widget_area.class%</argument>
+                </service>
+            </argument>
+        </service>
+
+        <!-- Widget Listener -->
+        <service id="symedit_widget.widget.listener" class="SymEdit\Bundle\WidgetBundle\Doctrine\ORM\WidgetListener">
+            <argument type="service" id="symedit_widget.widget.registry" />
+            <tag name="doctrine.event_subscriber" />
+        </service>
+    </services>
+</container>
