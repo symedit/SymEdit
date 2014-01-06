@@ -17,7 +17,7 @@
 
     <services>
         <service id="symedit_widget.twig.widget_extension" class="%symedit_widget.twig.widget_extension.class%">
-            <argument>%symedit.fragment.strategy%</argument>
+            <argument>%symedit_widget.fragment.strategy%</argument>
             <tag name="twig.extension" />
         </service>
 

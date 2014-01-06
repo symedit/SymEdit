@@ -49,13 +49,6 @@ class Configuration implements ConfigurationInterface
                         ->scalarNode('sender')->defaultValue('email@example.com')->end()
                     ->end()
                 ->end()
-                ->arrayNode('fragment')
-                    ->info('Fragment stategy to use')
-                    ->addDefaultsIfNotSet()
-                    ->children()
-                        ->scalarNode('strategy')->defaultValue('inline')->end()
-                    ->end()
-                ->end()
             ->end();
 
         $this->addClassesSection($rootNode);

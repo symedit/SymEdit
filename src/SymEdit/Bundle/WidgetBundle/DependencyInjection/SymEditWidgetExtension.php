@@ -29,6 +29,7 @@ class SymEditWidgetExtension extends SymEditResourceExtension
         list($config) = $this->configure($config, new Configuration(), $container, self::CONFIGURE_LOADER | self::CONFIGURE_DATABASE | self::CONFIGURE_PARAMETERS);
 
         $container->setParameter('symedit_widget.model_manager_name', $config['model_manager_name']);
+        $this->remapParameters($container, 'fragment', $config['fragment']);
 
         if (isset($config['resources'])) {
             $this->createResourceServices($config['resources'], $container);
