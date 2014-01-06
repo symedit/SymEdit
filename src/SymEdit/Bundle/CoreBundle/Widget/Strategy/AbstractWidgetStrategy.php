@@ -13,27 +13,39 @@ abstract class AbstractWidgetStrategy implements WidgetStrategyInterface
      */
     protected $templating;
 
+    /**
+     * {@inheritDoc}
+     */
     public function setDefaultOptions(WidgetInterface $widget)
     {
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public function buildForm(FormBuilderInterface $builder)
     {
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public function setTemplating(EngineInterface $templating)
     {
         $this->templating = $templating;
     }
 
     /**
-     * @return EngineInterface
+     * {@inheritDoc}
      */
     public function getTemplating()
     {
         return $this->templating;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public function render($name, array $parameters = array())
     {
         return $this->templating->render($name, $parameters);

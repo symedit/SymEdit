@@ -8,7 +8,14 @@ use Symfony\Component\Templating\EngineInterface;
 
 interface WidgetStrategyInterface
 {
+    /**
+     * Get widget unique name
+     */
     public function getName();
+
+    /**
+     * Get description of the widget
+     */
     public function getDescription();
 
     /**
@@ -23,6 +30,9 @@ interface WidgetStrategyInterface
      */
     public function execute(WidgetInterface $widget);
 
+    /**
+     * @param WidgetInterface $widget
+     */
     public function setDefaultOptions(WidgetInterface $widget);
 
     /**
@@ -30,6 +40,9 @@ interface WidgetStrategyInterface
      */
     public function getTemplating();
 
+    /**
+     * @param EngineInterface $templating
+     */
     public function setTemplating(EngineInterface $templating);
 
     /**
