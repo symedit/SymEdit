@@ -18,10 +18,18 @@ class WidgetAreaTokenParser extends \Twig_TokenParser
         $lineno = $token->getLine();
         $stream = $this->parser->getStream();
         $area = $stream->expect(\Twig_Token::STRING_TYPE)->getValue();
-        
+
         $stream->expect(\Twig_Token::BLOCK_END_TYPE);
 
-        return new WidgetAreaNode($area, $this->strategy, $lineno, $this->getTag());
+        return $this->getWidgetAreaNode($area, $this->strategy, $lineno, $this->getTag());
+    }
+    
+    /**
+     * Allows this to be overriden
+     */
+    protected function getWidgetAreaNode($area, $strategy, $lineno, $tag)
+    {
+        return new WidgetAreaNode($area, $strategy, $lineno, $tag);
     }
 
     /**
