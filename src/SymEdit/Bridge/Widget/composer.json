@@ -1,0 +1,15 @@
+{
+    "name": "symedit/widget-bridge",
+    "type": "symfony-bridge",
+    "homepage": "http://symedit.com",
+    "authors": [
+        {
+            "name": "Craig Blanchette (isometriks)",
+            "email": "craig.blanchette@gmail.com"
+        }
+    ],
+    "require": {
+        "symedit/core-bundle": "dev-master",
+        "symedit/widget-bundle": "dev-master"
+    }
+}
