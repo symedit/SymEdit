@@ -2,7 +2,7 @@
 
 namespace SymEdit\Bundle\CoreBundle\Controller\Admin;
 
-use SymEdit\Bundle\CoreBundle\Controller\ResourceController;
+use SymEdit\Bundle\ResourceBundle\Controller\ResourceController;
 use SymEdit\Bundle\CoreBundle\Form\WidgetReorderType;
 use SymEdit\Bundle\CoreBundle\Widget\WidgetRegistry;
 use JMS\SecurityExtraBundle\Annotation\PreAuthorize;

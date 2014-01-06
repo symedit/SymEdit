@@ -1,6 +1,6 @@
 <?php
 
-namespace SymEdit\Bundle\CoreBundle\Controller;
+namespace SymEdit\Bundle\ResourceBundle\Controller;
 
 use Sylius\Bundle\ResourceBundle\Controller\ResourceController as BaseResourceController;
 

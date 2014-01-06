@@ -3,7 +3,7 @@
 namespace SymEdit\Bundle\UserBundle\DependencyInjection;
 
 use Symfony\Component\DependencyInjection\ContainerBuilder;
-use SymEdit\Bundle\CoreBundle\DependencyInjection\SymEditResourceExtension;
+use SymEdit\Bundle\ResourceBundle\DependencyInjection\SymEditResourceExtension;
 
 /**
  * This is the class that loads and manages your bundle configuration

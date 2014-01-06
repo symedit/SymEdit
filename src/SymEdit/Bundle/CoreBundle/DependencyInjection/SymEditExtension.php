@@ -2,6 +2,7 @@
 
 namespace SymEdit\Bundle\CoreBundle\DependencyInjection;
 
+use SymEdit\Bundle\ResourceBundle\DependencyInjection\SymEditResourceExtension;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 
 class SymEditExtension extends SymEditResourceExtension

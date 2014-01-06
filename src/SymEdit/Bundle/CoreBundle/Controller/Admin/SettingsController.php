@@ -2,7 +2,7 @@
 
 namespace SymEdit\Bundle\CoreBundle\Controller\Admin;
 
-use SymEdit\Bundle\CoreBundle\Controller\ResourceController;
+use SymEdit\Bundle\ResourceBundle\Controller\ResourceController;
 use JMS\SecurityExtraBundle\Annotation\PreAuthorize;
 use Symfony\Component\HttpFoundation\Request;
 

@@ -2,7 +2,7 @@
 
 namespace SymEdit\Bundle\UserBundle\Controller;
 
-use SymEdit\Bundle\CoreBundle\Controller\ResourceController;
+use SymEdit\Bundle\ResourceBundle\Controller\ResourceController;
 use JMS\SecurityExtraBundle\Annotation\PreAuthorize;
 
 /**
