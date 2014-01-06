@@ -1,8 +1,8 @@
 <?php
 
-namespace SymEdit\Bundle\CoreBundle\Widget\Strategy;
+namespace SymEdit\Bundle\WidgetBundle\Widget\Strategy;
 
-use SymEdit\Bundle\CoreBundle\Model\WidgetInterface;
+use SymEdit\Bundle\WidgetBundle\Model\WidgetInterface;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Templating\EngineInterface;
 

@@ -1,8 +1,8 @@
 <?php
 
-namespace SymEdit\Bundle\CoreBundle\Model;
+namespace SymEdit\Bundle\WidgetBundle\Model;
 
-use SymEdit\Bundle\CoreBundle\Widget\Strategy\WidgetStrategyInterface;
+use SymEdit\Bundle\WidgetBundle\Widget\Strategy\WidgetStrategyInterface;
 
 class Widget implements WidgetInterface
 {

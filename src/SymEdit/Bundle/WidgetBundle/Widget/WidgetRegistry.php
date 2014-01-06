@@ -1,11 +1,11 @@
 <?php
 
-namespace SymEdit\Bundle\CoreBundle\Widget;
+namespace SymEdit\Bundle\WidgetBundle\Widget;
 
 use Symfony\Component\DependencyInjection\ContainerAware;
 use Symfony\Component\DependencyInjection\ContainerInterface;
-use SymEdit\Bundle\CoreBundle\Model\WidgetInterface;
-use SymEdit\Bundle\CoreBundle\Widget\Strategy\WidgetStrategyInterface;
+use SymEdit\Bundle\WidgetBundle\Model\WidgetInterface;
+use SymEdit\Bundle\WidgetBundle\Widget\Strategy\WidgetStrategyInterface;
 
 class WidgetRegistry extends ContainerAware
 {
@@ -114,7 +114,7 @@ class WidgetRegistry extends ContainerAware
     /**
      * Initiates the Widget with the strategy default options
      *
-     * @param \SymEdit\Bundle\CoreBundle\Model\WidgetInterface $widget
+     * @param WidgetInterface $widget
      */
     public function init(WidgetInterface $widget)
     {

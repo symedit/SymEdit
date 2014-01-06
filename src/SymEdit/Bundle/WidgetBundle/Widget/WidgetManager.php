@@ -1,11 +1,11 @@
 <?php
 
-namespace SymEdit\Bundle\CoreBundle\Widget;
+namespace SymEdit\Bundle\WidgetBundle\Widget;
 
 use Doctrine\Common\Persistence\ObjectManager;
-use SymEdit\Bundle\CoreBundle\Model\WidgetInterface;
-use SymEdit\Bundle\CoreBundle\Model\WidgetAreaInterface;
-use SymEdit\Bundle\CoreBundle\Widget\WidgetRegistry;
+use SymEdit\Bundle\WidgetBundle\Model\WidgetInterface;
+use SymEdit\Bundle\WidgetBundle\Model\WidgetAreaInterface;
+use SymEdit\Bundle\WidgetBundle\Widget\WidgetRegistry;
 
 class WidgetManager
 {
@@ -30,7 +30,7 @@ class WidgetManager
     }
 
     /**
-     * @return \SymEdit\Bundle\CoreBundle\Model\WidgetAreaInterface
+     * @return \SymEdit\Bundle\WidgetBundle\Model\WidgetAreaInterface
      */
     public function getWidgetAreas()
     {
@@ -39,7 +39,7 @@ class WidgetManager
 
     /**
      * @param  string                                                     $area
-     * @return \SymEdit\Bundle\CoreBundle\Model\WidgetAreaInterface $widgetArea
+     * @return \SymEdit\Bundle\WidgetBundle\Model\WidgetAreaInterface $widgetArea
      * @throws \Exception
      */
     public function getWidgetArea($area)

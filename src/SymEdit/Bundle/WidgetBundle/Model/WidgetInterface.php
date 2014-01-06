@@ -1,8 +1,8 @@
 <?php
 
-namespace SymEdit\Bundle\CoreBundle\Model;
+namespace SymEdit\Bundle\WidgetBundle\Model;
 
-use SymEdit\Bundle\CoreBundle\Widget\Strategy\WidgetStrategyInterface;
+use SymEdit\Bundle\WidgetBundle\Widget\Strategy\WidgetStrategyInterface;
 
 interface WidgetInterface
 {
@@ -26,7 +26,7 @@ interface WidgetInterface
 
     /**
      * @return WidgetInterface
-     * @param  \SymEdit\Bundle\CoreBundle\Model\WidgetAreaInterface $area
+     * @param  \SymEdit\Bundle\WidgetBundle\Model\WidgetAreaInterface $area
      */
     public function setArea(WidgetAreaInterface $area);
 
@@ -86,7 +86,7 @@ interface WidgetInterface
 
     /**
      * @return WidgetInterface
-     * @param  \SymEdit\Bundle\CoreBundle\Widget\Strategy\WidgetStrategyInterface $strategy
+     * @param  \SymEdit\Bundle\WidgetBundle\Widget\Strategy\WidgetStrategyInterface $strategy
      */
     public function setStrategy(WidgetStrategyInterface $strategy);
 

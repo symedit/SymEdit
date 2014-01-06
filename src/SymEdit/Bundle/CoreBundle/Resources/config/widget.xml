@@ -5,43 +5,15 @@
            xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
 
     <parameters>
-        <parameter key="symedit.twig.widget_extension.class">SymEdit\Bundle\CoreBundle\Twig\Extension\WidgetExtension</parameter>
-        <parameter key="symedit.widget.registry.class">SymEdit\Bundle\CoreBundle\Widget\WidgetRegistry</parameter>
-        <parameter key="symedit.widget.manager.class">SymEdit\Bundle\CoreBundle\Widget\WidgetManager</parameter>
-
-        <parameter key="symedit.widget.strategy.html.class">SymEdit\Bundle\CoreBundle\Widget\Strategy\HtmlStrategy</parameter>
-        <parameter key="symedit.widget.strategy.template.class">SymEdit\Bundle\CoreBundle\Widget\Strategy\TemplateStrategy</parameter>
         <parameter key="symedit.widget.strategy.contact_info.class">SymEdit\Bundle\CoreBundle\Widget\Strategy\ContactInfoStrategy</parameter>
         <parameter key="symedit.widget.strategy.slider.class">SymEdit\Bundle\CoreBundle\Widget\Strategy\SliderStrategy</parameter>
         <parameter key="symedit.widget.strategy.google_map.class">SymEdit\Bundle\CoreBundle\Widget\Strategy\GoogleMapStrategy</parameter>
-        <parameter key="symedit.widget.strategy.disqus.class">SymEdit\Bundle\CoreBundle\Widget\Strategy\DisqusStrategy</parameter>
-        <parameter key="symedit.widget.strategy.addthis.class">SymEdit\Bundle\CoreBundle\Widget\Strategy\AddThisStrategy</parameter>
         <parameter key="symedit.widget.strategy.submenu.class">SymEdit\Bundle\CoreBundle\Widget\Strategy\SubmenuStrategy</parameter>
         <parameter key="symedit.widget.strategy.list_children.class">SymEdit\Bundle\CoreBundle\Widget\Strategy\ListChildrenStrategy</parameter>
     </parameters>
 
     <services>
-
-        <service id="symedit.twig.widget_extension" class="%symedit.twig.widget_extension.class%">
-            <argument>%symedit.fragment.strategy%</argument>
-            <tag name="twig.extension" />
-        </service>
-
-        <service id="symedit.widget.registry" class="%symedit.widget.registry.class%">
-            <argument type="service" id="service_container" />
-            <argument>%symedit.widget.strategies%</argument>
-        </service>
-
         <!-- Widget Strategies -->
-
-        <service id="symedit.widget.strategy.html" class="%symedit.widget.strategy.html.class%">
-            <tag name="symedit.widget_strategy" alias="html" />
-        </service>
-
-        <service id="symedit.widget.strategy.template" class="%symedit.widget.strategy.template.class%">
-            <tag name="symedit.widget_strategy" alias="template" />
-        </service>
-
         <service id="symedit.widget.strategy.contact_info" class="%symedit.widget.strategy.contact_info.class%"
                  parent="symedit.widget.strategy.template">
             <tag name="symedit.widget_strategy" alias="contact_info" />
@@ -56,14 +28,6 @@
             <tag name="symedit.widget_strategy" alias="google_map" />
         </service>
 
-        <service id="symedit.widget.strategy.disqus" class="%symedit.widget.strategy.disqus.class%">
-            <tag name="symedit.widget_strategy" alias="disqus" />
-        </service>
-
-        <service id="symedit.widget.strategy.addthis" class="%symedit.widget.strategy.addthis.class%">
-            <tag name="symedit.widget_strategy" alias="addthis" />
-        </service>
-
         <service id="symedit.widget.strategy.submenu" class="%symedit.widget.strategy.submenu.class%">
             <tag name="symedit.widget_strategy" alias="submenu" />
         </service>
@@ -72,5 +36,4 @@
             <tag name="symedit.widget_strategy" alias="list_children" />
         </service>
     </services>
-
 </container>

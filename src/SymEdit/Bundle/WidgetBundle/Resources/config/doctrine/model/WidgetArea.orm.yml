@@ -1,4 +1,4 @@
-SymEdit\Bundle\CoreBundle\Model\WidgetArea:
+SymEdit\Bundle\WidgetBundle\Model\WidgetArea:
     type: entity
     table: widget_area
     fields:
@@ -20,7 +20,7 @@ SymEdit\Bundle\CoreBundle\Model\WidgetArea:
         widgets:
             cascade:
                 - persist
-            targetEntity: SymEdit\Bundle\CoreBundle\Model\WidgetInterface
+            targetEntity: SymEdit\Bundle\WidgetBundle\Model\WidgetInterface
             mappedBy: area
             orderBy:
                 widgetOrder: ASC

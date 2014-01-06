@@ -1,27 +1,31 @@
 <?php
 
-namespace SymEdit\Bundle\CoreBundle\Widget\Strategy;
+namespace SymEdit\Bundle\WidgetBundle\Widget\Strategy;
 
 use SymEdit\Bundle\CoreBundle\Model\PageInterface;
-use SymEdit\Bundle\CoreBundle\Model\WidgetInterface;
+use SymEdit\Bundle\WidgetBundle\Model\WidgetInterface;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Validator\Constraints\NotBlank;
 
-class DisqusStrategy extends AbstractWidgetStrategy
+class TemplateStrategy extends AbstractWidgetStrategy
 {
     public function execute(WidgetInterface $widget, PageInterface $page = null)
     {
-        return $this->render('@SymEdit/Widget/disqus.html.twig', array(
-            'shortname' => $widget->getOption('shortname'),
-        ));
+        try {
+            $content = $this->render($widget->getOption('template'));
+        } catch (\Exception $e) {
+            $content = sprintf('There was an error rendering your template: "%s"', $e->getMessage());
+        }
+
+        return $content;
     }
 
     public function buildForm(FormBuilderInterface $builder)
     {
         $builder
-            ->add('shortname', 'text', array(
+            ->add('template', 'text', array(
                 'required' => true,
-                'label' => 'Shortname',
+                'label' => 'Template',
                 'constraints' => array(
                     new NotBlank(),
                 ),
@@ -30,11 +34,11 @@ class DisqusStrategy extends AbstractWidgetStrategy
 
     public function getName()
     {
-        return 'disqus';
+        return 'template';
     }
 
     public function getDescription()
     {
-        return 'Disqus Comments';
+        return 'Template';
     }
 }
