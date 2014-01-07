@@ -1,10 +1,22 @@
 <?php
 
+/*
+ * This file is part of the SymEdit package.
+ *
+ * (c) Craig Blanchette <craig.blanchette@gmail.com>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
 namespace SymEdit\Bundle\CoreBundle\Twig\Extension;
 
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use SymEdit\Bundle\CoreBundle\Model\Page;
 
+/**
+ * @TODO: Uhh don't inject the container. There's only like 2 services in here now, this is gross.
+ */
 class SymEditExtension extends \Twig_Extension
 {
     /**
@@ -36,9 +48,9 @@ class SymEditExtension extends \Twig_Extension
                 $page = new Page();
                 $page->setPath($request->getPathInfo());
             }
-            
+
             $seo = $request->attributes->get('_seo', array());
-            
+
             $globals['Page'] = $page;
             $globals['SEO'] = $seo;
             $globals['Breadcrumbs'] = $this->container->get('symedit.breadcrumbs');
