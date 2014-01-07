@@ -50,7 +50,7 @@ interface ProfileInterface
     public function getFullname();
 
     /**
-     * @return \SymEdit\Bundle\CoreBundle\Model\UserInterface Return the user that this profile is for
+     * @return UserInterface Return the user that this profile is for
      */
     public function getUser();
 }
