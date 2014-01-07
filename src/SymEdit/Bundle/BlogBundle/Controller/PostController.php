@@ -86,7 +86,6 @@ class PostController extends ResourceController
         }
 
         $config = $this->getConfiguration();
-        $pluralName = $config->getPluralResourceName();
 
         $posts = $this->getRepository()->findByCategoryQueryBuilder($category);
         $paginator = $this
@@ -95,14 +94,13 @@ class PostController extends ResourceController
             ->setMaxPerPage($config->getPaginationMaxPerPage())
             ->setCurrentPage($request->get('page', 1));
 
+        $category->setPosts($paginator);
+
         $view = $this
             ->view()
             ->setTemplate($config->getTemplate('index.html'))
-            ->setTemplateVar($pluralName)
-            ->setData(array(
-                $pluralName => $paginator,
-                'category' => $category,
-            ));
+            ->setTemplateVar('category')
+            ->setData($category);
 
         return $this->handleView($view);
     }

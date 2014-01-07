@@ -9,6 +9,12 @@
     </parameters>
 
     <services>
+        <service parent="fos_rest.view_handler.default" id="symedit.seo_view_handler" class="SymEdit\Bundle\CoreBundle\View\ViewHandler">
+            <call method="setSeo">
+                <argument type="service" id="isometriks_seo.seo" />
+            </call>
+        </service>
+
         <service id="symedit.finder.resource_finder" class="%symedit.finder.resource_finder.class%">
             <argument type="service" id="kernel" />
         </service>

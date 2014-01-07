@@ -281,6 +281,11 @@ class Category implements CategoryInterface
         $this->posts->removeElement($post);
     }
 
+    public function setPosts($posts)
+    {
+        $this->posts = $posts;
+    }
+
     /**
      * Get posts
      *

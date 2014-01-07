@@ -14,3 +14,7 @@ fos_user:
     resetting:
         email:
             template: "@SymEdit/Email/resetting.html.twig"
+
+fos_rest:
+    service:
+        view_handler: symedit.seo_view_handler
