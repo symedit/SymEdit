@@ -119,6 +119,12 @@ class Configuration implements ConfigurationInterface
                                 ->scalarNode('controller')->defaultValue('SymEdit\Bundle\CoreBundle\Controller\Admin\SettingsController')->end()
                             ->end()
                         ->end()
+                        ->arrayNode('breadcrumbs')
+                            ->addDefaultsIfNotSet()
+                            ->children()
+                                ->scalarNode('model')->defaultValue('SymEdit\Bundle\CoreBundle\Model\Breadcrumbs')->end()
+                            ->end()
+                        ->end()
                     ->end()
                 ->end()
             ->end();

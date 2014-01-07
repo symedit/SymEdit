@@ -6,7 +6,6 @@
 
     <parameters>
         <parameter key="symedit.finder.resource_finder.class">SymEdit\Bundle\CoreBundle\Finder\ResourceFinder</parameter>
-        <parameter key="symedit.breadcrumbs.class">SymEdit\Bundle\CoreBundle\Model\Breadcrumbs</parameter>
     </parameters>
 
     <services>
@@ -14,7 +13,7 @@
             <argument type="service" id="kernel" />
         </service>
 
-        <service id="symedit.breadcrumbs" class="%symedit.breadcrumbs.class%" />
+        <service id="symedit.breadcrumbs" class="%symedit.model.breadcrumbs.class%" />
     </services>
 
 </container>

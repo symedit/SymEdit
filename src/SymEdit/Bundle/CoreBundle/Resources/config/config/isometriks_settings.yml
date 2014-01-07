@@ -1,4 +1,4 @@
-sym_edit_settings:
+symedit_settings:
     twig:
         global: true
         global_variable: Settings
