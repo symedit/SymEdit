@@ -1,6 +1,6 @@
 {% if not Page.homepage %}
 <ul class="breadcrumb" itemprop="breadcrumb">
-    {% for crumb in Breadcrumbs %}
+    {% for crumb in symedit_breadcrumbs_get() %}
         {% if loop.first %}
         <li>
             <a href="{{ path('homepage') }}">Home</a>

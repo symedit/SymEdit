@@ -52,8 +52,6 @@ class SymEditExtension extends \Twig_Extension
             $seo = $request->attributes->get('_seo', array());
 
             $globals['Page'] = $page;
-            $globals['SEO'] = $seo;
-            $globals['Breadcrumbs'] = $this->container->get('symedit.breadcrumbs');
         }
 
         return $globals;
@@ -70,7 +68,13 @@ class SymEditExtension extends \Twig_Extension
     {
         return array(
             new \Twig_SimpleFunction('route_exists', array($this, 'routeExists')),
+            new \Twig_SimpleFunction('symedit_breadcrumbs_get', array($this, 'getBreadcrumbs')),
         );
+    }
+
+    public function getBreadcrumbs()
+    {
+        return $this->container->get('symedit.breadcrumbs');
     }
 
     /**
