@@ -12,6 +12,7 @@
 namespace SymEdit\Bundle\CoreBundle\Doctrine\ORM;
 
 use Sylius\Bundle\ResourceBundle\Doctrine\ORM\EntityRepository;
+use SymEdit\Bundle\CoreBundle\Iterator\RecursivePageIterator;
 
 class PageRepository extends EntityRepository
 {
@@ -20,6 +21,11 @@ class PageRepository extends EntityRepository
         return $this->findOneBy(array(
             'root' => true,
         ));
+    }
+
+    public function getIterator($display = true)
+    {
+        return new RecursivePageIterator($this->findRoot(), $display);
     }
 
     /**
