@@ -3,7 +3,6 @@ imports:
     - { resource: "@SymEditBundle/Resources/config/config/doctrine.yml" }
     - { resource: "@SymEditBundle/Resources/config/config/fos_user.yml" }
     - { resource: "@SymEditBundle/Resources/config/config/isometriks_settings.yml" }
-    - { resource: "@SymEditBundle/Resources/config/config/jms_security_extra.yml" }
     - { resource: "@SymEditBundle/Resources/config/config/mopa_bootstrap.yml" }
     - { resource: "@SymEditBundle/Resources/config/config/white_october_pagerfanta.yml" }
     - { resource: "@SymEditBundle/Resources/config/config/twig.yml" }
