@@ -52,7 +52,7 @@ class PageType extends AbstractType
          * default
          */
         $root = $this->pageRepository->findRoot();
-        $pageIterator = new RecursivePageIterator($root, false);
+        $pageIterator = $this->pageRepository->getIterator(false);
         $iterator = new \RecursiveIteratorIterator($pageIterator, \RecursiveIteratorIterator::SELF_FIRST);
 
         $choices = array(
