@@ -9,24 +9,19 @@
  * file that was distributed with this source code.
  */
 
-namespace SymEdit\Bundle\CoreBundle\Controller\Admin;
+namespace SymEdit\Bundle\WidgetBundle\Controller;
 
 use SymEdit\Bundle\ResourceBundle\Controller\ResourceController;
-use SymEdit\Bundle\CoreBundle\Form\WidgetReorderType;
-use SymEdit\Bundle\CoreBundle\Widget\WidgetRegistry;
-use JMS\SecurityExtraBundle\Annotation\PreAuthorize;
+use SymEdit\Bundle\WidgetBundle\Widget\WidgetRegistry;
 use Symfony\Component\HttpFoundation\Request;
 
-/**
- * @PreAuthorize("hasRole('ROLE_ADMIN_WIDGET')")
- */
 class WidgetController extends ResourceController
 {
     public function indexAction(Request $request)
     {
         $areas = $this->get('symedit.repository.widget_area')->findAll();
 
-        $reorderForm = $this->createForm(new WidgetReorderType(), null, array(
+        $reorderForm = $this->createForm('symedit_widget_reorder', null, array(
             'method' => 'POST',
             'action' => $this->generateUrl('admin_widget_reorder'),
             'render' => true,
@@ -61,7 +56,7 @@ class WidgetController extends ResourceController
      */
     public function reorderAction(Request $request)
     {
-        $reorderForm = $this->createForm(new WidgetReorderType());
+        $reorderForm = $this->createForm('symedit_widget_reorder');
         $reorderForm->handleRequest($request);
         $status = false;
 
@@ -96,7 +91,7 @@ class WidgetController extends ResourceController
     public function chooseAction()
     {
         /* @var $registry WidgetRegistry */
-        $registry = $this->get('symedit.widget.registry');
+        $registry = $this->get('symedit_widget.widget.registry');
         $strategies = $registry->getStrategies();
 
         $view = $this
