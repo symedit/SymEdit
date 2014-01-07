@@ -17,6 +17,10 @@ use Symfony\Component\HttpKernel\Event\GetResponseEvent;
 /**
  * Searches for #group.settingName# in the attributes of the request
  * to attempt to replace them with actual setting values
+ *
+ * @TODO: Add a check to see if the string is ONLY the setting, in that
+ *        case just replace it instead of substituting a string. That
+ *        way we might be able to add objects eventually.
  */
 class RequestListener
 {
