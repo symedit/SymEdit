@@ -67,5 +67,3 @@ blog_author_view:
         _controller: symedit.controller.post:showAuthorAction
         _sylius:
             template: SymEditBundle:Blog:author.html.twig
-            criteria:
-                author.username: $slug
