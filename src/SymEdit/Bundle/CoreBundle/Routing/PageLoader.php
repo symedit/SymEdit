@@ -46,7 +46,7 @@ class PageLoader extends BaseLoader
         foreach ($pages as $page) {
             $defaults = array(
                 '_page_id' => $page->getId(),
-                '_controller' => 'SymEditBundle:Page:show',
+                '_controller' => 'symedit.controller.page:showAction',
             );
 
             $collection->add($page->getRoute(), new Route($page->getPath(), $defaults));

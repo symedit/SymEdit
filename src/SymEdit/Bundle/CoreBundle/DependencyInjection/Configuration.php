@@ -81,7 +81,7 @@ class Configuration implements ConfigurationInterface
                             ->addDefaultsIfNotSet()
                             ->children()
                                 ->scalarNode('model')->defaultValue('SymEdit\Bundle\CoreBundle\Model\Page')->end()
-                                ->scalarNode('controller')->defaultValue('SymEdit\Bundle\CoreBundle\Controller\Admin\PageController')->end()
+                                ->scalarNode('controller')->defaultValue('SymEdit\Bundle\CoreBundle\Controller\PageController')->end()
                                 ->scalarNode('repository')->end()
                                 ->scalarNode('form')->defaultValue('SymEdit\Bundle\CoreBundle\Form\PageType')->end()
                             ->end()
