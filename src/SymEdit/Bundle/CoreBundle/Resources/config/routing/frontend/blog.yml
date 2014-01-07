@@ -19,15 +19,21 @@ blog_rss:
         _sylius:
             paginate: false
 
-# @TODO Reactivate this..
-#blog_archive:
-#    pattern: /archive/{page}
-#    defaults:
-#        _controller: SymEditBundle:Blog:index
-#        _format: html
-#        _seo:
-#            index: false
-#        page: 1
+blog_archive:
+    pattern: /archive/{page}
+    defaults:
+        _sylius:
+            paginate: "#blog.max_posts#"
+            template: SymEditBundle:Blog:index.html.twig
+            criteria:
+                status: 1
+            sorting:
+                createdAt: DESC
+        _controller: symedit.controller.post:indexAction
+        _format: html
+        _seo:
+            index: false
+        page: 1
 
 blog_slug_view:
     pattern: /{slug}
