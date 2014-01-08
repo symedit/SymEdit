@@ -22,7 +22,7 @@ class PageController extends ResourceController
     public function showAction()
     {
         $request = $this->getRequest();
-        
+
         /* @var $page PageInterface */
         $page = $request->get('_page');
 
@@ -64,7 +64,7 @@ class PageController extends ResourceController
         $pageRepository = $this->getRepository();
         $root = $pageRepository->findRoot();
 
-        $reorderForm = $this->createForm(new PageReorderType(), null, array('render' => true));
+        $reorderForm = $this->createForm('symedit_page_reorder', null, array('render' => true));
 
         $view = $this
             ->view()
@@ -79,7 +79,7 @@ class PageController extends ResourceController
 
     public function reorderAction()
     {
-        $reorderForm = $this->createForm(new PageReorderType());
+        $reorderForm = $this->createForm('symedit_page_reorder');
         $reorderForm->handleRequest($this->getRequest());
         $status = false;
 

@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace SymEdit\Bundle\CoreBundle\Form;
+namespace SymEdit\Bundle\CoreBundle\Form\Type;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -21,24 +21,24 @@ class PageReorderType extends AbstractType {
     {
         if(!$options['render']){
             $builder
-                    ->add('pair', 'collection', array(
-                        'type' => 'integer',
-                        'property_path' => '[pair]', 
-                        'allow_add' => true, 
-                    ));
+                ->add('pair', 'collection', array(
+                    'type' => 'integer',
+                    'property_path' => '[pair]',
+                    'allow_add' => true,
+                ));
         }
     }
 
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'render' => false, 
+            'render' => false,
         ));
     }
 
     public function getName()
     {
-        return 'isometriks_page_reorder';
+        return 'symedit_page_reorder';
     }
 
 }

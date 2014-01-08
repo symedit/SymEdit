@@ -6,6 +6,7 @@
 
     <parameters>
         <parameter key="symedit.form.type.contact.class">SymEdit\Bundle\CoreBundle\Form\ContactType</parameter>
+        <parameter key="symedit.form.type.page_reorder.class">SymEdit\Bundle\CoreBundle\Form\Type\PageReorderType</parameter>
         <parameter key="symedit.form.type.template.class">SymEdit\Bundle\CoreBundle\Form\Type\TemplateType</parameter>
         <parameter key="symedit.form.type.role.class">SymEdit\Bundle\CoreBundle\Form\Type\RoleType</parameter>
         <parameter key="symedit.form.type.entity_property.class">SymEdit\Bundle\CoreBundle\Form\Type\EntityPropertyType</parameter>
@@ -20,6 +21,10 @@
         <service id="symedit.form.type.page" class="%symedit.form.type.page.class%">
             <argument type="service" id="symedit.repository.page" />
             <tag name="form.type" alias="symedit_page" />
+        </service>
+
+        <service id="symedit.form.type.page_reorder" class="%symedit.form.type.page_reorder.class%">
+            <tag name="form.type" alias="symedit_page_reorder" />
         </service>
 
         <service id="symedit.form.type.template" class="%symedit.form.type.template.class%">
