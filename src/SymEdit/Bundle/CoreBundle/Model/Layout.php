@@ -19,14 +19,15 @@ class Layout
     private $template;
     private $active;
 
-    public function __construct($title, $description, array $rows = array())
+    public function __construct($title, $description, $template, array $rows = array())
     {
         $this->title = $title;
         $this->description = $description;
+        $this->template = $template;
         $this->rows = array();
         $this->active = false;
 
-        foreach ($rows as $row) {
+        foreach($rows as $row){
             $this->addRow($row);
         }
     }
@@ -61,6 +62,16 @@ class Layout
         $this->description = $description;
     }
 
+    public function getTemplate()
+    {
+        return $this->template;
+    }
+
+    public function setTemplate($template)
+    {
+        $this->template = $template;
+    }
+
     public function getRows()
     {
         return $this->rows;
@@ -74,7 +85,7 @@ class Layout
     public function addRow($row)
     {
         // If it's a string, make it an array of characters
-        if (!is_array($row)) {
+        if(!is_array($row)){
             $row = str_split($row);
         }
 

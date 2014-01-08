@@ -18,7 +18,7 @@ use Symfony\Component\HttpKernel\Kernel;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 use Symfony\Component\Yaml\Yaml;
 use SymEdit\Bundle\CoreBundle\Finder\ResourceFinder;
-use SymEdit\Bundle\CoreBundle\Layout\Layout;
+use SymEdit\Bundle\CoreBundle\Model\Layout;
 
 class TemplateType extends AbstractType
 {
