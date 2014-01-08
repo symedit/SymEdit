@@ -1,4 +1,0 @@
-twig:
-    form:
-        resources:
-            - 'SymEditBundle:Form:fields.html.twig'
