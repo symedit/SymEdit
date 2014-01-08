@@ -12,5 +12,5 @@
 
 {% block blog_content %}
 {{ parent() }}
-{{ pagerfanta(posts, 'twitter_bootstrap3', {'routeName': 'blog_archive'}) }}
+{{ pagerfanta(posts, null, {'routeName': 'blog_archive'}) }}
 {% endblock %}
