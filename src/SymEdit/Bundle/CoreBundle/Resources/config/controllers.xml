@@ -35,16 +35,6 @@
             </call>
         </service>
 
-        <!-- Widgets -->
-        <service id="symedit.controller.widget" class="%symedit.controller.widget.class%">
-            <argument>symedit</argument>
-            <argument>widget</argument>
-            <argument />
-            <call method="setContainer">
-                <argument type="service" id="service_container" />
-            </call>
-        </service>
-
         <!-- Slider -->
         <service id="symedit.controller.slider" class="%symedit.controller.slider.class%">
             <argument>symedit</argument>
