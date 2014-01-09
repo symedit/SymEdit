@@ -4,6 +4,7 @@ admin_page:
     defaults:
         _controller: symedit.controller.page:indexAction
         _sylius:
+            paginate: false
             template: @SymEdit/Admin/Page/index.html.twig
 
 admin_page_create:

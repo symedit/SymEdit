@@ -61,9 +61,13 @@ class PageController extends ResourceController
      */
     public function indexAction(Request $request)
     {
-        $pageRepository = $this->getRepository();
-        $root = $pageRepository->findRoot();
+        $config = $this->getConfiguration();
 
+        if ($config->isApiRequest()) {
+            return parent::indexAction($request);
+        }
+
+        $root = $this->getRepository()->findRoot();
         $reorderForm = $this->createForm('symedit_page_reorder', null, array('render' => true));
 
         $view = $this
