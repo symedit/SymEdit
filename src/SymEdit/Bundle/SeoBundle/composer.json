@@ -1,5 +1,5 @@
 {
-    "name": "isometriks/seo-bundle",
+    "name": "symedit/seo-bundle",
     "description": "Programmatic SEO for Symfony2 Bundles",
     "type": "symfony-bundle",
     "authors": [
@@ -9,7 +9,7 @@
         }
     ],
     "autoload": {
-        "psr-0": { "Isometriks\\Bundle\\SeoBundle": "" }
+        "psr-0": { "SymEdit\\Bundle\\SeoBundle": "" }
     },
-    "target-dir": "Isometriks/Bundle/SeoBundle"
+    "target-dir": "SymEdit/Bundle/SeoBundle"
 }

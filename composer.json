@@ -17,6 +17,7 @@
         "symedit/blog-bundle": "self.version",
         "symedit/core-bundle": "self.version",
         "symedit/resource-bundle": "self.version",
+        "symedit/seo-bundle": "self.version",
         "symedit/seo-export-bundle": "self.version",
         "symedit/settings-bundle": "self.version",
         "symedit/stylizer-bundle": "self.version",
