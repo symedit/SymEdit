@@ -13,7 +13,7 @@ use Doctrine\Common\Annotations\Reader;
 use Doctrine\Common\Util\ClassUtils;
 
 /**
- * @TODO: Move the request injection out of this listener and into a kernel.request or something
+ * Checks to see if you added an SEO annotation to set the currrent SEO subject.
  *
  * Some code from https://github.com/sensiolabs/SensioFrameworkExtraBundle/blob/master/EventListener/ControllerListener.php
  */

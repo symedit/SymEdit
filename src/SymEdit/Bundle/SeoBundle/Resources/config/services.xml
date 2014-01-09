@@ -18,12 +18,6 @@
             <argument>SymEdit\Bundle\SeoBundle\Model\Seo</argument>
         </service>
 
-        <service id="symedit_seo.event_listener.subject" class="SymEdit\Bundle\SeoBundle\EventListener\SubjectSubscriber">
-            <argument type="service" id="symedit_seo.seo_manager" />
-            <argument type="service" id="annotation_reader" />
-            <tag name="kernel.event_subscriber" />
-        </service>
-
         <service id="symedit_seo.twig.extension" class="%symedit_seo.twig.extension.class%">
             <argument type="service" id="symedit_seo.seo_manager" />
             <call method="setRequest">
