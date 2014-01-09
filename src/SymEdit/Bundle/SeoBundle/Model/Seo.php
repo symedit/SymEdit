@@ -1,6 +1,6 @@
 <?php
 
-namespace Isometriks\Bundle\SeoBundle\Model;
+namespace SymEdit\Bundle\SeoBundle\Model;
 
 class Seo implements SeoInterface
 {

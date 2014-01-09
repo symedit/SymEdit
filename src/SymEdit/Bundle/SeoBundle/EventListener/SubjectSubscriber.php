@@ -1,14 +1,14 @@
 <?php
 
-namespace Isometriks\Bundle\SeoBundle\EventListener;
+namespace SymEdit\Bundle\SeoBundle\EventListener;
 
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\HttpKernel\KernelEvents;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Event\FilterControllerEvent;
-use Isometriks\Bundle\SeoBundle\Model\SeoManagerInterface;
-use Isometriks\Bundle\SeoBundle\Model\SeoInterface;
-use Isometriks\Bundle\SeoBundle\Annotation\Seo;
+use SymEdit\Bundle\SeoBundle\Model\SeoManagerInterface;
+use SymEdit\Bundle\SeoBundle\Model\SeoInterface;
+use SymEdit\Bundle\SeoBundle\Annotation\Seo;
 use Doctrine\Common\Annotations\Reader;
 use Doctrine\Common\Util\ClassUtils;
 

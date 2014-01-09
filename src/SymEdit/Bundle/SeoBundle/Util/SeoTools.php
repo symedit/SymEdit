@@ -1,6 +1,6 @@
 <?php
 
-namespace Isometriks\Bundle\SeoBundle\Util;
+namespace SymEdit\Bundle\SeoBundle\Util;
 
 class SeoTools
 {

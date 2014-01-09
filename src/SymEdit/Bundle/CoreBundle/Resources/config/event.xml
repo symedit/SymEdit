@@ -26,7 +26,7 @@
         </service>
 
         <service id="symedit.listener.seo" class="%symedit.listener.seo.class%">
-            <argument type="service" id="isometriks_seo.seo_manager" />
+            <argument type="service" id="symedit_seo.seo_manager" />
             <tag name="kernel.event_listener" event="kernel.controller" method="onKernelController" priority="6" />
         </service>
 
@@ -47,7 +47,7 @@
 
         <service id="symedit.event_subscriber.post" class="%symedit.event_subscriber.post.class%">
             <argument type="service" id="session" />
-            <argument type="service" id="isometriks_seo.seo" />
+            <argument type="service" id="symedit_seo.seo" />
             <argument type="service" id="router" />
             <tag name="kernel.event_subscriber" />
         </service>

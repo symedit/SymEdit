@@ -1,10 +1,10 @@
 <?php
 
-namespace Isometriks\Bundle\SeoBundle\Event;
+namespace SymEdit\Bundle\SeoBundle\Event;
 
 use Symfony\Component\EventDispatcher\Event;
 use Symfony\Component\HttpFoundation\Request;
-use Isometriks\Bundle\SeoBundle\Model\SeoInterface;
+use SymEdit\Bundle\SeoBundle\Model\SeoInterface;
 
 /**
  * Event for SEO

@@ -1,6 +1,6 @@
 <?php
 
-namespace Isometriks\Bundle\SeoBundle\DependencyInjection\Compiler;
+namespace SymEdit\Bundle\SeoBundle\DependencyInjection\Compiler;
 
 use Symfony\Component\DependencyInjection\Compiler\CompilerPassInterface;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
@@ -10,11 +10,11 @@ class GetSeoCalculators implements CompilerPassInterface
 {
     public function process(ContainerBuilder $container)
     {
-        if (!$container->hasDefinition('isometriks_seo.seo_manager')) {
+        if (!$container->hasDefinition('symedit_seo.seo_manager')) {
             return;
         }
         
-        $managerDefinition = $container->getDefinition('isometriks_seo.seo_manager');
+        $managerDefinition = $container->getDefinition('symedit_seo.seo_manager');
         $taggedServices = $container->findTaggedServiceIds('seo.calculator');
         
         foreach ($taggedServices as $id => $tagAttributes) {

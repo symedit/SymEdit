@@ -5,35 +5,35 @@
     xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
 
     <parameters>
-        <parameter key="isometriks_seo.model.seo.class">Isometriks\Bundle\SeoBundle\Model\Seo</parameter>
-        <parameter key="isometriks_seo.twig.extension.class">Isometriks\Bundle\SeoBundle\Twig\Extension\SeoExtension</parameter>
+        <parameter key="symedit_seo.model.seo.class">SymEdit\Bundle\SeoBundle\Model\Seo</parameter>
+        <parameter key="symedit_seo.twig.extension.class">SymEdit\Bundle\SeoBundle\Twig\Extension\SeoExtension</parameter>
     </parameters>
 
     <services>
-        <service id="isometriks_seo.seo" class="%isometriks_seo.model.seo.class%" />
+        <service id="symedit_seo.seo" class="%symedit_seo.model.seo.class%" />
 
-        <service id="isometriks_seo.seo_manager" class="Isometriks\Bundle\SeoBundle\Model\SeoManager">
-            <argument type="service" id="isometriks_seo.seo" />
+        <service id="symedit_seo.seo_manager" class="SymEdit\Bundle\SeoBundle\Model\SeoManager">
+            <argument type="service" id="symedit_seo.seo" />
             <argument type="service" id="event_dispatcher" />
-            <argument>Isometriks\Bundle\SeoBundle\Model\Seo</argument>
+            <argument>SymEdit\Bundle\SeoBundle\Model\Seo</argument>
         </service>
 
-        <service id="isometriks_seo.event_listener.subject" class="Isometriks\Bundle\SeoBundle\EventListener\SubjectSubscriber">
-            <argument type="service" id="isometriks_seo.seo_manager" />
+        <service id="symedit_seo.event_listener.subject" class="SymEdit\Bundle\SeoBundle\EventListener\SubjectSubscriber">
+            <argument type="service" id="symedit_seo.seo_manager" />
             <argument type="service" id="annotation_reader" />
             <tag name="kernel.event_subscriber" />
         </service>
 
-        <service id="isometriks_seo.twig.extension" class="%isometriks_seo.twig.extension.class%">
-            <argument type="service" id="isometriks_seo.seo_manager" />
+        <service id="symedit_seo.twig.extension" class="%symedit_seo.twig.extension.class%">
+            <argument type="service" id="symedit_seo.seo_manager" />
             <call method="setRequest">
                 <argument type="service" id="request" on-invalid="null" strict="false" />
             </call>
             <tag name="twig.extension" />
         </service>
 
-        <!--<service id="isometriks_seo.data_collector.seo" class="Isometriks\Bundle\SeoBundle\DataCollector\SeoDataCollector">
-            <tag name="data_collector" template="IsometriksSeoBundle:Collector:seo.html.twig" id="isometriks_seo" />
+        <!--<service id="symedit_seo.data_collector.seo" class="SymEdit\Bundle\SeoBundle\DataCollector\SeoDataCollector">
+            <tag name="data_collector" template="IsometriksSeoBundle:Collector:seo.html.twig" id="symedit_seo" />
         </service>-->
     </services>
 </container>

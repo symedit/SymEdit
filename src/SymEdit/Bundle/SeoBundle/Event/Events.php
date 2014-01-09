@@ -1,9 +1,9 @@
 <?php
 
-namespace Isometriks\Bundle\SeoBundle\Event;
+namespace SymEdit\Bundle\SeoBundle\Event;
 
 class Events
 {
-    const CALCULATE_SEO = 'isometriks_seo.calculate_seo';
-    const INITIALIZE_SEO = 'isometriks_seo.initialize_seo';
+    const CALCULATE_SEO = 'symedit_seo.calculate_seo';
+    const INITIALIZE_SEO = 'symedit_seo.initialize_seo';
 }

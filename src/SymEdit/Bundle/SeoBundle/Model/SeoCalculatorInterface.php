@@ -1,8 +1,8 @@
 <?php
 
-namespace Isometriks\Bundle\SeoBundle\Model;
+namespace SymEdit\Bundle\SeoBundle\Model;
 
-use Isometriks\Bundle\SeoBundle\Event\SeoEvent;
+use SymEdit\Bundle\SeoBundle\Event\SeoEvent;
 
 interface SeoCalculatorInterface
 {

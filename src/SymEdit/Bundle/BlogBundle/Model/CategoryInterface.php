@@ -11,7 +11,7 @@
 
 namespace SymEdit\Bundle\BlogBundle\Model;
 
-use Isometriks\Bundle\SeoBundle\Model\SeoAbleInterface;
+use SymEdit\Bundle\SeoBundle\Model\SeoAbleInterface;
 
 interface CategoryInterface extends SeoAbleInterface
 {

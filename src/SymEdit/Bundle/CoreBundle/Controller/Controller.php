@@ -140,7 +140,7 @@ class Controller extends BaseController
      */
     public function getSeo()
     {
-        return $this->get('isometriks_seo.seo');
+        return $this->get('symedit_seo.seo');
     }
 
     protected function addFlash($type, $message)

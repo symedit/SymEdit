@@ -1,6 +1,6 @@
 <?php
 
-namespace Isometriks\Bundle\SeoBundle\DataCollector;
+namespace SymEdit\Bundle\SeoBundle\DataCollector;
 
 use Symfony\Component\HttpKernel\DataCollector\DataCollector;
 use Symfony\Component\HttpFoundation\Request;
@@ -41,6 +41,6 @@ class SeoDataCollector extends DataCollector
 
     public function getName()
     {
-        return 'isometriks_seo';
+        return 'symedit_seo';
     }
 }

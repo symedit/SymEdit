@@ -11,7 +11,7 @@
 
 namespace SymEdit\Bundle\CoreBundle\EventListener\Subscriber;
 
-use Isometriks\Bundle\SeoBundle\Model\SeoInterface;
+use SymEdit\Bundle\SeoBundle\Model\SeoInterface;
 use SymEdit\Bundle\CoreBundle\Event\Events;
 use Sylius\Bundle\ResourceBundle\Event\ResourceEvent;
 use SymEdit\Bundle\CoreBundle\Event\PostEvent;

@@ -1,9 +1,9 @@
 <?php
 
-namespace Isometriks\Bundle\SeoBundle\EventListener\Seo;
+namespace SymEdit\Bundle\SeoBundle\EventListener\Seo;
 
-use Isometriks\Bundle\SeoBundle\Event\SeoEvent;
-use Isometriks\Bundle\SeoBundle\Model\SeoCalculatorInterface;
+use SymEdit\Bundle\SeoBundle\Event\SeoEvent;
+use SymEdit\Bundle\SeoBundle\Model\SeoCalculatorInterface;
 use Symfony\Component\HttpFoundation\Request;
 
 /**

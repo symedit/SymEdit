@@ -1,10 +1,10 @@
 <?php
 
-namespace Isometriks\Bundle\SeoBundle\Twig\Extension;
+namespace SymEdit\Bundle\SeoBundle\Twig\Extension;
 
-use Isometriks\Bundle\SeoBundle\Model\SeoManagerInterface;
+use SymEdit\Bundle\SeoBundle\Model\SeoManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
-use Isometriks\Bundle\SeoBundle\Util\SeoTools;
+use SymEdit\Bundle\SeoBundle\Util\SeoTools;
 
 class SeoExtension extends \Twig_Extension
 {
@@ -25,8 +25,8 @@ class SeoExtension extends \Twig_Extension
     public function getFunctions()
     {
         return array(
-            new \Twig_SimpleFunction('isometriks_seo_title', array($this, 'getSeoTitle')),
-            new \Twig_SimpleFunction('isometriks_seo_metas', array($this, 'getSeoMetas'), array('is_safe' => array('html'))),
+            new \Twig_SimpleFunction('symedit_seo_title', array($this, 'getSeoTitle')),
+            new \Twig_SimpleFunction('symedit_seo_metas', array($this, 'getSeoMetas'), array('is_safe' => array('html'))),
         );
     }
     
@@ -49,7 +49,7 @@ class SeoExtension extends \Twig_Extension
     }
     
     /**
-     * @return Isometriks\Bundle\SeoBundle\Model\SeoInterface
+     * @return SymEdit\Bundle\SeoBundle\Model\SeoInterface
      */
     protected function getCalculatedSeo()
     {
@@ -62,6 +62,6 @@ class SeoExtension extends \Twig_Extension
     
     public function getName()
     {
-        return 'isometriks_seo';
+        return 'symedit_seo';
     }
 }

@@ -12,7 +12,7 @@
 namespace SymEdit\Bundle\CoreBundle\Model;
 
 use Symfony\Component\Validator\ExecutionContextInterface;
-use Isometriks\Bundle\SeoBundle\Model\SeoAbleInterface;
+use SymEdit\Bundle\SeoBundle\Model\SeoAbleInterface;
 
 interface PageInterface extends SeoAbleInterface, ViewCountableInterface, \IteratorAggregate
 {

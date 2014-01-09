@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html lang="en-US">
     <head>
-        <title>{% block title %}{{ isometriks_seo_title() }}{% endblock %}</title>
+        <title>{% block title %}{{ symedit_seo_title() }}{% endblock %}</title>
 {% block meta %}
-{%for meta in isometriks_seo_metas() %}
+{%for meta in symedit_seo_metas() %}
         {{ meta|raw }}
 {% endfor %}
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
