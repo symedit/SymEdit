@@ -273,7 +273,7 @@ class Seo implements SeoInterface
              * - If we're replacing, then set new one no matter what
              * - If not replacing, check to see if current value is empty first
              */
-            if (!empty($newValue) && ($replaceExisting || empty($currentValue))) {
+            if ((!empty($newValue) || is_bool($newValue)) && ($replaceExisting || empty($currentValue))) {
                 $this->$setter($newValue);
             }
         }

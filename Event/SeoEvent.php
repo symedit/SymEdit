@@ -6,11 +6,20 @@ use Symfony\Component\EventDispatcher\Event;
 use Symfony\Component\HttpFoundation\Request;
 use Isometriks\Bundle\SeoBundle\Model\SeoInterface;
 
+/**
+ * Event for SEO
+ */
 class SeoEvent extends Event
 {
     protected $seo;
     protected $request;
-    
+
+    /**
+     * Constructor
+     *
+     * @param SeoInterface $seo
+     * @param Request $request
+     */
     public function __construct(SeoInterface $seo, Request $request = null)
     {
         $this->seo = $seo;
@@ -19,7 +28,7 @@ class SeoEvent extends Event
 
     /**
      * Get the request
-     * 
+     *
      * @return Request|null
      */
     public function getRequest()
@@ -29,17 +38,17 @@ class SeoEvent extends Event
 
     /**
      * Get the current Seo instance
-     * 
+     *
      * @return SeoInterface
      */
     public function getSeo()
     {
         return $this->seo;
-    }    
-    
+    }
+
     /**
      * Replace the current Seo instance
-     * 
+     *
      * @param SeoInterface $seo
      */
     public function setSeo(SeoInterface $seo)
