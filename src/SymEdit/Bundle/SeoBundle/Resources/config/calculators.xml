@@ -1,0 +1,38 @@
+<?xml version="1.0" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <!--
+    <parameters>
+    </parameters>
+    -->
+
+    <services>
+        <service id="isometriks_seo.event_listener.lang" class="Isometriks\Bundle\SeoBundle\EventListener\Seo\LangCalculator">
+            <tag name="seo.calculator" />
+        </service>
+
+        <service id="isometriks_seo.event_listener.request" class="Isometriks\Bundle\SeoBundle\EventListener\Seo\RequestCalculator">
+            <call method="setRequest">
+                <argument type="service" id="request" on-invalid="null" strict="false" />
+            </call>
+            <tag name="seo.calculator" priority="-150" />
+        </service>
+
+        <service id="isometriks_seo.event_listener.meta" class="Isometriks\Bundle\SeoBundle\EventListener\Seo\MetaCalculator">
+            <tag name="seo.calculator" priority="-175" />
+        </service>
+
+        <service id="isometriks_seo.event_listener.trim" class="Isometriks\Bundle\SeoBundle\EventListener\Seo\OutputCalculator">
+            <argument>%isometriks_seo.limit.title%</argument>
+            <argument>%isometriks_seo.limit.description%</argument>
+            <tag name="seo.calculator" priority="-200" />
+        </service>
+
+        <service id="isometriks_seo.event_listener.opengraph" class="Isometriks\Bundle\SeoBundle\EventListener\Seo\OpenGraphCalculator">
+            <tag name="seo.calculator" priority="-250" />
+        </service>
+    </services>
+</container>

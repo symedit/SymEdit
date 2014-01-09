@@ -1,0 +1,58 @@
+{% extends 'WebProfilerBundle:Profiler:layout.html.twig' %}
+
+{% block toolbar %}
+    {% set icon %}
+        <span>
+            SEO
+            
+            {% if collector.data.errors > 0 %}
+                <span class="sf-toolbar-status sf-toolbar-status-red">{{ collector.data.errors }}</span>
+            {% endif %}
+            {# <img width="28" height="28" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABHNCSVQICAgIfAhkiAAAAAlwSFlzAAALEgAACxIB0t1+/AAAABx0RVh0U29mdHdhcmUAQWRvYmUgRmlyZXdvcmtzIENTNui8sowAAAAWdEVYdENyZWF0aW9uIFRpbWUAMDIvMDQvMTOGMgHlAAADZklEQVRYhb2XP08ySxSHH8iFDoydDeTyBRD9ArPZRDuSVToTDG/sjYWlgWBtYfwERBJbETsMZuYTXGJL4Rtp7FygMVJwi/3jDuwi9xXvUzE7wzm/mTNzzkxsOp2yDIZhFAALMIACsDYzZAj0AAm0pJS9ZezGvhJgGIYFnABiKaWfKOBSStn6UkAsFpvrEEL8DTT+wHGYkIpS6nfwozfxeNg/hBAWznJ+1zmujZ5rc445AUKICnDLfIy/wxpw69rW0ELgqrxdoeMw9pRSLS8EvgA35j1WO/MwhkBBSvkb9BA0/gfnuD4aXiM2nU69o7Zw6Tc3N9na2gLg+fkZpVTkWCEEuVwO27ZptSJP4Z6UsuUJkETs+HQ6TbvdBmAwGNDv9zFNk/F4TLFYjBw7mUxIJBIA7O7u8vHxMWtaSSmNuJvhIo9b0GC5XOb8/JzxeEwqlSKbzYaOHY/H7OzscHd3B8DBwUGYaWEYRiGOk15DCTp4f3/3Z5lKpQCwbfvTmvicw9nZGQDb29uAE7IIrL9wcnsoQQepVAohBLZtMxgM6Ha7jEYjvz+Xy2n/TSaTvL290e/3F+0XIyaEsFmw+5vNJplMxm/XarVQg9lsluvrawCenp44Pj6OMhlkGF/kHKBcLjOZTPx2vV7Xltvj9fXV/53P57m6ulpGwFpoLZilVCpp7Xq9ru0PIQSdTsdvX15eLrsC4cUInBhWq1WazSb7+/scHh5q/aenp4Cz9PV63f/eaDQWnf3lBXQ6HUzTJJPJUCqV/M3nkc/nNSFBAf+FOE5u1gjGuFarUSwWGY1GdLvdOQOeEEAT6JFOpxf5H8ZxCpBG8EgFd3ww7mHONjY2tLZlWbTbbZLJZJSAXhznDqcRTBzVatV3bpqm//3i4gJwjpxHIpGg2WxSqVR4eHjg5OSEWq0WloY9ZEwIUQD+me25v7/3M94swVwQzP9BJpMJR0dHvLy8RDkH2FpYjCzLwjRN1tfXAeh2u9zc3ITOyKuAAI+Pj185BrcYLV2Of4DPcuzeiCSruYQug5JSGqDngQohR/IHGLq+0AS49/bK3PDVo70RtEyolGoBv37Q+S/Xh89cKlZKNYA9VhuOIc51vDHbEVoLXJUFnGfVd1FAYXbmHpFvQw/3sfLHj9Mox9rDZBl+6nn+L9gCgg91p/W/AAAAAElFTkSuQmCC" alt="SymEdit" /> #}
+        </span>
+    {% endset %}
+
+    {% set text %}
+        <div class="sf-toolbar-info-piece">
+            <b>Title:</b>
+            <span>{{ collector.data.title|default('No Title!') }}</span>
+        </div>
+        <div class="sf-toolbar-info-piece">
+            <b>Description:</b>
+            <span>{{ collector.data.description|default('No Description!') }}</span>
+        </div>
+        <div class="sf-toolbar-info-piece">
+            <b>Keywords:</b>
+            <span>{{ collector.data.keywords }}</span>
+        </div>
+        {% if collector.data.metas|length > 0 %}
+        <div class="sf-toolbar-info-piece">
+            <b>Metas:</b>
+            {% for type, value in collector.data.metas %}
+            <br><b>{{ type }}:</b>
+            
+            <table>
+                {% for key, value in collector.data.metas[type] %}
+                <tr>
+                    <td>{{ key }}</td>
+                    <td>{{ value|default('(blank)') }}</td>
+                </tr>
+                {% endfor %}
+            </table>
+            {% endfor %}
+        </div>
+        {% endif %}
+    {% endset %}
+
+    {% include 'WebProfilerBundle:Profiler:toolbar_item.html.twig' with {'link': true } %}
+{% endblock %}
+
+{% block menu %}
+<span class="label">
+    <strong>SEO</strong>
+</span>
+{% endblock %}
+
+{% block panel %}
+Panelll
+{% endblock %}
