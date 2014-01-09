@@ -12,16 +12,24 @@ admin:
             label: Name
             popover:
                 title: Page Name
-                content: The Page's "Name" attribute determines the URL of the page. If the page has any parents, it will use them as well. Eg. Root > about-us > team becomes /about-us/team
+                content: >
+                  The Page's "Name" attribute determines the URL of the page.
+                  If the page has any parents, it will use them as well. Eg.
+                  Root > about-us > team becomes /about-us/team
         tagline: Tagline
         template:
-            help: It is suggested that you try not to change templates once a page is already constructed, unless they have similar layouts. Templates requiring different content may not be interchangeable.
+            help: >
+              It is suggested that you try not to change templates once a page
+              is already constructed, unless they have similar layouts.
+              Templates requiring different content may not be interchangeable.
         parent: Parent
         summary: Summary
         pagecontroller: Page Controller?
         pagecontrollerpath:
             label: Controller Path
-            help: When a controller with the path you specify is called, it will inject this Page. Use the PageController Annotation to link them.
+            help: >
+              When a controller with the path you specify is called, it will
+              inject this Page. Use the PageController Annotation to link them.
         display:
             label: Display
             help: Show this Page in Navigation
