@@ -13,6 +13,9 @@
         "php": ">=5.3.3",
         "twig/twig": "~1.11"
     },
+    "autoload": {
+        "psr-0": { "SymEdit\\": "src/" }
+    },
     "replace": {
         "symedit/blog-bundle": "self.version",
         "symedit/core-bundle": "self.version",
