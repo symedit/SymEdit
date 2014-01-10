@@ -8,6 +8,9 @@
             "email": "craig.blanchette@gmail.com"
         }
     ],
+    "require": {
+        "friendsofsymfony/user-bundle": "~2.0@dev"
+    },
     "autoload": {
         "psr-0": { "SymEdit\\Bundle\\UserBundle": "" }
     },
