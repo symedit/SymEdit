@@ -12,7 +12,6 @@
 namespace SymEdit\Bundle\CoreBundle\Form;
 
 use Sylius\Bundle\ResourceBundle\Model\RepositoryInterface;
-use SymEdit\Bundle\CoreBundle\Iterator\RecursivePageIterator;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
@@ -102,7 +101,7 @@ class PageType extends AbstractType
         ));
 
         $seo
-            ->add('seo', new SeoVirtualType())
+            ->add('seo', 'symedit_seo')
             ->add('crawl', 'checkbox', array(
                 'required' => false,
                 'help_block' => 'admin.page.crawl.help',
