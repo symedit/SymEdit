@@ -82,14 +82,6 @@ class PageType extends AbstractType
                 'required' => false,
                 'help_block' => 'admin.page.display.help',
                 'label' => 'admin.page.display.label',
-            ))
-            ->add('summary', 'textarea', array(
-                'attr' => array(
-                    'class' => 'wysiwyg-editor',
-                    'style' => 'height: 250px',
-                 ),
-                'label' => 'admin.page.summary',
-                'required' => false,
             ));
 
         $template = $builder->create('template', 'tab', array(
@@ -117,6 +109,21 @@ class PageType extends AbstractType
                 'label' => 'admin.page.crawl.label',
             ));
 
+        $summary = $builder->create('summary', 'tab', array(
+            'label' => 'admin.page.tabs.summary',
+            'icon' => 'file',
+            'inherit_data' => true,
+        ));
+
+        $summary
+            ->add('summary', 'textarea', array(
+                'attr' => array(
+                    'class' => 'wysiwyg-editor',
+                    'style' => 'height: 250px',
+                 ),
+                'label' => 'admin.page.summary',
+                'required' => false,
+            ));
 
         $content = $builder->create('content', 'tab', array(
             'label' => 'admin.page.tabs.content',
@@ -162,6 +169,7 @@ class PageType extends AbstractType
             ->add($basic)
             ->add($template)
             ->add($seo)
+            ->add($summary)
             ->add($content)
             ->add($advanced);
 

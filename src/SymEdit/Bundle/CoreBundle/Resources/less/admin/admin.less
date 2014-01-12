@@ -210,8 +210,8 @@ i[class^="icon-"], i[class*=" icon-"] {
  * Sidebar
  */
 #sidebar {
-    background-color: @dark_gray;
-    padding: 100px 12px 20px 12px;
+    background-color: darken(@dark_gray, 10%);
+    padding: 100px 0 20px 0;
     width: 200px;
     position: fixed;
     top: 0;
@@ -223,7 +223,6 @@ i[class^="icon-"], i[class*=" icon-"] {
             margin-bottom: 5px;
 
             a {
-                .rounded(5px);
                 color: @light_gray;
                 border: none;
 
@@ -232,6 +231,10 @@ i[class^="icon-"], i[class*=" icon-"] {
                     color: @white;
                     border: none;
                 }
+
+                i {
+                    margin-right: 5px;
+                }
             }
 
             &.active {
@@ -239,6 +242,7 @@ i[class^="icon-"], i[class*=" icon-"] {
                     background-color: fadeout(@black,10%);
                     color: @white;
                     border: none;
+                    border-left: 5px solid @blue;
                 }
             }
         }
@@ -246,6 +250,10 @@ i[class^="icon-"], i[class*=" icon-"] {
 
     .actions {
         margin-top: 30px;
+
+        .btn-block {
+            margin-top: 0;
+        }
     }
 }
 

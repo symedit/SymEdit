@@ -10,28 +10,28 @@
 .navbar-default {
     background-color: @dark_gray;
     border-bottom: 4px solid @blue;
-    
+
     .navbar-brand {
         font-family: @sans_serif;
         color: @white;
         text-shadow: 0 0 5px @black;
-        
+
         &:hover {
             color: @white;
         }
     }
-    
+
     .navbar-nav {
         > .open > a, > .open > a:focus {
             color: @white;
             background-color: darken(@dark_gray, 5%);
-            
+
             &:hover {
                 color: @white;
                 background-color: darken(@dark_gray, 10%);
             }
         }
-        
+
         > .dropdown {
             > a:hover, > a:focus {
                 .caret {
@@ -39,39 +39,39 @@
                 }
             }
         }
-        
+
         > li > a {
             font-size: 12px;
             color: @white;
-            
+
             > i {
                 font-size: 14px;
             }
-            
+
             &:hover {
                 color: @white;
             }
         }
-        
+
         > .active, > .active:hover {
             > a {
                 background-color: @blue;
                 color: @white;
-                
+
                 b.caret {
                     border-top-color: @white;
                 }
             }
         }
-        
+
         > .active.open {
             > a {
                 background-color: darken(@blue, 10%);
-                
+
                 &:hover, &:focus {
                     background-color: darken(@blue, 10%);
                 }
-                
+
                 b.caret {
                     border-top-color: @white;
                 }
@@ -82,14 +82,14 @@
 
 .dropdown-menu {
     .drop-shadow(0,10px,60px,.25);
-    
+
     > li {
         > a {
             font-size: 13px;
-            
+
             &:hover {
                 background-color: @blue;
-            }            
+            }
         }
     }
 }
@@ -100,7 +100,7 @@
 
 .popover {
     width: 300px;
-    
+
     .popover-content {
         font-size: 12px;
         font-weight: normal;
@@ -113,7 +113,7 @@
 .btn(@color) {
     background-color: @color;
     border-color: @color;
-    
+
     &:hover {
         background-color: darken(@color,10%);
         border-color: @color;
@@ -127,6 +127,12 @@
 label {
     &.col-lg-3 {
         max-width: 200px;
+    }
+
+    &.control-label {
+        .help-block {
+            display: inline;
+        }
     }
 }
 
@@ -148,4 +154,15 @@ input[type="color"] {
     height: 30px;
     border: none;
     .rounded(5px);
+}
+
+
+// Navs
+
+.nav-pills {
+    > li {
+        > a {
+            border-radius: 0;
+        }
+    }
 }

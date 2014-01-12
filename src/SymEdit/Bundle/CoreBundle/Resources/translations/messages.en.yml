@@ -16,7 +16,7 @@ admin:
                   The Page's "Name" attribute determines the URL of the page.
                   If the page has any parents, it will use them as well. Eg.
                   Root > about-us > team becomes /about-us/team
-        tagline: Tagline
+        tagline: Page Heading
         template:
             help: >
               It is suggested that you try not to change templates once a page
@@ -40,6 +40,7 @@ admin:
             basic: Basic
             template: Template
             seo: SEO
+            summary: Summary
             content: Content
             advanced: Advanced
         actions:
