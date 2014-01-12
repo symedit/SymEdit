@@ -44,7 +44,7 @@
                 </div>
                 {% endblock %}
 
-                {% block heading %}<h1>{{ Page.tagline }}</h1>{% endblock %}
+                {% block heading %}<h1>{{ Page.tagline|default(Page.title) }}</h1>{% endblock %}
                 <div id="content">
                     {% block featured %}
                     {% widgetarea 'featured' %}
