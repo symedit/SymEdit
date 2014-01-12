@@ -27,6 +27,7 @@ class SymEditSeoExtension extends Extension
         $loader = new Loader\XmlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
         $loader->load('services.xml');
         $loader->load('calculators.xml');
+        $loader->load('form.xml');
 
         if ($config['annotations']) {
             $loader->load('annotations.xml');

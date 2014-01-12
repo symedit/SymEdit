@@ -22,7 +22,7 @@ use SymEdit\Bundle\ResourceBundle\DependencyInjection\SymEditResourceExtension;
 class SymEditWidgetExtension extends SymEditResourceExtension
 {
     protected $configFiles = array(
-        'services', 'widget',
+        'services', 'widget', 'form',
     );
 
     /**

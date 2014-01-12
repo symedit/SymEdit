@@ -69,7 +69,7 @@ class PostType extends AbstractType
         ));
 
         $seo
-            ->add('seo', new SeoVirtualType());
+            ->add('seo', 'symedit_seo');
 
 
         $summary = $builder->create('summary', 'tab', array(

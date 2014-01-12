@@ -6,7 +6,7 @@
 <ul class="nav nav-pills nav-stacked">
     {% for area in areas %}
     <li{% if loop.first %} class="active"{% endif %}>
-        <a href="#area_{{ area.area }}" data-toggle="tab">{{ area.area }}</a>
+        <a href="#area_{{ area.area }}" data-toggle="tab">{{ area.area|capitalize }}</a>
     </li>
     {% endfor %}
 </ul>
@@ -14,7 +14,10 @@
 
 
 {% block form_actions %}
-<a href="{{ path('admin_widget_choose') }}" class="btn btn-primary btn-block">New Widget</a>
+<a href="{{ path('admin_widget_choose') }}" class="btn btn-primary btn-block">
+    {{ icon('plus') }}
+    New Widget
+</a>
 {% endblock %}
 
 {% block tab_content %}

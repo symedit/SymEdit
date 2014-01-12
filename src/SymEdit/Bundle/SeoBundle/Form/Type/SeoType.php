@@ -9,13 +9,13 @@
  * file that was distributed with this source code.
  */
 
-namespace SymEdit\Bundle\CoreBundle\Form;
+namespace SymEdit\Bundle\SeoBundle\Form\Type;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
-class SeoVirtualType extends AbstractType
+class SeoType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
@@ -55,7 +55,6 @@ class SeoVirtualType extends AbstractType
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'widget_form_group' => false,
             'horizontal' => false,
             'label_render' => false,
         ));
@@ -63,6 +62,6 @@ class SeoVirtualType extends AbstractType
 
     public function getName()
     {
-        return 'isometriks_bundle_symeditbundle_seovirtualtype';
+        return 'symedit_seo';
     }
 }
