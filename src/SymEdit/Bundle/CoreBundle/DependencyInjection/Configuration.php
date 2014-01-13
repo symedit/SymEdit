@@ -35,7 +35,7 @@ class Configuration implements ConfigurationInterface
                         ->thenInvalid('The driver %s is not supported. Choose one of '.json_encode($supportedDrivers))
                     ->end()
                     ->info('Database driver to use, one of: '.json_encode($supportedDrivers))
-                    ->defaultValue('orm')
+                    ->defaultValue('doctrine/orm')
                     ->cannotBeOverwritten()
                 ->end()
                 ->scalarNode('model_manager_name')->defaultNull()->end()
