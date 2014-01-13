@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace SymEdit\Bundle\CoreBundle\Doctrine\ORM;
+namespace SymEdit\Bundle\BlogBundle\Doctrine\ORM;
 
 use Sylius\Bundle\ResourceBundle\Doctrine\ORM\EntityRepository;
 
