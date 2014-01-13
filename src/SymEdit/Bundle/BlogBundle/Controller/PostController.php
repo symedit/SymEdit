@@ -51,6 +51,15 @@ class PostController extends ResourceController
         ;
     }
 
+    public function previewAction()
+    {
+        if ($this->get('security.context')->isGranted('ROLE_ADMIN')) {
+            return parent::showAction();
+        }
+
+        return $this->createNotFoundException();
+    }
+
     /**
      * Get posts by an author
      */

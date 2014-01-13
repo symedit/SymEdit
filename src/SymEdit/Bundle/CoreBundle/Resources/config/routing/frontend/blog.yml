@@ -35,6 +35,15 @@ blog_archive:
             index: false
         page: 1
 
+blog_preview:
+    pattern: /preview/{slug}
+    defaults:
+        _sylius:
+            template: SymEditBundle:Blog:single.html.twig
+            criteria:
+                slug: $slug
+        _controller: symedit.controller.post:previewAction
+
 blog_slug_view:
     pattern: /{slug}
     requirements:
