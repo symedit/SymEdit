@@ -31,13 +31,32 @@ class SitemapFetcher extends ContainerAware
         return $routes;
     }
 
+    /**
+     * Returns all the objects from the repository
+     *
+     * @param string $className
+     * @param array $parameters
+     * @return array
+     * @throws \InvalidArgumentException
+     */
     protected function getObjects($className, array $parameters)
     {
+        if (!$this->container->has($parameters['repository'])) {
+            throw new \InvalidArgumentException(sprintf('Could not generate sitemap, service "%s" not found.', $parameters['repository']));
+        }
+
         $repository = $this->container->get($parameters['repository']);
 
         return call_user_func(array($repository, $parameters['method']));
     }
 
+    /**
+     * Builds a single entry from object and parameters
+     *
+     * @param mixed $object
+     * @param array $parameters
+     * @return array
+     */
     protected function makeEntry($object, array $parameters)
     {
         $routeName = $parameters['route']['path'];
@@ -56,6 +75,14 @@ class SitemapFetcher extends ContainerAware
         return $entry;
     }
 
+    /**
+     * Resolves route parameters. If you have $slug for instance it will try
+     * to resolve it by checking Object::$slug Object->getSlug() etc.
+     *
+     * @param mixed $object
+     * @param array $routeParams
+     * @return array
+     */
     protected function resolveRouteParams($object, $routeParams)
     {
         $resolvedParams = array();
@@ -77,11 +104,6 @@ class SitemapFetcher extends ContainerAware
     protected function getRouter()
     {
         return $this->container->get('router');
-    }
-
-    protected function getRoute($routeName)
-    {
-        return $this->getRouter()->getRouteCollection()->get($routeName);
     }
 
     protected function getPropertyAccessor()
