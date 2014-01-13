@@ -2,12 +2,17 @@
 
 namespace SymEdit\Bundle\SitemapBundle\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\DependencyInjection\ContainerAware;
 
-class DefaultController extends Controller
+class SitemapController extends ContainerAware
 {
-    public function indexAction($name)
+    public function indexAction()
     {
-        return $this->render('SymEditSitemapBundle:Default:index.html.twig', array('name' => $name));
+        $manager = $this->container->get('symedit_sitemap.manager');
+        $sitemap = $manager->getSitemap();
+
+        return $this->container->get('templating')->renderResponse('SymEditSitemapBundle:Sitemap:index.xml.twig', array(
+            'sitemap' => $sitemap,
+        ));
     }
 }

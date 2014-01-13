@@ -20,6 +20,11 @@ class Configuration implements ConfigurationInterface
         $treeBuilder = new TreeBuilder();
         $rootNode = $treeBuilder->root('symedit_sitemap');
 
+        $allowedFreq = array(
+            'always', 'hourly', 'daily', 'weekly', 'monthly',
+            'yearly', 'never',
+        );
+
         $rootNode
             ->children()
                 ->arrayNode('models')
@@ -42,15 +47,20 @@ class Configuration implements ConfigurationInterface
                                 ->end()
                             ->end()
                             ->arrayNode('callbacks')->end()
+                            ->scalarNode('changefreq')
+                                ->validate()
+                                    ->ifNotInArray($allowedFreq)
+                                    ->thenInvalid('Change frequency not supported, choose one of: '.json_encode($allowedFreq))
+                                ->end()
+                                ->defaultValue('weekly')
+                            ->end()
+                            ->scalarNode('lastmod')->defaultNull()->end()
+                            ->scalarNode('priority')->defaultValue('0.5')->end()
                         ->end()
                     ->end()
                 ->end()
             ->end()
         ;
-
-        // Here you should define the parameters that are allowed to
-        // configure your bundle. See the documentation linked above for
-        // more information on that topic.
 
         return $treeBuilder;
     }

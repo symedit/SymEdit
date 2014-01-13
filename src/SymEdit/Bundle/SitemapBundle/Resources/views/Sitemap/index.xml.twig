@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+{% for entry in sitemap %}
+    <url>
+        <loc>{{ entry.url }}</loc>
+        <changefreq>{{ entry.changefreq }}</changefreq>
+{% if entry.priority is not empty %}
+        <priority>{{ entry.priority }}</priority>
+{% endif %}
+{% if entry.lastmod is defined and entry.lastmod is not empty %}
+        <lastmod>{{ entry.lastmod|date('Y-m-d') }}</lastmod>
+{% endif %}
+    </url>
+{% endfor %}
+</urlset>
