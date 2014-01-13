@@ -11,6 +11,8 @@
 
 namespace SymEdit\Bundle\SitemapBundle\Sitemap;
 
+use SymEdit\Bundle\SitemapBundle\Model\Sitemap;
+
 class SitemapManager
 {
     protected $fetcher;
@@ -36,11 +38,11 @@ class SitemapManager
 
     public function getSitemap()
     {
-        $entries = array();
+        $sitemap = new Sitemap();
         foreach ($this->getModels() as $className => $parameters) {
-            $entries = array_merge($entries, $this->fetcher->fetchEntries($className, $parameters));
+            array_map(array($sitemap, 'addEntry'), $this->fetcher->fetchEntries($className, $parameters));
         }
 
-        return $entries;
+        return $sitemap;
     }
 }
