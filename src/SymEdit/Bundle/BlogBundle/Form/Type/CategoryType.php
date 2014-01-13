@@ -42,12 +42,19 @@ class CategoryType extends AbstractType
         ));
 
         $seo
-            ->add('seo', new SeoVirtualType());
+            ->add('seo', 'symedit_seo');
 
 
         $builder
             ->add($basic)
             ->add($seo);
+    }
+
+    public function setDefaultOptions(\Symfony\Component\OptionsResolver\OptionsResolverInterface $resolver)
+    {
+        $resolver->setDefaults(array(
+            'tabs_class' => 'nav nav-pills nav-stacked',
+        ));
     }
 
     public function getName()
