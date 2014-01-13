@@ -12,14 +12,25 @@
 namespace SymEdit\Bundle\BlogBundle\Doctrine\ORM;
 
 use Doctrine\ORM\QueryBuilder;
-use SymEdit\Bundle\BlogBundle\Model\CategoryInterface;
 use Sylius\Bundle\ResourceBundle\Doctrine\ORM\EntityRepository;
+use SymEdit\Bundle\BlogBundle\Model\CategoryInterface;
+use SymEdit\Bundle\BlogBundle\Model\Post;
 
 class PostRepository extends EntityRepository
 {
     public function findAllOrdered()
     {
         return $this->getRecentQuery()->getResult();
+    }
+    
+    public function findPublished()
+    {
+        return $this
+            ->getQueryBuilder()
+            ->andWhere('o.status = :status')
+            ->setParameter('status', Post::PUBLISHED)
+            ->getQuery()
+            ->getResult();
     }
 
     public function findPopular($max = null)
