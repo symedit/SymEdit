@@ -11,5 +11,5 @@ sitemap:
     requirements:
         _format: xml
     defaults:
-        _controller: SymEditBundle:Crawler:sitemap
+        _controller: SymEditSitemapBundle:Sitemap:index
         _format: xml
