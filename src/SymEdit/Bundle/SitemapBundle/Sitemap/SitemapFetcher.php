@@ -21,10 +21,13 @@ class SitemapFetcher extends ContainerAware
 
     public function fetchEntries($className, array $parameters)
     {
-        // Check if route exists
+        /**
+         *  Check if route exists, if route starts with a $ it is dynamic
+         *  so don't fail here.
+         */
         $routeName = $parameters['route']['path'];
 
-        if (!$this->hasRoute($routeName)) {
+        if (!$this->hasRoute($routeName) && $routeName[0] !== '$') {
 
             // Ignore routes that are not found?
             if ($parameters['route']['ignore']) {
@@ -42,7 +45,11 @@ class SitemapFetcher extends ContainerAware
                 continue;
             }
 
-            $routes[] = $this->makeEntry($object, $parameters);
+            $entry = $this->makeEntry($object, $parameters);
+
+            if ($entry !== null) {
+                $routes[] = $this->makeEntry($object, $parameters);
+            }
         }
 
         return $routes;
@@ -91,7 +98,7 @@ class SitemapFetcher extends ContainerAware
      */
     protected function makeEntry($object, array $parameters)
     {
-        $routeName = $parameters['route']['path'];
+        $routeName = $this->resolveParam($object, $parameters['route']['path']);
         $routeParams = $this->resolveRouteParams($object, $parameters['route']['params']);
 
         $entry = array(
@@ -120,14 +127,26 @@ class SitemapFetcher extends ContainerAware
         $resolvedParams = array();
 
         foreach ($routeParams as $key => $value) {
-            if ($value[0] === '$') {
-                $value = $this->getPropertyAccessor()->getValue($object, substr($value, 1));
-            }
-
-            $resolvedParams[$key] = $value;
+            $resolvedParams[$key] = $this->resolveParam($object, $value);
         }
 
         return $resolvedParams;
+    }
+
+    /**
+     * Resolves a single string
+     *
+     * @param mixed $object
+     * @param string $string
+     * @return string
+     */
+    protected function resolveParam($object, $string)
+    {
+        if ($string[0] === '$') {
+            $string = $this->getPropertyAccessor()->getValue($object, substr($string, 1));
+        }
+
+        return $string;
     }
 
     protected function hasRoute($routeName)
