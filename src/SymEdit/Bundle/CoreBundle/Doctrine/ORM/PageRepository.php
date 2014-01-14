@@ -28,6 +28,11 @@ class PageRepository extends EntityRepository
         return new RecursivePageIterator($this->findRoot(), $display);
     }
 
+    public function getRecursiveIterator($display = true)
+    {
+        return new \RecursiveIteratorIterator($this->getIterator($display), \RecursiveIteratorIterator::SELF_FIRST);
+    }
+
     /**
      * Get pages that are actually routes, this means pages that aren't
      * the root node, or page controllers
