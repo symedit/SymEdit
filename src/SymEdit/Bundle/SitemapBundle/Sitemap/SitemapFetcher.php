@@ -21,6 +21,19 @@ class SitemapFetcher extends ContainerAware
 
     public function fetchEntries($className, array $parameters)
     {
+        // Check if route exists
+        $routeName = $parameters['route']['path'];
+
+        if (!$this->hasRoute($routeName)) {
+
+            // Ignore routes that are not found?
+            if ($parameters['route']['ignore']) {
+                return array();
+            }
+
+            throw new \Exception(sprintf('Not ignoring unfound routes - Could not find "%s"', $routeName));
+        }
+
         $routes = array();
         $objects = $this->getObjects($parameters);
 
@@ -115,6 +128,13 @@ class SitemapFetcher extends ContainerAware
         }
 
         return $resolvedParams;
+    }
+
+    protected function hasRoute($routeName)
+    {
+        $routes = $this->getRouter()->getRouteCollection()->all();
+
+        return array_key_exists($routeName, $routes);
     }
 
     /**
