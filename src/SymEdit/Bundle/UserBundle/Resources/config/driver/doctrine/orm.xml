@@ -6,6 +6,8 @@
 
     <parameters>
         <parameter key="symedit.repository.user.class">Sylius\Bundle\ResourceBundle\Doctrine\ORM\EntityRepository</parameter>
+        <parameter key="symedit.repository.profile.class">Sylius\Bundle\ResourceBundle\Doctrine\ORM\EntityRepository</parameter>
+        <parameter key="symedit.repository.admin_profile.class">Sylius\Bundle\ResourceBundle\Doctrine\ORM\EntityRepository</parameter>
     </parameters>
 
     <services>
@@ -22,6 +24,32 @@
                     factory-method="getClassMetadata"
                     class="Doctrine\ORM\Mapping\ClassMetadata">
                     <argument>%symedit.model.user.class%</argument>
+                </service>
+            </argument>
+        </service>
+
+        <!-- Profile -->
+        <service id="symedit.repository.profile" class="%symedit.repository.profile.class%">
+            <argument type="service" id="symedit_user.entity_manager" />
+            <argument type="service">
+                <service
+                    factory-service="symedit_user.entity_manager"
+                    factory-method="getClassMetadata"
+                    class="Doctrine\ORM\Mapping\ClassMetadata">
+                    <argument>%symedit.model.profile.class%</argument>
+                </service>
+            </argument>
+        </service>
+
+        <!-- Admin Profile -->
+        <service id="symedit.repository.admin_profile" class="%symedit.repository.admin_profile.class%">
+            <argument type="service" id="symedit_user.entity_manager" />
+            <argument type="service">
+                <service
+                    factory-service="symedit_user.entity_manager"
+                    factory-method="getClassMetadata"
+                    class="Doctrine\ORM\Mapping\ClassMetadata">
+                    <argument>%symedit.model.admin_profile.class%</argument>
                 </service>
             </argument>
         </service>
