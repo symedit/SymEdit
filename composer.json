@@ -22,6 +22,7 @@
         "symedit/resource-bundle": "self.version",
         "symedit/seo-bundle": "self.version",
         "symedit/seo-export-bundle": "self.version",
+        "symedit/sitemap-bundle": "self.version",
         "symedit/settings-bundle": "self.version",
         "symedit/stylizer-bundle": "self.version",
         "symedit/user-bundle": "self.version",
