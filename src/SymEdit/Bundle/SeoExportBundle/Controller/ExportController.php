@@ -19,22 +19,15 @@ use Symfony\Component\HttpFoundation\Response;
 class ExportController extends Controller
 {
     /**
-     * @Route("%isometriks_symedit.admin_dir%/seo-export/export", name="symedit_seo_export")
+     * @Route("%symedit.admin_dir%/seo-export/export", name="symedit_seo_export")
      * @Template()
      */
     public function indexAction()
     {
-        if ($this->container->has('isometriks_symedit.repository.page')) {
-            $repository = $this->get('isometriks_symedit.repository.page');
-            $pages = $repository->findBy(array(
-                'root' => false,
-            ));
-        } else {
-            $repository = $this->get('isometriks_symedit.page_manager');
-            $pages = $repository->findPagesBy(array(
-                'root' => false,
-            ));
-        }
+        $repository = $this->get('symedit.repository.page');
+        $pages = $repository->findBy(array(
+            'root' => false,
+        ));
 
         $fh = fopen('php://temp', 'w+');
 
