@@ -11,8 +11,8 @@
 
 namespace SymEdit\Bundle\SeoExportBundle\EventListener;
 
-use SymEdit\Bundle\SymEditBundle\Event\Events;
-use SymEdit\Bundle\SymEditBundle\Event\MenuEvent;
+use SymEdit\Bundle\CoreBundle\Event\Events;
+use SymEdit\Bundle\CoreBundle\Event\MenuEvent;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\Security\Core\SecurityContextInterface;
 
