@@ -41,12 +41,15 @@ class Configuration implements ConfigurationInterface
                                     ->ifTrue(function($v) { return !is_array($v); })
                                     ->then(function($v) {
                                         return array(
-                                            'path' => $v
+                                            'path' => $v,
+                                            'params' => array(),
                                         );
                                     })
                                 ->end()
                             ->end()
-                            ->arrayNode('callbacks')->end()
+                            ->arrayNode('callbacks')
+                                ->prototype('scalar')->end()
+                            ->end()
                             ->scalarNode('changefreq')
                                 ->validate()
                                     ->ifNotInArray($allowedFreq)

@@ -22,9 +22,13 @@ class SitemapFetcher extends ContainerAware
     public function fetchEntries($className, array $parameters)
     {
         $routes = array();
-        $objects = $this->getObjects($className, $parameters);
+        $objects = $this->getObjects($parameters);
 
         foreach ($objects as $object) {
+            if (!$this->passCallbacks($object, $parameters['callbacks'])) {
+                continue;
+            }
+
             $routes[] = $this->makeEntry($object, $parameters);
         }
 
@@ -39,7 +43,7 @@ class SitemapFetcher extends ContainerAware
      * @return array
      * @throws \InvalidArgumentException
      */
-    protected function getObjects($className, array $parameters)
+    protected function getObjects(array $parameters)
     {
         if (!$this->container->has($parameters['repository'])) {
             throw new \InvalidArgumentException(sprintf('Could not generate sitemap, service "%s" not found.', $parameters['repository']));
@@ -48,6 +52,21 @@ class SitemapFetcher extends ContainerAware
         $repository = $this->container->get($parameters['repository']);
 
         return call_user_func(array($repository, $parameters['method']));
+    }
+
+    protected function passCallbacks($object, array $callbacks)
+    {
+        if (count($callbacks) === 0) {
+            return true;
+        }
+
+        foreach ($callbacks as $callback) {
+            if (!call_user_func(array($object, $callback))) {
+                return false;
+            }
+        }
+
+        return true;
     }
 
     /**
