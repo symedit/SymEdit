@@ -31,25 +31,4 @@ class CrawlerController extends Controller
             'Allow' => $allow,
         ));
     }
-
-    public function sitemapAction(Request $request)
-    {
-        $sitemap = $this->get('isometriks.sitemap');
-        $urls = $sitemap->getUrls();
-
-        $root = $this->get('symedit.repository.page')->findRoot();
-        $pageIterator = new RecursivePageIterator($root);
-        $recursiveIterator = new \RecursiveIteratorIterator($pageIterator, \RecursiveIteratorIterator::SELF_FIRST);
-
-        foreach ($recursiveIterator as $page) {
-            $urls[] = $this->generateUrl($page->getRoute(), array(), true);
-        }
-
-        $response = $this->createResponse();
-        $response->setMaxAge(300);
-
-        return $this->render('@IsometriksSitemap/Sitemap/index.xml.twig', array(
-            'urls' => $urls,
-        ), $response);
-    }
 }

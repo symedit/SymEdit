@@ -11,13 +11,8 @@
 
 namespace SymEdit\Bundle\CoreBundle\Controller;
 
-use Isometriks\Bundle\SitemapBundle\Annotation\Sitemap;
-
 class TeamController extends Controller
 {
-    /**
-     * @Sitemap()
-     */
     public function indexAction()
     {
         $em = $this->getDoctrine()->getManager();

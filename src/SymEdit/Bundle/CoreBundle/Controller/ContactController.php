@@ -11,15 +11,11 @@
 
 namespace SymEdit\Bundle\CoreBundle\Controller;
 
-use Isometriks\Bundle\SitemapBundle\Annotation\Sitemap;
 use Symfony\Component\HttpFoundation\Request;
 use SymEdit\Bundle\CoreBundle\Model\PageInterface;
 
 class ContactController extends Controller
 {
-    /**
-     * @Sitemap()
-     */
     public function indexAction(Request $request, PageInterface $_page)
     {
         $form = $this->createForm('symedit_contact');
