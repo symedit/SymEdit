@@ -78,7 +78,7 @@ class LoadWidgetData extends AbstractFixture implements OrderedFixtureInterface,
         /**
          * Add Featured Area
          */
-        $featured = $this->getWidgetAreaRepository->createNew();
+        $featured = $this->getWidgetAreaRepository()->createNew();
         $featured
             ->setArea('featured')
             ->setDescription('Featured Widget Area at top of page');
