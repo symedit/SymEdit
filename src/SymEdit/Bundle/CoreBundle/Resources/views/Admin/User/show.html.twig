@@ -1,29 +1,29 @@
 {% extends '@SymEdit/Admin/base.html.twig' %}
 
-{% block title %}Users &raquo; {{ entity.username }}{% endblock %}
+{% block title %}Users &raquo; {{ user.username }}{% endblock %}
 
 {% block content %}
 
-<h3>{{ entity.profile.fullname }} aka "{{ entity.username }}"</h3>
+<h3>{{ user.profile.fullname }} aka "{{ user.username }}"</h3>
 
 <table class="table table-bordered">
     <tr>
         <th>Username:</th>
-        <td>{{ entity.username }}</td>
+        <td>{{ user.username }}</td>
     </tr>
     <tr>
         <th>Email:</th>
-        <td>{{ entity.email }}</td>
+        <td>{{ user.email }}</td>
     </tr>
 </table>
 
 <h4>Roles</h4>
 
 <ul>
-    {% for role in entity.roles %}
+    {% for role in user.roles %}
     <li>{{ role }}</li>
     {% endfor %}
 </ul>
 
-<a class="btn btn-primary" href="{{ path('admin_user_update', {id:entity.id}) }}">Edit User</a>
+<a class="btn btn-primary" href="{{ path('admin_user_update', {id:user.id}) }}">Edit User</a>
 {% endblock %}
