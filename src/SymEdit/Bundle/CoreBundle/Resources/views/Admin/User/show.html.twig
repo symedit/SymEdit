@@ -21,9 +21,9 @@
 
 <ul>
     {% for role in entity.roles %}
-    <li>{{ role }}</li>    
+    <li>{{ role }}</li>
     {% endfor %}
 </ul>
 
-<a class="btn btn-primary" href="{{ path('admin_user_edit', {id:entity.id}) }}">Edit User</a>
+<a class="btn btn-primary" href="{{ path('admin_user_update', {id:entity.id}) }}">Edit User</a>
 {% endblock %}
