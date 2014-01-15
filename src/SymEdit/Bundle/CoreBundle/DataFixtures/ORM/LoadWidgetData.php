@@ -35,7 +35,7 @@ class LoadWidgetData extends AbstractFixture implements OrderedFixtureInterface,
         /**
          * Create sidebar
          */
-        $sidebar = $this->getManager()->createWidgetArea();
+        $sidebar = $this->getWidgetAreaRepository()->createNew();
         $sidebar->setArea('sidebar');
         $sidebar->setDescription('Sidebar Widget Area');
 
@@ -47,7 +47,7 @@ class LoadWidgetData extends AbstractFixture implements OrderedFixtureInterface,
         /**
          * Add Categories to Blog
          */
-        $categories = $this->getManager()->createWidget('blog_categories');
+        $categories = $this->getWidgetRepository()->createNew('blog_categories');
         $categories->setName('blog_categories')
                    ->setTitle('Blog Categories')
                    ->setVisibility(Widget::INCLUDE_ONLY)
@@ -56,7 +56,7 @@ class LoadWidgetData extends AbstractFixture implements OrderedFixtureInterface,
         /**
          * Add Recent Posts to Blog
          */
-        $recent = $this->getManager()->createWidget('blog_recent_posts');
+        $recent = $this->getWidgetRepository()->createNew('blog_recent_posts');
         $recent->setName('blog_recent_posts')
                ->setTitle('Recent Posts')
                ->setVisibility(Widget::INCLUDE_ONLY)
@@ -68,7 +68,7 @@ class LoadWidgetData extends AbstractFixture implements OrderedFixtureInterface,
         $sidebar->addWidget($categories);
         $sidebar->addWidget($recent);
 
-        $this->getManager()->saveWidgetArea($sidebar);
+        $manager->persist($sidebar);
 
         $this->addReference('widgetarea-sidebar', $sidebar);
         $this->addReference('widget-blog-categories', $categories);
@@ -78,12 +78,12 @@ class LoadWidgetData extends AbstractFixture implements OrderedFixtureInterface,
         /**
          * Add Featured Area
          */
-        $featured = $this->getManager()->createWidgetArea();
+        $featured = $this->getWidgetAreaRepository->createNew();
         $featured
             ->setArea('featured')
             ->setDescription('Featured Widget Area at top of page');
 
-        $slider = $this->getManager()->createWidget('slider');
+        $slider = $this->getWidgetRepository()->createNew('slider');
         $slider
             ->setName('homepage_slider')
             ->setTitle('Homepage Slider')
@@ -94,7 +94,7 @@ class LoadWidgetData extends AbstractFixture implements OrderedFixtureInterface,
         // Google Map for Contact Page
         $contact_page = $this->getReference('page-contact');
 
-        $map = $this->getManager()->createWidget('google_map');
+        $map = $this->getWidgetRepository()->createNew('google_map');
         $map
             ->setName('google_map_featured')
             ->setVisibility(Widget::INCLUDE_ONLY)
@@ -104,7 +104,7 @@ class LoadWidgetData extends AbstractFixture implements OrderedFixtureInterface,
         $featured->addWidget($slider);
         $featured->addWidget($map);
 
-        $this->getManager()->saveWidgetArea($featured);
+        $manager->persist($featured);
 
         $this->addReference('widgetarea-featured', $featured);
         $this->addReference('widget-homepage_slider', $slider);
@@ -114,28 +114,28 @@ class LoadWidgetData extends AbstractFixture implements OrderedFixtureInterface,
         /**
          * Add Supplemental Area
          */
-        $supplemental = $this->getManager()->createWidgetArea();
+        $supplemental = $this->getWidgetAreaRepository()->createNew();
         $supplemental
             ->setArea('supplemental')
             ->setDescription('Widget area following the content region');
 
-        $this->getManager()->saveWidgetArea($supplemental);
+        $manager->persist($supplemental);
 
         $this->addReference('widgetarea-supplemental', $supplemental);
 
         /**
          * Add Footer Area
          */
-        $footer = $this->getManager()->createWidgetArea();
+        $footer = $this->getWidgetAreaRepository()->createNew();
         $footer->setArea('footer');
         $footer->setDescription('Footer Widget Area');
 
-        $contact = $this->getManager()->createWidget('contact_info');
+        $contact = $this->getWidgetRepository()->createNew('contact_info');
         $contact->setName('contact_info')
                 ->setTitle('Contact Information')
                 ->setVisibility(Widget::INCLUDE_ALL);
 
-        $about = $this->getManager()->createWidget('html');
+        $about = $this->getWidgetRepository()->createNew('html');
         $about->setName('about')
               ->setTitle('About Us')
               ->setVisibility(Widget::INCLUDE_ALL)
@@ -147,25 +147,23 @@ class LoadWidgetData extends AbstractFixture implements OrderedFixtureInterface,
         $footer->addWidget($contact);
         $footer->addWidget($about);
 
-        $this->getManager()->saveWidgetArea($footer);
+        $manager->persist($footer);
 
         $this->addReference('widgetarea-footer', $footer);
         $this->addReference('widget-contact_info', $contact);
         $this->addReference('widget-about', $about);
 
-
-
-
-
         $manager->flush();
     }
 
-    /**
-     * @return \SymEdit\Bundle\CoreBundle\Widget\WidgetManager
-     */
-    private function getManager()
+    protected function getWidgetRepository()
     {
-        return $this->container->get('symedit.widget.manager');
+        return $this->container->get('symedit.repository.widget');
+    }
+
+    protected function getWidgetAreaRepository()
+    {
+        return $this->container->get('symedit.repository.widget_area');
     }
 
     public function getOrder()
