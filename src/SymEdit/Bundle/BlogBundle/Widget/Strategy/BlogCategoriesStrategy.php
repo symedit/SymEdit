@@ -12,7 +12,6 @@
 namespace SymEdit\Bundle\BlogBundle\Widget\Strategy;
 
 use Sylius\Bundle\ResourceBundle\Model\RepositoryInterface;
-use SymEdit\Bundle\CoreBundle\Model\PageInterface;
 use SymEdit\Bundle\WidgetBundle\Model\WidgetInterface;
 use SymEdit\Bundle\WidgetBundle\Widget\Strategy\AbstractWidgetStrategy;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -26,7 +25,7 @@ class BlogCategoriesStrategy extends AbstractWidgetStrategy
         $this->repository = $repository;
     }
 
-    public function execute(WidgetInterface $widget, PageInterface $page = null)
+    public function execute(WidgetInterface $widget)
     {
         $root = $this->repository->findRoot();
 
