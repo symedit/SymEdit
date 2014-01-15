@@ -28,7 +28,11 @@ class ViewHandler extends BaseViewHandler
     {
         $data = $view->getData();
 
-        if (is_object($data)) {
+        /**
+         * @TODO: Maybe have an option in the config or only
+         *        allow classes that you specify the seo for?
+         */
+        if (is_object($data) && !$data instanceof \Traversable) {
             $this->seo->setSubject($data);
         }
 
