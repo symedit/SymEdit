@@ -6,7 +6,7 @@
       {% for child in node.children %}
           <li>
               <a href="{{ path('admin_category_update', {id:child.id}) }}">
-                  <i class="icon-tag icon-white"></i> {{ child.title }}
+                  {{ icon('tag') }} {{ child.title }}
               </a>
               {{ _self.tree( child ) }}
           </li>
