@@ -12,13 +12,10 @@
 namespace SymEdit\Bundle\CoreBundle\Controller\Admin;
 
 use SymEdit\Bundle\ResourceBundle\Controller\ResourceController;
-use JMS\SecurityExtraBundle\Annotation\PreAuthorize;
 use Symfony\Component\HttpFoundation\Request;
 
 /**
  * Settings controller.
- *
- * @PreAuthorize("hasRole('ROLE_ADMIN_SETTING')")
  */
 class SettingsController extends ResourceController
 {
