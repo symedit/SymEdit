@@ -31,7 +31,7 @@ class SeoControllerListener
     {
         $request = $event->getRequest();
         $attributes = $request->attributes;
-        
+
         if ($attributes->has('_page')) {
             $seo = $this->seoManager->getSeo();
             $seo->setSubject($attributes->get('_page'));
