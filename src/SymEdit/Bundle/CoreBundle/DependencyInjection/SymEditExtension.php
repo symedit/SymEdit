@@ -35,7 +35,6 @@ class SymEditExtension extends SymEditResourceExtension
 
         $container->setParameter('symedit.model_manager_name', $config['model_manager_name']);
         $container->setParameter('symedit.extensions.routes', $config['extensions']);
-        $container->setParameter('symedit.admin_dir', $config['admin_dir']);
     }
 
     public function getAlias()

@@ -39,7 +39,6 @@ class Configuration implements ConfigurationInterface
                     ->cannotBeOverwritten()
                 ->end()
                 ->scalarNode('model_manager_name')->defaultNull()->end()
-                ->scalarNode('admin_dir')->defaultValue('sym-admin')->end()
                 ->arrayNode('extensions')
                     ->info('Extensions to add to extensions menu in admin menu')
                     ->prototype('array')

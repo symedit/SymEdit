@@ -19,7 +19,7 @@ use Symfony\Component\HttpFoundation\Response;
 class ExportController extends Controller
 {
     /**
-     * @Route("%symedit.admin_dir%/seo-export/export", name="symedit_seo_export")
+     * @Route("/sym-admin/seo-export/export", name="symedit_seo_export")
      * @Template()
      */
     public function indexAction()
