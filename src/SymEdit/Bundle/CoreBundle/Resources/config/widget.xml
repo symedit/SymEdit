@@ -21,7 +21,7 @@
         </service>
 
         <service id="symedit.widget.strategy.slider" class="%symedit.widget.strategy.slider.class%">
-            <argument type="service" id="service_container" />
+            <argument type="service" id="symedit.repository.slider" />
             <tag name="symedit_widget.widget_strategy" alias="slider" />
         </service>
 

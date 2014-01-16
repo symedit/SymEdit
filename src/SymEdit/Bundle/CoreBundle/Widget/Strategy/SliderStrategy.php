@@ -11,35 +11,28 @@
 
 namespace SymEdit\Bundle\CoreBundle\Widget\Strategy;
 
+use Sylius\Bundle\ResourceBundle\Model\RepositoryInterface;
 use SymEdit\Bundle\CoreBundle\Model\PageInterface;
 use SymEdit\Bundle\WidgetBundle\Model\WidgetInterface;
-use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Component\HttpKernel\HttpKernelInterface;
 
 class SliderStrategy extends AbstractWidgetStrategy
 {
-    private $container;
+    protected $repository;
 
-    public function __construct(ContainerInterface $container)
+    public function __construct(RepositoryInterface $repository)
     {
-        $this->container = $container;
+        $this->repository = $repository;
     }
 
     public function execute(WidgetInterface $widget, PageInterface $page = null)
     {
-        $request = $this->container->get('request');
-        $kernel = $this->container->get('http_kernel');
+        $slider = $this->repository->findOneByName($widget->getOption('slider'));
 
-        $path = array(
-            '_controller' => 'SymEditBundle:Slider:index',
-            'name' => $widget->getOption('slider'),
+        return $this->render('@SymEdit/Widget/slider.html.twig', array(
+            'slider' => $slider,
             'thumbnails' => $widget->getOption('thumbnails'),
-        );
-
-        $subRequest = $request->duplicate(array(), null, $path);
-
-        return $kernel->handle($subRequest, HttpKernelInterface::SUB_REQUEST)->getContent();
+        ));
     }
 
     public function setDefaultOptions(WidgetInterface $widget)
@@ -62,7 +55,8 @@ class SliderStrategy extends AbstractWidgetStrategy
             ->add('thumbnails', 'checkbox', array(
                 'label' => 'Show Thumbnails',
                 'required' => false,
-            ));
+            ))
+        ;
     }
 
     public function getName()
