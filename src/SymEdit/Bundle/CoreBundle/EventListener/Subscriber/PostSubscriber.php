@@ -38,7 +38,6 @@ class PostSubscriber implements EventSubscriberInterface
         return array(
             Events::POST_POST_CREATE => 'postCreated',
             Events::POST_UPDATE => 'postUpdated',
-            Events::POST_VIEW => 'postView',
         );
     }
 
@@ -75,11 +74,5 @@ class PostSubscriber implements EventSubscriberInterface
                 // The route to view posts doesn't exist, so we can't really share it.
             }
         }
-    }
-
-    public function postView(PostEvent $event)
-    {
-        $post = $event->getPost();
-        $this->seo->setSubject($post);
     }
 }

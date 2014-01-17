@@ -32,14 +32,6 @@
 
         <!--  Subscribers -->
 
-<!--
-        <service id="symedit.event_subscriber.view_count" class="%symedit.event_subscriber.view_count.class%">
-            <argument type="service" id="symedit.repository.page" />
-            <argument type="service" id="symedit.repository.post" />
-            <tag name="kernel.event_subscriber" />
-        </service>
--->
-
         <service id="symedit.event_subscriber.page" class="%symedit.event_subscriber.page.class%">
             <argument type="service" id="session" />
             <tag name="kernel.event_subscriber" />

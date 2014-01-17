@@ -41,8 +41,6 @@ final class Events
     const POST_UPDATE       = 'symedit.post.update';
     const POST_POST_UPDATE  = 'symedit.post_post_update';
 
-    const POST_VIEW         = 'symedit.post.view';
-
     /**
      * Menu Events
      */
