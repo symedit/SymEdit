@@ -36,12 +36,18 @@ class PostSubscriber implements EventSubscriberInterface
     public static function getSubscribedEvents()
     {
         return array(
-            Events::POST_CREATE => 'postCreated',
+            Events::POST_POST_CREATE => 'postCreated',
             Events::POST_UPDATE => 'postUpdated',
             Events::POST_VIEW => 'postView',
         );
     }
 
+    /**
+     * Make sure this is done after the post has been flushed so it
+     * gets the slug from the doctrine extensions
+     *
+     * @param ResourceEvent $event
+     */
     public function postCreated(ResourceEvent $event)
     {
         /**
