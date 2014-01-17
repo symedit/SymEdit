@@ -1,4 +1,4 @@
-<div id="slider-{{ slider.name }}" class="carousel slide">
+<div id="slider-{{ slider.name }}" class="carousel slide{{ stretch|default(false) ? ' stretch' : '' }}">
     <ol class="carousel-indicators">
         {% for slide in slider.slides %}
         <li data-target="#slider-{{ slider.name }}" data-slide-to="{{ loop.index0 }}"{% if loop.first %} class="active"{% endif %}></li>

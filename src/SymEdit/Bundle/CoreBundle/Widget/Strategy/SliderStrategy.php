@@ -32,6 +32,7 @@ class SliderStrategy extends AbstractWidgetStrategy
         return $this->render('@SymEdit/Widget/slider.html.twig', array(
             'slider' => $slider,
             'thumbnails' => $widget->getOption('thumbnails'),
+            'stretch' => $widget->getOption('stretch'),
         ));
     }
 
@@ -39,6 +40,7 @@ class SliderStrategy extends AbstractWidgetStrategy
     {
         $widget->setOptions(array(
             'thumbnails' => false,
+            'stretch' => false,
         ));
     }
 
@@ -54,6 +56,10 @@ class SliderStrategy extends AbstractWidgetStrategy
             ))
             ->add('thumbnails', 'checkbox', array(
                 'label' => 'Show Thumbnails',
+                'required' => false,
+            ))
+            ->add('stretch', 'checkbox', array(
+                'label' => 'Stretch',
                 'required' => false,
             ))
         ;
