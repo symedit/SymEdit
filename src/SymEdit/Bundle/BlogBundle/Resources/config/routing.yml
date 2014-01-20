@@ -1,3 +1,0 @@
-sym_edit_blog_homepage:
-    pattern:  /hello/{name}
-    defaults: { _controller: SymEditBlogBundle:Default:index }

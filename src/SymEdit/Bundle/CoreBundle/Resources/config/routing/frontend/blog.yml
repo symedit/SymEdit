@@ -75,10 +75,3 @@ blog_category_rss:
         page: 1
         _sylius:
             template: SymEditBundle:Blog:feed.xml.twig
-
-blog_author_view:
-    pattern: /user/{username}
-    defaults:
-        _controller: symedit.controller.post:showAuthorAction
-        _sylius:
-            template: SymEditBundle:Blog:author.html.twig
