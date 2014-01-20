@@ -30,31 +30,25 @@
 {% endblock %}
 
 {% block symedit_image_widget %}
-{% if horizontal %}
-<div class="{{ horizontal_input_wrapper_class }}">
-{% endif %}
-    <div class="row">
-        <div class="col-md-6">
-            {% if form.name is defined %}
-                {{ form_row(form.name) }}
-            {% endif %}
+<div class="row">
+    <div class="col-md-6">
+        {% if form.name is defined %}
+            {{ form_row(form.name) }}
+        {% endif %}
 
-            {% if form.file is defined %}
-                {{ form_row(form.file) }}
-            {% endif %}
-        </div>
-
-        {% if form.vars is defined and
-              form.vars.show_image and
-              form.vars.data is not null and
-              form.vars.data.webpath is not empty %}
-        <div class="col-md-6">
-            <h5>Current Image</h5>
-            <img class="img-thumbnail" src="{{ form.vars.data }}">
-        </div>
+        {% if form.file is defined %}
+            {{ form_row(form.file) }}
         {% endif %}
     </div>
-{% if horizontal %}
+
+    {% if form.vars is defined and
+          form.vars.show_image and
+          form.vars.data is not null and
+          form.vars.data.webpath is not empty %}
+    <div class="col-md-6">
+        <h5>Current Image</h5>
+        <img class="img-thumbnail" src="{{ form.vars.data }}">
+    </div>
+    {% endif %}
 </div>
-{% endif %}
 {% endblock %}
