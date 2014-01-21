@@ -1,0 +1,11 @@
+Isometriks\Bundle\MediaBundle\Model\Media:
+    exclusion_policy: ALL
+    properties:
+        id:
+            expose: true
+        path:
+            expose: true
+        name:
+            expose: true
+        updatedAt:
+            expose: true

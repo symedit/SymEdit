@@ -1,0 +1,25 @@
+Isometriks\Bundle\MediaBundle\Model\MediaGallery:
+    type: entity
+    table: media_gallery
+    fields:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: IDENTITY        
+        title:
+            type: string
+            length: 255
+        slug:
+            type: string
+            unique: true
+            nullable: false
+            gedmo:
+                slug:
+                    unique: true
+                    separator: "-"
+                    fields:
+                        - title
+    manyToMany:
+        media:
+            targetEntity: Media

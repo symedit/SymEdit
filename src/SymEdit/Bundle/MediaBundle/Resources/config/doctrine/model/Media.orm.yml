@@ -1,0 +1,18 @@
+Isometriks\Bundle\MediaBundle\Model\Media:
+    type: entity
+    table: media
+    fields:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: IDENTITY        
+        path:
+            type: string
+            length: 255
+            unique: true
+        name:
+            type: string
+            length: 255
+        updatedAt:
+            type: datetime
