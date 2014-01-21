@@ -14,6 +14,7 @@ blog:
 blog_rss:
     pattern: /feed.xml
     defaults:
+        _format: rss
         _controller: symedit.controller.post:indexAction
         _sylius:
             template: SymEditBundle:Blog:feed.xml.twig
@@ -72,6 +73,7 @@ blog_category_rss:
     pattern: /category/{slug}/feed.xml
     defaults:
         _controller: symedit.controller.post:showCategoryAction
-        page: 1
+        _format: rss
         _sylius:
             template: SymEditBundle:Blog:feed.xml.twig
+        page: 1
