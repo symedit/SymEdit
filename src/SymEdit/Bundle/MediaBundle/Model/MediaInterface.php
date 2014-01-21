@@ -1,6 +1,6 @@
 <?php
 
-namespace Isometriks\Bundle\MediaBundle\Model;
+namespace SymEdit\Bundle\MediaBundle\Model;
 
 interface MediaInterface
 {

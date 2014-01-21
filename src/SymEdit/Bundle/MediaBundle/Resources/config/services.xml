@@ -5,32 +5,19 @@
            xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
 
     <parameters>
-        <parameter key="isometriks_media.util.gd_image_writer.class">Isometriks\Bundle\MediaBundle\Util\GDImageWriter</parameter>
-        <parameter key="isometriks_media.util.image_manipulator.class">Isometriks\Bundle\MediaBundle\Util\ImageManipulator</parameter>
-        <parameter key="isometriks_media.upload_manager.class">Isometriks\Bundle\MediaBundle\Upload\UploadManager</parameter>
-        <parameter key="isometriks_media.model.media.class">Isometriks\Bundle\MediaBundle\Model\Media</parameter>
-        <parameter key="isometriks_media.model.media_gallery.class">Isometriks\Bundle\MediaBundle\Model\MediaGallery</parameter>
-        <parameter key="isometriks_media.form.type.file.class">Isometriks\Bundle\MediaBundle\Form\FileType</parameter>
+        <parameter key="symedit_media.upload_manager.class">SymEdit\Bundle\MediaBundle\Upload\UploadManager</parameter>
+        <parameter key="symedit_media.form.type.file.class">SymEdit\Bundle\MediaBundle\Form\Type\FileType</parameter>
     </parameters>
 
     <services>
-        <service id="isometriks_media.util.gd_image_writer" class="%isometriks_media.util.gd_image_writer.class%" />
-        <service id="isometriks_media.util.image_writer.default" alias="isometriks_media.util.gd_image_writer" />
-
-        <service id="isometriks_media.util.image_manipulator" class="%isometriks_media.util.image_manipulator.class%">
-            <argument type="service" id="isometriks_media.util.image_writer.default" />
-            <argument>%isometriks_media.web_root%</argument>
+        <service id="symedit_media.upload_manager" class="%symedit_media.upload_manager.class%">
+            <argument>%symedit_media.web_root%</argument>
+            <argument>%symedit_media.upload_dir%</argument>
         </service>
 
-        <service id="isometriks_media.upload_manager" class="%isometriks_media.upload_manager.class%">
-            <argument>%isometriks_media.web_root%</argument>
-            <argument>%isometriks_media.upload_dir%</argument>
-        </service>
-
-        <service id="isometriks_media.form.type.file" class="%isometriks_media.form.type.file.class%">
-            <argument>%isometriks_media.model.media.class%</argument>
-            <tag name="form.type" alias="isometriks_media" />
+        <service id="symedit_media.form.type.file" class="%symedit_media.form.type.file.class%">
+            <argument>%symedit_media.model.media.class%</argument>
+            <tag name="form.type" alias="symedit_media" />
         </service>
     </services>
-
 </container>

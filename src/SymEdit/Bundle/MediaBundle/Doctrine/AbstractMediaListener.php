@@ -1,10 +1,10 @@
 <?php
 
-namespace Isometriks\Bundle\MediaBundle\Doctrine;
+namespace SymEdit\Bundle\MediaBundle\Doctrine;
 
 use Doctrine\Common\EventSubscriber;
-use Isometriks\Bundle\MediaBundle\Model\MediaInterface;
-use Isometriks\Bundle\MediaBundle\Upload\UploadManagerInterface;
+use SymEdit\Bundle\MediaBundle\Model\MediaInterface;
+use SymEdit\Bundle\MediaBundle\Upload\UploadManagerInterface;
 
 abstract class AbstractMediaListener implements EventSubscriber
 {

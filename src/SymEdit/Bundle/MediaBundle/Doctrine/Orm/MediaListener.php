@@ -1,9 +1,9 @@
 <?php
 
-namespace Isometriks\Bundle\MediaBundle\Doctrine\Orm;
+namespace SymEdit\Bundle\MediaBundle\Doctrine\Orm;
 
-use Isometriks\Bundle\MediaBundle\Doctrine\AbstractMediaListener;
-use Isometriks\Bundle\MediaBundle\Model\MediaInterface;
+use SymEdit\Bundle\MediaBundle\Doctrine\AbstractMediaListener;
+use SymEdit\Bundle\MediaBundle\Model\MediaInterface;
 use Doctrine\ORM\Events;
 use Doctrine\ORM\Event\LifecycleEventArgs;
 use Doctrine\ORM\Event\OnFlushEventArgs;

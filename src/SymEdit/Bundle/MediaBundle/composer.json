@@ -1,15 +1,15 @@
 {
-    "name": "isometriks/media-bundle",
-    "description": "Bundle for assisting with media entities", 
-    "type": "symfony-bundle", 
+    "name": "symedit/media-bundle",
+    "description": "Bundle for assisting with media entities",
+    "type": "symfony-bundle",
     "authors": [
         {
-            "name": "Craig Blanchette", 
+            "name": "Craig Blanchette",
             "email": "craig.blanchette@gmail.com"
         }
     ],
     "autoload": {
-        "psr-0": { "Isometriks\\Bundle\\MediaBundle": "" }
-    }, 
-    "target-dir": "Isometriks/Bundle/MediaBundle"
+        "psr-0": { "SymEdit\\Bundle\\MediaBundle": "" }
+    },
+    "target-dir": "SymEdit/Bundle/MediaBundle"
 }

@@ -1,6 +1,6 @@
 <?php
 
-namespace Isometriks\Bundle\MediaBundle\DependencyInjection;
+namespace SymEdit\Bundle\MediaBundle\DependencyInjection;
 
 use Symfony\Component\Config\Definition\Builder\TreeBuilder;
 use Symfony\Component\Config\Definition\ConfigurationInterface;
@@ -13,7 +13,7 @@ class Configuration implements ConfigurationInterface
     public function getConfigTreeBuilder()
     {
         $treeBuilder = new TreeBuilder();
-        $rootNode = $treeBuilder->root('isometriks_media');
+        $rootNode = $treeBuilder->root('symedit_media');
 
         $supportedDrivers = array('orm');
 

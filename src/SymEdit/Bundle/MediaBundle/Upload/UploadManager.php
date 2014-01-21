@@ -1,8 +1,8 @@
 <?php
 
-namespace Isometriks\Bundle\MediaBundle\Upload;
+namespace SymEdit\Bundle\MediaBundle\Upload;
 
-use Isometriks\Bundle\MediaBundle\Model\MediaInterface;
+use SymEdit\Bundle\MediaBundle\Model\MediaInterface;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 class UploadManager implements UploadManagerInterface

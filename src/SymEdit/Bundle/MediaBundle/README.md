@@ -1,4 +1,0 @@
-Isometriks MediaBundle
-========================
-
-Still WIP

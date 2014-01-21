@@ -1,11 +1,11 @@
 <?php
 
-namespace Isometriks\Bundle\MediaBundle\Form\EventListener;
+namespace SymEdit\Bundle\MediaBundle\Form\EventListener;
 
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\Form\FormEvents;
 use Symfony\Component\Form\FormEvent;
-use Isometriks\Bundle\MediaBundle\Model\MediaInterface;
+use SymEdit\Bundle\MediaBundle\Model\MediaInterface;
 
 class FileTypeSubscriber implements EventSubscriberInterface
 {

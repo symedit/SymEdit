@@ -1,4 +1,4 @@
-Isometriks\Bundle\MediaBundle\Model\MediaGallery:
+SymEdit\Bundle\MediaBundle\Model\MediaGallery:
     type: entity
     table: media_gallery
     fields:
