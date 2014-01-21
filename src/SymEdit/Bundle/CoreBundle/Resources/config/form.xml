@@ -39,10 +39,6 @@
             <tag name="form.type" alias="symedit_role" />
         </service>
 
-        <service id="symedit.form.type.image" class="%symedit.form.type.image.class%">
-            <tag name="form.type" alias="symedit_image" />
-        </service>
-
         <service id="symedit.form.type.user" class="%symedit.form.type.user.class%">
             <argument>%fos_user.model.user.class%</argument>
             <tag name="form.type" alias="symedit_user" />

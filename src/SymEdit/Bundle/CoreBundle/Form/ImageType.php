@@ -35,7 +35,7 @@ class ImageType extends AbstractType
 
     public function getParent()
     {
-        return 'isometriks_media';
+        return 'symedit_media';
     }
 
     public function getName()

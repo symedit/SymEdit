@@ -15,16 +15,6 @@
             </call>
         </service>
 
-        <!-- Image -->
-        <service id="symedit.controller.image" class="%symedit.controller.image.class%">
-            <argument>symedit</argument>
-            <argument>image</argument>
-            <argument />
-            <call method="setContainer">
-                <argument type="service" id="service_container" />
-            </call>
-        </service>
-
         <!-- Settings -->
         <service id="symedit.controller.settings" class="%symedit.controller.settings.class%">
             <argument>symedit</argument>
