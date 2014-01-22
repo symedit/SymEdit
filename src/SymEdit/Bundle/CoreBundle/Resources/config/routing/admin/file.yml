@@ -1,0 +1,39 @@
+admin_file:
+    pattern: /
+    methods: [GET]
+    defaults:
+        _controller: symedit.controller.file:indexAction
+        _sylius:
+            template: @SymEdit/Admin/File/index.html.twig
+            paginate: false
+            limit: false
+
+admin_file_json:
+    pattern: /list.{_format}
+    requirements:
+        _format: json
+    defaults:
+        _format: json
+        _controller: symedit.controller.file:indexAction
+        _sylius:
+            paginate: false
+
+admin_file_create:
+    pattern: /new
+    methods: [GET, POST]
+    defaults:
+        _controller: symedit.controller.file:createAction
+        _sylius:
+            template: @SymEdit/Admin/File/new.html.twig
+            redirect: admin_file
+
+admin_file_update:
+    pattern: /{id}/edit
+    methods: [GET, PUT, POST]
+    defaults:
+        _controller: symedit.controller.file:updateAction
+        _sylius:
+            template: @SymEdit/Admin/File/edit.html.twig
+            redirect:
+                route: admin_file_update
+                parameters: { id: $id }
