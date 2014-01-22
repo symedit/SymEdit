@@ -211,7 +211,9 @@ class Post implements PostInterface
 
         if ($this->image !== null) {
             $this->setUpdatedAt(new \DateTime());
-            $image->setNameCallback(array($this, 'getSlug'));
+            $image->setNameCallback(function(){
+                return ltrim($this->getSlug());
+            });
         }
 
         return $this;
