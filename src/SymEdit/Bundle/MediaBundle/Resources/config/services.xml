@@ -5,19 +5,36 @@
            xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
 
     <parameters>
-        <parameter key="symedit_media.upload_manager.class">SymEdit\Bundle\MediaBundle\Upload\UploadManager</parameter>
-        <parameter key="symedit_media.form.type.file.class">SymEdit\Bundle\MediaBundle\Form\Type\FileType</parameter>
+        <parameter key="symedit_media.image_upload_manager.class">SymEdit\Bundle\MediaBundle\Upload\ImageUploadManager</parameter>
     </parameters>
 
     <services>
-        <service id="symedit_media.upload_manager" class="%symedit_media.upload_manager.class%">
-            <argument>%symedit_media.web_root%</argument>
-            <argument>%symedit_media.upload_dir%</argument>
+        <service id="symedit_media.image_upload_manager" class="%symedit_media.image_upload_manager.class%">
+            <argument type="service">
+                <service class="Gaufrette\Filesystem" factory-service="knp_gaufrette.filesystem_map" factory-method="get">
+                    <argument>symedit_image</argument>
+                </service>
+            </argument>
         </service>
 
-        <service id="symedit_media.form.type.file" class="%symedit_media.form.type.file.class%">
-            <argument>%symedit_media.model.media.class%</argument>
-            <tag name="form.type" alias="symedit_media" />
+        <!-- Image -->
+        <service id="symedit.controller.image" class="%symedit.controller.image.class%">
+            <argument>symedit</argument>
+            <argument>image</argument>
+            <argument />
+            <call method="setContainer">
+                <argument type="service" id="service_container" />
+            </call>
+        </service>
+
+        <!-- File -->
+        <service id="symedit.controller.file" class="%symedit.controller.file.class%">
+            <argument>symedit</argument>
+            <argument>file</argument>
+            <argument />
+            <call method="setContainer">
+                <argument type="service" id="service_container" />
+            </call>
         </service>
     </services>
 </container>
