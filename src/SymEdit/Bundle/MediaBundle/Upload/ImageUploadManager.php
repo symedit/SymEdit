@@ -4,16 +4,15 @@ namespace SymEdit\Bundle\MediaBundle\Upload;
 
 use SymEdit\Bundle\MediaBundle\Model\MediaInterface;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
+use Gaufrette\Filesystem;
 
-class UploadManager implements UploadManagerInterface
+class ImageUploadManager implements UploadManagerInterface
 {
-    protected $webRoot;
-    protected $uploadDir;
+    protected $filesystem;
 
-    public function __construct($webRoot, $uploadDir)
+    public function __construct(Filesystem $filesystem)
     {
-        $this->webRoot = $webRoot;
-        $this->uploadDir = $uploadDir;
+        $this->filesystem = $filesystem;
     }
 
     /**
@@ -24,10 +23,12 @@ class UploadManager implements UploadManagerInterface
         if (($callback = $media->getNameCallback()) !== null) {
             $media->setName($callback($media));
         }
-        
+
         if ($media->getFile() !== null) {
             $this->removeUpload($media);
-            $media->setPath($this->getUploadPath($media));
+
+            // Can do folders and stuff here.
+            $media->setPath($media->getName().'.'.$media->getFile()->guessExtension());
         }
     }
 
@@ -43,11 +44,11 @@ class UploadManager implements UploadManagerInterface
         if (!$file instanceof UploadedFile) {
             return;
         }
-        
-        $absolutePath = $this->webRoot.'/'.$media->getPath(); 
 
-        $file->move(dirname($absolutePath), $media->getUploadName());
-        chmod($absolutePath, 0644);
+        $this->filesystem->write(
+            $media->getPath(),
+            file_get_contents($file->getFileInfo()->getPathname())
+        );
 
         // Mark as null to not upload again
         $media->setFile(null);
@@ -58,21 +59,10 @@ class UploadManager implements UploadManagerInterface
         if ($media->getPath() === null) {
             return;
         }
-        
-        $absolutePath = $this->webRoot.'/'.$media->getPath();
-        
-        if(file_exists($absolutePath)){
-            unlink($absolutePath);
-        }
 
-        $info = pathinfo($absolutePath);
-        $glob = sprintf('%s/cache/%s_*', $info['dirname'], $info['filename']);
-
-        foreach (glob($glob) as $file) {
-            unlink($file);
-        }
+        $this->filesystem->delete($media->getPath());
     }
-    
+
     public function getUploadPath(MediaInterface $media)
     {
         return $this->uploadDir.'/'.$media->getUploadName();
