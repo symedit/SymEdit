@@ -1,0 +1,46 @@
+<?php
+
+/*
+ * This file is part of the SymEdit package.
+ *
+ * (c) Craig Blanchette <craig.blanchette@gmail.com>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
+namespace SymEdit\Bundle\MediaBundle\Form\Type;
+
+use Symfony\Component\Form\AbstractType;
+use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+
+class FileType extends AbstractType
+{
+    protected $class;
+
+    public function __construct($class)
+    {
+        $this->class = $class;
+    }
+
+    public function setDefaultOptions(OptionsResolverInterface $resolver)
+    {
+        $resolver->setDefaults(array(
+            'data_class' => $this->class,
+            'require_name' => true,
+            'required' => true,
+            'label' => 'File',
+            'name_label' => 'File Name',
+        ));
+    }
+
+    public function getParent()
+    {
+        return 'symedit_media';
+    }
+
+    public function getName()
+    {
+        return 'symedit_file';
+    }
+}
