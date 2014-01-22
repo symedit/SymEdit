@@ -57,7 +57,7 @@ class Configuration implements ConfigurationInterface
                             ->addDefaultsIfNotSet()
                             ->children()
                                 ->scalarNode('model')->defaultValue('SymEdit\Bundle\MediaBundle\Model\Image')->end()
-                                ->scalarNode('controller')->defaultValue('SymEdit\Bundle\ResourceBundle\Controller\ResourceController')->end()
+                                ->scalarNode('controller')->defaultValue('SymEdit\Bundle\MediaBundle\Controller\ImageController')->end()
                                 ->scalarNode('respository')->end()
                                 ->scalarNode('form')->defaultValue('SymEdit\Bundle\MediaBundle\Form\Type\ImageType')->end()
                             ->end()
