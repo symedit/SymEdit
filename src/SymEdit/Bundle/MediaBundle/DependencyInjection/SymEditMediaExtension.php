@@ -20,6 +20,7 @@ class SymEditMediaExtension extends SymEditResourceExtension
 
         list($config) = $this->configure($config, new Configuration(), $container, self::CONFIGURE_LOADER | self::CONFIGURE_DATABASE | self::CONFIGURE_PARAMETERS);
 
+        $this->remapParameters($container, 'paths', $config['paths']);
         $container->setParameter('symedit_media.paths', $config['paths']);
         $container->setParameter('symedit_media.model_manager_name', $config['model_manager_name']);
     }

@@ -14,7 +14,7 @@ admin_image_json:
         _format: json
     defaults:
         _format: json
-        _controller: symedit.controller.image:indexAction
+        _controller: symedit.controller.image:jsonAction
         _sylius:
             paginate: false
 

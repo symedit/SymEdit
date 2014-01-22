@@ -26,19 +26,36 @@ class ImageController extends ResourceController
 {
     public function jsonAction()
     {
-        $mediaManager = $this->getMediaManager();
-        $images = $mediaManager->findAll();
-        $manip = $this->get('isometriks_media.util.image_manipulator');
+        $images = $this->getRepository()->findAll();
         $out = array();
+        $webPath = $this->container->getParameter('symedit_media.paths.image');
 
         foreach($images as $image){
             $out[] = array(
-                'thumb' => $manip->constrain($image->getWebPath(), array('w' => 234)),
-                'image' => $image->getWebPath(),
+                'thumb' => $this->getThumbnail($image->getPath()),
+                'image' => $this->getWebPath($image->getPath()),
             );
         }
 
         return new JsonResponse($out);
+    }
+
+    protected function getWebPath($path)
+    {
+        return sprintf('%s/%s', $this->container->getParameter('symedit_media.paths.image'), $path);
+    }
+
+    protected function getThumbnail($path, $size = 'symedit_64x64')
+    {
+        $this->container->get('liip_imagine.controller')->filterAction(
+            $this->getRequest(),
+            $path,
+            $size
+        );
+
+        $cacheManager = $this->container->get('liip_imagine.cache.manager');
+
+        return $cacheManager->getBrowserPath($path, $size);
     }
 
     public function quickUploadAction(Request $request)
@@ -55,7 +72,7 @@ class ImageController extends ResourceController
             $this->persistAndFlush($image);
 
             return new JsonResponse(array(
-                'filelink' => $image->getWebPath(),
+                'filelink' => $this->getWebPath($image->getPath()),
             ));
 
         } catch (\Exception $ex) {
