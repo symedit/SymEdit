@@ -13,9 +13,19 @@ namespace SymEdit\Bundle\BlogBundle\Controller;
 
 use SymEdit\Bundle\ResourceBundle\Controller\ResourceController;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 
 class PostController extends ResourceController
 {
+    public function previewAction()
+    {
+        if ($this->get('security.context')->isGranted('ROLE_ADMIN')) {
+            return parent::showAction();
+        }
+
+        throw new AccessDeniedException('Cannot view preview unless logged in');
+    }
+
     public function showCategoryAction(Request $request, $slug)
     {
         $category = $this->get('symedit.repository.category')->findOneBy(array(
