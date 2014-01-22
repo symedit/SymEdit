@@ -25,8 +25,7 @@ var Isometriks = (function(){
         row: function(){
             var html;
             if(html = redactor.createSpans()){
-                this.focus(); console.log('<div class="row">' + html + '</div>');
-                this.execCommand('inserthtml', '<div class="row">' + html + '</div>');
+                this.insertHtmlAdvanced('<div class="row">' + html + '</div>');
             }
         },
 
