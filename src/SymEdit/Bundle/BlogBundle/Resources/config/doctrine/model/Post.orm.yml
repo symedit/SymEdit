@@ -65,7 +65,7 @@ SymEdit\Bundle\BlogBundle\Model\Post:
             columns: [slug]
     manyToOne:
         image:
-            targetEntity: Isometriks\Bundle\MediaBundle\Model\Media
+            targetEntity: SymEdit\Bundle\MediaBundle\Model\ImageInterface
             cascade:
                 - persist
         author:

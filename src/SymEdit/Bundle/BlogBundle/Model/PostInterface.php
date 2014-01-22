@@ -11,7 +11,7 @@
 
 namespace SymEdit\Bundle\BlogBundle\Model;
 
-use Isometriks\Bundle\MediaBundle\Model\MediaInterface;
+use SymEdit\Bundle\MediaBundle\Model\ImageInterface;
 use SymEdit\Bundle\SeoBundle\Model\SeoAbleInterface;
 use SymEdit\Bundle\CoreBundle\Model\ViewCountableInterface;
 use SymEdit\Bundle\CoreBundle\Model\UserInterface;
@@ -32,7 +32,7 @@ interface PostInterface extends SeoAbleInterface, ViewCountableInterface
     public function setAuthor(UserInterface $author = null);
     public function getAuthor();
 
-    public function setImage(MediaInterface $image = null);
+    public function setImage(ImageInterface $image = null);
     public function getImage();
 
     public function setCreatedAt($createdAt);

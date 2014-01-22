@@ -23,7 +23,7 @@ SymEdit\Bundle\UserBundle\Model\AdminProfile:
                         - lastName
     manyToOne:
         image:
-            targetEntity: Isometriks\Bundle\MediaBundle\Model\Media
+            targetEntity: SymEdit\Bundle\MediaBundle\Model\ImageInterface
             cascade:
                 - persist
             mappedBy: null

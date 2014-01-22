@@ -11,7 +11,7 @@
 
 namespace SymEdit\Bundle\CoreBundle\Model;
 
-use Isometriks\Bundle\MediaBundle\Model\MediaInterface;
+use SymEdit\Bundle\MediaBundle\Model\ImageInterface;
 
 class Slide implements SlideInterface
 {
@@ -36,7 +36,7 @@ class Slide implements SlideInterface
     protected $slider;
 
     /**
-     * @var MediaInterface
+     * @var ImageInterface
      */
     protected $image;
 
@@ -99,10 +99,10 @@ class Slide implements SlideInterface
     /**
      * Set image
      *
-     * @param  MediaInterface $image
+     * @param  ImageInterface $image
      * @return Slide
      */
-    public function setImage(MediaInterface $image = null)
+    public function setImage(ImageInterface $image = null)
     {
         $this->image = $image;
 
@@ -112,7 +112,7 @@ class Slide implements SlideInterface
     /**
      * Get image
      *
-     * @return MediaInterface
+     * @return ImageInterface
      */
     public function getImage()
     {

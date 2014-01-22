@@ -11,7 +11,7 @@
 
 namespace SymEdit\Bundle\UserBundle\Model;
 
-use Isometriks\Bundle\MediaBundle\Model\MediaInterface;
+use SymEdit\Bundle\MediaBundle\Model\ImageInterface;
 use SymEdit\Bundle\CoreBundle\Util\Util;
 use SymEdit\Bundle\CoreBundle\Model\UserInterface;
 
@@ -37,7 +37,7 @@ class AdminProfile extends Profile
     /**
      * Gets user's image
      *
-     * @return MediaInterface
+     * @return ImageInterface
      */
     public function getImage()
     {
@@ -47,10 +47,10 @@ class AdminProfile extends Profile
     /**
      * Set the user's image
      *
-     * @param MediaInterface $image
+     * @param ImageInterface $image
      * @return UserInterface
      */
-    public function setImage(MediaInterface $image)
+    public function setImage(ImageInterface $image)
     {
         $user = $this->getUser();
 

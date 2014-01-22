@@ -12,7 +12,7 @@
 namespace SymEdit\Bundle\BlogBundle\Model;
 
 use SymEdit\Bundle\CoreBundle\Model\UserInterface;
-use Isometriks\Bundle\MediaBundle\Model\MediaInterface;
+use SymEdit\Bundle\MediaBundle\Model\ImageInterface;
 
 class Post implements PostInterface
 {
@@ -35,7 +35,7 @@ class Post implements PostInterface
     protected $author;
 
     /**
-     * @var MediaInterface
+     * @var ImageInterface
      */
     protected $image;
 
@@ -202,10 +202,10 @@ class Post implements PostInterface
     /**
      * Set image
      *
-     * @param  MediaInterface $image
+     * @param  ImageInterface $image
      * @return Post
      */
-    public function setImage(MediaInterface $image = null)
+    public function setImage(ImageInterface $image = null)
     {
         $this->image = $image;
 
@@ -220,7 +220,7 @@ class Post implements PostInterface
     /**
      * Get image
      *
-     * @return MediaInterface
+     * @return ImageInterface
      */
     public function getImage()
     {

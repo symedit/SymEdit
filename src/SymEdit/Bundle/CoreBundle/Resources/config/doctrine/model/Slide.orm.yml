@@ -20,6 +20,6 @@ SymEdit\Bundle\CoreBundle\Model\Slide:
             mappedBy: null
             inversedBy: slides
         image:
-            targetEntity: Isometriks\Bundle\MediaBundle\Model\Media
+            targetEntity: SymEdit\Bundle\MediaBundle\Model\ImageInterface
             cascade:
                 - persist

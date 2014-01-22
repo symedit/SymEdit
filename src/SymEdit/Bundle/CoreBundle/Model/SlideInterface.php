@@ -11,7 +11,7 @@
 
 namespace SymEdit\Bundle\CoreBundle\Model;
 
-use Isometriks\Bundle\MediaBundle\Model\MediaInterface;
+use SymEdit\Bundle\MediaBundle\Model\ImageInterface;
 
 interface SlideInterface
 {
@@ -23,7 +23,7 @@ interface SlideInterface
     public function setSlider(SliderInterface $slider);
     public function getSlider();
 
-    public function setImage(MediaInterface $image);
+    public function setImage(ImageInterface $image);
     public function getImage();
 
     public function setPosition($position);
