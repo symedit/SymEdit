@@ -5,7 +5,14 @@
 {% block content %}
 
 <div class="text-center well">
-    {{ file }}
+    <a href="{{ file | media_file }}" target="_blank" class="btn btn-primary btn-lg">
+        View File
+        {{ icon('external-link') }}
+    </a>
+
+    <div>
+        {{ file | media_file }}
+    </div>
 </div>
 
 {{ form_start(form, {attr: {class: 'form-horizontal'}}) }}

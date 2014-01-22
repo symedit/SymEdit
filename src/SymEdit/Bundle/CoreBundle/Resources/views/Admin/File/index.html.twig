@@ -7,11 +7,10 @@
 <div class="row">
   {% for file in files %}
   <div class="col-md-2">
-      {{ file.path }}
-      {#
-      <a class="thumbnail" href="{{ path('admin_image_update', {id:image.id}) }}">
-          <img src="{{ image | imagine_filter('gallery_thumbnail') }}">
-      </a> #}
+      <a class="thumbnail icon" href="{{ path('admin_file_update', {id:file.id}) }}">
+          {{ icon('file') }}
+          {{ file.path }}
+      </a>
   </div>
   {% endfor %}
 </div>
