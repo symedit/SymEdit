@@ -11,7 +11,7 @@
     <div itemprop="articleBody" class="clearfix">
         {% if post.image %}
             <div class="image">
-                <img class="img-rounded" itemprop="image" src="{{ post.image.webpath|constrain({w:300,h:400}) }}" alt="{{ post.title }}" />
+                <img class="img-rounded" itemprop="image" src="{{ post.image | imagine_filter('blog') }}" alt="{{ post.title }}" />
             </div>
         {% endif %}
         {{ post.content|raw }}

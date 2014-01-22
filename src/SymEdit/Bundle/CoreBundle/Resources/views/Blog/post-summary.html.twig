@@ -5,12 +5,12 @@
             Posted by {{ post.author.profile.fullname }}
             on {{ post.createdAt|date('F j, Y') }}
         </small>
-    </h3>     
+    </h3>
 
     <div class="row">
         {% if post.image %}
         <div class="col-md-3">
-            <img class="img-rounded" src="{{ post.image.webpath|constrain({w:200,h:400}) }}" alt="{{ post.title }}" />
+            <img class="img-rounded" src="{{ post.image | imagine_filter('blog_thumbnail') }}" alt="{{ post.title }}" />
         </div>
         {% endif %}
 

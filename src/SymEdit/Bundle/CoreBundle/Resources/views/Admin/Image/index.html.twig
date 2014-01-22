@@ -8,7 +8,7 @@
   {% for image in images %}
   <div class="col-md-2">
       <a class="thumbnail" href="{{ path('admin_image_update', {id:image.id}) }}">
-          <img src="{{ image|constrain({ w:234 }) }}">
+          <img src="{{ image | imagine_filter('gallery_thumbnail') }}">
       </a>
   </div>
   {% endfor %}
