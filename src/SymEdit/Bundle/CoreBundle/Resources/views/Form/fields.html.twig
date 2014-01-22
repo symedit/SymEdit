@@ -47,7 +47,7 @@
           form.vars.data.webpath is not empty %}
     <div class="col-md-6">
         <h5>Current Image</h5>
-        <img class="img-thumbnail" src="{{ form.vars.data }}">
+        <img class="img-thumbnail" src="{{ form.vars.data | imagine_filter('gallery') }}">
     </div>
     {% endif %}
 </div>
