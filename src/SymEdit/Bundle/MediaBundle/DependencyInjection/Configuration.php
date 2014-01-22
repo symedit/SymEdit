@@ -20,6 +20,13 @@ class Configuration implements ConfigurationInterface
             ->children()
                 ->scalarNode('driver')->defaultValue('doctrine/orm')->end()
                 ->scalarNode('model_manager_name')->defaultNull()->end()
+                ->arrayNode('paths')
+                    ->addDefaultsIfNotSet()
+                    ->children()
+                        ->scalarNode('image')->defaultValue('media/image')->end()
+                        ->scalarNode('file')->defaultValue('media/file')->end()
+                    ->end()
+                ->end()
             ->end();
 
         $this->addClassesSection($rootNode);

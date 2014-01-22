@@ -5,14 +5,32 @@
            xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
 
     <parameters>
-        <parameter key="symedit_media.image_upload_manager.class">SymEdit\Bundle\MediaBundle\Upload\ImageUploadManager</parameter>
+        <parameter key="symedit_media.twig.extension.media.class">SymEdit\Bundle\MediaBundle\Twig\Extension\MediaExtension</parameter>
+        <parameter key="symedit_media.image_upload_manager.class">SymEdit\Bundle\MediaBundle\Upload\UploadManager</parameter>
+        <parameter key="symedit_media.file_upload_manager.class">SymEdit\Bundle\MediaBundle\Upload\UploadManager</parameter>
     </parameters>
 
     <services>
+        <!-- Twig Extension -->
+        <service id="symedit_media.twig.extension.media" class="%symedit_media.twig.extension.media.class%">
+            <argument>%symedit_media.paths%</argument>
+            <tag name="twig.extension" />
+        </service>
+
+        <!-- Image Uploader -->
         <service id="symedit_media.image_upload_manager" class="%symedit_media.image_upload_manager.class%">
             <argument type="service">
                 <service class="Gaufrette\Filesystem" factory-service="knp_gaufrette.filesystem_map" factory-method="get">
                     <argument>symedit_image</argument>
+                </service>
+            </argument>
+        </service>
+
+        <!-- File Uploader -->
+        <service id="symedit_media.file_upload_manager" class="%symedit_media.file_upload_manager.class%">
+            <argument type="service">
+                <service class="Gaufrette\Filesystem" factory-service="knp_gaufrette.filesystem_map" factory-method="get">
+                    <argument>symedit_file</argument>
                 </service>
             </argument>
         </service>
