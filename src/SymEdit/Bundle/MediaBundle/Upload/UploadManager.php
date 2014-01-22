@@ -6,7 +6,7 @@ use SymEdit\Bundle\MediaBundle\Model\MediaInterface;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Gaufrette\Filesystem;
 
-class ImageUploadManager implements UploadManagerInterface
+class UploadManager implements UploadManagerInterface
 {
     protected $filesystem;
 
@@ -28,7 +28,7 @@ class ImageUploadManager implements UploadManagerInterface
             $this->removeUpload($media);
 
             // Can do folders and stuff here.
-            $media->setPath($media->getName().'.'.$media->getFile()->guessExtension());
+            $media->setPath($media->getUploadName());
         }
     }
 
@@ -61,10 +61,5 @@ class ImageUploadManager implements UploadManagerInterface
         }
 
         $this->filesystem->delete($media->getPath());
-    }
-
-    public function getUploadPath(MediaInterface $media)
-    {
-        return $this->uploadDir.'/'.$media->getUploadName();
     }
 }

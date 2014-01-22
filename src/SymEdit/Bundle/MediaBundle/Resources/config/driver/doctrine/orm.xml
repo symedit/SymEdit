@@ -42,9 +42,17 @@
             </argument>
         </service>
 
-        <!-- @TODO: Fix this, or make two of them.. -->
-        <service id="symedit_media.event_listener.media_listener" class="SymEdit\Bundle\MediaBundle\Doctrine\Orm\MediaListener">
+        <!-- Image Listener -->
+        <service id="symedit_media.event_listener.image_listener" class="SymEdit\Bundle\MediaBundle\Doctrine\Orm\MediaListener">
             <argument type="service" id="symedit_media.image_upload_manager" />
+            <argument>%symedit.model.image.class%</argument>
+            <tag name="doctrine.event_subscriber" priority="-100" />
+        </service>
+
+        <!-- File Listener -->
+        <service id="symedit_media.event_listener.file_listener" class="SymEdit\Bundle\MediaBundle\Doctrine\Orm\MediaListener">
+            <argument type="service" id="symedit_media.file_upload_manager" />
+            <argument>%symedit.model.file.class%</argument>
             <tag name="doctrine.event_subscriber" priority="-100" />
         </service>
     </services>
