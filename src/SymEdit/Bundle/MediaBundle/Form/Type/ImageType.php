@@ -24,6 +24,7 @@ class ImageType extends AbstractType
             'require_name' => true,
             'required' => true,
             'label' => 'Image',
+            'name_label' => 'Image Name',
             'show_image' => true,
         ));
     }
