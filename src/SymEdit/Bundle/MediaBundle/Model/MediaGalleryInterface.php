@@ -14,7 +14,7 @@ interface MediaGalleryInterface
     
     public function getMedia();
 
-    public function addMedia(MediaInterface $media);
+    public function addMedia(ImageInterface $media);
 
-    public function removeMedia(MediaInterface $media);
+    public function removeMedia(ImageInterface $media);
 }

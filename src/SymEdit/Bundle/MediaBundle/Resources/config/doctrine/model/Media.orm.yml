@@ -1,12 +1,20 @@
 SymEdit\Bundle\MediaBundle\Model\Media:
     type: entity
     table: media
-    fields:
+    inheritanceType: SINGLE_TABLE
+    discriminatorColumn:
+        name: discr
+        type: string
+        length: 10
+    discriminatorMap:
+        image: SymEdit\Bundle\MediaBundle\Model\Image
+        file: SymEdit\Bundle\MediaBundle\Model\File
+    id:
         id:
             type: integer
-            id: true
             generator:
-                strategy: IDENTITY        
+                strategy: IDENTITY
+    fields:
         path:
             type: string
             length: 255

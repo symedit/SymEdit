@@ -43,7 +43,7 @@ class MediaGallery implements MediaGalleryInterface
         return $this->media;
     }
 
-    public function addMedia(MediaInterface $media)
+    public function addMedia(ImageInterface $media)
     {
         if (!$this->getMedia()->contains($media)) {
             $this->getMedia()->add($media);
@@ -52,7 +52,7 @@ class MediaGallery implements MediaGalleryInterface
         return $this;
     }
 
-    public function removeMedia(MediaInterface $media)
+    public function removeMedia(ImageInterface $media)
     {
         if ($this->getMedia()->contains($media)) {
             $this->getMedia()->removeElement($media);
