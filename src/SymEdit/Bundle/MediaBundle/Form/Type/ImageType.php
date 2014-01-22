@@ -18,9 +18,17 @@ use Symfony\Component\Form\FormInterface;
 
 class ImageType extends AbstractType
 {
+    protected $class;
+
+    public function __construct($class)
+    {
+        $this->class = $class;
+    }
+
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
+            'data_class' => $this->class,
             'require_name' => true,
             'required' => true,
             'label' => 'Image',
