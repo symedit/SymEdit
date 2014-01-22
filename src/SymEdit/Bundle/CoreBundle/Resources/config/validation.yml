@@ -18,7 +18,7 @@ SymEdit\Bundle\CoreBundle\Model\Page:
                 pattern: "/^[a-z0-9_-]+$/"
                 message: "You may only use lowercase letters, numbers, underscores or hyphens"
 
-SymEdit\Bundle\MediaBundle\Model\ImageInterface:
+SymEdit\Bundle\MediaBundle\Model\Media:
     constraints:
         - Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity: path
     properties:
