@@ -1,2 +1,6 @@
 symedit_routes:
     resource: "@SymEditBundle/Resources/config/routing/symedit.yml"
+
+_imagine:
+    resource: .
+    type: imagine
