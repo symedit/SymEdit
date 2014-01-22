@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <parameters>
+        <parameter key="symedit.repository.image.class">Sylius\Bundle\ResourceBundle\Doctrine\ORM\EntityRepository</parameter>
+        <parameter key="symedit.repository.file.class">Sylius\Bundle\ResourceBundle\Doctrine\ORM\EntityRepository</parameter>
+    </parameters>
+
+    <services>
+        <service id="symedit_media.entity_manager" factory-service="doctrine" factory-method="getManager" class="Doctrine\ORM\EntityManager" public="false">
+            <argument>%symedit_media.model_manager_name%</argument>
+        </service>
+
+        <!-- Image -->
+        <service id="symedit.manager.image" alias="symedit_media.entity_manager" />
+        <service id="symedit.repository.image" class="%symedit.repository.image.class%">
+            <argument type="service" id="symedit.manager.image" />
+            <argument type="service">
+                <service
+                    factory-service="symedit.manager.image"
+                    factory-method="getClassMetadata"
+                    class="Doctrine\ORM\Mapping\ClassMetadata">
+                    <argument>%symedit.model.image.class%</argument>
+                </service>
+            </argument>
+        </service>
+
+        <!-- File -->
+        <service id="symedit.manager.file" alias="symedit_media.entity_manager" />
+        <service id="symedit.repository.file" class="%symedit.repository.file.class%">
+            <argument type="service" id="symedit.manager.file" />
+            <argument type="service">
+                <service
+                    factory-service="symedit.manager.file"
+                    factory-method="getClassMetadata"
+                    class="Doctrine\ORM\Mapping\ClassMetadata">
+                    <argument>%symedit.model.file.class%</argument>
+                </service>
+            </argument>
+        </service>
+
+        <!-- @TODO: Fix this, or make two of them.. -->
+        <service id="symedit_media.event_listener.media_listener" class="SymEdit\Bundle\MediaBundle\Doctrine\Orm\MediaListener">
+            <argument type="service" id="symedit_media.image_upload_manager" />
+            <tag name="doctrine.event_subscriber" priority="-100" />
+        </service>
+    </services>
+
+</container>
