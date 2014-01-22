@@ -28,7 +28,7 @@ class MediaListener extends AbstractMediaListener
     public function prePersist(LifecycleEventArgs $args)
     {
         $object = $args->getEntity();
-        if ($object instanceof MediaInterface) {
+        if ($this->isValid($object)) {
             $this->preUpload($object);
         }
     }
@@ -36,7 +36,7 @@ class MediaListener extends AbstractMediaListener
     public function preUpdate(LifecycleEventArgs $args)
     {
         $object = $args->getEntity();
-        if ($object instanceof MediaInterface) {
+        if ($this->isValid($object)) {
             $this->preUpload($object);
 
             /**
@@ -52,7 +52,7 @@ class MediaListener extends AbstractMediaListener
     public function postPersist(LifecycleEventArgs $args)
     {
         $object = $args->getEntity();
-        if ($object instanceof MediaInterface) {
+        if ($this->isValid($object)) {
             $this->upload($object);
         }
     }
@@ -60,7 +60,7 @@ class MediaListener extends AbstractMediaListener
     public function postUpdate(LifecycleEventArgs $args)
     {
         $object = $args->getEntity();
-        if ($object instanceof MediaInterface) {
+        if ($this->isValid($object)) {
             $this->upload($object);
         }
     }
@@ -68,7 +68,7 @@ class MediaListener extends AbstractMediaListener
     public function postRemove(LifecycleEventArgs $args)
     {
         $object = $args->getEntity();
-        if ($object instanceof MediaInterface) {
+        if ($this->isValid($object)) {
             $this->removeUpload($object);
         }
     }
@@ -79,7 +79,7 @@ class MediaListener extends AbstractMediaListener
         $uow = $em->getUnitOfWork();
 
         foreach ($uow->getScheduledEntityInsertions() as $object) {
-            if (!$object instanceof MediaInterface) {
+            if (!$this->isValid($object)) {
                 continue;
             }
 
@@ -87,12 +87,12 @@ class MediaListener extends AbstractMediaListener
 
             if ($callback = $object->getNameCallback()) {
                 $object->setName($callback($object));
-                $object->setPath($this->uploadManager->getUploadPath($object));
+                $object->setPath($object->getUploadName());
                 $uow->recomputeSingleEntityChangeSet($meta, $object);
             }
 
             if ($this->makePathUnique($object, $em, $meta)) {
-                $object->setPath($this->uploadManager->getUploadPath($object));
+                $object->setPath($object->getUploadName());
                 $uow->recomputeSingleEntityChangeSet($meta, $object);
             }
         }
