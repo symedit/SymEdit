@@ -5,13 +5,13 @@
 {% block content %}
 
 <div class="text-center well">
-    <a href="{{ file | media_file }}" target="_blank" class="btn btn-primary btn-lg">
+    <a href="{{ file.webPath }}" target="_blank" class="btn btn-primary btn-lg">
         View File
         {{ icon('external-link') }}
     </a>
 
     <div>
-        {{ file | media_file }}
+        {{ file.webPath }}
     </div>
 </div>
 
