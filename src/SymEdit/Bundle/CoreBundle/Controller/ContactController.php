@@ -39,12 +39,17 @@ class ContactController extends Controller
                     'Form' => $data,
                 ), $options);
 
-                return $this->render('@SymEdit/Contact/success.html.twig');
+                return $this->redirect($this->generateUrl('contact_success'));
             }
         }
 
         return $this->render('@SymEdit/Contact/index.html.twig', array(
             'form' => $form->createView(),
         ));
+    }
+
+    public function successAction()
+    {
+        return $this->render('@SymEdit/Contact/success.html.twig');
     }
 }

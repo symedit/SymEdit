@@ -2,3 +2,8 @@ contact:
     pattern: /
     defaults:
         _controller: SymEditBundle:Contact:index
+
+contact_success:
+    pattern: /success
+    defaults:
+        _controller: SymEditBundle:Contact:success
