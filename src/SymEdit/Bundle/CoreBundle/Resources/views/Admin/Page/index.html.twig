@@ -47,7 +47,7 @@
                 var pairs = [];
                 $target.find('>li').each(function(){
                     pairs.push({
-                        name: 'isometriks_page_reorder[pair]['+$(this).data('id')+']',
+                        name: '{{ form.vars.id }}[pair]['+$(this).data('id')+']',
                         value: order++
                     });
                 });
