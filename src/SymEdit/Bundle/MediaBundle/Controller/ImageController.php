@@ -12,15 +12,12 @@
 namespace SymEdit\Bundle\MediaBundle\Controller;
 
 use Gedmo\Sluggable\Util as Sluggable;
-use JMS\SecurityExtraBundle\Annotation\PreAuthorize;
 use SymEdit\Bundle\ResourceBundle\Controller\ResourceController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 
 /**
  * Image controller.
- *
- * @PreAuthorize("hasRole('ROLE_ADMIN_IMAGE')")
  */
 class ImageController extends ResourceController
 {
