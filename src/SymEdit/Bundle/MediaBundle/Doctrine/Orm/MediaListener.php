@@ -22,6 +22,7 @@ class MediaListener extends AbstractMediaListener
             Events::postRemove,
 
             Events::onFlush,
+            Events::postLoad,
         );
     }
 
@@ -98,7 +99,14 @@ class MediaListener extends AbstractMediaListener
         }
     }
 
+    public function postLoad(LifecycleEventArgs $eventArgs)
+    {
+        $object = $eventArgs->getEntity();
 
+        if ($this->isValid($object)) {
+            $this->setPrefix($object);
+        }
+    }
 
     protected function makePathUnique(MediaInterface $media, EntityManager $em)
     {

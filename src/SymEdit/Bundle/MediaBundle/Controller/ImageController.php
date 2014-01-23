@@ -28,21 +28,15 @@ class ImageController extends ResourceController
     {
         $images = $this->getRepository()->findAll();
         $out = array();
-        $webPath = $this->container->getParameter('symedit_media.paths.image');
 
         foreach($images as $image){
             $out[] = array(
                 'thumb' => $this->getThumbnail($image->getPath()),
-                'image' => $this->getWebPath($image->getPath()),
+                'image' => $image->getWebPath(),
             );
         }
 
         return new JsonResponse($out);
-    }
-
-    protected function getWebPath($path)
-    {
-        return sprintf('%s/%s', $this->container->getParameter('symedit_media.paths.image'), $path);
     }
 
     protected function getThumbnail($path, $size = 'symedit_64x64')
@@ -72,7 +66,7 @@ class ImageController extends ResourceController
             $this->persistAndFlush($image);
 
             return new JsonResponse(array(
-                'filelink' => $this->getWebPath($image->getPath()),
+                'filelink' => $image->getWebPath(),
             ));
 
         } catch (\Exception $ex) {
