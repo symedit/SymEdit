@@ -10,3 +10,5 @@ SymEdit\Bundle\BlogBundle\Model\Post:
     properties:
         title:
             - NotBlank: ~
+        image:
+            - Valid: ~
