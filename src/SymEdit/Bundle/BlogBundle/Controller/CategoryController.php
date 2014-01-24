@@ -11,7 +11,7 @@
 
 namespace SymEdit\Bundle\BlogBundle\Controller;
 
-use Sylius\Bundle\ResourceBundle\Controller\ResourceController;
+use SymEdit\Bundle\ResourceBundle\Controller\ResourceController;
 use Symfony\Component\HttpFoundation\Request;
 
 /**
