@@ -12,9 +12,7 @@
 namespace SymEdit\Bundle\CoreBundle\Controller;
 
 use SymEdit\Bundle\ResourceBundle\Controller\ResourceController;
-use SymEdit\Bundle\CoreBundle\Event\Events;
 use SymEdit\Bundle\CoreBundle\Model\PageInterface;
-use Sylius\Bundle\ResourceBundle\Event\ResourceEvent;
 use Symfony\Component\HttpFoundation\Request;
 
 class PageController extends ResourceController
@@ -29,14 +27,13 @@ class PageController extends ResourceController
         /**
          * Dispatch page view event
          */
-        $event = new ResourceEvent($page);
-        $this->get('event_dispatcher')->dispatch(Events::PAGE_VIEW, $event);
+        $this->dispatchEvent('view', $page);
 
         /**
          * Check for template
          */
         if (($template = $page->getTemplate()) === null) {
-            throw new \Exception('Page does not have a template, cannot render');
+            $template = 'base.html.twig';
         }
 
         $view = $this
