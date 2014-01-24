@@ -1,1 +1,9 @@
-# DO VALIDATION BRO.
+SymEdit\Bundle\UserBundle\Model\Profile:
+    properties:
+        firstName:
+            - NotBlank: ~
+
+SymEdit\Bundle\UserBundle\Model\AdminProfile:
+    properties:
+        image:
+            - Valid: ~
