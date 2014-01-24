@@ -66,14 +66,12 @@
                 var pairs = [];
                 $target.find('>.widget').each(function(){
                     pairs.push({
-                        name: 'isometriks_widget_reorder[pair]['+$(this).data('id')+']',
+                        name: '{{ form.vars.id }}[pair]['+$(this).data('id')+']',
                         value: order++
                     });
                 });
 
                 var data = $form.serializeArray().concat(pairs);
-
-                console.log(data);
 
                 $.post($form.attr('action'), data);
             }
