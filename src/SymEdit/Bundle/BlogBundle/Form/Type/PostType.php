@@ -59,6 +59,7 @@ class PostType extends AbstractType
             ->add('image', 'symedit_image', array(
                 'require_name' => false,
                 'required' => false,
+                'show_image' => true,
                 'label' => 'Featured Image',
             ));
 

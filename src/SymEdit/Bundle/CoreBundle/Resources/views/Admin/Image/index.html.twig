@@ -5,6 +5,15 @@
 {% set columns = 6 %}
 
 {% block content %}
+<div class="pull-right">
+    <a class="btn btn-primary" href="{{ path('admin_image_create') }}">
+        {{ icon('upload') }}
+        Add New Image
+    </a>
+</div>
+
+<h1>Images</h1>
+
 <div class="row" id="images">
   {% for image in images %}
   <div class="thumbnail-container">
@@ -14,19 +23,13 @@
   </div>
   {% endfor %}
 </div>
-
-<div class="form-actions">
-    <a class="btn btn-primary" href="{{ path('admin_image_create') }}">
-        Add New Image
-    </a>
-</div>
 {% endblock %}
 
 {% block stylesheets %}
 {{ parent() }}
 <style type="text/css">
     div.thumbnail-container {
-        width: {{ (100 / columns)|number_format(2) }}%;
+        width: {{ (100 / columns)|number_format(4) }}%;
     }
 </style>
 {% endblock %}
