@@ -22,5 +22,11 @@
     </tr>
 </table>
 
-<a class="btn btn-primary" href="{{ path('fos_user_profile_edit') }}">Edit Profile</a>
+{% if is_granted('ROLE_ADMIN') %}
+<a class="btn btn-default" href="{{ path('admin_dashboard') }}">Dashboard</a>
+{% endif %}
+<a class="btn btn-primary" href="{{ path('fos_user_profile_edit') }}">
+    {{ icon('pencil') }}
+    Edit Profile
+</a>
 {% endblock %}
