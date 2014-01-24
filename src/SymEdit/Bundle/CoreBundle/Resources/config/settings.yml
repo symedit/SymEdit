@@ -105,14 +105,6 @@ webmaster:
                     deny: Deny All
                     allow: Allow All
 
-blog:
-    label: Blog
-    role: ROLE_ADMIN_BLOG
-    settings:
-        max_posts:
-            type: integer
-            default: 3
-
 advanced:
     label: Advanced
     role: ROLE_SUPER_ADMIN

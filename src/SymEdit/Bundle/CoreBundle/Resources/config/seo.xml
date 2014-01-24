@@ -25,7 +25,7 @@
         </service>
 
         <service id="symedit.seo.opengraph" class="%symedit.seo.opengraph.class%">
-            <argument type="service" id="isometriks_settings.settings" />
+            <argument type="service" id="symedit_settings.settings" />
             <tag name="seo.calculator" />
         </service>
     </services>
