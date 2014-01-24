@@ -37,18 +37,18 @@ class SymEditSettingsExtension extends Extension
         $yamlFiles = $this->getYamlSettingsFiles($bundles);
         $xmlFiles = $this->getXmlSettingsFiles($bundles);
 
-        $container->setParameter('isometriks_settings.loader.files.yaml', $yamlFiles);
-        $container->setParameter('isometriks_settings.loader.files.xml', $xmlFiles);
+        $container->setParameter('symedit_settings.loader.files.yaml', $yamlFiles);
+        $container->setParameter('symedit_settings.loader.files.xml', $xmlFiles);
 
         $loader->load('services.xml');
 
         // Check for Twig global variable
         $twig = $config['twig'];
 
-        $container->setParameter('isometriks_settings.twig.extension.global', $twig['global']);
+        $container->setParameter('symedit_settings.twig.extension.global', $twig['global']);
 
         if($twig['global']){
-            $container->setParameter('isometriks_settings.twig.extension.global_variable', $twig['global_variable']);
+            $container->setParameter('symedit_settings.twig.extension.global_variable', $twig['global_variable']);
             $loader->load('twig.xml');
         }
     }

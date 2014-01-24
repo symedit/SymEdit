@@ -63,7 +63,7 @@ class Controller extends BaseController
      */
     public function getSettings()
     {
-        return $this->get('isometriks_settings.settings');
+        return $this->get('symedit_settings.settings');
     }
 
     /**

@@ -15,7 +15,7 @@ class WebmasterController extends Controller
 {
     public function googleVerifyAction($request_code)
     {
-        $settings = $this->get('isometriks_settings.settings');
+        $settings = $this->get('symedit_settings.settings');
 
         if ($settings->has('webmaster.google_verify')) {
             $code = $settings->get('webmaster.google_verify');
@@ -37,7 +37,7 @@ class WebmasterController extends Controller
 
     public function bingVerifyAction()
     {
-        $settings = $this->get('isometriks_settings.settings');
+        $settings = $this->get('symedit_settings.settings');
 
         if ($settings->has('webmaster.bing_verify')) {
             $code = $settings->get('webmaster.bing_verify');

@@ -18,7 +18,7 @@ class CrawlerController extends Controller
 {
     function robotsAction()
     {
-        $settings = $this->get('isometriks_settings.settings');
+        $settings = $this->get('symedit_settings.settings');
 
         if ($settings->has('webmaster.robots')) {
             $allow = $settings->get('webmaster.robots') === 'allow';

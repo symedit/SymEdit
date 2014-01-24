@@ -5,13 +5,13 @@
            xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
 
     <parameters>
-        <parameter key="isometriks_settings.twig.extension.class">SymEdit\Bundle\SettingsBundle\Twig\Extension\SettingsBundleExtension</parameter>
+        <parameter key="symedit_settings.twig.extension.class">SymEdit\Bundle\SettingsBundle\Twig\Extension\SettingsBundleExtension</parameter>
     </parameters>
 
     <services>
-        <service id="isometriks_settings.twig.extension" class="%isometriks_settings.twig.extension.class%">
-            <argument type="service" id="isometriks_settings.settings" />
-            <argument>%isometriks_settings.twig.extension.global_variable%</argument>
+        <service id="symedit_settings.twig.extension" class="%symedit_settings.twig.extension.class%">
+            <argument type="service" id="symedit_settings.settings" />
+            <argument>%symedit_settings.twig.extension.global_variable%</argument>
             <tag name="twig.extension" />
         </service>
     </services>

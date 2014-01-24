@@ -37,7 +37,7 @@ class SettingsController extends ResourceController
 
     public function findOr404(array $criteria = null)
     {
-        return $this->get('isometriks_settings.settings');
+        return $this->get('symedit_settings.settings');
     }
 
     public function persistAndFlush($resource, $action = 'create')
