@@ -52,5 +52,15 @@
                 <argument type="service" id="service_container" />
             </call>
         </service>
+
+        <!-- Image Gallery -->
+        <service id="symedit.controller.image_gallery" class="%symedit.controller.image_gallery.class%">
+            <argument>symedit</argument>
+            <argument>image_gallery</argument>
+            <argument />
+            <call method="setContainer">
+                <argument type="service" id="service_container" />
+            </call>
+        </service>
     </services>
 </container>

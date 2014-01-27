@@ -9,11 +9,11 @@ class ImageGallery implements ImageGalleryInterface
     protected $id;
     protected $title;
     protected $slug;
-    protected $galleryItems;
+    protected $items;
 
     public function __construct()
     {
-        $this->images = new ArrayCollection();
+        $this->items = new ArrayCollection();
     }
 
     public function getId()
@@ -38,24 +38,25 @@ class ImageGallery implements ImageGalleryInterface
         return $this->slug;
     }
 
-    public function getGalleryItems()
+    public function getItems()
     {
-        return $this->galleryItems;
+        return $this->items;
     }
 
-    public function addGalleryItem(GalleryItemInterface $galleryItem)
+    public function addItem(GalleryItemInterface $item)
     {
-        if (!$this->getGalleryItems()->contains($galleryItem)) {
-            $this->getGalleryItems()->add($galleryItem);
+        if (!$this->items->contains($item)) {
+            $item->setGallery($this);
+            $this->items->add($item);
         }
 
         return $this;
     }
 
-    public function removeGalleryItem(GalleryItemInterface $galleryItem)
+    public function removeItem(GalleryItemInterface $item)
     {
-        if ($this->getGalleryItems()->contains($galleryItem)) {
-            $this->getGalleryItems()->removeElement($galleryItem);
+        if ($this->items->contains($item)) {
+            $this->items->removeElement($item);
         }
 
         return $this;

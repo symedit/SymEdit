@@ -24,6 +24,7 @@ class SymEditMediaBundle extends Bundle
             'SymEdit\Bundle\MediaBundle\Model\ImageInterface' => 'symedit.model.image.class',
             'SymEdit\Bundle\MediaBundle\Model\FileInterface' => 'symedit.model.file.class',
             'SymEdit\Bundle\MediaBundle\Model\ImageGalleryInterface' => 'symedit.model.image_gallery.class',
+            'SymEdit\Bundle\MediaBundle\Model\GalleryItemInterface' => 'symedit.model.gallery_item.class',
         );
 
         $container->addCompilerPass(new ResolveDoctrineTargetEntitiesPass('symedit', $interfaces));

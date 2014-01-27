@@ -12,9 +12,9 @@ interface ImageGalleryInterface
 
     public function getSlug();
 
-    public function getGalleryItems();
+    public function getItems();
 
-    public function addGalleryItem(GalleryItemInterface $image);
+    public function addItem(GalleryItemInterface $image);
 
-    public function removeGalleryItem(GalleryItemInterface $image);
+    public function removeItem(GalleryItemInterface $image);
 }

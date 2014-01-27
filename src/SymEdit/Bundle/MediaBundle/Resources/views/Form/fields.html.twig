@@ -1,0 +1,15 @@
+{% block symedit_image_choose_row %}
+<div class="row">
+{{ form_widget(form) }}
+</div>
+{% endblock %}
+
+{% block symedit_image_choose_item_row %}
+<div class="col-md-3">
+    <label>
+        {{ form_widget(form.id) }}
+        <input type="checkbox" name="{{ form.selected.vars.full_name }}">
+        <img src="{{ form.vars.image | imagine_filter('gallery_thumbnail') }}" />
+    </label>
+</div>
+{% endblock %}

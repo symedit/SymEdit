@@ -21,6 +21,8 @@ SymEdit\Bundle\MediaBundle\Model\ImageGallery:
                     fields:
                         - title
     oneToMany:
-        galleryItems:
+        items:
             mappedBy: gallery
             targetEntity: SymEdit\Bundle\MediaBundle\Model\GalleryItemInterface
+            cascade:
+                - persist
