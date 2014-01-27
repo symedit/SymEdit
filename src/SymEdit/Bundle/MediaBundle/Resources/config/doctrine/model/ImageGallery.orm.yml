@@ -20,14 +20,7 @@ SymEdit\Bundle\MediaBundle\Model\ImageGallery:
                     separator: "-"
                     fields:
                         - title
-    manyToMany:
-        media:
-            joinTable:
-                name: imagegallery_image
-                joinColumns:
-                    gallery_id:
-                        referencedColumnName: id
-                inverseJoinColumns:
-                    image_id:
-                        referencedColumnName: id
-            targetEntity: SymEdit\Bundle\MediaBundle\Model\ImageInterface
+    oneToMany:
+        galleryItems:
+            mappedBy: gallery
+            targetEntity: SymEdit\Bundle\MediaBundle\Model\GalleryItemInterface
