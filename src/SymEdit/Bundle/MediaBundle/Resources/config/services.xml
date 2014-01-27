@@ -5,7 +5,7 @@
            xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
 
     <parameters>
-        <parameter key="symedit_media.image_upload_manager.class">SymEdit\Bundle\MediaBundle\Upload\UploadManager</parameter>
+        <parameter key="symedit_media.image_upload_manager.class">SymEdit\Bundle\MediaBundle\Upload\ImageUploadManager</parameter>
         <parameter key="symedit_media.file_upload_manager.class">SymEdit\Bundle\MediaBundle\Upload\UploadManager</parameter>
     </parameters>
 
@@ -17,6 +17,11 @@
                     <argument>symedit_image</argument>
                 </service>
             </argument>
+            <argument type="service" id="liip_imagine.cache.manager" />
+            <argument>%liip_imagine.filter_sets%</argument>
+            <call method="setRequest">
+                <argument type="service" id="request" on-invalid="null" strict="false" />
+            </call>
         </service>
 
         <!-- File Uploader -->

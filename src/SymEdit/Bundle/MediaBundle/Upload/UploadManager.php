@@ -60,6 +60,8 @@ class UploadManager implements UploadManagerInterface
             return;
         }
 
-        $this->filesystem->delete($media->getPath());
+        if ($this->filesystem->has($media->getPath())) {
+            $this->filesystem->delete($media->getPath());
+        }
     }
 }
