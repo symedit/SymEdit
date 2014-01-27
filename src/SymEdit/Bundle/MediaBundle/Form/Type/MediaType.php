@@ -2,10 +2,11 @@
 
 namespace SymEdit\Bundle\MediaBundle\Form\Type;
 
+use SymEdit\Bundle\MediaBundle\Form\EventListener\FileTypeSubscriber;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\Form\FormInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
-use SymEdit\Bundle\MediaBundle\Form\EventListener\FileTypeSubscriber;
 
 class MediaType extends AbstractType
 {
@@ -24,7 +25,21 @@ class MediaType extends AbstractType
             'file_help' => false,
             'name_label' => 'File Name',
             'name_help' => false,
+            'validation_groups' => array($this, 'getValidationGroups'),
         ));
+    }
+
+    public function getValidationGroups(FormInterface $form)
+    {
+        $config = $form->getConfig();
+
+        if ($config->getOption('require_name')) {
+            $group = 'require_name';
+        } else {
+            $group = 'image_only';
+        }
+
+        return array($group);
     }
 
     public function getName()

@@ -1,12 +1,16 @@
+SymEdit\Bundle\MediaBundle\Model\Media:
+    properties:
+        name:
+            - NotBlank:
+                groups: [require_name]
+            - Regex:
+                pattern: "/^[a-z0-9_-]+$/"
+                message: "You may only use lowercase letters, numbers, underscores or hyphens"
+
 SymEdit\Bundle\MediaBundle\Model\Image:
     constraints:
         - Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity: path
     properties:
-        name:
-            - NotBlank: ~
-            - Regex:
-                pattern: "/^[a-z0-9_-]+$/"
-                message: "You may only use lowercase letters, numbers, underscores or hyphens"
         file:
             - Image:
                 maxSize: 20M
@@ -15,11 +19,6 @@ SymEdit\Bundle\MediaBundle\Model\File:
     constraints:
         - Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity: path
     properties:
-        name:
-            - NotBlank: ~
-            - Regex:
-                pattern: "/^[a-z0-9_-]+$/"
-                message: "You may only use lowercase letters, numbers, underscores or hyphens"
         file:
             - File:
                 maxSize: 200M
