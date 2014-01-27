@@ -4,7 +4,7 @@ namespace SymEdit\Bundle\MediaBundle\Model;
 
 use Doctrine\Common\Collections\ArrayCollection;
 
-class MediaGallery implements MediaGalleryInterface
+class ImageGallery implements ImageGalleryInterface
 {
     protected $id;
     protected $title;
@@ -15,7 +15,7 @@ class MediaGallery implements MediaGalleryInterface
     {
         $this->media = new ArrayCollection();
     }
-    
+
     public function getId()
     {
         return $this->id;

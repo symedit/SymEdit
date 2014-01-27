@@ -1,0 +1,33 @@
+SymEdit\Bundle\MediaBundle\Model\ImageGallery:
+    type: entity
+    table: image_gallery
+    fields:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: IDENTITY
+        title:
+            type: string
+            length: 255
+        slug:
+            type: string
+            unique: true
+            nullable: false
+            gedmo:
+                slug:
+                    unique: true
+                    separator: "-"
+                    fields:
+                        - title
+    manyToMany:
+        media:
+            joinTable:
+                name: imagegallery_image
+                joinColumns:
+                    gallery_id:
+                        referencedColumnName: id
+                inverseJoinColumns:
+                    image_id:
+                        referencedColumnName: id
+            targetEntity: SymEdit\Bundle\MediaBundle\Model\ImageInterface

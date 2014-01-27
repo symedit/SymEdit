@@ -2,7 +2,7 @@
 
 namespace SymEdit\Bundle\MediaBundle\Model;
 
-interface MediaGalleryInterface
+interface ImageGalleryInterface
 {
     public function getId();
 
@@ -11,7 +11,7 @@ interface MediaGalleryInterface
     public function setTitle($title);
 
     public function getSlug();
-    
+
     public function getMedia();
 
     public function addMedia(ImageInterface $media);

@@ -7,6 +7,7 @@
     <parameters>
         <parameter key="symedit.repository.image.class">Sylius\Bundle\ResourceBundle\Doctrine\ORM\EntityRepository</parameter>
         <parameter key="symedit.repository.file.class">Sylius\Bundle\ResourceBundle\Doctrine\ORM\EntityRepository</parameter>
+        <parameter key="symedit.repository.image_gallery.class">Sylius\Bundle\ResourceBundle\Doctrine\ORM\EntityRepository</parameter>
     </parameters>
 
     <services>
@@ -38,6 +39,20 @@
                     factory-method="getClassMetadata"
                     class="Doctrine\ORM\Mapping\ClassMetadata">
                     <argument>%symedit.model.file.class%</argument>
+                </service>
+            </argument>
+        </service>
+
+        <!-- Image Gallery -->
+        <service id="symedit.manager.image_gallery" alias="symedit_media.entity_manager" />
+        <service id="symedit.repository.image_gallery" class="%symedit.repository.image_gallery.class%">
+            <argument type="service" id="symedit.manager.image_gallery" />
+            <argument type="service">
+                <service
+                    factory-service="symedit.manager.image_gallery"
+                    factory-method="getClassMetadata"
+                    class="Doctrine\ORM\Mapping\ClassMetadata">
+                    <argument>%symedit.model.image_gallery.class%</argument>
                 </service>
             </argument>
         </service>
