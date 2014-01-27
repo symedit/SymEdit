@@ -14,6 +14,10 @@ symedit_admin_file_controller:
     resource: "@SymEditBundle/Resources/config/routing/admin/file.yml"
     prefix: /file
 
+symedit_admin_image_gallery_controller:
+    resource: "@SymEditBundle/Resources/config/routing/admin/image_gallery.yml"
+    prefix: /image/gallery
+
 symedit_admin_category_controller:
     resource: "@SymEditBundle/Resources/config/routing/admin/category.yml"
     prefix: /category

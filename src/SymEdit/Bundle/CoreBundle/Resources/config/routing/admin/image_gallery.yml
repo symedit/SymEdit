@@ -1,0 +1,29 @@
+admin_image_gallery:
+    pattern: /
+    methods: [GET]
+    defaults:
+        _controller: symedit.controller.image_gallery:indexAction
+        _sylius:
+            template: @SymEdit/Admin/ImageGallery/index.html.twig
+            paginate: false
+            limit: false
+
+admin_image_gallery_create:
+    pattern: /new
+    methods: [GET, POST]
+    defaults:
+        _controller: symedit.controller.image_gallery:createAction
+        _sylius:
+            template: @SymEdit/Admin/ImageGallery/new.html.twig
+            redirect: admin_image
+
+admin_image_gallery_update:
+    pattern: /{id}/edit
+    methods: [GET, PUT, POST]
+    defaults:
+        _controller: symedit.controller.image_gallery:updateAction
+        _sylius:
+            template: @SymEdit/Admin/ImageGallery/edit.html.twig
+            redirect:
+                route: admin_image_update
+                parameters: { id: $id }
