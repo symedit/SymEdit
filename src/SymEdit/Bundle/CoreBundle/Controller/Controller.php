@@ -132,11 +132,11 @@ class Controller extends BaseController
 
         return null;
     }
-    
+
     /**
      * Gets the current SEO
-     * 
-     * @return \Isometriks\Bundle\Seo\Model\SeoInterface
+     *
+     * @return \SymEdit\Bundle\SeoBundle\Model\SeoInterface
      */
     public function getSeo()
     {
