@@ -34,18 +34,10 @@ symedit_admin_widget_controller:
     resource: "@SymEditBundle/Resources/config/routing/admin/widget.yml"
     prefix: /widget
 
-symedit_admin_slider_controller:
-    resource: "@SymEditBundle/Resources/config/routing/admin/slider.yml"
-    prefix: /image/slider
-
 # Below not converted
 
 symedit_admin_dashboard_controller:
     resource: "@SymEditBundle/Controller/Admin/DashboardController.php"
-    type: annotation
-
-symedit_admin_slide_controller:
-    resource: "@SymEditBundle/Controller/Admin/SlideController.php"
     type: annotation
 
 symedit_admin_stylizer_controller:

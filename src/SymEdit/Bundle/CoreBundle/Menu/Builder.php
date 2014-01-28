@@ -83,7 +83,6 @@ class Builder
             $media->addChild('View Images', array('route' => 'admin_image', 'icon' => 'picture'));
             $media->addChild('Upload Image', array('route' => 'admin_image_create', 'icon' => 'upload'));
             $media->addChild('Galleries', array('route' => 'admin_image_gallery', 'icon' => 'grid'));
-            $media->addChild('Sliders', array('route' => 'admin_image_slider', 'icon' => 'film'));
 
             $media->addChild('Files', array('dropdown-header' => true));
             $media->addChild('View Files', array('route' => 'admin_file', 'icon' => 'file'));

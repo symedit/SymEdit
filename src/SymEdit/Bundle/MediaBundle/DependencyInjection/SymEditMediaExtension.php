@@ -8,7 +8,7 @@ use SymEdit\Bundle\ResourceBundle\DependencyInjection\SymEditResourceExtension;
 class SymEditMediaExtension extends SymEditResourceExtension
 {
     protected $configFiles = array(
-        'services', 'form',
+        'services', 'form', 'widget',
     );
 
     /**

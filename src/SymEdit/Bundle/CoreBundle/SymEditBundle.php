@@ -49,7 +49,6 @@ class SymEditBundle extends Bundle
         $interfaces = array(
             'SymEdit\Bundle\CoreBundle\Model\PageInterface'       => 'symedit.model.page.class',
             'SymEdit\Bundle\CoreBundle\Model\SlideInterface'      => 'symedit.model.slide.class',
-            'SymEdit\Bundle\CoreBundle\Model\SliderInterface'     => 'symedit.model.slider.class',
         );
 
         $container->addCompilerPass(new ResolveDoctrineTargetEntitiesPass('symedit', $interfaces));

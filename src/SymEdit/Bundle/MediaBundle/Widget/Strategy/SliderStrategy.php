@@ -12,8 +12,8 @@
 namespace SymEdit\Bundle\CoreBundle\Widget\Strategy;
 
 use Sylius\Bundle\ResourceBundle\Model\RepositoryInterface;
-use SymEdit\Bundle\CoreBundle\Model\PageInterface;
 use SymEdit\Bundle\WidgetBundle\Model\WidgetInterface;
+use SymEdit\Bundle\WidgetBundle\Widget\Strategy\AbstractWidgetStrategy;
 use Symfony\Component\Form\FormBuilderInterface;
 
 class SliderStrategy extends AbstractWidgetStrategy
@@ -25,7 +25,7 @@ class SliderStrategy extends AbstractWidgetStrategy
         $this->repository = $repository;
     }
 
-    public function execute(WidgetInterface $widget, PageInterface $page = null)
+    public function execute(WidgetInterface $widget)
     {
         $slider = $this->repository->findOneByName($widget->getOption('slider'));
 
@@ -50,7 +50,7 @@ class SliderStrategy extends AbstractWidgetStrategy
             ->add('slider', 'entity_property', array(
                 'label' => 'Slider',
                 'help_block' => 'Choose slider to display',
-                'class' => 'SymEdit\Bundle\CoreBundle\Model\Slider',
+                'class' => $this->repository->getClassName(),
                 'property' => 'name',
                 'property_value' => 'name',
             ))

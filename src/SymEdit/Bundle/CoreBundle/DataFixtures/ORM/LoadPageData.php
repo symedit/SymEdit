@@ -15,7 +15,6 @@ use Doctrine\Common\Persistence\ObjectManager;
 use Doctrine\Common\DataFixtures\AbstractFixture;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use SymEdit\Bundle\CoreBundle\Model\Page;
-use SymEdit\Bundle\CoreBundle\Model\Slider; 
 
 class LoadPageData extends AbstractFixture implements OrderedFixtureInterface {
 
@@ -36,7 +35,7 @@ class LoadPageData extends AbstractFixture implements OrderedFixtureInterface {
             ->setPageController(false);
 
         $manager->persist($page_root);
-        $this->addReference('page-root', $page_root); 
+        $this->addReference('page-root', $page_root);
 
         // Homepage
         $page_home = new Page();
@@ -53,14 +52,6 @@ class LoadPageData extends AbstractFixture implements OrderedFixtureInterface {
         $manager->persist($page_home);
         $this->addReference('page-homepage', $page_home); 
 
-        $slider_home = new Slider(); 
-        $slider_home
-            ->setName('homepage')
-            ->setDescription('Homepage Slider');
-        
-        $manager->persist($slider_home); 
-        $this->addReference('slider-homepage', $slider_home); 
-        
         // About Page
         $page_about = new Page();
         $page_about
@@ -73,7 +64,7 @@ class LoadPageData extends AbstractFixture implements OrderedFixtureInterface {
             ->setPageOrder(20);
 
         $manager->persist($page_about);
-        $this->addReference('page-about', $page_about); 
+        $this->addReference('page-about', $page_about);
 
         // Blog Page
         $page_blog = new Page();
@@ -88,9 +79,9 @@ class LoadPageData extends AbstractFixture implements OrderedFixtureInterface {
             ->setPageControllerPath('symedit-blog');
 
         $manager->persist($page_blog);
-        $this->addReference('page-blog', $page_blog);         
-        
-        $page_contact = new Page(); 
+        $this->addReference('page-blog', $page_blog);
+
+        $page_contact = new Page();
         $page_contact
             ->setParent($page_root)
             ->setName('contact')
@@ -99,11 +90,11 @@ class LoadPageData extends AbstractFixture implements OrderedFixtureInterface {
             ->setContent('')
             ->setPageOrder(40)
             ->setPageController(true)
-            ->setPageControllerPath('symedit-contact'); 
-        
-        $manager->persist($page_contact); 
+            ->setPageControllerPath('symedit-contact');
+
+        $manager->persist($page_contact);
         $this->addReference('page-contact', $page_contact);
-        
+
         // Write them all
         $manager->flush();
     }

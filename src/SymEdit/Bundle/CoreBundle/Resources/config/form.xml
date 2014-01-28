@@ -54,10 +54,6 @@
             <tag name="form.type" alias="symedit_widget" />
         </service>
 
-        <service id="symedit.form.type.slider" class="%symedit.form.type.slider.class%">
-            <tag name="form.type" alias="symedit_slider" />
-        </service>
-
         <service id="symedit.form.type.entity_property" class="%symedit.form.type.entity_property.class%">
             <argument type="service" id="doctrine" />
             <tag name="form.type" alias="entity_property" />

@@ -24,15 +24,5 @@
                 <argument type="service" id="service_container" />
             </call>
         </service>
-
-        <!-- Slider -->
-        <service id="symedit.controller.slider" class="%symedit.controller.slider.class%">
-            <argument>symedit</argument>
-            <argument>slider</argument>
-            <argument />
-            <call method="setContainer">
-                <argument type="service" id="service_container" />
-            </call>
-        </service>
     </services>
 </container>

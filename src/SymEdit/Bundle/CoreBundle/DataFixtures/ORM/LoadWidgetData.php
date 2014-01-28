@@ -83,14 +83,6 @@ class LoadWidgetData extends AbstractFixture implements OrderedFixtureInterface,
             ->setArea('featured')
             ->setDescription('Featured Widget Area at top of page');
 
-        $slider = $this->getWidgetRepository()->createNew('slider');
-        $slider
-            ->setName('homepage_slider')
-            ->setTitle('Homepage Slider')
-            ->setOption('slider', 'homepage')
-            ->setVisibility(Widget::INCLUDE_ONLY)
-            ->addAssoc('/');
-
         // Google Map for Contact Page
         $contact_page = $this->getReference('page-contact');
 
@@ -100,14 +92,11 @@ class LoadWidgetData extends AbstractFixture implements OrderedFixtureInterface,
             ->setVisibility(Widget::INCLUDE_ONLY)
             ->addAssoc($contact_page->getId());
 
-
-        $featured->addWidget($slider);
         $featured->addWidget($map);
 
         $manager->persist($featured);
 
         $this->addReference('widgetarea-featured', $featured);
-        $this->addReference('widget-homepage_slider', $slider);
         $this->addReference('widget-google_map_featured', $map);
 
 

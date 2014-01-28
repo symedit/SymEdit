@@ -7,7 +7,6 @@
     <parameters>
         <parameter key="symedit_widget.twig.widget_extension.class">SymEdit\Bridge\Widget\Twig\Extension\WidgetExtension</parameter>
         <parameter key="symedit.widget.strategy.contact_info.class">SymEdit\Bundle\CoreBundle\Widget\Strategy\ContactInfoStrategy</parameter>
-        <parameter key="symedit.widget.strategy.slider.class">SymEdit\Bundle\CoreBundle\Widget\Strategy\SliderStrategy</parameter>
         <parameter key="symedit.widget.strategy.google_map.class">SymEdit\Bundle\CoreBundle\Widget\Strategy\GoogleMapStrategy</parameter>
         <parameter key="symedit.widget.strategy.submenu.class">SymEdit\Bundle\CoreBundle\Widget\Strategy\SubmenuStrategy</parameter>
         <parameter key="symedit.widget.strategy.list_children.class">SymEdit\Bundle\CoreBundle\Widget\Strategy\ListChildrenStrategy</parameter>
@@ -18,11 +17,6 @@
         <service id="symedit.widget.strategy.contact_info" class="%symedit.widget.strategy.contact_info.class%"
                  parent="symedit_widget.widget.strategy.template">
             <tag name="symedit_widget.widget_strategy" alias="contact_info" />
-        </service>
-
-        <service id="symedit.widget.strategy.slider" class="%symedit.widget.strategy.slider.class%">
-            <argument type="service" id="symedit.repository.slider" />
-            <tag name="symedit_widget.widget_strategy" alias="slider" />
         </service>
 
         <service id="symedit.widget.strategy.google_map" class="%symedit.widget.strategy.google_map.class%">
