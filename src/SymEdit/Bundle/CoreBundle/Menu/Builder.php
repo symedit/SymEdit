@@ -74,23 +74,6 @@ class Builder
         }
 
         /**
-         * Images
-         */
-        if ($this->context->isGranted('ROLE_ADMIN_IMAGE')) {
-            $media = $menu->addChild('Media', array('dropdown' => true, 'caret' => true, 'icon' => 'picture'));
-
-            $media->addChild('Images', array('dropdown-header' => true));
-            $media->addChild('View Images', array('route' => 'admin_image', 'icon' => 'picture'));
-            $media->addChild('Upload Image', array('route' => 'admin_image_create', 'icon' => 'upload'));
-            $media->addChild('Galleries', array('route' => 'admin_image_gallery', 'icon' => 'film'));
-
-            $media->addChild('Files', array('dropdown-header' => true));
-            $media->addChild('View Files', array('route' => 'admin_file', 'icon' => 'file'));
-            $media->addChild('Upload File', array('route' => 'admin_file_create', 'icon' => 'upload'));
-        }
-
-
-        /**
          * Widgets
          */
         if ($this->context->isGranted('ROLE_ADMIN_WIDGET')) {
@@ -100,6 +83,14 @@ class Builder
             $structure->addChild('List Widgets', array('route' => 'admin_widget', 'icon' => 'tasks'));
         }
 
+        /**
+         * Dispatch Menu Event
+         * Want site / extensions to be last so fill in here
+         */
+        $event = new MenuEvent($menu, 'symedit_admin');
+        $this->eventDispatcher->dispatch(Events::MENU_VIEW, $event);
+
+        
         /**
          * Site
          */
@@ -142,12 +133,6 @@ class Builder
                 $extensions->addChild('extension_'.$index++, $extension);
             }
         }
-
-        /**
-         * Dispatch Menu Event
-         */
-        $event = new MenuEvent($menu, 'symedit_admin');
-        $this->eventDispatcher->dispatch(Events::MENU_VIEW, $event);
 
         return $event->getRootNode();
     }
