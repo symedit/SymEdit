@@ -11,8 +11,10 @@
 
 namespace SymEdit\Bundle\BlogBundle\Model;
 
-use SymEdit\Bundle\CoreBundle\Model\UserInterface;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use SymEdit\Bundle\MediaBundle\Model\ImageInterface;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 class Post implements PostInterface
 {
@@ -179,7 +181,7 @@ class Post implements PostInterface
     /**
      * Set author
      *
-     * @param  SymEdit\Bundle\CoreBundle\Model\UserInterface $author
+     * @param  UserInterface $author
      * @return Post
      */
     public function setAuthor(UserInterface $author = null)
@@ -192,7 +194,7 @@ class Post implements PostInterface
     /**
      * Get author
      *
-     * @return SymEdit\Bundle\CoreBundle\Model\UserInterface
+     * @return UserInterface
      */
     public function getAuthor()
     {
@@ -278,7 +280,7 @@ class Post implements PostInterface
     /**
      * Add categories
      *
-     * @param  SymEdit\Bundle\BlogBundle\Model\CategoryInterface $categories
+     * @param  CategoryInterface $categories
      * @return Post
      */
     public function addCategory(CategoryInterface $category)
@@ -291,7 +293,7 @@ class Post implements PostInterface
     /**
      * Remove categories
      *
-     * @param SymEdit\Bundle\BlogBundle\Model\CategoryInterface $categories
+     * @param CategoryInterface $categories
      */
     public function removeCategory(CategoryInterface $category)
     {
@@ -301,7 +303,7 @@ class Post implements PostInterface
     /**
      * Get categories
      *
-     * @return Doctrine\Common\Collections\Collection
+     * @return Collection
      */
     public function getCategories()
     {
