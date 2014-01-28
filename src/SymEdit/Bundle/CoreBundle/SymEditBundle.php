@@ -31,7 +31,7 @@ class SymEditBundle extends Bundle
     {
         if($kernel === null) {
             throw new \RuntimeException('When you register the SymEdit bundle, be sure to include "$this" in the parameters => '
-                                      . 'new Isometriks\\Bundle\\SymEditBundle\\SymEditBundle($this)');
+                                      . 'new SymEdit\\Bundle\\CoreBundle\\SymEditBundle($this)');
         }
 
         $this->kernel = $kernel;
