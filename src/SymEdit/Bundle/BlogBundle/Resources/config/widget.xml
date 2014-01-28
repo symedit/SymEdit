@@ -6,6 +6,7 @@
 
     <parameters>
         <parameter key="symedit.widget.strategy.blog_recent_posts.class">SymEdit\Bundle\BlogBundle\Widget\Strategy\RecentPostsStrategy</parameter>
+        <parameter key="symedit.widget.strategy.blog_latest_post.class">SymEdit\Bundle\BlogBundle\Widget\Strategy\LatestPostStrategy</parameter>
         <parameter key="symedit.widget.strategy.blog_popular_posts.class">SymEdit\Bundle\BlogBundle\Widget\Strategy\PopularPostsStrategy</parameter>
         <parameter key="symedit.widget.strategy.blog_categories.class">SymEdit\Bundle\BlogBundle\Widget\Strategy\BlogCategoriesStrategy</parameter>
     </parameters>
@@ -14,6 +15,11 @@
         <service id="symedit.widget.strategy.blog_recent_posts" class="%symedit.widget.strategy.blog_recent_posts.class%">
             <argument type="service" id="symedit.repository.post" />
             <tag name="symedit_widget.widget_strategy" alias="blog_recent_posts" />
+        </service>
+
+        <service id="symedit.widget.strategy.blog_latest_post" class="%symedit.widget.strategy.blog_latest_post.class%">
+            <argument type="service" id="symedit.repository.post" />
+            <tag name="symedit_widget.widget_strategy" alias="blog_latest_post" />
         </service>
 
         <service id="symedit.widget.strategy.blog_popular_posts" class="%symedit.widget.strategy.blog_popular_posts.class%">
