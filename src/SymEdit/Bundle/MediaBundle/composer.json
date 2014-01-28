@@ -1,6 +1,6 @@
 {
     "name": "symedit/media-bundle",
-    "description": "Symfony2 Bundle for SymEdit for dealing with media.",
+    "description": "Symfony2 Bundle for SymEdit for dealing with media",
     "type": "symfony-bundle",
     "authors": [
         {
