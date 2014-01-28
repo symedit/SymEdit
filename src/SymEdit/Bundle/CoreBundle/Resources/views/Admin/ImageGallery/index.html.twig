@@ -9,4 +9,14 @@
         Create New Gallery
     </a>
 </div>
+
+{% for gallery in image_galleries %}
+<div>
+    <h4>{{ gallery.title }}</h4>
+
+    {% for item in gallery.items %}
+    <img src="{{ item.image | imagine_filter('symedit_96x96') }}">
+    {% endfor %}
+</div>
+{% endfor %}
 {% endblock %}
