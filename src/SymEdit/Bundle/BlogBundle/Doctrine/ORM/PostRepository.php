@@ -22,15 +22,12 @@ class PostRepository extends EntityRepository
     {
         return $this->getRecentQuery()->getResult();
     }
-    
+
     public function findPublished()
     {
-        return $this
-            ->getQueryBuilder()
-            ->andWhere('o.status = :status')
-            ->setParameter('status', Post::PUBLISHED)
-            ->getQuery()
-            ->getResult();
+        return $this->findBy(array(
+            'status' => Post::PUBLISHED,
+        ));
     }
 
     public function findPopular($max = null)
@@ -69,19 +66,25 @@ class PostRepository extends EntityRepository
 
     public function getRecent($max=3)
     {
-        return $this->getRecentQuery()
-                ->setMaxResults($max)
-                ->getResult();
+        $criteria = array(
+            'status' => Post::PUBLISHED,
+        );
+
+        return $this->findBy($criteria, null, $max);
     }
 
     /**
      * Get just the most recent post
      */
-    public function getRecentPost()
+    public function getLatestPost()
     {
-        return $this->getRecentQuery()
-                ->setMaxResults(1)
-                ->getSingleResult();
+        $recent = $this->getRecent(1);
+
+        if (is_array($recent)) {
+            $recent = array_pop($recent);
+        }
+
+        return $recent;
     }
 
     /**
