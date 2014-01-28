@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace SymEdit\Bundle\CoreBundle\Widget\Strategy;
+namespace SymEdit\Bundle\MediaBundle\Widget\Strategy;
 
 use Sylius\Bundle\ResourceBundle\Model\RepositoryInterface;
 use SymEdit\Bundle\WidgetBundle\Model\WidgetInterface;
@@ -27,10 +27,14 @@ class SliderStrategy extends AbstractWidgetStrategy
 
     public function execute(WidgetInterface $widget)
     {
-        $slider = $this->repository->findOneByName($widget->getOption('slider'));
+        $gallery = $this->repository->findOneBySlug($widget->getOption('slider'));
+
+        if (!$gallery) {
+            return null;
+        }
 
         return $this->render('@SymEdit/Widget/slider.html.twig', array(
-            'slider' => $slider,
+            'gallery' => $gallery,
             'thumbnails' => $widget->getOption('thumbnails'),
             'stretch' => $widget->getOption('stretch'),
         ));
@@ -51,8 +55,8 @@ class SliderStrategy extends AbstractWidgetStrategy
                 'label' => 'Slider',
                 'help_block' => 'Choose slider to display',
                 'class' => $this->repository->getClassName(),
-                'property' => 'name',
-                'property_value' => 'name',
+                'property' => 'title',
+                'property_value' => 'slug',
             ))
             ->add('thumbnails', 'checkbox', array(
                 'label' => 'Show Thumbnails',
