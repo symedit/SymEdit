@@ -21,7 +21,7 @@ class SubjectSubscriber implements EventSubscriberInterface
 {
     protected $seoManager;
     protected $reader;
-    protected $annotationClass = 'Isometriks\\Bundle\\SeoBundle\\Annotation\\Seo';
+    protected $annotationClass = 'SymEdit\\Bundle\\SeoBundle\\Annotation\\Seo';
 
     public function __construct(SeoManagerInterface $seoManager, Reader $reader)
     {
