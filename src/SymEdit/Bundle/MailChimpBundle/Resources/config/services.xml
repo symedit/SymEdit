@@ -1,0 +1,40 @@
+<?xml version="1.0" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <parameters>
+        <parameter key="symedit_mailchimp.client.class">ZfrMailChimp\Client\MailChimpClient</parameter>
+        <parameter key="symedit_mailchimp.menu_subscriber.class">SymEdit\Bundle\MailChimpBundle\EventListener\MenuSubscriber</parameter>
+        <parameter key="symedit_mailchimp.controller.dashboard.class">SymEdit\Bundle\MailChimpBundle\Controller\DashboardController</parameter>
+    </parameters>
+
+    <services>
+        <service id="symedit_mailchimp.client" class="%symedit_mailchimp.client.class%" factory-service="symedit_settings.factory" factory-method="create">
+            <argument>%symedit_mailchimp.client.class%</argument>
+            <argument type="collection">
+                <argument>$mailchimp.api_key</argument>
+            </argument>
+        </service>
+
+        <service id="symedit_mailchimp.menu_subscriber" class="%symedit_mailchimp.menu_subscriber.class%">
+            <argument type="service" id="security.context" />
+            <tag name="kernel.event_subscriber" />
+        </service>
+
+        <service id="symedit_mailchimp.controller.dashboard" class="%symedit_mailchimp.controller.dashboard.class%">
+            <argument></argument>
+            <argument></argument>
+            <argument />
+            <call method="setContainer">
+                <argument type="service" id="service_container" />
+            </call>
+        </service>
+
+        <service id="symedit_mailchimp.form.type.list" class="SymEdit\Bundle\MailChimpBundle\Form\Type\ListType">
+            <argument type="service" id="symedit_mailchimp.client" />
+            <tag name="form.type" alias="mailchimp_list" />
+        </service>
+    </services>
+</container>

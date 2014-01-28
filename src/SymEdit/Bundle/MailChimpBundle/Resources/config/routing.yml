@@ -1,0 +1,6 @@
+symedit_mailchimp_dashboard:
+    pattern: /
+    defaults:
+        _controller: symedit_mailchimp.controller.dashboard:indexAction
+        _sylius:
+            template: SymEditMailChimpBundle:Dashboard:index.html.twig

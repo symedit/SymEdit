@@ -1,0 +1,11 @@
+mailchimp:
+    label: MailChimp
+    settings:
+        api_key:
+            options:
+                label: API Key
+                required: false
+                attr:
+                    placeholder: 1234abc98fe9a1234a987f9a12e123a1-us6
+        default_list:
+            type: mailchimp_list
