@@ -12,13 +12,11 @@
 namespace SymEdit\Bundle\BlogBundle\Widget\Strategy;
 
 use Sylius\Bundle\ResourceBundle\Model\RepositoryInterface;
-use SymEdit\Bundle\BlogBundle\Model\Post;
 use SymEdit\Bundle\WidgetBundle\Model\WidgetInterface;
 use SymEdit\Bundle\WidgetBundle\Widget\Strategy\AbstractWidgetStrategy;
 use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Component\Validator\Constraints\Range;
 
-class RecentPostsStrategy extends AbstractWidgetStrategy
+class LatestPostStrategy extends AbstractWidgetStrategy
 {
     private $postRepository;
 
@@ -29,42 +27,36 @@ class RecentPostsStrategy extends AbstractWidgetStrategy
 
     public function execute(WidgetInterface $widget)
     {
-        $posts = $this->postRepository->getRecent($widget->getOption('max'));
+        $post = $this->postRepository->getLatestPost();
 
-        return $this->render('@SymEdit/Widget/blog-recent-posts.html.twig', array(
-            'posts' => $posts,
+        return $this->render('@SymEdit/Widget/blog-latest-post.html.twig', array(
+            'post' => $post,
         ));
     }
 
     public function buildForm(FormBuilderInterface $builder)
     {
         $builder
-            ->add('max', 'integer', array(
-                'label' => 'Max Posts',
-                'help_block' => 'Maximum Posts to display in Widget',
-                'constraints' => array(
-                    new Range(array(
-                        'min' => 1,
-                        'minMessage' => 'Minimum posts is 1, if you want less disable the widget.',
-                    )),
-                ),
+            ->add('show_image', 'checkbox', array(
+                'label' => 'Show Image',
+                'required' => false,
             ));
     }
 
     public function setDefaultOptions(WidgetInterface $widget)
     {
         $widget->setOptions(array(
-            'max' => 3,
+            'show_image' => true,
         ));
     }
 
     public function getName()
     {
-        return 'blog_recent_posts';
+        return 'blog_latest_post';
     }
 
     public function getDescription()
     {
-        return 'Recent Posts';
+        return 'Latest Blog Post';
     }
 }
