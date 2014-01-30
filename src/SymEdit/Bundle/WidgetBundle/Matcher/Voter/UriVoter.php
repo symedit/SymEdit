@@ -31,8 +31,6 @@ class UriVoter extends StringPathVoter
             return false;
         }
 
-        die($this->getRequest()->getUri());
-
         return $this->checkAssociation($widget, $this->getRequest()->getUri());
     }
 }
