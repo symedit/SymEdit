@@ -6,8 +6,9 @@ use SymEdit\Bundle\WidgetBundle\Model\WidgetInterface;
 use SymEdit\Bundle\WidgetBundle\Model\Widget;
 
 /**
- * If visibility is set to INCLUDE_ALL then it should
- * be rendered regardless
+ * This is mostly used as a parent class but you can also inject
+ * a specific string into the constructor to test for it in your
+ * associations. 
  */
 class StringPathVoter implements VoterInterface
 {
