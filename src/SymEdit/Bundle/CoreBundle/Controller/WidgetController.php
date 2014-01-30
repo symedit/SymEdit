@@ -20,6 +20,8 @@ class WidgetController extends Controller
     public function renderAreaAction($area, PageInterface $_page = null, $path = null)
     {
         $repository = $this->get('symedit.repository.widget_area');
+        $matcher = $this->get('symedit_widget.matcher');
+
         $widgetArea = $repository->findOneByArea($area);
 
         $id = $_page === null ? null : $_page->getId();
@@ -27,7 +29,7 @@ class WidgetController extends Controller
 
         foreach($widgetArea->getWidgets() as $widget){
 
-            if(!$widget->isVisible(array($path, $id))){
+            if (!$matcher->isVisible($widget)) {
                 continue;
             }
 

@@ -4,7 +4,14 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
 
+    <parameters>
+        <parameter key="symedit_widget.matcher.class">SymEdit\Bundle\WidgetBundle\Matcher\Matcher</parameter>
+        <parameter key="symedit_widget.voter.include_all.class">SymEdit\Bundle\WidgetBundle\Matcher\Voter\IncludeAllVoter</parameter>
+        <parameter key="symedit_widget.voter.uri.class">SymEdit\Bundle\WidgetBundle\Matcher\Voter\UriVoter</parameter>
+    </parameters>
+
     <services>
+        <!-- Widget Controller -->
         <service id="symedit.controller.widget" class="%symedit.controller.widget.class%">
             <argument>symedit</argument>
             <argument>widget</argument>
@@ -12,6 +19,16 @@
             <call method="setContainer">
                 <argument type="service" id="service_container" />
             </call>
+        </service>
+
+        <!-- Matcher -->
+        <service id="symedit_widget.matcher" class="%symedit_widget.matcher.class%">
+            <argument type="collection" />
+        </service>
+
+        <!-- Voters -->
+        <service id="symedit_widget.voter.include_all" class="%symedit_widget.voter.include_all.class%">
+            <tag name="symedit_widget.voter" priority="-128" />
         </service>
     </services>
 </container>

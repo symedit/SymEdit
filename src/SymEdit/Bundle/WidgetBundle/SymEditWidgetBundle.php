@@ -15,6 +15,7 @@ use Sylius\Bundle\ResourceBundle\DependencyInjection\Compiler\ResolveDoctrineTar
 use Sylius\Bundle\ResourceBundle\SyliusResourceBundle;
 use SymEdit\Bundle\ResourceBundle\DependencyInjection\Compiler\DoctrineMappingsPass;
 use SymEdit\Bundle\WidgetBundle\DependencyInjection\Compiler\WidgetStrategyCompilerPass;
+use SymEdit\Bundle\WidgetBundle\DependencyInjection\Compiler\WidgetVoterCompilerPass;
 use SymEdit\Bundle\WidgetBundle\DependencyInjection\SymEditWidgetExtension;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\HttpKernel\Bundle\Bundle;
@@ -37,6 +38,7 @@ class SymEditWidgetBundle extends Bundle
 
         $container->addCompilerPass(new ResolveDoctrineTargetEntitiesPass('symedit_widget', $interfaces));
         $container->addCompilerPass(new WidgetStrategyCompilerPass());
+        $container->addCompilerPass(new WidgetVoterCompilerPass());
 
         /**
          * Add Doctrine Mappings

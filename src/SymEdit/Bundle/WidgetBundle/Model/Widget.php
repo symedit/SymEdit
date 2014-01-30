@@ -196,13 +196,6 @@ class Widget implements WidgetInterface
         return $this->visibility;
     }
 
-    public function isVisible(array $strings)
-    {
-        return $this->getVisibility() === self::INCLUDE_ALL ||
-              ($this->getVisibility() === self::INCLUDE_ONLY && $this->hasAssoc($strings)) ||
-              ($this->getVisibility() === self::EXCLUDE_ONLY && !$this->hasAssoc($strings));
-    }
-
     public function setAssoc(array $assoc)
     {
         $this->assoc = $assoc;
@@ -236,54 +229,6 @@ class Widget implements WidgetInterface
     public function getAssoc()
     {
         return $this->assoc;
-    }
-
-    public function hasAssoc(array $strings)
-    {
-        foreach ($strings as $assoc) {
-            if ($this->checkAssoc($assoc)) {
-                return true;
-            }
-        }
-
-        return false;
-    }
-
-    protected function checkAssoc($string)
-    {
-        if (empty($string)) {
-            return false;
-        }
-
-        /**
-         * Remove trailing slash
-         */
-        $string = rtrim($string, '/');
-
-        foreach ($this->assoc as $assoc) {
-
-            $assoc = rtrim($assoc, '/');
-
-            /**
-             * Check for wildcard.
-             *
-             * Have to replace by \* because preg_quote will add a slash before
-             * the star.
-             */
-            if (strpos($assoc, '*') !== false) {
-
-                $regexp = '#'. str_replace('\*', '.+?', preg_quote($assoc)).'#i';
-
-                if (preg_match($regexp, $string)) {
-                    return true;
-                }
-
-            } elseif ($string === $assoc) {
-                return true;
-            }
-        }
-
-        return false;
     }
 
     /**

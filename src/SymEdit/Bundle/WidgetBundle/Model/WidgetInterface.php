@@ -35,7 +35,7 @@ interface WidgetInterface
 
     /**
      * @return WidgetInterface
-     * @param  \SymEdit\Bundle\WidgetBundle\Model\WidgetAreaInterface $area
+     * @param  WidgetAreaInterface $area
      */
     public function setArea(WidgetAreaInterface $area);
 
@@ -95,7 +95,7 @@ interface WidgetInterface
 
     /**
      * @return WidgetInterface
-     * @param  \SymEdit\Bundle\WidgetBundle\Widget\Strategy\WidgetStrategyInterface $strategy
+     * @param  WidgetStrategyInterface $strategy
      */
     public function setStrategy(WidgetStrategyInterface $strategy);
 
@@ -111,13 +111,6 @@ interface WidgetInterface
      * @return integer $visibility
      */
     public function getVisibility();
-
-    /**
-     * Checks visibility against page
-     *
-     * @param array $strings Strings to check for visibility
-     */
-    public function isVisible(array $strings);
 
     /**
      * @return WidgetInterface
@@ -143,13 +136,6 @@ interface WidgetInterface
      * @return array $assoc
      */
     public function getAssoc();
-
-    /**
-     * Check for association
-     *
-     * @param array $strings Strings to check
-     */
-    public function hasAssoc(array $strings);
 
     public function getWidgetOrder();
 

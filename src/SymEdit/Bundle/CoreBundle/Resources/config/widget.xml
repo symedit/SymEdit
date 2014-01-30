@@ -10,6 +10,7 @@
         <parameter key="symedit.widget.strategy.google_map.class">SymEdit\Bundle\CoreBundle\Widget\Strategy\GoogleMapStrategy</parameter>
         <parameter key="symedit.widget.strategy.submenu.class">SymEdit\Bundle\CoreBundle\Widget\Strategy\SubmenuStrategy</parameter>
         <parameter key="symedit.widget.strategy.list_children.class">SymEdit\Bundle\CoreBundle\Widget\Strategy\ListChildrenStrategy</parameter>
+        <parameter key="symedit.widget.voter.current_page.class">SymEdit\Bridge\Widget\Matcher\Voter\CurrentPageVoter</parameter>
     </parameters>
 
     <services>
@@ -29,6 +30,14 @@
 
         <service id="symedit.widget.strategy.list_children" class="%symedit.widget.strategy.list_children.class%">
             <tag name="symedit_widget.widget_strategy" alias="list_children" />
+        </service>
+
+        <!-- Voters -->
+        <service id="symedit.widget.voter.current_page" class="%symedit.widget.voter.current_page.class%">
+            <call method="setRequest">
+                <argument type="service" id="request" on-invalid="null" strict="false" />
+            </call>
+            <tag name="symedit_widget.voter" />
         </service>
     </services>
 </container>
