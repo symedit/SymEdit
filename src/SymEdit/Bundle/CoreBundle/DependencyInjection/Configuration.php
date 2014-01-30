@@ -88,7 +88,7 @@ class Configuration implements ConfigurationInterface
                         ->arrayNode('settings')
                             ->addDefaultsIfNotSet()
                             ->children()
-                                ->scalarNode('controller')->defaultValue('SymEdit\Bundle\CoreBundle\Controller\Admin\SettingsController')->end()
+                                ->scalarNode('controller')->defaultValue('SymEdit\Bundle\CoreBundle\Controller\SettingsController')->end()
                             ->end()
                         ->end()
                         ->arrayNode('breadcrumbs')
