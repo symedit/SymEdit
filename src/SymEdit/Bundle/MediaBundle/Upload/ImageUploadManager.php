@@ -42,6 +42,11 @@ class ImageUploadManager extends UploadManager
 
     public function removeUpload(MediaInterface $media)
     {
+        // Image is new
+        if ($media->getPath() === null) {
+            return;
+        }
+
         parent::removeUpload($media);
 
         if ($this->request === null) {
