@@ -7,24 +7,20 @@
         </small>
     </h3>
 
-    <div class="row">
-        {% if post.image %}
-        <div class="col-md-3">
-            <img class="img-rounded" src="{{ post.image | imagine_filter('blog_thumbnail') }}" alt="{{ post.title }}" />
-        </div>
-        {% endif %}
+    {% if post.image %}
+    <div class="teaser-image">
+        <img class="img-responsive" src="{{ post.image | imagine_filter('blog_thumbnail') }}" alt="{{ post.title }}" />
+    </div>
+    {% endif %}
 
-        <div class="{{ post.image ? 'col-md-9' : 'col-md-12' }}">
-            <div class="summary">
-                {% if post.summary %}
-                    {{ post.summary|raw }}
-                {% else %}
-                    {{ post.content|plain(350, '...') }}
-                {% endif %}
-            </div>
-            <div class="clearfix">
-                <a class="read-more btn btn-default btn-sm" href="{{ path('blog_slug_view', { slug: post.slug }) }}">Read Article &raquo;</a>
-            </div>
-        </div>
+    <div class="summary">
+        {% if post.summary %}
+            {{ post.summary|raw }}
+        {% else %}
+            {{ post.content|plain(350, '...') }}
+        {% endif %}
+    </div>
+    <div class="clearfix">
+        <a class="read-more btn btn-default btn-sm" href="{{ path('blog_slug_view', { slug: post.slug }) }}">Read Article &raquo;</a>
     </div>
 </article>
