@@ -8,7 +8,7 @@ use SymEdit\Bundle\WidgetBundle\Model\Widget;
 /**
  * This is mostly used as a parent class but you can also inject
  * a specific string into the constructor to test for it in your
- * associations. 
+ * associations.
  */
 class StringPathVoter implements VoterInterface
 {
@@ -53,6 +53,10 @@ class StringPathVoter implements VoterInterface
 
             if (strpos($assoc, '*') !== false) {
                 $exp = sprintf('#%s#i', str_replace('\*', '.+?', preg_quote($assoc)));
+
+                if (preg_match($exp, $string)) {
+                    return true;
+                }
             }
 
             if ($string === $assoc) {
