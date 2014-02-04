@@ -2,6 +2,7 @@
 
 namespace SymEdit\Bundle\MediaBundle\Form\DataTransformer;
 
+use Doctrine\Common\Collections\Collection;
 use Sylius\Bundle\ResourceBundle\Model\RepositoryInterface;
 use Symfony\Component\Form\DataTransformerInterface;
 
@@ -21,13 +22,7 @@ class GalleryChooseDataTransformer implements DataTransformerInterface
         $images = array_filter($value, function($v){ return $v !== null; });
 
         $galleryItems = array();
-        foreach ($images as $imageId) {
-            $image = $this->imageRepository->find($imageId);
-
-            if (!$image) {
-                continue;
-            }
-
+        foreach ($images as $image) {
             $item = $this->itemRepository->createNew();
             $item->setImage($image);
 
@@ -42,5 +37,11 @@ class GalleryChooseDataTransformer implements DataTransformerInterface
         if ($value === null) {
             return null;
         }
+
+        if ($value instanceof Collection) {
+            return $value->toArray();
+        }
+
+        return $value;
     }
 }
