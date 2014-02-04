@@ -5,7 +5,7 @@ namespace SymEdit\Bundle\MediaBundle\Form\Type;
 use Sylius\Bundle\ResourceBundle\Model\RepositoryInterface;
 use SymEdit\Bundle\MediaBundle\Form\DataTransformer\GalleryChooseDataTransformer;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\ChoiceList\ChoiceList;
+use Symfony\Component\Form\Extension\Core\ChoiceList\ObjectChoiceList;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
@@ -40,7 +40,7 @@ class ImageChooseType extends AbstractType
         $resolver->setDefaults(array(
             'expanded' => true,
             'multiple' => true,
-            'choice_list' => new \Symfony\Component\Form\Extension\Core\ChoiceList\ObjectChoiceList($choices, 'name'),
+            'choice_list' => new ObjectChoiceList($choices, 'name'),
         ));
     }
 
