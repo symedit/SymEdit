@@ -4,17 +4,19 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
 
-    <!--
     <parameters>
-        <parameter key="sym_edit_theme.example.class">SymEdit\Bundle\ThemeBundle\Example</parameter>
+        <parameter key="symedit_theme.loader.class">SymEdit\Bundle\ThemeBundle\Loader\ThemeLoader</parameter>
+        <parameter key="symedit_theme.model.theme.class">SymEdit\Bundle\ThemeBundle\Model\Theme</parameter>
     </parameters>
 
     <services>
-        <service id="sym_edit_theme.example" class="%sym_edit_theme.example.class%">
-            <argument type="service" id="service_id" />
-            <argument>plain_value</argument>
-            <argument>%parameter_name%</argument>
+        <service id="symedit_theme.loader" class="%symedit_theme.loader.class%">
+            <argument>%symedit_theme.theme_directory%</argument>
+            <argument>%symedit_theme.public_directory%</argument>
+        </service>
+
+        <service id="symedit_theme.theme" class="%symedit_theme.model.theme.class%" factory-service="symedit_theme.loader" factory-method="getTheme">
+            <argument>%symedit_theme.active_theme%</argument>
         </service>
     </services>
-    -->
 </container>

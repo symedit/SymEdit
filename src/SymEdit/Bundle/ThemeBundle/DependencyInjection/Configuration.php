@@ -20,7 +20,12 @@ class Configuration implements ConfigurationInterface
         $treeBuilder = new TreeBuilder();
         $rootNode = $treeBuilder->root('symedit_theme');
 
-
+        $rootNode
+            ->children()
+                ->scalarNode('theme_directory')->cannotBeEmpty()->end()
+                ->scalarNode('public_directory')->cannotBeEmpty()->end()
+                ->scalarNode('active_theme')->cannotBeEmpty()->end()
+            ->end();
 
         return $treeBuilder;
     }

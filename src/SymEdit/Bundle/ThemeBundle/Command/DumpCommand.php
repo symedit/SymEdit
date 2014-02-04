@@ -19,19 +19,30 @@ class DumpCommand extends BaseCommand
 {
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        $am = $this->getContainer()->get('assetic.asset_manager');
+        $theme = $this->getContainer()->get('symedit_theme.theme');
 
-        $formula = array(
-            array('themes/simple/styles/site.less'),
+        print_r($theme); die();
+
+        $cssFormula = array(
+            $theme->getStylesheets(),
             array(),
             array(
-                'output' => 'themes/simple/styles/output.css',
+                'output' => $theme->getPublicDirectory().'/styles.css',
             ),
         );
 
-        $am->setFormula('theme', $formula);
+        $jsFormula = array(
+            $theme->getJavascripts(),
+            array(),
+            array(
+                'output' => $theme->getPublicDirectory().'/scripts.js',
+            ),
+        );
 
-        die(print_r($am->getFormula('theme')));
+        $am = $this->getContainer()->get('assetic.asset_manager');
+
+        $am->setFormula('theme_css', $cssFormula);
+        $am->setFormula('theme_js', $jsFormula);
 
         parent::execute($input, $output);
     }
