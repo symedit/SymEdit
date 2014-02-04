@@ -15,7 +15,7 @@ admin_image_gallery_create:
         _controller: symedit.controller.image_gallery:createAction
         _sylius:
             template: @SymEdit/Admin/ImageGallery/new.html.twig
-            redirect: admin_image
+            redirect: admin_image_gallery
 
 admin_image_gallery_update:
     pattern: /{id}/edit
