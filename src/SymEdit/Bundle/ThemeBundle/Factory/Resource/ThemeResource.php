@@ -23,7 +23,9 @@ class ThemeResource implements ResourceInterface
     {
         $cssFormula = array(
             $this->theme->getStylesheets(),
-            array(),
+            array(
+                'cssrewrite',
+            ),
             array(
                 'combine' => false,
                 'output' => $this->theme->getPublicDirectory().'/styles.css',
