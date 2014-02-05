@@ -8,7 +8,8 @@
         <parameter key="symedit_stylizer.assetic.command.class">SymEdit\Bundle\StylizerBundle\Command\DumpCommand</parameter>
         <parameter key="symedit_stylizer.dumper.class">SymEdit\Bundle\StylizerBundle\Dumper\Dumper</parameter>
         <parameter key="symedit_stylizer.injector.lessphp.class">SymEdit\Bundle\StylizerBundle\Injector\LessPhpInjector</parameter>
-        <parameter key="symedit_stylizer.loader.class">SymEdit\Bundle\StylizerBundle\Loader\Loader</parameter>
+        <parameter key="symedit_stylizer.loader.chain.class">SymEdit\Bundle\StylizerBundle\Loader\LoaderChain</parameter>
+        <parameter key="symedit_stylizer.loader.yaml.class">SymEdit\Bundle\StylizerBundle\Loader\YamlLoader</parameter>
         <parameter key="symedit_stylizer.stylizer.class">SymEdit\Bundle\StylizerBundle\Model\Stylizer</parameter>
         <parameter key="symedit_stylizer.form.styles.class">SymEdit\Bundle\StylizerBundle\Form\Type\StylesType</parameter>
         <parameter key="symedit_stylizer.form.color.class">SymEdit\Bundle\StylizerBundle\Form\Type\ColorType</parameter>
@@ -21,9 +22,14 @@
             <call method="setContainer"><argument type="service" id="service_container" /></call>
         </service>
 
-        <service id="symedit_stylizer.loader" class="%symedit_stylizer.loader.class%">
+        <service id="symedit_stylizer.loader.chain" class="%symedit_stylizer.loader.chain.class%">
+            <argument type="collection" />
+        </service>
+
+        <service id="symedit_stylizer.loader.yaml" class="%symedit_stylizer.loader.yaml.class%">
             <argument>%kernel.root_dir%</argument>
             <argument>%symedit_stylizer.loader.files.yaml%</argument>
+            <tag name="stylizer.loader" />
         </service>
 
         <service id="symedit_stylizer.dumper" class="%symedit_stylizer.dumper.class%">
@@ -38,7 +44,7 @@
         </service>
 
         <service id="symedit_stylizer.stylizer" class="%symedit_stylizer.stylizer.class%">
-            <argument type="service" id="symedit_stylizer.loader" />
+            <argument type="service" id="symedit_stylizer.loader.chain" />
             <argument type="service" id="symedit_stylizer.dumper" />
             <argument>%kernel.root_dir%</argument>
             <argument>%assetic.cache_dir%/assets</argument>

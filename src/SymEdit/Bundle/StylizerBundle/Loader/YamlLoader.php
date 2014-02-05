@@ -9,28 +9,28 @@
  * file that was distributed with this source code.
  */
 
-namespace SymEdit\Bundle\StylizerBundle\Loader; 
+namespace SymEdit\Bundle\StylizerBundle\Loader;
 
-use Symfony\Component\Yaml\Yaml; 
+use Symfony\Component\Yaml\Yaml;
 
-class Loader
+class YamlLoader implements LoaderInterface
 {
-    private $rootDir; 
-    private $yamlFiles; 
-    
+    private $rootDir;
+    private $yamlFiles;
+
     public function __construct($rootDir, array $yamlFiles = array())
     {
-        $this->rootDir = $rootDir; 
-        $this->yamlFiles = $yamlFiles; 
+        $this->rootDir = $rootDir;
+        $this->yamlFiles = $yamlFiles;
     }
-    
+
     public function loadStyleData(ConfigData $configData)
     {
         foreach($this->yamlFiles as $file){
             $data = Yaml::parse(file_get_contents($file));
-            
+
             foreach($data as $name => $value){
-                $configData->parseGroup($name, $value); 
+                $configData->parseGroup($name, $value);
             }
         }
     }
