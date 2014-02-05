@@ -25,6 +25,7 @@ class Configuration implements ConfigurationInterface
                 ->scalarNode('theme_directory')->cannotBeEmpty()->end()
                 ->scalarNode('public_directory')->cannotBeEmpty()->end()
                 ->scalarNode('active_theme')->cannotBeEmpty()->end()
+                ->arrayNode('fallback_bundles')->prototype('scalar')->end()
             ->end();
 
         return $treeBuilder;

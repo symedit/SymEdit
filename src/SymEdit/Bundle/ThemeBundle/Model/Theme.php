@@ -76,6 +76,11 @@ class Theme
         return $this->themeDirectory;
     }
 
+    public function getTemplateDirectory()
+    {
+        return sprintf('%s/%s', $this->getThemeDirectory(), 'templates');
+    }
+
     public function setThemeDirectory($themeDirectory)
     {
         $this->themeDirectory = $themeDirectory;
