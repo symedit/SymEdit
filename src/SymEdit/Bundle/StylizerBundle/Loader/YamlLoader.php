@@ -15,12 +15,10 @@ use Symfony\Component\Yaml\Yaml;
 
 class YamlLoader implements LoaderInterface
 {
-    private $rootDir;
     private $yamlFiles;
 
-    public function __construct($rootDir, array $yamlFiles = array())
+    public function __construct(array $yamlFiles = array())
     {
-        $this->rootDir = $rootDir;
         $this->yamlFiles = $yamlFiles;
     }
 

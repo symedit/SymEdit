@@ -27,7 +27,6 @@
         </service>
 
         <service id="symedit_stylizer.loader.yaml" class="%symedit_stylizer.loader.yaml.class%" public="false">
-            <argument>%kernel.root_dir%</argument>
             <argument>%symedit_stylizer.loader.files.yaml%</argument>
             <tag name="stylizer.loader" />
         </service>
