@@ -25,6 +25,7 @@ class ThemeResource implements ResourceInterface
             $this->theme->getStylesheets(),
             array(),
             array(
+                'combine' => false,
                 'output' => $this->theme->getPublicDirectory().'/styles.css',
             ),
         );
@@ -33,6 +34,7 @@ class ThemeResource implements ResourceInterface
             $this->theme->getJavascripts(),
             array(),
             array(
+                'combine' => false,
                 'output' => $this->theme->getPublicDirectory().'/scripts.js',
             ),
         );

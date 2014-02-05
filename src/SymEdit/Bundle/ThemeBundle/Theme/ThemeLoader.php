@@ -25,6 +25,7 @@ class ThemeLoader
 
         $configFile = $this->getThemeDirectory($name).'/theme.yml';
         $config = Yaml::parse(file_get_contents($configFile));
+        $config = $config['theme'];
 
         if (isset($config['name'])) {
             if ($config['name'] !== $name) {
@@ -56,7 +57,7 @@ class ThemeLoader
 
     protected function prepareAsset($asset, $name)
     {
-        if ($asset[0] === '@' || $asset[0] === '/') {
+        if ($asset[0] === '@' || $asset[0] === '/' || strpos($asset, 'bundles') === 0) {
             return $asset;
         }
 
