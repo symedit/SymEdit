@@ -1,32 +1,22 @@
 <?php
 
-namespace SymEdit\Bundle\ThemeBundle\Loader;
+namespace SymEdit\Bundle\ThemeBundle\Theme;
 
 use SymEdit\Bundle\ThemeBundle\Model\Theme;
 use Symfony\Component\Yaml\Yaml;
 
 class ThemeLoader
 {
-    protected $themeDirectory;
-    protected $publicDirectory;
-    protected $themes = array();
+    protected $themeDir;
+    protected $publicDir;
 
-    public function __construct($themeDirectory, $publicDirectory)
+    public function __construct($themeDir, $publicDir)
     {
-        $this->themeDirectory = $themeDirectory;
-        $this->publicDirectory = $publicDirectory;
+        $this->themeDir = $themeDir;
+        $this->publicDir = $publicDir;
     }
 
-    public function getTheme($name)
-    {
-        if (!array_key_exists($name, $this->themes)) {
-            $this->themes[$name] = $this->loadTheme($name);
-        }
-
-        return $this->themes[$name];
-    }
-
-    protected function loadTheme($name)
+    public function load($name)
     {
         $theme = new Theme();
         $theme->setName($name);
@@ -75,7 +65,7 @@ class ThemeLoader
 
     protected function getThemeDirectory($name = null)
     {
-        $directory = $this->themeDirectory;
+        $directory = $this->themeDir;
 
         if ($name !== null) {
             $directory .= '/'.$name;
@@ -86,7 +76,7 @@ class ThemeLoader
 
     protected function getPublicDirectory($name = null)
     {
-        $directory = $this->publicDirectory;
+        $directory = $this->publicDir;
 
         if ($name !== null) {
             $directory .= '/'.$name;
