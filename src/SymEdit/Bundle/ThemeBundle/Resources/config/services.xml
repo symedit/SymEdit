@@ -27,6 +27,12 @@
             <argument>%symedit_theme.active_theme%</argument>
         </service>
 
+        <!-- Stylizer Styles Loader -->
+        <service id="symedit_theme.stylizer.yaml_loader" class="SymEdit\Bundle\ThemeBundle\Stylizer\Loader\YamlThemeLoader">
+            <argument type="service" id="symedit_theme.theme" />
+            <tag name="stylizer.loader" />
+        </service>
+
         <!-- Assetic Theme Loader -->
         <service id="symedit_theme.assetic.theme_loader" class="SymEdit\Bundle\ThemeBundle\Factory\Loader\ThemeLoader" public="false">
             <tag name="assetic.formula_loader" alias="theme" />
