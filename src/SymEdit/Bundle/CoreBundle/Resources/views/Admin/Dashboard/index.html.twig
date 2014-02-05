@@ -8,7 +8,7 @@
         <h3><i class="circle icon-cog"></i> Setup</h3>
 
         <ul>
-            {% if is_granted('ROLE_ADMIN_SETTING') %}<li><a href="{{ path('admin_setting') }}">Change Site Settings</a></li>{% endif %}
+            {% if is_granted('ROLE_ADMIN_SETTING') %}<li><a href="{{ path('admin_settings') }}">Change Site Settings</a></li>{% endif %}
             {% if is_granted('ROLE_ADMIN_USER')    %}<li><a href="{{ path('admin_user') }}">Create Users</a></li>{% endif %}
             {% if is_granted('ROLE_ADMIN_BLOG')    %}<li><a href="{{ path('admin_blog_category') }}">Create Blog Categories</a></li>{% endif %}
         </ul>
