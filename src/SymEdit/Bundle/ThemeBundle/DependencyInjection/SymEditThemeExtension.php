@@ -28,7 +28,7 @@ class SymEditThemeExtension extends Extension
         $container->setParameter('symedit_theme.theme_directory', $config['theme_directory']);
         $container->setParameter('symedit_theme.public_directory', $config['public_directory']);
         $container->setParameter('symedit_theme.active_theme', $config['active_theme']);
-        $container->setParameter('symedit_theme.fallback_bundles', $config['fallback_bundles']);
+        $container->setParameter('symedit_theme.namespace_overrides', $config['namespace_overrides']);
     }
 
     public function getAlias()

@@ -18,16 +18,16 @@ class SymEditThemeBundle extends Bundle
         $theme = $this->container->get('symedit_theme.theme');
         $loader = $this->container->get('twig.loader');
 
-        $fallbacks = $this->container->getParameter('symedit_theme.fallback_bundles');
+        $overrides = $this->container->getParameter('symedit_theme.namespace_overrides');
 
-        if (!is_array($fallbacks)) {
-            $fallbacks = array();
+        if (!is_array($overrides)) {
+            $overrides = array();
         }
 
-        array_unshift($fallbacks, 'Theme');
+        array_unshift($overrides, 'Theme');
 
-        foreach (array_reverse($fallbacks) as $fallback) {
-            $loader->prependPath($theme->getTemplateDirectory(), $fallback);
+        foreach (array_reverse($overrides) as $override) {
+            $loader->prependPath($theme->getTemplateDirectory(), $override);
         }
     }
 }
