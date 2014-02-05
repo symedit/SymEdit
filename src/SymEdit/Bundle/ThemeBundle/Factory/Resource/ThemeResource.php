@@ -21,29 +21,32 @@ class ThemeResource implements ResourceInterface
 
     public function getContent()
     {
-        $cssFormula = array(
-            $this->theme->getStylesheets(),
-            array(
-                'cssrewrite',
-            ),
-            array(
-                'combine' => false,
-                'output' => $this->theme->getPublicDirectory().'/styles.css',
-            ),
-        );
+        $formulas = array();
 
-        $jsFormula = array(
-            $this->theme->getJavascripts(),
-            array(),
-            array(
-                'combine' => false,
-                'output' => $this->theme->getPublicDirectory().'/scripts.js',
-            ),
-        );
+        $cssFormula = $this->getFormula($this->theme->getStylesheets());
+        $jsFormula = $this->getFormula($this->theme->getJavascripts());
+        
+        if ($cssFormula) {
+            $formulas['theme_css'] = $cssFormula;
+        }
+
+        if ($jsFormula) {
+            $formulas['theme_js'] = $jsFormula;
+        }
+
+        return $formulas;
+    }
+
+    protected function getFormula($data)
+    {
+        if ($data === null) {
+            return false;
+        }
 
         return array(
-            'theme_css' => $cssFormula,
-            'theme_js' => $jsFormula
+            isset($data['inputs']) ? $data['inputs'] : array(),
+            isset($data['filters']) ? $data['filters'] : array(),
+            isset($data['options']) ? $data['options'] : array(),
         );
     }
 

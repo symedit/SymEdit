@@ -24,8 +24,8 @@ class ThemeLoader
         $theme->setPublicDirectory($this->getPublicDirectory($name));
 
         $configFile = $this->getThemeDirectory($name).'/theme.yml';
-        $config = Yaml::parse(file_get_contents($configFile));
-        $config = $config['theme'];
+        $data = Yaml::parse(file_get_contents($configFile));
+        $config = $data['theme'];
 
         if (isset($config['name'])) {
             if ($config['name'] !== $name) {
@@ -48,11 +48,15 @@ class ThemeLoader
         return $theme;
     }
 
-    protected function prepareAssets(array $assets, $name)
+    protected function prepareAssets(array $data, $name)
     {
-        return array_map(function($asset) use ($name) {
+        $assets = array_map(function($asset) use ($name) {
             return $this->prepareAsset($asset, $name);
-        }, $assets);
+        }, $data['inputs']);
+
+        $data['inputs'] = $assets;
+
+        return $data;
     }
 
     protected function prepareAsset($asset, $name)
