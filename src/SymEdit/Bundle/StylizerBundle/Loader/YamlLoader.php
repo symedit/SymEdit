@@ -27,6 +27,10 @@ class YamlLoader implements LoaderInterface
         foreach($this->yamlFiles as $file){
             $data = Yaml::parse(file_get_contents($file));
 
+            if (!is_array($data)) {
+                continue;
+            }
+
             foreach($data as $name => $value){
                 $configData->parseGroup($name, $value);
             }
