@@ -32,8 +32,8 @@ class Configuration implements ConfigurationInterface
         $rootNode
             ->children()
                 ->scalarNode('theme_directory')->cannotBeEmpty()->end()
-                ->scalarNode('public_directory')->cannotBeEmpty()->end()
-                ->scalarNode('active_theme')->cannotBeEmpty()->end()
+                ->scalarNode('public_directory')->defaultValue('themes')->cannotBeEmpty()->end()
+                ->scalarNode('active_theme')->defaultValue('default')->cannotBeEmpty()->end()
                 ->arrayNode('namespace_overrides')
                     ->prototype('scalar')->end()
                 ->end()
