@@ -1,3 +1,34 @@
+{# Image Widget #}
+{% block symedit_image_widget_form %}
+
+{% endblock %}
+
+{% block symedit_image_widget %}
+<div class="row">
+    <div class="col-md-6">
+        {% if form.name is defined %}
+            {{ form_row(form.name) }}
+        {% endif %}
+
+        {% if form.file is defined %}
+            {{ form_row(form.file) }}
+        {% endif %}
+    </div>
+
+    {% if form.vars is defined and
+          form.vars.show_image and
+          form.vars.data is not null and
+          form.vars.data.webpath is not empty %}
+    <div class="col-md-6">
+        <h5>Current Image</h5>
+        <img class="img-thumbnail" src="{{ form.vars.data | imagine_filter('gallery') }}">
+    </div>
+    {% endif %}
+</div>
+{% endblock %}
+
+
+{# Choose Image Widget #}
 {% block symedit_image_choose_row %}
 <div class="row">
     {% for child in form.children %}
