@@ -1,0 +1,40 @@
+<?xml version="1.0" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <parameters>
+        <parameter key="symedit_theme.template.loader.loader_chain.class">SymEdit\Bundle\ThemeBundle\Template\Loader\TemplateLoaderChain</parameter>
+        <parameter key="symedit_theme.template.loader.directories.class">SymEdit\Bundle\ThemeBundle\Template\Loader\DirectoriesTemplateLoader</parameter>
+        <parameter key="symedit_theme.template.loader.directory.class">SymEdit\Bundle\ThemeBundle\Template\Loader\DirectoryTemplateLoader</parameter>
+        <parameter key="symedit_theme.template.loader.bundle.class">SymEdit\Bundle\ThemeBundle\Template\Loader\BundleTemplateLoader</parameter>
+        <parameter key="symedit_theme.template.loader.theme.class">SymEdit\Bundle\ThemeBundle\Template\Loader\ThemeTemplateLoader</parameter>
+        <parameter key="symedit_theme.template.manager.class">SymEdit\Bundle\ThemeBundle\Model\TemplateManager</parameter>
+        <parameter key="symedit_theme.form.type.template.class">SymEdit\Bundle\ThemeBundle\Form\Type\TemplateType</parameter>
+    </parameters>
+
+    <services>
+        <!-- Loader Chain -->
+        <service id="symedit_theme.template.loader.loader_chain" class="%symedit_theme.template.loader.loader_chain.class%" public="false">
+            <argument type="collection" />
+        </service>
+
+        <!-- Current Theme Loader -->
+        <service id="symedit_theme.template.loader.current_theme" class="%symedit_theme.template.loader.theme.class%" public="false">
+            <argument type="service" id="symedit_theme.theme" />
+            <tag name="symedit_theme.template_loader" priority="128" />
+        </service>
+
+        <!-- Template Manager -->
+        <service id="symedit_theme.template.manager" class="%symedit_theme.template.manager.class%">
+            <argument type="service" id="symedit_theme.template.loader.loader_chain" />
+        </service>
+
+        <!-- Template Form Type -->
+        <service id="symedit_theme.form.type.template" class="%symedit_theme.form.type.template.class%">
+            <argument type="service" id="symedit_theme.template.manager" />
+            <tag name="form.type" alias="template" />
+        </service>
+    </services>
+</container>

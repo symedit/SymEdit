@@ -11,14 +11,18 @@
 
 namespace SymEdit\Bundle\ThemeBundle;
 
+use SymEdit\Bundle\ThemeBundle\DependencyInjection\Compiler\TemplateResourcesPass;
+use SymEdit\Bundle\ThemeBundle\DependencyInjection\Compiler\TemplateLoaderPass;
 use SymEdit\Bundle\ThemeBundle\DependencyInjection\SymEditThemeExtension;
+use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 
 class SymEditThemeBundle extends Bundle
 {
-    public function getContainerExtension()
+    public function build(ContainerBuilder $container)
     {
-        return new SymEditThemeExtension();
+        $container->addCompilerPass(new TemplateResourcesPass());
+        $container->addCompilerPass(new TemplateLoaderPass());
     }
 
     public function boot()
@@ -38,5 +42,10 @@ class SymEditThemeBundle extends Bundle
         foreach (array_reverse($overrides) as $override) {
             $loader->prependPath($theme->getTemplateDirectory(), $override);
         }
+    }
+
+    public function getContainerExtension()
+    {
+        return new SymEditThemeExtension();
     }
 }

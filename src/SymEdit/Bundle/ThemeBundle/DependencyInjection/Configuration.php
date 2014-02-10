@@ -34,7 +34,17 @@ class Configuration implements ConfigurationInterface
                 ->scalarNode('theme_directory')->cannotBeEmpty()->end()
                 ->scalarNode('public_directory')->cannotBeEmpty()->end()
                 ->scalarNode('active_theme')->cannotBeEmpty()->end()
-                ->arrayNode('namespace_overrides')->prototype('scalar')->end()
+                ->arrayNode('namespace_overrides')
+                    ->prototype('scalar')->end()
+                ->end()
+                ->arrayNode('templates')
+                    ->addDefaultsIfNotSet()
+                    ->children()
+                        ->arrayNode('bundles')
+                            ->prototype('scalar')->end()
+                        ->end()
+                    ->end()
+                ->end()
             ->end();
 
         return $treeBuilder;

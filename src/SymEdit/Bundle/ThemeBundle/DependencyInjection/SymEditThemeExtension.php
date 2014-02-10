@@ -33,11 +33,13 @@ class SymEditThemeExtension extends Extension
 
         $loader = new Loader\XmlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
         $loader->load('services.xml');
+        $loader->load('template.xml');
 
         $container->setParameter('symedit_theme.theme_directory', $config['theme_directory']);
         $container->setParameter('symedit_theme.public_directory', $config['public_directory']);
         $container->setParameter('symedit_theme.active_theme', $config['active_theme']);
         $container->setParameter('symedit_theme.namespace_overrides', $config['namespace_overrides']);
+        $container->setParameter('symedit_theme.templates.bundles', $config['templates']['bundles']);
     }
 
     public function getAlias()
