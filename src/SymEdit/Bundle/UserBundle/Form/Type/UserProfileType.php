@@ -15,6 +15,9 @@ use Symfony\Component\Form\FormBuilderInterface;
 use FOS\UserBundle\Form\Type\ProfileFormType as BaseType;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
+/**
+ * @Todo: override the new buildUserForm method instead
+ */
 class UserProfileType extends BaseType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
