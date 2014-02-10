@@ -4,21 +4,13 @@
            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
            xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
 
-    <parameters>
-        <parameter key="symedit.finder.resource_finder.class">SymEdit\Bundle\CoreBundle\Finder\ResourceFinder</parameter>
-    </parameters>
-
     <services>
         <service parent="fos_rest.view_handler.default" id="symedit.seo_view_handler" class="SymEdit\Bundle\CoreBundle\View\ViewHandler">
             <call method="setSeo">
                 <argument type="service" id="symedit_seo.seo" />
             </call>
         </service>
-
-        <service id="symedit.finder.resource_finder" class="%symedit.finder.resource_finder.class%">
-            <argument type="service" id="kernel" />
-        </service>
-
+   
         <service id="symedit.breadcrumbs" class="%symedit.model.breadcrumbs.class%" />
     </services>
 

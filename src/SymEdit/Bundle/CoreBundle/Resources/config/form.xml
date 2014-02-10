@@ -7,7 +7,6 @@
     <parameters>
         <parameter key="symedit.form.type.contact.class">SymEdit\Bundle\CoreBundle\Form\ContactType</parameter>
         <parameter key="symedit.form.type.page_reorder.class">SymEdit\Bundle\CoreBundle\Form\Type\PageReorderType</parameter>
-        <parameter key="symedit.form.type.template.class">SymEdit\Bundle\CoreBundle\Form\Type\TemplateType</parameter>
         <parameter key="symedit.form.type.role.class">SymEdit\Bundle\CoreBundle\Form\Type\RoleType</parameter>
         <parameter key="symedit.form.type.entity_property.class">SymEdit\Bundle\CoreBundle\Form\Type\EntityPropertyType</parameter>
         <parameter key="symedit.form.factory.context.class">SymEdit\Bundle\CoreBundle\Form\Factory\ContextFormFactory</parameter>
@@ -25,12 +24,6 @@
 
         <service id="symedit.form.type.page_reorder" class="%symedit.form.type.page_reorder.class%">
             <tag name="form.type" alias="symedit_page_reorder" />
-        </service>
-
-        <service id="symedit.form.type.template" class="%symedit.form.type.template.class%">
-            <argument type="service" id="symedit.finder.resource_finder" />
-            <argument type="service" id="kernel" />
-            <tag name="form.type" alias="symedit_template" />
         </service>
 
         <service id="symedit.form.type.role" class="%symedit.form.type.role.class%">

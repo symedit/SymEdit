@@ -89,7 +89,7 @@ class PageType extends AbstractType
         ));
 
         $template
-            ->add('template', 'symedit_template', array(
+            ->add('template', 'template', array(
                 'label' => 'admin.page.template',
             ));
 

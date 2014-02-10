@@ -17,11 +17,7 @@ admin:
                   If the page has any parents, it will use them as well. Eg.
                   Root > about-us > team becomes /about-us/team
         tagline: Page Heading
-        template:
-            help: >
-              It is suggested that you try not to change templates once a page
-              is already constructed, unless they have similar layouts.
-              Templates requiring different content may not be interchangeable.
+        template: Template
         parent: Parent
         summary: Summary
         pagecontroller: Page Controller?
