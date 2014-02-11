@@ -12,9 +12,12 @@
 
 {% for gallery in image_galleries %}
 <div>
-    <h4>{{ gallery.title }}</h4>
+    <h4>
+        {{ gallery.title }}
+        <a class="btn btn-xs btn-primary" href="{{ path('admin_image_gallery_update', { id: gallery.id }) }}">Edit</a>
+    </h4>
 
-    {% for item in gallery.items %}
+    {% for item in gallery.items|slice(0,6) %}
     <img src="{{ item.image | imagine_filter('symedit_96x96') }}">
     {% endfor %}
 </div>

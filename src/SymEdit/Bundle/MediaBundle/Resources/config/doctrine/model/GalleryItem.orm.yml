@@ -10,6 +10,8 @@ SymEdit\Bundle\MediaBundle\Model\GalleryItem:
     manyToOne:
         image:
             targetEntity: SymEdit\Bundle\MediaBundle\Model\ImageInterface
+            cascade:
+                - persist
         gallery:
             targetEntity: SymEdit\Bundle\MediaBundle\Model\ImageGalleryInterface
             inversedBy: galleryItems

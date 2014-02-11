@@ -1,0 +1,14 @@
+{% extends '@SymEdit/Admin/tabbed.html.twig' %}
+{% import '@SymEdit/Admin/macro.html.twig' as macro %}
+
+{% block title %}Gallery &raquo; Item &raquo; Edit{% endblock %}
+
+{% block form_actions %}
+<button class="btn btn-primary btn-block" type="submit">Save Item</button>
+<a class="btn btn-block btn-info" href="{{ path('admin_image_gallery_update', {id: gallery_item.gallery.id }) }}">Back to Gallery</a>
+{{ macro.delete_button('gallery_item_delete', 'Delete Item') }}
+{% endblock %}
+
+{% block extra %}
+{{ macro.delete_form('gallery_item_delete', path('admin_gallery_item_delete', {id: gallery_item.id})) }}
+{% endblock %}

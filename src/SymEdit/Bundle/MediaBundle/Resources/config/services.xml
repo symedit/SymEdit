@@ -64,6 +64,16 @@
             </call>
         </service>
 
+        <!-- Gallery Item -->
+        <service id="symedit.controller.gallery_item" class="%symedit.controller.gallery_item.class%">
+            <argument>symedit</argument>
+            <argument>gallery_item</argument>
+            <argument />
+            <call method="setContainer">
+                <argument type="service" id="service_container" />
+            </call>
+        </service>
+
         <!-- Menu Subscriber -->
         <service id="symedit_media.menu_subscriber" class="%symedit_media.menu_subscriber.class%">
             <argument type="service" id="security.context" />
