@@ -15,3 +15,7 @@ symedit_pages:
 
 symedit_controllers:
     resource: "@SymEditBundle/Resources/config/routing/frontend.yml"
+    
+_imagine:
+    resource: .
+    type: imagine
