@@ -10,7 +10,7 @@
         <ul>
             {% if is_granted('ROLE_ADMIN_SETTING') %}<li><a href="{{ path('admin_settings') }}">Change Site Settings</a></li>{% endif %}
             {% if is_granted('ROLE_ADMIN_USER')    %}<li><a href="{{ path('admin_user') }}">Create Users</a></li>{% endif %}
-            {% if is_granted('ROLE_ADMIN_BLOG')    %}<li><a href="{{ path('admin_blog_category') }}">Create Blog Categories</a></li>{% endif %}
+            {% if is_granted('ROLE_ADMIN_BLOG')    %}<li><a href="{{ path('admin_category') }}">Create Blog Categories</a></li>{% endif %}
         </ul>
     </div>
 
@@ -23,7 +23,7 @@
             {% if is_granted('ROLE_ADMIN_IMAGE') %}<li><a href="{{ path('admin_image') }}">Upload / Edit Images</a></li>{% endif %}
             {% if is_granted('ROLE_ADMIN_WIDGET') %}
             <li><a href="{{ path('admin_widget') }}">View / Rearrange Widgets</a></li>
-            <li><a href="{{ path('admin_widget_new') }}">Create New Widget</a></li>
+            <li><a href="{{ path('admin_widget_choose') }}">Create New Widget</a></li>
             {% endif %}
         </ul>
     </div>
