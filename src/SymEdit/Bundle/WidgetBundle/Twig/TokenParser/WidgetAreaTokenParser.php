@@ -32,7 +32,7 @@ class WidgetAreaTokenParser extends \Twig_TokenParser
 
         return $this->getWidgetAreaNode($area, $this->strategy, $lineno, $this->getTag());
     }
-    
+
     /**
      * Allows this to be overriden
      */
