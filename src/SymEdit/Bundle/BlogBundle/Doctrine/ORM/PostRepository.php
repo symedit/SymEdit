@@ -95,4 +95,9 @@ class PostRepository extends EntityRepository
         return parent::getQueryBuilder()
                    ->orderBy(sprintf('%s.createdAt', $this->getAlias()), 'DESC');
     }
+
+    public function getCollectionQueryBuilder()
+    {
+        return $this->getQueryBuilder();
+    }
 }
