@@ -17,7 +17,7 @@ use SymEdit\Bundle\CoreBundle\Model\PageInterface;
 
 class WidgetController extends Controller
 {
-    public function renderAreaAction($area, PageInterface $_page = null, $path = null)
+    public function renderAreaAction($area, PageInterface $_page = null)
     {
         $repository = $this->get('symedit.repository.widget_area');
         $matcher = $this->get('symedit_widget.matcher');
@@ -27,7 +27,7 @@ class WidgetController extends Controller
         $id = $_page === null ? null : $_page->getId();
         $widgets = array();
 
-        foreach($widgetArea->getWidgets() as $widget){
+        foreach($widgetArea->getWidgets() as $widget) {
 
             if (!$matcher->isVisible($widget)) {
                 continue;

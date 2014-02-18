@@ -30,7 +30,6 @@ class WidgetAreaNode extends BaseNode
             ->write('    $this->env->getExtension(\'http_kernel\')')
             ->write('         ->controller(\'SymEditBundle:Widget:renderArea\', array(')
             ->write('             \'area\' => \'' . $this->getAttribute('area') . '\',')
-            ->write('             \'path\' => $context[\'Page\']->getPath(),')
             ->write('             \'_page_id\'   => is_numeric($context[\'Page\']->getId()) ? $context[\'Page\']->getId() : \'\',')
             ->write('         ))')
             ->write('    );');
