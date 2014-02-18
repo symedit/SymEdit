@@ -28,8 +28,6 @@ blog_archive:
             template: @SymEdit/Blog/index.html.twig
             criteria:
                 status: 1
-            sorting:
-                createdAt: DESC
         _controller: symedit.controller.post:indexAction
         _format: html
         _seo:
@@ -66,7 +64,10 @@ blog_category_view:
         _controller: symedit.controller.post:showCategoryAction
         _format: html
         _sylius:
+            paginate: "#blog.max_posts#"
             template: @SymEdit/Blog/category.html.twig
+            criteria:
+                status: 1
         page: 1
 
 blog_category_rss:
