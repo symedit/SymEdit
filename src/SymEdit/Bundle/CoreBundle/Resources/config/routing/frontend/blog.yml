@@ -5,7 +5,7 @@ blog:
         _format: html
         _sylius:
             paginate: "#blog.max_posts#"
-            template: SymEditBundle:Blog:index.html.twig
+            template: @SymEdit/Blog/index.html.twig
             criteria:
                 status: 1
             sorting:
@@ -17,7 +17,7 @@ blog_rss:
         _format: rss
         _controller: symedit.controller.post:indexAction
         _sylius:
-            template: SymEditBundle:Blog:feed.xml.twig
+            template: @SymEdit/Blog/feed.xml.twig
             paginate: false
 
 blog_archive:
@@ -25,7 +25,7 @@ blog_archive:
     defaults:
         _sylius:
             paginate: "#blog.max_posts#"
-            template: SymEditBundle:Blog:index.html.twig
+            template: @SymEdit/Blog/index.html.twig
             criteria:
                 status: 1
             sorting:
@@ -40,7 +40,7 @@ blog_preview:
     pattern: /preview/{slug}
     defaults:
         _sylius:
-            template: SymEditBundle:Blog:single.html.twig
+            template: @SymEdit/Blog/single.html.twig
             criteria:
                 slug: $slug
         _controller: symedit.controller.post:previewAction
@@ -52,7 +52,7 @@ blog_slug_view:
     defaults:
         _controller: symedit.controller.post:showAction
         _sylius:
-            template: SymEditBundle:Blog:single.html.twig
+            template: @SymEdit/Blog/single.html.twig
             criteria:
                 slug: $slug
                 status: 1
@@ -66,7 +66,7 @@ blog_category_view:
         _controller: symedit.controller.post:showCategoryAction
         _format: html
         _sylius:
-            template: SymEditBundle:Blog:category.html.twig
+            template: @SymEdit/Blog/category.html.twig
         page: 1
 
 blog_category_rss:
@@ -75,5 +75,5 @@ blog_category_rss:
         _controller: symedit.controller.post:showCategoryAction
         _format: rss
         _sylius:
-            template: SymEditBundle:Blog:feed.xml.twig
+            template: @SymEdit/Blog/feed.xml.twig
         page: 1
