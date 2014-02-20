@@ -16,7 +16,7 @@ admin_image_gallery_create:
         _sylius:
             template: @SymEdit/Admin/ImageGallery/new.html.twig
             redirect:
-                route: admin_image_gallery_update
+                route: admin_image_gallery
                 parameters: { id: $id }
 
 admin_image_gallery_update:
