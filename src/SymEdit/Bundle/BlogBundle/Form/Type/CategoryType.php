@@ -21,6 +21,7 @@ class CategoryType extends AbstractType
         $basic = $builder->create('basic', 'tab', array(
             'label' => 'Basic',
             'inherit_data' => true,
+            'icon' => 'info-sign',
         ));
 
         $basic
@@ -39,6 +40,7 @@ class CategoryType extends AbstractType
         $seo = $builder->create('seo', 'tab', array(
             'label' => 'SEO',
             'inherit_data' => true,
+            'icon' => 'search',
         ));
 
         $seo
