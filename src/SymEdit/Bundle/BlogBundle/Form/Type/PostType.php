@@ -95,6 +95,7 @@ class PostType extends AbstractType
         $content = $builder->create('content', 'tab', array(
             'inherit_data' => true,
             'label' => 'Content',
+            'icon' => 'file',
         ));
 
         $content
