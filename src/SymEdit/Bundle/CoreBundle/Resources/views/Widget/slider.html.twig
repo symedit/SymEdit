@@ -18,15 +18,15 @@
             </div>
          {% endfor %}
      </div>
-    {% if thumbnails|default(false) %}
-    <div class="row">
-        {% for slide in gallery.items %}
-        <div class="col-xs-6 col-md-3">
-            <a class="thumbnail" href="#" data-target="#slider-{{ gallery.slug }}" data-slide-to="{{ loop.index0 }}">
-                <img src="{{ slide.image | imagine_filter('gallery_thumbnail') }}" />
-            </a>
-        </div>
-        {% endfor %}
-    </div>
-    {% endif %}
 </div>
+{% if thumbnails|default(false) %}
+<div class="row">
+    {% for slide in gallery.items %}
+    <div class="col-xs-6 col-md-3">
+        <a class="thumbnail" href="#" data-target="#slider-{{ gallery.slug }}" data-slide-to="{{ loop.index0 }}">
+            <img src="{{ slide.image | imagine_filter('gallery_thumbnail') }}" />
+        </a>
+    </div>
+    {% endfor %}
+</div>
+{% endif %}
