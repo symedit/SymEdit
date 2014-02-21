@@ -6,9 +6,11 @@
 
     <parameters>
         <parameter key="symedit.widget.strategy.slider.class">SymEdit\Bundle\MediaBundle\Widget\Strategy\SliderStrategy</parameter>
+        <parameter key="symedit.widget.strategy.gallery.class">SymEdit\Bundle\MediaBundle\Widget\Strategy\GalleryStrategy</parameter>
     </parameters>
 
     <services>
+        <!-- Slider Widget -->
         <service id="symedit.widget.strategy.slider" class="%symedit.widget.strategy.slider.class%">
             <argument type="service" id="symedit.repository.image_gallery" />
             <tag name="symedit_widget.widget_strategy" alias="slider" />
