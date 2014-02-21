@@ -7,7 +7,6 @@
     <parameters>
         <parameter key="symedit_widget.twig.widget_extension.class">SymEdit\Bundle\WidgetBundle\Twig\Extension\WidgetExtension</parameter>
         <parameter key="symedit_widget.widget.registry.class">SymEdit\Bundle\WidgetBundle\Widget\WidgetRegistry</parameter>
-        <parameter key="symedit_widget.widget.manager.class">SymEdit\Bundle\WidgetBundle\Widget\WidgetManager</parameter>
 
         <parameter key="symedit_widget.widget.strategy.html.class">SymEdit\Bundle\WidgetBundle\Widget\Strategy\HtmlStrategy</parameter>
         <parameter key="symedit_widget.widget.strategy.template.class">SymEdit\Bundle\WidgetBundle\Widget\Strategy\TemplateStrategy</parameter>
