@@ -75,10 +75,10 @@ SymEdit\Bundle\BlogBundle\Model\Post:
             joinTable:
                 name: post_category
                 joinColumns:
-                    category_id:
+                    post_id:
                         referenceColumnName: id
                 inverseJoinColumns:
-                    post_id:
+                    category_id:
                         referenceColumnName: id
             targetEntity: SymEdit\Bundle\BlogBundle\Model\CategoryInterface
             inversedBy: posts
