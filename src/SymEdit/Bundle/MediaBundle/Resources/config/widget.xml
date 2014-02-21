@@ -15,5 +15,11 @@
             <argument type="service" id="symedit.repository.image_gallery" />
             <tag name="symedit_widget.widget_strategy" alias="slider" />
         </service>
+
+        <!-- Gallery Widget -->
+        <service id="symedit.widget.strategy.gallery" class="%symedit.widget.strategy.gallery.class%">
+            <argument type="service" id="symedit.repository.image_gallery" />
+            <tag name="symedit_widget.widget_strategy" alias="gallery" />
+        </service>
     </services>
 </container>

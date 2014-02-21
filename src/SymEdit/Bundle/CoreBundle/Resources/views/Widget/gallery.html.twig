@@ -1,0 +1,9 @@
+<div class="row" id="gallery-{{ gallery.slug }}">
+    {% for item in gallery.items %}
+    <div class="col-xs-6 col-md-3">
+        <a href="{{ item.image.webpath }}" target="_blank" class="thumbnail">
+            <img src="{{ item.image | imagine_filter('gallery_thumbnail') }}" />
+        </a>
+    </div>
+    {% endfor %}
+</div>
