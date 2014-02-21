@@ -8,8 +8,6 @@ blog:
             template: @SymEdit/Blog/index.html.twig
             criteria:
                 status: 1
-            sorting:
-                createdAt: DESC
 
 blog_rss:
     pattern: /feed.xml
@@ -66,8 +64,6 @@ blog_category_view:
         _sylius:
             paginate: "#blog.max_posts#"
             template: @SymEdit/Blog/category.html.twig
-            criteria:
-                status: 1
         page: 1
 
 blog_category_rss:

@@ -13,11 +13,11 @@ Category &raquo; {{ category.title }}
 {% endblock %}
 
 {% block blog_content %}
-    {% if category.posts|length > 0 %}
-        {% include '@SymEdit/Blog/list.html.twig' with { posts: category.posts } %}
+    {% if posts|length > 0 %}
+        {% include '@SymEdit/Blog/list.html.twig' with { posts: posts } %}
     {% else %}
         There are currently no posts for this category.
     {% endif %}
 
-    {{ pagerfanta(category.posts) }}
+    {{ pagerfanta(posts) }}
 {% endblock %}

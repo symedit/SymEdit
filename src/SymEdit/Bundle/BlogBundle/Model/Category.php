@@ -305,6 +305,6 @@ class Category implements CategoryInterface
 
     public function getTotal()
     {
-        return $this->posts->count();
+        return $this->getPublishedPosts()->count();
     }
 }

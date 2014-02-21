@@ -45,13 +45,13 @@ class PostController extends ResourceController
             ->setMaxPerPage($config->getPaginationMaxPerPage())
             ->setCurrentPage($request->get('page', 1));
 
-        $category->setPosts($paginator);
-
         $view = $this
             ->view()
             ->setTemplate($config->getTemplate('index.html'))
-            ->setTemplateVar('category')
-            ->setData($category);
+            ->setData(array(
+                'category' => $category,
+                'posts' => $paginator,
+            ));
 
         return $this->handleView($view);
     }

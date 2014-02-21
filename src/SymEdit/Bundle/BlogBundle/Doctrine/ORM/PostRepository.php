@@ -45,7 +45,9 @@ class PostRepository extends EntityRepository
     {
         return $this->getQueryBuilder()
                   ->where(':category MEMBER OF o.categories')
-                  ->setParameter('category', $category);
+                  ->andWhere('o.status = :status')
+                  ->setParameter('category', $category)
+                  ->setParameter('status', Post::PUBLISHED);
     }
 
     public function findByCategory(CategoryInterface $category)

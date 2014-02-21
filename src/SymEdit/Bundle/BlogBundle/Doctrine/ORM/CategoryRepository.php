@@ -18,7 +18,7 @@ class CategoryRepository extends EntityRepository
     public function findRoots()
     {
         return $this->findBy(array(
-            'parent' => null,
+                    'parent' => null,
         ));
     }
 
