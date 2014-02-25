@@ -5,17 +5,15 @@
     xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
 
     <parameters>
-        <parameter key="symedit_mailchimp.client.class">ZfrMailChimp\Client\MailChimpClient</parameter>
+        <parameter key="symedit_mailchimp.client.class">SymEdit\Bundle\MailChimpBundle\Client\SettingsClient</parameter>
+        <parameter key="symedit_mailchimp.connection_manager.class">SymEdit\Bundle\MailChimpBundle\Connection\SettingsConnectionManager</parameter>
         <parameter key="symedit_mailchimp.menu_subscriber.class">SymEdit\Bundle\MailChimpBundle\EventListener\MenuSubscriber</parameter>
         <parameter key="symedit_mailchimp.controller.dashboard.class">SymEdit\Bundle\MailChimpBundle\Controller\DashboardController</parameter>
     </parameters>
 
     <services>
-        <service id="symedit_mailchimp.client" class="%symedit_mailchimp.client.class%" factory-service="symedit_settings.factory" factory-method="create">
-            <argument>%symedit_mailchimp.client.class%</argument>
-            <argument type="collection">
-                <argument>$mailchimp.api_key</argument>
-            </argument>
+        <service id="symedit_mailchimp.client" class="%symedit_mailchimp.client.class%">
+            <argument type="service" id="symedit_settings.settings" />
         </service>
 
         <service id="symedit_mailchimp.menu_subscriber" class="%symedit_mailchimp.menu_subscriber.class%">

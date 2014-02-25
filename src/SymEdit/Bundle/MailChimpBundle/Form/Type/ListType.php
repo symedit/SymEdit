@@ -11,6 +11,7 @@
 
 namespace SymEdit\Bundle\MailChimpBundle\Form\Type;
 
+use Exception;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 use ZfrMailChimp\Client\MailChimpClient;
@@ -40,10 +41,11 @@ class ListType extends AbstractType
                 'choices' => $choices,
             ));
 
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
 
             $resolver->setDefaults(array(
                 'disabled' => true,
+                'help_block' => 'Invalid API Key, cannot choose a list.',
             ));
         }
     }
