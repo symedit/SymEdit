@@ -12,7 +12,6 @@
 namespace SymEdit\Bundle\BlogBundle\Widget\Strategy;
 
 use Sylius\Bundle\ResourceBundle\Model\RepositoryInterface;
-use SymEdit\Bundle\BlogBundle\Model\Post;
 use SymEdit\Bundle\WidgetBundle\Model\WidgetInterface;
 use SymEdit\Bundle\WidgetBundle\Widget\Strategy\AbstractWidgetStrategy;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -31,7 +30,7 @@ class RecentPostsStrategy extends AbstractWidgetStrategy
     {
         $posts = $this->postRepository->getRecent($widget->getOption('max'));
 
-        return $this->render('@SymEdit/Widget/blog-recent-posts.html.twig', array(
+        return $this->render('@SymEdit/Widget/Blog/recent-posts.html.twig', array(
             'posts' => $posts,
         ));
     }

@@ -30,7 +30,7 @@ class PopularPostsStrategy extends AbstractWidgetStrategy
     {
         $posts = $this->postRepository->findPopular($widget->getOption('max'));
 
-        return $this->render('@SymEdit/Widget/blog-popular-posts.html.twig', array(
+        return $this->render('@SymEdit/Widget/Blog/popular-posts.html.twig', array(
             'posts' => $posts,
         ));
     }

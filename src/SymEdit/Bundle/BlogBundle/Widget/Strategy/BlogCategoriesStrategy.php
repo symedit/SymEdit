@@ -29,7 +29,7 @@ class BlogCategoriesStrategy extends AbstractWidgetStrategy
     {
         $root = $this->repository->findRoot();
 
-        return $this->render('@SymEdit/Widget/blog-categories.html.twig', array(
+        return $this->render('@SymEdit/Widget/Blog/categories.html.twig', array(
             'root' => $root,
             'counts' => $widget->getOption('counts'),
         ));

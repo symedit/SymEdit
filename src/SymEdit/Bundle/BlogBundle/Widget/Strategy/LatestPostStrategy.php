@@ -29,7 +29,7 @@ class LatestPostStrategy extends AbstractWidgetStrategy
     {
         $post = $this->postRepository->getLatestPost();
 
-        return $this->render('@SymEdit/Widget/blog-latest-post.html.twig', array(
+        return $this->render('@SymEdit/Widget/Blog/latest-post.html.twig', array(
             'post' => $post,
         ));
     }
