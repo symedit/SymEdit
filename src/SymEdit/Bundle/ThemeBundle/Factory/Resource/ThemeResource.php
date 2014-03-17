@@ -34,7 +34,7 @@ class ThemeResource implements ResourceInterface
 
         $cssFormula = $this->getFormula($this->theme->getStylesheets());
         $jsFormula = $this->getFormula($this->theme->getJavascripts());
-        
+
         if ($cssFormula) {
             $formulas['theme_css'] = $cssFormula;
         }
@@ -53,10 +53,27 @@ class ThemeResource implements ResourceInterface
         }
 
         return array(
-            isset($data['inputs']) ? $data['inputs'] : array(),
+            isset($data['inputs']) ? $this->prepareInputs($data['inputs']) : array(),
             isset($data['filters']) ? $data['filters'] : array(),
             isset($data['options']) ? $data['options'] : array(),
         );
+    }
+
+    protected function prepareInputs($inputs)
+    {
+        $prepared = array();
+
+        foreach ($inputs as $input) {
+            if ($input[0] === '@' || $input[0] === '/' || strpos($input, 'bundles') === 0) {
+                $prepared[] = $input;
+
+                continue;
+            }
+
+            $prepared[] = $this->theme->getThemeDirectory() . '/' . $input;
+        }
+
+        return $prepared;
     }
 
     public function isFresh($timestamp)

@@ -11,12 +11,12 @@
 
 namespace SymEdit\Bundle\ThemeBundle\Model;
 
-class Theme
+class Theme implements ThemeInterface
 {
     protected $name;
     protected $title;
     protected $description;
-    protected $themeDirectory;
+    protected $directory;
     protected $publicDirectory;
     protected $stylesheets;
     protected $javascripts;
@@ -65,6 +65,7 @@ class Theme
     public function setStylesheets($stylesheets)
     {
         $this->stylesheets = $stylesheets;
+
         return $this;
     }
 
@@ -82,7 +83,7 @@ class Theme
 
     public function getThemeDirectory()
     {
-        return $this->themeDirectory;
+        return sprintf('%s/%s', $this->directory, $this->getName());
     }
 
     public function getTemplateDirectory()
@@ -90,9 +91,10 @@ class Theme
         return sprintf('%s/%s', $this->getThemeDirectory(), 'templates');
     }
 
-    public function setThemeDirectory($themeDirectory)
+    public function setDirectory($directory)
     {
-        $this->themeDirectory = $themeDirectory;
+        $this->directory = $directory;
+
         return $this;
     }
 

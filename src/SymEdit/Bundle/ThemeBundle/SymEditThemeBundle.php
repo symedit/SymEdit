@@ -13,6 +13,7 @@ namespace SymEdit\Bundle\ThemeBundle;
 
 use SymEdit\Bundle\ThemeBundle\DependencyInjection\Compiler\TemplateResourcesPass;
 use SymEdit\Bundle\ThemeBundle\DependencyInjection\Compiler\TemplateLoaderPass;
+use SymEdit\Bundle\ThemeBundle\DependencyInjection\Compiler\ThemeLoaderPass;
 use SymEdit\Bundle\ThemeBundle\DependencyInjection\SymEditThemeExtension;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\HttpKernel\Bundle\Bundle;
@@ -23,6 +24,7 @@ class SymEditThemeBundle extends Bundle
     {
         $container->addCompilerPass(new TemplateResourcesPass());
         $container->addCompilerPass(new TemplateLoaderPass());
+        $container->addCompilerPass(new ThemeLoaderPass());
     }
 
     public function boot()

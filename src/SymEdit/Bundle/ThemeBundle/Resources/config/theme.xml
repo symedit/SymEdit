@@ -1,0 +1,62 @@
+<?xml version="1.0" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <parameters>
+        <parameter key="symedit_theme.theme.file_locator.class">Symfony\Component\Config\FileLocator</parameter>
+        <parameter key="symedit_theme.theme.delegating_loader.class">Symfony\Component\Config\Loader\DelegatingLoader</parameter>
+        <parameter key="symedit_theme.theme.loader_resolver.class">Symfony\Component\Config\Loader\LoaderResolver</parameter>
+        <parameter key="symedit_theme.theme.factory.class">SymEdit\Bundle\ThemeBundle\Theme\ThemeFactory</parameter>
+        <parameter key="symedit_theme.theme.loader.class">SymEdit\Bundle\ThemeBundle\Theme\ThemeLoader</parameter>
+        <parameter key="symedit_theme.theme.config.class">SymEdit\Bundle\ThemeBundle\Theme\ThemeConfiguration</parameter>
+        <parameter key="symedit_theme.model.theme.class">SymEdit\Bundle\ThemeBundle\Model\Theme</parameter>
+        <parameter key="symedit_theme.cache_dir">%kernel.cache_dir%/symedit_theme</parameter>
+    </parameters>
+
+    <services>
+        <!-- File Locator -->
+        <service id="symedit_theme.theme.file_locator" class="%symedit_theme.theme.file_locator.class%" public="false">
+            <argument>%symedit_theme.theme_directory%</argument>
+        </service>
+
+        <!-- Loader Resolver -->
+        <service id="symedit_theme.theme.loader_resolver" class="%symedit_theme.theme.loader_resolver.class%">
+            <argument type="collection" />
+        </service>
+
+        <!-- Yaml Loader -->
+        <service id="symedit_theme.theme.loader.yaml" class="SymEdit\Bundle\ThemeBundle\Theme\Loader\YamlThemeLoader">
+            <argument type="service" id="symedit_theme.theme.file_locator" />
+            <tag name="symedit_theme.theme_loader" />
+        </service>
+
+        <!-- Delegating Loader -->
+        <service id="symedit_theme.theme.loader" class="%symedit_theme.theme.delegating_loader.class%">
+            <argument type="service" id="symedit_theme.theme.loader_resolver" />
+        </service>
+
+        <!-- Theme Factory -->
+        <service id="symedit_theme.theme.factory" class="%symedit_theme.theme.factory.class%">
+            <argument type="service" id="symedit_theme.theme.loader" />
+            <argument type="service" id="symedit_theme.theme.config" />
+            <argument>%symedit_theme.theme_directory%</argument>
+            <argument>%symedit_theme.public_directory%</argument>
+            <argument>%symedit_theme.model.theme.class%</argument>
+        </service>
+
+        <!-- Theme Manager -->
+        <service id="symedit_theme.theme_manager" class="SymEdit\Bundle\ThemeBundle\Theme\ThemeManager">
+            <argument type="service" id="symedit_theme.theme.factory" />
+        </service>
+
+        <!-- Theme Configuration -->
+        <service id="symedit_theme.theme.config" class="%symedit_theme.theme.config.class%" public="false" />
+
+        <!-- Current Theme -->
+        <service id="symedit_theme.theme" class="%symedit_theme.model.theme.class%" factory-service="symedit_theme.theme_manager" factory-method="getTheme">
+            <argument>%symedit_theme.active_theme%</argument>
+        </service>
+    </services>
+</container>

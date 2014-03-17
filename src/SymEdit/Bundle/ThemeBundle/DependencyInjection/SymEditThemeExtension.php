@@ -33,6 +33,7 @@ class SymEditThemeExtension extends Extension
 
         $loader = new Loader\XmlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
         $loader->load('services.xml');
+        $loader->load('theme.xml');
         $loader->load('template.xml');
 
         $container->setParameter('symedit_theme.theme_directory', $config['theme_directory']);
