@@ -13,28 +13,26 @@ namespace SymEdit\Bundle\CoreBundle\View;
 
 use FOS\RestBundle\View\View;
 use FOS\RestBundle\View\ViewHandler as BaseViewHandler;
+use SymEdit\Bundle\CoreBundle\Event\Events;
+use SymEdit\Bundle\CoreBundle\Event\SubjectEvent;
+use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\HttpFoundation\Request;
 
 class ViewHandler extends BaseViewHandler
 {
-    protected $seo;
+    protected $eventDispatcher;
 
-    public function setSeo($seo)
+    public function setEventDispatcher(EventDispatcherInterface $eventDispatcher)
     {
-        $this->seo = $seo;
+        $this->eventDispatcher = $eventDispatcher;
     }
 
     public function handle(View $view, Request $request = null)
     {
         $data = $view->getData();
 
-        /**
-         * @TODO: Maybe have an option in the config or only
-         *        allow classes that you specify the seo for?
-         */
-        if (is_object($data) && !$data instanceof \Traversable) {
-            $this->seo->setSubject($data);
-        }
+        $event = new SubjectEvent($data);
+        $this->eventDispatcher->dispatch(Events::SUBJECT_SET, $event);
 
         return parent::handle($view, $request);
     }

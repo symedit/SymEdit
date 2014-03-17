@@ -44,5 +44,10 @@ final class Events
     /**
      * Menu Events
      */
-    const MENU_VIEW    = 'symedit.menu.view';
+    const MENU_VIEW         = 'symedit.menu.view';
+
+    /**
+     * FOS View / Subject Set
+     */
+    const SUBJECT_SET       = 'symedit.subject.set';
 }

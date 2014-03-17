@@ -7,6 +7,7 @@
     <parameters>
         <parameter key="symedit_seo.model.seo.class">SymEdit\Bundle\SeoBundle\Model\Seo</parameter>
         <parameter key="symedit_seo.twig.extension.class">SymEdit\Bundle\SeoBundle\Twig\Extension\SeoExtension</parameter>
+        <parameter key="symedit_seo.event_listener.symedit_subject.class">SymEdit\Bundle\SeoBundle\EventListener\SymEditSubjectSubscriber</parameter>
     </parameters>
 
     <services>
@@ -24,6 +25,11 @@
                 <argument type="service" id="request" on-invalid="null" strict="false" />
             </call>
             <tag name="twig.extension" />
+        </service>
+
+        <service id="symedit_seo.event_listener.symedit_subject" class="%symedit_seo.event_listener.symedit_subject.class%">
+            <argument type="service" id="symedit_seo.seo_manager" />
+            <tag name="kernel.event_subscriber" />
         </service>
 
         <!--<service id="symedit_seo.data_collector.seo" class="SymEdit\Bundle\SeoBundle\DataCollector\SeoDataCollector">

@@ -5,12 +5,14 @@
            xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
 
     <services>
+        <!-- FOS Rest Handler -->
         <service parent="fos_rest.view_handler.default" id="symedit.seo_view_handler" class="SymEdit\Bundle\CoreBundle\View\ViewHandler">
-            <call method="setSeo">
-                <argument type="service" id="symedit_seo.seo" />
+            <call method="setEventDispatcher">
+                <argument type="service" id="event_dispatcher" />
             </call>
         </service>
-   
+
+        <!-- Breadcrumbs -->
         <service id="symedit.breadcrumbs" class="%symedit.model.breadcrumbs.class%" />
     </services>
 

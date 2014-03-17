@@ -11,22 +11,23 @@
 
 namespace SymEdit\Bundle\SeoBundle\EventListener;
 
-use Symfony\Component\EventDispatcher\EventSubscriberInterface;
-use Symfony\Component\HttpKernel\KernelEvents;
-use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpKernel\Event\FilterControllerEvent;
-use SymEdit\Bundle\SeoBundle\Model\SeoManagerInterface;
-use SymEdit\Bundle\SeoBundle\Model\SeoInterface;
-use SymEdit\Bundle\SeoBundle\Annotation\Seo;
 use Doctrine\Common\Annotations\Reader;
 use Doctrine\Common\Util\ClassUtils;
+use SymEdit\Bundle\CoreBundle\Event\SubjectEvent;
+use SymEdit\Bundle\SeoBundle\Annotation\Seo;
+use SymEdit\Bundle\SeoBundle\Model\SeoInterface;
+use SymEdit\Bundle\SeoBundle\Model\SeoManagerInterface;
+use Symfony\Component\EventDispatcher\EventSubscriberInterface;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpKernel\Event\FilterControllerEvent;
+use Symfony\Component\HttpKernel\KernelEvents;
 
 /**
  * Checks to see if you added an SEO annotation to set the currrent SEO subject.
  *
  * Some code from https://github.com/sensiolabs/SensioFrameworkExtraBundle/blob/master/EventListener/ControllerListener.php
  */
-class SubjectSubscriber implements EventSubscriberInterface
+class SubjectAnnotationSubscriber implements EventSubscriberInterface
 {
     protected $seoManager;
     protected $reader;
@@ -40,6 +41,7 @@ class SubjectSubscriber implements EventSubscriberInterface
 
     public function onKernelController(FilterControllerEvent $event)
     {
+        die('trying..');
         $request = $event->getRequest();
         $seo = $this->seoManager->getSeo();
 
