@@ -20,7 +20,10 @@ class UserController extends ResourceController
 {
     public function createNew()
     {
-        return $this->getManager()->createUser(true);
+        $user = $this->getManager()->createUser(true);
+        $user->setEnabled(true);
+
+        return $user;
     }
 
     public function persistAndFlush($resource, $action = 'create')
