@@ -15,7 +15,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 use ZfrMailChimp\Client\MailChimpClient;
 
-class ListType extends AbstractType
+class TemplateType extends AbstractType
 {
     protected $client;
 
@@ -29,7 +29,7 @@ class ListType extends AbstractType
         $choices = array();
 
         try {
-            $lists = $this->client->getLists();
+            $lists = $this->client->getTemplates();
 
             foreach ($lists['data'] as $list) {
                 $name = $list['name'];
@@ -40,7 +40,7 @@ class ListType extends AbstractType
                 'choices' => $choices,
             ));
 
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
 
             $resolver->setDefaults(array(
                 'disabled' => true,
@@ -56,6 +56,6 @@ class ListType extends AbstractType
 
     public function getName()
     {
-        return 'mailchimp_list';
+        return 'mailchimp_template';
     }
 }
