@@ -17,7 +17,7 @@ use SymEdit\Bundle\ResourceBundle\DependencyInjection\SymEditResourceExtension;
 class SymEditBlogExtension extends SymEditResourceExtension
 {
     protected $configFiles = array(
-        'services', 'form', 'widget',
+        'services', 'form', 'widget', 'report',
     );
 
     /**

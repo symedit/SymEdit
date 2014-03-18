@@ -26,12 +26,14 @@ class DashboardController extends Controller
      */
     public function indexAction()
     {
-        $pageManager = $this->get('symedit.repository.page');
-        $postManager = $this->get('symedit.repository.post');
+        $reporter = $this->get('symedit_analytics.reporter');
+
+        $popularPages = $reporter->runReport('popular_pages');
+        $popularPosts = $reporter->runReport('popular_posts');
 
         return $this->render('@SymEdit/Admin/Dashboard/index.html.twig', array(
-            'popularPages' => $pageManager->findPopular(5),
-            'popularPosts' => $postManager->findPopular(5),
+            'popularPages' => $popularPages,
+            'popularPosts' => $popularPosts,
         ));
     }
 }

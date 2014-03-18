@@ -41,6 +41,9 @@ class PageControllerLoader
          * We need to duplicate the index route for the page so you can call it either way
          */
         $defaultRoute = $this->findDefaultRoute($collection, $defaultRouteName);
+        $defaultRoute->addDefaults(array(
+            '_default_route' => true,
+        ));
         $collection->add($page->getRoute(), clone $defaultRoute);
 
         /**
@@ -54,6 +57,15 @@ class PageControllerLoader
         return $collection;
     }
 
+    /**
+     * Attempt to find default route for the controller, if none is provided
+     * then find a route with path "/" and assume it is the default.
+     *
+     * @param \Symfony\Component\Routing\RouteCollection $collection
+     * @param string $defaultRouteName
+     * @return \Symfony\Component\Routing\Route
+     * @throws \Exception
+     */
     public function findDefaultRoute(RouteCollection $collection, $defaultRouteName = null)
     {
         $defaultRoute = $defaultRouteName === null ? null : $collection->get($defaultRouteName);

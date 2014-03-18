@@ -11,7 +11,8 @@
 
 namespace SymEdit\Bundle\BlogBundle\Widget\Strategy;
 
-use Sylius\Bundle\ResourceBundle\Model\RepositoryInterface;
+use SymEdit\Bundle\AnalyticsBundle\Report\Reporter;
+use SymEdit\Bundle\BlogBundle\Model\Post;
 use SymEdit\Bundle\WidgetBundle\Model\WidgetInterface;
 use SymEdit\Bundle\WidgetBundle\Widget\Strategy\AbstractWidgetStrategy;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -19,16 +20,19 @@ use Symfony\Component\Validator\Constraints\Range;
 
 class PopularPostsStrategy extends AbstractWidgetStrategy
 {
-    protected $postRepository;
+    protected $reporter;
 
-    public function __construct(RepositoryInterface $postRepository)
+    public function __construct(Reporter $reporter)
     {
-        $this->postRepository = $postRepository;
+        $this->reporter = $reporter;
     }
 
     public function execute(WidgetInterface $widget)
     {
-        $posts = $this->postRepository->findPopular($widget->getOption('max'));
+        $posts = $this->reporter->runReport('popular_posts');
+
+        // We don't need the counts here
+        $posts = array_map('current', $posts);
 
         return $this->render('@SymEdit/Widget/Blog/popular-posts.html.twig', array(
             'posts' => $posts,

@@ -1,0 +1,35 @@
+<?xml version="1.0" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <parameters>
+        <parameter key="symedit_analytics.tracker.class">SymEdit\Bundle\AnalyticsBundle\Analytics\Tracker</parameter>
+        <parameter key="symedit_analytics.reporter.class">SymEdit\Bundle\AnalyticsBundle\Report\Reporter</parameter>
+        <parameter key="symedit_analytics.event_listener.symedit_subject.class">SymEdit\Bundle\AnalyticsBundle\EventListener\SymEditSubjectSubscriber</parameter>
+        <parameter key="symedit_analytics.model.visit.class">SymEdit\Bundle\AnalyticsBundle\Model\Visit</parameter>
+    </parameters>
+
+    <services>
+        <service id="symedit_analytics.entity_manager" factory-service="doctrine" factory-method="getManager" class="Doctrine\ORM\EntityManager" public="false" />
+
+        <!-- Tracker -->
+        <service id="symedit_analytics.tracker" class="%symedit_analytics.tracker.class%">
+            <argument type="service" id="symedit_analytics.entity_manager" />
+            <argument>%symedit_analytics.model.visit.class%</argument>
+        </service>
+
+        <!-- Reporter -->
+        <service id="symedit_analytics.reporter" class="%symedit_analytics.reporter.class%">
+            <argument type="service" id="symedit_analytics.entity_manager" />
+            <argument>%symedit_analytics.model.visit.class%</argument>
+            <argument type="collection" />
+        </service>
+
+        <service id="symedit_analytics.event_listener.symedit_subject" class="%symedit_analytics.event_listener.symedit_subject.class%">
+            <argument type="service" id="symedit_analytics.tracker" />
+            <tag name="kernel.event_subscriber" />
+        </service>
+    </services>
+</container>

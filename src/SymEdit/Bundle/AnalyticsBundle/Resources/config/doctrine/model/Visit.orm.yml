@@ -1,0 +1,14 @@
+SymEdit\Bundle\AnalyticsBundle\Model\Visit:
+    type: entity
+    id:
+        id:
+            type: integer
+            generator:
+                strategy: IDENTITY
+    fields:
+        class:
+            type: string
+            length: 255
+            nullable: true
+        identifier:
+            type: integer

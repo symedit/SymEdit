@@ -1,0 +1,18 @@
+<?xml version="1.0" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <parameters>
+        <parameter key="symedit_blog.report.popular_posts.class">SymEdit\Bundle\BlogBundle\Report\PopularPostReport</parameter>
+    </parameters>
+
+    <services>
+        <!-- Popular Pages -->
+        <service id="symedit.report.popular_posts" class="%symedit_blog.report.popular_posts.class%" public="false">
+            <argument>%symedit.model.post.class%</argument>
+            <tag name="symedit_analytics.report" alias="popular_posts" />
+        </service>
+    </services>
+</container>

@@ -23,7 +23,7 @@
         </service>
 
         <service id="symedit.widget.strategy.blog_popular_posts" class="%symedit.widget.strategy.blog_popular_posts.class%">
-            <argument type="service" id="symedit.repository.post" />
+            <argument type="service" id="symedit_analytics.reporter" />
             <tag name="symedit_widget.widget_strategy" alias="blog_popular_posts" />
         </service>
 
