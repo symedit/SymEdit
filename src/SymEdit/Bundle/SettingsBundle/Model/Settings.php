@@ -109,7 +109,8 @@ class Settings implements \ArrayAccess
 
         $settings = $this->getSettings();
 
-        return isset($settings[$group]) && ($setting === null || isset($settings[$group][$setting]));
+        return array_key_exists($group, $settings) &&
+                ($setting === null || array_key_exists($setting, $settings[$group]));
     }
 
     public function offsetGet($offset)
