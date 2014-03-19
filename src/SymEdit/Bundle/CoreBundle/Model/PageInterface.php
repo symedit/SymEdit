@@ -14,7 +14,7 @@ namespace SymEdit\Bundle\CoreBundle\Model;
 use Symfony\Component\Validator\ExecutionContextInterface;
 use SymEdit\Bundle\SeoBundle\Model\SeoAbleInterface;
 
-interface PageInterface extends SeoAbleInterface, ViewCountableInterface, \IteratorAggregate
+interface PageInterface extends SeoAbleInterface, \IteratorAggregate
 {
     /**
      * @return mixed Unique ID for Page

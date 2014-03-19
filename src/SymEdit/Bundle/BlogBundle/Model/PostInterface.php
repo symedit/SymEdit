@@ -13,10 +13,9 @@ namespace SymEdit\Bundle\BlogBundle\Model;
 
 use SymEdit\Bundle\MediaBundle\Model\ImageInterface;
 use SymEdit\Bundle\SeoBundle\Model\SeoAbleInterface;
-use SymEdit\Bundle\CoreBundle\Model\ViewCountableInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 
-interface PostInterface extends SeoAbleInterface, ViewCountableInterface
+interface PostInterface extends SeoAbleInterface
 {
     public function getId();
 

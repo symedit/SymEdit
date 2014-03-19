@@ -134,11 +134,6 @@ class Page implements PageInterface
 
     protected $active;
 
-    /**
-     * @var integer $views
-     */
-    protected $views;
-
     public function __toString()
     {
         return $this->getRoot() ? 'Root' : sprintf('%s %s', str_repeat('-', $this->getLevel()), $this->getTitle());
@@ -158,7 +153,6 @@ class Page implements PageInterface
         $this->setUpdatedAt(new \DateTime());
         $this->setPageOrder(1000);
         $this->setActive(false);
-        $this->setViews(0);
     }
 
     /**
@@ -692,24 +686,5 @@ class Page implements PageInterface
 
             $page = $parent;
         }
-    }
-
-    public function addView()
-    {
-        if ($this->views === null) {
-            $this->views = 0;
-        }
-
-        $this->views++;
-    }
-
-    public function getViews()
-    {
-        return $this->views;
-    }
-
-    public function setViews($views)
-    {
-        $this->views = $views;
     }
 }
