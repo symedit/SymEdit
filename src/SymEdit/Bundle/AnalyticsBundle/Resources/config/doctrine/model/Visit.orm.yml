@@ -1,5 +1,11 @@
 SymEdit\Bundle\AnalyticsBundle\Model\Visit:
+    table: visit
     type: entity
+    indexes:
+        class_index:
+            columns: [class]
+        identifier_index:
+            columns: [identifier]
     id:
         id:
             type: integer
@@ -12,3 +18,5 @@ SymEdit\Bundle\AnalyticsBundle\Model\Visit:
             nullable: true
         identifier:
             type: integer
+        visitDate:
+            type: datetime

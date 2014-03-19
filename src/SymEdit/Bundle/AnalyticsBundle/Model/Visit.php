@@ -16,6 +16,12 @@ class Visit
     private $id;
     private $class;
     private $identifier;
+    private $visitDate;
+
+    public function __construct()
+    {
+        $this->visitDate = new \DateTime();
+    }
 
     public function getId()
     {
@@ -42,6 +48,18 @@ class Visit
     public function setIdentifier($identifier)
     {
         $this->identifier = $identifier;
+
+        return $this;
+    }
+
+    public function getVisitDate()
+    {
+        return $this->visitDate;
+    }
+
+    public function setVisitDate($visitDate)
+    {
+        $this->visitDate = $visitDate;
 
         return $this;
     }
