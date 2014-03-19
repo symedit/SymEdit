@@ -30,17 +30,6 @@ class PostRepository extends EntityRepository
         ));
     }
 
-    public function findPopular($max = null)
-    {
-        $qb = $this->getPopularQueryBuilder();
-
-        if ($max !== null) {
-            $qb->setMaxResults($max);
-        }
-
-        return $qb->getQuery()->getResult();
-    }
-
     public function findByCategoryQueryBuilder(CategoryInterface $category)
     {
         return $this->getQueryBuilder()
@@ -53,12 +42,6 @@ class PostRepository extends EntityRepository
     public function findByCategory(CategoryInterface $category)
     {
         return $this->findByCategoryQueryBuilder($category)->getQuery()->getResult();
-    }
-
-    public function getPopularQueryBuilder()
-    {
-        return $this->createQueryBuilder('p')
-                    ->orderBy('p.views', 'desc');
     }
 
     public function getRecentQuery()

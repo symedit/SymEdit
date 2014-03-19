@@ -86,17 +86,11 @@ class Post implements PostInterface
      */
     protected $seo;
 
-    /**
-     * @var integer $views
-     */
-    protected $views;
-
     public function __construct()
     {
         $this->setCreatedAt(new \DateTime());
         $this->setUpdatedAt(new \DateTime());
         $this->setStatus(self::DRAFT);
-        $this->setViews(0);
     }
 
     /**
@@ -387,28 +381,5 @@ class Post implements PostInterface
     public function isPublished()
     {
         return $this->status === self::PUBLISHED;
-    }
-
-    public function addView()
-    {
-        if ($this->views === null) {
-            $this->views = 0;
-        }
-
-        $this->views++;
-
-        return $this;
-    }
-
-    public function getViews()
-    {
-        return $this->views;
-    }
-
-    public function setViews($views)
-    {
-        $this->views = $views;
-
-        return $this;
     }
 }
