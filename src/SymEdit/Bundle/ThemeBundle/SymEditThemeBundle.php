@@ -11,10 +11,12 @@
 
 namespace SymEdit\Bundle\ThemeBundle;
 
-use SymEdit\Bundle\ThemeBundle\DependencyInjection\Compiler\TemplateResourcesPass;
 use SymEdit\Bundle\ThemeBundle\DependencyInjection\Compiler\TemplateLoaderPass;
+use SymEdit\Bundle\ThemeBundle\DependencyInjection\Compiler\TemplateResourcesPass;
 use SymEdit\Bundle\ThemeBundle\DependencyInjection\Compiler\ThemeLoaderPass;
 use SymEdit\Bundle\ThemeBundle\DependencyInjection\SymEditThemeExtension;
+use SymEdit\Bundle\ThemeBundle\Event\Events;
+use SymEdit\Bundle\ThemeBundle\Event\ThemeEvent;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 
@@ -29,21 +31,11 @@ class SymEditThemeBundle extends Bundle
 
     public function boot()
     {
-        // Set template path
+        // Send event for theme boot
         $theme = $this->container->get('symedit_theme.theme');
-        $loader = $this->container->get('twig.loader');
 
-        $overrides = $this->container->getParameter('symedit_theme.namespace_overrides');
-
-        if (!is_array($overrides)) {
-            $overrides = array();
-        }
-
-        array_unshift($overrides, 'Theme');
-
-        foreach (array_reverse($overrides) as $override) {
-            $loader->prependPath($theme->getTemplateDirectory(), $override);
-        }
+        $event = new ThemeEvent($theme);
+        $this->container->get('event_dispatcher')->dispatch(Events::THEME_BOOT, $event);
     }
 
     public function getContainerExtension()
