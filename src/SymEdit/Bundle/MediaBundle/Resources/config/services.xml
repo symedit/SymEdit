@@ -19,10 +19,6 @@
                 </service>
             </argument>
             <argument type="service" id="liip_imagine.cache.manager" />
-            <argument>%liip_imagine.filter_sets%</argument>
-            <call method="setRequest">
-                <argument type="service" id="request" on-invalid="null" strict="false" />
-            </call>
         </service>
 
         <!-- File Uploader -->

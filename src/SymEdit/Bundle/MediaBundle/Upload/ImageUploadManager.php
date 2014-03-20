@@ -27,17 +27,11 @@ class ImageUploadManager extends UploadManager
     protected $filters;
     protected $request;
 
-    public function __construct(Filesystem $filesystem, CacheManager $cache, array $filters)
+    public function __construct(Filesystem $filesystem, CacheManager $cache)
     {
         $this->cache = $cache;
-        $this->filters = $filters;
 
         parent::__construct($filesystem);
-    }
-
-    public function setRequest(Request $request = null)
-    {
-        $this->request = $request;
     }
 
     public function removeUpload(MediaInterface $media)
@@ -49,13 +43,7 @@ class ImageUploadManager extends UploadManager
 
         parent::removeUpload($media);
 
-        if ($this->request === null) {
-            return;
-        }
-
-        foreach (array_keys($this->filters) as $filter) {
-            $this->cache->resolve($this->request, $media->getPath(), $filter);
-            $this->cache->remove($media->getPath(), $filter);
-        }
+        // Remove from Imagine cache
+        $this->cache->remove($media->getPath());
     }
 }
