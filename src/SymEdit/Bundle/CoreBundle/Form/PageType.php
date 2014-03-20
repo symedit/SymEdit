@@ -121,6 +121,7 @@ class PageType extends AbstractType
                  ),
                 'label' => 'admin.page.summary',
                 'required' => false,
+                'horizontal' => false,
             ));
 
         $content = $builder->create('content', 'tab', array(
