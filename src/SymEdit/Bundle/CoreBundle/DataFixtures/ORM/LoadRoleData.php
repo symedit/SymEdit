@@ -18,7 +18,6 @@
 
   class LoadRoleData extends AbstractFixture implements OrderedFixtureInterface
   {
-
       public function load(ObjectManager $manager)
       {
           $roles = array(
@@ -32,17 +31,16 @@
               'ROLE_ADMIN_WIDGET'    => 'Widget Access',
               'ROLE_ADMIN_SETTING'   => 'Settings Access',
               'ROLE_ADMIN_USER'      => 'User Access',
-              'ROLE_ADMIN_EDITABLE'  => 'Live Edit Access',
               'ROLE_ADMIN_STYLIZER'  => 'Access to Stylizer',
           );
 
-          foreach($roles as $role=>$description){
+          foreach ($roles as $role=>$description) {
               $entity = new Role();
               $entity->setRole($role);
               $entity->setDescription($description);
               $manager->persist($entity);
 
-              $this->addReference( $role, $entity );
+              $this->addReference($role, $entity);
           }
 
           $manager->flush();
@@ -52,5 +50,4 @@
       {
           return 10;
       }
-
   }
