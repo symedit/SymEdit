@@ -29,6 +29,10 @@ class SubscribeStrategy extends AbstractWidgetStrategy
     {
         $list = $this->getList($widget->getOption('list'));
 
+        if ($list === false) {
+            return 'Invalid Mailchimp API Key or none provided.';
+        }
+
         return $this->render('@SymEdit/Widget/MailChimp/subscribe-form.html.twig', array(
             'list' => $list,
             'placeholder' => $widget->getOption('placeholder'),
@@ -40,7 +44,7 @@ class SubscribeStrategy extends AbstractWidgetStrategy
     {
         try {
             $response = $this->client->getLists();
-        } catch (Exception $ex) {
+        } catch (\Exception $ex) {
             return false;
         }
 
