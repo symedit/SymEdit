@@ -1,11 +1,11 @@
 {% extends '@SymEdit/Page/base.html.twig' %}
 
-{% block title %}Unauthorized{% endblock %}
+{% block title %}Forbidden{% endblock %}
 {% block url %}{{ app.request.uri }}{% endblock %}
 
 {% block content %}
 <div class="hero-unit">
-  <h1>Sorry,</h1>
-  <p>Authorization refused for your credentials.</p>
+  <h1>Permission Denied</h1>
+  <p>You do not have access to this resource.</p>
 </div>
 {% endblock %}
