@@ -41,6 +41,11 @@ class Category implements CategoryInterface
     protected $parent;
 
     /**
+     * @var integer
+     */
+    protected $level;
+
+    /**
      * @var Array of CategoryInterface
      */
     protected $children;
@@ -154,26 +159,6 @@ class Category implements CategoryInterface
     }
 
     /**
-     * PrePersist
-     */
-    public function fixSlug()
-    {
-        $slug = $this->getParent() ? $this->getParent()->getSlug() .'/' . $this->getName() : $this->getName();
-        $this->setSlug($slug);
-    }
-
-    public function setUpdated()
-    {
-        // Set the slug to be parent slug/post name
-        $this->fixSlug();
-
-        // In case this category's slug has changed, let's fix the children too
-        foreach ($this->getChildren() as $child) {
-            $child->setUpdated();
-        }
-    }
-
-    /**
      * Set parent
      *
      * @param  CategoryInterface $parent
@@ -194,6 +179,29 @@ class Category implements CategoryInterface
     public function getParent()
     {
         return $this->parent;
+    }
+
+    /**
+     * Get depth of the category
+     *
+     * @return integer
+     */
+    public function getLevel()
+    {
+        return $this->level;
+    }
+
+    /**
+     * Set the depth of the category
+     *
+     * @param integer $level
+     * @return Category
+     */
+    public function setLevel($level)
+    {
+        $this->level = $level;
+
+        return $this;
     }
 
     /**

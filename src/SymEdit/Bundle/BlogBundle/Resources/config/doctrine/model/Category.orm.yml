@@ -1,6 +1,9 @@
 SymEdit\Bundle\BlogBundle\Model\Category:
     type: entity
     table: category
+    gedmo:
+        tree:
+            type: materializedPath
     fields:
         id:
             type: integer
@@ -10,26 +13,40 @@ SymEdit\Bundle\BlogBundle\Model\Category:
         name:
             type: string
             length: 255
+            gedmo:
+                - treePathSource
         title:
             type: string
             length: 255
+        level:
+            type: integer
+            nullable: true
+            gedmo:
+                - treeLevel
         slug:
             type: string
             length: 255
+            gedmo:
+                treePath:
+                    appendId: false
+                    separator: "/"
+                    endsWithSeparator: false
         seo:
             type: json_array
             nullable: true
     manyToOne:
         parent:
-            targetEntity: SymEdit\Bundle\BlogBundle\Model\CategoryInterface
+            targetEntity: SymEdit\Bundle\BlogBundle\Model\Category
             inversedBy: children
             joinColumns:
                 parent:
                     referencedColumnName: id
                     onDelete: 'SET NULL'
+            gedmo:
+                - treeParent
     oneToMany:
         children:
-            targetEntity: SymEdit\Bundle\BlogBundle\Model\CategoryInterface
+            targetEntity: SymEdit\Bundle\BlogBundle\Model\Category
             cascade:
                 - remove
                 - persist
@@ -40,6 +57,3 @@ SymEdit\Bundle\BlogBundle\Model\Category:
             mappedBy: categories
             orderBy:
                 createdAt: DESC
-    lifecycleCallbacks:
-        prePersist:
-            - fixSlug

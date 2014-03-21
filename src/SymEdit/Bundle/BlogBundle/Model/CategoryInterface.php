@@ -25,10 +25,12 @@ interface CategoryInterface extends SeoAbleInterface
 
     public function setSlug($slug);
     public function getSlug();
-    public function fixSlug();
 
     public function setParent(CategoryInterface $parent = null);
     public function getParent();
+
+    public function getLevel();
+    public function setLevel($level);
 
     public function addChildren(CategoryInterface $children);
     public function removeChildren(CategoryInterface $children);
@@ -39,7 +41,5 @@ interface CategoryInterface extends SeoAbleInterface
     public function getPosts();
     public function getPublishedPosts();
     public function getTotal();
-
-    public function setUpdated();
     public function getRoot();
 }
