@@ -38,10 +38,15 @@ class Tracker
     {
         $class = get_class($object);
         $identifier = $this->getIdentifier($class);
+        $identifierValue = $this->propertyAccess->getValue($object, $identifier);
+
+        if ($identifierValue === null) {
+            return;
+        }
 
         $visit = new $this->visitClass;
         $visit->setClass(get_class($object));
-        $visit->setIdentifier($this->propertyAccess->getValue($object, $identifier));
+        $visit->setIdentifier($identifierValue);
 
         $this->manager->persist($visit);
         $this->manager->flush($visit);
