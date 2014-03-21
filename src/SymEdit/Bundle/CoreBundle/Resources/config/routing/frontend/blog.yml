@@ -1,3 +1,6 @@
+# @TODO: Maybe move this to the BlogBundle? It could be included
+# with a prefix or use the page controller. Doesn't need to be here
+
 blog:
     pattern: /
     defaults:
