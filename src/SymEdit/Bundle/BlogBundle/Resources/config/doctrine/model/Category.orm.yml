@@ -26,6 +26,7 @@ SymEdit\Bundle\BlogBundle\Model\Category:
         slug:
             type: string
             length: 255
+            nullable: true
             gedmo:
                 treePath:
                     appendId: false
