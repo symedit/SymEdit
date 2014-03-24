@@ -20,9 +20,8 @@ use Symfony\Component\Routing\RouteCollection;
  */
 class ControllerLoader extends AnnotatedRouteControllerLoader
 {
-
     protected $pageControllerLoader;
-    protected $controllerAnnotationClass = 'Isometriks\\Bundle\\SymEditBundle\\Annotation\\PageController';
+    protected $controllerAnnotationClass = 'SymEdit\\Bundle\\CoreBundle\\Annotation\\PageController';
 
     /**
      * Constructor.
@@ -50,5 +49,4 @@ class ControllerLoader extends AnnotatedRouteControllerLoader
 
         return $collection;
     }
-
 }
