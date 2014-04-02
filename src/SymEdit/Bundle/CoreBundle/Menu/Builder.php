@@ -84,14 +84,6 @@ class Builder
         }
 
         /**
-         * Dispatch Menu Event
-         * Want site / extensions to be last so fill in here
-         */
-        $event = new MenuEvent($menu, 'symedit_admin');
-        $this->eventDispatcher->dispatch(Events::MENU_VIEW, $event);
-
-        
-        /**
          * Site
          */
         $settings = $this->context->isGranted('ROLE_ADMIN_SETTING');
@@ -114,9 +106,17 @@ class Builder
             }
         }
 
+        /**
+         * Dispatch Menu Event
+         * Want site / extensions to be last so fill in here
+         */
+        $event = new MenuEvent($menu, 'symedit_admin');
+        $this->eventDispatcher->dispatch(Events::MENU_VIEW, $event);
 
         /**
          * Extensions
+         *
+         * @TODO: Maybe move this to a listener?
          */
         $validExtensions = array_filter($this->extensions, function($extension) {
             return !isset($extension['role']) || $this->context->isGranted($extension['role']);

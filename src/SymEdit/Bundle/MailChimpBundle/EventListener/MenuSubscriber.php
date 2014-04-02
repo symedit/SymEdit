@@ -49,9 +49,11 @@ class MenuSubscriber implements EventSubscriberInterface
             return;
         }
 
+        /*
         $site->addChild('MailChimp', array(
             'icon' => 'envelope',
             'route' => 'symedit_mailchimp_dashboard',
         ));
+         */
     }
 }
