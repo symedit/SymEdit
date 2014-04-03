@@ -87,14 +87,20 @@ class AdminProfileType extends BaseType
         $summary = $builder->create('summary', 'tab', array(
             'label' => 'Summary',
             'inherit_data' => true,
+            'horizontal' => false,
+            'attr' => array(
+                'class' => 'full',
+            ),
         ));
 
         $summary
             ->add('summary', 'textarea', array(
                     'required' => false,
+                    'label_render' => false,
                     'attr' => array(
                         'class' => 'wysiwyg-editor',
                         'style' => 'min-height: 300px',
+                        'placeholder' => 'User Summary...',
                     ),
                     'property_path' => 'profile.summary',
               ));
@@ -102,14 +108,20 @@ class AdminProfileType extends BaseType
         $biography = $builder->create('biography', 'tab', array(
             'label' => 'Biography',
             'inherit_data' => true,
+            'horizontal' => false,
+            'attr' => array(
+                'class' => 'full',
+            ),
         ));
 
         $biography
             ->add('biography', 'textarea', array(
                 'required' => false,
+                'label_render' => false,
                 'attr' => array(
                     'class' => 'wysiwyg-editor',
                     'style' => 'min-height: 500px',
+                    'placeholder' => 'User Biography...',
                 ),
                 'property_path' => 'profile.biography',
             ));

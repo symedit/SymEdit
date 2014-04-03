@@ -4,10 +4,10 @@
         <title>{% block title %}SymEdit{% endblock %}</title>
         {% block stylesheets %}
         {% stylesheets
+            'bundles/symedit/redactor/redactor.css'
             '@SymEditBundle/Resources/less/admin/bootstrap/bootstrap.less'
             '@SymEditBundle/Resources/less/admin/admin.less'
             '@SymEditBundle/Resources/less/admin/override.less'
-            'bundles/symedit/redactor/redactor.css'
             filter="cssrewrite" %}
         <link rel="stylesheet" href="{{ asset_url }}" />
         {% endstylesheets %}

@@ -48,6 +48,10 @@ body {
     font-size: 13px;
 }
 
+body, html {
+    height: 100%;
+}
+
 h1, h2, h3, h4, h5, h6 {
     font-family: @sans_serif;
 
@@ -113,8 +117,44 @@ img {
 }
 
 #content {
-  margin-top: 26px;
-  padding-bottom: 40px;
+
+    padding-top: 30px;
+
+    .tab-pane {
+        margin-top: 30px;
+        margin-left: 30px;
+
+        &.full {
+            margin-top: 0;
+            margin-left: 0;
+
+            .form-group {
+                margin-bottom: 0;
+            }
+        }
+    }
+
+    &.has-sidebar {
+
+        padding-top: 0;
+
+        .form-group {
+            margin-left: 0;
+            margin-right: 0;
+        }
+
+        > .row, > form > .row {
+            margin-right: 0;
+        }
+
+        .tab-content {
+            margin-left: -3px;
+        }
+
+        #tab-content {
+            padding-right: 0;
+        }
+    }
 }
 
 .well .title {
@@ -162,11 +202,38 @@ i[class^="icon-"], i[class*=" icon-"] {
 
 #choose-widget {
     a.thumbnail {
+        color: @dark_gray;
+        .rounded(4px);
+        padding: 20px;
         margin-bottom: 10px;
 
         &:hover {
+            .transition();
             text-decoration: none;
+            background-color: @blue;
+            color: @white;
+            border-color: @black;
+
+            i {
+                background-color: @white;
+                color: @blue;
+            }
         }
+    }
+
+    i {
+        display: block;
+        float: left;
+        margin-right: 20px;
+        width: 40px;
+        height: 40px;
+        line-height: 39px;
+        background-color: @blue;
+        text-align: center;
+        color: @white;
+        position: relative;
+        top: -10px;
+        .rounded(20px);
     }
 }
 
@@ -230,11 +297,10 @@ i[class^="icon-"], i[class*=" icon-"] {
 #sidebar {
     background-color: darken(@dark_gray, 10%);
     padding: 100px 0 20px 0;
-    width: 200px;
     position: fixed;
-    top: 0;
-    left: 0;
     bottom: 0;
+    left: 0;
+    top: 0;
 
     .nav {
         li {
@@ -342,6 +408,14 @@ i[class^="icon-"], i[class*=" icon-"] {
 // Redactor Fixes
 iframe {
   margin-left: 0 !important;
+}
+
+.redactor_toolbar {
+    background-color: darken(@dark_gray, 10%);
+
+    li a {
+        color: #fff;
+    }
 }
 
 .redactor_tab label, #redactor_modal label {

@@ -76,12 +76,15 @@ class PostType extends AbstractType
         $summary = $builder->create('summary', 'tab', array(
             'inherit_data' => true,
             'label' => 'Summary',
+            'horizontal' => false,
             'icon' => 'file',
+            'attr' => array(
+                'class' => 'full',
+            ),
         ));
 
         $summary
             ->add('summary', 'textarea', array(
-                'horizontal' => false,
                 'label_render' => false,
                 'attr' => array(
                     'class' => 'wysiwyg-editor',
@@ -96,11 +99,14 @@ class PostType extends AbstractType
             'inherit_data' => true,
             'label' => 'Content',
             'icon' => 'file',
+            'horizontal' => false,
+            'attr' => array(
+                'class' => 'full',
+            ),
         ));
 
         $content
             ->add('content', 'textarea', array(
-                'horizontal' => false,
                 'label_render' => false,
                 'attr' => array(
                     'class' => 'wysiwyg-editor',

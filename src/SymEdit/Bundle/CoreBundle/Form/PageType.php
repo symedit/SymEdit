@@ -100,7 +100,9 @@ class PageType extends AbstractType
         ));
 
         $seo
-            ->add('seo', 'symedit_seo')
+            ->add('seo', 'symedit_seo', array(
+                'horizontal_label_offset_class' => '',
+            ))
             ->add('crawl', 'checkbox', array(
                 'required' => false,
                 'help_block' => 'admin.page.crawl.help',
@@ -111,6 +113,10 @@ class PageType extends AbstractType
             'label' => 'admin.page.tabs.summary',
             'icon' => 'file',
             'inherit_data' => true,
+            'horizontal' => false,
+            'attr' => array(
+                'class' => 'full',
+            ),
         ));
 
         $summary
@@ -118,10 +124,10 @@ class PageType extends AbstractType
                 'attr' => array(
                     'class' => 'wysiwyg-editor',
                     'style' => 'height: 250px',
+                    'placeholder' => 'Page Summary...',
                  ),
                 'label' => 'admin.page.summary',
                 'required' => false,
-                'horizontal' => false,
                 'label_render' => false,
             ));
 
@@ -129,6 +135,10 @@ class PageType extends AbstractType
             'label' => 'admin.page.tabs.content',
             'icon' => 'file',
             'inherit_data' => true,
+            'horizontal' => false,
+            'attr' => array(
+                'class' => 'full',
+            ),
         ));
 
         $content
@@ -136,11 +146,10 @@ class PageType extends AbstractType
                 'attr' => array(
                     'class' => 'wysiwyg-editor',
                     'style' => 'height:500px',
-                    'placeholder' => 'Page content here...',
+                    'placeholder' => 'Page Content',
                 ),
                 'required' => false,
                 'label' => 'admin.page.content',
-                'horizontal' => false,
                 'label_render' => false,
             ));
 
