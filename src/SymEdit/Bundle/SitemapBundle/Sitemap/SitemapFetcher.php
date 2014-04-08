@@ -18,6 +18,7 @@ use Symfony\Component\Routing\RouterInterface;
 class SitemapFetcher extends ContainerAware
 {
     protected $propertyAccessor;
+    protected $routeCollection;
 
     public function fetchEntries($className, array $parameters)
     {
@@ -48,7 +49,7 @@ class SitemapFetcher extends ContainerAware
             $entry = $this->makeEntry($object, $parameters);
 
             if ($entry !== null) {
-                $routes[] = $this->makeEntry($object, $parameters);
+                $routes[] = $entry;
             }
         }
 
@@ -151,9 +152,7 @@ class SitemapFetcher extends ContainerAware
 
     protected function hasRoute($routeName)
     {
-        $routes = $this->getRouter()->getRouteCollection()->all();
-
-        return array_key_exists($routeName, $routes);
+        return array_key_exists($routeName, $this->getRouteCollection());
     }
 
     /**
@@ -162,6 +161,15 @@ class SitemapFetcher extends ContainerAware
     protected function getRouter()
     {
         return $this->container->get('router');
+    }
+
+    protected function getRouteCollection()
+    {
+        if ($this->routeCollection === null) {
+            $this->routeCollection = $this->getRouter()->getRouteCollection()->all();
+        }
+
+        return $this->routeCollection;
     }
 
     protected function getPropertyAccessor()
