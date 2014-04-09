@@ -1,4 +1,5 @@
-<div itemscope itemtype="http://schema.org/LocalBusiness">
+{% set type = Settings.seo.business_type is defined ? Settings.seo.business_type : 'LocalBusiness' %}
+<div itemscope itemtype="http://schema.org/{{ type }}">
     <address>
         {% set company = Settings.company %}
         {% if company.name is not empty %}<strong>{{ company.name }}</strong><br>{% endif %}
