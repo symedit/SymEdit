@@ -19,13 +19,14 @@
 
     <div class="container">
     {% block content %}
+        {% set type = Settings.seo.business_type is defined ? Settings.seo.business_type : 'LocalBusiness' %}
         <div class="row">
-            <div class="col-md-6">
+            <div class="col-md-6" itemscope itemtype="http://schema.org/{{ type }}">
                 <h4>Our Contact Details</h4>
                 <address>
                     <p>
                         <strong>{{ Settings.company.name }}</strong> <br>
-                        {{ Settings.company.address|nl2br }}
+                        <span itemprop="address">{{ Settings.company.address|nl2br }}</span>
                     </p>
 
                     <p>
@@ -33,21 +34,21 @@
                         <span class="circle-icon">
                             <i class="icon-phone"></i>
                         </span>
-                        {{ Settings.company.phone }} <br>
+                        <span itemprop="telephone">{{ Settings.company.phone }}</span> <br>
                         {% endif %}
 
                         {% if Settings.company.fax %}
                         <span class="circle-icon">
                             <i class="icon-book"></i>
                         </span>
-                        {{ Settings.company.fax }} <br>
+                        <span itemprop="faxNumber">{{ Settings.company.fax }}</span> <br>
                         {% endif %}
 
                         {% if Settings.company.email %}
                         <span class="circle-icon">
                             <i class="icon-envelope"></i>
                         </span>
-                        <a href="mailto:{{ Settings.company.email }}">{{ Settings.company.email }}</a>
+                        <a itemprop="email" href="mailto:{{ Settings.company.email }}">{{ Settings.company.email }}</a>
                         {% endif %}
                     </p>
                 </address>
