@@ -1,0 +1,34 @@
+<?xml version="1.0" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <parameters>
+        <parameter key="symedit_settings.file_locator.class">Symfony\Component\Config\FileLocator</parameter>
+        <parameter key="symedit_settings.loader_resolver.class">Symfony\Component\Config\Loader\LoaderResolver</parameter>
+        <parameter key="symedit_settings.delegating_loader.class">Symfony\Component\Config\Loader\DelegatingLoader</parameter>
+        <parameter key="symedit_settings.loader.yaml.class">SymEdit\Bundle\SettingsBundle\Loader\YamlSettingsLoader</parameter>
+    </parameters>
+
+    <services>
+        <!-- File Locator -->
+        <service id="symedit_settings.file_locator" class="%symedit_settings.file_locator.class%" public="false" />
+
+        <!-- Loader Resolver -->
+        <service id="symedit_settings.loader_resolver" class="%symedit_settings.loader_resolver.class%">
+            <argument type="collection" />
+        </service>
+
+        <!-- Delegating Loader -->
+        <service id="symedit_settings.loader" class="%symedit_settings.delegating_loader.class%">
+            <argument type="service" id="symedit_settings.loader_resolver" />
+        </service>
+
+        <!-- Yaml Loader -->
+        <service id="symedit_settings.loader.yaml" class="%symedit_settings.loader.yaml.class%" public="false">
+            <argument type="service" id="symedit_settings.file_locator" />
+            <tag name="symedit_settings.settings_loader" />
+        </service>
+    </services>
+</container>

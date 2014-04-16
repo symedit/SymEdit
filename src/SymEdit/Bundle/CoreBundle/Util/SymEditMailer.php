@@ -50,15 +50,10 @@ class SymEditMailer extends TwigSwiftMailer
     protected function sendMessage($templateName, $context, $fromEmail, $toEmail, array $options = array())
     {
         /**
-         * Insert Settings into blocks
-         */
-        $context['Settings'] = $this->settings;
-
-        /**
          * Overwrite the fromEmail, you COULD change this with $options though..
          */
         $fromEmail = array(
-            $this->fromEmail => $this->settings['company']['name'],
+            $this->fromEmail => $this->settings->get('company.name'),
         );
 
         $template = $this->twig->loadTemplate($templateName);

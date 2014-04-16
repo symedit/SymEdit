@@ -27,13 +27,6 @@ class Configuration implements ConfigurationInterface
         $treeBuilder = new TreeBuilder();
         $rootNode = $treeBuilder->root('symedit_settings');
 
-        $rootNode->children()
-            ->arrayNode('twig')->addDefaultsIfNotSet()->children()
-                ->booleanNode('global')->defaultFalse()->end()
-                ->scalarNode('global_variable')->defaultValue('Settings')->end()
-            ->end()
-        ->end();
-
         return $treeBuilder;
     }
 }

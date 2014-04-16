@@ -110,7 +110,6 @@ advanced:
     role: ROLE_SUPER_ADMIN
     settings:
         caching:
-            required: true
             type: choice
             options:
                 choices:

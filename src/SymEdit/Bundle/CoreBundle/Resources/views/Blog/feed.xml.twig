@@ -6,7 +6,7 @@
         <link>{{ url('blog') }}</link>
         <atom:link href="{{ url('blog_rss') }}" rel="self" type="application/rss+xml" />
         <description>{{ SEO.description|default(Page.title) }}</description>
-        <copyright>{{ Settings.company.name }} {{ 'now'|date('Y') }}</copyright>
+        <copyright>{{ symedit_settings_get('company.name') }} {{ 'now'|date('Y') }}</copyright>
         <lastBuildDate>{{ 'now'|date('r') }}</lastBuildDate>
         {% for post in posts %}
         <item>

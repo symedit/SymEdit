@@ -1,10 +1,10 @@
-{% set enabled = Settings.webmaster.google_analytics_enabled %}
-{% set code = Settings.webmaster.google_analytics %}
+{% set enabled = symedit_settings_get('webmaster.google_analytics_enabled') %}
+{% set code = symedit_settings_get('webmaster.google_analytics') %}
 
 {% if code is not empty and enabled %}
 <script type="text/javascript">
   var _gaq = _gaq || [];
-  _gaq.push(['_setAccount', '{{ Settings.webmaster.google_analytics }}']);
+  _gaq.push(['_setAccount', '{{ symedit_settings_get('webmaster.google_analytics') }}']);
   _gaq.push(['_trackPageview']);
 
   (function() {

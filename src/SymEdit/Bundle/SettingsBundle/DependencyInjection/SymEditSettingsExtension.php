@@ -33,50 +33,34 @@ class SymEditSettingsExtension extends Extension
         $loader = new Loader\XmlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
 
         $bundles = $container->getParameter('kernel.bundles');
+        $settingsFiles = $this->getSettingsFiles($bundles, array('yml', 'xml'));
 
-        $yamlFiles = $this->getYamlSettingsFiles($bundles);
-        $xmlFiles = $this->getXmlSettingsFiles($bundles);
-
-        $container->setParameter('symedit_settings.loader.files.yaml', $yamlFiles);
-        $container->setParameter('symedit_settings.loader.files.xml', $xmlFiles);
-
+        // Load Services
         $loader->load('services.xml');
 
-        // Check for Twig global variable
-        $twig = $config['twig'];
+        // Set settings files
+        $settingsDefinition = $container->getDefinition('symedit_settings.settings');
+        $settingsDefinition->replaceArgument(1, $settingsFiles);
 
-        $container->setParameter('symedit_settings.twig.extension.global', $twig['global']);
+        // Load Loaders
+        $loader->load('loader.xml');
 
-        if($twig['global']){
-            $container->setParameter('symedit_settings.twig.extension.global_variable', $twig['global_variable']);
-            $loader->load('twig.xml');
-        }
+        // Load Twig Extension
+        $loader->load('twig.xml');
     }
 
-    private function getYamlSettingsFiles($bundles)
+    private function getSettingsFiles($bundles, array $extensions = array())
     {
         $files = array();
         foreach($bundles as $bundle){
             $class = new \ReflectionClass($bundle);
             $dir = dirname($class->getFileName());
-            $file = $dir.'/Resources/config/settings.yml';
-            if(file_exists($file)){
-                $files[] = $file;
-            }
-        }
 
-        return $files;
-    }
-
-    private function getXmlSettingsFiles($bundles)
-    {
-        $files = array();
-        foreach($bundles as $bundle){
-            $class = new \ReflectionClass($bundle);
-            $dir = dirname($class->getFileName());
-            $file = $dir.'/Resources/config/settings.xml';
-            if(file_exists($file)){
-                $files[] = $file;
+            foreach ($extensions as $extension) {
+                $file = $dir.'/Resources/config/settings.' . $extension;
+                if(file_exists($file)){
+                    $files[] = $file;
+                }
             }
         }
 
