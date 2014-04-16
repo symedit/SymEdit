@@ -17,7 +17,16 @@
                 #}
             </div>
          {% endfor %}
-     </div>
+    </div>
+
+    {% if controls|default(false) %}
+    <a class="left carousel-control" href="#slider-{{ gallery.slug }}" data-slide="prev">
+        {{ mopa_bootstrap_icon('chevron-left icon-prev') }}
+    </a>
+    <a class="right carousel-control" href="#slider-{{ gallery.slug }}" data-slide="next">
+        {{ mopa_bootstrap_icon('chevron-right icon-next') }}
+    </a>
+    {% endif %}
 </div>
 {% if thumbnails|default(false) %}
 <div class="row">

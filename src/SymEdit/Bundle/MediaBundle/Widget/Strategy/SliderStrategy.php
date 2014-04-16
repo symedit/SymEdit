@@ -37,6 +37,7 @@ class SliderStrategy extends AbstractWidgetStrategy
             'gallery' => $gallery,
             'thumbnails' => $widget->getOption('thumbnails'),
             'stretch' => $widget->getOption('stretch'),
+            'controls' => $widget->getOption('controls'),
         ));
     }
 
@@ -45,6 +46,7 @@ class SliderStrategy extends AbstractWidgetStrategy
         $widget->setOptions(array(
             'thumbnails' => false,
             'stretch' => false,
+            'controls' => false,
         ));
     }
 
@@ -64,6 +66,10 @@ class SliderStrategy extends AbstractWidgetStrategy
             ))
             ->add('stretch', 'checkbox', array(
                 'label' => 'Stretch',
+                'required' => false,
+            ))
+            ->add('controls', 'checkbox', array(
+                'label' => 'Show Controls',
                 'required' => false,
             ))
         ;

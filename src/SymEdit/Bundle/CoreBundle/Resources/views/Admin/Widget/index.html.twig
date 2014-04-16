@@ -28,25 +28,16 @@
 
         <div class="row widget-area-sortable" data-area="{{ area.area }}">
         {% for widget in area.widgets %}
-            <div class="col-md-3 widget" data-id="{{ widget.id }}">
+            <div class="col-sm-5 widget" data-id="{{ widget.id }}">
                 <a href="{{ path('admin_widget_update', {id:widget.id}) }}" class="thumbnail">
                     <h4>
-                        {{ widget.title|default('(No Title)') }} <br>
+                        {{ widget.title|default('[No Title]') }}
+                        <small>({{ widget.name }})</small> <br>
                         <small>{{ widget.strategy.description }}</small>
                     </h4>
                 </a>
             </div>
         {% endfor %}
-
-            {#<div class="col-md-3">
-                <a href="#" class="thumbnail">
-                    <h4>
-                        <i class="icon-plus circle pull-left"></i>
-                        Add Widget <br>
-                        <small>to "{{ area.area }}"</small>
-                    </h4>
-                </a>
-            </div>#}
         </div>
     </section>
     {% endfor %}
