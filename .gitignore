@@ -4,3 +4,6 @@ project.xml
 /headers.php
 /license.txt
 /TODO
+composer.phar
+composer.lock
+/vendor/
