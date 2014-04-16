@@ -9,31 +9,45 @@
  * file that was distributed with this source code.
  */
 
-namespace SymEdit\Bundle\SettingsBundle\Twig\Extension; 
+namespace SymEdit\Bundle\SettingsBundle\Twig\Extension;
 
-use SymEdit\Bundle\SettingsBundle\Model\Settings; 
+use SymEdit\Bundle\SettingsBundle\Model\Settings;
 
 class SettingsBundleExtension extends \Twig_Extension
 {
-    private $settings; 
-    private $global_variable; 
-    
-    public function __construct(Settings $settings, $global_variable)
+    private $settings;
+
+    public function __construct(Settings $settings)
     {
-        $this->settings = $settings; 
-        $this->global_variable = $global_variable; 
+        $this->settings = $settings;
     }
-    
-    public function getGlobals()
+
+    public function getFunctions()
     {
         return array(
-            $this->global_variable => $this->settings->getSettings(),   
+            new \Twig_SimpleFunction('symedit_settings_get', array($this, 'getSetting')),
+            new \Twig_SimpleFunction('symedit_settings_has', array($this, 'hasSetting')),
+            new \Twig_SimpleFunction('symedit_settings_default', array($this, 'defaultSetting')),
         );
     }
-    
-    
+
+    public function getSetting($offset)
+    {
+        return $this->settings->get($offset);
+    }
+
+    public function hasSetting($offset)
+    {
+        return $this->settings->has($offset);
+    }
+
+    public function defaultSetting($offset, $default = null)
+    {
+        return $this->hasSetting($offset) ? $this->getSetting($offset) : $default;
+    }
+
     public function getName()
     {
-        return 'SettingsBundleExtension'; 
+        return 'SettingsBundleExtension';
     }
 }

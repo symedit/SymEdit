@@ -7,11 +7,9 @@
     <parameters>
         <parameter key="symedit_settings.factory.class">SymEdit\Bundle\SettingsBundle\Factory\ServiceFactory</parameter>
         <parameter key="symedit_settings.cache_folder">symedit_settings</parameter>
-        <parameter key="symedit_settings.loader.loader_chain.class">SymEdit\Bundle\SettingsBundle\Loader\LoaderChain</parameter>
-        <parameter key="symedit_settings.loader.yaml_files_loader.class">SymEdit\Bundle\SettingsBundle\Loader\YamlFilesLoader</parameter>
-        <parameter key="symedit_settings.loader.xml_files_loader.class">SymEdit\Bundle\SettingsBundle\Loader\XmlFilesLoader</parameter>
         <parameter key="symedit_settings.settings.class">SymEdit\Bundle\SettingsBundle\Model\Settings</parameter>
         <parameter key="symedit_settings.form.settings.class">SymEdit\Bundle\SettingsBundle\Form\Type\SettingsType</parameter>
+        <parameter key="symedit_settings.event_listener.request.class">SymEdit\Bundle\SettingsBundle\EventListener\RequestListener</parameter>
     </parameters>
 
     <services>
@@ -19,37 +17,23 @@
             <argument type="service" id="symedit_settings.settings" />
         </service>
 
-        <service id="symedit_settings.loader.loader_chain" class="%symedit_settings.loader.loader_chain.class%">
-            <argument type="collection">
-                <argument type="service" id="symedit_settings.loader.yaml_files_loader" />
-                <!--<argument type="service" id="symedit_settings.loader.xml_files_loader" />-->
-            </argument>
-        </service>
-
-        <service id="symedit_settings.loader.yaml_files_loader" class="%symedit_settings.loader.yaml_files_loader.class%">
-            <argument>%symedit_settings.loader.files.yaml%</argument>
-        </service>
-
         <service id="symedit_settings.settings" class="%symedit_settings.settings.class%">
-            <argument type="service" id="symedit_settings.loader.loader_chain" />
+            <argument type="service" id="symedit_settings.loader" />
+            <argument type="collection" />
             <argument>%kernel.root_dir%</argument>
             <argument>%kernel.cache_dir%/%symedit_settings.cache_folder%</argument>
             <argument>%kernel.debug%</argument>
         </service>
-        <!--
-        <service id="symedit_settings.loader.xml_files_loader" class="%symedit_settings.loader.xml_files_loader.class%">
-            <argument>%symedit_settings.loader.files.xml%</argument>
-        </service>
-        -->
 
-
+        <!-- Settings Form Type -->
         <service id="form.type.settings" class="%symedit_settings.form.settings.class%">
             <argument type="service" id="symedit_settings.settings" />
             <argument type="service" id="security.context" />
             <tag name="form.type" alias="settings" />
         </service>
 
-        <service id="symedit_settings.event_listener.request" class="SymEdit\Bundle\SettingsBundle\EventListener\RequestListener">
+        <!-- Request Settings Listener -->
+        <service id="symedit_settings.event_listener.request" class="%symedit_settings.event_listener.request.class%">
             <argument type="service" id="symedit_settings.settings" />
             <tag name="kernel.event_listener" event="kernel.request" />
         </service>

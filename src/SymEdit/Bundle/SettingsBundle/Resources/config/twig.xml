@@ -9,9 +9,8 @@
     </parameters>
 
     <services>
-        <service id="symedit_settings.twig.extension" class="%symedit_settings.twig.extension.class%">
+        <service id="symedit_settings.twig.extension" class="%symedit_settings.twig.extension.class%" public="false">
             <argument type="service" id="symedit_settings.settings" />
-            <argument>%symedit_settings.twig.extension.global_variable%</argument>
             <tag name="twig.extension" />
         </service>
     </services>

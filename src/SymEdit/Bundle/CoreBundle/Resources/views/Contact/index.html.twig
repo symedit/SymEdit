@@ -19,36 +19,37 @@
 
     <div class="container">
     {% block content %}
-        {% set type = Settings.seo.business_type is defined ? Settings.seo.business_type : 'LocalBusiness' %}
+        {% set type = symedit_settings_default('seo.business_type', 'LocalBusiness') %}
         <div class="row">
             <div class="col-md-6" itemscope itemtype="http://schema.org/{{ type }}">
                 <h4>Our Contact Details</h4>
+                {% set company = symedit_settings_get('company') %}
                 <address>
                     <p>
-                        <strong>{{ Settings.company.name }}</strong> <br>
-                        <span itemprop="address">{{ Settings.company.address|nl2br }}</span>
+                        <strong>{{ company.name }}</strong> <br>
+                        <span itemprop="address">{{ company.address|nl2br }}</span>
                     </p>
 
                     <p>
-                        {% if Settings.company.phone %}
+                        {% if company.phone is not empty %}
                         <span class="circle-icon">
                             <i class="icon-phone"></i>
                         </span>
-                        <span itemprop="telephone">{{ Settings.company.phone }}</span> <br>
+                        <span itemprop="telephone">{{ company.phone }}</span> <br>
                         {% endif %}
 
-                        {% if Settings.company.fax %}
+                        {% if company.fax is not empty %}
                         <span class="circle-icon">
                             <i class="icon-book"></i>
                         </span>
-                        <span itemprop="faxNumber">{{ Settings.company.fax }}</span> <br>
+                        <span itemprop="faxNumber">{{ company.fax }}</span> <br>
                         {% endif %}
 
-                        {% if Settings.company.email %}
+                        {% if company.email is not empty %}
                         <span class="circle-icon">
                             <i class="icon-envelope"></i>
                         </span>
-                        <a itemprop="email" href="mailto:{{ Settings.company.email }}">{{ Settings.company.email }}</a>
+                        <a itemprop="email" href="mailto:{{ company.email }}">{{ company.email }}</a>
                         {% endif %}
                     </p>
                 </address>

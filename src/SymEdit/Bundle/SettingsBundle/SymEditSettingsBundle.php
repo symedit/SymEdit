@@ -11,11 +11,18 @@
 
 namespace SymEdit\Bundle\SettingsBundle;
 
+use SymEdit\Bundle\SettingsBundle\DependencyInjection\Compiler\SettingsLoaderPass;
 use SymEdit\Bundle\SettingsBundle\DependencyInjection\SymEditSettingsExtension;
+use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 
 class SymEditSettingsBundle extends Bundle
 {
+    public function build(ContainerBuilder $container)
+    {
+        $container->addCompilerPass(new SettingsLoaderPass());
+    }
+
     public function getContainerExtension()
     {
         return new SymEditSettingsExtension();

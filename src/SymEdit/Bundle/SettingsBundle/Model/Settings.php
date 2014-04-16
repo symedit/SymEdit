@@ -11,53 +11,94 @@
 
 namespace SymEdit\Bundle\SettingsBundle\Model;
 
-use SymEdit\Bundle\SettingsBundle\Loader\LoaderInterface;
-use SymEdit\Bundle\SettingsBundle\Loader\ConfigData;
 use SymEdit\Bundle\SettingsBundle\Exception\InvalidSettingException;
+use SymEdit\Bundle\SettingsBundle\Loader\ConfigData;
+use SymEdit\Bundle\SettingsBundle\Loader\SettingsConfiguration;
 use Symfony\Component\Config\ConfigCache;
+use Symfony\Component\Config\Definition\Processor;
+use Symfony\Component\Config\Loader\LoaderInterface;
+use Symfony\Component\Config\Resource\FileResource;
 use Symfony\Component\Yaml\Yaml;
 
 class Settings implements \ArrayAccess
 {
     private $loader;
-    private $configData;
+    private $files;
     private $settings;
-    private $root_dir;
-    private $cache_dir;
+    private $rootDir;
+    private $cacheDir;
     private $debug;
+    private $configData;
 
-    public function __construct(LoaderInterface $loader, $root_dir, $cache_dir, $debug)
+    public function __construct(LoaderInterface $loader, array $files, $rootDir, $cacheDir, $debug)
     {
         $this->loader = $loader;
-        $this->root_dir = $root_dir;
-        $this->cache_dir = $cache_dir;
+        $this->files = $files;
+        $this->rootDir = $rootDir;
+        $this->cacheDir = $cacheDir;
         $this->debug = $debug;
     }
 
     /**
-     * @return \SymEdit\Bundle\SettingsBundle\Loader\ConfigData
+     * @return ConfigData
      */
     public function getConfigData()
     {
         if ($this->configData === null) {
-            $this->configData = new ConfigData();
-            $this->loader->loadSettingsData($this->configData);
+            $this->configData = $this->loadConfigData();
         }
 
         return $this->configData;
     }
 
+    private function loadConfigData()
+    {
+        $cachePath = $this->cacheDir . '/settings_config.php';
+        $configCache = new ConfigCache($cachePath, $this->debug);
+
+        if (!$configCache->isFresh()) {
+            $resources = array();
+            $configs = array();
+
+            foreach ($this->files as $file) {
+                $configs[] = $this->loader->load($file);
+                $resources[] = new FileResource($file);
+            }
+
+            $processor = new Processor();
+            $configuration = new SettingsConfiguration();
+
+            $config = $processor->processConfiguration($configuration, $configs);
+
+            $configCache->write(sprintf('<?php return %s;', var_export($config, true)), $resources);
+        }
+
+        return require $cachePath;
+    }
+
     public function getDefaultValues()
     {
-        return $this->getConfigData()->flatten();
+        $configData = $this->getConfigData();
+        $settingsData = array();
+
+        foreach ($configData as $groupName => $groupData) {
+            $settingsData[$groupName] = array();
+
+            foreach ($groupData['settings'] as $settingName => $settingData) {
+                $settingsData[$groupName][$settingName] = array_key_exists('default', $settingData) ? $settingData['default'] : null;
+            }
+        }
+
+        return $settingsData;
     }
 
     private function getMergedSettings()
     {
-        $cache = new ConfigCache($this->cache_dir . '/settings.php', $this->debug);
+        $cache = new ConfigCache($this->cacheDir . '/settings.php', $this->debug);
 
         if (!$cache->isFresh()) {
-            $file = sprintf('%s/config/settings.yml', $this->root_dir);
+
+            $file = sprintf('%s/config/settings.yml', $this->rootDir);
             $settings = is_file($file) && is_readable($file) ? Yaml::parse($file) : array();
 
             if (!is_array($settings)) {
@@ -82,11 +123,16 @@ class Settings implements \ArrayAccess
 
     public function save()
     {
-        file_put_contents($this->root_dir . '/config/settings.yml', Yaml::dump($this->getSettings()));
+        file_put_contents($this->rootDir . '/config/settings.yml', Yaml::dump($this->getSettings()));
+
+        // List of cache files to delete
+        $cacheFiles = array('settings_config.php', 'settings.php');
 
         // Remove cache file
-        if (file_exists($file = $this->cache_dir . '/settings.php')) {
-            unlink($file);
+        foreach ($cacheFiles as $file) {
+            if (file_exists($fileName = $this->cacheDir . '/' . $file)) {
+                unlink($fileName);
+            }
         }
 
         // Warm up again
