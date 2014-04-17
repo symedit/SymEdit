@@ -109,6 +109,7 @@ class Builder
         /**
          * Dispatch Menu Event
          * Want site / extensions to be last so fill in here
+         * @TODO: Change menu events to be a specific event, not just a name
          */
         $event = new MenuEvent($menu, 'symedit_admin');
         $this->eventDispatcher->dispatch(Events::MENU_VIEW, $event);
