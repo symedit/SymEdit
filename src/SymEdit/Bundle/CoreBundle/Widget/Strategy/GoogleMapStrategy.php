@@ -53,6 +53,6 @@ class GoogleMapStrategy extends AbstractWidgetStrategy
 
     public function getDescription()
     {
-        return 'Google Map';
+        return 'core.google_map';
     }
 }

@@ -74,13 +74,13 @@ class SubscribeStrategy extends AbstractWidgetStrategy
         ;
     }
 
-    public function getDescription()
-    {
-        return 'MailChimp Subscribe';
-    }
-
     public function getName()
     {
         return 'mailchimp_subscribe';
+    }
+
+    public function getDescription()
+    {
+        return 'mailchimp.subscribe';
     }
 }

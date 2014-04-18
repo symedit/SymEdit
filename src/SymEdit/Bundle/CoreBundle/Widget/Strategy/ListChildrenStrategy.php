@@ -39,6 +39,6 @@ class ListChildrenStrategy extends AbstractWidgetStrategy
 
     public function getDescription()
     {
-        return 'List Children';
+        return 'core.list_children';
     }
 }

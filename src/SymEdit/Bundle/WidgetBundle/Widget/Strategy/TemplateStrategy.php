@@ -47,6 +47,6 @@ class TemplateStrategy extends AbstractWidgetStrategy
 
     public function getDescription()
     {
-        return 'Template';
+        return 'widget.template';
     }
 }

@@ -82,6 +82,6 @@ class SliderStrategy extends AbstractWidgetStrategy
 
     public function getDescription()
     {
-        return 'Slider';
+        return 'media.slider';
     }
 }

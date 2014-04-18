@@ -58,6 +58,6 @@ class GalleryStrategy extends AbstractWidgetStrategy
 
     public function getDescription()
     {
-        return 'Image Gallery';
+        return 'media.gallery';
     }
 }

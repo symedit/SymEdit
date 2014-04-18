@@ -21,16 +21,6 @@ class HtmlStrategy extends AbstractWidgetStrategy
         return $widget->getOption('html');
     }
 
-    public function getName()
-    {
-        return 'html';
-    }
-
-    public function getDescription()
-    {
-        return 'Plain HTML';
-    }
-
     public function setDefaultOptions(WidgetInterface $widget)
     {
         $widget->setOptions(array(
@@ -48,5 +38,15 @@ class HtmlStrategy extends AbstractWidgetStrategy
                     'class' => 'wysiwyg-editor',
                 )
             ));
+    }
+
+    public function getName()
+    {
+        return 'html';
+    }
+
+    public function getDescription()
+    {
+        return 'widget.html';
     }
 }

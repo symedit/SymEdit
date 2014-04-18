@@ -36,6 +36,6 @@ class ContactInfoStrategy extends TemplateStrategy
 
     public function getDescription()
     {
-        return 'Basic Contact Information';
+        return 'core.contact_info';
     }
 }

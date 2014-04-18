@@ -47,6 +47,6 @@ class AddThisStrategy extends AbstractWidgetStrategy
 
     public function getDescription()
     {
-        return 'AddThis Social Sharing';
+        return 'widget.addthis';
     }
 }

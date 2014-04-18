@@ -67,6 +67,6 @@ class SubmenuStrategy extends AbstractWidgetStrategy
 
     public function getDescription()
     {
-        return 'Sub-Menu';
+        return 'core.submenu';
     }
 }
