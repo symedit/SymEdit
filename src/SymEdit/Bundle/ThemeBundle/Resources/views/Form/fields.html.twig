@@ -1,19 +1,32 @@
 {# Template Widget #}
 
-{% block template_widget %}
-<div class="layout-holder well">
-{% for template in templates %}
-    {% set layout = template.layout %}
-    <div class="layout-container" data-template-name="{{ template.key }}" data-content="{{ layout.description|default('(No Description)') }}" data-title="{{ layout.title|default(template.key) }}">
-        {% for row in layout.rows|default([['w'],['w'],['w']]) %}
-        <div class="r">
-            {% for col in row %}
-            <div class="{{ col }}"></div>
+{% macro template_list(templates, active) %}
+{% for key, template in templates %}
+
+    {% if template is iterable %}
+        <div>
+            <h3>{{ mopa_bootstrap_icon('folder-open') }} {{ key }}</h3>
+            {{ _self.template_list(template, active) }}
+            <br class="cf" />
+        </div>
+    {% else %}
+        {% set layout = template.layout %}
+        <div class="layout-container{% if active == template.key %} active {% endif %}" data-template-name="{{ template.key }}" data-content="{{ layout.description|default('(No Description)') }}" data-title="{{ layout.title|default(template.key) }}">
+            {% for row in layout.rows|default([['w'],['w'],['w']]) %}
+            <div class="r">
+                {% for col in row %}
+                <div class="{{ col }}"></div>
+                {% endfor %}
+            </div>
             {% endfor %}
         </div>
-        {% endfor %}
-    </div>
+    {% endif %}
 {% endfor %}
+{% endmacro %}
+
+{% block template_widget %}
+<div class="layout-holder well">
+    {{ _self.template_list(templates, form.vars.value) }}
 
     {{ block('hidden_widget') }}
 

@@ -24,9 +24,46 @@ class TemplateManager
         $this->loader = $loader;
     }
 
-    public function getTemplates()
+    public function getTemplates($directory = null)
     {
         return $this->getTemplateData()->getTemplates();
+    }
+
+    public function getTemplateTree($directory = null)
+    {
+        $tree = array();
+
+        $templates = $this->getTemplates($directory);
+        ksort($templates);
+
+        foreach ($templates as $template) {
+            $this->addToTree($tree, $template);
+        }
+
+        return $tree;
+    }
+
+    protected function addToTree(&$tree, TemplateInterface $template)
+    {
+        $location = &$tree;
+        $parts = explode('/', $template->getKey());
+
+        // Remove template name
+        array_pop($parts);
+
+        if (count($parts) === 0) {
+            array_unshift($parts, 'Default');
+        }
+
+        foreach ($parts as $part) {
+            if (!isset($location[$part])) {
+                $location[$part] = array();
+            }
+
+            $location = &$location[$part];
+        }
+
+        $location[$template->getKey()] = $template;
     }
 
     /**

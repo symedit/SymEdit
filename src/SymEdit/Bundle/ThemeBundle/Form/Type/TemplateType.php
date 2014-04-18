@@ -14,9 +14,11 @@ namespace SymEdit\Bundle\ThemeBundle\Form\Type;
 use SymEdit\Bundle\ThemeBundle\Model\LayoutManager;
 use SymEdit\Bundle\ThemeBundle\Model\TemplateManager;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\Form\FormEvent;
+use Symfony\Component\Form\FormEvents;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\Form\FormView;
-use Symfony\Component\OptionsResolver\Options;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
 class TemplateType extends AbstractType
@@ -37,23 +39,33 @@ class TemplateType extends AbstractType
         // The layout manager injects the layout if it finds one
         array_map(array($this->layoutManager, 'getLayout'), $templates);
 
-        // Sort by key so directories will be next to each other
-        ksort($templates);
+        $view->vars['templates'] = $this->templateManager->getTemplateTree($options['directory']);
+    }
 
-        $view->vars['templates'] = $templates;
+    public function buildForm(FormBuilderInterface $builder, array $options)
+    {
+        // Set the default value if none is set
+        $builder->addEventListener(FormEvents::PRE_SET_DATA, function(FormEvent $event) use ($options) {
+            if ($event->getData() === null) {
+                $event->setData($options['default_template']);
+            }
+        });
     }
 
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'empty_data' => 'base.html.twig',
+            'default_template' => 'base.html.twig',
             'directory' => 'Page',
+            'attr' => array(
+                'data-toggle' => 'template-target',
+            ),
         ));
     }
 
     public function getParent()
     {
-        return 'choice';
+        return 'hidden';
     }
 
     public function getName()
