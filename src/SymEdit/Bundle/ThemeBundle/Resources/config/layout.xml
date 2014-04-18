@@ -1,0 +1,43 @@
+<?xml version="1.0" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <parameters>
+        <parameter key="symedit_theme.layout.configuration.class">SymEdit\Bundle\ThemeBundle\Layout\LayoutConfiguration</parameter>
+        <parameter key="symedit_theme.layout.manager.class">SymEdit\Bundle\ThemeBundle\Model\LayoutManager</parameter>
+        <parameter key="symedit_theme.layout.loader.twig.class">SymEdit\Bundle\ThemeBundle\Layout\Loader\TwigLayoutLoader</parameter>
+        <parameter key="symedit_theme.layout.delegating_loader.class">Symfony\Component\Config\Loader\DelegatingLoader</parameter>
+        <parameter key="symedit_theme.layout.loader_resolver.class">Symfony\Component\Config\Loader\LoaderResolver</parameter>
+    </parameters>
+
+    <services>
+        <!-- Layout Configuration -->
+        <service id="symedit_theme.layout.configuration" class="%symedit_theme.layout.configuration.class%" public="false" />
+
+        <!-- Layout Manager -->
+        <service id="symedit_theme.layout.manager" class="%symedit_theme.layout.manager.class%">
+            <argument type="service" id="symedit_theme.layout.loader" />
+            <argument type="service" id="symedit_theme.layout.configuration" />
+        </service>
+
+        <!-- Loader Resolver -->
+        <service id="symedit_theme.layout.loader_resolver" class="%symedit_theme.layout.loader_resolver.class%" public="false">
+            <argument type="collection" />
+            <call method="addLoader">
+                <argument type="service" id="symedit_theme.layout.loader.twig" />
+            </call>
+        </service>
+
+        <!-- Delegating Loader -->
+        <service id="symedit_theme.layout.loader" class="%symedit_theme.layout.delegating_loader.class%">
+            <argument type="service" id="symedit_theme.layout.loader_resolver" />
+        </service>
+
+        <!-- Twig Loader -->
+        <service id="symedit_theme.layout.loader.twig" class="%symedit_theme.layout.loader.twig.class%" public="false">
+            <argument type="service" id="twig" />
+        </service>
+    </services>
+</container>

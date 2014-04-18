@@ -11,7 +11,7 @@
 
 namespace SymEdit\Bundle\ThemeBundle\Model;
 
-class Template
+class Template implements TemplateInterface
 {
     protected $key;
     protected $path;

@@ -9,7 +9,6 @@
         <parameter key="symedit_theme.theme.delegating_loader.class">Symfony\Component\Config\Loader\DelegatingLoader</parameter>
         <parameter key="symedit_theme.theme.loader_resolver.class">Symfony\Component\Config\Loader\LoaderResolver</parameter>
         <parameter key="symedit_theme.theme.factory.class">SymEdit\Bundle\ThemeBundle\Theme\ThemeFactory</parameter>
-        <parameter key="symedit_theme.theme.loader.class">SymEdit\Bundle\ThemeBundle\Theme\ThemeLoader</parameter>
         <parameter key="symedit_theme.theme.config.class">SymEdit\Bundle\ThemeBundle\Theme\ThemeConfiguration</parameter>
         <parameter key="symedit_theme.model.theme.class">SymEdit\Bundle\ThemeBundle\Model\Theme</parameter>
         <parameter key="symedit_theme.cache_dir">%kernel.cache_dir%/symedit_theme</parameter>

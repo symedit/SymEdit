@@ -36,6 +36,6 @@ class TemplateLoaderPass implements CompilerPassInterface
         $loaders = iterator_to_array($loaders);
         ksort($loaders);
 
-        $container->getDefinition('symedit_theme.template.loader.loader_chain')->replaceArgument(0, array_values($loaders));
+        $container->getDefinition('symedit_theme.template.loader')->replaceArgument(0, array_values($loaders));
     }
 }
