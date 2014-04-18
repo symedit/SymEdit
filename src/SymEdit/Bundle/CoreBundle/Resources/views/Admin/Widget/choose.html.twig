@@ -9,7 +9,7 @@
         <a class="thumbnail" href="{{ path('admin_widget_create', {strategyName:strategy.name}) }}">
             <h4>
                 {{ icon('plus') }}
-                {{ strategy.description }}
+                {{ strategy.description|trans({}, 'widget') }}
             </h4>
         </a>
     </div>
