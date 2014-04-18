@@ -16,7 +16,7 @@
 
     <services>
         <!-- Loader Chain -->
-        <service id="symedit_theme.template.loader.loader_chain" class="%symedit_theme.template.loader.loader_chain.class%" public="false">
+        <service id="symedit_theme.template.loader" class="%symedit_theme.template.loader.loader_chain.class%" public="false">
             <argument type="collection" />
         </service>
 
@@ -28,7 +28,8 @@
 
         <!-- Template Manager -->
         <service id="symedit_theme.template.manager" class="%symedit_theme.template.manager.class%">
-            <argument type="service" id="symedit_theme.template.loader.loader_chain" />
+            <argument type="service" id="symedit_theme.template.loader" />
+            <argument type="service" id="symedit_theme.layout.loader" />
         </service>
 
         <!-- Template Form Type -->

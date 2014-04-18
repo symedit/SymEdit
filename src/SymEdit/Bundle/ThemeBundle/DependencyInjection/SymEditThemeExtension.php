@@ -23,6 +23,10 @@ use Symfony\Component\DependencyInjection\Loader;
  */
 class SymEditThemeExtension extends Extension
 {
+    protected $configFiles = array(
+        'services', 'theme', 'template', 'layout',
+    );
+
     /**
      * {@inheritDoc}
      */
@@ -32,9 +36,10 @@ class SymEditThemeExtension extends Extension
         $config = $this->processConfiguration($configuration, $configs);
 
         $loader = new Loader\XmlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
-        $loader->load('services.xml');
-        $loader->load('theme.xml');
-        $loader->load('template.xml');
+
+        foreach ($this->configFiles as $file) {
+            $loader->load($file. '.xml');
+        }
 
         $container->setParameter('symedit_theme.theme_directory', $config['theme_directory']);
         $container->setParameter('symedit_theme.public_directory', $config['public_directory']);
