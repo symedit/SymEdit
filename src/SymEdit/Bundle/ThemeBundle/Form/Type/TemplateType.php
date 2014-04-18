@@ -11,6 +11,7 @@
 
 namespace SymEdit\Bundle\ThemeBundle\Form\Type;
 
+use SymEdit\Bundle\ThemeBundle\Model\LayoutManager;
 use SymEdit\Bundle\ThemeBundle\Model\TemplateManager;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormInterface;
@@ -21,15 +22,25 @@ use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 class TemplateType extends AbstractType
 {
     protected $templateManager;
+    protected $layoutManager;
 
-    public function __construct(TemplateManager $templateManager)
+    public function __construct(TemplateManager $templateManager, LayoutManager $layoutManager)
     {
         $this->templateManager = $templateManager;
+        $this->layoutManager = $layoutManager;
     }
 
     public function buildView(FormView $view, FormInterface $form, array $options)
     {
-        $view->vars['templates'] = $this->templateManager->getTemplates($options['directory']);
+        $templates = $this->templateManager->getTemplates($options['directory']);
+
+        // The layout manager injects the layout if it finds one
+        array_map(array($this->layoutManager, 'getLayout'), $templates);
+
+        // Sort by key so directories will be next to each other
+        ksort($templates);
+
+        $view->vars['templates'] = $templates;
     }
 
     public function setDefaultOptions(OptionsResolverInterface $resolver)
@@ -37,12 +48,6 @@ class TemplateType extends AbstractType
         $resolver->setDefaults(array(
             'empty_data' => 'base.html.twig',
             'directory' => 'Page',
-            'choices' => function(Options $options) {
-                $templates = $this->templateManager->getTemplates($options['directory']);
-                ksort($templates);
-
-                return $templates;
-            },
         ));
     }
 

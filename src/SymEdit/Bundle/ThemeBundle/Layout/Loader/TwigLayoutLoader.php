@@ -2,7 +2,6 @@
 
 namespace SymEdit\Bundle\ThemeBundle\Layout\Loader;
 
-use SymEdit\Bundle\ThemeBundle\Model\TemplateInterface;
 use Symfony\Component\Config\Loader\Loader;
 use Symfony\Component\Yaml\Yaml;
 
@@ -10,11 +9,7 @@ class TwigLayoutLoader extends Loader
 {
     public function load($resource, $type = null)
     {
-        if (!$resource instanceof TemplateInterface) {
-            return;
-        }
-
-        $contents = file_get_contents($resource->getPath());
+        $contents = file_get_contents($resource);
         preg_match('%{#\s*``(.*?)``\s*#}%sm', $contents, $matches);
 
         if (count($matches) === 0) {
@@ -28,8 +23,8 @@ class TwigLayoutLoader extends Loader
 
     public function supports($resource, $type = null)
     {
-        return $resource instanceof TemplateInterface && 'twig' === pathinfo(
-            $resource->getPath(),
+        return is_string($resource) && 'twig' === pathinfo(
+            $resource,
             PATHINFO_EXTENSION
         );
     }

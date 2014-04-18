@@ -18,12 +18,10 @@ class TemplateManager
 {
     protected $loader;
     protected $templateData;
-    protected $layoutLoader;
 
-    public function __construct(TemplateLoaderInterface $loader, $layoutLoader)
+    public function __construct(TemplateLoaderInterface $loader)
     {
         $this->loader = $loader;
-        $this->layoutLoader = $layoutLoader;
     }
 
     public function getTemplates()
@@ -37,7 +35,7 @@ class TemplateManager
     protected function getTemplateData()
     {
         if ($this->templateData === null) {
-            $this->templateData = new TemplateData($this->layoutLoader);
+            $this->templateData = new TemplateData();
             $this->loader->loadTemplateData($this->templateData);
         }
 

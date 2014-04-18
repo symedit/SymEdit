@@ -1,5 +1,22 @@
 {# Template Widget #}
 
-{% block something_widget %}
-{% endblock %}
+{% block template_widget %}
+<div class="layout-holder well">
+{% for template in templates %}
+    {% set layout = template.layout %}
+    <div class="layout-container" data-template-name="{{ template.key }}" data-content="{{ layout.description|default('(No Description)') }}" data-title="{{ layout.title|default(template.key) }}">
+        {% for row in layout.rows|default([['w'],['w'],['w']]) %}
+        <div class="r">
+            {% for col in row %}
+            <div class="{{ col }}"></div>
+            {% endfor %}
+        </div>
+        {% endfor %}
+    </div>
+{% endfor %}
 
+    {{ block('hidden_widget') }}
+
+    <br class="cf" />
+</div>
+{% endblock %}

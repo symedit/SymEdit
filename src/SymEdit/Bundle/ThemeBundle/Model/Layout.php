@@ -17,15 +17,17 @@ class Layout
     protected $title;
     protected $description;
 
-    public function __construct($key, $title, $description, array $rows = array())
+    public function __construct($key, $title = null, $description = null, $rows = null)
     {
         $this->key = $key;
         $this->title = $title;
         $this->description = $description;
         $this->rows = array();
 
-        foreach($rows as $row){
-            $this->addRow($row);
+        if (is_array($rows)) {
+            foreach($rows as $row){
+                $this->addRow($row);
+            }
         }
     }
 

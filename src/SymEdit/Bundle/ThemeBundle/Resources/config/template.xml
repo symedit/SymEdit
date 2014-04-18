@@ -29,12 +29,12 @@
         <!-- Template Manager -->
         <service id="symedit_theme.template.manager" class="%symedit_theme.template.manager.class%">
             <argument type="service" id="symedit_theme.template.loader" />
-            <argument type="service" id="symedit_theme.layout.loader" />
         </service>
 
         <!-- Template Form Type -->
         <service id="symedit_theme.form.type.template" class="%symedit_theme.form.type.template.class%">
             <argument type="service" id="symedit_theme.template.manager" />
+            <argument type="service" id="symedit_theme.layout.manager" />
             <tag name="form.type" alias="template" />
         </service>
     </services>
