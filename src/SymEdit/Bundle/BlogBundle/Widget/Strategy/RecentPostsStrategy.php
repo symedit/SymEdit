@@ -64,6 +64,6 @@ class RecentPostsStrategy extends AbstractWidgetStrategy
 
     public function getDescription()
     {
-        return 'Recent Posts';
+        return 'blog.recent_posts';
     }
 }
