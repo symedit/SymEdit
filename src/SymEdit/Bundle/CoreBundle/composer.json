@@ -14,10 +14,7 @@
     "target-dir": "SymEdit/Bundle/CoreBundle",
     "require": {
         "symedit/user-bundle": "dev-master@dev",
-        "symedit/settings-bundle": "dev-master@dev",
-        "isometriks/sitemap-bundle": "dev-master@dev",
-        "isometriks/media-bundle": "dev-master@dev",
-        "knplabs/knp-menu-bundle": "dev-master"
+        "symedit/settings-bundle": "dev-master@dev"
     },
     "suggest": {
         "symedit/stylizer-bundle": "Allows you to use the stylizer to edit styles."
