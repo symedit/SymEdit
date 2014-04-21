@@ -1,0 +1,15 @@
+{
+    "name": "symedit/analytics-bundle",
+    "description": "Analytics for Symfony2 Entities",
+    "type": "symfony-bundle",
+    "authors": [
+        {
+            "name": "Craig Blanchette",
+            "email": "craig.blanchette@gmail.com"
+        }
+    ],
+    "autoload": {
+        "psr-0": { "SymEdit\\Bundle\\AnalyticsBundle": "" }
+    },
+    "target-dir": "SymEdit/Bundle/AnalyticsBundle"
+}
