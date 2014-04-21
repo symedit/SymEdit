@@ -11,13 +11,36 @@
     ],
     "require": {
         "php": ">=5.3.3",
+        "doctrine/orm":                         "~2.4",
+        "doctrine/doctrine-bundle":             "~1.3@dev",
+        "doctrine/doctrine-fixtures-bundle":    "~2.2",
+        "doctrine/doctrine-cache-bundle":       "~1.0",
+        "friendsofsymfony/user-bundle":         "~2.0@dev",
+        "friendsofsymfony/rest-bundle":         "~1.0",
+        "incenteev/composer-parameter-handler": "~2.0",
+        "isometriks/spam-bundle":               "dev-master",
+        "jms/serializer-bundle":                "0.13.*",
+        "knplabs/knp-gaufrette-bundle":         "0.1.7",
+        "knplabs/knp-menu":                     "~2.0@dev",
+        "knplabs/knp-menu-bundle":              "~2.0@dev",
+        "liip/imagine-bundle":                  "~1.0@dev",
+        "mopa/bootstrap-bundle":                "dev-master@dev",
+        "sensio/framework-extra-bundle":        "~2.3.0",
+        "stof/doctrine-extensions-bundle":      "~1.1.0",
+        "sylius/resource-bundle":               "0.7.0",
+        "symfony/assetic-bundle":               "~2.3.0",
+        "symfony/monolog-bundle":               "~2.3.0",
+        "symfony/symfony":                      "~2.3.0",
+        "twig/extensions":                      "~1.0",
         "twig/twig": "~1.11",
-        "symfony/symfony": "~2.3.0"
+        "white-october/pagerfanta-bundle":      "1.0.*@dev",
+        "zfr/zfr-mailchimp":                    "~2.0"
     },
     "autoload": {
         "psr-0": { "SymEdit\\": "src/" }
     },
     "replace": {
+        "symedit/analytics-bundle": "self.version",
         "symedit/blog-bundle": "self.version",
         "symedit/core-bundle": "self.version",
         "symedit/resource-bundle": "self.version",
