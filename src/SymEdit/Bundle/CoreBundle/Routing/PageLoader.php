@@ -35,7 +35,6 @@ class PageLoader extends BaseLoader
         $pages = $this->pageRepository->findBy(array(
             'pageController' => false,
             'root' => false,
-            'display' => true,
         ));
 
         $collection = new RouteCollection();
