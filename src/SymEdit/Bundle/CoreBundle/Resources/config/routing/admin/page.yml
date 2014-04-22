@@ -7,6 +7,16 @@ admin_page:
             paginate: false
             template: @SymEdit/Admin/Page/index.html.twig
 
+admin_page_json:
+    pattern: /list.{_format}
+    requirements:
+        _format: json
+    defaults:
+        _format: json
+        _controller: symedit.controller.page:jsonAction
+        _sylius:
+            paginate: false
+
 admin_page_create:
     pattern: /new
     methods: [GET, POST]

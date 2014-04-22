@@ -37,7 +37,7 @@ class PageRepository extends EntityRepository
      * Get pages that are actually routes, this means pages that aren't
      * the root node, or page controllers
      */
-    public function findCMSPages($display = null)
+    public function findCMSPages($display = null, array $orderBy = array())
     {
         $criteria = array(
             'root' => false,
@@ -48,7 +48,7 @@ class PageRepository extends EntityRepository
            $criteria['display'] = $display;
         }
 
-        return $this->findBy($criteria);
+        return $this->findBy($criteria, $orderBy);
     }
 
     public function findPageControllers()
@@ -61,25 +61,5 @@ class PageRepository extends EntityRepository
     public function getPath($path)
     {
         return $this->findOneByPath($path);
-    }
-
-    public function findPopular($max = null)
-    {
-        $qb = $this->getPopularQueryBuilder();
-
-        if ($max !== null) {
-            $qb->setMaxResults($max);
-        }
-
-        return $qb->getQuery()->getResult();
-    }
-
-    public function getPopularQueryBuilder()
-    {
-        return $this->createQueryBuilder('p')
-                    ->where('p.root = false')
-                    ->andWhere('p.pageController = false')
-                    ->andWhere('p.display = true')
-                    ->orderBy('p.views', 'desc');
     }
 }

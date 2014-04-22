@@ -11,8 +11,9 @@
 
 namespace SymEdit\Bundle\CoreBundle\Controller;
 
-use SymEdit\Bundle\ResourceBundle\Controller\ResourceController;
 use SymEdit\Bundle\CoreBundle\Model\PageInterface;
+use SymEdit\Bundle\ResourceBundle\Controller\ResourceController;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 
 class PageController extends ResourceController
@@ -110,5 +111,23 @@ class PageController extends ResourceController
             ));
 
         return $this->handleView($view);
+    }
+
+    public function jsonAction()
+    {
+        $pages = $this->getRepository()->findCMSPages(true, array(
+            'path' => 'ASC',
+        ));
+
+        $out = array();
+
+        foreach ($pages as $page) {
+            $out[] = array(
+                'name' => $page->getTitle(),
+                'url' => $this->generateUrl($page->getRoute()),
+            );
+        }
+
+        return new JsonResponse($out);
     }
 }
