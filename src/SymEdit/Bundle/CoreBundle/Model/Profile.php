@@ -49,7 +49,7 @@ class Profile implements ProfileInterface
 
     public function getFullname()
     {
-        return rtrim(sprintf('%s %s', $this->getFirstName(), $this->getLastName()));
+        return trim(sprintf('%s %s', $this->getFirstName(), $this->getLastName()));
     }
 
     public function getUser()
