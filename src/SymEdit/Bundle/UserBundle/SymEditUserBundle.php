@@ -20,6 +20,13 @@ use Symfony\Component\HttpKernel\Bundle\Bundle;
 
 class SymEditUserBundle extends Bundle
 {
+    protected $loadProfiles;
+
+    public function __construct($loadProfiles = true)
+    {
+        $this->loadProfiles = $loadProfiles;
+    }
+
     public static function getSupportedDrivers()
     {
         return array(
@@ -37,6 +44,11 @@ class SymEditUserBundle extends Bundle
         );
 
         $container->addCompilerPass(new ResolveDoctrineTargetEntitiesPass('symedit_user', $interfaces));
+
+        // Allow child bundle to do this
+        if (!$this->loadProfiles) {
+            return;
+        }
 
         /**
          * Add Doctrine Mappings
