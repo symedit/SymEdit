@@ -304,6 +304,9 @@ class Category implements CategoryInterface
         return $this->posts;
     }
 
+    /**
+     * @return PostInterface
+     */
     public function getPublishedPosts()
     {
         return $this->posts->filter(function (PostInterface $post) {
