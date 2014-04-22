@@ -11,7 +11,6 @@
 
 namespace SymEdit\Bundle\CoreBundle\Routing;
 
-use Sylius\Bundle\ResourceBundle\Model\RepositoryInterface;
 use Symfony\Component\Config\FileLocatorInterface;
 use Symfony\Component\Routing\Loader\YamlFileLoader as BaseYamlFileLoader;
 use Symfony\Component\Routing\RouteCollection;
