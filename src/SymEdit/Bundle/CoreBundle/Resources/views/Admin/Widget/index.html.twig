@@ -33,7 +33,7 @@
                     <h4>
                         {{ widget.title|default('[No Title]') }}
                         <small>({{ widget.name }})</small> <br>
-                        <small>{{ widget.strategy.description }}</small>
+                        <small>{{ widget.strategy.description|trans({}, 'widget') }}</small>
                     </h4>
                 </a>
             </div>
