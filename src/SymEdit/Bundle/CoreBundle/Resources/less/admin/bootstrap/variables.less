@@ -49,7 +49,7 @@
 @font-size-small:         ceil(@font-size-base * 0.85); // ~12px
 
 @line-height-base:        1.428571429; // 20/14
-@line-height-computed:    floor(@font-size-base * @line-height-base); // ~20px
+@line-height-computed:    floor(@font-size-base * @line-height-base) + 12px; // ~20px
 
 @headings-font-family:    @font-family-base;
 @headings-font-weight:    500;
@@ -66,10 +66,10 @@
 // -------------------------
 // Based on 14px font-size and 1.428 line-height (~20px to start)
 
-@padding-base-vertical:          12px;
+@padding-base-vertical:          10px;
 @padding-base-horizontal:        12px;
 
-@padding-large-vertical:         10px;
+@padding-large-vertical:         12px;
 @padding-large-horizontal:       16px;
 
 @padding-small-vertical:         5px;
