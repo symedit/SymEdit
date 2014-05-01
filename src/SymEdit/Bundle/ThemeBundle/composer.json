@@ -1,0 +1,15 @@
+{
+    "name": "symedit/theme-bundle",
+    "description": "Theming for Symfony2",
+    "type": "symfony-bundle",
+    "authors": [
+        {
+            "name": "Craig Blanchette",
+            "email": "craig.blanchette@gmail.com"
+        }
+    ],
+    "autoload": {
+        "psr-0": { "SymEdit\\Bundle\\ThemeBundle": "" }
+    },
+    "target-dir": "SymEdit/Bundle/ThemeBundle"
+}
