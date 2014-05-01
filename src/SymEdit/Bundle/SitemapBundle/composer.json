@@ -1,0 +1,15 @@
+{
+    "name": "symedit/sitemap-bundle",
+    "description": "Sitemap generator for entities in Symfony",
+    "type": "symfony-bundle",
+    "authors": [
+        {
+            "name": "Craig Blanchette",
+            "email": "craig.blanchette@gmail.com"
+        }
+    ],
+    "autoload": {
+        "psr-0": { "SymEdit\\Bundle\\SitemapBundle": "" }
+    },
+    "target-dir": "SymEdit/Bundle/SitemapBundle"
+}
