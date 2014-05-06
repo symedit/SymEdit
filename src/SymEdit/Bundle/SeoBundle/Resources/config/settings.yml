@@ -1,6 +1,12 @@
 seo:
     label: SEO
     settings:
+        head_extra:
+            type: textarea
+            options:
+                label: Extra <head> tag contents
+                attr:
+                    rows: 5
         business_type:
             type: choice
             default: LocalBusiness
