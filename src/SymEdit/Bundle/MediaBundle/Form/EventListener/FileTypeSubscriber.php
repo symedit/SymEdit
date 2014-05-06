@@ -29,15 +29,29 @@ class FileTypeSubscriber implements EventSubscriberInterface
     {
         return array(
             FormEvents::PRE_SET_DATA  => 'preSetData',
-            FormEvents::POST_BIND     => 'postBind',
+            FormEvents::POST_SUBMIT   => 'postSubmit',
+            FormEvents::SUBMIT        => 'submit',
         );
     }
 
-    public function postBind(FormEvent $event)
+    public function submit(FormEvent $event)
+    {
+        $form = $event->getForm();
+
+        if (!$this->options['allow_remove'] || !$form->has('remove')) {
+            return;
+        }
+
+        if ($form->get('remove')->getData()) {
+            $event->setData(null);
+        }
+    }
+
+    public function postSubmit(FormEvent $event)
     {
         $data = $event->getData();
 
-        if(!($data instanceof MediaInterface)){
+        if (!$data instanceof MediaInterface) {
             return;
         }
 
@@ -69,6 +83,15 @@ class FileTypeSubscriber implements EventSubscriberInterface
             $form->add('name', 'text', array(
                 'label' => $this->options['name_label'],
                 'help_block' => $this->options['name_help'],
+            ));
+        }
+
+        // If allow remove, add the checkbox
+        if ($data !== null && $data->hasFile() && $this->options['allow_remove']) {
+            $form->add('remove', 'checkbox', array(
+                'mapped' => false,
+                'required' => false,
+                'label' => 'Remove Media',
             ));
         }
     }

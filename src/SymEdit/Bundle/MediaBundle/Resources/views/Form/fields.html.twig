@@ -13,6 +13,10 @@
         {% if form.file is defined %}
             {{ form_row(form.file) }}
         {% endif %}
+
+        {% if form.remove is defined %}
+            {{ form_row(form.remove) }}
+        {% endif %}
     </div>
 
     {% if form.vars is defined and

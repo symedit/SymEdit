@@ -60,6 +60,7 @@ class PostType extends AbstractType
                 'require_name' => false,
                 'required' => false,
                 'show_image' => true,
+                'allow_remove' => true,
                 'label' => 'Featured Image',
             ));
 

@@ -29,6 +29,7 @@ class MediaType extends AbstractType
         $resolver->setDefaults(array(
             'require_name' => true,
             'required' => true,
+            'allow_remove' => false,
             'callback' => null,
             'file_label' => 'File',
             'file_help' => false,
