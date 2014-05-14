@@ -12,10 +12,12 @@
 namespace SymEdit\Bundle\ResourceBundle\DependencyInjection;
 
 use Symfony\Component\DependencyInjection\ContainerBuilder;
-use Sylius\Bundle\ResourceBundle\DependencyInjection\SyliusResourceExtension;
+use Sylius\Bundle\ResourceBundle\DependencyInjection\AbstractResourceExtension;
 
-class SymEditResourceExtension extends SyliusResourceExtension
+class SymEditResourceExtension extends AbstractResourceExtension
 {
+    protected $applicationName = 'symedit';
+
     /**
      * Maps parameters to their equivalent path in their arrays
      *
@@ -29,21 +31,6 @@ class SymEditResourceExtension extends SyliusResourceExtension
 
         foreach ($config as $key => $value) {
             $container->setParameter(sprintf('%s.%s', $prefix, $key), $value);
-        }
-    }
-
-    /**
-     * Remap class parameters.
-     *
-     * @param array            $classes
-     * @param ContainerBuilder $container
-     */
-    protected function mapClassParameters(array $classes, ContainerBuilder $container)
-    {
-        foreach ($classes as $model => $serviceClasses) {
-            foreach ($serviceClasses as $service => $class) {
-                $container->setParameter(sprintf('symedit.%s.%s.class', $service === 'form' ? 'form.type' : $service, $model), $class);
-            }
         }
     }
 }
