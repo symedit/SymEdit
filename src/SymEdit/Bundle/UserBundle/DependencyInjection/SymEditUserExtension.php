@@ -30,14 +30,12 @@ class SymEditUserExtension extends SymEditResourceExtension
      */
     public function load(array $config, ContainerBuilder $container)
     {
-        list($config) = $this->configure(
+        $this->configure(
             $config,
             new Configuration(),
             $container,
             self::CONFIGURE_LOADER | self::CONFIGURE_DATABASE | self::CONFIGURE_PARAMETERS
         );
-
-        $container->setParameter('symedit_user.model_manager_name', $config['model_manager_name']);
     }
 
     /**
