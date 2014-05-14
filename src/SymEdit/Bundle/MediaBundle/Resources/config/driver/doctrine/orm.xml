@@ -12,66 +12,6 @@
     </parameters>
 
     <services>
-        <service id="symedit_media.entity_manager" factory-service="doctrine" factory-method="getManager" class="Doctrine\ORM\EntityManager" public="false">
-            <argument>%symedit_media.model_manager_name%</argument>
-        </service>
-
-        <!-- Image -->
-        <service id="symedit.manager.image" alias="symedit_media.entity_manager" />
-        <service id="symedit.repository.image" class="%symedit.repository.image.class%">
-            <argument type="service" id="symedit.manager.image" />
-            <argument type="service">
-                <service
-                    factory-service="symedit.manager.image"
-                    factory-method="getClassMetadata"
-                    class="Doctrine\ORM\Mapping\ClassMetadata">
-                    <argument>%symedit.model.image.class%</argument>
-                </service>
-            </argument>
-        </service>
-
-        <!-- File -->
-        <service id="symedit.manager.file" alias="symedit_media.entity_manager" />
-        <service id="symedit.repository.file" class="%symedit.repository.file.class%">
-            <argument type="service" id="symedit.manager.file" />
-            <argument type="service">
-                <service
-                    factory-service="symedit.manager.file"
-                    factory-method="getClassMetadata"
-                    class="Doctrine\ORM\Mapping\ClassMetadata">
-                    <argument>%symedit.model.file.class%</argument>
-                </service>
-            </argument>
-        </service>
-
-        <!-- Image Gallery -->
-        <service id="symedit.manager.image_gallery" alias="symedit_media.entity_manager" />
-        <service id="symedit.repository.image_gallery" class="%symedit.repository.image_gallery.class%">
-            <argument type="service" id="symedit.manager.image_gallery" />
-            <argument type="service">
-                <service
-                    factory-service="symedit.manager.image_gallery"
-                    factory-method="getClassMetadata"
-                    class="Doctrine\ORM\Mapping\ClassMetadata">
-                    <argument>%symedit.model.image_gallery.class%</argument>
-                </service>
-            </argument>
-        </service>
-
-        <!-- Gallery Item -->
-        <service id="symedit.manager.gallery_item" alias="symedit_media.entity_manager" />
-        <service id="symedit.repository.gallery_item" class="%symedit.repository.gallery_item.class%">
-            <argument type="service" id="symedit.manager.gallery_item" />
-            <argument type="service">
-                <service
-                    factory-service="symedit.manager.gallery_item"
-                    factory-method="getClassMetadata"
-                    class="Doctrine\ORM\Mapping\ClassMetadata">
-                    <argument>%symedit.model.gallery_item.class%</argument>
-                </service>
-            </argument>
-        </service>
-
         <!-- Image Listener -->
         <service id="symedit_media.event_listener.image_listener" class="SymEdit\Bundle\MediaBundle\Doctrine\Orm\MediaListener">
             <argument type="service" id="symedit_media.image_upload_manager" />
@@ -88,5 +28,4 @@
             <tag name="doctrine.event_subscriber" priority="-100" />
         </service>
     </services>
-
 </container>
