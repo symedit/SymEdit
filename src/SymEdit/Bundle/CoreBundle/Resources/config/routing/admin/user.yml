@@ -15,7 +15,7 @@ admin_user_create:
             template: @SymEdit/Admin/User/new.html.twig
             redirect:
                 route: admin_user_update
-                parameters: ~
+                parameters: { id: resource.id }
 
 admin_user_show:
     pattern: /{id}
