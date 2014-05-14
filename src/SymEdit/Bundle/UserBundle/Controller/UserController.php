@@ -20,17 +20,14 @@ class UserController extends ResourceController
 {
     public function createNew()
     {
-        $user = $this->getManager()->createUser(true);
+        $user = $this->getUserManager()->createUser(true);
         $user->setEnabled(true);
 
         return $user;
     }
 
-    public function persistAndFlush($resource, $action = 'create')
+    public function getUserManager()
     {
-        $manager = $this->getManager();
-        $this->dispatchEvent($action, $resource);
-        $manager->updateUser($resource);
-        $this->dispatchEvent(sprintf('post_%s', $action), $resource);
+        return $this->container->get('symedit_user.user_manager');
     }
 }
