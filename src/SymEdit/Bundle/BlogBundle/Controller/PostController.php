@@ -17,10 +17,10 @@ use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 
 class PostController extends ResourceController
 {
-    public function previewAction()
+    public function previewAction(Request $request)
     {
         if ($this->get('security.context')->isGranted('ROLE_ADMIN')) {
-            return parent::showAction();
+            return parent::showAction($request);
         }
 
         throw new AccessDeniedException('Cannot view preview unless logged in');
