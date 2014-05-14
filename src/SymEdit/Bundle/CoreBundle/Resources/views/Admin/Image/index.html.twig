@@ -16,7 +16,7 @@
 
 <div class="row" id="images">
   {% for image in images %}
-  <div class="thumbnail-container">
+  <div class="col-sm-{{ 12 / columns }} thumbnail-container">
       <a class="thumbnail" href="{{ path('admin_image_update', {id:image.id}) }}">
           <img src="{{ image | imagine_filter('gallery_thumbnail') }}">
       </a>
