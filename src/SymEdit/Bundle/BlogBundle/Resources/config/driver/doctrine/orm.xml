@@ -8,39 +8,4 @@
         <parameter key="symedit.repository.post.class">SymEdit\Bundle\BlogBundle\Doctrine\ORM\PostRepository</parameter>
         <parameter key="symedit.repository.category.class">SymEdit\Bundle\BlogBundle\Doctrine\ORM\CategoryRepository</parameter>
     </parameters>
-
-    <services>
-        <service id="symedit_blog.entity_manager" factory-service="doctrine" factory-method="getManager" class="Doctrine\ORM\EntityManager">
-            <argument>%symedit_blog.model_manager_name%</argument>
-        </service>
-
-        <!-- Post -->
-        <service id="symedit.manager.post" alias="symedit_blog.entity_manager" />
-        <service id="symedit.repository.post" class="%symedit.repository.post.class%">
-            <argument type="service" id="symedit.manager.post" />
-            <argument type="service">
-                <service
-                    factory-service="symedit.manager.post"
-                    factory-method="getClassMetadata"
-                    class="Doctrine\ORM\Mapping\ClassMetadata">
-                    <argument>%symedit.model.post.class%</argument>
-                </service>
-            </argument>
-        </service>
-
-        <!-- Category -->
-        <service id="symedit.manager.category" alias="symedit_blog.entity_manager" />
-        <service id="symedit.repository.category" class="%symedit.repository.category.class%">
-            <argument type="service" id="symedit.manager.category" />
-            <argument type="service">
-                <service
-                    factory-service="symedit.manager.category"
-                    factory-method="getClassMetadata"
-                    class="Doctrine\ORM\Mapping\ClassMetadata">
-                    <argument>%symedit.model.category.class%</argument>
-                </service>
-            </argument>
-        </service>
-    </services>
-
 </container>

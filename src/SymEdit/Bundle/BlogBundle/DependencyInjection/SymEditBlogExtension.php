@@ -17,7 +17,7 @@ use SymEdit\Bundle\ResourceBundle\DependencyInjection\SymEditResourceExtension;
 class SymEditBlogExtension extends SymEditResourceExtension
 {
     protected $configFiles = array(
-        'services', 'form', 'widget', 'report',
+        'form', 'widget', 'report',
     );
 
     /**
@@ -25,15 +25,12 @@ class SymEditBlogExtension extends SymEditResourceExtension
      */
     public function load(array $config, ContainerBuilder $container)
     {
-        $this->configDir = __DIR__.'/../Resources/config';
-
-        list($config) = $this->configure($config, new Configuration(), $container, self::CONFIGURE_LOADER | self::CONFIGURE_DATABASE | self::CONFIGURE_PARAMETERS);
-
-        $container->setParameter('symedit_blog.model_manager_name', $config['model_manager_name']);
-
-        if (isset($config['resources'])) {
-            $this->createResourceServices($config['resources'], $container);
-        }
+        $this->configure(
+            $config,
+            new Configuration(),
+            $container,
+            self::CONFIGURE_LOADER | self::CONFIGURE_DATABASE | self::CONFIGURE_PARAMETERS
+        );
     }
 
     public function getAlias()
