@@ -17,9 +17,9 @@ use Symfony\Component\DependencyInjection\ContainerBuilder;
 class SymEditExtension extends SymEditResourceExtension
 {
     protected $configFiles = array(
-        'services', 'user', 'widget', 'routing',
-        'form', 'event', 'twig', 'util', 'profiler',
-        'menu', 'seo', 'controllers', 'report',
+        'services', 'widget', 'routing', 'form',
+        'event', 'twig', 'util', 'profiler',
+        'menu', 'seo', 'report',
     );
 
     /**
@@ -27,13 +27,14 @@ class SymEditExtension extends SymEditResourceExtension
      */
     public function load(array $configs, ContainerBuilder $container)
     {
-        $this->configDir = __DIR__.'/../Resources/config/';
-
-        list($config, $loader) = $this->configure($configs, new Configuration(), $container, self::CONFIGURE_LOADER | self::CONFIGURE_DATABASE | self::CONFIGURE_PARAMETERS);
+        list($config) = $this->configure(
+            $configs,
+            new Configuration(),
+            $container,
+            self::CONFIGURE_LOADER | self::CONFIGURE_DATABASE | self::CONFIGURE_PARAMETERS
+        );
 
         $this->remapParameters($container, 'email', $config['email']);
-
-        $container->setParameter('symedit.model_manager_name', $config['model_manager_name']);
         $container->setParameter('symedit.extensions.routes', $config['extensions']);
     }
 
