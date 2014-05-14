@@ -11,6 +11,7 @@
 
 namespace SymEdit\Bundle\CoreBundle\Controller;
 
+use Sylius\Bundle\ResourceBundle\Event\ResourceEvent;
 use SymEdit\Bundle\CoreBundle\Model\PageInterface;
 use SymEdit\Bundle\ResourceBundle\Controller\ResourceController;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -18,17 +19,15 @@ use Symfony\Component\HttpFoundation\Request;
 
 class PageController extends ResourceController
 {
-    public function showAction()
+    public function showAction(Request $request)
     {
-        $request = $this->getRequest();
-
         /* @var $page PageInterface */
         $page = $request->get('_page');
 
         /**
          * Dispatch page view event
          */
-        $this->dispatchEvent('view', $page);
+        $this->domainManager->dispatchEvent('view', new ResourceEvent($page));
 
         /**
          * Check for template
