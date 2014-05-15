@@ -8,7 +8,6 @@
         <parameter key="symedit_settings.factory.class">SymEdit\Bundle\SettingsBundle\Factory\ServiceFactory</parameter>
         <parameter key="symedit_settings.cache_folder">symedit_settings</parameter>
         <parameter key="symedit_settings.settings.class">SymEdit\Bundle\SettingsBundle\Model\Settings</parameter>
-        <parameter key="symedit_settings.form.settings.class">SymEdit\Bundle\SettingsBundle\Form\Type\SettingsType</parameter>
         <parameter key="symedit_settings.event_listener.request.class">SymEdit\Bundle\SettingsBundle\EventListener\RequestListener</parameter>
     </parameters>
 
@@ -45,7 +44,7 @@
         <service id="symedit_settings" alias="symedit_settings.settings" />
 
         <!-- Settings Form Type -->
-        <service id="form.type.settings" class="%symedit_settings.form.settings.class%">
+        <service id="symedit_settings.form.type.settings" class="%symedit.form.type.settings.class%">
             <argument type="service" id="symedit_settings.settings" />
             <argument type="service" id="security.context" />
             <tag name="form.type" alias="symedit_settings" />
