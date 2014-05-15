@@ -23,7 +23,7 @@ admin_widget_create:
             template: @SymEdit/Admin/Widget/new.html.twig
             redirect:
                 route: admin_widget_update
-                parameters: ~
+                parameters: { id: resource.id }
 
 admin_widget_update:
     pattern: /{id}/edit
