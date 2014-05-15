@@ -11,16 +11,6 @@
     </parameters>
 
     <services>
-        <!-- Widget Controller -->
-        <service id="symedit.controller.widget" class="%symedit.controller.widget.class%">
-            <argument>symedit</argument>
-            <argument>widget</argument>
-            <argument />
-            <call method="setContainer">
-                <argument type="service" id="service_container" />
-            </call>
-        </service>
-
         <!-- Matcher -->
         <service id="symedit_widget.matcher" class="%symedit_widget.matcher.class%">
             <argument type="collection" />
