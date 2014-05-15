@@ -15,11 +15,13 @@
     </parameters>
 
     <services>
+        <!-- Twig Extension -->
         <service id="symedit_widget.twig.widget_extension" class="%symedit_widget.twig.widget_extension.class%">
             <argument>%symedit_widget.fragment.strategy%</argument>
             <tag name="twig.extension" />
         </service>
 
+        <!-- Widget Registry -->
         <service id="symedit_widget.widget.registry" class="%symedit_widget.widget.registry.class%">
             <argument type="service" id="service_container" />
             <argument>%symedit_widget.widget.strategies%</argument>
