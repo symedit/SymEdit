@@ -1,0 +1,5 @@
+symedit:
+    widget:
+        created: Widget created successfully.
+        updated: Widget updated successfully.
+        deleted: Widget deleted successfully.
