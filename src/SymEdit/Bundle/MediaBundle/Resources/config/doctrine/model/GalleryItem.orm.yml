@@ -10,6 +10,10 @@ SymEdit\Bundle\MediaBundle\Model\GalleryItem:
     manyToOne:
         image:
             targetEntity: SymEdit\Bundle\MediaBundle\Model\ImageInterface
+            joinColumn:
+                name: image_id
+                referencedColumnName: id
+                onDelete: CASCADE
             cascade:
                 - persist
         gallery:

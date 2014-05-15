@@ -43,3 +43,11 @@ admin_image_update:
             redirect:
                 route: admin_image_update
                 parameters: { id: $id }
+
+admin_image_delete:
+    pattern: /{id}/delete
+    methods: [DELETE]
+    defaults:
+        _controller: symedit.controller.image:deleteAction
+        _sylius:
+            redirect: admin_image
