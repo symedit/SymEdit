@@ -11,7 +11,7 @@
 
 namespace SymEdit\Bundle\CoreBundle\Routing;
 
-use Sylius\Bundle\ResourceBundle\Model\RepositoryInterface;
+use Sylius\Component\Resource\Repository\RepositoryInterface;
 use Symfony\Component\Routing\RouteCollection;
 
 class PageControllerLoader

@@ -12,7 +12,7 @@
 namespace SymEdit\Bundle\MediaBundle\Form\DataTransformer;
 
 use Doctrine\Common\Collections\Collection;
-use Sylius\Bundle\ResourceBundle\Model\RepositoryInterface;
+use Sylius\Component\Resource\Repository\RepositoryInterface;
 use Symfony\Component\Form\DataTransformerInterface;
 
 class GalleryChooseDataTransformer implements DataTransformerInterface

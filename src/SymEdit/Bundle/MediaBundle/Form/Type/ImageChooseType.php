@@ -11,7 +11,7 @@
 
 namespace SymEdit\Bundle\MediaBundle\Form\Type;
 
-use Sylius\Bundle\ResourceBundle\Model\RepositoryInterface;
+use Sylius\Component\Resource\Repository\RepositoryInterface;
 use SymEdit\Bundle\MediaBundle\Form\DataTransformer\GalleryChooseDataTransformer;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\ChoiceList\ObjectChoiceList;

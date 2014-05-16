@@ -14,7 +14,7 @@ namespace SymEdit\Bundle\CoreBundle\Menu\Provider;
 use SymEdit\Bundle\CoreBundle\Event\Events;
 use SymEdit\Bundle\CoreBundle\Event\MenuEvent;
 use SymEdit\Bundle\CoreBundle\Model\PageInterface;
-use Sylius\Bundle\ResourceBundle\Model\RepositoryInterface;
+use Sylius\Component\Resource\Repository\RepositoryInterface;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Knp\Menu\FactoryInterface;
 use Knp\Menu\MenuItem;

@@ -14,7 +14,7 @@ namespace SymEdit\Bundle\CoreBundle\Routing;
 use Symfony\Component\Config\Loader\Loader as BaseLoader;
 use Symfony\Component\Routing\RouteCollection;
 use Symfony\Component\Routing\Route;
-use Sylius\Bundle\ResourceBundle\Model\RepositoryInterface;
+use Sylius\Component\Resource\Repository\RepositoryInterface;
 
 class PageLoader extends BaseLoader
 {

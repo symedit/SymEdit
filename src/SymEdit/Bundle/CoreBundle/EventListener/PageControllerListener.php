@@ -12,7 +12,7 @@
 namespace SymEdit\Bundle\CoreBundle\EventListener;
 
 use Symfony\Component\HttpKernel\Event\FilterControllerEvent;
-use Sylius\Bundle\ResourceBundle\Model\RepositoryInterface;
+use Sylius\Component\Resource\Repository\RepositoryInterface;
 
 /**
  * Checks the request for a _page_id, and then adds the actual Page
