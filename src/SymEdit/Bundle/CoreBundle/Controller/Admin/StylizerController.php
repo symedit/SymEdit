@@ -48,9 +48,9 @@ class StylizerController extends Controller
                 if($request->request->has('dump')){
                     $stylizer->dump();
 
-                    $this->addFlash('notice', 'Styles saved and dumped');
+                    $this->addFlash('success', 'Styles saved and dumped');
                 } else {
-                    $this->addFlash('notice', 'Styles Saved');
+                    $this->addFlash('success', 'Styles Saved');
                 }
             }
         }

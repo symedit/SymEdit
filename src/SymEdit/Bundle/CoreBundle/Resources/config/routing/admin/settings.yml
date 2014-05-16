@@ -4,7 +4,6 @@ admin_settings:
     defaults:
         _controller: symedit.controller.settings:indexAction
         _sylius:
-            form: settings
             template: @SymEdit/Admin/Settings/index.html.twig
             paginate: false
             limit: false
@@ -15,7 +14,6 @@ admin_settings_update:
     defaults:
         _controller: symedit.controller.settings:updateAction
         _sylius:
-            form: settings
             template: @SymEdit/Admin/Settings/index.html.twig
             redirect:
                 route: admin_settings_update

@@ -18,7 +18,7 @@ admin_post_create:
             template: @SymEdit/Admin/Post/new.html.twig
             redirect:
                 route: admin_post_update
-                parameters: ~
+                parameters: { id: resource.id }
 
 admin_post_update:
     pattern: /{id}/edit

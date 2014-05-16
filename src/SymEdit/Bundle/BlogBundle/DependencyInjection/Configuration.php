@@ -28,7 +28,6 @@ class Configuration implements ConfigurationInterface
         $rootNode
             ->children()
                 ->scalarNode('driver')->cannotBeEmpty()->defaultValue('doctrine/orm')->end()
-                ->scalarNode('model_manager_name')->defaultNull()->end()
             ->end();
 
         $this->addClassesSection($rootNode);

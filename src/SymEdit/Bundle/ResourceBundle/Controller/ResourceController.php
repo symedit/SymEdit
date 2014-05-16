@@ -11,9 +11,16 @@
 
 namespace SymEdit\Bundle\ResourceBundle\Controller;
 
+use Doctrine\Common\Persistence\ObjectManager;
 use Sylius\Bundle\ResourceBundle\Controller\ResourceController as BaseResourceController;
 
 class ResourceController extends BaseResourceController
 {
-
+    /**
+     * @return ObjectManager
+     */
+    protected function getManager()
+    {
+        return $this->get($this->getConfiguration()->getServiceName('manager'));
+    }
 }

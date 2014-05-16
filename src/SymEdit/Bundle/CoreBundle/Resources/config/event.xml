@@ -31,15 +31,12 @@
         </service>
 
         <!--  Subscribers -->
-
         <service id="symedit.event_subscriber.page" class="%symedit.event_subscriber.page.class%">
-            <argument type="service" id="session" />
             <tag name="kernel.event_subscriber" />
         </service>
 
         <service id="symedit.event_subscriber.post" class="%symedit.event_subscriber.post.class%">
             <argument type="service" id="session" />
-            <argument type="service" id="symedit_seo.seo" />
             <argument type="service" id="router" />
             <tag name="kernel.event_subscriber" />
         </service>

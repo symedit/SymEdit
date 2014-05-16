@@ -8,15 +8,30 @@
         <parameter key="symedit_settings.factory.class">SymEdit\Bundle\SettingsBundle\Factory\ServiceFactory</parameter>
         <parameter key="symedit_settings.cache_folder">symedit_settings</parameter>
         <parameter key="symedit_settings.settings.class">SymEdit\Bundle\SettingsBundle\Model\Settings</parameter>
-        <parameter key="symedit_settings.form.settings.class">SymEdit\Bundle\SettingsBundle\Form\Type\SettingsType</parameter>
         <parameter key="symedit_settings.event_listener.request.class">SymEdit\Bundle\SettingsBundle\EventListener\RequestListener</parameter>
     </parameters>
 
     <services>
+        <!-- Settings Controller -->
+        <service id="symedit.controller.settings" class="%symedit.controller.settings.class%">
+            <argument type="service">
+                <service factory-service="sylius.controller.configuration_factory" factory-method="createConfiguration" class="Sylius\Bundle\ResourceBundle\Controller\Configuration">
+                    <argument>symedit</argument>
+                    <argument>settings</argument>
+                    <argument></argument>
+                </service>
+            </argument>
+            <call method="setContainer">
+                <argument type="service" id="service_container" />
+            </call>
+        </service>
+
+        <!-- Settings Factory -->
         <service id="symedit_settings.factory" class="%symedit_settings.factory.class%">
             <argument type="service" id="symedit_settings.settings" />
         </service>
 
+        <!-- Settings -->
         <service id="symedit_settings.settings" class="%symedit_settings.settings.class%">
             <argument type="service" id="symedit_settings.loader" />
             <argument type="collection" />
@@ -25,11 +40,14 @@
             <argument>%kernel.debug%</argument>
         </service>
 
+        <!-- Settings Alias -->
+        <service id="symedit_settings" alias="symedit_settings.settings" />
+
         <!-- Settings Form Type -->
-        <service id="form.type.settings" class="%symedit_settings.form.settings.class%">
+        <service id="symedit_settings.form.type.settings" class="%symedit.form.type.settings.class%">
             <argument type="service" id="symedit_settings.settings" />
             <argument type="service" id="security.context" />
-            <tag name="form.type" alias="settings" />
+            <tag name="form.type" alias="symedit_settings" />
         </service>
 
         <!-- Request Settings Listener -->

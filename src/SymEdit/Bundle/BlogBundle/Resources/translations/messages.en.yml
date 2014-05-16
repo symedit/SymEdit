@@ -1,0 +1,20 @@
+admin:
+    # Posts
+    post:
+        flash:
+            created: Post Created.
+            updated: Post Updated.
+        actions:
+            save: Save Post
+            preview: Preview Post
+            no_preview:
+                label: Preview Not Available
+                help: Cannot preview, blog not active.
+            delete: Delete Post
+
+    # Categories
+    category:
+        actions:
+            save: Save Category
+            delete: Delete Category
+            create: Create Category

@@ -30,16 +30,15 @@ class SymEditWidgetExtension extends SymEditResourceExtension
      */
     public function load(array $config, ContainerBuilder $container)
     {
-        $this->configDir = __DIR__.'/../Resources/config';
+        list($config) = $this->configure(
+            $config,
+            new Configuration(),
+            $container, 
+            self::CONFIGURE_LOADER | self::CONFIGURE_DATABASE | self::CONFIGURE_PARAMETERS
+        );
 
-        list($config) = $this->configure($config, new Configuration(), $container, self::CONFIGURE_LOADER | self::CONFIGURE_DATABASE | self::CONFIGURE_PARAMETERS);
-
-        $container->setParameter('symedit_widget.model_manager_name', $config['model_manager_name']);
+        // Map Fragment Parameters
         $this->remapParameters($container, 'fragment', $config['fragment']);
-
-        if (isset($config['resources'])) {
-            $this->createResourceServices($config['resources'], $container);
-        }
     }
 
     /**

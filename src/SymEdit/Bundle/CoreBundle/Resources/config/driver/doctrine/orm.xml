@@ -9,24 +9,6 @@
     </parameters>
 
     <services>
-        <service id="symedit.entity_manager" factory-service="doctrine" factory-method="getManager" class="Doctrine\ORM\EntityManager">
-            <argument>%symedit.model_manager_name%</argument>
-        </service>
-
-        <!-- Page -->
-        <service id="symedit.manager.page" alias="symedit.entity_manager" />
-        <service id="symedit.repository.page" class="%symedit.repository.page.class%">
-            <argument type="service" id="symedit.manager.page" />
-            <argument type="service">
-                <service
-                    factory-service="symedit.manager.page"
-                    factory-method="getClassMetadata"
-                    class="Doctrine\ORM\Mapping\ClassMetadata">
-                    <argument>%symedit.model.page.class%</argument>
-                </service>
-            </argument>
-        </service>
-
         <!-- Listeners -->
         <service id="symedit.listener.page_path" class="SymEdit\Bundle\CoreBundle\Doctrine\ORM\PagePathListener">
             <argument type="service" id="router" />

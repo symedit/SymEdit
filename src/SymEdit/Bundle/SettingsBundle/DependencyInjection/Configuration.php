@@ -11,6 +11,7 @@
 
 namespace SymEdit\Bundle\SettingsBundle\DependencyInjection;
 
+use Symfony\Component\Config\Definition\Builder\ArrayNodeDefinition;
 use Symfony\Component\Config\Definition\Builder\TreeBuilder;
 use Symfony\Component\Config\Definition\ConfigurationInterface;
 
@@ -27,6 +28,32 @@ class Configuration implements ConfigurationInterface
         $treeBuilder = new TreeBuilder();
         $rootNode = $treeBuilder->root('symedit_settings');
 
+        $this->addClassesSection($rootNode);
+
         return $treeBuilder;
+    }
+
+    /**
+     * Add classes config to be processed by the Sylius Resource Bundle
+     *
+     * @param ArrayNodeDefinition $node
+     */
+    private function addClassesSection(ArrayNodeDefinition $node)
+    {
+        $node
+            ->children()
+                ->arrayNode('classes')
+                    ->addDefaultsIfNotSet()
+                    ->children()
+                        ->arrayNode('settings')
+                            ->addDefaultsIfNotSet()
+                            ->children()
+                                ->scalarNode('controller')->defaultValue('SymEdit\Bundle\SettingsBundle\Controller\SettingsController')->end()
+                                ->scalarNode('form')->defaultValue('SymEdit\Bundle\SettingsBundle\Form\Type\SettingsType')->end()
+                            ->end()
+                        ->end()
+                    ->end()
+                ->end()
+            ->end();
     }
 }

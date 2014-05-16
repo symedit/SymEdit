@@ -1,0 +1,10 @@
+symedit:
+    image:
+        created: New Image was successfully created.
+        updated: Image was updated successfully.
+    file:
+        created: File was uploaded successfully.
+        updated: File was updated successfully.
+    image_gallery:
+        created: Image Gallery was successfully created.
+        updated: Image Gallery successfully updated.

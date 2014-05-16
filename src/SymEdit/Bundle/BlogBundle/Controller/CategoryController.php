@@ -38,9 +38,8 @@ class CategoryController extends ResourceController
     /**
      * Get single resource by its identifier.
      */
-    public function showAction()
+    public function showAction(Request $request)
     {
-        $request = $this->getRequest();
         $slug = $request->get('slug');
         $config = $this->getConfiguration();
         $posts = $this->getRepository()->getPostsBySlugQueryBuilder($slug);

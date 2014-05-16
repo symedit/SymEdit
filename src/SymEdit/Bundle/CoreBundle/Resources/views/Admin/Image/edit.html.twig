@@ -1,4 +1,5 @@
 {% extends '@SymEdit/Admin/base.html.twig' %}
+{% import '@SymEdit/Admin/macro.html.twig' as macro %}
 
 {% block title %}Images &raquo; {{ image.name }} &raquo; Edit{% endblock %}
 
@@ -12,10 +13,9 @@
     {{ form_widget(form) }}
     <div class="form-actions">
         <button type="submit" class="btn btn-primary">Update Image</button>
-        <button type="button" data-toggle="form-forward" data-message="Are you sure you want to delete this image?" data-target="#image-delete" class="btn btn-warning">Delete Image</button>
+        {{ macro.delete_button('image_delete', 'admin.image.actions.delete') }}
     </div>
 {{ form_end(form) }}
 
-{#{{ form(delete_form, {attr: {id: 'image-delete', class: 'form-hidden'}}) }}#}
-
+{{ macro.delete_form('image_delete', path('admin_image_delete', {id: image.id})) }}
 {% endblock %}

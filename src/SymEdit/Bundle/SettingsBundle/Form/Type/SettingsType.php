@@ -76,6 +76,6 @@ class SettingsType extends AbstractType
 
     public function getName()
     {
-        return 'settings';
+        return 'symedit_settings';
     }
 }

@@ -11,10 +11,8 @@
 
 namespace SymEdit\Bundle\CoreBundle\EventListener\Subscriber;
 
-use SymEdit\Bundle\SeoBundle\Model\SeoInterface;
-use SymEdit\Bundle\CoreBundle\Event\Events;
 use Sylius\Bundle\ResourceBundle\Event\ResourceEvent;
-use SymEdit\Bundle\CoreBundle\Event\PostEvent;
+use SymEdit\Bundle\CoreBundle\Event\Events;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\HttpFoundation\Session\Session;
 use Symfony\Component\Routing\Exception\RouteNotFoundException;
@@ -23,42 +21,24 @@ use Symfony\Component\Routing\RouterInterface;
 class PostSubscriber implements EventSubscriberInterface
 {
     protected $session;
-    protected $seo;
     protected $router;
 
-    public function __construct(Session $session, SeoInterface $seo, RouterInterface $router)
+    public function __construct(Session $session, RouterInterface $router)
     {
         $this->session = $session;
-        $this->seo = $seo;
         $this->router = $router;
     }
 
     public static function getSubscribedEvents()
     {
         return array(
-            Events::POST_POST_CREATE => 'postCreated',
-            Events::POST_UPDATE => 'postUpdated',
+            Events::POST_POST_CREATE => 'sharePost',
+            Events::POST_UPDATE      => 'sharePost',
         );
     }
 
-    /**
-     * Make sure this is done after the post has been flushed so it
-     * gets the slug from the doctrine extensions
-     *
-     * @param ResourceEvent $event
-     */
-    public function postCreated(ResourceEvent $event)
+    public function sharePost(ResourceEvent $event)
     {
-        /**
-         * Add Created Notice
-         */
-        $this->session->getFlashBag()->add('notice', 'admin.post.flash.created');
-        $this->addShare($event);
-    }
-
-    public function postUpdated(ResourceEvent $event)
-    {
-        $this->session->getFlashBag()->add('notice', 'admin.post.flash.updated');
         $this->addShare($event);
     }
 

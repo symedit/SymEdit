@@ -30,46 +30,6 @@
             </argument>
         </service>
 
-        <!-- Image -->
-        <service id="symedit.controller.image" class="%symedit.controller.image.class%">
-            <argument>symedit</argument>
-            <argument>image</argument>
-            <argument />
-            <call method="setContainer">
-                <argument type="service" id="service_container" />
-            </call>
-        </service>
-
-        <!-- File -->
-        <service id="symedit.controller.file" class="%symedit.controller.file.class%">
-            <argument>symedit</argument>
-            <argument>file</argument>
-            <argument />
-            <call method="setContainer">
-                <argument type="service" id="service_container" />
-            </call>
-        </service>
-
-        <!-- Image Gallery -->
-        <service id="symedit.controller.image_gallery" class="%symedit.controller.image_gallery.class%">
-            <argument>symedit</argument>
-            <argument>image_gallery</argument>
-            <argument />
-            <call method="setContainer">
-                <argument type="service" id="service_container" />
-            </call>
-        </service>
-
-        <!-- Gallery Item -->
-        <service id="symedit.controller.gallery_item" class="%symedit.controller.gallery_item.class%">
-            <argument>symedit</argument>
-            <argument>gallery_item</argument>
-            <argument />
-            <call method="setContainer">
-                <argument type="service" id="service_container" />
-            </call>
-        </service>
-
         <!-- Menu Subscriber -->
         <service id="symedit_media.menu_subscriber" class="%symedit_media.menu_subscriber.class%">
             <argument type="service" id="security.context" />

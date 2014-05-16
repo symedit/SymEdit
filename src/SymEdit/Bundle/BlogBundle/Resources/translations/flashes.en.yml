@@ -1,0 +1,7 @@
+symedit:
+    category:
+        create: The category has been successfully created.
+        update: The category has been successfully updated.
+    post:
+        created: The Post has been successfully created.
+        updated: The Post has been successfully updated.

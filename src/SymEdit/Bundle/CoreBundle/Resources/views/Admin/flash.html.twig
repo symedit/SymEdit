@@ -1,4 +1,3 @@
-{% if app.session.flashbag.has('notice') or app.session.flashbag.has('error') %}
 <div id="flash">
     {% for url in app.session.flashbag.get('share')|default([]) %}
         <div class="flash-message share">
@@ -14,7 +13,7 @@
         </div>
     {% endfor %}
 
-    {% for message in app.session.flashbag.get('notice')|default([]) %}
+    {% for message in app.session.flashbag.get('success')|default([]) %}
         <div class="flash-message message">
             <div class="container">
                 {{ icon('thumbs-up') }} {{ message|trans }}
@@ -31,4 +30,3 @@
         </div>
     {% endfor %}
 </div>
-{% endif %}
