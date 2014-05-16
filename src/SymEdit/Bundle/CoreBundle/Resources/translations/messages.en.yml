@@ -40,6 +40,11 @@ admin:
             save: Save Page
             delete: Delete Page
 
+    image:
+        actions:
+            save: Save Image
+            delete: Delete Image
+
     # Widgets
     widget:
         actions:
