@@ -8,6 +8,7 @@
         <parameter key="symedit_analytics.tracker.class">SymEdit\Bundle\AnalyticsBundle\Analytics\Tracker</parameter>
         <parameter key="symedit_analytics.reporter.class">SymEdit\Bundle\AnalyticsBundle\Report\Reporter</parameter>
         <parameter key="symedit_analytics.event_listener.symedit_subject.class">SymEdit\Bundle\AnalyticsBundle\EventListener\SymEditSubjectSubscriber</parameter>
+        <parameter key="symedit_analytics.event_listener.flush_visits.class">SymEdit\Bundle\AnalyticsBundle\EventListener\FlushVisitsSubscriber</parameter>
         <parameter key="symedit_analytics.model.visit.class">SymEdit\Bundle\AnalyticsBundle\Model\Visit</parameter>
     </parameters>
 
@@ -27,7 +28,14 @@
             <argument type="collection" />
         </service>
 
+        <!-- SymEdit Subject Listener -->
         <service id="symedit_analytics.event_listener.symedit_subject" class="%symedit_analytics.event_listener.symedit_subject.class%">
+            <argument type="service" id="symedit_analytics.tracker" />
+            <tag name="kernel.event_subscriber" />
+        </service>
+
+        <!-- Tracker Flush Listener -->
+        <service id="symedit_analytics.event_listener.flush_visits" class="%symedit_analytics.event_listener.flush_visits.class%">
             <argument type="service" id="symedit_analytics.tracker" />
             <tag name="kernel.event_subscriber" />
         </service>

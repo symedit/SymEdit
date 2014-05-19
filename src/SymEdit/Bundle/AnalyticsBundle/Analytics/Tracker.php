@@ -20,6 +20,7 @@ class Tracker
     protected $repository;
     protected $visitClass;
     protected $propertyAccess;
+    protected $trackedVisits = array();
 
     public function __construct(ObjectManager $manager, $class)
     {
@@ -48,7 +49,24 @@ class Tracker
         $visit->setClass(get_class($object));
         $visit->setIdentifier($identifierValue);
 
-        $this->manager->persist($visit);
-        $this->manager->flush($visit);
+        $this->trackedVisits[] = $visit;
+    }
+
+    public function flush()
+    {
+        // Skip if empty
+        if (count($this->trackedVisits) === 0) {
+            return;
+        }
+
+        foreach ($this->trackedVisits as $object) {
+            $this->manager->persist($object);
+        }
+
+        // Flush Entities
+        $this->manager->flush();
+
+        // Reset
+        $this->trackedVisits = array();
     }
 }
