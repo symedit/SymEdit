@@ -35,11 +35,11 @@ class PageControllerListener
         /**
          * Check if any request has a _page_id that needs to be converted
          */
-        if($attributes->has('_page_id')){
+        if ($attributes->has('_page_id')) {
             $id = $attributes->get('_page_id');
             $attributes->remove('_page_id');
 
-            if(empty($id)){
+            if (empty($id)) {
                 return;
             }
 

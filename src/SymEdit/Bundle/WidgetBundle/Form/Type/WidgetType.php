@@ -28,7 +28,6 @@ class WidgetType extends AbstractType
         $this->widgetAreaClass = $widgetAreaClass;
     }
 
-
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $transformer = new WidgetAssociationTransformer();
@@ -81,7 +80,7 @@ class WidgetType extends AbstractType
         /**
          * Add to the final form if config has children
          */
-        if($config->count() > 0){
+        if ($config->count() > 0) {
             $builder->add($config);
         }
 

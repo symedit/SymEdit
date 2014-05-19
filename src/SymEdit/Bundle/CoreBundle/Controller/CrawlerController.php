@@ -11,12 +11,9 @@
 
 namespace SymEdit\Bundle\CoreBundle\Controller;
 
-use Symfony\Component\HttpFoundation\Request;
-use SymEdit\Bundle\CoreBundle\Iterator\RecursivePageIterator;
-
 class CrawlerController extends Controller
 {
-    function robotsAction()
+    public function robotsAction()
     {
         $settings = $this->get('symedit_settings.settings');
 

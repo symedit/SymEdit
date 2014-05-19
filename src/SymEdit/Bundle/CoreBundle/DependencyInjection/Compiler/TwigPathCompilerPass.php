@@ -45,7 +45,7 @@ class TwigPathCompilerPass implements CompilerPassInterface
          */
         $loader = $container->getDefinition('twig.loader.filesystem');
 
-        foreach(array_reverse($this->getLocations()) as $location){
+        foreach (array_reverse($this->getLocations()) as $location) {
             $loader->addMethodCall('prependPath', array($location, 'SymEdit'));
         }
     }
@@ -57,7 +57,7 @@ class TwigPathCompilerPass implements CompilerPassInterface
 
     protected function addLocation($dir)
     {
-        if(is_dir($dir)) {
+        if (is_dir($dir)) {
             $this->locations[] = $dir;
         }
     }

@@ -19,7 +19,7 @@ class PageIterator implements \Iterator
     protected $display;
     protected $position;
     protected $length;
-    
+
     public function __construct(PageInterface $page, $display = true)
     {
         $this->children = $page->getChildren();
@@ -27,7 +27,7 @@ class PageIterator implements \Iterator
         $this->display = $display;
         $this->rewind();
     }
-    
+
     /**
      * @return PageInterface
      */
@@ -44,12 +44,12 @@ class PageIterator implements \Iterator
     public function next()
     {
         $this->position++;
-        
+
         while ($this->position < $this->length) {
              if ($this->valid()) {
                  break;
              }
-             
+
              $this->position++;
         }
     }
@@ -65,7 +65,7 @@ class PageIterator implements \Iterator
         if (!isset($this->children[$this->position])) {
             return false;
         }
-        
+
         return !$this->display || $this->current()->getDisplay();
     }
 }

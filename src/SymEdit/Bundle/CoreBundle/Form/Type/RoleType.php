@@ -16,11 +16,11 @@ use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 use Doctrine\Bundle\DoctrineBundle\Registry;
 use Symfony\Component\Security\Core\SecurityContext;
 
-class RoleType extends AbstractType {
-
+class RoleType extends AbstractType
+{
     private $doctrine;
     private $context;
-    
+
     public function __construct(Registry $doctrine, SecurityContext $context)
     {
         $this->doctrine = $doctrine;
@@ -33,7 +33,7 @@ class RoleType extends AbstractType {
         $choices = array();
 
         foreach ($roles as $role) {
-            if($this->context->isGranted($role->getRole())) {
+            if ($this->context->isGranted($role->getRole())) {
                 $choices[$role->getRole()] = $role->getDescription();
             }
         }

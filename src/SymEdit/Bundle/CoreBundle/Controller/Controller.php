@@ -27,9 +27,9 @@ class Controller extends BaseController
     {
         $response = new Response();
 
-        if($this->isCacheable()){
+        if ($this->isCacheable()) {
 
-            if($modified !== null){
+            if ($modified !== null) {
                 $response->setLastModified($modified);
             }
 
@@ -101,14 +101,14 @@ class Controller extends BaseController
      *
      * @param string $title
      * @param string $path
-     * @param array $params
+     * @param array  $params
      */
     public function addBreadcrumb($title, $path = null, array $params = array())
     {
         /**
          * If no path supplied, use the matched one
          */
-        if($path === null || $params === null) {
+        if ($path === null || $params === null) {
             $request = $this->getRequest();
             $path = $request->get('_route');
             $params = $request->get('_route_params', array());
@@ -126,7 +126,7 @@ class Controller extends BaseController
     {
         $request = $this->getRequest();
 
-        if($request->attributes->has('_page')){
+        if ($request->attributes->has('_page')) {
             return $request->attributes->get('_page');
         }
 

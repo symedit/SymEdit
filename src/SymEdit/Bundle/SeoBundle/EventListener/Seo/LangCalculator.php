@@ -20,9 +20,9 @@ class LangCalculator implements SeoCalculatorInterface
     {
         $seo = $event->getSeo();
         $request = $event->getRequest();
-        
+
         if ($request !== null) {
             $seo->addHtmlAttr('lang', $request->getLocale());
         }
     }
-}            
+}

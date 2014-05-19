@@ -76,7 +76,7 @@ class ThemeFactory implements ThemeFactoryInterface
     /**
      * Get a Theme
      *
-     * @param string $name
+     * @param  string         $name
      * @return ThemeInterface
      */
     public function getTheme($name)

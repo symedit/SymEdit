@@ -4,7 +4,7 @@
     {% set icon %}
         <span>
             SEO
-            
+
             {% if collector.data.errors > 0 %}
                 <span class="sf-toolbar-status sf-toolbar-status-red">{{ collector.data.errors }}</span>
             {% endif %}
@@ -30,7 +30,7 @@
             <b>Metas:</b>
             {% for type, value in collector.data.metas %}
             <br><b>{{ type }}:</b>
-            
+
             <table>
                 {% for key, value in collector.data.metas[type] %}
                 <tr>

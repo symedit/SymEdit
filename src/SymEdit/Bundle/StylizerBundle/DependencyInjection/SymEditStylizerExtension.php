@@ -44,7 +44,7 @@ class SymEditStylizerExtension extends Extension
         /**
          * This plugs into the AsseticController when in dev mode
          */
-        if(strtolower($env) !== 'prod'){
+        if (strtolower($env) !== 'prod') {
             $loader->load('services_dev.xml');
         }
     }
@@ -52,11 +52,11 @@ class SymEditStylizerExtension extends Extension
     private function getYamlStyleFiles($bundles)
     {
         $files = array();
-        foreach($bundles as $bundle){
+        foreach ($bundles as $bundle) {
             $class = new \ReflectionClass($bundle);
             $dir = dirname($class->getFileName());
             $file = $dir.'/Resources/config/styles.yml';
-            if(file_exists($file)){
+            if (file_exists($file)) {
                 $files[] = $file;
             }
         }

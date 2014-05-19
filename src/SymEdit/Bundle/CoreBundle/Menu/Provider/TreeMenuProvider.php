@@ -89,8 +89,8 @@ class TreeMenuProvider implements MenuProviderInterface
      */
     protected function populateChildren(MenuItem $menu, PageInterface $parent)
     {
-        foreach($parent as $child) {
-            if(!$child->getDisplay()) {
+        foreach ($parent as $child) {
+            if (!$child->getDisplay()) {
                 continue;
             }
 

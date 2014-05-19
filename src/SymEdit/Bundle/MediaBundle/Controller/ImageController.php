@@ -26,7 +26,7 @@ class ImageController extends ResourceController
         $images = $this->getRepository()->findAll();
         $out = array();
 
-        foreach($images as $image){
+        foreach ($images as $image) {
             $out[] = array(
                 'thumb' => $this->getThumbnail($image->getPath()),
                 'image' => $image->getWebPath(),
@@ -67,7 +67,6 @@ class ImageController extends ResourceController
             ));
 
         } catch (\Exception $ex) {
-
             return new JsonResponse(array(
                 'error' => 'Error uploading, try renaming your image file.',
             ));

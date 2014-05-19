@@ -21,11 +21,11 @@ class PageCalculator implements SeoCalculatorInterface
     {
         $seo = $event->getSeo();
         $subject = $seo->getSubject();
-        
+
         if (!$subject instanceof PageInterface) {
             return;
         }
-        
+
         $seo->merge(array(
             'title' => $subject->getTitle(),
             'description' => $subject->getSummary(),

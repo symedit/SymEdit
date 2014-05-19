@@ -25,7 +25,7 @@ class LoaderChain implements LoaderInterface
 
     public function loadStyleData(ConfigData $configData)
     {
-        foreach($this->loaders as $loader) {
+        foreach ($this->loaders as $loader) {
             $loader->loadStyleData($configData);
         }
     }

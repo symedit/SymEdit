@@ -36,7 +36,7 @@ class LayoutManager
 
     /**
      * Get a layout for a template
-     * @param TemplateInterface $template
+     * @param  TemplateInterface      $template
      * @return TemplateInterface|null
      */
     public function getLayout(TemplateInterface $template)

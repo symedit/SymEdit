@@ -27,7 +27,7 @@ class SeoEvent extends Event
      * Constructor
      *
      * @param SeoInterface $seo
-     * @param Request $request
+     * @param Request      $request
      */
     public function __construct(SeoInterface $seo, Request $request = null)
     {

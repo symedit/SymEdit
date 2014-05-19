@@ -13,7 +13,6 @@ namespace SymEdit\Bundle\SeoBundle\Model;
 
 use SymEdit\Bundle\SeoBundle\Event\Events;
 use SymEdit\Bundle\SeoBundle\Event\SeoEvent;
-use SymEdit\Bundle\SeoBundle\Model\SeoInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 

@@ -31,11 +31,11 @@ class InstallCommand extends ContainerAwareCommand
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        $force = (boolean)$input->getOption('force');
+        $force = (boolean) $input->getOption('force');
         $dialog = $this->getHelperSet()->get('dialog');
 
         // Doctrine create database
-        if($force || $dialog->askConfirmation($output, '<question>Create Database?</question>', false)){
+        if ($force || $dialog->askConfirmation($output, '<question>Create Database?</question>', false)) {
             $output->writeln('Creating database...');
 
             $command = $this->getApplication()->find('doctrine:database:create');
@@ -44,7 +44,7 @@ class InstallCommand extends ContainerAwareCommand
         }
 
         // Doctrine schema update
-        if($force || $dialog->askConfirmation($output, '<question>Load Schema?</question>', false)){
+        if ($force || $dialog->askConfirmation($output, '<question>Load Schema?</question>', false)) {
             $output->writeln('Loading Schema...');
 
             $command = $this->getApplication()->find('doctrine:schema:update');
@@ -57,7 +57,7 @@ class InstallCommand extends ContainerAwareCommand
         }
 
         // Doctrine Fixtures
-        if($force || $dialog->askConfirmation($output, '<question>Load Fixtures?</question>', false)){
+        if ($force || $dialog->askConfirmation($output, '<question>Load Fixtures?</question>', false)) {
             $output->writeln('Loading Fixtures...');
 
             $command = $this->getApplication()->find('doctrine:fixtures:load');

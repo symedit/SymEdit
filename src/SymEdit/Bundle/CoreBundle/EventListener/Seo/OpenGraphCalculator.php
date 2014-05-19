@@ -18,12 +18,12 @@ use SymEdit\Bundle\SettingsBundle\Model\Settings;
 class OpenGraphCalculator implements SeoCalculatorInterface
 {
     protected $settings;
-    
+
     public function __construct(Settings $settings)
     {
         $this->settings = $settings;
     }
-    
+
     public function calculateSeo(SeoEvent $event)
     {
         $seo = $event->getSeo();

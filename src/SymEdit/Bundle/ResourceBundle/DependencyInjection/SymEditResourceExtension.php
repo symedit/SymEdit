@@ -22,8 +22,8 @@ class SymEditResourceExtension extends AbstractResourceExtension
      * Maps parameters to their equivalent path in their arrays
      *
      * @param ContainerBuilder $container
-     * @param string $path
-     * @param array $config
+     * @param string           $path
+     * @param array            $config
      */
     protected function remapParameters(ContainerBuilder $container, $path, array $config)
     {

@@ -29,7 +29,7 @@ class TeamController extends Controller
 
         $result = $query->getResult();
 
-        $users = array_filter($result, function($user){
+        $users = array_filter($result, function ($user) {
             return $user->getProfile()->getDisplay();
         });
 
@@ -44,7 +44,7 @@ class TeamController extends Controller
             'slug' => $slug,
         ));
 
-        if(!$profile) {
+        if (!$profile) {
             throw $this->createNotFoundException(sprintf('Could not find user with slug "%s".', $slug));
         }
 

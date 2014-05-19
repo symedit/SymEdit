@@ -17,7 +17,7 @@ use SymEdit\Bundle\CoreBundle\Doctrine\AbstractPagePathListener;
 
 class PagePathListener extends AbstractPagePathListener
 {
-    public function getSubscribedEvents() 
+    public function getSubscribedEvents()
     {
         return array(
             Events::postPersist,

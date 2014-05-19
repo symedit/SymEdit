@@ -34,14 +34,14 @@ class StylesType extends AbstractType
             'virtual' => true,
         ));
 
-        foreach($groups as $groupName => $group){
+        foreach ($groups as $groupName => $group) {
 
             $groupOptions = array(
                 'virtual' => true,
                 'extra' => $group->getExtra(),
             );
 
-            if($group->getLabel() !== null){
+            if ($group->getLabel() !== null) {
                 $groupOptions['label'] = $group->getLabel();
             }
 
@@ -58,7 +58,7 @@ class StylesType extends AbstractType
     {
         $config = $group->getVariableConfig();
 
-        foreach($config as $name => $data){
+        foreach ($config as $name => $data) {
 
             $label = isset($data['label']) ? $data['label'] : '';
             $options = isset($data['options']) ? $data['options'] : array();

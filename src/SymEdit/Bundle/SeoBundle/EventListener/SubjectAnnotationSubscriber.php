@@ -13,7 +13,6 @@ namespace SymEdit\Bundle\SeoBundle\EventListener;
 
 use Doctrine\Common\Annotations\Reader;
 use Doctrine\Common\Util\ClassUtils;
-use SymEdit\Bundle\CoreBundle\Event\SubjectEvent;
 use SymEdit\Bundle\SeoBundle\Annotation\Seo;
 use SymEdit\Bundle\SeoBundle\Model\SeoInterface;
 use SymEdit\Bundle\SeoBundle\Model\SeoManagerInterface;

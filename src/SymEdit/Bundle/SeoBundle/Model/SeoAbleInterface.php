@@ -9,12 +9,12 @@
  * file that was distributed with this source code.
  */
 
-namespace SymEdit\Bundle\SeoBundle\Model; 
+namespace SymEdit\Bundle\SeoBundle\Model;
 
 interface SeoAbleInterface
 {
     /**
      * @return SeoInterface|array
      */
-    public function getSeo(); 
+    public function getSeo();
 }

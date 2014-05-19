@@ -34,7 +34,7 @@ class Media implements MediaInterface
     /**
      * Set path
      *
-     * @param string $path
+     * @param  string        $path
      * @return BeverageImage
      */
     public function setPath($path)
@@ -67,7 +67,7 @@ class Media implements MediaInterface
     /**
      * Set updatedAt
      *
-     * @param \DateTime $updatedAt
+     * @param  \DateTime     $updatedAt
      * @return BeverageImage
      */
     public function setUpdatedAt(\DateTime $updatedAt)
@@ -136,7 +136,7 @@ class Media implements MediaInterface
 
     public function setNameCallback($callback)
     {
-        if(!is_callable($callback)){
+        if (!is_callable($callback)) {
             throw new \Exception('Callback is not callable.');
         }
 

@@ -17,16 +17,16 @@ class SettingsCacheWarmer implements CacheWarmerInterface
 {
     public function __construct(Settings $settings)
     {
-        
+
     }
-    
+
     public function warmUp($cacheDir)
     {
-        
-    }    
-    
+
+    }
+
     public function isOptional()
     {
-        return true; 
+        return true;
     }
 }

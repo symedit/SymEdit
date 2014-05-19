@@ -19,7 +19,7 @@ class WidgetReorderType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        if(!$options['render']){
+        if (!$options['render']) {
             $builder
                 ->add('pair', 'collection', array(
                     'type' => 'integer',

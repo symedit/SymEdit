@@ -32,7 +32,7 @@ class WidgetRepository extends EntityRepository
         $class = $this->getClassName();
         $widget = new $class();
 
-        if($strategyName !== null){
+        if ($strategyName !== null) {
             $widget->setStrategyName($strategyName);
             $this->registry->init($widget);
         }

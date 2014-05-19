@@ -18,14 +18,14 @@ class GoogleFontTransformer implements DataTransformerInterface
     /**
      * Split the textarea by newlines, or commas and trim extra space
      *
-     * @param type $value
+     * @param  type $value
      * @return type
      */
     public function transform($value)
     {
         $values = explode('|', $value);
         $values = array_map('urldecode', $values);
-        
+
         return implode(', ', $values);
     }
 

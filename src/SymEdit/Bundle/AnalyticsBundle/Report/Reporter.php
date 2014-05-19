@@ -39,7 +39,7 @@ class Reporter
         if (!array_key_exists($name, $this->reports)) {
             throw new \InvalidArgumentException(sprintf('Could not find report "%s".', $name));
         }
-        
+
         return $this->reports[$name];
     }
 }

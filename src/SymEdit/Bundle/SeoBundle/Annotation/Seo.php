@@ -14,10 +14,10 @@ namespace SymEdit\Bundle\SeoBundle\Annotation;
 /**
  * @Annotation
  */
-class Seo 
+class Seo
 {
-    private $subject;  
-    
+    private $subject;
+
     public function __construct(array $data)
     {
         foreach ($data as $key => $value) {
@@ -28,7 +28,7 @@ class Seo
             $this->$method($value);
         }
     }
-    
+
     public function getSubject()
     {
         return $this->subject;
@@ -38,7 +38,7 @@ class Seo
     {
         $this->subject = $subject;
     }
-        
+
     public function all()
     {
         return array(

@@ -29,7 +29,7 @@ class SymEditBundle extends Bundle
 
     public function __construct(Kernel $kernel = null)
     {
-        if($kernel === null) {
+        if ($kernel === null) {
             throw new \RuntimeException('When you register the SymEdit bundle, be sure to include "$this" in the parameters => '
                                       . 'new SymEdit\\Bundle\\CoreBundle\\SymEditBundle($this)');
         }

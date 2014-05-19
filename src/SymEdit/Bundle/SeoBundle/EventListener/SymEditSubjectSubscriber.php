@@ -16,7 +16,6 @@ use SymEdit\Bundle\CoreBundle\Event\SubjectEvent;
 use SymEdit\Bundle\SeoBundle\Model\SeoManagerInterface;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
-
 class SymEditSubjectSubscriber implements EventSubscriberInterface
 {
     protected $seoManager;

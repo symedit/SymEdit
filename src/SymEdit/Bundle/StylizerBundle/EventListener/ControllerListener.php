@@ -34,13 +34,13 @@ class ControllerListener
     {
         $controller = $event->getController();
 
-        if(!is_array($controller)){
+        if (!is_array($controller)) {
             return;
         }
 
         $refl = new \ReflectionClass($controller[0]);
 
-        if(!$this->injected && $refl->getName() === $this->controller){
+        if (!$this->injected && $refl->getName() === $this->controller) {
             $this->stylizer->inject();
         }
     }

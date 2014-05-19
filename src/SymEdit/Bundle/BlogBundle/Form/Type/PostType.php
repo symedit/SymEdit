@@ -39,7 +39,7 @@ class PostType extends AbstractType
             ->add('author', 'entity', array(
                 'property' => 'profile.fullname',
                 'class'    => $this->userClass,
-                'query_builder' => function(EntityRepository $er) {
+                'query_builder' => function (EntityRepository $er) {
                     return $er->createQueryBuilder('u')
                               ->andWhere('u.admin = true');
                 },
@@ -73,7 +73,6 @@ class PostType extends AbstractType
         $seo
             ->add('seo', 'symedit_seo');
 
-
         $summary = $builder->create('summary', 'tab', array(
             'inherit_data' => true,
             'label' => 'Summary',
@@ -94,7 +93,6 @@ class PostType extends AbstractType
                 ),
                 'required' => false,
             ));
-
 
         $content = $builder->create('content', 'tab', array(
             'inherit_data' => true,

@@ -11,8 +11,6 @@
 
 namespace SymEdit\Bundle\CoreBundle\Model;
 
-use SymEdit\Bundle\CoreBundle\Model\UserInterface;
-use SymEdit\Bundle\CoreBundle\Model\ProfileInterface;
 use FOS\UserBundle\Model\User as BaseUser;
 
 class User extends BaseUser implements UserInterface

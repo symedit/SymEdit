@@ -7,11 +7,11 @@
     <parameters>
         <parameter key="symedit.data_collector.page.class">SymEdit\Bundle\CoreBundle\DataCollector\PageDataCollector</parameter>
     </parameters>
-    
+
     <services>
         <service id="symedit.data_collector.page" class="%symedit.data_collector.page.class%">
             <tag name="data_collector" template="SymEditBundle:Collector:page.html.twig" id="symedit_page" />
-        </service>       
+        </service>
     </services>
-    
+
 </container>

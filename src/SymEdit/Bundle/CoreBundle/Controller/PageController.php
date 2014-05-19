@@ -84,7 +84,7 @@ class PageController extends ResourceController
         $reorderForm->handleRequest($this->getRequest());
         $status = false;
 
-        if($reorderForm->isValid()){
+        if ($reorderForm->isValid()) {
             $status = true;
             $data = $reorderForm->getData();
             $repository = $this->getRepository();

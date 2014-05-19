@@ -36,7 +36,6 @@ class CategoryType extends AbstractType
                 'required' => false,
             ));
 
-
         $seo = $builder->create('seo', 'tab', array(
             'label' => 'SEO',
             'inherit_data' => true,
@@ -45,7 +44,6 @@ class CategoryType extends AbstractType
 
         $seo
             ->add('seo', 'symedit_seo');
-
 
         $builder
             ->add($basic)

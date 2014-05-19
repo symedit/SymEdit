@@ -50,7 +50,7 @@ class WidgetController extends ResourceController
 
     /**
      *
-     * @param \Symfony\Component\HttpFoundation\Request $request
+     * @param  \Symfony\Component\HttpFoundation\Request  $request
      * @return \Symfony\Component\HttpFoundation\Response
      * @throws type
      */
@@ -60,14 +60,14 @@ class WidgetController extends ResourceController
         $reorderForm->handleRequest($request);
         $status = false;
 
-        if($reorderForm->isValid()){
+        if ($reorderForm->isValid()) {
             $status = true;
             $data = $reorderForm->getData();
             $manager = $this->getManager();
             $repository = $this->getRepository();
 
-            foreach($data['pair'] as $id=>$order){
-                if(!$widget = $repository->find($id)){
+            foreach ($data['pair'] as $id=>$order) {
+                if (!$widget = $repository->find($id)) {
                     throw $this->createNotFoundException(sprintf('Sorting entity not found (%d)', $id));
                 }
 
@@ -111,7 +111,7 @@ class WidgetController extends ResourceController
 
         try {
             $widget = $this->getRepository()->createNew($strategyName);
-        } catch(\Exception $e) {
+        } catch (\Exception $e) {
             throw $this->createNotFoundException(sprintf('Widget with strategy name "%s" does not exist', $strategyName));
         }
 

@@ -26,15 +26,15 @@ class MetaCalculator implements SeoCalculatorInterface
         if (!$seo->hasMeta('name', 'description')) {
             $seo->addMetaName('description', $seo->getDescription());
         }
-        
+
         /**
          * Set robots from index / follow variables
          */
         if (!$seo->hasMeta('name', 'robots')) {
             $index = $seo->getIndex() ? 'index' : 'noindex';
             $follow = $seo->getFollow() ? 'follow' : 'nofollow';
-            
+
             $seo->addMetaName('robots', sprintf('%s, %s', $index, $follow));
         }
     }
-}            
+}

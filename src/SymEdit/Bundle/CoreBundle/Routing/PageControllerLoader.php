@@ -61,8 +61,8 @@ class PageControllerLoader
      * Attempt to find default route for the controller, if none is provided
      * then find a route with path "/" and assume it is the default.
      *
-     * @param \Symfony\Component\Routing\RouteCollection $collection
-     * @param string $defaultRouteName
+     * @param  \Symfony\Component\Routing\RouteCollection $collection
+     * @param  string                                     $defaultRouteName
      * @return \Symfony\Component\Routing\Route
      * @throws \Exception
      */
@@ -79,7 +79,6 @@ class PageControllerLoader
          */
         foreach ($collection as $route) {
             if ($route->getPath() === '/') {
-
                 return $route;
             }
         }

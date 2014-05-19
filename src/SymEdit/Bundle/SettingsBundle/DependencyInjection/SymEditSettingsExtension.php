@@ -44,13 +44,13 @@ class SymEditSettingsExtension extends SymEditResourceExtension
     private function getSettingsFiles($bundles, array $extensions = array())
     {
         $files = array();
-        foreach($bundles as $bundle){
+        foreach ($bundles as $bundle) {
             $class = new \ReflectionClass($bundle);
             $dir = dirname($class->getFileName());
 
             foreach ($extensions as $extension) {
                 $file = $dir.'/Resources/config/settings.' . $extension;
-                if(file_exists($file)){
+                if (file_exists($file)) {
                     $files[] = $file;
                 }
             }

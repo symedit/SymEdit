@@ -26,7 +26,7 @@ class RepositoryTransformer implements DataTransformerInterface
     /**
      * Convert to database value
      *
-     * @param type $value
+     * @param  type $value
      * @return type
      */
     public function reverseTransform($value)

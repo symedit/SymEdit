@@ -118,7 +118,7 @@ class Builder
          *
          * @TODO: Maybe move this to a listener?
          */
-        $validExtensions = array_filter($this->extensions, function($extension) {
+        $validExtensions = array_filter($this->extensions, function ($extension) {
             return !isset($extension['role']) || $this->context->isGranted($extension['role']);
         });
 

@@ -21,11 +21,11 @@ class CategoryCalculator implements SeoCalculatorInterface
     {
         $seo = $event->getSeo();
         $subject = $seo->getSubject();
-        
+
         if (!$subject instanceof CategoryInterface) {
             return;
         }
-        
+
         $seo->merge(array(
             'title' => $subject->getTitle(),
             'description' => sprintf('Blog posts in %s', $subject->getTitle()),

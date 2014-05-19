@@ -69,10 +69,10 @@ class SymEditMailer extends TwigSwiftMailer
         /**
          * Add extra options
          */
-        foreach($options as $key => $value){
+        foreach ($options as $key => $value) {
             $method = 'set'.ucfirst($key);
 
-            if(!method_exists($message, $method)){
+            if (!method_exists($message, $method)) {
                 throw new \InvalidArgumentException(sprintf('There is no method called "%s".', $method));
             }
 

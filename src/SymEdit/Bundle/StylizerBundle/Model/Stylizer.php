@@ -37,7 +37,7 @@ class Stylizer implements \ArrayAccess
 
     public function getConfigData()
     {
-        if($this->configData === null){
+        if ($this->configData === null) {
             $this->configData = new ConfigData();
             $this->loader->loadStyleData($this->configData);
         }
@@ -55,7 +55,7 @@ class Stylizer implements \ArrayAccess
         $file = $this->rootDir.'/'.$this->file;
         $styles = is_file($file) && is_readable($file) ? Yaml::parse($file) : array();
 
-        if(!is_array($styles)){
+        if (!is_array($styles)) {
             $styles = array();
         }
 
@@ -64,7 +64,7 @@ class Stylizer implements \ArrayAccess
 
     public function getVariables()
     {
-        if($this->variables === null){
+        if ($this->variables === null) {
             $this->variables = $this->getMergedValues();
         }
 
@@ -105,7 +105,7 @@ class Stylizer implements \ArrayAccess
 
     public function offsetGet($offset)
     {
-        if(!$this->offsetExists($offset)){
+        if (!$this->offsetExists($offset)) {
             throw new \Exception(sprintf('Variables "%s" does not exist.', $offset));
         }
 

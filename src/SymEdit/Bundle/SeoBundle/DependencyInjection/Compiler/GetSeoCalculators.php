@@ -22,15 +22,15 @@ class GetSeoCalculators implements CompilerPassInterface
         if (!$container->hasDefinition('symedit_seo.seo_manager')) {
             return;
         }
-        
+
         $managerDefinition = $container->getDefinition('symedit_seo.seo_manager');
         $taggedServices = $container->findTaggedServiceIds('seo.calculator');
-        
+
         foreach ($taggedServices as $id => $tagAttributes) {
             foreach ($tagAttributes as $attributes) {
-                
+
                 $args = array(new Reference($id));
-                
+
                 if (isset($attributes['priority'])) {
                     $args[] = $attributes['priority'];
                 }

@@ -19,7 +19,7 @@ class UserType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        if(!$builder->has('basic')){
+        if (!$builder->has('basic')) {
             return;
         }
 
@@ -28,7 +28,7 @@ class UserType extends AbstractType
         /**
          * Don't require current password.
          */
-        if($basic->has('current_password')){
+        if ($basic->has('current_password')) {
             $basic->remove('current_password');
         }
 

@@ -74,7 +74,6 @@ class LoadWidgetData extends AbstractFixture implements OrderedFixtureInterface,
         $this->addReference('widget-blog-categories', $categories);
         $this->addReference('widget-blog-recent-posts', $recent);
 
-
         /**
          * Add Featured Area
          */
@@ -98,7 +97,6 @@ class LoadWidgetData extends AbstractFixture implements OrderedFixtureInterface,
 
         $this->addReference('widgetarea-featured', $featured);
         $this->addReference('widget-google_map_featured', $map);
-
 
         /**
          * Add Supplemental Area

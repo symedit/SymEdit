@@ -43,7 +43,7 @@ class ExportController extends Controller
                 'title' => '',
                 'index' => '',
                 'follow' => '',
-            ), (array)$page->getSeo());
+            ), (array) $page->getSeo());
 
             $data = array(
                 'id' => $page->getId(),

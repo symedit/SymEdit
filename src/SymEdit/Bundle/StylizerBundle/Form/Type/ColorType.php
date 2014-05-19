@@ -9,21 +9,21 @@
  * file that was distributed with this source code.
  */
 
-namespace SymEdit\Bundle\StylizerBundle\Form\Type; 
+namespace SymEdit\Bundle\StylizerBundle\Form\Type;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
-use Symfony\Component\Form\FormInterface; 
-use Symfony\Component\Form\FormView; 
+use Symfony\Component\Form\FormInterface;
+use Symfony\Component\Form\FormView;
 
 class ColorType extends AbstractType
 {
-    
+
     public function buildView(FormView $view, FormInterface $form, array $options)
     {
-        $view->vars['type'] = 'color'; 
+        $view->vars['type'] = 'color';
     }
-    
+
     /**
      * {@inheritdoc}
      */

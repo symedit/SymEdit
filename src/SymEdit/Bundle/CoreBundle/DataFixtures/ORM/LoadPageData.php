@@ -16,8 +16,8 @@ use Doctrine\Common\DataFixtures\AbstractFixture;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use SymEdit\Bundle\CoreBundle\Model\Page;
 
-class LoadPageData extends AbstractFixture implements OrderedFixtureInterface {
-
+class LoadPageData extends AbstractFixture implements OrderedFixtureInterface
+{
     public function load(ObjectManager $manager)
     {
         // Root Node
@@ -50,7 +50,7 @@ class LoadPageData extends AbstractFixture implements OrderedFixtureInterface {
             ->setPageOrder(10);
 
         $manager->persist($page_home);
-        $this->addReference('page-homepage', $page_home); 
+        $this->addReference('page-homepage', $page_home);
 
         // About Page
         $page_about = new Page();

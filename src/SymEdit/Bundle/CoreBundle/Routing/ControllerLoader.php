@@ -13,7 +13,6 @@ namespace SymEdit\Bundle\CoreBundle\Routing;
 
 use Doctrine\Common\Annotations\Reader;
 use Sensio\Bundle\FrameworkExtraBundle\Routing\AnnotatedRouteControllerLoader;
-use Symfony\Component\Routing\RouteCollection;
 
 /**
  * Loads Annotated routes so we can search for the PageController annotation

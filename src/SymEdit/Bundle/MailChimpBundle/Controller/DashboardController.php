@@ -22,7 +22,6 @@ class DashboardController extends ResourceController
         $client = $this->get('symedit_mailchimp.client');
 
         //print_r($client->getLists()); die();
-
         return $this->render($config->getTemplate('index'), array(
             'lists' => $client->getLists(),
         ));

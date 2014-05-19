@@ -12,7 +12,6 @@
 namespace SymEdit\Bundle\BlogBundle\Widget\Strategy;
 
 use SymEdit\Bundle\AnalyticsBundle\Report\Reporter;
-use SymEdit\Bundle\BlogBundle\Model\Post;
 use SymEdit\Bundle\WidgetBundle\Model\WidgetInterface;
 use SymEdit\Bundle\WidgetBundle\Widget\Strategy\AbstractWidgetStrategy;
 use Symfony\Component\Form\FormBuilderInterface;

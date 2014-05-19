@@ -25,7 +25,6 @@ class WebmasterController extends Controller
             }
 
             if ($code === $request_code) {
-
                 return $this->render('@SymEdit/Webmaster/googleVerify.html.twig', array(
                     'code' => $code,
                 ));

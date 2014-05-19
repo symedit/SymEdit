@@ -18,7 +18,7 @@ use Symfony\Component\HttpKernel\KernelEvents;
 
 /**
  * Delay the flushing / persisting of analytics entities until the
- * kernel terminate event to not delay the response. 
+ * kernel terminate event to not delay the response.
  */
 class FlushVisitsSubscriber implements EventSubscriberInterface
 {

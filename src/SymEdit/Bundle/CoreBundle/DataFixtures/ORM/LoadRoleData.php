@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-  namespace SymEdit\Bundle\CoreBundle\DataFixtures\ORM;
+namespace SymEdit\Bundle\CoreBundle\DataFixtures\ORM;
 
   use Doctrine\Common\Persistence\ObjectManager;
   use Doctrine\Common\DataFixtures\AbstractFixture;

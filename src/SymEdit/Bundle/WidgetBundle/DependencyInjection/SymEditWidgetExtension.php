@@ -33,7 +33,7 @@ class SymEditWidgetExtension extends SymEditResourceExtension
         list($config) = $this->configure(
             $config,
             new Configuration(),
-            $container, 
+            $container,
             self::CONFIGURE_LOADER | self::CONFIGURE_DATABASE | self::CONFIGURE_PARAMETERS
         );
 

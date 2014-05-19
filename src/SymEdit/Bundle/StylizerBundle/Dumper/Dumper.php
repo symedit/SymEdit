@@ -18,7 +18,6 @@ use Symfony\Component\Console\Input\ArrayInput;
 use Symfony\Component\Console\Output\NullOutput;
 use Symfony\Bundle\AsseticBundle\FilterManager;
 use SymEdit\Bundle\StylizerBundle\Injector\InjectorInterface;
-use SymEdit\Bundle\StylizerBundle\Loader\Loader;
 
 class Dumper
 {
@@ -58,11 +57,11 @@ class Dumper
      */
     public function inject(array $variables)
     {
-        foreach($this->injectors as &$injector){
-            if(is_string($injector)){
+        foreach ($this->injectors as &$injector) {
+            if (is_string($injector)) {
                 $injector = $this->container->get($injector);
 
-                if(!$injector instanceof InjectorInterface){
+                if (!$injector instanceof InjectorInterface) {
                     throw new \Exception(sprintf('Your injector must implement InjectorInterface, %s given', get_class($injector)));
                 } else {
                     $injector->setFilterManager($this->manager);

@@ -9,17 +9,17 @@
  * file that was distributed with this source code.
  */
 
-namespace SymEdit\Bundle\StylizerBundle\Injector; 
+namespace SymEdit\Bundle\StylizerBundle\Injector;
 
 class LessPhpInjector extends AbstractInjector
 {
     public function inject(array $variables = array())
     {
-        $manager = $this->getFilterManager(); 
-        
-        if($manager->has('lessphp')){
-            $lessphp = $manager->get('lessphp'); 
-            $lessphp->setPresets($variables); 
+        $manager = $this->getFilterManager();
+
+        if ($manager->has('lessphp')) {
+            $lessphp = $manager->get('lessphp');
+            $lessphp->setPresets($variables);
         }
-    }    
+    }
 }

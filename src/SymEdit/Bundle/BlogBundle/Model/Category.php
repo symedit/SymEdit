@@ -194,7 +194,7 @@ class Category implements CategoryInterface
     /**
      * Set the depth of the category
      *
-     * @param integer $level
+     * @param  integer  $level
      * @return Category
      */
     public function setLevel($level)

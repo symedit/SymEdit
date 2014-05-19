@@ -51,7 +51,7 @@ class GroupData
 
     public function addVariable($name, $data)
     {
-        if(!is_array($data)){
+        if (!is_array($data)) {
 
             $this->variables[$name] = array(
                 'value' => $data,
@@ -66,7 +66,7 @@ class GroupData
     {
         $variables = array();
 
-        foreach($this->variables as $name => $data){
+        foreach ($this->variables as $name => $data) {
             $variables[$name] = $data['value'];
         }
 

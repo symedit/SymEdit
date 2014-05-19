@@ -27,7 +27,7 @@ class SymEditMediaExtension extends SymEditResourceExtension
     {
         list($config) = $this->configure(
             $config,
-            new Configuration(), 
+            new Configuration(),
             $container,
             self::CONFIGURE_LOADER | self::CONFIGURE_DATABASE | self::CONFIGURE_PARAMETERS
         );

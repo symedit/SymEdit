@@ -59,8 +59,8 @@ class SitemapFetcher extends ContainerAware
     /**
      * Returns all the objects from the repository
      *
-     * @param string $className
-     * @param array $parameters
+     * @param  string                    $className
+     * @param  array                     $parameters
      * @return array
      * @throws \InvalidArgumentException
      */
@@ -93,8 +93,8 @@ class SitemapFetcher extends ContainerAware
     /**
      * Builds a single entry from object and parameters
      *
-     * @param mixed $object
-     * @param array $parameters
+     * @param  mixed $object
+     * @param  array $parameters
      * @return array
      */
     protected function makeEntry($object, array $parameters)
@@ -119,8 +119,8 @@ class SitemapFetcher extends ContainerAware
      * Resolves route parameters. If you have $slug for instance it will try
      * to resolve it by checking Object::$slug Object->getSlug() etc.
      *
-     * @param mixed $object
-     * @param array $routeParams
+     * @param  mixed $object
+     * @param  array $routeParams
      * @return array
      */
     protected function resolveRouteParams($object, $routeParams)
@@ -137,8 +137,8 @@ class SitemapFetcher extends ContainerAware
     /**
      * Resolves a single string
      *
-     * @param mixed $object
-     * @param string $string
+     * @param  mixed  $object
+     * @param  string $string
      * @return string
      */
     protected function resolveParam($object, $string)

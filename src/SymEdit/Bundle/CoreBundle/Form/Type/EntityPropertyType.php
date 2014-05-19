@@ -37,15 +37,15 @@ class EntityPropertyType extends AbstractType
 
         $doctrine = $this->doctrine;
 
-        $choiceList = function(Options $options) use ($doctrine) {
+        $choiceList = function (Options $options) use ($doctrine) {
             $entities = $doctrine->getManager()->getRepository($options['class'])->findAll();
 
             $choices = array();
             $accessor = PropertyAccess::createPropertyAccessor();
             $i = 0;
 
-            foreach($entities as $entity) {
-                if($options['property_value'] !== null) {
+            foreach ($entities as $entity) {
+                if ($options['property_value'] !== null) {
                     $key = $accessor->getValue($entity, $options['property_value']);
                 } else {
                     $key = $i++;

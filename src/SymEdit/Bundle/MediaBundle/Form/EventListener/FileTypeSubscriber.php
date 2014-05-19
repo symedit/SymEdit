@@ -59,8 +59,9 @@ class FileTypeSubscriber implements EventSubscriberInterface
             $data->setNameCallback($callback);
         }
 
-        if(!$this->options['required'] && !$data->hasFile()){
+        if (!$this->options['required'] && !$data->hasFile()) {
             $event->setData(null);
+
             return;
         }
     }
@@ -79,7 +80,7 @@ class FileTypeSubscriber implements EventSubscriberInterface
         $require_name = $form->getConfig()->getOption('require_name');
 
         // If name is not set, then add the field
-        if(($data === null || $data->getName() === null) && $require_name){
+        if (($data === null || $data->getName() === null) && $require_name) {
             $form->add('name', 'text', array(
                 'label' => $this->options['name_label'],
                 'help_block' => $this->options['name_help'],

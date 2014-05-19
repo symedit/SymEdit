@@ -24,7 +24,7 @@ interface WidgetStrategyInterface extends BaseWidgetStrategyInterface
      * Executes the strategy
      *
      * @param WidgetInterface $widget The widget to be rendered
-     * @param PageInterface $page $name If a page is currently active it will be passed
+     * @param PageInterface   $page   $name If a page is currently active it will be passed
      */
     public function execute(WidgetInterface $widget, PageInterface $page = null);
 }

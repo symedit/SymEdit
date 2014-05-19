@@ -26,8 +26,8 @@ class PageLoader extends BaseLoader
     }
 
     /**
-     * @param type $resource
-     * @param type $type
+     * @param  type                                       $resource
+     * @param  type                                       $type
      * @return \Symfony\Component\Routing\RouteCollection
      */
     public function load($resource = null, $type = null)

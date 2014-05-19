@@ -28,7 +28,7 @@ class WidgetExtension extends \Twig_Extension
             new TokenParser\WidgetAreaTokenParser($this->strategy),
         );
     }
-    
+
     public function getName()
     {
         return 'symedit_widget';

@@ -36,10 +36,10 @@ class SettingsType extends AbstractType
 
         $config = $this->settings->getConfigData();
 
-        foreach($config as $groupName => $groupData){
+        foreach ($config as $groupName => $groupData) {
 
             // Check for roles
-            if ($groupData['role'] !== null && !$this->context->isGranted($groupData['role'])){
+            if ($groupData['role'] !== null && !$this->context->isGranted($groupData['role'])) {
                 continue;
             }
 
@@ -48,7 +48,7 @@ class SettingsType extends AbstractType
                 'label' => $groupData['label'],
             ));
 
-            foreach($groupData['settings'] as $settingName => $settingData){
+            foreach ($groupData['settings'] as $settingName => $settingData) {
                 $groupForm->add($settingName, $settingData['type'], array_replace_recursive($groupData['default_options'], array(
                         'property_path' => sprintf('[%s][%s]', $groupName, $settingName),
                     ),

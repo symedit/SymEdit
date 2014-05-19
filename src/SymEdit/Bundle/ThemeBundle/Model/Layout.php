@@ -25,7 +25,7 @@ class Layout
         $this->rows = array();
 
         if (is_array($rows)) {
-            foreach($rows as $row){
+            foreach ($rows as $row) {
                 $this->addRow($row);
             }
         }
@@ -76,7 +76,7 @@ class Layout
     public function addRow($row)
     {
         // If it's a string, make it an array of characters
-        if(!is_array($row)){
+        if (!is_array($row)) {
             $row = str_split($row);
         }
 

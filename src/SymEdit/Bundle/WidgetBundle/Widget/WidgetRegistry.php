@@ -33,7 +33,7 @@ class WidgetRegistry extends ContainerAware
     }
 
     /**
-     * @param  string                   $name Strategy Name
+     * @param  string                  $name Strategy Name
      * @return WidgetStrategyInterface
      * @throws \Exception
      */

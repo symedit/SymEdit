@@ -12,7 +12,6 @@
 namespace SymEdit\Bundle\CoreBundle\Controller;
 
 use Symfony\Component\Templating\TemplateReference;
-use SymEdit\Bundle\CoreBundle\Controller\Controller;
 use SymEdit\Bundle\CoreBundle\Model\PageInterface;
 
 class WidgetController extends Controller
@@ -27,7 +26,7 @@ class WidgetController extends Controller
         $id = $_page === null ? null : $_page->getId();
         $widgets = array();
 
-        foreach($widgetArea->getWidgets() as $widget) {
+        foreach ($widgetArea->getWidgets() as $widget) {
 
             if (!$matcher->isVisible($widget)) {
                 continue;
@@ -52,7 +51,7 @@ class WidgetController extends Controller
         $templateName = sprintf('@SymEdit/WidgetArea/%s.html.twig', $area);
         $template = new TemplateReference($templateName);
 
-        if(!$this->templateExists($template)){
+        if (!$this->templateExists($template)) {
             $template->set('name', '@SymEdit/WidgetArea/default.html.twig');
         }
 
@@ -63,12 +62,11 @@ class WidgetController extends Controller
         ), $response);
     }
 
-
     private function templateExists($template)
     {
        $loader = $this->get('twig')->getLoader();
 
-       if($loader instanceof \Twig_ExistsLoaderInterface){
+       if ($loader instanceof \Twig_ExistsLoaderInterface) {
            return $loader->exists($template);
        }
 

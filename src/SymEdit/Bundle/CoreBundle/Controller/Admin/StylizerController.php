@@ -30,22 +30,22 @@ class StylizerController extends Controller
         /**
          * Stylizer Bundle was not added, so this page shouldn't exist.
          */
-        if(!$this->has('symedit_stylizer.stylizer')){
+        if (!$this->has('symedit_stylizer.stylizer')) {
             throw $this->createNotFoundException();
         }
 
         $stylizer = $this->get('symedit_stylizer.stylizer');
         $form = $this->createForm('styles', $stylizer);
 
-        if($request->getMethod() === 'POST'){
+        if ($request->getMethod() === 'POST') {
 
             $form->handleRequest($request);
 
-            if($form->isValid()){
+            if ($form->isValid()) {
 
                 $stylizer->save();
 
-                if($request->request->has('dump')){
+                if ($request->request->has('dump')) {
                     $stylizer->dump();
 
                     $this->addFlash('success', 'Styles saved and dumped');

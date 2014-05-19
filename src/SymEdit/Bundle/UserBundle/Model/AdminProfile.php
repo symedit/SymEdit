@@ -47,14 +47,14 @@ class AdminProfile extends Profile
     /**
      * Set the user's image
      *
-     * @param ImageInterface $image
+     * @param  ImageInterface $image
      * @return UserInterface
      */
     public function setImage(ImageInterface $image)
     {
         $user = $this->getUser();
 
-        $image->setNameCallback(function() use ($user){
+        $image->setNameCallback(function () use ($user) {
             return Util::slugify($user->getProfile()->getFullname());
         });
 
@@ -100,7 +100,7 @@ class AdminProfile extends Profile
     /**
      * Set user biography
      *
-     * @param string $biography
+     * @param  string                                $biography
      * @return \SymEdit\Bundle\UserBundle\Model\User
      */
     public function setBiography($biography)

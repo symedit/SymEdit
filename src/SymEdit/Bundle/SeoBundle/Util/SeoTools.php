@@ -21,7 +21,7 @@ class SeoTools
     /**
      * Removes XSS issues mostly, html entities and strip_tags
      *
-     * @param string $string
+     * @param  string $string
      * @return string
      */
     public static function normalize($string)
@@ -42,7 +42,7 @@ class SeoTools
     /**
      * Normalize then minify
      *
-     * @param string $string
+     * @param  string $string
      * @return string
      */
     public static function plain($string, $length = null)

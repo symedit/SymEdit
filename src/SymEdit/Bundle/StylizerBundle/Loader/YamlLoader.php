@@ -24,14 +24,14 @@ class YamlLoader implements LoaderInterface
 
     public function loadStyleData(ConfigData $configData)
     {
-        foreach($this->yamlFiles as $file){
+        foreach ($this->yamlFiles as $file) {
             $data = Yaml::parse(file_get_contents($file));
 
             if (!is_array($data)) {
                 continue;
             }
 
-            foreach($data as $name => $value){
+            foreach ($data as $name => $value) {
                 $configData->parseGroup($name, $value);
             }
         }

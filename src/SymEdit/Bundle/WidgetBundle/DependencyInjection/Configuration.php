@@ -48,7 +48,6 @@ class Configuration implements ConfigurationInterface
         return $treeBuilder;
     }
 
-
     /**
      * Add classes config to be processed by the Sylius Resource Bundle
      *
