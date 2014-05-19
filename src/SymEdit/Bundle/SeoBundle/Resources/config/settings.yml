@@ -5,6 +5,7 @@ seo:
             type: textarea
             options:
                 label: Extra <head> tag contents
+                required: false
                 attr:
                     rows: 5
         business_type:
