@@ -70,6 +70,14 @@ class SymEditMailer extends TwigSwiftMailer
          * Add extra options
          */
         foreach ($options as $key => $value) {
+
+            // Attach the files and continue to next option
+            if ($key === 'attachments') {
+                $this->attachFiles($message, $value);
+
+                continue;
+            }
+
             $method = 'set'.ucfirst($key);
 
             if (!method_exists($message, $method)) {
@@ -80,12 +88,23 @@ class SymEditMailer extends TwigSwiftMailer
         }
 
         if (!empty($htmlBody)) {
-            $message->setBody($htmlBody, 'text/html')
-                ->addPart($textBody, 'text/plain');
+            $message
+                ->setBody($htmlBody, 'text/html')
+                ->addPart($textBody, 'text/plain')
+            ;
         } else {
             $message->setBody($textBody);
         }
 
         $this->mailer->send($message);
+    }
+
+    protected function attachFiles(\Swift_Message $message, $files)
+    {
+        $files = is_array($files) ? $files : array($files);
+
+        foreach ($files as $file) {
+            $message->attach(\Swift_Attachment::fromPath($file));
+        }
     }
 }
