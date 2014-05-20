@@ -34,14 +34,14 @@ class SeoExtension extends \Twig_Extension
     public function getFunctions()
     {
         return array(
-            new \Twig_SimpleFunction('symedit_seo_title', array($this, 'getSeoTitle')),
+            new \Twig_SimpleFunction('symedit_seo_title', array($this, 'getSeoTitle'), array('is_safe' => array('html'))),
             new \Twig_SimpleFunction('symedit_seo_metas', array($this, 'getSeoMetas'), array('is_safe' => array('html'))),
         );
     }
 
     public function getSeoTitle()
     {
-        return $this->getCalculatedSeo()->getTitle();
+        return SeoTools::normalize($this->getCalculatedSeo()->getTitle());
     }
 
     public function getSeoMetas()

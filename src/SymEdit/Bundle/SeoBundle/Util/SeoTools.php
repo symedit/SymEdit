@@ -26,7 +26,7 @@ class SeoTools
      */
     public static function normalize($string)
     {
-        return htmlentities(strip_tags($string));
+        return htmlentities(strip_tags($string), ENT_COMPAT, 'UTF-8', false);
     }
 
     /**
