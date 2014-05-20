@@ -12,7 +12,6 @@
 namespace SymEdit\Bundle\CoreBundle\Twig\Extension;
 
 use Symfony\Component\DependencyInjection\ContainerInterface;
-use SymEdit\Bundle\CoreBundle\Model\Page;
 
 /**
  * @TODO: Uhh don't inject the container. There's only like 2 services in here now, this is gross.
@@ -33,23 +32,9 @@ class SymEditExtension extends \Twig_Extension
     {
         $globals = array();
 
-        /**
-         *  Inject the Page variable globally in case
-         *  you skipped it in the controller, or didn't need it
-         *  as well as the breadcrumbs
-         */
-        if($this->container->has('request')){
+        if ($this->container->has('request')) {
             $request = $this->container->get('request');
-
-            if($request->attributes->has('_page')){
-                $page = $request->attributes->get('_page');
-                $page->setActive(true, true);
-            } else {
-                $page = new Page();
-                $page->setPath($request->getPathInfo());
-            }
-
-            $seo = $request->attributes->get('_seo', array());
+            $page = $request->attributes->get('_page');
 
             $globals['Page'] = $page;
         }
@@ -82,8 +67,8 @@ class SymEditExtension extends \Twig_Extension
      * it to be plain text with no breaks. There is a limit which will truncate the text so
      * meta tags won't be filled with too much text.
      *
-     * @param string $text
-     * @param int $limit
+     * @param  string $text
+     * @param  int    $limit
      * @return string
      */
     public function plain($text, $limit = null, $ellipsis = null)
@@ -96,7 +81,7 @@ class SymEditExtension extends \Twig_Extension
         if (isset($limit) && is_int($limit) && $len > $limit) {
             $text = substr($text, 0, $limit);
 
-            if($ellipsis !== null){
+            if ($ellipsis !== null) {
                 $text .= $ellipsis;
             }
         }
@@ -107,7 +92,7 @@ class SymEditExtension extends \Twig_Extension
     /**
      * Check for existence of a route
      *
-     * @param string $name Route Name
+     * @param  string  $name Route Name
      * @return boolean
      */
     public function routeExists($name)
