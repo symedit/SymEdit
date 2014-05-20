@@ -33,11 +33,11 @@ class PageVoter implements VoterInterface
      */
     public function matchItem(ItemInterface $item)
     {
-        if ($page = $this->getPage()) {
+        if (($page = $this->getPage()) && $page->getId() !== null) {
             return $item->getExtra('_page_id', null) === $page->getId();
         }
 
-        return false;
+        return null;
     }
 
     /**
