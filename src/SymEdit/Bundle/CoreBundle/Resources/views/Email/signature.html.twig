@@ -1,7 +1,8 @@
   <address>
-      <strong>{{ symedit_settings_get('company.name') }}</strong>
+      {% set company = symedit_setting_get('company') %}
+      <strong>{{ company.name }}</strong>
       {% set info = ['phone', 'email', 'address'] %}
-      {% for piece in info if symedit_settings_get('company[piece]') is not empty %}
-      <br> {{ symedit_settings_get('company[piece]') }}
+      {% for piece in info if company[piece] is not empty %}
+      <br> {{ company[piece] }}
       {% endfor %}
   </address>
