@@ -13,6 +13,7 @@ namespace SymEdit\Bundle\CoreBundle\Util;
 
 use FOS\UserBundle\Mailer\TwigSwiftMailer;
 use SymEdit\Bundle\SettingsBundle\Model\Settings;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 class SymEditMailer extends TwigSwiftMailer
 {
@@ -104,7 +105,13 @@ class SymEditMailer extends TwigSwiftMailer
         $files = is_array($files) ? $files : array($files);
 
         foreach ($files as $file) {
-            $message->attach(\Swift_Attachment::fromPath($file));
+            $attachment = \Swift_Attachment::fromPath($file);
+
+            if ($file instanceof UploadedFile) {
+                $attachment->setFilename($file->getClientOriginalName());
+            }
+
+            $message->attach($attachment);
         }
     }
 }
