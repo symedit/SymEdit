@@ -30,24 +30,19 @@ class PageControllerListener
     public function onKernelController(FilterControllerEvent $event)
     {
         $request = $event->getRequest();
-        $attributes = $request->attributes;
+        $pageId = $request->attributes->get('_page_id', null);
 
-        /**
-         * Check if any request has a _page_id that needs to be converted
-         */
-        if ($attributes->has('_page_id')) {
-            $id = $attributes->get('_page_id');
-            $attributes->remove('_page_id');
-
-            if (empty($id)) {
-                return;
-            }
-
-            $page = $this->pageRepository->find($id);
-
-            $attributes->add(array(
-                '_page' => $page,
-            ));
+        if (!empty($pageId)) {
+            $request->attributes->remove('_page_id');
+            $page = $this->pageRepository->find($pageId);
+        } else {
+            $page = $this->pageRepository->createNew();
+            $page->setPath($request->getPathInfo());
         }
+
+        // Add it to the request
+        $request->attributes->add(array(
+            '_page' => $page,
+        ));
     }
 }
