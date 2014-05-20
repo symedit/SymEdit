@@ -44,6 +44,7 @@ class PageController extends ResourceController
 
         $response = $view
             ->getResponse()
+            ->setPublic()
             ->setLastModified($page->getUpdatedAt());
 
         if ($response->isNotModified($request)) {
