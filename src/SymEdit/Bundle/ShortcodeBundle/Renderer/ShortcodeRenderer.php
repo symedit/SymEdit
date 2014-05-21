@@ -6,7 +6,7 @@ class ShortcodeRenderer implements ShortcodeRendererInterface
 {
     protected $shortcodes;
     protected $pattern = '#\[(%s)(?:\s(.*?))?\](?:(.+?)(?:\[\/\1\]))?#';
-    protected $attrPattern = '#([\w-]+)(?:\s*=\s*([^\s]+))?#';
+    protected $attrPattern = '#([\w\d-_\.]+)(?:\s*=\s*([^\s]+))?#';
 
     public function __construct($shortcodes = array())
     {
