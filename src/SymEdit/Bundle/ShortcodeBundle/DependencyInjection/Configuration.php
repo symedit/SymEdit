@@ -18,7 +18,15 @@ class Configuration implements ConfigurationInterface
     public function getConfigTreeBuilder()
     {
         $treeBuilder = new TreeBuilder();
-        $rootNode = $treeBuilder->root('sym_edit_shortcode');
+        $rootNode = $treeBuilder->root('symedit_shortcode');
+
+        $rootNode
+            ->children()
+                ->arrayNode('settings')
+                    ->prototype('variable')->end()
+                ->end()
+            ->end()
+        ;
 
         // Here you should define the parameters that are allowed to
         // configure your bundle. See the documentation linked above for

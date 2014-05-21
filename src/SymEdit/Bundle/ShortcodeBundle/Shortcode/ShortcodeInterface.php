@@ -2,6 +2,8 @@
 
 namespace SymEdit\Bundle\ShortcodeBundle\Shortcode;
 
+use SymEdit\Bundle\ShortcodeBundle\Model\ShortcodeSettingsInterface;
+
 interface ShortcodeInterface
 {
     /**
@@ -15,8 +17,12 @@ interface ShortcodeInterface
      */
     public function renderShortcode($match, array $attr, $content);
 
+    public function setSettings(ShortcodeSettingsInterface $settings);
+
     /**
-     * If we use this tag, can we still cache the outcome?
+     * @return ShortcodeSettingsInterface
      */
-    public function isCacheable();
+    public function getSettings();
+
+    public function getSetting($setting, $default = null);
 }

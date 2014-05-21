@@ -14,6 +14,11 @@
             <argument type="collection" />
         </service>
 
+        <!-- Settings -->
+        <service id="symedit_shortcode.settings" class="SymEdit\Bundle\ShortcodeBundle\Model\ShortcodeSettings">
+            <argument>%symedit_shortcode.settings%</argument>
+        </service>
+
         <!-- Twig Extension -->
         <service id="symedit_shortcode.twig.extension.short_code" class="SymEdit\Bundle\ShortcodeBundle\Twig\Extension\ShortcodeExtension">
             <argument type="service" id="symedit_shortcode.renderer" />

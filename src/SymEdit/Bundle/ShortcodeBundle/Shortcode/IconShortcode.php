@@ -7,18 +7,20 @@ namespace SymEdit\Bundle\ShortcodeBundle\Shortcode;
  */
 class IconShortCode extends AbstractShortcode
 {
-    protected $iconPattern;
-
-    public function construct($iconPattern = '')
-    {
-        $this->iconPattern = $iconPattern;
-    }
+    protected static $patterns = array(
+        'glyphicon'     => '<span class="glyphicon glyphicon-%s"></span>',
+        'fontawesome'   => '<i class="icon-%s"></i>',
+        'fontawesome4'  => '<i class="fa fa-%s"></i>',
+    );
 
     public function renderShortcode($match, array $attr, $content)
     {
+        $iconSet = $this->getSetting('icon', 'glyphicon');
+        $pattern = isset(self::$patterns[$iconSet]) ? self::$patterns[$iconSet] : '[Invalid Icon Set]';
+
         $icon = current($attr);
 
-        return sprintf('<i class="icon-%s"></i>', $icon);
+        return sprintf($pattern, $icon);
     }
 
     public function getName()

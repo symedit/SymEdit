@@ -16,6 +16,9 @@ class ShortcodeCompilerPass implements CompilerPassInterface
                 throw new \Exception(sprintf('No alias for shortcode "%s"', $id));
             }
 
+            $shortCodeDefinition = $container->getDefinition($id);
+            $shortCodeDefinition->addMethodCall('setSettings', array(new Reference('symedit_shortcode.settings')));
+
             $shortCodes[$attributes[0]['alias']] = new Reference($id);
         }
 
