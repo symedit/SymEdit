@@ -3,6 +3,7 @@
 namespace SymEdit\Bundle\CoreBundle\Shortcode;
 
 use SymEdit\Bundle\ShortcodeBundle\Shortcode\AbstractShortcode;
+use Symfony\Component\Routing\Exception\RouteNotFoundException;
 use Symfony\Component\Routing\RouterInterface;
 
 class LinkShortcode extends AbstractShortcode
@@ -22,11 +23,13 @@ class LinkShortcode extends AbstractShortcode
             return $match;
         }
 
-        if (array_key_exists($route, $this->router->getRouteCollection()->all())) {
-            return $this->router->generate($route);
-        } else {
-            return $match;
+        try {
+            $out = $this->router->generate($route);
+        } catch (RouteNotFoundException $e) {
+            $out = $match;
         }
+
+        return $out;
     }
 
     public function getName()
