@@ -42,7 +42,8 @@ class ShortcodeRenderer implements ShortcodeRendererInterface
         $shortcode = $this->getShortcode($tagName);
         $response = $shortcode->renderShortcode($match, $this->parseAttrs($attr), isset($parts[3]) ? $parts[3] : null);
 
-        return $this->renderString($response);
+        // Prevent infinite loop trying to resolve a non-match
+        return ($response !== $match) ? $this->renderString($response) : $response;
     }
 
     protected function getRegex()
