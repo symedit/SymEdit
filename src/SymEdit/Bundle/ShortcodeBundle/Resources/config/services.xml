@@ -1,0 +1,28 @@
+<?xml version="1.0" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <parameters>
+        <parameter key="symedit_shortcode.renderer.class">SymEdit\Bundle\ShortcodeBundle\Renderer\ShortcodeRenderer</parameter>
+    </parameters>
+
+    <services>
+        <!-- Renderer -->
+        <service id="symedit_shortcode.renderer" class="%symedit_shortcode.renderer.class%">
+            <argument type="collection" />
+        </service>
+
+        <!-- Twig Extension -->
+        <service id="symedit_shortcode.twig.extension.short_code" class="SymEdit\Bundle\ShortcodeBundle\Twig\Extension\ShortcodeExtension">
+            <argument type="service" id="symedit_shortcode.renderer" />
+            <tag name="twig.extension" />
+        </service>
+
+        <!-- Example Shortcodes -->
+        <service id="symedit_shortcode.shortcode.icon" class="SymEdit\Bundle\ShortcodeBundle\Shortcode\IconShortcode">
+            <tag name="symedit_shortcode.shortcode" alias="icon" />
+        </service>
+    </services>
+</container>
