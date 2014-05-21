@@ -17,7 +17,7 @@ use Symfony\Component\DependencyInjection\ContainerBuilder;
 class SymEditSettingsExtension extends SymEditResourceExtension
 {
     protected $configFiles = array(
-        'services', 'loader', 'twig',
+        'services', 'loader', 'twig', 'shortcode',
     );
 
     /**
