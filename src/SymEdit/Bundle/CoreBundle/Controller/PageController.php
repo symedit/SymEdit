@@ -124,7 +124,7 @@ class PageController extends ResourceController
         foreach ($pages as $page) {
             $out[] = array(
                 'name' => $page->getTitle(),
-                'url' => $this->generateUrl($page->getRoute()),
+                'url' => sprintf('[link page-id=%d]', $page->getId()),
             );
         }
 
