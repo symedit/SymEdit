@@ -39,7 +39,10 @@ class ShortcodeRenderer implements ShortcodeRendererInterface
     {
         list($match, $tagName, $attr) = $parts;
 
-        return $this->getShortcode($tagName)->renderShortcode($match, $this->parseAttrs($attr), isset($parts[3]) ? $parts[3] : null);
+        $shortcode = $this->getShortcode($tagName);
+        $response = $shortcode->renderShortcode($match, $this->parseAttrs($attr), isset($parts[3]) ? $parts[3] : null);
+
+        return $this->renderString($response);
     }
 
     protected function getRegex()
