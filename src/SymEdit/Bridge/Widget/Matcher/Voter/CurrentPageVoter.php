@@ -47,6 +47,6 @@ class CurrentPageVoter extends StringPathVoter
         $page = $this->getRequest()->attributes->get('_page');
 
         return $this->checkAssociation($widget, $page->getPath()) ||
-               $this->checkAssociation($widget, $page->getId());
+               ($page->getId() !== null && $this->checkAssociation($widget, $page->getId()));
     }
 }
