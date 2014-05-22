@@ -18,6 +18,12 @@ use Symfony\Component\HttpFoundation\Request;
 
 /**
  * Settings controller.
+ *
+ * @TODO: Remove sylius from this bundle.. cause why..
+ *
+ * Also make a settingsLoader or something.. the settings model
+ * should just be that. Make it a factory to get the model or something
+ * or just hold a reference to the loader. It shouldn't know about caches.
  */
 class SettingsController extends FOSRestController
 {

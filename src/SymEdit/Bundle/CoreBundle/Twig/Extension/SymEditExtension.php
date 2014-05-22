@@ -12,6 +12,8 @@
 namespace SymEdit\Bundle\CoreBundle\Twig\Extension;
 
 use Symfony\Component\DependencyInjection\ContainerInterface;
+use Symfony\Component\Routing\Exception\MissingMandatoryParametersException;
+use Symfony\Component\Routing\Exception\RouteNotFoundException;
 
 /**
  * @TODO: Uhh don't inject the container. There's only like 2 services in here now, this is gross.
@@ -99,12 +101,15 @@ class SymEditExtension extends \Twig_Extension
     {
         $router = $this->container->get('router');
 
-        return array_key_exists($name, $router->getRouteCollection()->all());
-    }
+        try {
+            $router->generate($name);
 
-    public function setContainer(ContainerInterface $container = null)
-    {
-        $this->container = $container;
+            return true;
+        } catch (MissingMandatoryParametersException $e) {
+            return true;
+        } catch (RouteNotFoundException $e) {
+            return false;
+        }
     }
 
     public function getName()

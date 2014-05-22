@@ -19,7 +19,7 @@ class SymEditExtension extends SymEditResourceExtension
     protected $configFiles = array(
         'services', 'widget', 'routing', 'form',
         'event', 'twig', 'util', 'profiler',
-        'menu', 'seo', 'report',
+        'menu', 'seo', 'report', 'shortcode',
     );
 
     /**

@@ -18,7 +18,9 @@ class HtmlStrategy extends AbstractWidgetStrategy
 {
     public function execute(WidgetInterface $widget)
     {
-        return $widget->getOption('html');
+        return $this->render('@SymEdit/Widget/html.html.twig', array(
+            'html' => $widget->getOption('html'),
+        ));
     }
 
     public function setDefaultOptions(WidgetInterface $widget)
