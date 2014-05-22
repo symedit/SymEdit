@@ -1,0 +1,15 @@
+{
+    "name": "symedit/shortcode-bundle",
+    "description": "Wordpress style shortcodes for Symfony2",
+    "type": "symfony-bundle",
+    "authors": [
+        {
+            "name": "Craig Blanchette",
+            "email": "craig.blanchette@gmail.com"
+        }
+    ],
+    "autoload": {
+        "psr-0": { "SymEdit\\Bundle\\ShortcodeBundle": "" }
+    },
+    "target-dir": "SymEdit/Bundle/ShortcodeBundle"
+}
