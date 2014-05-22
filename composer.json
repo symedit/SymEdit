@@ -53,5 +53,10 @@
         "symedit/user-bundle": "self.version",
         "symedit/widget-bundle": "self.version",
         "symedit/widget-bridge": "self.version"
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "0.4-dev"
+        }
     }
 }
