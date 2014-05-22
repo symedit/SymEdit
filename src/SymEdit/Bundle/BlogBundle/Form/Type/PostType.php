@@ -71,7 +71,9 @@ class PostType extends AbstractType
         ));
 
         $seo
-            ->add('seo', 'symedit_seo');
+            ->add('seo', 'symedit_seo', array(
+                'horizontal_label_offset_class' => '',
+            ));
 
         $summary = $builder->create('summary', 'tab', array(
             'inherit_data' => true,
