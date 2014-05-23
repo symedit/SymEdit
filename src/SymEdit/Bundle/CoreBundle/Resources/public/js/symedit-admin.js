@@ -42,6 +42,7 @@ var Isometriks = (function(){
         dragUpload: true,
         convertDivs: false,
         buttonsAdd: ['|', 'bootstrap'],
+        linkProtocol: false,
         buttonsCustom: {
             bootstrap: {
                 title: "Bootstrap Commands",
