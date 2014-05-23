@@ -115,15 +115,14 @@ class PageController extends ResourceController
 
     public function jsonAction()
     {
-        $pages = $this->getRepository()->findCMSPages(true, array(
-            'path' => 'ASC',
-        ));
-
+        $pages = $this->getRepository()->getRecursiveIterator();
         $out = array();
 
         foreach ($pages as $page) {
+            $label = sprintf('%s %s',str_repeat('--', $page->getLevel()), $page->getTitle());
+
             $out[] = array(
-                'name' => $page->getTitle(),
+                'name' => trim($label),
                 'url' => sprintf('[link page-id=%d]', $page->getId()),
             );
         }
