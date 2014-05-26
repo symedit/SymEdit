@@ -60,7 +60,8 @@ class ImageController extends ResourceController
         $image->setName($nameSlug);
 
         try {
-            $this->persistAndFlush($image);
+            $this->getManager()->persist($image);
+            $this->getManager()->flush($image);
 
             return new JsonResponse(array(
                 'filelink' => $image->getWebPath(),
