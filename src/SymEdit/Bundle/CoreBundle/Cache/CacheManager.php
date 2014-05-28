@@ -21,7 +21,10 @@ class CacheManager implements CacheManagerInterface
     public function getLastModifiedResponse(\DateTime $lastModified = null)
     {
         $response = $this->buildResponse();
-        $response->setLastModified($lastModified);
+
+        if ($this->isCacheable()) {
+            $response->setLastModified($lastModified);
+        }
 
         return $response;
     }
@@ -32,10 +35,13 @@ class CacheManager implements CacheManagerInterface
     protected function buildResponse()
     {
         $response = new Response();
-        $response
-            ->setMaxAge($this->settings->getDefault('advanced.ttl', 60))
-            ->setPublic()
-        ;
+
+        if ($this->isCacheable()) {
+            $response
+                ->setMaxAge($this->settings->getDefault('advanced.ttl', 60))
+                ->setPublic()
+            ;
+        }
 
         return $response;
     }
