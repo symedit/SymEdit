@@ -49,7 +49,7 @@ class CacheManager implements CacheManagerInterface
     protected function doIsCacheable()
     {
         // Check if caching is enabled
-        if (!$this->settings->getDefault('advanced.caching', false)) {
+        if ($this->settings->getDefault('advanced.caching', 'none') !== 'cache') {
             return false;
         }
 
