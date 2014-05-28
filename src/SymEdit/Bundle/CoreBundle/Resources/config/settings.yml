@@ -115,3 +115,8 @@ advanced:
                 choices:
                     none: No Cache
                     cache: Cache
+        ttl:
+            type: integer
+            default: 120
+            options:
+                label: Maximum Cache Time

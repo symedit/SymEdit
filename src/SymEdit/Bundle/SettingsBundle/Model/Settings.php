@@ -149,6 +149,11 @@ class Settings implements \ArrayAccess
         return $this->offsetGet($offset);
     }
 
+    public function getDefault($offset, $default = null)
+    {
+        return $this->has($offset) ? $this->get($offset) : $default;
+    }
+
     public function offsetExists($offset)
     {
         list($group, $setting) = $this->parseOffset($offset);

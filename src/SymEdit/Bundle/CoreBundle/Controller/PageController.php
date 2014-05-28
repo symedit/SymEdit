@@ -42,10 +42,8 @@ class PageController extends ResourceController
             ->setData($page)
             ->setTemplate(sprintf('@SymEdit/Page/%s', $template));
 
-        $response = $view
-            ->getResponse()
-            ->setPublic()
-            ->setLastModified($page->getUpdatedAt());
+        $response = $this->get('symedit.cache_manager')->getLastModifiedResponse($page->getUpdatedAt());
+        $view->setResponse($response);
 
         if ($response->isNotModified($request)) {
             return $response;
