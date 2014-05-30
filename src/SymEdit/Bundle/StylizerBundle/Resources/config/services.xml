@@ -8,6 +8,7 @@
         <parameter key="symedit_stylizer.assetic.command.class">SymEdit\Bundle\StylizerBundle\Command\DumpCommand</parameter>
         <parameter key="symedit_stylizer.dumper.class">SymEdit\Bundle\StylizerBundle\Dumper\Dumper</parameter>
         <parameter key="symedit_stylizer.injector.lessphp.class">SymEdit\Bundle\StylizerBundle\Injector\LessPhpInjector</parameter>
+        <parameter key="symedit_stylizer.injector.less.class">SymEdit\Bundle\StylizerBundle\Injector\LessInjector</parameter>
         <parameter key="symedit_stylizer.loader.chain.class">SymEdit\Bundle\StylizerBundle\Loader\LoaderChain</parameter>
         <parameter key="symedit_stylizer.loader.yaml.class">SymEdit\Bundle\StylizerBundle\Loader\YamlLoader</parameter>
         <parameter key="symedit_stylizer.stylizer.class">SymEdit\Bundle\StylizerBundle\Model\Stylizer</parameter>
@@ -38,7 +39,13 @@
             <argument>%symedit_stylizer.injectors%</argument>
         </service>
 
+        <!-- Lessphp injector -->
         <service id="symedit_stylizer.injector.lessphp" class="%symedit_stylizer.injector.lessphp.class%">
+            <tag name="stylizer.injector" />
+        </service>
+
+        <!-- Less injector -->
+        <service id="symedit_stylizer.injector.less" class="%symedit_stylizer.injector.less.class%">
             <tag name="stylizer.injector" />
         </service>
 
