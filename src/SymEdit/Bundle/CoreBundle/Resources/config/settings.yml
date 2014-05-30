@@ -65,6 +65,12 @@ social:
                 label: Pinterest
                 attr:
                     placeholder: "http://pinterest.com"
+        instagram:
+            type: url
+            options:
+                label: Instagram
+                attr:
+                    placeholder: "http://instagram.com"
 
 webmaster:
     label: Webmaster
