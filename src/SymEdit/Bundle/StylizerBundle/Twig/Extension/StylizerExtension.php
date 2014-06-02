@@ -37,7 +37,7 @@ class StylizerExtension extends \Twig_Extension
             return;
         }
 
-        $fonts = trim($variables['google-fonts'], "'");
+        $fonts = trim($variables['google-fonts'], '\'\"');
 
         if ($fonts === null || empty($fonts) || $fonts === 'none') {
             return;
