@@ -23,6 +23,7 @@ class GoogleFontTransformer implements DataTransformerInterface
      */
     public function transform($value)
     {
+        $values = trim($value, '"');
         $values = explode('|', $value);
         $values = array_map('urldecode', $values);
 
@@ -39,6 +40,6 @@ class GoogleFontTransformer implements DataTransformerInterface
         $values = array_map('trim', $values);
         $values = array_map('urlencode', $values);
 
-        return implode('|', $values);
+        return '"' . implode('|', $values) . '"';
     }
 }
