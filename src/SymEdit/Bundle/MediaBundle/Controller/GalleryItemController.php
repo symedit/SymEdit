@@ -12,6 +12,7 @@
 namespace SymEdit\Bundle\MediaBundle\Controller;
 
 use SymEdit\Bundle\ResourceBundle\Controller\ResourceController;
+use Symfony\Component\HttpFoundation\Request;
 
 /**
  * Gallery item controller.
@@ -34,5 +35,31 @@ class GalleryItemController extends ResourceController
         $galleryItem->setGallery($gallery);
 
         return $galleryItem;
+    }
+
+    public function reorderAction(Request $request)
+    {
+        $pairs = $request->request->get('pairs', array());
+        $repository = $this->getRepository();
+        $manager = $this->getManager();
+
+        foreach ($pairs as $id => $order) {
+            if (!$entity = $repository->find($id)) {
+                throw $this->createNotFoundException('Sorting entity not found');
+            }
+
+            $entity->setPosition($order);
+        }
+
+        $manager->flush();
+
+        $view = $this->view()
+            ->setFormat('json')
+            ->setTemplateVar('status')
+            ->setData(array(
+                'status' => true,
+            ));
+
+        return $this->handleView($view);
     }
 }

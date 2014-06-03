@@ -16,6 +16,7 @@ class GalleryItem implements GalleryItemInterface
     protected $id;
     protected $gallery;
     protected $image;
+    protected $position = 9999;
 
     public function getId()
     {
@@ -56,5 +57,23 @@ class GalleryItem implements GalleryItemInterface
     public function getImage()
     {
         return $this->image;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setPosition($position)
+    {
+        $this->position = $position;
+
+        return $this;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getPosition()
+    {
+        return $this->position;
     }
 }

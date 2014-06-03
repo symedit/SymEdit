@@ -60,3 +60,9 @@ admin_gallery_item_delete:
         _controller: symedit.controller.gallery_item:deleteAction
         _sylius:
             redirect: admin_image_gallery
+
+admin_gallery_item_reorder:
+    pattern: /reorder
+    methods: [POST]
+    defaults:
+        _controller: symedit.controller.gallery_item:reorderAction

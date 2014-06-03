@@ -37,4 +37,14 @@ interface GalleryItemInterface
      * @return GalleryInterface $gallery
      */
     public function getGallery();
+
+    /**
+     * @return GalleryItemInterface
+     */
+    public function setPosition($position);
+
+    /**
+     * @return integer $position
+     */
+    public function getPosition();
 }

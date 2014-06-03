@@ -7,7 +7,11 @@
 {% endblock %}
 
 {% block tab_content %}
-{{ form_widget(form) }}
+<div class="tab-content">
+    <div class="tab-pane active">
+        {{ form_widget(form) }}
+    </div>
+</div>
 {% endblock %}
 
 {% block form_actions %}

@@ -14,13 +14,39 @@
     {{ image_gallery.title }}
 </h2>
 
-<div class="row">
+<div class="row" id="gallery-items">
     {% for item in image_gallery.items %}
-    <div class="col-xs-2">
+    <div data-id="{{ item.id }}" class="col-xs-2">
         <a href="{{ path('admin_gallery_item_update', { id: item.id }) }}" class="thumbnail">
             <img src="{{ item.image | imagine_filter('symedit_96x96') }}">
         </a>
     </div>
     {% endfor %}
 </div>
+{% endblock %}
+
+{% block scripts %}
+    {{ parent() }}
+    <script>
+        $(function(){
+            function sortStop(e){
+                $target = $(e.target);
+                var order = 0;
+                var pairs = {};
+                $target.find('> [data-id]').each(function(){
+                    pairs[$(this).data('id')] = order++;
+                });
+
+                $.ajax({
+                    url: '{{ path('admin_gallery_item_reorder') }}',
+                    data: { pairs: pairs },
+                    type: 'POST'
+                });
+            }
+
+            $('#gallery-items').sortable({
+                update: sortStop
+            }).disableSelection();
+        });
+    </script>
 {% endblock %}

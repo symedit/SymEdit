@@ -7,6 +7,8 @@ SymEdit\Bundle\MediaBundle\Model\GalleryItem:
             id: true
             generator:
                 strategy: IDENTITY
+        position:
+            type: integer
     manyToOne:
         image:
             targetEntity: SymEdit\Bundle\MediaBundle\Model\ImageInterface
