@@ -64,48 +64,12 @@ class PageController extends ResourceController
         }
 
         $root = $this->getRepository()->findRoot();
-        $reorderForm = $this->createForm('symedit_page_reorder', null, array('render' => true));
 
         $view = $this
             ->view()
             ->setTemplate('@SymEdit/Admin/Page/index.html.twig')
             ->setData(array(
-                'root' => $root,
-                'form' => $reorderForm->createView(),
-            ));
-
-        return $this->handleView($view);
-    }
-
-    public function reorderAction()
-    {
-        $reorderForm = $this->createForm('symedit_page_reorder');
-        $reorderForm->handleRequest($this->getRequest());
-        $status = false;
-
-        if ($reorderForm->isValid()) {
-            $status = true;
-            $data = $reorderForm->getData();
-            $repository = $this->getRepository();
-            $manager = $this->getManager();
-
-            foreach ($data['pair'] as $id=>$order) {
-                if (!$entity = $repository->find($id)) {
-                    throw $this->createNotFoundException('Sorting entity not found');
-                }
-
-                $entity->setPageOrder($order);
-                $manager->persist($entity);
-            }
-
-            $manager->flush();
-        }
-
-        $view = $this->view()
-            ->setFormat('json')
-            ->setTemplateVar('status')
-            ->setData(array(
-                'status' => $status
+                'root' => $root
             ));
 
         return $this->handleView($view);

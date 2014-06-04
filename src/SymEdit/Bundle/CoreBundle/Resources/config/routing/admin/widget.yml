@@ -49,3 +49,5 @@ admin_widget_reorder:
     methods: [POST]
     defaults:
         _controller: symedit.controller.widget:reorderAction
+        _sylius:
+            sortable_position: widgetOrder

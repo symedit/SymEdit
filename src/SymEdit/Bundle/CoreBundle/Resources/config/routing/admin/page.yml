@@ -52,3 +52,5 @@ admin_page_reorder:
     methods: [POST]
     defaults:
         _controller: symedit.controller.page:reorderAction
+        _sylius:
+            sortable_position: pageOrder
