@@ -6,6 +6,10 @@ symedit_admin_post_controller:
     resource: "@SymEditBundle/Resources/config/routing/admin/post.yml"
     prefix: /post
 
+symedit_admin_events_controller:
+    resource: "@SymEditBundle/Resources/config/routing/admin/events.yml"
+    prefix: /events
+
 symedit_admin_image_controller:
     resource: "@SymEditBundle/Resources/config/routing/admin/image.yml"
     prefix: /image
