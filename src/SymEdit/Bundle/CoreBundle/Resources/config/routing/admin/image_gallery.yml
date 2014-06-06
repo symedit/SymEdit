@@ -30,6 +30,14 @@ admin_image_gallery_update:
                 route: admin_image_gallery_update
                 parameters: { id: $id }
 
+admin_image_gallery_delete:
+    pattern: /{id}/delete
+    methods: [DELETE]
+    defaults:
+        _controller: symedit.controller.image_gallery:deleteAction
+        _sylius:
+            redirect: admin_image_gallery
+
 # Gallery Item Routes
 admin_gallery_item_create:
     pattern: /{gallery_id}/item/new

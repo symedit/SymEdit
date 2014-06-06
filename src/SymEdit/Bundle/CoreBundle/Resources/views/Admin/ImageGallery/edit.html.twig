@@ -1,13 +1,18 @@
 {% extends '@SymEdit/Admin/base.html.twig' %}
+{% import '@SymEdit/Admin/macro.html.twig' as macro %}
 
 {% block title %}Image Galleries &raquo; {{ image_gallery.slug }} &raquo; List{% endblock %}
 
 {% block content %}
 <div class="pull-right">
-    <a class="btn btn-primary" href="{{ path('admin_gallery_item_create', { gallery_id: image_gallery.id }) }}">
-        {{ icon('plus') }}
-        Add Item
-    </a>
+    <div class="btn-group">
+        <a class="btn btn-primary" href="{{ path('admin_gallery_item_create', { gallery_id: image_gallery.id }) }}">
+            {{ icon('plus') }}
+            Add Item
+        </a>
+
+        {{ macro.delete_button('gallery_delete', 'Delete Gallery', 'btn btn-warning') }}
+    </div>
 </div>
 
 <h2>
@@ -23,4 +28,6 @@
     </div>
     {% endfor %}
 </div>
+
+{{ macro.delete_form('gallery_delete', path('admin_image_gallery_delete', {id: image_gallery.id})) }}
 {% endblock %}

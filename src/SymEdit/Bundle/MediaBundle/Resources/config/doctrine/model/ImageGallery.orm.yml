@@ -28,3 +28,4 @@ SymEdit\Bundle\MediaBundle\Model\ImageGallery:
                 position: ASC
             cascade:
                 - persist
+                - remove
