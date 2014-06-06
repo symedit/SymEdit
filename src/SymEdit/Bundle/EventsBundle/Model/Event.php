@@ -6,6 +6,7 @@ class Event
 {
     protected $id;
     protected $title;
+    protected $slug;
     protected $description;
     protected $eventStart;
     protected $eventEnd;
@@ -29,6 +30,18 @@ class Event
     public function setTitle($title)
     {
         $this->title = $title;
+
+        return $this;
+    }
+
+    public function getSlug()
+    {
+        return $this->slug;
+    }
+
+    public function setSlug($slug)
+    {
+        $this->slug = $slug;
 
         return $this;
     }

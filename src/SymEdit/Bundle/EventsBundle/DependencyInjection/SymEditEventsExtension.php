@@ -12,14 +12,12 @@
 namespace SymEdit\Bundle\EventsBundle\DependencyInjection;
 
 use SymEdit\Bundle\ResourceBundle\DependencyInjection\SymEditResourceExtension;
-use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
-use Symfony\Component\DependencyInjection\Loader;
 
 class SymEditEventsExtension extends SymEditResourceExtension
 {
     protected $configFiles = array(
-        'services', 'widget',
+        'form',// 'widget',
     );
 
     /**

@@ -1,0 +1,56 @@
+SymEdit\Bundle\EventsBundle\Model\Event:
+    type: entity
+    table: events
+    gedmo:
+        loggable: true
+    fields:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: IDENTITY
+        title:
+            type: string
+            length: 255
+        slug:
+            type: string
+            length: 255
+            unique: true
+            gedmo:
+                slug:
+                    unique: true
+                    separator: "-"
+                    fields:
+                        - title
+        description:
+            type: text
+            nullable: true
+        eventStart:
+            type: datetime
+            nullable: true
+        eventEnd:
+            type: datetime
+            nullable: true
+        url:
+            type: string
+            length: 255
+            nullable: true
+        email:
+            type: string
+            length: 255
+            nullable: true
+        phone:
+            type: string
+            length: 255
+            nullable: true
+        price:
+            type: decimal
+            precision: 2
+        address:
+            type: text
+            nullable: true
+        showMap:
+            type: boolean
+    indexes:
+        slug_idx:
+            columns: [slug]

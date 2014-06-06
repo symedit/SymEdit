@@ -18,7 +18,7 @@ use SymEdit\Bundle\ResourceBundle\DependencyInjection\Compiler\DoctrineMappingsP
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 
-class SymEditEvents extends Bundle
+class SymEditEventsBundle extends Bundle
 {
     public static function getSupportedDrivers()
     {

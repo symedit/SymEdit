@@ -5,7 +5,7 @@ namespace SymEdit\Bundle\EventsBundle\Form\Type;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 
-class EvenType extends AbstractType
+class EventType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
@@ -13,7 +13,7 @@ class EvenType extends AbstractType
             ->add('title')
             ->add('description')
             ->add('eventStart', 'datetime')
-            ->add('eventEnd', 'dateime', array(
+            ->add('eventEnd', 'datetime', array(
                 'required' => false,
             ))
             ->add('url', 'url', array(
@@ -22,7 +22,7 @@ class EvenType extends AbstractType
             ->add('email', 'email', array(
                 'required' => false,
             ))
-            ->add('phone', array(
+            ->add('phone', 'text', array(
                 'required' => false,
             ))
             ->add('price', 'text', array(

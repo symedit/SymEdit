@@ -1,0 +1,17 @@
+{% extends '@SymEdit/Admin/tabbed.html.twig' %}
+
+{% block title %}Blog &raquo; Create a new blog post{% endblock %}
+
+{% block action %}{{ path('admin_post_create') }}{% endblock %}
+
+{% block tabs %}
+{{ form_tabs(form) }}
+{% endblock %}
+
+{% block tab_content %}
+{{ form_widget(form) }}
+{% endblock %}
+
+{% block form_actions %}
+<button class="btn btn-primary btn-block" type="submit">Add Post</button>
+{% endblock %}

@@ -1,0 +1,18 @@
+<?xml version="1.0" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <parameters>
+        <parameter key="symedit_events.menu_subscriber.class">SymEdit\Bundle\EventsBundle\EventListener\MenuSubscriber</parameter>
+    </parameters>
+
+    <services>
+        <!-- Menu Subscriber -->
+        <service id="symedit_events.menu_subscriber" class="%symedit_events.menu_subscriber.class%">
+            <argument type="service" id="security.context" />
+            <tag name="kernel.event_subscriber" />
+        </service>
+    </services>
+</container>
