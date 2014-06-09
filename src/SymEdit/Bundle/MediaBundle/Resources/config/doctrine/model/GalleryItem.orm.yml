@@ -9,6 +9,8 @@ SymEdit\Bundle\MediaBundle\Model\GalleryItem:
                 strategy: IDENTITY
         position:
             type: integer
+            gedmo:
+                - sortablePosition
     manyToOne:
         image:
             targetEntity: SymEdit\Bundle\MediaBundle\Model\ImageInterface

@@ -16,7 +16,7 @@ class GalleryItem implements GalleryItemInterface
     protected $id;
     protected $gallery;
     protected $image;
-    protected $position = 9999;
+    protected $position;
 
     public function getId()
     {

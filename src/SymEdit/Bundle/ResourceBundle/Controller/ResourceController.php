@@ -30,7 +30,7 @@ class ResourceController extends BaseResourceController
         $position = $this->config->getSortablePosition();
         $accessor = PropertyAccess::createPropertyAccessor();
 
-        foreach ($pairs as $id => $order) {
+        foreach (array_reverse($pairs, true) as $id => $order) {
             if (!$resource = $repository->find($id)) {
                 throw $this->createNotFoundException('Sorting entity not found');
             }
