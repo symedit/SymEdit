@@ -59,6 +59,8 @@ SymEdit\Bundle\CoreBundle\Model\Page:
                 - versioned
         pageOrder:
             type: integer
+            gedmo:
+                - sortablePosition
         display:
             type: boolean
         crawl:
@@ -125,6 +127,7 @@ SymEdit\Bundle\CoreBundle\Model\Page:
             gedmo:
                 - treeParent
                 - versioned
+                - sortableGroup
     oneToMany:
         children:
             targetEntity: SymEdit\Bundle\CoreBundle\Model\Page

@@ -151,7 +151,6 @@ class Page implements PageInterface
         $this->setCrawl(true);
         $this->setPageController(false);
         $this->setUpdatedAt(new \DateTime());
-        $this->setPageOrder(1000);
         $this->setActive(false);
     }
 

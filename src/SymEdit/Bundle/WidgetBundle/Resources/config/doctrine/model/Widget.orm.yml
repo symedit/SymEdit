@@ -41,9 +41,12 @@ SymEdit\Bundle\WidgetBundle\Model\Widget:
             column: strategy_name
         widgetOrder:
             type: integer
-            default: 1000
             nullable: false
+            gedmo:
+                - sortablePosition
     manyToOne:
         area:
             targetEntity: SymEdit\Bundle\WidgetBundle\Model\WidgetAreaInterface
             inversedBy: widgets
+            gedmo:
+                - sortableGroup

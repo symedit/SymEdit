@@ -83,7 +83,6 @@ class Widget implements WidgetInterface
         $this->setVisibility(self::INCLUDE_ALL);
         $this->setAssoc(array());
         $this->setUpdatedAt(new \DateTime());
-        $this->setWidgetOrder(1000);
     }
 
     public function getId()
