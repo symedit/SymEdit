@@ -29,10 +29,10 @@ class LoadPageData extends AbstractFixture implements OrderedFixtureInterface
             ->setSummary('')
             ->setTitle('Root')
             ->setContent('')
-            ->setPageOrder(0)
             ->setDisplay(true)
             ->setCrawl(true)
-            ->setPageController(false);
+            ->setPageController(false)
+        ;
 
         $manager->persist($page_root);
         $this->addReference('page-root', $page_root);
@@ -47,7 +47,7 @@ class LoadPageData extends AbstractFixture implements OrderedFixtureInterface
             ->setTagline('Welcome to My Wonderful Website!')
             ->setTitle('Home')
             ->setContent('<p>Welcome to SymEdit</p>')
-            ->setPageOrder(10);
+        ;
 
         $manager->persist($page_home);
         $this->addReference('page-homepage', $page_home);
@@ -61,7 +61,7 @@ class LoadPageData extends AbstractFixture implements OrderedFixtureInterface
             ->setTagline('About My Website')
             ->setTitle('About')
             ->setContent('<p>Here is some information about my website</p>')
-            ->setPageOrder(20);
+        ;
 
         $manager->persist($page_about);
         $this->addReference('page-about', $page_about);
@@ -74,9 +74,9 @@ class LoadPageData extends AbstractFixture implements OrderedFixtureInterface
             ->setTagline('My Blog')
             ->setTitle('Blog')
             ->setContent('')
-            ->setPageOrder(30)
             ->setPageController(true)
-            ->setPageControllerPath('symedit-blog');
+            ->setPageControllerPath('symedit-blog')
+        ;
 
         $manager->persist($page_blog);
         $this->addReference('page-blog', $page_blog);
@@ -88,9 +88,9 @@ class LoadPageData extends AbstractFixture implements OrderedFixtureInterface
             ->setTagline('Contact Us Now!')
             ->setTitle('Contact')
             ->setContent('')
-            ->setPageOrder(40)
             ->setPageController(true)
-            ->setPageControllerPath('symedit-contact');
+            ->setPageControllerPath('symedit-contact')
+        ;
 
         $manager->persist($page_contact);
         $this->addReference('page-contact', $page_contact);

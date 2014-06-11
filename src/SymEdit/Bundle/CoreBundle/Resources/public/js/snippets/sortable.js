@@ -1,18 +1,17 @@
 jQuery(function($) {
 
-    function sortStop(e){
-        $target = $(e.target);
-        var order = 0;
-        var pairs = {};
+    function sortStop(e, ui){
 
-        $target.find('> [data-id]').each(function(){
-            pairs[$(this).data('id')] = order++;
-        });
+        var index = ui.item.index();
+        var id = ui.item.data('id');
 
         if ($(this).data('url')) {
             $.ajax({
                 url: $(this).data('url'),
-                data: { pairs: pairs },
+                data: {
+                    id: id,
+                    index: index
+                },
                 type: 'POST'
             });
         }

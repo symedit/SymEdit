@@ -23,22 +23,16 @@ class ResourceController extends BaseResourceController
      */
     public function reorderAction(Request $request)
     {
-        $pairs = $request->request->get('pairs', array());
-        $repository = $this->getRepository();
-        $manager = $this->getManager();
-
+        $resource = $this->findOr404($request);
         $position = $this->config->getSortablePosition();
         $accessor = PropertyAccess::createPropertyAccessor();
 
-        foreach (array_reverse($pairs, true) as $id => $order) {
-            if (!$resource = $repository->find($id)) {
-                throw $this->createNotFoundException('Sorting entity not found');
-            }
+        if (($index = $request->request->get('index', null)) !== null) {
+            $accessor->setValue($resource, $position, $index);
 
-            $accessor->setValue($resource, $position, $order);
+            // Don't setup flashes
+            $this->getManager()->flush();
         }
-
-        $manager->flush();
 
         $view = $this->view()
             ->setFormat('json')
