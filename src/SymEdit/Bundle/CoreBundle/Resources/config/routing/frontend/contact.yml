@@ -1,9 +1,9 @@
 contact:
     pattern: /
     defaults:
-        _controller: SymEditBundle:Contact:index
+        _controller: symedit.controller.contact:indexAction
 
 contact_success:
     pattern: /success
     defaults:
-        _controller: SymEditBundle:Contact:success
+        _controller: symedit.controller.contact:successAction

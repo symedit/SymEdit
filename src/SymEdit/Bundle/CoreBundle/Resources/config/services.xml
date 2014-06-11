@@ -24,6 +24,13 @@
             <argument type="service" id="symedit_settings.settings" />
             <argument type="service" id="security.context" />
         </service>
+
+        <!-- Contact Controller -->
+        <service id="symedit.controller.contact" class="%symedit.controller.contact.class%">
+            <call method="setContainer">
+                <argument type="service" id="service_container" />
+            </call>
+        </service>
     </services>
 
 </container>

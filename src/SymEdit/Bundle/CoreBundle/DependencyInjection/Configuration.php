@@ -93,6 +93,7 @@ class Configuration implements ConfigurationInterface
                         ->arrayNode('contact')
                             ->addDefaultsIfNotSet()
                             ->children()
+                                ->scalarNode('controller')->defaultValue('SymEdit\Bundle\CoreBundle\Controller\ContactController')->end()
                                 ->scalarNode('form')->defaultValue('SymEdit\Bundle\CoreBundle\Form\Type\ContactType')->end()
                             ->end()
                         ->end()
