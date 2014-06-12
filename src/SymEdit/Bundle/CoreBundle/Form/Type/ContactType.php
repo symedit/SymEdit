@@ -22,7 +22,6 @@ class ContactType extends AbstractType
     {
         $builder
             ->add('name', 'text', array(
-                'horizontal' => false,
                 'attr' => array(
                     'placeholder' => 'Name',
                 ),
@@ -31,14 +30,12 @@ class ContactType extends AbstractType
                 ),
             ))
             ->add('email', 'email', array(
-                'horizontal' => false,
                 'required' => false,
                 'attr' => array(
                     'placeholder' => 'Email',
                 ),
             ))
             ->add('phone', 'text', array(
-                'horizontal' => false,
                 'label' => 'Phone',
                 'attr' => array(
                     'placeholder' => 'Phone',
@@ -48,7 +45,6 @@ class ContactType extends AbstractType
                 ),
             ))
             ->add('message', 'textarea', array(
-                'horizontal' => false,
                 'label' => 'Message',
                 'attr' => array(
                     'rows' => 5,
@@ -63,6 +59,7 @@ class ContactType extends AbstractType
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
+            'horizontal' => false,
             'timed_spam' => true,
             'honeypot' => true,
         ));
