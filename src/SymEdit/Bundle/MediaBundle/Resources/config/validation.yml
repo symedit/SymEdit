@@ -13,6 +13,7 @@ SymEdit\Bundle\MediaBundle\Model\Image:
     properties:
         file:
             - Image:
+                groups: [require_name, image_only]
                 maxSize: 20M
 
 SymEdit\Bundle\MediaBundle\Model\File:
