@@ -63,7 +63,6 @@ class ImageController extends ResourceController
         $errors = $this->get('validator')->validate($image);
 
         if (count($errors) > 0) {
-            
             return new JsonResponse(array(
                 'error' => 'Invalid image: ' . $errors[0]->getMessage(),
             ));
