@@ -59,6 +59,16 @@ class ImageController extends ResourceController
         $image->setFile($file);
         $image->setName($nameSlug);
 
+        // Validate the new image
+        $errors = $this->get('validator')->validate($image);
+
+        if (count($errors) > 0) {
+            
+            return new JsonResponse(array(
+                'error' => 'Invalid image: ' . $errors[0]->getMessage(),
+            ));
+        }
+
         try {
             $this->getManager()->persist($image);
             $this->getManager()->flush($image);

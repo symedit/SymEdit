@@ -46,7 +46,7 @@ class MediaType extends AbstractType
         if ($config->getOption('require_name')) {
             $group = 'require_name';
         } else {
-            $group = 'image_only';
+            $group = 'file_only';
         }
 
         return array($group);
