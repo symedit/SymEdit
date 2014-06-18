@@ -62,7 +62,7 @@ admin_gallery_item_update:
                 parameters: { id: $id }
 
 admin_gallery_item_delete:
-    pattern: /{id}/delete
+    pattern: /item/{id}/delete
     methods: [DELETE]
     defaults:
         _controller: symedit.controller.gallery_item:deleteAction
