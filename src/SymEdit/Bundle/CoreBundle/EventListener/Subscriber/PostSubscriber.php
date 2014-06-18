@@ -33,7 +33,7 @@ class PostSubscriber implements EventSubscriberInterface
     {
         return array(
             Events::POST_POST_CREATE => 'sharePost',
-            Events::POST_UPDATE      => 'sharePost',
+            Events::POST_POST_UPDATE => 'sharePost',
         );
     }
 
