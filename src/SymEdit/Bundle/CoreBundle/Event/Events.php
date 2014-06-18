@@ -39,7 +39,7 @@ final class Events
 
     const POST_PRE_UPDATE   = 'symedit.post.pre_update';
     const POST_UPDATE       = 'symedit.post.update';
-    const POST_POST_UPDATE  = 'symedit.post_post_update';
+    const POST_POST_UPDATE  = 'symedit.post.post_update';
 
     /**
      * Menu Events
