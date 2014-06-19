@@ -14,7 +14,6 @@ namespace SymEdit\Bundle\MediaBundle\Upload;
 use Gaufrette\Filesystem;
 use Liip\ImagineBundle\Imagine\Cache\CacheManager;
 use SymEdit\Bundle\MediaBundle\Model\MediaInterface;
-use Symfony\Component\HttpFoundation\Request;
 
 /**
  * Image Uploader - Basically the same as the uploader except this one
@@ -25,7 +24,6 @@ class ImageUploadManager extends UploadManager
 {
     protected $cache;
     protected $filters;
-    protected $request;
 
     public function __construct(Filesystem $filesystem, CacheManager $cache)
     {
