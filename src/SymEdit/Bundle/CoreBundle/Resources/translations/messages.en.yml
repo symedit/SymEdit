@@ -51,6 +51,9 @@ admin:
             save: Save Widget
             delete: Delete Widget
     file:
+        actions:
+            save: Save File
+            delete: Delete File
         name:
             label: Name
             help: Letters, numbers, underscores, and hyphens

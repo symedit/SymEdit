@@ -37,3 +37,11 @@ admin_file_update:
             redirect:
                 route: admin_file_update
                 parameters: { id: $id }
+
+admin_file_delete:
+    pattern: /{id}/delete
+    methods: [DELETE]
+    defaults:
+        _controller: symedit.controller.file:deleteAction
+        _sylius:
+            redirect: admin_file
