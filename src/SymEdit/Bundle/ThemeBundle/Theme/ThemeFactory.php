@@ -11,10 +11,12 @@
 
 namespace SymEdit\Bundle\ThemeBundle\Theme;
 
+use SymEdit\Bundle\ThemeBundle\Model\ThemeInterface;
+use Symfony\Component\Config\ConfigCache;
 use Symfony\Component\Config\Definition\ConfigurationInterface;
 use Symfony\Component\Config\Definition\Processor;
 use Symfony\Component\Config\Loader\LoaderInterface;
-use SymEdit\Bundle\ThemeBundle\Model\ThemeInterface;
+use Symfony\Component\Config\Resource\FileResource;
 
 class ThemeFactory implements ThemeFactoryInterface
 {
@@ -23,9 +25,10 @@ class ThemeFactory implements ThemeFactoryInterface
     protected $themeDir;
     protected $publicDir;
     protected $model;
+    protected $cacheDir;
     protected $processor;
 
-    public function __construct(LoaderInterface $loader, ConfigurationInterface $configuration, $themeDir, $publicDir, $model)
+    public function __construct(LoaderInterface $loader, ConfigurationInterface $configuration, $themeDir, $publicDir, $model, $cacheDir)
     {
         $this->loader = $loader;
         $this->configuration = $configuration;
@@ -33,16 +36,27 @@ class ThemeFactory implements ThemeFactoryInterface
         $this->publicDir = $publicDir;
         $this->model = $model;
         $this->processor = new Processor();
+        $this->cacheDir = $cacheDir;
     }
 
-    /**
-     * @TODO: Use symfony config cache here
-     */
     protected function loadTheme($name)
     {
-        $themeData = $this->loader->load($name.'/theme.yml');
+        $themeFile = $name.'/theme.yml';
+        $cachePath = sprintf('%s/theme_config/%s.php', $this->cacheDir, $name);
+        $themeCache = new ConfigCache($cachePath, true);
 
-        return $this->processor->processConfiguration($this->configuration, $themeData);
+        if (!$themeCache->isFresh()) {
+            $resources = array(
+                new FileResource($this->themeDir.'/'.$themeFile),
+            );
+
+            $themeConfig = $this->loader->load($themeFile);
+            $themeData = $this->processor->processConfiguration($this->configuration, $themeConfig);
+
+            $themeCache->write(sprintf('<?php return %s;', var_export($themeData, true)), $resources);
+        }
+
+        return $this->createTheme(require $themeCache);
     }
 
     /**
@@ -81,8 +95,6 @@ class ThemeFactory implements ThemeFactoryInterface
      */
     public function getTheme($name)
     {
-        $themeData = $this->loadTheme($name);
-
-        return $this->createTheme($themeData);
+        return $this->loadTheme($name);
     }
 }
