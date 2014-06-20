@@ -6,6 +6,7 @@
 
     <parameters>
         <parameter key="symedit_seo.model.seo.class">SymEdit\Bundle\SeoBundle\Model\Seo</parameter>
+        <parameter key="symedit_seo.model.preference.class">SymEdit\Bundle\SeoBundle\Model\SeoPreference</parameter>
         <parameter key="symedit_seo.twig.extension.class">SymEdit\Bundle\SeoBundle\Twig\Extension\SeoExtension</parameter>
         <parameter key="symedit_seo.event_listener.symedit_subject.class">SymEdit\Bundle\SeoBundle\EventListener\SymEditSubjectSubscriber</parameter>
     </parameters>

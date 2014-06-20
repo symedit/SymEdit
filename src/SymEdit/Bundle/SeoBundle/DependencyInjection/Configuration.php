@@ -37,6 +37,18 @@ class Configuration implements ConfigurationInterface
                         ->integerNode('description')->defaultValue(155)->end()
                     ->end()
                 ->end()
+                ->arrayNode('models')
+                    ->prototype('array')
+                        ->children()
+                            ->arrayNode('title')
+                                ->prototype('scalar')->end()
+                            ->end()
+                            ->arrayNode('description')
+                                ->prototype('scalar')->end()
+                            ->end()
+                        ->end()
+                    ->end()
+                ->end()
             ->end();
 
         return $treeBuilder;

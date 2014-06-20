@@ -41,6 +41,9 @@ class SymEditSeoExtension extends Extension
         if ($config['annotations']) {
             $loader->load('annotations.xml');
         }
+
+        // Load the seo preferences
+        $this->loadPreferences($container, $config['models']);
     }
 
     protected function remapParameters(ContainerBuilder $container, array $params = array(), $prefix = null)
@@ -66,6 +69,23 @@ class SymEditSeoExtension extends Extension
         $parameter = implode('.', $parameterParts);
 
         $container->setParameter($parameter, $value);
+    }
+
+    protected function loadPreferences(ContainerBuilder $container, array $models)
+    {
+        $preferences = array();
+
+        foreach ($models as $model => $props) {
+            $preferences[] = new Definition\SeoPreferenceDefinition($model, $props['title'], $props['description']);
+        }
+
+        // Add to calculator
+        $preferenceDefinition = $container->getDefinition('symedit_seo.calculator.preference');
+        $preferenceDefinition->replaceArgument(0, $preferences);
+
+        // Add to listener
+        $subjectListenerDefinition = $container->getDefinition('symedit_seo.event_listener.symedit_subject');
+        $subjectListenerDefinition->addArgument($preferences);
     }
 
     public function getAlias()

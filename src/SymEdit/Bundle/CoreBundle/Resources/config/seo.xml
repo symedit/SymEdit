@@ -12,17 +12,21 @@
     </parameters>
 
     <services>
+        <!--
         <service id="symedit.seo.page" class="%symedit.seo.page.class%">
             <tag name="seo.calculator" />
         </service>
+        -->
 
         <service id="symedit.seo.post" class="%symedit.seo.post.class%">
             <tag name="seo.calculator" />
         </service>
 
+<!--
         <service id="symedit.seo.category" class="%symedit.seo.category.class%">
             <tag name="seo.calculator" />
         </service>
+-->
 
         <service id="symedit.seo.opengraph" class="%symedit.seo.opengraph.class%">
             <argument type="service" id="symedit_settings.settings" />

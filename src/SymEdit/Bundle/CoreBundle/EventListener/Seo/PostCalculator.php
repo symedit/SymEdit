@@ -32,10 +32,5 @@ class PostCalculator implements SeoCalculatorInterface
         if (($image = $subject->getImage()) !== null) {
             $seo->addMetaProperty('og:image', $image->getWebPath());
         }
-
-        $seo->merge(array(
-            'title' => $subject->getTitle(),
-            'description' => $subject->getSummary(),
-        ));
     }
 }

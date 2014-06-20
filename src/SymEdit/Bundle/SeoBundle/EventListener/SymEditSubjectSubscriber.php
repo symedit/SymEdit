@@ -19,19 +19,34 @@ use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 class SymEditSubjectSubscriber implements EventSubscriberInterface
 {
     protected $seoManager;
+    protected $preferences;
 
-    public function __construct(SeoManagerInterface $seoManager)
+    public function __construct(SeoManagerInterface $seoManager, array $preferences = array())
     {
         $this->seoManager = $seoManager;
+        $this->preferences = $preferences;
     }
 
     public function onSymEditSubjectSet(SubjectEvent $event)
     {
         $subject = $event->getSubject();
 
-        if (is_object($subject) && !$subject instanceof \Traversable) {
+        if ($this->hasModel($subject)) {
             $this->seoManager->setSubject($subject);
         }
+    }
+
+    protected function hasModel($subject)
+    {
+        foreach ($this->preferences as $preference) {
+            $model = $preference->getModel();
+
+            if ($subject instanceof $model) {
+                return true;
+            }
+        }
+
+        return false;
     }
 
     public static function getSubscribedEvents()

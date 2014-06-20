@@ -48,6 +48,7 @@ class PostController extends ResourceController
         $view = $this
             ->view()
             ->setTemplate($config->getTemplate('index.html'))
+            ->setTemplateVar('category')
             ->setData(array(
                 'category' => $category,
                 'posts' => $paginator,

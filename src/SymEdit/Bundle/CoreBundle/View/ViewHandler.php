@@ -30,8 +30,15 @@ class ViewHandler extends BaseViewHandler
     public function handle(View $view, Request $request = null)
     {
         $data = $view->getData();
+        $templateVar = $view->getTemplateVar();
 
-        $event = new SubjectEvent($data);
+        if (is_array($data) && isset($data[$templateVar])) {
+            $subject = $data[$templateVar];
+        } else {
+            $subject = $data;
+        }
+
+        $event = new SubjectEvent($subject);
         $this->eventDispatcher->dispatch(Events::SUBJECT_SET, $event);
 
         return parent::handle($view, $request);
