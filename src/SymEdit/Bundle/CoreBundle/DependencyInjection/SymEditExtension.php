@@ -61,6 +61,22 @@ class SymEditExtension extends SymEditResourceExtension implements PrependExtens
                 ),
             ),
         ));
+
+        /**
+         * Stof Doctrine Extensions
+         */
+        $container->prependExtensionConfig('stof_doctrine_extensions', array(
+            'orm' => array(
+                'default' => array(
+                    'timestampable' => true,
+                    'sluggable' => true,
+                    'sortable' => true,
+                    'tree' => true,
+                    'loggable' => true,
+                    'blameable' => true,
+                ),
+            ),
+        ));
     }
 
     public function getAlias()
