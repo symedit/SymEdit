@@ -11,17 +11,18 @@
 
 namespace SymEdit\Bundle\ThemeBundle\DependencyInjection;
 
-use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\Config\FileLocator;
-use Symfony\Component\HttpKernel\DependencyInjection\Extension;
+use Symfony\Component\DependencyInjection\ContainerBuilder;
+use Symfony\Component\DependencyInjection\Extension\PrependExtensionInterface;
 use Symfony\Component\DependencyInjection\Loader;
+use Symfony\Component\HttpKernel\DependencyInjection\Extension;
 
 /**
  * This is the class that loads and manages your bundle configuration
  *
  * To learn more see {@link http://symfony.com/doc/current/cookbook/bundles/extension.html}
  */
-class SymEditThemeExtension extends Extension
+class SymEditThemeExtension extends Extension implements PrependExtensionInterface
 {
     protected $configFiles = array(
         'services', 'theme', 'template', 'layout',
@@ -46,6 +47,20 @@ class SymEditThemeExtension extends Extension
         $container->setParameter('symedit_theme.active_theme', $config['active_theme']);
         $container->setParameter('symedit_theme.namespace_overrides', $config['namespace_overrides']);
         $container->setParameter('symedit_theme.templates.bundles', $config['templates']['bundles']);
+    }
+
+    public function prepend(ContainerBuilder $container)
+    {
+        /**
+         * Twig Extension
+         */
+        $container->prependExtensionConfig('twig', array(
+            'form' => array(
+                'resources' => array(
+                    'SymEditThemeBundle:Form:fields.html.twig',
+                ),
+            ),
+        ));
     }
 
     public function getAlias()
