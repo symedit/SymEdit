@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace SymEdit\Bundle\UserBundle\Form;
+namespace SymEdit\Bundle\UserBundle\Form\Type;
 
 use Symfony\Component\Form\FormBuilderInterface;
 use FOS\UserBundle\Form\Type\RegistrationFormType as BaseType;
@@ -18,8 +18,6 @@ class RegistrationFormType extends BaseType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        parent::buildForm($builder, $options);
-
         $builder
             ->add('firstName', 'text', array(
                 'label' => 'First Name',
@@ -29,12 +27,14 @@ class RegistrationFormType extends BaseType
                 'label' => 'Last Name',
                 'required' => false,
                 'property_path' => 'profile.lastName',
-            ));
+            ))
+        ;
+
+        parent::buildForm($builder, $options);
     }
 
     public function getName()
     {
         return 'symedit_user_registration';
     }
-
 }

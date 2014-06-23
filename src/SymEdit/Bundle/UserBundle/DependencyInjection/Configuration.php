@@ -70,6 +70,11 @@ class Configuration implements ConfigurationInterface
                                 ->scalarNode('form')->defaultValue('SymEdit\Bundle\UserBundle\Form\Type\AdminProfileType')->end()
                             ->end()
                         ->end()
+                        ->arrayNode('registration')
+                            ->addDefaultsIfNotSet()
+                            ->children()
+                                ->scalarNode('form')->defaultValue('SymEdit\Bundle\UserBundle\Form\Type\RegistrationFormType')->end()
+                            ->end()
                     ->end()
                 ->end()
             ->end();
