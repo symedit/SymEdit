@@ -11,10 +11,11 @@
 
 namespace SymEdit\Bundle\MediaBundle\DependencyInjection;
 
-use Symfony\Component\DependencyInjection\ContainerBuilder;
 use SymEdit\Bundle\ResourceBundle\DependencyInjection\SymEditResourceExtension;
+use Symfony\Component\DependencyInjection\ContainerBuilder;
+use Symfony\Component\DependencyInjection\Extension\PrependExtensionInterface;
 
-class SymEditMediaExtension extends SymEditResourceExtension
+class SymEditMediaExtension extends SymEditResourceExtension implements PrependExtensionInterface
 {
     protected $configFiles = array(
         'services', 'form', 'widget',
@@ -34,6 +35,20 @@ class SymEditMediaExtension extends SymEditResourceExtension
 
         $this->remapParameters($container, 'paths', $config['paths']);
         $container->setParameter('symedit_media.paths', $config['paths']);
+    }
+
+    public function prepend(ContainerBuilder $container)
+    {
+        /**
+         * Twig Extension
+         */
+        $container->prependExtensionConfig('twig', array(
+            'form' => array(
+                'resources' => array(
+                    'SymEditMediaBundle:Form:fields.html.twig',
+                ),
+            ),
+        ));
     }
 
     /**
