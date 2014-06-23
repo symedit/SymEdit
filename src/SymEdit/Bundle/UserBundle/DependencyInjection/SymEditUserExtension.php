@@ -11,15 +11,11 @@
 
 namespace SymEdit\Bundle\UserBundle\DependencyInjection;
 
-use Symfony\Component\DependencyInjection\ContainerBuilder;
 use SymEdit\Bundle\ResourceBundle\DependencyInjection\SymEditResourceExtension;
+use Symfony\Component\DependencyInjection\ContainerBuilder;
+use Symfony\Component\DependencyInjection\Extension\PrependExtensionInterface;
 
-/**
- * This is the class that loads and manages your bundle configuration
- *
- * To learn more see {@link http://symfony.com/doc/current/cookbook/bundles/extension.html}
- */
-class SymEditUserExtension extends SymEditResourceExtension
+class SymEditUserExtension extends SymEditResourceExtension implements PrependExtensionInterface
 {
     protected $configFiles = array(
         'services', 'form',
@@ -36,6 +32,21 @@ class SymEditUserExtension extends SymEditResourceExtension
             $container,
             self::CONFIGURE_LOADER | self::CONFIGURE_DATABASE | self::CONFIGURE_PARAMETERS
         );
+    }
+
+    public function prepend(ContainerBuilder $container)
+    {
+        $container->prependExtensionConfig('fos_user', array(
+            'user_class' => '%symedit.model.user.class%',
+            'service' => array(
+                'user_manager' => 'symedit_user.user_manager',
+            ),
+            'registration' => array(
+                'form' => array(
+                    'type' => 'symedit_user_registration',
+                ),
+            ),
+        ));
     }
 
     /**
