@@ -37,7 +37,6 @@ SymEdit\Bundle\CoreBundle\Model\Page:
             unique: true
             nullable: true
             gedmo:
-                versioned: ~
                 treePath:
                     appendId: false
                     separator: "/"
@@ -63,8 +62,12 @@ SymEdit\Bundle\CoreBundle\Model\Page:
                 - sortablePosition
         display:
             type: boolean
+            gedmo:
+                - versioned
         crawl:
             type: boolean
+            gedmo:
+                - versioned
         pageController:
             type: boolean
             nullable: false
@@ -106,7 +109,6 @@ SymEdit\Bundle\CoreBundle\Model\Page:
             nullable: true
             gedmo:
                 - treeLevel
-                - versioned
         template:
             type: string
             nullable: true
