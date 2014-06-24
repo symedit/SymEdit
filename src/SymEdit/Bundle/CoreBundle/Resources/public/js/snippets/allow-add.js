@@ -5,7 +5,11 @@ $(function(){
         $this = $(this);
 
         var $target = $($this.data('target'));
-        var count   = $this.data('count') || 0;
+        var count   = $this.data('count') || false;
+
+        if (!count) {
+            count = $target.find('.collection-item').length;
+        }
 
         $this.click(function(){
             var proto = $target.data('prototype');
