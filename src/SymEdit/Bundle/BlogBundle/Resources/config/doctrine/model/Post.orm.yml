@@ -12,12 +12,13 @@ SymEdit\Bundle\BlogBundle\Model\Post:
         title:
             type: string
             length: 255
+            gedmo:
+                - versioned
         slug:
             type: string
             length: 255
             unique: true
             gedmo:
-                versioned: ~
                 slug:
                     unique: true
                     separator: "-"
