@@ -36,6 +36,7 @@ class SymEditExtension extends SymEditResourceExtension implements PrependExtens
         );
 
         $this->remapParameters($container, 'email', $config['email']);
+        $container->setParameter('symedit.template_locations', $config['template_locations']);
         $container->setParameter('symedit.extensions.routes', $config['extensions']);
     }
 

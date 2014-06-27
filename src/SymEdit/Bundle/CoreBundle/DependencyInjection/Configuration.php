@@ -56,6 +56,9 @@ class Configuration implements ConfigurationInterface
                         ->scalarNode('sender')->defaultValue('email@example.com')->end()
                     ->end()
                 ->end()
+                ->arrayNode('template_locations')
+                    ->prototype('scalar')->end()
+                ->end()
             ->end();
 
         $this->addClassesSection($rootNode);
