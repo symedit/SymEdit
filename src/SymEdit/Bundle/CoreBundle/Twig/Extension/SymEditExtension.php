@@ -78,6 +78,7 @@ class SymEditExtension extends \Twig_Extension
         $text = strip_tags($text);
         $text = htmlentities($text);
         $text = str_replace(array("\n", "\r"), ' ', $text);
+        $text = preg_replace('#\s+#', ' ', $text);
         $len  = strlen($text);
 
         if (isset($limit) && is_int($limit) && $len > $limit) {
