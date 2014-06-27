@@ -22,4 +22,4 @@ SymEdit\Bundle\MediaBundle\Model\GalleryItem:
                 - persist
         gallery:
             targetEntity: SymEdit\Bundle\MediaBundle\Model\ImageGalleryInterface
-            inversedBy: galleryItems
+            inversedBy: items
