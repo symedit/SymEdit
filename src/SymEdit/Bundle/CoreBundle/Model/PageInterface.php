@@ -42,6 +42,13 @@ interface PageInterface extends SeoAbleInterface, \IteratorAggregate
     public function getRoot();
 
     /**
+     * Gets the root node
+     *
+     * @return PageInterface
+     */
+    public function getRootNode();
+
+    /**
      * @param string $name
      */
     public function setName($name);

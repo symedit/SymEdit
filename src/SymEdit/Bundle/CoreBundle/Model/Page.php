@@ -210,6 +210,17 @@ class Page implements PageInterface
         return $this->root;
     }
 
+    public function getRootNode()
+    {
+        $node = $this;
+
+        while (!$node->getRoot()) {
+            $node = $node->getParent();
+        }
+
+        return $this;
+    }
+
     /**
      * Set name
      *

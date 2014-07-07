@@ -62,4 +62,16 @@ class PageRepository extends EntityRepository
     {
         return $this->findOneByPath($path);
     }
+
+    public function getLastUpdated()
+    {
+        $result = $this->createQueryBuilder('o')
+                    ->select('o.updatedAt')
+                    ->orderBy('o.updatedAt', 'DESC')
+                    ->setMaxResults(1)
+                    ->getQuery()
+                    ->getSingleResult();
+
+        return current($result);
+    }
 }

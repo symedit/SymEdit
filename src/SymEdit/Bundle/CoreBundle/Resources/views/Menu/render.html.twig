@@ -1,0 +1,3 @@
+{% set options = { root_options: { childrenAttributes: { class: 'main' }}} %}
+{% set menu = knp_menu_get('tree', [], options) %}
+{{ knp_menu_render(menu, {template: '@SymEdit/Menu/navigation.html.twig', ancestorClass: 'active', currentClass: 'active'}) }}

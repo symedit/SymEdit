@@ -32,7 +32,7 @@
             {% block nav %}
             <div class="container">
                 <nav class="main-nav">
-                    {{ knp_menu_render('tree', {currentClass: 'active'}) }}
+                    {% include '@SymEdit/Menu/include.html.twig' %}
                 </nav>
             </div>
             {% endblock %}
