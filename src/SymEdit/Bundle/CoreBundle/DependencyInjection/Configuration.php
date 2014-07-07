@@ -59,7 +59,7 @@ class Configuration implements ConfigurationInterface
                 ->arrayNode('template_locations')
                     ->prototype('scalar')->end()
                 ->end()
-                ->arrayNode('resources')
+                ->arrayNode('assets')
                     ->addDefaultsIfNotSet()
                     ->children()
                         ->arrayNode('javascripts')

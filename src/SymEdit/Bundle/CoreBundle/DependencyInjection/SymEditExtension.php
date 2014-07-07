@@ -40,7 +40,7 @@ class SymEditExtension extends SymEditResourceExtension implements PrependExtens
         $container->setParameter('symedit.extensions.routes', $config['extensions']);
 
         // Process Assetic Configurations
-        $this->processResources($container, $config['resources']);
+        $this->processResources($container, $config['assets']);
     }
 
     public function prepend(ContainerBuilder $container)
