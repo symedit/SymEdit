@@ -6,6 +6,8 @@
 
     <parameters>
         <parameter key="symedit.cache_manager.class">SymEdit\Bundle\CoreBundle\Cache\CacheManager</parameter>
+        <parameter key="symedit.assetic.config_loader.class">Symfony\Bundle\AsseticBundle\Factory\Loader\ConfigurationLoader</parameter>
+        <parameter key="symedit.assetic.config_resource.class">Symfony\Bundle\AsseticBundle\Factory\Resource\ConfigurationResource</parameter>
     </parameters>
 
     <services>
@@ -30,6 +32,17 @@
             <call method="setContainer">
                 <argument type="service" id="service_container" />
             </call>
+        </service>
+
+        <!-- Assetic Configuration Loader -->
+        <service id="symedit.assetic.config_loader" class="%symedit.assetic.config_loader.class%" public="false">
+            <tag name="assetic.formula_loader" alias="symedit_config" />
+        </service>
+
+        <!-- Assetic Configuration Resource -->
+        <service id="symedit.assetic.config_resource" class="%symedit.assetic.config_resource.class%" public="false">
+            <tag name="assetic.formula_resource" loader="symedit_config" />
+            <argument type="collection" /> <!-- configured formulae -->
         </service>
     </services>
 

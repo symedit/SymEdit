@@ -7,7 +7,7 @@
             'bundles/symedit/redactor/redactor.css'
             '@SymEditBundle/Resources/less/admin/bootstrap/bootstrap.less'
             '@SymEditBundle/Resources/less/admin/admin.less'
-            '@SymEditBundle/Resources/less/admin/override.less'
+            '@symedit_stylesheets'
             filter="cssrewrite" %}
         <link rel="stylesheet" href="{{ asset_url }}" />
         {% endstylesheets %}
@@ -46,7 +46,9 @@
             'bundles/symedit/js/jquery-1.10.2.min.js'
             'bundles/symedit/js/*.js'
             'bundles/symedit/redactor/redactor.min.js'
-            'bundles/symedit/js/snippets/*.js' %}
+            'bundles/symedit/js/snippets/*.js'
+            '@symedit_javascripts'
+        %}
         <script src="{{ asset_url }}" type="text/javascript"></script>
         {% endjavascripts %}
         <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js"></script>

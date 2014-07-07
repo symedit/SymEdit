@@ -38,6 +38,9 @@ class SymEditExtension extends SymEditResourceExtension implements PrependExtens
         $this->remapParameters($container, 'email', $config['email']);
         $container->setParameter('symedit.template_locations', $config['template_locations']);
         $container->setParameter('symedit.extensions.routes', $config['extensions']);
+
+        // Process Assetic Configurations
+        $this->processResources($container, $config['resources']);
     }
 
     public function prepend(ContainerBuilder $container)
@@ -78,6 +81,22 @@ class SymEditExtension extends SymEditResourceExtension implements PrependExtens
                 ),
             ),
         ));
+    }
+
+    /**
+     * Setup @symedit_stylesheets and @symedit_javascripts to be used in the admin,
+     * they can be added either in the config or in the prependExtension so you
+     * can add new sheets/scripts without changing the templates.
+     */
+    protected function processResources(ContainerBuilder $container, array $resources)
+    {
+        $formulae = array();
+
+        foreach ($resources as $name => $assets) {
+            $formulae['symedit_' . $name] = array($assets, array(), array());
+        }
+
+        $container->getDefinition('symedit.assetic.config_resource')->replaceArgument(0, $formulae);
     }
 
     public function getAlias()

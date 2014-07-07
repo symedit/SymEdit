@@ -59,6 +59,17 @@ class Configuration implements ConfigurationInterface
                 ->arrayNode('template_locations')
                     ->prototype('scalar')->end()
                 ->end()
+                ->arrayNode('resources')
+                    ->addDefaultsIfNotSet()
+                    ->children()
+                        ->arrayNode('javascripts')
+                            ->prototype('scalar')->end()
+                        ->end()
+                        ->arrayNode('stylesheets')
+                            ->prototype('scalar')->end()
+                        ->end()
+                    ->end()
+                ->end()
             ->end();
 
         $this->addClassesSection($rootNode);
