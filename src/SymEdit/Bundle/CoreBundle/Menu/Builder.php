@@ -134,6 +134,12 @@ class Builder
             }
         }
 
+        /**
+         * Help
+         */
+        $help = $menu->addChild('Help', array('uri' => 'http://docs.symedit.com/guide/', 'icon' => 'question-sign'));
+        $help->setLinkAttribute('target', '_blank');
+
         return $event->getRootNode();
     }
 
