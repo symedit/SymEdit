@@ -10,7 +10,7 @@
         }
     ],
     "require": {
-        "php": ">=5.3.3",
+        "php":                                  ">=5.3.3",
         "doctrine/orm":                         "~2.4",
         "doctrine/doctrine-bundle":             "~1.3@dev",
         "doctrine/doctrine-fixtures-bundle":    "~2.2",
@@ -19,44 +19,40 @@
         "friendsofsymfony/rest-bundle":         "~1.0",
         "incenteev/composer-parameter-handler": "~2.0",
         "isometriks/spam-bundle":               "~0.2.0",
-        "jms/serializer-bundle":                "0.12.*",
+        "jms/serializer-bundle":                "~0.12",
         "knplabs/knp-gaufrette-bundle":         "0.1.7",
         "knplabs/knp-menu":                     "~2.0@dev",
         "knplabs/knp-menu-bundle":              "~2.0@dev",
-        "liip/imagine-bundle":                  "~1.0@dev",
+        "liip/imagine-bundle":                  "~1.0.0",
         "mopa/bootstrap-bundle":                "dev-master@dev",
+        "sensio/distribution-bundle":           "~2.3.0",
         "sensio/framework-extra-bundle":        "~2.3.0",
         "stof/doctrine-extensions-bundle":      "~1.1.0",
-        "sylius/resource-bundle":               ">0.9.0",
+        "sylius/resource-bundle":               "~0.10.0",
         "symfony/assetic-bundle":               "~2.3.0",
         "symfony/monolog-bundle":               "~2.3.0",
         "symfony/swiftmailer-bundle":           "~2.3.0",
         "symfony/symfony":                      "~2.3.0",
         "twig/extensions":                      "~1.0",
         "twig/twig":                            "~1.11",
-        "white-october/pagerfanta-bundle":      "1.0.*@dev",
+        "white-october/pagerfanta-bundle":      "~1.0.0",
         "zfr/zfr-mailchimp":                    "~2.0"
     },
     "autoload": {
         "psr-0": { "SymEdit\\": "src/" }
     },
     "replace": {
-        "symedit/analytics-bundle": "self.version",
-        "symedit/blog-bundle": "self.version",
-        "symedit/core-bundle": "self.version",
-        "symedit/resource-bundle": "self.version",
-        "symedit/seo-bundle": "self.version",
-        "symedit/seo-export-bundle": "self.version",
-        "symedit/sitemap-bundle": "self.version",
-        "symedit/settings-bundle": "self.version",
-        "symedit/stylizer-bundle": "self.version",
-        "symedit/user-bundle": "self.version",
-        "symedit/widget-bundle": "self.version",
-        "symedit/widget-bridge": "self.version"
-    },
-    "extra": {
-        "branch-alias": {
-            "dev-master": "0.4.x-dev"
-        }
+        "symedit/analytics-bundle":     "self.version",
+        "symedit/blog-bundle":          "self.version",
+        "symedit/core-bundle":          "self.version",
+        "symedit/resource-bundle":      "self.version",
+        "symedit/seo-bundle":           "self.version",
+        "symedit/seo-export-bundle":    "self.version",
+        "symedit/sitemap-bundle":       "self.version",
+        "symedit/settings-bundle":      "self.version",
+        "symedit/stylizer-bundle":      "self.version",
+        "symedit/user-bundle":          "self.version",
+        "symedit/widget-bundle":        "self.version",
+        "symedit/widget-bridge":        "self.version"
     }
 }
