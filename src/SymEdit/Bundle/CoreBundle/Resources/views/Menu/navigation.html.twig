@@ -11,10 +11,10 @@
 {% block linkElement %}
 {% spaceless %}
     <a href="{{ item.uri }}"{{ _self.attributes(item.linkAttributes) }}>
-        {{ block('label') }}
-        {% if item.children|length > 0 %}
+        {{- block('label') -}}
+        {%- if item.children|length > 0 -%}
             <span class="caret"></span>
-        {% endif %}
+        {% endif -%}
     </a>
 {% endspaceless %}
 {% endblock %}
