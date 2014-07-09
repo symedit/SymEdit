@@ -12,13 +12,13 @@
 namespace SymEdit\Bundle\ThemeBundle\Factory\Resource;
 
 use Assetic\Factory\Resource\ResourceInterface;
-use SymEdit\Bundle\ThemeBundle\Model\Theme;
+use SymEdit\Bundle\ThemeBundle\Model\ThemeInterface;
 
 class ThemeResource implements ResourceInterface
 {
     protected $theme;
 
-    public function __construct(Theme $theme)
+    public function __construct(ThemeInterface $theme)
     {
         $this->theme = $theme;
     }
