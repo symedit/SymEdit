@@ -47,13 +47,12 @@
         </service>
 
         <!--  Form Factory -->
-
         <service id="symedit.form.factory.context" class="%symedit.form.factory.context.class%">
             <argument type="service" id="form.factory" />
             <argument type="service" id="security.context" />
             <argument type="collection">
                 <argument key="adminType">symedit_admin_profile</argument>
-                <argument key="userType">symedit_profile</argument>
+                <argument key="userType">symedit_user_profile</argument>
                 <argument key="name">symedit_profile</argument>
             </argument>
         </service>

@@ -60,7 +60,7 @@ class Configuration implements ConfigurationInterface
                             ->addDefaultsIfNotSet()
                             ->children()
                                 ->scalarNode('model')->defaultValue('SymEdit\Bundle\UserBundle\Model\Profile')->end()
-                                ->scalarNode('form')->defaultValue('SymEdit\Bundle\UserBundle\Form\Type\ProfileType')->end()
+                                ->scalarNode('form')->defaultValue('SymEdit\Bundle\UserBundle\Form\Type\UserProfileType')->end()
                             ->end()
                         ->end()
                         ->arrayNode('admin_profile')
