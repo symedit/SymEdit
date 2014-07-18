@@ -10,6 +10,10 @@
             {{ icon('plus') }}
             Add Item
         </a>
+        <a class="btn btn-info" href="{{ path('admin_image_gallery_add', { id: image_gallery.id }) }}">
+            {{ icon('plus') }}
+            Add Existing Items
+        </a>
 
         {{ macro.delete_button('gallery_delete', 'Delete Gallery', 'btn btn-warning') }}
     </div>

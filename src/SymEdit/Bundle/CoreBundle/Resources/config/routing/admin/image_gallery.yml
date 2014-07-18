@@ -19,6 +19,17 @@ admin_image_gallery_create:
                 route: admin_image_gallery
                 parameters: { id: $id }
 
+admin_image_gallery_add:
+    pattern: /{id}/add
+    methods: [GET, PUT, POST]
+    defaults:
+        _controller: symedit.controller.image_gallery:updateAction
+        _sylius:
+            template: @SymEdit/Admin/ImageGallery/add.html.twig
+            redirect:
+                route: admin_image_gallery_update
+                parameters: { id: $id }
+
 admin_image_gallery_update:
     pattern: /{id}/edit
     methods: [GET, PUT, POST]
