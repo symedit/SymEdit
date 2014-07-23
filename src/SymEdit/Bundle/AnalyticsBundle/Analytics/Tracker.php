@@ -64,7 +64,7 @@ class Tracker
         }
 
         // Flush Entities
-        $this->manager->flush();
+        $this->manager->flush($this->trackedVisits);
 
         // Reset
         $this->trackedVisits = array();
