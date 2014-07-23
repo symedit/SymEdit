@@ -21,6 +21,7 @@ class SymEditExtension extends SymEditResourceExtension implements PrependExtens
         'services', 'widget', 'routing', 'form',
         'event', 'twig', 'util', 'profiler',
         'menu', 'seo', 'report', 'shortcode',
+        'cache',
     );
 
     /**
