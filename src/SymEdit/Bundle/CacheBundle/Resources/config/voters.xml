@@ -1,0 +1,25 @@
+<?xml version="1.0" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <parameters>
+        <parameter key="symedit_cache.decision_manager.class">SymEdit\Bundle\CacheBundle\Decision\CacheDecisionManager</parameter>
+        <parameter key="symedit_cache.voter.role.class">SymEdit\Bundle\CacheBundle\Decision\Voter\RoleCacheVoter</parameter>
+    </parameters>
+
+    <services>
+        <!-- Decision Manager -->
+        <service id="symedit_cache.decision_manager" class="%symedit_cache.decision_manager.class%">
+            <argument type="collection" />
+        </service>
+
+        <!-- Role Voter -->
+        <service id="symedit_cache.voter.role" class="%symedit_cache.voter.role.class%">
+            <argument type="service" id="security.context" />
+            <argument type="collection" />
+            <tag name="symedit_cache.voter" />
+        </service>
+    </services>
+</container>

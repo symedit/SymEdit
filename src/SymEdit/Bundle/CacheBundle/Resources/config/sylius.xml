@@ -1,0 +1,24 @@
+<?xml version="1.0" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <parameters>
+        <parameter key="symedit_cache.sylius.interceptor.class">SymEdit\Bundle\CacheBundle\Sylius\Interceptor\SyliusResourceInterceptor</parameter>
+        <parameter key="symedit_cache.sylius.pointcut.class">SymEdit\Bundle\CacheBundle\Sylius\Pointcut\SyliusResourcePointcut</parameter>
+    </parameters>
+
+    <services>
+        <service id="symedit_cache.sylius.interceptor.sylius_resource" class="%symedit_cache.sylius.interceptor.class%">
+            <argument type="service" id="symedit_cache.decision_manager" />
+            <argument type="service" id="symedit_cache.sylius.parameters_parser" />
+        </service>
+
+        <service id="symedit_cache.sylius.pointcut.sylius_resource" class="%symedit_cache.sylius.pointcut.class%">
+            <tag name="jms_aop.pointcut" interceptor="symedit_cache.sylius.interceptor.sylius_resource" />
+        </service>
+
+        <service id="symedit_cache.sylius.parameters_parser" alias="sylius.controller.parameters_parser" />
+    </services>
+</container>
