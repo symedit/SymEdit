@@ -45,7 +45,14 @@ class PageLoader extends BaseLoader
         foreach ($pages as $page) {
             $defaults = array(
                 '_page_id' => $page->getId(),
+                'id' => $page->getId(),
                 '_controller' => 'symedit.controller.page:showAction',
+                '_sylius' => array(
+                    'cache' => array(
+                        'last_modified' => 'resource.updatedAt',
+                        'public' => true,
+                    ),
+                ),
             );
 
             $collection->add($page->getRoute(), new Route($page->getPath(), $defaults));
