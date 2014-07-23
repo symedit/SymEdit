@@ -55,6 +55,9 @@ blog_slug_view:
             criteria:
                 slug: $slug
                 status: 1
+            cache:
+                last_modified: resource.updatedAt
+                public: true
 
 blog_category_view:
     pattern: /category/{slug}/{page}
