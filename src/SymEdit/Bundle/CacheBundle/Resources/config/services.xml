@@ -9,7 +9,7 @@
         <parameter key="sym_edit_cache.example.class">SymEdit\Bundle\CacheBundle\Example</parameter>
     </parameters>
     -->
-    
+
     <services>
         <service id="symedit_cache.property_accessor"
                  class="Symfony\Component\PropertyAccess\PropertyAccessor"

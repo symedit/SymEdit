@@ -63,7 +63,7 @@ class PreferenceCalculator implements SeoCalculatorInterface
 
     /**
      *
-     * @param type $subject
+     * @param  type                                          $subject
      * @return \SymEdit\Bundle\SeoBundle\Model\SeoPreference
      */
     public function findPreference($subject)
