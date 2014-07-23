@@ -11,7 +11,6 @@
 
 namespace SymEdit\Bundle\CoreBundle\Controller;
 
-use Sylius\Bundle\ResourceBundle\Event\ResourceEvent;
 use SymEdit\Bundle\CoreBundle\Model\PageInterface;
 use SymEdit\Bundle\ResourceBundle\Controller\ResourceController;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -25,11 +24,6 @@ class PageController extends ResourceController
         $page = $request->get('_page');
 
         /**
-         * Dispatch page view event
-         */
-        $this->domainManager->dispatchEvent('view', new ResourceEvent($page));
-
-        /**
          * Check for template
          */
         if (($template = $page->getTemplate()) === null) {
@@ -41,36 +35,6 @@ class PageController extends ResourceController
             ->setTemplateVar('Page')
             ->setData($page)
             ->setTemplate(sprintf('@SymEdit/Page/%s', $template));
-
-        $response = $this->get('symedit.cache_manager')->getLastModifiedResponse($page->getUpdatedAt());
-        $view->setResponse($response);
-
-        if ($response->isNotModified($request)) {
-            return $response;
-        }
-
-        return $this->handleView($view);
-    }
-
-   /**
-     * Lists all Page entities.
-     */
-    public function indexAction(Request $request)
-    {
-        $config = $this->getConfiguration();
-
-        if ($config->isApiRequest()) {
-            return parent::indexAction($request);
-        }
-
-        $root = $this->getRepository()->findRoot();
-
-        $view = $this
-            ->view()
-            ->setTemplate('@SymEdit/Admin/Page/index.html.twig')
-            ->setData(array(
-                'root' => $root
-            ));
 
         return $this->handleView($view);
     }
