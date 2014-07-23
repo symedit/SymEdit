@@ -19,6 +19,16 @@ use Symfony\Component\PropertyAccess\PropertyAccess;
 class ResourceController extends BaseResourceController
 {
     /**
+     * {@inheritDoc}
+     *
+     * Here for AOP
+     */
+    public function showAction(Request $request)
+    {
+        return parent::showAction($request);
+    }
+
+    /**
      * Bulk reorder, for drag and drops
      */
     public function reorderAction(Request $request)
