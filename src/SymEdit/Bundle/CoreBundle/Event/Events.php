@@ -28,8 +28,6 @@ final class Events
     const PAGE_DELETE       = 'symedit.page.delete';
     const PAGE_POST_DELETE  = 'symedit.page.post_delete';
 
-    const PAGE_VIEW         = 'symedit.page.view';
-
     /**
      * Post Events
      */

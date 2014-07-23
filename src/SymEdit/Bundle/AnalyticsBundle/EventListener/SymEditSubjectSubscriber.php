@@ -11,7 +11,6 @@
 
 namespace SymEdit\Bundle\AnalyticsBundle\EventListener;
 
-use Sylius\Bundle\ResourceBundle\Event\ResourceEvent;
 use SymEdit\Bundle\AnalyticsBundle\Analytics\Tracker;
 use SymEdit\Bundle\CoreBundle\Event\Events;
 use SymEdit\Bundle\CoreBundle\Event\SubjectEvent;
@@ -38,11 +37,6 @@ class SymEditSubjectSubscriber implements EventSubscriberInterface
         }
     }
 
-    public function onSymEditPageView(ResourceEvent $event)
-    {
-        $this->tracker->track($event->getSubject());
-    }
-
     public function onKernelController(FilterControllerEvent $event)
     {
         if ($event->getRequestType() !== HttpKernelInterface::MASTER_REQUEST) {
@@ -51,9 +45,11 @@ class SymEditSubjectSubscriber implements EventSubscriberInterface
 
         $request = $event->getRequest();
         $default = $request->get('_default_route', false);
+        $symedit = $request->get('_symedit', array());
+        $nonController = !isset($symedit['page_controller']);
         $page = $request->get('_page', null);
 
-        if ($default && $page !== null) {
+        if (($page !== null && $page->getId() !== null) && ($default || $nonController)) {
             $this->tracker->track($page);
         }
     }
@@ -66,7 +62,6 @@ class SymEditSubjectSubscriber implements EventSubscriberInterface
 
         if (class_exists('SymEdit\Bundle\CoreBundle\Event\Events')) {
             $events[Events::SUBJECT_SET] = 'onSymEditSubjectSet';
-            $events[Events::PAGE_VIEW] = 'onSymEditPageView';
         }
 
         return $events;
