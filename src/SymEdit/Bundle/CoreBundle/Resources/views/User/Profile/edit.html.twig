@@ -5,6 +5,7 @@
 
 {% block form_actions %}
 {{ form_widget(form.basic.current_password, { attr: { placeholder: 'Current Password' }}) }}
+{{ form_errors(form.basic.current_password) }}
 
 <button type="submit" class="btn btn-primary btn-block">Update Profile</button>
 <a href="{{ app.request.headers.get('referer') }}" class="btn btn-default btn-block">Back</a>
