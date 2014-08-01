@@ -11,6 +11,8 @@
 
 namespace SymEdit\Bundle\CoreBundle\Model;
 
+use SymEdit\Bundle\CoreBundle\Model\UserInterface;
+
 interface ProfileInterface
 {
     /**
@@ -53,4 +55,10 @@ interface ProfileInterface
      * @return UserInterface Return the user that this profile is for
      */
     public function getUser();
+    
+    /**
+     * @param UserInterface
+     * @return ProfileInterface
+     */
+    public function setUser(UserInterface $user);
 }

@@ -32,6 +32,7 @@ class User extends BaseUser implements UserInterface
     public function setProfile(ProfileInterface $profile)
     {
         $this->profile = $profile;
+        $this->profile->setUser($this);
 
         return $this;
     }
