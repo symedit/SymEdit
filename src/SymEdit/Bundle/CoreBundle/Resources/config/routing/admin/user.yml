@@ -5,6 +5,8 @@ admin_user:
         _controller: symedit.controller.user:indexAction
         _sylius:
             template: @SymEdit/Admin/User/index.html.twig
+            sorting:
+                username: asc
 
 admin_user_create:
     pattern: /new
