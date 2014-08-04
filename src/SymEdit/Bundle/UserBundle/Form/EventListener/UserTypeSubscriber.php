@@ -32,7 +32,7 @@ class UserTypeSubscriber implements EventSubscriberInterface
         $basic = $form->get('basic');
 
         $basic->add('plainPassword', 'repeated', array(
-            'required' => $data === null,
+            'required' => ($data === null || $data->getId() === null),
             'type' => 'password',
             'options' => array('translation_domain' => 'FOSUserBundle'),
             'first_options' => array('label' => 'form.password'),
