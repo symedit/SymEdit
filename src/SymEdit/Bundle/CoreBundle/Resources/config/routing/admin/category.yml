@@ -6,7 +6,7 @@ admin_category:
         _sylius:
             template: @SymEdit/Admin/Category/index.html.twig
             paginate: false
-            limit: false
+            method: findRoot
 
 admin_category_create:
     pattern: /new

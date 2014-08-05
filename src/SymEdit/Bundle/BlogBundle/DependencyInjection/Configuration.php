@@ -60,7 +60,7 @@ class Configuration implements ConfigurationInterface
                             ->addDefaultsIfNotSet()
                             ->children()
                                 ->scalarNode('model')->defaultValue('SymEdit\Bundle\BlogBundle\Model\Category')->end()
-                                ->scalarNode('controller')->defaultValue('SymEdit\Bundle\BlogBundle\Controller\CategoryController')->end()
+                                ->scalarNode('controller')->defaultValue('SymEdit\Bundle\ResourceBundle\Controller\ResourceController')->end()
                                 ->scalarNode('respository')->end()
                                 ->scalarNode('form')->defaultValue('SymEdit\Bundle\BlogBundle\Form\Type\CategoryType')->end()
                             ->end()
