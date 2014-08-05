@@ -6,10 +6,11 @@
 
     <parameters>
         <parameter key="symedit_analytics.tracker.class">SymEdit\Bundle\AnalyticsBundle\Analytics\Tracker</parameter>
+        <parameter key="symedit_analytics.recorder.class">SymEdit\Bundle\AnalyticsBundle\Analytics\Recorder</parameter>
         <parameter key="symedit_analytics.reporter.class">SymEdit\Bundle\AnalyticsBundle\Report\Reporter</parameter>
         <parameter key="symedit_analytics.event_listener.symedit_subject.class">SymEdit\Bundle\AnalyticsBundle\EventListener\SymEditSubjectSubscriber</parameter>
-        <parameter key="symedit_analytics.event_listener.flush_visits.class">SymEdit\Bundle\AnalyticsBundle\EventListener\FlushVisitsSubscriber</parameter>
         <parameter key="symedit_analytics.model.visit.class">SymEdit\Bundle\AnalyticsBundle\Model\Visit</parameter>
+        <parameter key="symedit_analytics.twig.extension.class">SymEdit\Bundle\AnalyticsBundle\Twig\AnalyticsExtension</parameter>
     </parameters>
 
     <services>
@@ -17,6 +18,12 @@
 
         <!-- Tracker -->
         <service id="symedit_analytics.tracker" class="%symedit_analytics.tracker.class%">
+            <argument type="service" id="symedit_analytics.entity_manager" />
+            <argument>%symedit_analytics.model.visit.class%</argument>
+        </service>
+
+        <!-- Recorder -->
+        <service id="symedit_analytics.recorder" class="%symedit_analytics.recorder.class%">
             <argument type="service" id="symedit_analytics.entity_manager" />
             <argument>%symedit_analytics.model.visit.class%</argument>
         </service>
@@ -34,10 +41,10 @@
             <tag name="kernel.event_subscriber" />
         </service>
 
-        <!-- Tracker Flush Listener -->
-        <service id="symedit_analytics.event_listener.flush_visits" class="%symedit_analytics.event_listener.flush_visits.class%">
+        <!-- Twig Extension -->
+        <service id="symedit_analytics.twig.extension" class="%symedit_analytics.twig.extension.class%">
             <argument type="service" id="symedit_analytics.tracker" />
-            <tag name="kernel.event_subscriber" />
+            <tag name="twig.extension" />
         </service>
     </services>
 </container>

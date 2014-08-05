@@ -11,6 +11,13 @@ $post = $repository->find(5);
 $this->get('symedit_analytics.tracker')->track($post);
 ```
 
+Include twig function to render (currently requires jQuery)
+===
+
+```jinja
+{{ symedit_analytics_render() }}
+```
+
 Run reports:
 
 ```php

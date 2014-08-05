@@ -17,7 +17,6 @@ use Symfony\Component\PropertyAccess\PropertyAccess;
 class Tracker
 {
     protected $manager;
-    protected $repository;
     protected $visitClass;
     protected $propertyAccess;
     protected $trackedVisits = array();
@@ -25,7 +24,6 @@ class Tracker
     public function __construct(ObjectManager $manager, $class)
     {
         $this->manager = $manager;
-        $this->repository = $manager->getRepository($class);
         $this->visitClass = $class;
         $this->propertyAccess = PropertyAccess::createPropertyAccessor();
     }
@@ -52,21 +50,8 @@ class Tracker
         $this->trackedVisits[] = $visit;
     }
 
-    public function flush()
+    public function getTrackedVisits()
     {
-        // Skip if empty
-        if (count($this->trackedVisits) === 0) {
-            return;
-        }
-
-        foreach ($this->trackedVisits as $object) {
-            $this->manager->persist($object);
-        }
-
-        // Flush Entities
-        $this->manager->flush($this->trackedVisits);
-
-        // Reset
-        $this->trackedVisits = array();
+        return $this->trackedVisits;
     }
 }

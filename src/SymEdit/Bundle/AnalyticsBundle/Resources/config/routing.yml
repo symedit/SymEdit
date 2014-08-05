@@ -1,0 +1,5 @@
+symedit_analytics_record:
+    pattern: /_symedit_analytics
+    methods: [POST]
+    defaults:
+        _controller: SymEditAnalyticsBundle:Analytics:record
