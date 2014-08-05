@@ -1,0 +1,11 @@
+{% extends '@SymEdit/Email/base.html.twig' %}
+
+{% block subject %}{{ symedit_settings_get('company.name') }} - New User Created - {{ user.profile.fullname }}{% endblock %}
+
+{% block content %}
+    <h4>{{ symedit_settings_get('company.name') }},</h4>
+
+    <p>
+        A new user {{ user.profile.fullname }} ({{ user.username }}) has just confirmed their account on your site.
+    </p>
+{% endblock %}

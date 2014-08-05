@@ -28,6 +28,18 @@ class Configuration implements ConfigurationInterface
         $rootNode
             ->children()
                 ->scalarNode('driver')->cannotBeEmpty()->defaultValue('doctrine/orm')->end()
+                ->arrayNode('notifications')
+                    ->addDefaultsIfNotSet()
+                    ->children()
+                        ->arrayNode('registration')
+                            ->addDefaultsIfNotSet()
+                            ->children()
+                                ->booleanNode('enabled')->defaultTrue()->end()
+                                ->booleanNode('template')->defaultValue('@SymEdit/Email/registration.html.twig')->end()
+                            ->end()
+                        ->end()
+                    ->end()
+                ->end()
             ->end();
 
         $this->addClassesSection($rootNode);

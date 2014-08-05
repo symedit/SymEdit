@@ -18,7 +18,7 @@ use Symfony\Component\DependencyInjection\Extension\PrependExtensionInterface;
 class SymEditUserExtension extends SymEditResourceExtension implements PrependExtensionInterface
 {
     protected $configFiles = array(
-        'services', 'form',
+        'services', 'form', 'notifications',
     );
 
     /**
@@ -26,12 +26,20 @@ class SymEditUserExtension extends SymEditResourceExtension implements PrependEx
      */
     public function load(array $config, ContainerBuilder $container)
     {
-        $this->configure(
+        list($config) = $this->configure(
             $config,
             new Configuration(),
             $container,
             self::CONFIGURE_LOADER | self::CONFIGURE_DATABASE | self::CONFIGURE_PARAMETERS
         );
+
+        foreach ($config['notifications'] as $type => $notification) {
+            if (!$notification['enabled']) {
+                $container->removeDefinition('symedit_user.notification.' . $type);
+            } else {
+                $this->remapParameters($container, 'notifications.'.$type, $notification);
+            }
+        }
     }
 
     public function prepend(ContainerBuilder $container)
