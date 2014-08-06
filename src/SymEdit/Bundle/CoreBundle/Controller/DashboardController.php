@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace SymEdit\Bundle\CoreBundle\Controller\Admin;
+namespace SymEdit\Bundle\CoreBundle\Controller;
 
 use SymEdit\Bundle\CoreBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;

@@ -37,9 +37,9 @@ symedit_admin_widget_controller:
 # Below not converted
 
 symedit_admin_dashboard_controller:
-    resource: "@SymEditBundle/Controller/Admin/DashboardController.php"
+    resource: "@SymEditBundle/Controller/DashboardController.php"
     type: annotation
 
 symedit_admin_stylizer_controller:
-    resource: "@SymEditBundle/Controller/Admin/StylizerController.php"
+    resource: "@SymEditBundle/Controller/StylizerController.php"
     type: annotation
