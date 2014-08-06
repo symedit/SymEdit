@@ -32,39 +32,4 @@ interface UserManagerInterface extends UserProviderInterface, BaseManager
      * @return UserInterface $user
      */
     public function createUser($admin = false);
-
-    /**
-     * Find regular user profile by
-     *
-     * @return ProfileInterface|null $profile
-     */
-    public function findProfileBy(array $criteria);
-
-    /**
-     * Find regular user profiles by
-     *
-     * @return ProfileInterface
-     */
-    public function findProfilesBy(array $criteria);
-
-    /**
-     * Find admin profile by
-     *
-     * @return ProfileInterface|null $adminProfile
-     */
-    public function findAdminProfileBy(array $criteria);
-
-    /**
-     * Find admin profiles by
-     *
-     * @return ProfileInterface
-     */
-    public function findAdminProfilesBy(array $criteria);
-
-    /**
-     * Find one admin by criteria
-     */
-    public function findAdminBy(array $criteria);
-
-    public function findAdmins();
 }

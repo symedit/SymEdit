@@ -26,11 +26,6 @@
             <tag name="form.type" alias="symedit_role" />
         </service>
 
-        <service id="symedit.form.type.user" class="%symedit.form.type.user.class%">
-            <argument>%fos_user.model.user.class%</argument>
-            <tag name="form.type" alias="symedit_user" />
-        </service>
-
         <service id="symedit.form.type.widget_area" class="%symedit.form.type.widget_area.class%">
             <tag name="form.type" alias="symedit_widget_area" />
         </service>

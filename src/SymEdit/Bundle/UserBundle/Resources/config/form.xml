@@ -5,16 +5,25 @@
            xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
 
     <services>
+        <!-- User Type -->
+        <service id="symedit.form.type.user" class="%symedit.form.type.user.class%">
+            <argument>%fos_user.model.user.class%</argument>
+            <tag name="form.type" alias="symedit_user" />
+        </service>
+
+        <!-- Registration Type -->
         <service id="symedit.form.type.registration" class="%symedit.form.type.registration.class%">
             <argument>%fos_user.model.user.class%</argument>
             <tag name="form.type" alias="symedit_user_registration" />
         </service>
 
+        <!-- Admin Profile Type -->
         <service id="symedit.form.type.admin_profile" class="%symedit.form.type.admin_profile.class%">
             <argument>%fos_user.model.user.class%</argument>
             <tag name="form.type" alias="symedit_admin_profile" />
         </service>
 
+        <!-- User Profile Type -->
         <service id="symedit.form.type.user_profile" class="%symedit.form.type.profile.class%">
             <argument>%fos_user.model.user.class%</argument>
             <tag name="form.type" alias="symedit_user_profile" />

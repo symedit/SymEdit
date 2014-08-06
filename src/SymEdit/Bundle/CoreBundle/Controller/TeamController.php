@@ -40,7 +40,7 @@ class TeamController extends Controller
 
     public function viewAction($slug)
     {
-        $profile = $this->getUserManager()->findAdminProfileBy(array(
+        $profile = $this->get('symedit.repository.admin_profile')->findOneBy(array(
             'slug' => $slug,
         ));
 
