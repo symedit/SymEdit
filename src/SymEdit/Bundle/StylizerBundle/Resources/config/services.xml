@@ -19,19 +19,23 @@
 
 
     <services>
+        <!-- Override Assetic Command -->
         <service id="symedit_stylizer.assetic.command" class="%symedit_stylizer.assetic.command.class%">
             <call method="setContainer"><argument type="service" id="service_container" /></call>
         </service>
 
+        <!-- Loader Chain -->
         <service id="symedit_stylizer.loader.chain" class="%symedit_stylizer.loader.chain.class%" public="false">
             <argument type="collection" />
         </service>
 
+        <!-- Yaml Loader -->
         <service id="symedit_stylizer.loader.yaml" class="%symedit_stylizer.loader.yaml.class%" public="false">
             <argument>%symedit_stylizer.loader.files.yaml%</argument>
             <tag name="stylizer.loader" />
         </service>
 
+        <!-- Dumper -->
         <service id="symedit_stylizer.dumper" class="%symedit_stylizer.dumper.class%">
             <argument type="service" id="service_container" />
             <argument type="service" id="assetic.filter_manager" />
@@ -49,6 +53,7 @@
             <tag name="stylizer.injector" />
         </service>
 
+        <!-- Stylizer Service -->
         <service id="symedit_stylizer.stylizer" class="%symedit_stylizer.stylizer.class%">
             <argument type="service" id="symedit_stylizer.loader.chain" />
             <argument type="service" id="symedit_stylizer.dumper" />
@@ -56,19 +61,23 @@
             <argument>%assetic.cache_dir%/assets</argument>
         </service>
 
+        <!-- Stylizer Form Type -->
         <service id="symedit_stylizer.form.styles" class="%symedit_stylizer.form.styles.class%">
             <argument type="service" id="symedit_stylizer.stylizer" />
-            <tag name="form.type" alias="styles" />
+            <tag name="form.type" alias="symedit_stylizer" />
         </service>
 
+        <!-- Color Form Type -->
         <service id="symedit_stylizer.form.color" class="%symedit_stylizer.form.color.class%">
             <tag name="form.type" alias="color" />
         </service>
 
+        <!-- Google Font Form Type -->
         <service id="symedit_stylizer.form.google_font" class="%symedit_stylizer.form.google_font.class%">
             <tag name="form.type" alias="google_font" />
         </service>
 
+        <!-- Twig Extension -->
         <service id="symedit_stylizer.twig.stylizer_extension" class="SymEdit\Bundle\StylizerBundle\Twig\Extension\StylizerExtension">
             <argument type="service" id="symedit_stylizer.stylizer" />
             <tag name="twig.extension" />

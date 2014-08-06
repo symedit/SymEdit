@@ -84,6 +84,6 @@ class StylesType extends AbstractType
 
     public function getName()
     {
-        return 'styles';
+        return 'symedit_stylizer';
     }
 }
