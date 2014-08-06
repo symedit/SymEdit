@@ -2,22 +2,22 @@
 
 {% block content %}
 
-{% for user in users %}
+{% for profile in admin_profiles %}
 <section class="user-summary">
     <div class="row">
-        {% if user.profile.image %}
+        {% if profile.image %}
         <div class="col-md-3">
-            <img src="{{ user.profile.image }}" class="img-circle" alt="{{ user.profile.fullname }}">
+            <img src="{{ profile.image }}" class="img-circle" alt="{{ profile.fullname }}">
         </div>
         {% endif %}
 
         <div class="col-md-9">
-            <h3>{{ user.profile.fullname }}</h3>
+            <h3>{{ profile.fullname }}</h3>
             <p>
-                {{ user.profile.summary|raw }}
+                {{ profile.summary|raw }}
             </p>
             <div class="social">
-                {% include '@SymEdit/CMS/social.html.twig' with { name:user.profile.fullname, social:user.profile.social } %}
+                {% include '@SymEdit/CMS/social.html.twig' with { name:profile.fullname, social:profile.social } %}
             </div>
         </div>
     </div>

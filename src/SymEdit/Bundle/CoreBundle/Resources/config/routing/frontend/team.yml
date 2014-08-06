@@ -1,9 +1,17 @@
 team:
     pattern: /
     defaults:
-        _controller: SymEditBundle:Team:index
+        _controller: symedit.controller.admin_profile:indexAction
+        _sylius:
+            template: @SymEdit/Team/index.html.twig
+            criteria:
+                display: true
 
 team_view_slug:
     pattern: /{slug}
     defaults:
-        _controller: SymEditBundle:Team:view
+        _controller: symedit.controller.admin_profile:showAction
+        _sylius:
+            template: @SymEdit/Team/view.html.twig
+            criteria:
+                display: true

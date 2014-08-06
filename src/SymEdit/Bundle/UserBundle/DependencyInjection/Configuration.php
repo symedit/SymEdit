@@ -79,6 +79,7 @@ class Configuration implements ConfigurationInterface
                             ->addDefaultsIfNotSet()
                             ->children()
                                 ->scalarNode('model')->defaultValue('SymEdit\Bundle\UserBundle\Model\AdminProfile')->end()
+                                ->scalarNode('controller')->defaultValue('SymEdit\Bundle\ResourceBundle\Controller\ResourceController')->end()
                                 ->scalarNode('form')->defaultValue('SymEdit\Bundle\UserBundle\Form\Type\AdminProfileType')->end()
                             ->end()
                         ->end()
