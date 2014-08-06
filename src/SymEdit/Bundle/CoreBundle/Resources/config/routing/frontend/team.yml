@@ -6,6 +6,8 @@ team:
             template: @SymEdit/Team/index.html.twig
             criteria:
                 display: true
+            sorting:
+                lastName: asc
 
 team_view_slug:
     pattern: /{slug}
