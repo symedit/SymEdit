@@ -18,7 +18,7 @@ class UpcomingEventsWidgetStrategy extends AbstractWidgetStrategy
     public function execute(WidgetInterface $widget)
     {
         $maxEvents = $widget->getOption('max_events');
-        $events = $this->repository->getUpcomingEvents($widget, $maxEvents);
+        $events = $this->repository->getUpcomingEvents($maxEvents);
 
         $this->render('@SymEdit/Widget/Events/upcoming_events.html.twig', array(
             'events' => $events,
