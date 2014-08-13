@@ -2,16 +2,6 @@
 
 {% block title %}Events &raquo; Create a new event{% endblock %}
 
-{% block action %}{{ path('admin_post_create') }}{% endblock %}
-
-{% block tabs %}
-{{ form_tabs(form) }}
-{% endblock %}
-
-{% block tab_content %}
-{{ form_widget(form) }}
-{% endblock %}
-
 {% block form_actions %}
-<button class="btn btn-primary btn-block" type="submit">Add Post</button>
+<button class="btn btn-primary btn-block" type="submit">Create Event</button>
 {% endblock %}
