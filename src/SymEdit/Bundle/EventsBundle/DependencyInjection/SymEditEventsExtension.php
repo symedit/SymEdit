@@ -13,11 +13,12 @@ namespace SymEdit\Bundle\EventsBundle\DependencyInjection;
 
 use SymEdit\Bundle\ResourceBundle\DependencyInjection\SymEditResourceExtension;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
+use Symfony\Component\DependencyInjection\Extension\PrependExtensionInterface;
 
-class SymEditEventsExtension extends SymEditResourceExtension
+class SymEditEventsExtension extends SymEditResourceExtension implements PrependExtensionInterface
 {
     protected $configFiles = array(
-        'form',// 'widget',
+        'form', 'services', // 'widget',
     );
 
     /**
@@ -31,6 +32,28 @@ class SymEditEventsExtension extends SymEditResourceExtension
             $container,
             self::CONFIGURE_LOADER | self::CONFIGURE_DATABASE | self::CONFIGURE_PARAMETERS
         );
+    }
+
+    public function prepend(ContainerBuilder $container)
+    {
+        /**
+         * SymEdit Config, add the views
+         */
+        if ($container->hasExtension('symedit')) {
+            $container->prependExtensionConfig('symedit', array(
+                'template_locations' => array(
+                    '@SymEditEventsBundle/Resources/views',
+                ),
+                'assets' => array(
+                    'javascripts' => array(
+                        '@SymEditEventsBundle/Resources/js/activate.js.twig',
+                    ),
+                    'stylesheets' => array(
+                        
+                    ),
+                ),
+            ));
+        }
     }
 
     public function getAlias()
