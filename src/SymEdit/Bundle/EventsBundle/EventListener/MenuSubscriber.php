@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace SymEdit\Bundle\MediaBundle\EventListener;
+namespace SymEdit\Bundle\EventsBundle\EventListener;
 
 use SymEdit\Bundle\CoreBundle\Event\Events;
 use SymEdit\Bundle\CoreBundle\Event\MenuEvent;
@@ -41,24 +41,19 @@ class MenuSubscriber implements EventSubscriberInterface
 
         $rootNode = $event->getRootNode();
 
-        if (!$rootNode->getChild('media')) {
-            $media = $rootNode->addChild('media', array('label' => 'Media', 'dropdown' => true, 'caret' => true, 'icon' => 'picture'));
-        } else {
-            $media = $rootNode->getChild('media');
+        if (!$rootNode->getChild('content')) {
+            return;
         }
 
-        /**
-         * Images
-         */
-        if ($this->context->isGranted('ROLE_ADMIN_IMAGE')) {
-            $media->addChild('Images', array('dropdown-header' => true));
-            $media->addChild('View Images', array('route' => 'admin_image', 'icon' => 'picture'));
-            $media->addChild('Upload Image', array('route' => 'admin_image_create', 'icon' => 'upload'));
-            $media->addChild('Galleries', array('route' => 'admin_image_gallery', 'icon' => 'film'));
+        $content = $rootNode->getChild('content');
 
-            $media->addChild('Files', array('dropdown-header' => true));
-            $media->addChild('View Files', array('route' => 'admin_file', 'icon' => 'file'));
-            $media->addChild('Upload File', array('route' => 'admin_file_create', 'icon' => 'upload'));
+        /**
+         * Events
+         */
+        if ($this->context->isGranted('ROLE_ADMIN_EVENT')) {
+            $content->addChild('Events', array('dropdown-header' => true));
+            $content->addChild('View Events', array('route' => 'admin_event', 'icon' => 'list'));
+            $content->addChild('Add Event', array('route' => 'admin_event_create', 'icon' => 'plus'));
         }
     }
 }
