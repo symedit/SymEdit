@@ -9,13 +9,16 @@ class EventType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder
+        $info = $builder->create('information', 'tab', array(
+            'inherit_data' => true,
+            'label' => 'Basic Information',
+            'icon' => 'info-sign',
+        ));
+
+        // Basic Information Tab
+        $info
             ->add('title')
             ->add('description')
-            ->add('eventStart', 'datetime')
-            ->add('eventEnd', 'datetime', array(
-                'required' => false,
-            ))
             ->add('url', 'url', array(
                 'required' => false,
             ))
@@ -28,6 +31,35 @@ class EventType extends AbstractType
             ->add('price', 'text', array(
                 'required' => 'false',
             ))
+        ;
+
+        // Date / Time Tab
+        $time = $builder->create('time', 'tab', array(
+            'inherit_data' => true,
+            'label' => 'Time / Date',
+            'icon' => 'calendar',
+        ));
+
+        $time
+            ->add('eventStart', 'datetime', array(
+                'widget' => 'single_text',
+                'datetimepicker' => true,
+            ))
+            ->add('eventEnd', 'datetime', array(
+                'widget' => 'single_text',
+                'datetimepicker' => true,
+                'required' => false,
+            ))
+        ;
+
+        // Location Tab
+        $location = $builder->create('location', 'tab', array(
+            'inherit_data' => true,
+            'label' => 'Location',
+            'icon' => 'map-marker',
+        ));
+
+        $location
             ->add('address', 'textarea', array(
                 'required' => false,
                 'attr' => array(
@@ -38,6 +70,13 @@ class EventType extends AbstractType
                 'required' => false,
                 'label' => 'Show Map?',
             ))
+        ;
+
+        // Add the tabs
+        $builder
+            ->add($info)
+            ->add($time)
+            ->add($location)
         ;
     }
 
