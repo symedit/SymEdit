@@ -11,50 +11,37 @@
 
 namespace SymEdit\Bundle\MailChimpBundle\Widget\Strategy;
 
+use SymEdit\Bundle\MailChimpBundle\Form\Type\SubscribeType;
 use SymEdit\Bundle\WidgetBundle\Model\WidgetInterface;
 use SymEdit\Bundle\WidgetBundle\Widget\Strategy\AbstractWidgetStrategy;
 use Symfony\Component\Form\FormBuilderInterface;
-use ZfrMailChimp\Client\MailChimpClient;
+use Symfony\Component\Form\FormFactoryInterface;
+use Symfony\Component\Routing\RouterInterface;
 
 class SubscribeStrategy extends AbstractWidgetStrategy
 {
-    protected $client;
+    protected $formFactory;
+    protected $router;
 
-    public function __construct(MailChimpClient $client)
+    public function __construct(FormFactoryInterface $formFactory, RouterInterface $router)
     {
-        $this->client = $client;
+        $this->formFactory = $formFactory;
+        $this->router = $router;
     }
 
     public function execute(WidgetInterface $widget)
     {
-        $list = $this->getList($widget->getOption('list'));
-
-        if ($list === false) {
-            return 'Invalid Mailchimp API Key or none provided.';
-        }
+        $form = $this->formFactory->create(new SubscribeType(), null, array(
+            'action' => $this->router->generate('symedit_mailchimp_subscribe'),
+            'method' => 'POST',
+            'list' => $widget->getOption('list'),
+        ));
 
         return $this->render('@SymEdit/Widget/MailChimp/subscribe-form.html.twig', array(
-            'list' => $list,
+            'form' => $form->createView(),
             'placeholder' => $widget->getOption('placeholder'),
             'button_text' => $widget->getOption('button_text'),
         ));
-    }
-
-    protected function getList($listName)
-    {
-        try {
-            $response = $this->client->getLists();
-        } catch (\Exception $ex) {
-            return false;
-        }
-
-        foreach ($response['data'] as $list) {
-            if ($list['name'] === $listName) {
-                return $list;
-            }
-        }
-
-        return false;
     }
 
     public function setDefaultOptions(WidgetInterface $widget)

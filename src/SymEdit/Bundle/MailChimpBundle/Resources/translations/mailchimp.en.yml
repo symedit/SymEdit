@@ -1,0 +1,5 @@
+error:
+    already_subscribed: You are already subscribed to this list using the given email address.
+    does_not_exist: The list you are trying to subscribe to does not exist.
+    form: Please check the form below for errors.
+    other: An error occurred while trying to add to the list.

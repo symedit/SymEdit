@@ -7,8 +7,7 @@
     <parameters>
         <parameter key="symedit_mailchimp.client.class">SymEdit\Bundle\MailChimpBundle\Client\SettingsClient</parameter>
         <parameter key="symedit_mailchimp.connection_manager.class">SymEdit\Bundle\MailChimpBundle\Connection\SettingsConnectionManager</parameter>
-        <parameter key="symedit_mailchimp.menu_subscriber.class">SymEdit\Bundle\MailChimpBundle\EventListener\MenuSubscriber</parameter>
-        <parameter key="symedit_mailchimp.controller.dashboard.class">SymEdit\Bundle\MailChimpBundle\Controller\DashboardController</parameter>
+        <parameter key="symedit_mailchimp.form.type.list.class">SymEdit\Bundle\MailChimpBundle\Form\Type\ListType</parameter>
     </parameters>
 
     <services>
@@ -16,21 +15,7 @@
             <argument type="service" id="symedit_settings.settings" />
         </service>
 
-        <service id="symedit_mailchimp.menu_subscriber" class="%symedit_mailchimp.menu_subscriber.class%">
-            <argument type="service" id="security.context" />
-            <tag name="kernel.event_subscriber" />
-        </service>
-
-        <service id="symedit_mailchimp.controller.dashboard" class="%symedit_mailchimp.controller.dashboard.class%">
-            <argument></argument>
-            <argument></argument>
-            <argument />
-            <call method="setContainer">
-                <argument type="service" id="service_container" />
-            </call>
-        </service>
-
-        <service id="symedit_mailchimp.form.type.list" class="SymEdit\Bundle\MailChimpBundle\Form\Type\ListType">
+        <service id="symedit_mailchimp.form.type.list" class="%symedit_mailchimp.form.type.list.class%">
             <argument type="service" id="symedit_mailchimp.client" />
             <tag name="form.type" alias="mailchimp_list" />
         </service>

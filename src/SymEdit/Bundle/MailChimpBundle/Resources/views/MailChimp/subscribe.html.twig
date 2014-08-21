@@ -1,0 +1,24 @@
+{% extends '@SymEdit/Page/base.html.twig' %}
+
+{% block heading %}
+    <h1>Mailing List</h1>
+{% endblock %}
+
+{% block content %}
+    {% if error %}
+        <div class="alert alert-danger">{{ ('error.' ~ error) | trans({}, 'mailchimp') }}</div>
+
+        {{ form_start(form) }}
+            {{ form_widget(form) }}
+
+            <div class="form-group">
+                <div class="col-sm-offset-3 col-sm-9">
+                    <button type="submit" class="btn btn-primary">Try again</button>
+                </div>
+            </div>
+
+        {{ form_end(form) }}
+    {% else %}
+        You have been subscribed successfully, please check your email to confirm.
+    {% endif %}
+{% endblock %}

@@ -11,7 +11,8 @@
     <services>
         <!-- Subscribe Widget -->
         <service id="symedit_mailchimp.widget.subscribe" class="%symedit_mailchimp.widget.subscribe.class%">
-            <argument type="service" id="symedit_mailchimp.client" />
+            <argument type="service" id="form.factory" />
+            <argument type="service" id="router" />
             <tag name="symedit_widget.widget_strategy" alias="mailchimp_subscribe" />
         </service>
     </services>
