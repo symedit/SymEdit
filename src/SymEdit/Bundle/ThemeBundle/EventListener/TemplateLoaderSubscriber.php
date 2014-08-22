@@ -31,6 +31,18 @@ class TemplateLoaderSubscriber implements EventSubscriberInterface
         $overrides = $this->namespaceOverrides;
         $theme = $event->getTheme();
 
+        // Allow Theme namespace to access other namespaces
+        foreach ($overrides as $override) {
+            // Get paths we need to override
+            $paths = $this->loader->getPaths($override);
+
+            // For each path we find, allow @Theme to access it
+            foreach ($paths as $path) {
+                $this->loader->prependPath($path, 'Theme');
+            }
+        }
+
+        // Make our theme templates override another namespace
         array_unshift($overrides, 'Theme');
 
         foreach (array_reverse($overrides) as $override) {
