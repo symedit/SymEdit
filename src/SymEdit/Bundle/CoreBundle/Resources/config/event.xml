@@ -7,9 +7,8 @@
     <parameters>
         <parameter key="symedit.listener.controller.class">SymEdit\Bundle\CoreBundle\EventListener\PageControllerListener</parameter>
         <parameter key="symedit.listener.seo.class">SymEdit\Bundle\CoreBundle\EventListener\SeoControllerListener</parameter>
-        <parameter key="symedit.listener.breadcrumb.class">SymEdit\Bundle\CoreBundle\EventListener\BreadcrumbListener</parameter>
 
-        <parameter key="symedit.event_subscriber.view_count.class">SymEdit\Bundle\CoreBundle\EventListener\Subscriber\ViewCountSubscriber</parameter>
+        <parameter key="symedit.event_subscriber.breadcrumb.class">SymEdit\Bundle\CoreBundle\EventListener\Subscriber\BreadcrumbSubscriber</parameter>
         <parameter key="symedit.event_subscriber.page.class">SymEdit\Bundle\CoreBundle\EventListener\Subscriber\PageSubscriber</parameter>
         <parameter key="symedit.event_subscriber.post.class">SymEdit\Bundle\CoreBundle\EventListener\Subscriber\PostSubscriber</parameter>
     </parameters>
@@ -20,9 +19,9 @@
             <tag name="kernel.event_listener" event="kernel.controller" method="onKernelController" priority="24" />
         </service>
 
-        <service id="symedit.listener.breadcrumb" class="%symedit.listener.breadcrumb.class%">
+        <service id="symedit.event_subscriber.breadcrumb" class="%symedit.event_subscriber.breadcrumb.class%">
             <argument type="service" id="symedit.breadcrumbs" />
-            <tag name="kernel.event_listener" event="kernel.controller" method="onKernelController" priority="12" />
+            <tag name="kernel.event_subscriber" />
         </service>
 
         <service id="symedit.listener.seo" class="%symedit.listener.seo.class%">

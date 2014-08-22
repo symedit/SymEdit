@@ -9,19 +9,29 @@
  * file that was distributed with this source code.
  */
 
-namespace SymEdit\Bundle\CoreBundle\EventListener;
+namespace SymEdit\Bundle\CoreBundle\EventListener\Subscriber;
 
+use Sylius\Bundle\ResourceBundle\Controller\ParametersParser;
+use SymEdit\Bundle\CoreBundle\Model\BreadcrumbsInterface;
+use SymEdit\Bundle\CoreBundle\Model\PageInterface;
+use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\HttpKernel\Event\FilterControllerEvent;
 use Symfony\Component\HttpKernel\HttpKernel;
-use SymEdit\Bundle\CoreBundle\Model\BreadcrumbsInterface;
 
-class BreadcrumbListener
+class BreadcrumbSubscriber implements EventSubscriberInterface
 {
-    private $breadcrumbs;
+    protected $breadcrumbs;
 
     public function __construct(BreadcrumbsInterface $breadcrumbs)
     {
         $this->breadcrumbs = $breadcrumbs;
+    }
+
+    public static function getSubscribedEvents()
+    {
+        return array(
+            'kernel.controller' => array('onKernelController', 0),
+        );
     }
 
     public function onKernelController(FilterControllerEvent $event)
@@ -34,7 +44,7 @@ class BreadcrumbListener
 
         if ($request->attributes->has('_page')) {
 
-            /* @var $page \SymEdit\Bundle\CoreBundle\Model\PageInterface */
+            /* @var $page PageInterface */
             $page = $request->attributes->get('_page');
 
             while ($page->getParent() !== null && !$page->getHomepage()) {
