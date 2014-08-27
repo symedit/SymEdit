@@ -16,6 +16,7 @@ class GalleryItem implements GalleryItemInterface
     protected $id;
     protected $gallery;
     protected $image;
+    protected $caption;
     protected $position;
 
     public function getId()
@@ -57,6 +58,18 @@ class GalleryItem implements GalleryItemInterface
     public function getImage()
     {
         return $this->image;
+    }
+
+    public function setCaption($caption)
+    {
+        $this->caption = $caption;
+
+        return $this;
+    }
+
+    public function getCaption()
+    {
+        return $this->caption;
     }
 
     /**

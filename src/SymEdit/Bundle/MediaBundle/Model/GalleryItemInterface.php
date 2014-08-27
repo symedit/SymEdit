@@ -39,6 +39,16 @@ interface GalleryItemInterface
     public function getGallery();
 
     /**
+     * @param string $caption
+     */
+    public function setCaption($caption);
+
+    /**
+     * @return string $caption
+     */
+    public function getCaption();
+
+    /**
      * @return GalleryItemInterface
      */
     public function setPosition($position);

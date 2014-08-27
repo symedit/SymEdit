@@ -7,6 +7,9 @@ SymEdit\Bundle\MediaBundle\Model\GalleryItem:
             id: true
             generator:
                 strategy: IDENTITY
+        caption:
+            type: string
+            nullable: true
         position:
             type: integer
             gedmo:
