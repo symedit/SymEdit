@@ -11,6 +11,11 @@
             <tag name="stylizer.loader" />
         </service>
 
+        <!-- Stylizer Storage -->
+        <service id="symedit_theme.stylizer.storage.theme" class="SymEdit\Bundle\ThemeBundle\Stylizer\Storage\ThemeYamlStorage">
+            <argument type="service" id="symedit_theme.theme" />
+        </service>
+
         <!-- Assetic Theme Loader -->
         <service id="symedit_theme.assetic.theme_loader" class="SymEdit\Bundle\ThemeBundle\Factory\Loader\ThemeLoader" public="false">
             <tag name="assetic.formula_loader" alias="theme" />
