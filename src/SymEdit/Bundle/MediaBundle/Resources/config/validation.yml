@@ -24,3 +24,8 @@ SymEdit\Bundle\MediaBundle\Model\File:
             - File:
                 groups: [Default, require_name, file_only]
                 maxSize: 100M
+
+SymEdit\Bundle\MediaBundle\Model\GalleryItem:
+    properties:
+        image:
+            - Valid: ~
