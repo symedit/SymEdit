@@ -16,11 +16,6 @@ use Symfony\Component\Config\FileLocator;
 use Symfony\Component\HttpKernel\DependencyInjection\Extension;
 use Symfony\Component\DependencyInjection\Loader;
 
-/**
- * This is the class that loads and manages your bundle configuration
- *
- * To learn more see {@link http://symfony.com/doc/current/cookbook/bundles/extension.html}
- */
 class SymEditStylizerExtension extends Extension
 {
     /**
@@ -41,6 +36,9 @@ class SymEditStylizerExtension extends Extension
         $loader->load('filters.xml');
 
         $env = $container->getParameter('kernel.environment');
+
+        // Setup storage
+        $container->setAlias('symedit_stylizer.storage', $config['storage']);
 
         /**
          * This plugs into the AsseticController when in dev mode
