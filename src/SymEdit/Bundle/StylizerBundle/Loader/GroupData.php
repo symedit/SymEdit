@@ -22,6 +22,7 @@ class GroupData
     {
         $this->name = $name;
         $this->extra = array();
+        $this->variables = array();
     }
 
     public function getName()
@@ -52,11 +53,9 @@ class GroupData
     public function addVariable($name, $data)
     {
         if (!is_array($data)) {
-
             $this->variables[$name] = array(
                 'value' => $data,
             );
-
         } else {
             $this->variables[$name] = $data;
         }
