@@ -15,6 +15,8 @@
         <parameter key="symedit_stylizer.form.styles.class">SymEdit\Bundle\StylizerBundle\Form\Type\StylesType</parameter>
         <parameter key="symedit_stylizer.form.color.class">SymEdit\Bundle\StylizerBundle\Form\Type\ColorType</parameter>
         <parameter key="symedit_stylizer.form.google_font.class">SymEdit\Bundle\StylizerBundle\Form\Type\GoogleFontType</parameter>
+        <parameter key="symedit_stylizer.style_manager.class">SymEdit\Bundle\StylizerBundle\Model\StyleManager</parameter>
+        <parameter key="symedit_stylizer.storage.yaml.class">SymEdit\Bundle\StylizerBundle\Storage\YamlStorage</parameter>
     </parameters>
 
 
@@ -61,10 +63,23 @@
             <argument>%assetic.cache_dir%/assets</argument>
         </service>
 
+        <!-- Styles Model -->
+        <service
+            id="symedit_stylizer.styles"
+            class="SymEdit\Bundle\StylizerBundle\Model\Styles"
+            factory-service="symedit_stylizer.style_manager"
+            factory-method="getStyles" />
+
         <!-- Stylizer Form Type -->
         <service id="symedit_stylizer.form.styles" class="%symedit_stylizer.form.styles.class%">
-            <argument type="service" id="symedit_stylizer.stylizer" />
+            <argument type="service" id="symedit_stylizer.style_manager" />
             <tag name="form.type" alias="symedit_stylizer" />
+        </service>
+
+        <!-- Style Manager -->
+        <service id="symedit_stylizer.style_manager" class="%symedit_stylizer.style_manager.class%">
+            <argument type="service" id="symedit_stylizer.loader.chain" />
+            <argument type="service" id="symedit_stylizer.storage" />
         </service>
 
         <!-- Color Form Type -->
@@ -81,6 +96,11 @@
         <service id="symedit_stylizer.twig.stylizer_extension" class="SymEdit\Bundle\StylizerBundle\Twig\Extension\StylizerExtension">
             <argument type="service" id="symedit_stylizer.stylizer" />
             <tag name="twig.extension" />
+        </service>
+
+        <!-- Yaml Storage -->
+        <service id="symedit_stylizer.storage.yaml" class="%symedit_stylizer.storage.yaml.class%">
+            <argument>%kernel.root_dir%/config/styles.yml</argument>
         </service>
     </services>
 </container>
