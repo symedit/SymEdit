@@ -95,7 +95,7 @@ class Builder
          */
         $settings = $this->context->isGranted('ROLE_ADMIN_SETTING');
         $users = $this->context->isGranted('ROLE_ADMIN_USER');
-        $stylizer = $this->context->isGranted('ROLE_ADMIN_STYLIZER') && $this->container->has('symedit_stylizer.stylizer');
+        $stylizer = $this->context->isGranted('ROLE_ADMIN_STYLIZER');
 
         if ($settings || $users || $stylizer) {
             $site = $menu->addChild('Site', array('dropdown' => true, 'caret' => true, 'icon' => 'wrench'));
