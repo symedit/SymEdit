@@ -24,7 +24,7 @@ class GoogleFontTransformer implements DataTransformerInterface
     public function transform($value)
     {
         $values = trim($value, '"');
-        $values = explode('|', $value);
+        $values = explode('|', $values);
         $values = array_map('urldecode', $values);
 
         return implode(', ', $values);

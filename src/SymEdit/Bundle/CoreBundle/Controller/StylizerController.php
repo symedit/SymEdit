@@ -25,24 +25,17 @@ class StylizerController extends Controller
      */
     public function indexAction(Request $request)
     {
-        /**
-         * Stylizer Bundle was not added, so this page shouldn't exist.
-         */
-        if (!$this->has('symedit_stylizer.stylizer')) {
-            throw $this->createNotFoundException();
-        }
-
-        $stylizer = $this->get('symedit_stylizer.stylizer');
-        $form = $this->createForm('symedit_stylizer', $stylizer);
+        $styles = $this->getStyleManager()->getStyles();
+        $form = $this->createForm('symedit_stylizer', $styles);
 
         if ($request->getMethod() === 'POST' && $form->handleRequest($request)->isValid()) {
 
             // Save Styles
-            $stylizer->save();
+            $this->getStyleManager()->saveStyles($styles);
 
             // Dump Styles
             if ($request->request->has('dump')) {
-                $stylizer->dump();
+                $this->getDumper()->dump();
 
                 $this->addFlash('success', 'Styles saved and dumped');
             } else {
@@ -53,5 +46,18 @@ class StylizerController extends Controller
         return $this->render('@SymEdit/Admin/Stylizer/index.html.twig', array(
             'form' => $form->createView(),
         ));
+    }
+
+    /**
+     * @return \SymEdit\Bundle\StylizerBundle\Model\StyleManager $manager
+     */
+    protected function getStyleManager()
+    {
+        return $this->get('symedit_stylizer.style_manager');
+    }
+
+    protected function getDumper()
+    {
+        return $this->get('symedit_stylizer.dumper');
     }
 }

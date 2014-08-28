@@ -19,8 +19,10 @@ class DumpCommand extends BaseCommand
 {
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        $stylizer = $this->getContainer()->get('symedit_stylizer.stylizer');
-        $stylizer->inject();
+        $styles = $this->getContainer()->get('symedit_stylizer.styles');
+        $injector = $this->getContainer()->get('symedit_stylizer.injector');
+
+        $injector->inject($styles->getVariables());
 
         parent::execute($input, $output);
     }

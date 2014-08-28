@@ -11,15 +11,15 @@
 
 namespace SymEdit\Bundle\StylizerBundle\Twig\Extension;
 
-use SymEdit\Bundle\StylizerBundle\Model\Stylizer;
+use SymEdit\Bundle\StylizerBundle\Model\Styles;
 
 class StylizerExtension extends \Twig_Extension
 {
-    protected $stylizer;
+    protected $styles;
 
-    public function __construct(Stylizer $stylizer)
+    public function __construct(Styles $styles)
     {
-        $this->stylizer = $stylizer;
+        $this->styles = $styles;
     }
 
     public function getFunctions()
@@ -31,7 +31,7 @@ class StylizerExtension extends \Twig_Extension
 
     public function renderGoogleFonts()
     {
-        $variables = $this->stylizer->getVariables();
+        $variables = $this->styles->getVariables();
 
         if (!isset($variables['google-fonts'])) {
             return;

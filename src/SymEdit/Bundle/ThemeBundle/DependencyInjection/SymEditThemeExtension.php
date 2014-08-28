@@ -61,6 +61,15 @@ class SymEditThemeExtension extends Extension implements PrependExtensionInterfa
                 ),
             ),
         ));
+
+        /**
+         * Stylizer Extension
+         */
+        if ($container->hasExtension('symedit_stylizer')) {
+            $container->prependExtensionConfig('symedit_stylizer', array(
+                'storage' => 'symedit_theme.stylizer.storage.theme',
+            ));
+        }
     }
 
     public function getAlias()
