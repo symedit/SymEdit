@@ -3,4 +3,3 @@ symedit_mailchimp_subscribe:
     methods: [POST]
     defaults:
         _controller: SymEditMailChimpBundle:Subscribe:subscribe
-

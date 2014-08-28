@@ -11,7 +11,6 @@
 
 namespace SymEdit\Bundle\CoreBundle\EventListener\Subscriber;
 
-use Sylius\Bundle\ResourceBundle\Controller\ParametersParser;
 use SymEdit\Bundle\CoreBundle\Model\BreadcrumbsInterface;
 use SymEdit\Bundle\CoreBundle\Model\PageInterface;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;

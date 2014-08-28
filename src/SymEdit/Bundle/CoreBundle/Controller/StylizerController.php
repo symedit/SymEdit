@@ -12,7 +12,6 @@
 namespace SymEdit\Bundle\CoreBundle\Controller;
 
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
-use SymEdit\Bundle\CoreBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 
 /**
