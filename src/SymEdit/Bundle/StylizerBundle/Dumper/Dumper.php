@@ -11,26 +11,18 @@
 
 namespace SymEdit\Bundle\StylizerBundle\Dumper;
 
-use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\Console\Command\Command;
-use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Input\ArrayInput;
+use Symfony\Component\Console\Input\InputArgument;
+use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\NullOutput;
-use Symfony\Bundle\AsseticBundle\FilterManager;
-use SymEdit\Bundle\StylizerBundle\Injector\InjectorInterface;
 
 class Dumper
 {
-    private $container;
-    private $injectors;
     private $command;
-    private $manager;
 
-    public function __construct(ContainerInterface $container, FilterManager $manager, Command $command, array $injectors = array())
+    public function __construct(Command $command)
     {
-        $this->container = $container;
-        $this->manager = $manager;
-        $this->injectors = $injectors;
         $this->command = $command;
 
         /**
@@ -39,7 +31,7 @@ class Dumper
         $definition = $this->command->getDefinition();
         $definition->addOption(new InputOption('verbose'));
         $definition->addOption(new InputOption('env'));
-        $definition->addArgument(new \Symfony\Component\Console\Input\InputArgument('env'));
+        $definition->addArgument(new InputArgument('env'));
     }
 
     public function dump()
@@ -50,25 +42,5 @@ class Dumper
         $code = $this->command->run($input, $output);
 
         return $code;
-    }
-
-    /**
-     * Injects all the variables
-     */
-    public function inject(array $variables)
-    {
-        foreach ($this->injectors as &$injector) {
-            if (is_string($injector)) {
-                $injector = $this->container->get($injector);
-
-                if (!$injector instanceof InjectorInterface) {
-                    throw new \Exception(sprintf('Your injector must implement InjectorInterface, %s given', get_class($injector)));
-                } else {
-                    $injector->setFilterManager($this->manager);
-                }
-            }
-
-            $injector->inject($variables);
-        }
     }
 }
