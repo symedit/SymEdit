@@ -9,7 +9,8 @@
 
     <services>
         <service id="symedit_stylizer.listener.controller" class="%symedit_stylizer.listener.controller.class%">
-            <argument type="service" id="symedit_stylizer.stylizer" />
+            <argument type="service" id="symedit_stylizer.styles" />
+            <argument type="service" id="symedit_stylizer.injector" />
             <tag name="kernel.event_listener" event="kernel.controller" method="onKernelController" priority="100" />
         </service>
     </services>
