@@ -11,24 +11,24 @@
 
 namespace SymEdit\Bundle\StylizerBundle\Form\Type;
 
+use SymEdit\Bundle\StylizerBundle\Loader\GroupData;
+use SymEdit\Bundle\StylizerBundle\Model\StyleManager;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
-use SymEdit\Bundle\StylizerBundle\Model\Stylizer;
-use SymEdit\Bundle\StylizerBundle\Loader\GroupData;
 use Symfony\Component\Validator\Constraints\NotBlank;
 
 class StylesType extends AbstractType
 {
-    protected $stylizer;
+    protected $manager;
 
-    public function __construct(Stylizer $stylizer)
+    public function __construct(StyleManager $manager)
     {
-        $this->stylizer = $stylizer;
+        $this->manager = $manager;
     }
 
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $groups = $this->stylizer->getConfigData()->getGroups();
+        $groups = $this->manager->getConfigData()->getGroups();
 
         $allGroups = $builder->create('groups', 'form', array(
             'virtual' => true,
@@ -71,14 +71,11 @@ class StylesType extends AbstractType
                 );
             }
 
-            $builder->add($name, $type, array_merge(
-                array(
-                    'label' => $label,
-                    'property_path' => sprintf('[%s]', $name),
-                    'constraints' => $constraints,
-                ),
-                $options
-            ));
+            $builder->add($name, $type, array_merge(array(
+                'label' => $label,
+                'property_path' => sprintf('[%s]', $name),
+                'constraints' => $constraints,
+            ), $options));
         }
     }
 
