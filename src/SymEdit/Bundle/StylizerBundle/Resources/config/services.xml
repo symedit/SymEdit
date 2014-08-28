@@ -7,11 +7,11 @@
     <parameters>
         <parameter key="symedit_stylizer.assetic.command.class">SymEdit\Bundle\StylizerBundle\Command\DumpCommand</parameter>
         <parameter key="symedit_stylizer.dumper.class">SymEdit\Bundle\StylizerBundle\Dumper\Dumper</parameter>
+        <parameter key="symedit_stylizer.injector.chain.class">SymEdit\Bundle\StylizerBundle\Injector\ChainInjector</parameter>
         <parameter key="symedit_stylizer.injector.lessphp.class">SymEdit\Bundle\StylizerBundle\Injector\LessPhpInjector</parameter>
         <parameter key="symedit_stylizer.injector.less.class">SymEdit\Bundle\StylizerBundle\Injector\LessInjector</parameter>
         <parameter key="symedit_stylizer.loader.chain.class">SymEdit\Bundle\StylizerBundle\Loader\LoaderChain</parameter>
         <parameter key="symedit_stylizer.loader.yaml.class">SymEdit\Bundle\StylizerBundle\Loader\YamlLoader</parameter>
-        <parameter key="symedit_stylizer.stylizer.class">SymEdit\Bundle\StylizerBundle\Model\Stylizer</parameter>
         <parameter key="symedit_stylizer.form.styles.class">SymEdit\Bundle\StylizerBundle\Form\Type\StylesType</parameter>
         <parameter key="symedit_stylizer.form.color.class">SymEdit\Bundle\StylizerBundle\Form\Type\ColorType</parameter>
         <parameter key="symedit_stylizer.form.google_font.class">SymEdit\Bundle\StylizerBundle\Form\Type\GoogleFontType</parameter>
@@ -39,10 +39,12 @@
 
         <!-- Dumper -->
         <service id="symedit_stylizer.dumper" class="%symedit_stylizer.dumper.class%">
-            <argument type="service" id="service_container" />
-            <argument type="service" id="assetic.filter_manager" />
             <argument type="service" id="symedit_stylizer.assetic.command" />
-            <argument>%symedit_stylizer.injectors%</argument>
+        </service>
+
+        <!-- Chain Injector -->
+        <service id="symedit_stylizer.injector" class="%symedit_stylizer.injector.chain.class%">
+            <argument type="collection" />
         </service>
 
         <!-- Lessphp injector -->
@@ -53,14 +55,6 @@
         <!-- Less injector -->
         <service id="symedit_stylizer.injector.less" class="%symedit_stylizer.injector.less.class%">
             <tag name="stylizer.injector" />
-        </service>
-
-        <!-- Stylizer Service -->
-        <service id="symedit_stylizer.stylizer" class="%symedit_stylizer.stylizer.class%">
-            <argument type="service" id="symedit_stylizer.loader.chain" />
-            <argument type="service" id="symedit_stylizer.dumper" />
-            <argument>%kernel.root_dir%</argument>
-            <argument>%assetic.cache_dir%/assets</argument>
         </service>
 
         <!-- Styles Model -->
@@ -94,7 +88,7 @@
 
         <!-- Twig Extension -->
         <service id="symedit_stylizer.twig.stylizer_extension" class="SymEdit\Bundle\StylizerBundle\Twig\Extension\StylizerExtension">
-            <argument type="service" id="symedit_stylizer.stylizer" />
+            <argument type="service" id="symedit_stylizer.styles" />
             <tag name="twig.extension" />
         </service>
 
