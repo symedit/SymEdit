@@ -35,7 +35,7 @@ class StylizerController extends Controller
 
             // Dump Styles
             if ($request->request->has('dump')) {
-                $stylizer->dump();
+                $this->getDumper()->dump();
 
                 $this->addFlash('success', 'Styles saved and dumped');
             } else {
@@ -54,5 +54,10 @@ class StylizerController extends Controller
     protected function getStyleManager()
     {
         return $this->get('symedit_stylizer.style_manager');
+    }
+
+    protected function getDumper()
+    {
+        return $this->get('symedit_stylizer.dumper');
     }
 }
