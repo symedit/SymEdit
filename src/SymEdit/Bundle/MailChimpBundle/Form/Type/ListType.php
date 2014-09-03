@@ -32,8 +32,7 @@ class ListType extends AbstractType
             $lists = $this->client->getLists();
 
             foreach ($lists['data'] as $list) {
-                $name = $list['name'];
-                $choices[$name] = $name;
+                $choices[$list['id']] = $list['name'];
             }
 
             $resolver->setDefaults(array(
