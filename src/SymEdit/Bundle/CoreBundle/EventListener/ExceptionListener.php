@@ -26,8 +26,13 @@ class ExceptionListener
     public function onKernelException(GetResponseForExceptionEvent $event)
     {
         $request = $event->getRequest();
+        $code = $event->getException()->getCode();
 
-        if ($request === null) {
+        /*
+         * Can't provide information without a request and we only
+         * want to provide this information for critical errors.
+         */
+        if ($request === null || $code < 500 || $code >= 600) {
             return;
         }
 
