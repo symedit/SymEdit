@@ -7,6 +7,7 @@
     <parameters>
         <parameter key="symedit.listener.controller.class">SymEdit\Bundle\CoreBundle\EventListener\PageControllerListener</parameter>
         <parameter key="symedit.listener.seo.class">SymEdit\Bundle\CoreBundle\EventListener\SeoControllerListener</parameter>
+        <parameter key="symedit.listener.exception.class">SymEdit\Bundle\CoreBundle\EventListener\ExceptionListener</parameter>
 
         <parameter key="symedit.event_subscriber.breadcrumb.class">SymEdit\Bundle\CoreBundle\EventListener\Subscriber\BreadcrumbSubscriber</parameter>
         <parameter key="symedit.event_subscriber.page.class">SymEdit\Bundle\CoreBundle\EventListener\Subscriber\PageSubscriber</parameter>
@@ -14,26 +15,36 @@
     </parameters>
 
     <services>
+        <!-- Page Controller Listener -->
         <service id="symedit.listener.controller_listener" class="%symedit.listener.controller.class%">
             <argument type="service" id="symedit.repository.page" />
             <tag name="kernel.event_listener" event="kernel.controller" method="onKernelController" priority="24" />
         </service>
 
-        <service id="symedit.event_subscriber.breadcrumb" class="%symedit.event_subscriber.breadcrumb.class%">
-            <argument type="service" id="symedit.breadcrumbs" />
-            <tag name="kernel.event_subscriber" />
-        </service>
-
+        <!-- SEO Listener -->
         <service id="symedit.listener.seo" class="%symedit.listener.seo.class%">
             <argument type="service" id="symedit_seo.seo_manager" />
             <tag name="kernel.event_listener" event="kernel.controller" method="onKernelController" priority="6" />
         </service>
 
-        <!--  Subscribers -->
+        <!-- Kernel Exception -->
+        <service id="symedit.listener.exception" class="%symedit.listener.exception.class%">
+            <argument type="service" id="logger" />
+            <tag name="kernel.event_listener" event="kernel.exception" method="onKernelException" />
+        </service>
+
+        <!-- Breadcrumb Listener -->
+        <service id="symedit.event_subscriber.breadcrumb" class="%symedit.event_subscriber.breadcrumb.class%">
+            <argument type="service" id="symedit.breadcrumbs" />
+            <tag name="kernel.event_subscriber" />
+        </service>
+
+        <!-- Page Subscriber -->
         <service id="symedit.event_subscriber.page" class="%symedit.event_subscriber.page.class%">
             <tag name="kernel.event_subscriber" />
         </service>
 
+        <!-- Post Subscriber -->
         <service id="symedit.event_subscriber.post" class="%symedit.event_subscriber.post.class%">
             <argument type="service" id="session" />
             <argument type="service" id="router" />
