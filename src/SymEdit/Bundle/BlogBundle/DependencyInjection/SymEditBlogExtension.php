@@ -11,10 +11,11 @@
 
 namespace SymEdit\Bundle\BlogBundle\DependencyInjection;
 
-use Symfony\Component\DependencyInjection\ContainerBuilder;
 use SymEdit\Bundle\ResourceBundle\DependencyInjection\SymEditResourceExtension;
+use Symfony\Component\DependencyInjection\ContainerBuilder;
+use Symfony\Component\DependencyInjection\Extension\PrependExtensionInterface;
 
-class SymEditBlogExtension extends SymEditResourceExtension
+class SymEditBlogExtension extends SymEditResourceExtension implements PrependExtensionInterface
 {
     protected $configFiles = array(
         'form', 'widget', 'report',
@@ -31,6 +32,19 @@ class SymEditBlogExtension extends SymEditResourceExtension
             $container,
             self::CONFIGURE_LOADER | self::CONFIGURE_DATABASE | self::CONFIGURE_PARAMETERS
         );
+    }
+
+    public function prepend(ContainerBuilder $container)
+    {
+        if (!$container->hasExtension('symedit')) {
+            return;
+        }
+
+        $container->prependExtensionConfig('symedit', array(
+            'template_locations' => array(
+                '@SymEditBlogBundle/Resources/views',
+            ),
+        ));
     }
 
     public function getAlias()
