@@ -33,7 +33,7 @@ class SliderStrategy extends AbstractWidgetStrategy
             return null;
         }
 
-        return $this->render('@SymEdit/Widget/slider.html.twig', array(
+        return $this->render('@SymEdit/Widget/Media/slider.html.twig', array(
             'gallery' => $gallery,
             'thumbnails' => $widget->getOption('thumbnails'),
             'stretch' => $widget->getOption('stretch'),

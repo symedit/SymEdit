@@ -33,7 +33,7 @@ class GalleryStrategy extends AbstractWidgetStrategy
             return null;
         }
 
-        return $this->render('@SymEdit/Widget/gallery.html.twig', array(
+        return $this->render('@SymEdit/Widget/Media/gallery.html.twig', array(
             'gallery' => $gallery,
         ));
     }
