@@ -49,6 +49,14 @@ class SymEditMediaExtension extends SymEditResourceExtension implements PrependE
                 ),
             ),
         ));
+
+        if ($container->hasExtension('symedit')) {
+            $container->prependExtensionConfig('symedit', array(
+                'template_locations' => array(
+                    '@SymEditMediaBundle/Resources/views',
+                ),
+            ));
+        }
     }
 
     /**

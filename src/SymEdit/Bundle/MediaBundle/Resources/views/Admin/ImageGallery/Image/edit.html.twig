@@ -1,0 +1,21 @@
+{% extends '@SymEdit/Admin/tabbed.html.twig' %}
+{% import '@SymEdit/Admin/macro.html.twig' as macro %}
+
+{% block title %}Images &raquo; {{ image.name }} &raquo; Edit{% endblock %}
+
+{% block form_actions %}
+        <button type="submit" class="btn btn-block btn-primary">{{ icon('save') }} {{ 'admin.image.actions.save'|trans }}</button>
+        {{ macro.delete_button('image_delete', 'admin.image.actions.delete') }}
+{% endblock %}
+
+{% block tab_content %}
+<div class="text-center well">
+    <img class="img-polaroid" src="{{ image | imagine_filter('gallery') }}" />
+    <h5>{{ image.webPath }}</h5>
+</div>
+{{ parent() }}
+{% endblock %}
+
+{% block extra %}
+{{ macro.delete_form('image_delete', path('admin_image_delete', {id: image.id})) }}
+{% endblock %}
