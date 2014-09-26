@@ -55,7 +55,7 @@ class AdminProfile extends Profile
         $user = $this->getUser();
 
         $image->setNameCallback(function () use ($user) {
-            return Util::slugify($user->getProfile()->getFullname());
+            return $user->getUsername();
         });
 
         $this->image = $image;
