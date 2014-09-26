@@ -43,7 +43,7 @@ class PostController extends ResourceController
             ->getRepository()
             ->getPaginator($posts)
             ->setMaxPerPage($config->getPaginationMaxPerPage())
-            ->setCurrentPage($request->get('page', 1));
+            ->setCurrentPage($request->get('page', 1), true, true);
 
         $view = $this
             ->view()
