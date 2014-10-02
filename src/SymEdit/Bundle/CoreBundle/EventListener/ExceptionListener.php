@@ -13,6 +13,7 @@ namespace SymEdit\Bundle\CoreBundle\EventListener;
 
 use Psr\Log\LoggerInterface;
 use Symfony\Component\HttpKernel\Event\GetResponseForExceptionEvent;
+use Symfony\Component\HttpKernel\Exception\HttpExceptionInterface;
 
 class ExceptionListener
 {
@@ -26,16 +27,23 @@ class ExceptionListener
     public function onKernelException(GetResponseForExceptionEvent $event)
     {
         $request = $event->getRequest();
-        $code = $event->getException()->getCode();
+        $exception = $event->getException();
 
-        /*
-         * Can't provide information without a request and we only
-         * want to provide this information for critical errors.
-         */
-        if ($request === null || $code < 500 || $code >= 600) {
+        // Can't provide route information without request
+        if ($request === null) {
             return;
         }
 
+        // Don't do critical for non 5xx http errors
+        if ($exception instanceof HttpExceptionInterface) {
+            $code = $exception->getStatusCode();
+
+            if($code < 500 || $code >= 600) {
+                return;
+            }
+        }
+
+        // Must be either an HttpException with 5xx status code, or a general php error
         $message = <<<EOF
 An error has occured in the application at url: %s
 Route name: %s
