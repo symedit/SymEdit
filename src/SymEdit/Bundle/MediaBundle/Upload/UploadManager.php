@@ -35,9 +35,6 @@ class UploadManager implements UploadManagerInterface
 
         if ($media->getFile() !== null) {
             $this->removeUpload($media);
-
-            // Can do folders and stuff here.
-            $media->setPath($media->getUploadName());
         }
     }
 

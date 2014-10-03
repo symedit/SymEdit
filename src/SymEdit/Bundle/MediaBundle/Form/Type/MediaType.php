@@ -35,6 +35,7 @@ class MediaType extends AbstractType
             'file_help' => false,
             'name_label' => 'File Name',
             'name_help' => false,
+            'allow_blank_name' => false,
             'validation_groups' => array($this, 'getValidationGroups'),
         ));
     }
@@ -43,7 +44,7 @@ class MediaType extends AbstractType
     {
         $config = $form->getConfig();
 
-        if ($config->getOption('require_name')) {
+        if ($config->getOption('require_name') && !$config->getOption('allow_blank_name')) {
             $group = 'require_name';
         } else {
             $group = 'file_only';

@@ -36,6 +36,7 @@ class Configuration implements ConfigurationInterface
                         ->scalarNode('file')->defaultValue('media/file')->end()
                     ->end()
                 ->end()
+                ->scalarNode('namer')->defaultValue('symedit_media.namer.slug')->end()
             ->end();
 
         $this->addClassesSection($rootNode);

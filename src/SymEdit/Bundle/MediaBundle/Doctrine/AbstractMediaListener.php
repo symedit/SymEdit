@@ -13,17 +13,20 @@ namespace SymEdit\Bundle\MediaBundle\Doctrine;
 
 use Doctrine\Common\EventSubscriber;
 use SymEdit\Bundle\MediaBundle\Model\MediaInterface;
+use SymEdit\Bundle\MediaBundle\Namer\NamerInterface;
 use SymEdit\Bundle\MediaBundle\Upload\UploadManagerInterface;
 
 abstract class AbstractMediaListener implements EventSubscriber
 {
     protected $uploadManager;
+    protected $namer;
     protected $className;
     protected $webPath;
 
-    public function __construct(UploadManagerInterface $uploadManager, $className, $webPath)
+    public function __construct(UploadManagerInterface $uploadManager, NamerInterface $namer, $className, $webPath)
     {
         $this->uploadManager = $uploadManager;
+        $this->namer = $namer;
         $this->className = $className;
         $this->webPath = $webPath;
     }
@@ -52,5 +55,17 @@ abstract class AbstractMediaListener implements EventSubscriber
     protected function setPrefix(MediaInterface $media)
     {
         $media->setPrefix($this->webPath);
+    }
+
+    protected function applyNamer(MediaInterface $media)
+    {
+        if ($media->getName() !== null) {
+            return false;
+        }
+
+        $name = $this->namer->getName($media->getFile());
+        $media->setName($name);
+
+        return true;
     }
 }

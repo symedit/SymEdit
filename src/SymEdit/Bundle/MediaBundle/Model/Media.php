@@ -62,6 +62,10 @@ class Media implements MediaInterface
     public function setName($name)
     {
         $this->name = $name;
+
+        if ($this->hasFile()) {
+            $this->setPath($this->getUploadName());
+        }
     }
 
     /**

@@ -35,6 +35,9 @@ class SymEditMediaExtension extends SymEditResourceExtension implements PrependE
 
         $this->remapParameters($container, 'paths', $config['paths']);
         $container->setParameter('symedit_media.paths', $config['paths']);
+        $container->setParameter('symedit_media.namer', $config['namer']);
+
+        $container->setAlias('symedit_media.namer', $config['namer']);
     }
 
     public function prepend(ContainerBuilder $container)

@@ -11,7 +11,6 @@
 
 namespace SymEdit\Bundle\MediaBundle\Controller;
 
-use Gedmo\Sluggable\Util as Sluggable;
 use SymEdit\Bundle\ResourceBundle\Controller\ResourceController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -52,15 +51,11 @@ class ImageController extends ResourceController
     public function quickUploadAction(Request $request)
     {
         $file = $request->files->get('file');
-        $name = pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME);
-        $nameSlug = Sluggable\Urlizer::urlize($name, '-');
-
         $image = $this->getRepository()->createNew();
         $image->setFile($file);
-        $image->setName($nameSlug);
 
         // Validate the new image
-        $errors = $this->get('validator')->validate($image);
+        $errors = $this->get('validator')->validate($image, array('file_only'));
 
         if (count($errors) > 0) {
             return new JsonResponse(array(

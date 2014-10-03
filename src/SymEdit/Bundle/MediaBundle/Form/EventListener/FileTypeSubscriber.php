@@ -11,10 +11,10 @@
 
 namespace SymEdit\Bundle\MediaBundle\Form\EventListener;
 
-use Symfony\Component\EventDispatcher\EventSubscriberInterface;
-use Symfony\Component\Form\FormEvents;
-use Symfony\Component\Form\FormEvent;
 use SymEdit\Bundle\MediaBundle\Model\MediaInterface;
+use Symfony\Component\EventDispatcher\EventSubscriberInterface;
+use Symfony\Component\Form\FormEvent;
+use Symfony\Component\Form\FormEvents;
 
 class FileTypeSubscriber implements EventSubscriberInterface
 {
@@ -78,12 +78,14 @@ class FileTypeSubscriber implements EventSubscriberInterface
         ));
 
         $require_name = $form->getConfig()->getOption('require_name');
+        $allow_blank_name = $form->getConfig()->getOption('allow_blank_name');
 
         // If name is not set, then add the field
         if (($data === null || $data->getName() === null) && $require_name) {
             $form->add('name', 'text', array(
                 'label' => $this->options['name_label'],
                 'help_block' => $this->options['name_help'],
+                'required' => !$allow_blank_name,
             ));
         }
 

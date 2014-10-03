@@ -15,6 +15,7 @@
         <!-- Image Listener -->
         <service id="symedit_media.event_listener.image_listener" class="SymEdit\Bundle\MediaBundle\Doctrine\Orm\MediaListener">
             <argument type="service" id="symedit_media.image_upload_manager" />
+            <argument type="service" id="symedit_media.namer" />
             <argument>%symedit.model.image.class%</argument>
             <argument>%symedit_media.paths.image%</argument>
             <tag name="doctrine.event_subscriber" priority="-100" />
@@ -23,6 +24,7 @@
         <!-- File Listener -->
         <service id="symedit_media.event_listener.file_listener" class="SymEdit\Bundle\MediaBundle\Doctrine\Orm\MediaListener">
             <argument type="service" id="symedit_media.file_upload_manager" />
+            <argument type="service" id="symedit_media.namer" />
             <argument>%symedit.model.file.class%</argument>
             <argument>%symedit_media.paths.file%</argument>
             <tag name="doctrine.event_subscriber" priority="-100" />

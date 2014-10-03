@@ -88,6 +88,7 @@ class MediaListener extends AbstractMediaListener
         $em = $eventArgs->getEntityManager();
         $uow = $em->getUnitOfWork();
 
+
         foreach ($uow->getScheduledEntityInsertions() as $object) {
             if (!$this->isValid($object)) {
                 continue;
@@ -97,12 +98,12 @@ class MediaListener extends AbstractMediaListener
 
             if ($callback = $object->getNameCallback()) {
                 $object->setName($callback($object));
-                $object->setPath($object->getUploadName());
+                $uow->recomputeSingleEntityChangeSet($meta, $object);
+            } elseif ($this->applyNamer($object)) {
                 $uow->recomputeSingleEntityChangeSet($meta, $object);
             }
 
             if ($this->makePathUnique($object, $em, $meta)) {
-                $object->setPath($object->getUploadName());
                 $uow->recomputeSingleEntityChangeSet($meta, $object);
             }
         }
