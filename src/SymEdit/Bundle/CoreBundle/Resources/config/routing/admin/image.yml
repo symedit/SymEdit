@@ -25,7 +25,7 @@ admin_image_create:
         _controller: symedit.controller.image:createAction
         _sylius:
             template: @SymEdit/Admin/Image/new.html.twig
-            redirect: admin_image
+            redirect: admin_image_update
 
 admin_image_quick_upload:
     pattern: /quick-upload
