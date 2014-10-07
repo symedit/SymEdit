@@ -4,7 +4,7 @@
     {% endblock %}
 
     {% block menu %}
-        {{ mopa_bootstrap_menu('symedit_admin') }}
+        {{ mopa_bootstrap_menu('symedit_admin', { 'root_options': { 'navbar': true }}) }}
         {{ mopa_bootstrap_menu('symedit_admin_user') }}
     {% endblock %}
 {% endembed %}

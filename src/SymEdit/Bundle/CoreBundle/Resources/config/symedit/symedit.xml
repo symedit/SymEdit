@@ -1,0 +1,17 @@
+<?xml version="1.0" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <parameters>
+        <parameter key="symedit.menu.admin.class">SymEdit\Bundle\CoreBundle\Menu\AdminBuilder</parameter>
+    </parameters>
+
+    <services>
+        <service id="symedit.menu.admin" class="%symedit.menu.admin.class%">
+            <argument>%symedit.extensions.routes%</argument>
+            <tag name="symedit_menu.builder" menu="symedit_admin" priority="256" />
+        </service>
+    </services>
+</container>

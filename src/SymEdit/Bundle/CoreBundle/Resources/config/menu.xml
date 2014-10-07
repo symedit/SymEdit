@@ -27,10 +27,6 @@
             <argument>%symedit.extensions.routes%</argument>
         </service>
 
-        <service factory-service="symedit.menu_builder" factory-method="adminMenu" id="symedit.menu.admin" class="Knp\Menu\Menuitem">
-            <tag name="knp_menu.menu" alias="symedit_admin" />
-        </service>
-
         <service factory-service="symedit.menu_builder" factory-method="adminUserMenu" id="symedit.menu.admin_user" class="Knp\Menu\Menuitem">
             <tag name="knp_menu.menu" alias="symedit_admin_user" />
         </service>

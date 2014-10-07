@@ -7,7 +7,6 @@
     <parameters>
         <parameter key="symedit_media.image_upload_manager.class">SymEdit\Bundle\MediaBundle\Upload\ImageUploadManager</parameter>
         <parameter key="symedit_media.file_upload_manager.class">SymEdit\Bundle\MediaBundle\Upload\UploadManager</parameter>
-        <parameter key="symedit_media.menu_subscriber.class">SymEdit\Bundle\MediaBundle\EventListener\MenuSubscriber</parameter>
         <parameter key="symedit_media.namer.slug.class">SymEdit\Bundle\MediaBundle\Namer\SlugNamer</parameter>
     </parameters>
 
@@ -29,12 +28,6 @@
                     <argument>symedit_file</argument>
                 </service>
             </argument>
-        </service>
-
-        <!-- Menu Subscriber -->
-        <service id="symedit_media.menu_subscriber" class="%symedit_media.menu_subscriber.class%">
-            <argument type="service" id="security.context" />
-            <tag name="kernel.event_subscriber" />
         </service>
 
         <!-- Slug Namer -->

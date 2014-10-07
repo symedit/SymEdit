@@ -12,16 +12,17 @@
 namespace SymEdit\Bundle\CoreBundle;
 
 use Sylius\Bundle\ResourceBundle\DependencyInjection\Compiler\ResolveDoctrineTargetEntitiesPass;
-use Symfony\Component\HttpKernel\Bundle\Bundle;
-use Symfony\Component\HttpKernel\Kernel;
-use Symfony\Component\DependencyInjection\ContainerBuilder;
+use Sylius\Bundle\ResourceBundle\SyliusResourceBundle;
 use SymEdit\Bundle\CoreBundle\DependencyInjection\Compiler\AnnotationLoaderCompilerPass;
+use SymEdit\Bundle\CoreBundle\DependencyInjection\Compiler\ProfileTypeCompilerPass;
+use SymEdit\Bundle\CoreBundle\DependencyInjection\Compiler\SymEditExtensionCompilerPass;
 use SymEdit\Bundle\CoreBundle\DependencyInjection\Compiler\TwigExceptionCompilerPass;
 use SymEdit\Bundle\CoreBundle\DependencyInjection\Compiler\TwigPathCompilerPass;
 use SymEdit\Bundle\CoreBundle\DependencyInjection\SymEditExtension;
-use SymEdit\Bundle\CoreBundle\DependencyInjection\Compiler\ProfileTypeCompilerPass;
 use SymEdit\Bundle\ResourceBundle\DependencyInjection\Compiler\DoctrineMappingsPass;
-use Sylius\Bundle\ResourceBundle\SyliusResourceBundle;
+use Symfony\Component\DependencyInjection\ContainerBuilder;
+use Symfony\Component\HttpKernel\Bundle\Bundle;
+use Symfony\Component\HttpKernel\Kernel;
 
 class SymEditBundle extends Bundle
 {
@@ -55,6 +56,7 @@ class SymEditBundle extends Bundle
         $container->addCompilerPass(new TwigExceptionCompilerPass());
         $container->addCompilerPass(new TwigPathCompilerPass($this->kernel));
         $container->addCompilerPass(new ProfileTypeCompilerPass());
+        $container->addCompilerPass(new SymEditExtensionCompilerPass());
 
         /**
          * Add Doctrine Mappings

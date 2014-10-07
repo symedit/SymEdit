@@ -1,0 +1,32 @@
+<?xml version="1.0" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <parameters>
+        <parameter key="symedit_menu.provider.symedit.class">SymEdit\Bundle\MenuBundle\Provider\SymEditMenuProvider</parameter>
+        <parameter key="symedit_menu.extension.security.class">SymEdit\Bundle\MenuBundle\Extension\SecurityExtension</parameter>
+        <parameter key="symedit_menu.extension.remove_dropdowns.class">SymEdit\Bundle\MenuBundle\Extension\RemoveDropdownsExtension</parameter>
+    </parameters>
+
+    <services>
+        <service id="symedit_menu.provider.symedit" class="%symedit_menu.provider.symedit.class%">
+            <argument type="service" id="knp_menu.factory" />
+            <!-- Builders -->
+            <argument type="collection" />
+            <!-- Extensions -->
+            <argument type="collection" />
+            <tag name="knp_menu.provider" />
+        </service>
+
+        <service id="symedit_menu.extension.security" class="%symedit_menu.extension.security.class%">
+            <argument type="service" id="security.context" />
+            <tag name="symedit_menu.menu_extension" />
+        </service>
+
+        <service id="symedit_menu.extension.remove_dropdowns" class="%symedit_menu.extension.remove_dropdowns.class%">
+            <tag name="symedit_menu.menu_extension" />
+        </service>
+    </services>
+</container>
