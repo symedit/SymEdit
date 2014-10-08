@@ -4,11 +4,11 @@ namespace SymEdit\Bundle\MenuBundle\Extension;
 
 use Knp\Menu\ItemInterface;
 
-class RemoveDropdownsExtension extends AbstractMenuItemExtension
+class RemoveLeavesExtension extends AbstractMenuItemExtension
 {
     protected function modifyItem(ItemInterface $item, array $options)
     {
-        if (!$item->getExtra('remove_dropdown', false)) {
+        if (!$item->getExtra('remove_leaf', false)) {
             return;
         }
 

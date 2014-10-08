@@ -32,7 +32,7 @@ class AdminBuilder implements MenuBuilderInterface
             'caret' => true,
             'icon' => 'pencil',
             'extras' => array(
-                'remove_dropdown' => true,
+                'remove_leaf' => true,
             ),
         ));
 
@@ -48,7 +48,7 @@ class AdminBuilder implements MenuBuilderInterface
             'caret' => true,
             'icon' => 'picture',
             'extras' => array(
-                'remove_dropdown' => true,
+                'remove_leaf' => true,
             ),
         ));
 
@@ -59,7 +59,7 @@ class AdminBuilder implements MenuBuilderInterface
             'caret' => true,
             'icon' => 'tasks',
             'extras' => array(
-                'remove_dropdown' => true,
+                'remove_leaf' => true,
             ),
         ));
 
@@ -70,7 +70,7 @@ class AdminBuilder implements MenuBuilderInterface
             'caret' => true,
             'icon' => 'cogs',
             'extras' => array(
-                'remove_dropdown' => true,
+                'remove_leaf' => true,
             ),
         ));
 
@@ -82,7 +82,7 @@ class AdminBuilder implements MenuBuilderInterface
             'dropdown' => true,
             'caret' => true,
             'extras' => array(
-                'remove_dropdown' => true,
+                'remove_leaf' => true,
             ),
         ));
 

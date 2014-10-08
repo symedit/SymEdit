@@ -7,7 +7,7 @@
     <parameters>
         <parameter key="symedit_menu.provider.symedit.class">SymEdit\Bundle\MenuBundle\Provider\SymEditMenuProvider</parameter>
         <parameter key="symedit_menu.extension.security.class">SymEdit\Bundle\MenuBundle\Extension\SecurityExtension</parameter>
-        <parameter key="symedit_menu.extension.remove_dropdowns.class">SymEdit\Bundle\MenuBundle\Extension\RemoveDropdownsExtension</parameter>
+        <parameter key="symedit_menu.extension.remove_leafs.class">SymEdit\Bundle\MenuBundle\Extension\RemoveLeavesExtension</parameter>
     </parameters>
 
     <services>
@@ -25,7 +25,7 @@
             <tag name="symedit_menu.menu_extension" />
         </service>
 
-        <service id="symedit_menu.extension.remove_dropdowns" class="%symedit_menu.extension.remove_dropdowns.class%">
+        <service id="symedit_menu.extension.remove_leafs" class="%symedit_menu.extension.remove_leafs.class%">
             <tag name="symedit_menu.menu_extension" />
         </service>
     </services>

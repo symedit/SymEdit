@@ -41,7 +41,7 @@ $menu->addChild('Label', array(
 Remove Empty Dropdowns
 ----------------------
 
-You can use `remove_dropdown` to remove any dropdowns with no children. We
+You can use `remove_leaf` to remove any dropdowns with no children. We
 suggest having a main menu builder run first to create each of the dropdowns
 that your other bundles may use so they won't have to check if they exist first
 and create them if not. This solves the problem of no other builders using that
@@ -51,7 +51,7 @@ dropdown:
 $menu->addChild('Dropdown', array(
     'dropdown' => true, // From MopaBootstrapBundle
     'extras' => array(
-        'remove_dropdown' => true,
+        'remove_leaf' => true,
     ),
 ));
 ```
