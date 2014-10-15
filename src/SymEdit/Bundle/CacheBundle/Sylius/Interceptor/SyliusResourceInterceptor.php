@@ -47,11 +47,7 @@ class SyliusResourceInterceptor implements MethodInterceptorInterface
         $request = $invocation->arguments[0];
 
         // Current Resource
-        if ($request->attributes->has('_page')) {
-            $resource = $request->attributes->get('_page');
-        } else {
-            $resource = $controller->findOr404($request);
-        }
+        $resource = $controller->findOr404($request);
 
         // Cache Options
         $options = $request->attributes->get('_sylius', array());

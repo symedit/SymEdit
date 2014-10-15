@@ -14,6 +14,7 @@
     <services>
         <service id="symedit.routing.route_provider" class="SymEdit\Bundle\CoreBundle\Routing\RouteProvider">
             <argument type="service" id="doctrine" />
+            <argument>%symedit.routing.route_config%</argument>
         </service>
 
 

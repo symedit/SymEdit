@@ -70,6 +70,15 @@ class Configuration implements ConfigurationInterface
                         ->end()
                     ->end()
                 ->end()
+                ->arrayNode('routing')
+                    ->useAttributeAsKey('class_name')
+                    ->prototype('array')
+                    ->children()
+                        ->scalarNode('field')->isRequired()->end()
+                        ->scalarNode('prefix')->isRequired()->end()
+                        ->variableNode('defaults')->isRequired()->end()
+                    ->end()
+                ->end()
             ->end();
 
         $this->addClassesSection($rootNode);
