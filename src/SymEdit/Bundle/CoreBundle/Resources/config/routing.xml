@@ -12,6 +12,11 @@
     </parameters>
 
     <services>
+        <service id="symedit.routing.route_provider" class="SymEdit\Bundle\CoreBundle\Routing\RouteProvider">
+            <argument type="service" id="doctrine" />
+        </service>
+
+
         <service id="symedit.routing.loader.page_controller" public="false" class="%symedit.routing.loader.page_controller.class%">
             <argument type="service" id="symedit.repository.page" />
         </service>
