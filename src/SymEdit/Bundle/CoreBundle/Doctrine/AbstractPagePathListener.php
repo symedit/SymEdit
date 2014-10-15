@@ -13,13 +13,13 @@ namespace SymEdit\Bundle\CoreBundle\Doctrine;
 
 use Doctrine\Common\EventSubscriber;
 use SymEdit\Bundle\CoreBundle\Model\PageInterface;
-use Symfony\Bundle\FrameworkBundle\Routing\Router;
+use Symfony\Component\Routing\RouterInterface;
 
 abstract class AbstractPagePathListener implements EventSubscriber
 {
     protected $router;
 
-    public function __construct(Router $router)
+    public function __construct(RouterInterface $router)
     {
         $this->router = $router;
     }
