@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace SymEdit\Bundle\CoreBundle\Test\Model;
+namespace SymEdit\Bundle\CoreBundle\Tests\Model;
 
 use SymEdit\Bundle\CoreBundle\Model\Profile;
 use SymEdit\Bundle\CoreBundle\Model\ProfileInterface;

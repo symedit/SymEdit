@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace SymEdit\Bundle\CoreBundle\Test\Model;
+namespace SymEdit\Bundle\CoreBundle\Tests\Model;
 
 use SymEdit\Bundle\CoreBundle\Tests\TestCase;
 use SymEdit\Bundle\CoreBundle\Model\Breadcrumbs;
