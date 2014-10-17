@@ -42,6 +42,10 @@ class SymEditExtension extends SymEditResourceExtension implements PrependExtens
 
         // Process Assetic Configurations
         $this->processResources($container, $config['assets']);
+
+        // Process routing Config
+        $pageControllers = $this->findBundleResources($container, '/Resources/config/symedit/page_controllers.yml');
+        $container->setParameter('symedit.routing.loader.resources', $pageControllers);
     }
 
     public function prepend(ContainerBuilder $container)

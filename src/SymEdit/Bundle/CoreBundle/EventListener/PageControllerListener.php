@@ -30,6 +30,11 @@ class PageControllerListener
     public function onKernelController(FilterControllerEvent $event)
     {
         $request = $event->getRequest();
+
+        if ($request->attributes->has('_page')) {
+            return;
+        }
+
         $pageId = $request->attributes->get('_page_id', null);
 
         if (!empty($pageId)) {

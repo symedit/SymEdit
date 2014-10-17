@@ -552,7 +552,7 @@ class Page implements PageInterface
 
     public function getRoute()
     {
-        return $this->getHomepage() ? 'homepage' : sprintf('page_%d', $this->getId());
+        return sprintf('page/%d', $this->getId());
     }
 
     /**

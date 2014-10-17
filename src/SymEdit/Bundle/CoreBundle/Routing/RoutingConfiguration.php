@@ -9,20 +9,26 @@
  * file that was distributed with this source code.
  */
 
-namespace SymEdit\Bundle\MenuBundle\DependencyInjection;
+namespace SymEdit\Bundle\CoreBundle\Routing;
 
 use Symfony\Component\Config\Definition\Builder\TreeBuilder;
 use Symfony\Component\Config\Definition\ConfigurationInterface;
 
-class Configuration implements ConfigurationInterface
+class RoutingConfiguration implements ConfigurationInterface
 {
-    /**
-     * {@inheritDoc}
-     */
     public function getConfigTreeBuilder()
     {
         $treeBuilder = new TreeBuilder();
-        $rootNode = $treeBuilder->root('symedit_menu');
+        $rootNode = $treeBuilder->root('controllers');
+
+        $rootNode
+            ->useAttributeAsKey('name')
+            ->prototype('array')
+                ->children()
+                    ->arrayNode('routes')->prototype('scalar')->end()
+                ->end()
+            ->end()
+        ;
 
         return $treeBuilder;
     }

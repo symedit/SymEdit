@@ -1,0 +1,10 @@
+# Blog
+symedit_blog:
+    routes:
+        - blog
+        - blog_rss
+        - blog_archive
+        - blog_preview
+        - blog_slug_view
+        - blog_category_view
+        - blog_category_rss
