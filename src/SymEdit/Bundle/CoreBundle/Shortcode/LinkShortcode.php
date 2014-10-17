@@ -27,7 +27,7 @@ class LinkShortcode extends AbstractShortcode
     public function renderShortcode($match, array $attr, $content)
     {
         if (isset($attr['page-id'])) {
-            $route = 'page_' . $attr['page-id'];
+            $route = 'page/' . $attr['page-id'];
         } else {
             return $match;
         }
