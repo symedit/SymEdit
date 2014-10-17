@@ -9,9 +9,5 @@ symedit_admin:
     resource: "@SymEditBundle/Resources/config/routing/admin.yml"
     prefix: /sym-admin
 
-symedit_pages:
-    resource: SymEditBundle:Page
-    type: symedit_pages
-
 symedit_controllers:
     resource: "@SymEditBundle/Resources/config/routing/frontend.yml"
