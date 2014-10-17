@@ -1,0 +1,98 @@
+<?php
+
+namespace SymEdit\Bundle\CoreBundle\Routing;
+
+use InvalidArgumentException;
+use Symfony\Component\Config\ConfigCache;
+use Symfony\Component\Config\Definition\Processor;
+use Symfony\Component\Config\Loader\LoaderInterface;
+use Symfony\Component\Config\Resource\FileResource;
+
+class RouteManager
+{
+    protected $routeLoader;
+    protected $loader;
+    protected $resources;
+    protected $pageControllers;
+    protected $cacheDir;
+
+    public function __construct(LoaderInterface $loader, array $resources, $cacheDir, $debug)
+    {
+        $this->loader = $loader;
+        $this->resources = $resources;
+        $this->cacheFile = $cacheDir . '/symedit_routing/page_controllers.php';
+        $this->debug = $debug;
+    }
+
+    public function getPageControllers()
+    {
+        if ($this->pageControllers === null) {
+            $cache = new ConfigCache($this->cacheFile, $this->debug);
+
+            if ($cache->isFresh()) {
+                $this->pageControllers = require $cache;
+            } else {
+                $this->loadPageControllers();
+                $cache->write(sprintf('<?php return %s;', var_export($this->pageControllers, true)));
+            }
+        }
+
+        return $this->pageControllers;
+    }
+
+    protected function loadPageControllers()
+    {
+        $configuration = new RoutingConfiguration();
+        $processor = new Processor();
+
+        $configs = array();
+        $resources = array();
+        foreach ($this->resources as $resource) {
+            $configs[] = $this->loader->load($resource);
+            $resources[] = new FileResource($resource);
+        }
+
+        $config = $processor->processConfiguration($configuration, $configs);
+
+        foreach ($config as $name => $processed) {
+            $pageController = new PageController($name, $processed['routes']);
+            $this->add($pageController);
+        }
+    }
+
+    public function add(PageController $pageController)
+    {
+        $this->pageControllers[$pageController->getName()] = $pageController;
+    }
+
+    public function get($name)
+    {
+        if (!array_key_exists($name, $this->getPageControllers())) {
+            throw new InvalidArgumentException(sprintf('Page controller "%s" does not exist.', $name));
+        }
+
+        return $this->pageControllers[$name];
+    }
+
+    public function findByRoute($routeName)
+    {
+        foreach ($this->getPageControllers() as $pageController) {
+            if ($pageController->hasRoute($routeName)) {
+                return $pageController;
+            }
+        }
+
+        return false;
+    }
+
+    public function getAllRoutes()
+    {
+        $routes = array();
+
+        foreach ($this->getPageControllers() as $pageController) {
+            $routes = array_merge($routes, $pageController->getRoutes());
+        }
+
+        return $routes;
+    }
+}

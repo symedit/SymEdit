@@ -5,27 +5,50 @@
            xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
 
     <parameters>
-        <parameter key="symedit.routing.loader.page.class">SymEdit\Bundle\CoreBundle\Routing\PageLoader</parameter>
-        <parameter key="symedit.routing.loader.controller.class">SymEdit\Bundle\CoreBundle\Routing\ControllerLoader</parameter>
-        <parameter key="symedit.routing.loader.yaml.class">SymEdit\Bundle\CoreBundle\Routing\YamlFileLoader</parameter>
+        <parameter key="symedit.routing.loader.class">SymEdit\Bundle\CoreBundle\Routing\RouteLoader</parameter>
+        <parameter key="symedit.routing.route_provider.class">SymEdit\Bundle\CoreBundle\Routing\RouteProvider</parameter>
+        <parameter key="symedit.routing.manager.class">SymEdit\Bundle\CoreBundle\Routing\RouteManager</parameter>
         <parameter key="symedit.routing.loader.page_controller.class">SymEdit\Bundle\CoreBundle\Routing\PageControllerLoader</parameter>
+        <parameter key="symedit.routing.loader_resolver.class">Symfony\Component\Config\Loader\LoaderResolver</parameter>
     </parameters>
 
     <services>
-        <service id="symedit.routing.route_provider" class="SymEdit\Bundle\CoreBundle\Routing\RouteProvider">
+        <!-- Route Provider -->
+        <service id="symedit.routing.route_provider" class="%symedit.routing.route_provider.class%">
             <argument type="service" id="doctrine" />
-            <argument>%symedit.routing.route_config%</argument>
+            <argument>%symedit.model.page.class%</argument>
+            <argument type="service" id="symedit.routing.manager" />
+            <argument type="service" id="symedit.routing.storage" />
         </service>
 
-
-        <service id="symedit.routing.loader.page_controller" public="false" class="%symedit.routing.loader.page_controller.class%">
-            <argument type="service" id="symedit.repository.page" />
+        <!-- Route Manager -->
+        <service id="symedit.routing.manager" class="%symedit.routing.manager.class%">
+            <argument type="service" id="symedit.routing.loader" />
+            <argument>%symedit.routing.loader.resources%</argument>
+            <argument>%kernel.cache_dir%</argument>
+            <argument>%kernel.debug%</argument>
         </service>
 
-        <service id="symedit.routing.loader.page" public="false" class="%symedit.routing.loader.page.class%">
-            <argument type="service" id="symedit.repository.page" />
-            <tag name="routing.loader" />
+        <!-- Loader Resolver -->
+        <service id="symedit.routing.loader_resolver" class="%symedit.routing.loader_resolver.class%">
+            <argument type="collection">
+                <argument type="service" id="symedit.routing.loader.yaml" />
+            </argument>
+        </service>
+
+        <!-- Yaml Loader -->
+        <service id="symedit.routing.loader.yaml" class="SymEdit\Bundle\CoreBundle\Routing\Loader\YamlPageControllerLoader">
+            <argument type="service" id="file_locator" />
+        </service>
+
+        <!-- Delegating Loader -->
+        <service id="symedit.routing.loader" class="Symfony\Component\Config\Loader\DelegatingLoader">
+            <argument type="service" id="symedit.routing.loader_resolver" />
+        </service>
+
+        <!-- Route Storage -->
+        <service id="symedit.routing.storage" class="SymEdit\Bundle\CoreBundle\Routing\RouteStorage">
+            <argument>%kernel.cache_dir%</argument>
         </service>
     </services>
-
 </container>

@@ -1,0 +1,10 @@
+# Contact Page
+symedit_contact:
+    routes:
+        - contact
+        - contact_success
+
+symedit_team:
+    routes:
+        - team
+        - team_view_slug
