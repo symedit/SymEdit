@@ -38,7 +38,7 @@ class ExceptionListener
         if ($exception instanceof HttpExceptionInterface) {
             $code = $exception->getStatusCode();
 
-            if($code < 500 || $code >= 600) {
+            if ($code < 500 || $code >= 600) {
                 return;
             }
         }

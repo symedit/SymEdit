@@ -88,7 +88,6 @@ class MediaListener extends AbstractMediaListener
         $em = $eventArgs->getEntityManager();
         $uow = $em->getUnitOfWork();
 
-
         foreach ($uow->getScheduledEntityInsertions() as $object) {
             if (!$this->isValid($object)) {
                 continue;
