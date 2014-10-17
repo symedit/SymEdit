@@ -33,4 +33,21 @@ class SymEditResourceExtension extends AbstractResourceExtension
             $container->setParameter(sprintf('%s.%s', $prefix, $key), $value);
         }
     }
+
+    protected function findBundleResources(ContainerBuilder $container, $pattern)
+    {
+        $bundles = $container->getParameter('kernel.bundles');
+        $files = array();
+
+        foreach ($bundles as $bundle) {
+            $class = new \ReflectionClass($bundle);
+            $dir = dirname($class->getFileName());
+            $file = $dir.'/'.ltrim($pattern, '/');
+            if (file_exists($file)) {
+                $files[] = $file;
+            }
+        }
+
+        return $files;
+    }
 }
