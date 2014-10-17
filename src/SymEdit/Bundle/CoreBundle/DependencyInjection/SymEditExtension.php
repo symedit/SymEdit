@@ -44,7 +44,8 @@ class SymEditExtension extends SymEditResourceExtension implements PrependExtens
         $this->processResources($container, $config['assets']);
 
         // Process routing Config
-        $this->processRouting($container, $config['routing']);
+        $pageControllers = $this->findBundleResources($container, '/Resources/config/symedit/page_controllers.yml');
+        $container->setParameter('symedit.routing.loader.resources', $pageControllers);
     }
 
     public function prepend(ContainerBuilder $container)
@@ -101,11 +102,6 @@ class SymEditExtension extends SymEditResourceExtension implements PrependExtens
         }
 
         $container->getDefinition('symedit.assetic.config_resource')->replaceArgument(0, $formulae);
-    }
-
-    protected function processRouting(ContainerBuilder $container, array $routingConfig)
-    {
-        $container->setParameter('symedit.routing.route_config', $routingConfig);
     }
 
     public function getAlias()
