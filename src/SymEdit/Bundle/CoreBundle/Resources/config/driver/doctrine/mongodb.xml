@@ -10,7 +10,6 @@
         </service>
 
         <!-- Managers -->
-
         <service id="symedit.widget.manager" class="%symedit.widget.manager.class%">
             <argument>%symedit.model.widget.class%</argument>
             <argument>%symedit.model.widget_area.class%</argument>
@@ -19,12 +18,6 @@
         </service>
 
         <!-- Listeners -->
-
-        <service id="symedit.listener.page_path" class="SymEdit\Bundle\CoreBundle\Doctrine\MongoDB\PagePathListener">
-            <argument type="service" id="router" />
-            <tag name="doctrine.event_subscriber" />
-        </service>
-
         <service id="symedit.widget.listener" class="SymEdit\Bundle\CoreBundle\Doctrine\MongoDB\WidgetListener">
             <argument type="service" id="symedit.widget.registry" />
             <tag name="doctrine.event_subscriber" />

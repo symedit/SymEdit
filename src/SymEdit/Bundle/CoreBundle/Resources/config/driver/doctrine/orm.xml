@@ -7,12 +7,4 @@
     <parameters>
         <parameter key="symedit.repository.page.class">SymEdit\Bundle\CoreBundle\Doctrine\ORM\PageRepository</parameter>
     </parameters>
-
-    <services>
-        <!-- Listeners -->
-        <service id="symedit.listener.page_path" class="SymEdit\Bundle\CoreBundle\Doctrine\ORM\PagePathListener">
-            <argument type="service" id="router" />
-            <tag name="doctrine.event_subscriber" />
-        </service>
-    </services>
 </container>
