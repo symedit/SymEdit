@@ -13,8 +13,8 @@ namespace SymEdit\Bundle\CoreBundle;
 
 use Sylius\Bundle\ResourceBundle\DependencyInjection\Compiler\ResolveDoctrineTargetEntitiesPass;
 use Sylius\Bundle\ResourceBundle\SyliusResourceBundle;
-use SymEdit\Bundle\CoreBundle\DependencyInjection\Compiler\AnnotationLoaderCompilerPass;
 use SymEdit\Bundle\CoreBundle\DependencyInjection\Compiler\ProfileTypeCompilerPass;
+use SymEdit\Bundle\CoreBundle\DependencyInjection\Compiler\RouterLoaderCompilerPass;
 use SymEdit\Bundle\CoreBundle\DependencyInjection\Compiler\SymEditExtensionCompilerPass;
 use SymEdit\Bundle\CoreBundle\DependencyInjection\Compiler\TwigExceptionCompilerPass;
 use SymEdit\Bundle\CoreBundle\DependencyInjection\Compiler\TwigPathCompilerPass;
@@ -52,7 +52,7 @@ class SymEditBundle extends Bundle
         );
 
         $container->addCompilerPass(new ResolveDoctrineTargetEntitiesPass('symedit', $interfaces));
-        $container->addCompilerPass(new AnnotationLoaderCompilerPass());
+        $container->addCompilerPass(new RouterLoaderCompilerPass());
         $container->addCompilerPass(new TwigExceptionCompilerPass());
         $container->addCompilerPass(new TwigPathCompilerPass($this->kernel));
         $container->addCompilerPass(new ProfileTypeCompilerPass());
