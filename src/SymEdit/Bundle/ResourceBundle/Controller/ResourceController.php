@@ -28,15 +28,6 @@ class ResourceController extends BaseResourceController
         return parent::showAction($request);
     }
 
-    public function findOr404(Request $request, array $criteria = array())
-    {
-        if ($request->attributes->has('_symedit_entity')) {
-            return $request->attributes->get('_symedit_entity');
-        }
-
-        return parent::findOr404($request, $criteria);
-    }
-
     /**
      * Bulk reorder, for drag and drops
      */
