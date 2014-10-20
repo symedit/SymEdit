@@ -135,5 +135,4 @@ class PostType extends AbstractType
     {
         return 'symedit_post';
     }
-
 }

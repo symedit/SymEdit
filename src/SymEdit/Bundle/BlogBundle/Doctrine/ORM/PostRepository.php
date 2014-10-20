@@ -49,7 +49,7 @@ class PostRepository extends EntityRepository
         return $this->getQueryBuilder()->getQuery();
     }
 
-    public function getRecent($max=3)
+    public function getRecent($max = 3)
     {
         $criteria = array(
             'status' => Post::PUBLISHED,
