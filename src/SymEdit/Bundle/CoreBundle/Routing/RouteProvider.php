@@ -25,6 +25,7 @@ class RouteProvider extends DoctrineProvider implements RouteProviderInterface
 {
     protected $routeManager;
     protected $storage;
+    protected $routeByNameCache = array();
 
     public function __construct(ManagerRegistry $managerRegistry, $className = null, RouteManager $routeManager, RouteStorage $storage)
     {
@@ -34,6 +35,19 @@ class RouteProvider extends DoctrineProvider implements RouteProviderInterface
     }
 
     public function getRouteByName($name)
+    {
+        if (!array_key_exists($name, $this->routeByNameCache)) {
+            if($route = $this->doGetRouteByName($name)) {
+                $this->routeByNameCache[$name] = $route;
+            } else {
+                return;
+            }
+        }
+
+        return $this->routeByNameCache[$name];
+    }
+
+    protected function doGetRouteByName($name)
     {
         $repository = $this->getRepository();
 
@@ -65,6 +79,12 @@ class RouteProvider extends DoctrineProvider implements RouteProviderInterface
             ));
 
             $route = $this->storage->getRoute($name);
+
+            // Add Prefix
+            $prefix = rtrim($page->getPath(), '/');
+            $route->setPath($prefix.'/'.ltrim($route->getPath(), '/'));
+
+            // Add this page
             $route->addDefaults(array(
                 '_page' => $page,
             ));

@@ -1,0 +1,6 @@
+# Doctrine Migrations
+doctrine_migrations:
+    dir_name:   %kernel.root_dir%/migrations
+    namespace:  SymEdit\Migrations
+    table_name: symedit_migrations
+    name:       SymEdit Migrations

@@ -1,0 +1,177 @@
+imports:
+    - { resource: parameters.yml }
+    - { resource: symedit.yml }
+    - { resource: security.yml }
+
+framework:
+    esi:                        ~
+    translator:
+        fallback:               %locale%
+    secret:                     %secret%
+    router:
+        resource:               "%kernel.root_dir%/config/routing.yml"
+        strict_requirements:    %kernel.debug%
+    form:                       true
+    csrf_protection:            true
+    validation:
+        enable_annotations:     false
+    templating:
+        engines:                ['twig']
+    default_locale:             %locale%
+    session:                    ~
+    fragments:                  ~
+    http_method_override:       true
+
+# Twig Configuration
+twig:
+    debug:            %kernel.debug%
+    strict_variables: %kernel.debug%
+
+# Assetic Configuration
+assetic:
+    debug:          %kernel.debug%
+    use_controller: false
+    bundles:        [ SymEditBundle ]
+    filters:
+        cssrewrite: ~
+        less:
+            node: /usr/local/bin/node
+            node_paths: [/usr/lib/node_modules]
+            apply_to: "\.less$"
+        uglifyjs2:
+            bin: /usr/bin/uglifyjs
+            compress: true
+        uglifycss:
+            bin: /usr/bin/uglifycss
+            ugly_comments: true
+
+# Doctrine Configuration
+doctrine:
+    dbal:
+        driver:   %database_driver%
+        host:     %database_host%
+        port:     %database_port%
+        dbname:   %database_name%
+        user:     %database_user%
+        password: %database_password%
+        charset:  UTF8
+    orm:
+        auto_generate_proxy_classes: %kernel.debug%
+        entity_managers:
+            default:
+                auto_mapping: true
+                mappings:
+                    gedmo_loggable:
+                        type: annotation
+                        prefix: Gedmo\Loggable\Entity
+                        dir: "%kernel.root_dir%/../vendor/gedmo/doctrine-extensions/lib/Gedmo/Loggable/Entity"
+                        alias: GedmoLoggable
+                        is_bundle: false
+
+# Swiftmailer Configuration
+swiftmailer:
+#    spool:      { type: memory }
+    transport:  %mailer_transport%
+    username:   %mailer_user%
+    password:   %mailer_password%
+    port:       %mailer_port%
+    host:       %mailer_host%
+
+# MopaBootstrap Configuration
+mopa_bootstrap:
+    menu: ~
+    icons:
+        icon_set: fontawesome
+    form:
+        show_legend: false
+        render_required_asterisk: true
+        render_optional_text: false
+        checkbox_label: label
+        tabs:
+            class: nav nav-tabs nav-stacked
+
+# Gaufrette Configuration
+knp_gaufrette:
+    adapters:
+        symedit_image:
+            local:
+                directory: %kernel.root_dir%/../web/media/image
+                create: true
+        symedit_file:
+            local:
+                directory: %kernel.root_dir%/../web/media/file
+                create: true
+    filesystems:
+        symedit_image:
+            adapter: symedit_image
+        symedit_file:
+            adapter: symedit_file
+
+# Liip Imagine Configuration
+liip_imagine:
+    driver: imagick
+    loaders:
+        default:
+            filesystem:
+                data_root: %kernel.root_dir%/../web/media/image
+    resolvers:
+        default:
+            web_path:
+                web_root: %kernel.root_dir%/../web
+    cache: default
+    filter_sets:
+        gallery_thumbnail:
+            filters:
+                thumbnail: { size: [350, 200], mode: outbound }
+        gallery:
+            filters:
+                thumbnail: { size: [800, 400], mode: inset }
+        blog_thumbnail:
+            filters:
+                relative_resize: { widen: 850 }
+                thumbnail: { size: [850, 200], mode: outbound }
+        blog:
+            filters:
+                relative_resize: { widen: 850 }
+                thumbnail: { size: [850, 400], mode: outbound }
+        symedit_64x64:
+            filters:
+                thumbnail: { size: [64, 64], mode: outbound }
+        symedit_96x96:
+            filters:
+                thumbnail: { size: [96, 96], mode: outbound }
+
+# Form Spam Configuration
+isometriks_spam:
+    honeypot:
+        field: email_address
+        use_class: true
+
+# User Configuration
+fos_user:
+    db_driver: orm
+    firewall_name: main
+
+# Rest Configuration
+fos_rest:
+    service:
+        view_handler: symedit.seo_view_handler
+    view:
+        templating_formats:
+            rss: true
+            html: true
+        mime_types:
+            rss: 'application/rss+xml'
+
+# Pagination Configuration
+white_october_pagerfanta:
+    default_view: twitter_bootstrap3
+
+# CMF Routing
+cmf_routing:
+    chain:
+        routers_by_id:
+            router.default: 200
+            cmf_routing.dynamic_router: 100
+    dynamic:
+        route_provider_service_id: symedit.routing.route_provider

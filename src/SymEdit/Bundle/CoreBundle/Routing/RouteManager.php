@@ -39,10 +39,10 @@ class RouteManager
             $cache = new ConfigCache($this->cacheFile, $this->debug);
 
             if ($cache->isFresh()) {
-                $this->pageControllers = require $cache;
+                $this->pageControllers = unserialize(require $cache);
             } else {
                 $this->loadPageControllers();
-                $cache->write(sprintf('<?php return %s;', var_export($this->pageControllers, true)));
+                $cache->write(sprintf('<?php return %s;', var_export(serialize($this->pageControllers), true)));
             }
         }
 

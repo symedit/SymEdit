@@ -15,6 +15,8 @@
         "doctrine/doctrine-bundle":             "~1.3@dev",
         "doctrine/doctrine-fixtures-bundle":    "~2.2",
         "doctrine/doctrine-cache-bundle":       "~1.0",
+        "doctrine/doctrine-migrations-bundle":  "@stable",
+        "doctrine/migrations":                  "~1.0@dev",
         "friendsofsymfony/user-bundle":         "~2.0@dev",
         "friendsofsymfony/rest-bundle":         "~1.0",
         "incenteev/composer-parameter-handler": "~2.0",
@@ -34,13 +36,11 @@
         "symfony/monolog-bundle":               "~2.3.0",
         "symfony/swiftmailer-bundle":           "~2.3.0",
         "symfony/symfony":                      "~2.3.0",
+        "symfony-cmf/routing-bundle":           "@stable",
         "twig/extensions":                      "~1.0",
         "twig/twig":                            "~1.11",
         "white-october/pagerfanta-bundle":      "~1.0.0",
         "zfr/zfr-mailchimp":                    "~2.0"
-    },
-    "autoload": {
-        "psr-0": { "SymEdit\\": "src/" }
     },
     "replace": {
         "symedit/analytics-bundle":     "self.version",
@@ -55,5 +55,29 @@
         "symedit/user-bundle":          "self.version",
         "symedit/widget-bundle":        "self.version",
         "symedit/widget-bridge":        "self.version"
+    },
+    "autoload": {
+        "psr-0": { "SymEdit\\": "src/" }
+    },
+    "scripts": {
+        "post-install-cmd": [
+            "Incenteev\\ParameterHandler\\ScriptHandler::buildParameters",
+            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::buildBootstrap",
+            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::clearCache",
+            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installAssets",
+            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installRequirementsFile"
+        ],
+        "post-update-cmd": [
+            "Incenteev\\ParameterHandler\\ScriptHandler::buildParameters",
+            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::buildBootstrap",
+            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::clearCache",
+            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installAssets",
+            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installRequirementsFile"
+        ]
+    },
+    "extra": {
+        "incenteev-parameters": {
+            "file": "app/config/parameters.yml"
+        }
     }
 }

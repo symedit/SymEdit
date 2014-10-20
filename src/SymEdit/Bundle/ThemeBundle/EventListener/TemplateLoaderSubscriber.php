@@ -42,6 +42,11 @@ class TemplateLoaderSubscriber implements EventSubscriberInterface
             }
         }
 
+        // No templates in the theme, ignore it.
+        if (!is_dir($theme->getTemplateDirectory())) {
+            return;
+        }
+
         // Make our theme templates override another namespace
         array_unshift($overrides, 'Theme');
 

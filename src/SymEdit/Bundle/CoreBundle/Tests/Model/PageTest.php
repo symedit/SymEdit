@@ -24,14 +24,6 @@ class PageTest extends TestCase
         return new Page();
     }
 
-    public function testHomepageRoute()
-    {
-        $homepage = $this->createPage()
-                        ->setHomepage(true);
-
-        $this->assertEquals('homepage', $homepage->getRoute());
-    }
-
     public function testRouteName()
     {
         $page = $this->getMock(get_class($this->createPage()), array('getId'));
@@ -39,7 +31,7 @@ class PageTest extends TestCase
              ->method('getId')
              ->will($this->returnValue(38));
 
-        $this->assertEquals('page_38', $page->getRoute());
+        $this->assertEquals('page/38', $page->getRoute());
     }
 
     public function testActive()

@@ -1,0 +1,14 @@
+symedit_routes:
+    resource: "@SymEditBundle/Resources/config/routing.yml"
+
+symedit_seo_export:
+    resource: "@SymEditSeoExportBundle/Resources/config/routing.yml"
+
+symedit_analytics:
+    resource: "@SymEditAnalyticsBundle/Resources/config/routing.yml"
+
+symedit_mailchimp:
+    resource: "@SymEditMailChimpBundle/Resources/config/routing.yml"
+
+_liip_imagine:
+    resource: "@LiipImagineBundle/Resources/config/routing.xml"

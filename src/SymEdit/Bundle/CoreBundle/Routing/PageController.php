@@ -11,7 +11,7 @@
 
 namespace SymEdit\Bundle\CoreBundle\Routing;
 
-class PageController
+class PageController implements \Serializable
 {
     protected $name;
     protected $routes;
@@ -35,5 +35,21 @@ class PageController
     public function hasRoute($routeName)
     {
         return in_array($routeName, $this->getRoutes());
+    }
+
+    public function serialize()
+    {
+        return serialize(array(
+            'name' => $this->name,
+            'routes' => $this->routes,
+        ));
+    }
+
+    public function unserialize($serialized)
+    {
+        $data = unserialize($serialized);
+
+        $this->name = $data['name'];
+        $this->routes = $data['routes'];
     }
 }

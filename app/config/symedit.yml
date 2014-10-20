@@ -1,0 +1,96 @@
+symedit:
+    driver: doctrine/orm
+    email:
+        sender: no-reply@riwebgurus.com
+
+# SymEdit SEO
+symedit_seo:
+    models:
+        SymEdit\Bundle\CoreBundle\Model\PageInterface:
+            title:
+                - model.getTitle()
+            description:
+                - model.getSummary()
+                - model.getContent()
+        SymEdit\Bundle\BlogBundle\Model\PostInterface:
+            title:
+                - model.getTitle()
+            description:
+                - model.getSummary()
+                - model.getContent()
+        SymEdit\Bundle\BlogBundle\Model\CategoryInterface:
+            title:
+                - model.getTitle()
+            description:
+                - "'Blog posts in ' ~ model.getTitle()"
+
+# Widget Configuration
+symedit_widget:
+    fragment:
+        strategy: esi
+
+# Theme Configuration
+symedit_theme:
+    theme_directory: %kernel.root_dir%/../themes
+    public_directory: themes
+    active_theme: default
+    namespace_overrides: [SymEdit]
+    templates:
+        bundles: [SymEditBundle]
+
+# Media Configuration
+symedit_media:
+    paths:
+        image: /media/image
+        file: /media/file
+
+# Shortcode Configuration
+symedit_shortcode:
+    settings:
+        icon: fontawesome
+
+# Cache Configuration
+symedit_cache:
+    voters:
+        roles: [ROLE_ADMIN]
+
+# Sitemap Configuration
+symedit_sitemap:
+    models:
+        pages:
+            method: getRecursiveIterator
+            repository: symedit.repository.page
+            callbacks:
+                - getCrawl
+            lastmod: updatedAt
+            route: $route
+
+        blog_post:
+            method: findPublished
+            repository: symedit.repository.post
+            lastmod: updatedAt
+            route:
+                ignore: true
+                path: blog_slug_view
+                params:
+                    slug: $slug
+
+        blog_category:
+            method: findAll
+            repository: symedit.repository.category
+            route:
+                ignore: true
+                path: blog_category_view
+                params:
+                    slug: $slug
+
+        team_user:
+            method: findAll
+            repository: symedit.repository.admin_profile
+            callbacks:
+                - getDisplay
+            route:
+                ignore: true
+                path: team_view_slug
+                params:
+                    slug: $slug
