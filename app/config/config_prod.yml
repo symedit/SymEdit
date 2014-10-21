@@ -22,12 +22,3 @@ monolog:
             type:         stream
             path:         %kernel.logs_dir%/%kernel.environment%.log
             level:        error
-        buffered:
-            type:         buffer
-            handler:      swift
-        swift:
-            type:         swift_mailer
-            from_email:   no-reply@riwebgurus.com
-            to_email:     craig@riwebgurus.com
-            subject:      "%account_name%: An Error Occurred!"
-            level:        critical
