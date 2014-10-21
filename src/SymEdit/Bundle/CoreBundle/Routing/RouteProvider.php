@@ -136,6 +136,9 @@ class RouteProvider extends DoctrineProvider implements RouteProviderInterface
             $collection->add($routeName, $storedRoutes[$routeName]);
         }
 
+        // Clone the collection so we aren't altering the stored routes
+        $collection = clone $collection;
+
         // Add the page's prefix
         $collection->addPrefix($page->getPath());
         $collection->addDefaults(array(
