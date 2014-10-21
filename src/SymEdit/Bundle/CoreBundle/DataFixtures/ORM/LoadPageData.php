@@ -75,7 +75,7 @@ class LoadPageData extends AbstractFixture implements OrderedFixtureInterface
             ->setTitle('Blog')
             ->setContent('')
             ->setPageController(true)
-            ->setPageControllerPath('symedit-blog')
+            ->setPageControllerPath('symedit_blog')
         ;
 
         $manager->persist($page_blog);
@@ -89,7 +89,7 @@ class LoadPageData extends AbstractFixture implements OrderedFixtureInterface
             ->setTitle('Contact')
             ->setContent('')
             ->setPageController(true)
-            ->setPageControllerPath('symedit-contact')
+            ->setPageControllerPath('symedit_contact')
         ;
 
         $manager->persist($page_contact);
