@@ -15,7 +15,7 @@ use FOS\UserBundle\Mailer\TwigSwiftMailer;
 use SymEdit\Bundle\SettingsBundle\Model\Settings;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 
-class SymEditMailer extends TwigSwiftMailer
+class SymEditMailer extends TwigSwiftMailer implements SymEditMailerInterface
 {
     protected $settings;
     protected $fromEmail;
