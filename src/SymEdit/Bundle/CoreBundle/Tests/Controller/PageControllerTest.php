@@ -7,7 +7,7 @@ use SymEdit\Bundle\CoreBundle\Tests\WebTestCase;
 class PageControllerTest extends WebTestCase
 {
     /**
-     * @DataProvider fixtureUrlProvider
+     * @dataProvider fixtureUrlProvider
      */
     public function testPages($url)
     {
