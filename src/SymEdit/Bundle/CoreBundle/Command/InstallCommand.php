@@ -61,7 +61,8 @@ class InstallCommand extends ContainerAwareCommand
             $output->writeln('Loading Fixtures...');
 
             $command = $this->getApplication()->find('doctrine:fixtures:load');
-            $input   = new ArrayInput(array('command'   => 'doctrine:fixtures:load', '--append' => $force));
+            $input   = new ArrayInput(array('doctrine:fixtures:load'));
+            $input->setInteractive(!$force);
             $returnCode = $command->run($input, $output);
         }
 

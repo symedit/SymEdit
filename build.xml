@@ -56,6 +56,14 @@
         </exec>
     </target>
 
+    <target name="fixtures" description="Install / Reinstall fixturse">
+        <exec executable="php" failonerror="true">
+            <arg value="${basedir}/app/console" />
+            <arg value="symedit:install" />
+            <arg value="--force" />
+        </exec>
+    </target>
+
     <target name="lint" description="Perform syntax check of sourcecode files">
         <apply executable="php" failonerror="true">
             <arg value="-l" />
