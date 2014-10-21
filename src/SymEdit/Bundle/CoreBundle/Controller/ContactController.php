@@ -11,8 +11,11 @@
 
 namespace SymEdit\Bundle\CoreBundle\Controller;
 
-use Symfony\Component\HttpFoundation\Request;
+use SymEdit\Bundle\CoreBundle\Event\Events;
+use SymEdit\Bundle\CoreBundle\Event\FormEvent;
 use SymEdit\Bundle\CoreBundle\Model\PageInterface;
+use Symfony\Component\HttpFoundation\RedirectResponse;
+use Symfony\Component\HttpFoundation\Request;
 
 class ContactController extends Controller
 {
@@ -23,23 +26,17 @@ class ContactController extends Controller
         if ($request->getMethod() === 'POST') {
             $form->handleRequest($request);
 
-            if ($form->isValid()) {
+            if ($form->isSubmitted() && $form->isValid()) {
+                // Dispatch Event
+                $event = new FormEvent($form, $request);
+                $this->get('event_dispatcher')->dispatch(Events::CONTACT_SUBMIT_VALID, $event);
 
-                $data = $form->getData();
+                if($response = $event->getResponse() === null) {
+                    $url = $this->generateUrl('contact_success');
+                    $response = new RedirectResponse($url);
+                }
 
-                /**
-                 * Set replyTo if it was sent so it's easier for people
-                 * to email back.
-                 */
-                $options = empty($data['email']) ? array() : array(
-                    'replyTo' => $data['email'],
-                );
-
-                $this->getMailer()->sendAdmin('@SymEdit/Contact/contact.html.twig', array(
-                    'Form' => $data,
-                ), $options);
-
-                return $this->redirect($this->generateUrl('contact_success'));
+                return $response;
             }
         }
 
