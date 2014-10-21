@@ -32,10 +32,10 @@ class StylesType extends AbstractType
 
         $allGroups = $builder->create('groups', 'form', array(
             'virtual' => true,
+            'label' => false,
         ));
 
         foreach ($groups as $groupName => $group) {
-
             $groupOptions = array(
                 'virtual' => true,
                 'extra' => $group->getExtra(),

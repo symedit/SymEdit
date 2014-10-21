@@ -5,6 +5,7 @@
 {% block action %}{{ path('admin_stylizer') }}{% endblock %}
 
 {% block tabs %}
+{% if form.groups|length > 0 %}
 <ul class="nav nav-pills nav-stacked">
     {% for group in form.groups %}
     <li{% if loop.first %} class="active"{% endif %}>
@@ -17,9 +18,11 @@
     </li>
     {% endfor %}
 </ul>
+{% endif %}
 {% endblock %}
 
 {% block tab_content %}
+{% if form.groups|length > 0 %}
 <div class="tab-content">
 {% for group in form.groups %}
     <div class="tab-pane{% if loop.first %} active{% endif %}" id="group-{{ group.vars.name }}">
@@ -27,10 +30,15 @@
     </div>
 {% endfor %}
 </div>
+{% else %}
+    There are no available styles to edit.
+{% endif %}
 {% endblock %}
 
 
 {% block form_actions %}
+{% if form.groups|length > 0 %}
 <button class="btn btn-primary btn-block" type="submit">Save</button>
 <button name="dump" type="submit" class="btn btn-info btn-block">Save and Dump</button>
+{% endif %}
 {% endblock %}
