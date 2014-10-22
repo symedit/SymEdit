@@ -69,7 +69,7 @@ class Controller extends BaseController
     /**
      * Gets Mailer
      *
-     * @return \SymEdit\Bundle\CoreBundle\Util\SymEditMailer
+     * @return \SymEdit\Bundle\CoreBundle\Util\SymEditMailerInterface
      */
     public function getMailer()
     {

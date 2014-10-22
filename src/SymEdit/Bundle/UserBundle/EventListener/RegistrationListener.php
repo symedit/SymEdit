@@ -12,14 +12,14 @@
 namespace SymEdit\Bundle\UserBundle\EventListener;
 
 use FOS\UserBundle\Event\UserEvent;
-use SymEdit\Bundle\CoreBundle\Util\SymEditMailer;
+use SymEdit\Bundle\CoreBundle\Util\SymEditMailerInterface;
 
 class RegistrationListener
 {
     protected $mailer;
     protected $template;
 
-    public function __construct(SymEditMailer $mailer, $template)
+    public function __construct(SymEditMailerInterface $mailer, $template)
     {
         $this->mailer = $mailer;
         $this->template = $template;
