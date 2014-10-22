@@ -9,7 +9,8 @@
         }
     ],
     "require": {
-        "friendsofsymfony/user-bundle": "~2.0@dev"
+        "friendsofsymfony/user-bundle":     "~2.0@dev",
+        "sylius/resource-bundle":           "~0.10.0"
     },
     "autoload": {
         "psr-0": { "SymEdit\\Bundle\\UserBundle": "" }
