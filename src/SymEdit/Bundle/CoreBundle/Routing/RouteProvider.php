@@ -37,7 +37,7 @@ class RouteProvider extends DoctrineProvider implements RouteProviderInterface
     public function getRouteByName($name)
     {
         if (!array_key_exists($name, $this->routeByNameCache)) {
-            if($route = $this->doGetRouteByName($name)) {
+            if ($route = $this->doGetRouteByName($name)) {
                 $this->routeByNameCache[$name] = $route;
             } else {
                 return;
@@ -166,7 +166,6 @@ class RouteProvider extends DoctrineProvider implements RouteProviderInterface
 
         return $paths;
     }
-
 
     public function getRoutesByNames($names)
     {

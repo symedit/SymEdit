@@ -31,7 +31,7 @@ class ContactController extends Controller
                 $event = new FormEvent($form, $request);
                 $this->get('event_dispatcher')->dispatch(Events::CONTACT_SUBMIT_VALID, $event);
 
-                if($response = $event->getResponse() === null) {
+                if ($response = $event->getResponse() === null) {
                     $url = $this->generateUrl('contact_success');
                     $response = new RedirectResponse($url);
                 }
