@@ -56,6 +56,22 @@ class CategoryTest extends TestCase
         $this->assertEquals('bar', $category->getTitle());
     }
 
+    public function testGetSetSlug()
+    {
+        $category = $this->getCategory();
+        $category->setSlug('any slug');
+
+        $this->assertEquals('any slug', $category->getSlug());
+    }
+
+    public function testGetSetLevel()
+    {
+        $category = $this->getCategory();
+        $category->setLevel(5);
+
+        $this->assertEquals(5, $category->getLevel());
+    }
+
     public function testGetRoot()
     {
         $category = $this->getCategory();
@@ -81,6 +97,35 @@ class CategoryTest extends TestCase
         // Remove Child
         $category->removeChildren($child);
         $this->assertEquals(0, count($category->getChildren()));
+    }
+
+    public function testAddPost()
+    {
+        $category = $this->getCategory();
+        $post = new Post();
+
+        $category->addPost($post);
+
+        $this->assertTrue($category->getPosts()->contains($post));
+    }
+
+    public function testRemovePost()
+    {
+        $category = $this->getCategory();
+        $post = new Post();
+
+        $category->addPost($post);
+        $category->removePost($post);
+
+        $this->assertFalse($category->getPosts()->contains($post));
+    }
+
+    public function testSeo()
+    {
+        $seo = array('title' => 'foo');
+        $category = $this->getCategory()->setSeo($seo);
+
+        $this->assertEquals($seo, $category->getSeo());
     }
 
     public function testGetPosts()
