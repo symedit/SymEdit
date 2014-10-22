@@ -12,6 +12,7 @@
 namespace SymEdit\Bundle\BlogBundle\Model;
 
 use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 
 class Category implements CategoryInterface
 {
@@ -87,8 +88,8 @@ class Category implements CategoryInterface
     /**
      * Set name
      *
-     * @param  string   $name
-     * @return Category
+     * @param  string            $name
+     * @return CategoryInterface
      */
     public function setName($name)
     {
@@ -110,8 +111,8 @@ class Category implements CategoryInterface
     /**
      * Set title
      *
-     * @param  string   $title
-     * @return Category
+     * @param  string            $title
+     * @return CategoryInterface
      */
     public function setTitle($title)
     {
@@ -133,8 +134,8 @@ class Category implements CategoryInterface
     /**
      * Set slug
      *
-     * @param  string   $slug
-     * @return Category
+     * @param  string            $slug
+     * @return CategoryInterface
      */
     public function setSlug($slug)
     {
@@ -194,8 +195,8 @@ class Category implements CategoryInterface
     /**
      * Set the depth of the category
      *
-     * @param  integer  $level
-     * @return Category
+     * @param  integer           $level
+     * @return CategoryInterface
      */
     public function setLevel($level)
     {
@@ -208,7 +209,7 @@ class Category implements CategoryInterface
      * Add children
      *
      * @param  CategoryInterface $children
-     * @return Category
+     * @return CategoryInterface
      */
     public function addChildren(CategoryInterface $children)
     {
@@ -228,15 +229,20 @@ class Category implements CategoryInterface
         $this->children->removeElement($children);
     }
 
+    /**
+     * @return CategoryInterface
+     */
     public function setChildren($children)
     {
         $this->children = $children;
+
+        return $this;
     }
 
     /**
      * Get children
      *
-     * @return Doctrine\Common\Collections\Collection
+     * @return Collection
      */
     public function getChildren()
     {
@@ -246,8 +252,8 @@ class Category implements CategoryInterface
     /**
      * Set seo
      *
-     * @param  array $seo
-     * @return Post
+     * @param  array             $seo
+     * @return CategoryInterface
      */
     public function setSeo(array $seo = array())
     {
@@ -269,7 +275,7 @@ class Category implements CategoryInterface
     /**
      * Add posts
      *
-     * @param  PostInterface     $posts
+     * @param  PostInterface     $post
      * @return CategoryInterface
      */
     public function addPost(Post $post)
@@ -297,7 +303,7 @@ class Category implements CategoryInterface
     /**
      * Get posts
      *
-     * @return \Doctrine\Common\Collections\Collection
+     * @return Collection
      */
     public function getPosts()
     {

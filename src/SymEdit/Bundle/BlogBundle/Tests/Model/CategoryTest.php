@@ -33,6 +33,61 @@ class CategoryTest extends TestCase
         return $category;
     }
 
+    public function testToString()
+    {
+        $category = $this->getCategory();
+        $category->setTitle('foobar');
+        $this->assertEquals('foobar', $category->__toString());
+    }
+
+    public function testGetSetName()
+    {
+        $category = $this->getCategory();
+        $category->setName('foo');
+
+        $this->assertEquals('foo', $category->getName());
+    }
+
+    public function testGetSetTitle()
+    {
+        $category = $this->getCategory();
+        $category->setTitle('bar');
+
+        $this->assertEquals('bar', $category->getTitle());
+    }
+
+    public function testGetRoot()
+    {
+        $category = $this->getCategory();
+        $parent = $this->getCategory();
+
+        // No parent, should be root
+        $this->assertTrue($category->getRoot());
+
+        // Should no longer be root
+        $category->setParent($parent);
+        $this->assertFalse($category->getRoot());
+    }
+
+    public function testChildren()
+    {
+        $category = $this->getCategory();
+        $child = new Category();
+
+        // Add Child
+        $category->addChildren($child);
+        $this->assertEquals(1, count($category->getChildren()));
+
+        // Remove Child
+        $category->removeChildren($child);
+        $this->assertEquals(0, count($category->getChildren()));
+    }
+
+    public function testGetPosts()
+    {
+        $this->assertEquals(3, count($this->getCategory()->getPosts()));
+    }
+
     public function testGetPublishedPosts()
     {
         foreach ($this->getCategory()->getPublishedPosts() as $post) {
