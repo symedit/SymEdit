@@ -8,6 +8,12 @@
             "email": "craig.blanchette@gmail.com"
         }
     ],
+
+    "require": {
+        "symedit/media-bundle": "@stable",
+        "symfony/security":     "~2.3.0"
+    },
+
     "autoload": {
         "psr-0": { "SymEdit\\Bundle\\BlogBundle": "" }
     },
