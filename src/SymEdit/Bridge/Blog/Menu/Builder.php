@@ -20,9 +20,39 @@ class Builder implements MenuBuilderInterface
     {
         $content = $menu->getRootNode()->getChild('content');
 
-        $content->addChild('Blog', array('dropdown-header' => true, 'extras' => array('is_granted' => 'ROLE_ADMIN_BLOG')));
-        $content->addChild('New Post', array('route' => 'admin_post_create', 'icon' => 'edit', 'extras' => array('is_granted' => 'ROLE_ADMIN_BLOG')));
-        $content->addChild('List Posts', array('route' => 'admin_post', 'icon' => 'th-list', 'extras' => array('is_granted' => 'ROLE_ADMIN_BLOG')));
-        $content->addChild('List Categories', array('route' => 'admin_category', 'icon' => 'tags', 'extras' => array('is_granted' => 'ROLE_ADMIN_BLOG')));
+        // Blog Heading
+        $content->addChild('Blog', array(
+            'dropdown-header' => true,
+            'extras' => array(
+                'is_granted' => 'ROLE_ADMIN_BLOG',
+            ),
+        ));
+
+        // New Post
+        $content->addChild('New Post', array(
+            'route' => 'admin_post_create',
+            'icon' => 'edit',
+            'extras' => array(
+                'is_granted' => 'ROLE_ADMIN_BLOG',
+            ),
+        ));
+
+        // List Posts
+        $content->addChild('List Posts', array(
+            'route' => 'admin_post',
+            'icon' => 'th-list',
+            'extras' => array(
+                'is_granted' => 'ROLE_ADMIN_BLOG',
+            ),
+        ));
+        
+        // List Categories
+        $content->addChild('List Categories', array(
+            'route' => 'admin_category',
+            'icon' => 'tags',
+            'extras' => array(
+                'is_granted' => 'ROLE_ADMIN_BLOG',
+            ),
+        ));
     }
 }
