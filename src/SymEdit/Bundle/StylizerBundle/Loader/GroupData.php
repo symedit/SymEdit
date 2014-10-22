@@ -61,6 +61,13 @@ class GroupData
         }
     }
 
+    public function addVariables(array $variables)
+    {
+        foreach ($variables as $name => $data) {
+            $this->addVariable($name, $data);
+        }
+    }
+
     public function getVariables()
     {
         $variables = array();

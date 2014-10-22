@@ -38,9 +38,7 @@ class ConfigData
         }
 
         if (isset($data['variables'])) {
-            foreach ($data['variables'] as $name => $value) {
-                $group->addVariable($name, $value);
-            }
+            $group->addVariables($data['variables']);
         }
     }
 
