@@ -91,6 +91,7 @@ class Post implements PostInterface
         $this->setCreatedAt(new \DateTime());
         $this->setUpdatedAt(new \DateTime());
         $this->setStatus(self::DRAFT);
+        $this->categories = new ArrayCollection();
     }
 
     /**
@@ -274,7 +275,7 @@ class Post implements PostInterface
     /**
      * Add categories
      *
-     * @param  CategoryInterface $categories
+     * @param  CategoryInterface $category
      * @return Post
      */
     public function addCategory(CategoryInterface $category)
@@ -287,7 +288,7 @@ class Post implements PostInterface
     /**
      * Remove categories
      *
-     * @param CategoryInterface $categories
+     * @param CategoryInterface $category
      */
     public function removeCategory(CategoryInterface $category)
     {
