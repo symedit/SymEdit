@@ -16,8 +16,7 @@ use SymEdit\Bundle\StylizerBundle\Model\Styles;
 use Symfony\Component\HttpKernel\Event\FilterControllerEvent;
 
 /**
- * This listener checks requests for controllers. If it finds the @PageController annotation,
- * and finds a corresponding Page, then it will inject it into the controller for you.
+ * Listens for assetic controller and injects the variables
  */
 class ControllerListener
 {
