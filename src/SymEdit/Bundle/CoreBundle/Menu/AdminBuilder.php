@@ -97,7 +97,7 @@ class AdminBuilder implements MenuBuilderInterface
 
         $index = 0;
         foreach ($this->extensions as $extension) {
-            $extensions->addChild(sprintf('extension_%d', $index), $extension);
+            $extensions->addChild(sprintf('extension_%d', $index++), $extension);
         }
 
         // Help
