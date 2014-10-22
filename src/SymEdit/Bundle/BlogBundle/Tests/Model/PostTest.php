@@ -11,6 +11,7 @@
 
 namespace SymEdit\Bundle\BlogBundle\Tests\Model;
 
+use DateTime;
 use SymEdit\Bundle\BlogBundle\Model\Category;
 use SymEdit\Bundle\BlogBundle\Model\Post;
 use SymEdit\Bundle\BlogBundle\Tests\TestCase;
@@ -52,6 +53,15 @@ class PostTest extends TestCase
         $this->assertEquals('foo bar', $post->getContent());
     }
 
+    public function testSummary()
+    {
+        $post = $this->getPost();
+        $this->assertNull($post->getSummary());
+
+        $post->setSummary('foo bar');
+        $this->assertEquals('foo bar', $post->getSummary());
+    }
+
     public function testCategories()
     {
         $post = $this->getPost();
@@ -78,7 +88,7 @@ class PostTest extends TestCase
     public function testUpdated()
     {
         $post = $this->getPost();
-        $updated = new \DateTime();
+        $updated = new DateTime();
         $updated->modify('+1 second');
 
         // The time it is initalized with should be less than one we just created
@@ -91,7 +101,7 @@ class PostTest extends TestCase
     public function testCreated()
     {
         $post = $this->getPost();
-        $updated = new \DateTime();
+        $updated = new DateTime();
         $updated->modify('+1 second');
 
         // The time it is initalized with should be less than one we just created
@@ -118,5 +128,29 @@ class PostTest extends TestCase
 
         $post->setStatus(Post::PUBLISHED);
         $this->assertTrue($post->isPublished());
+    }
+
+    public function testAuthor()
+    {
+        $post = $this->getPost();
+        $this->assertNull($post->getAuthor());
+
+        $author = $this->getMock('Symfony\Component\Security\Core\User\UserInterface');
+        $post->setAuthor($author);
+        $this->assertEquals($author, $post->getAuthor());
+    }
+
+    public function testImage()
+    {
+        $post = $this->getPost();
+        $post->setSlug('foo');
+        $this->assertNull($post->getImage());
+
+        $image = $this->getMock('SymEdit\Bundle\MediaBundle\Model\Image');
+        $image->expects($this->once())
+              ->method('setNameCallBack');
+
+        $post->setImage($image);
+        $this->assertEquals($image, $post->getImage());
     }
 }
