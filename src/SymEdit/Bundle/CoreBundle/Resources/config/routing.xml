@@ -5,6 +5,7 @@
            xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
 
     <parameters>
+        <parameter key="symedit.dynamic_router.class">Symfony\Cmf\Component\Routing\DynamicRouter</parameter>
         <parameter key="symedit.routing.loader.class">SymEdit\Bundle\CoreBundle\Routing\RouteLoader</parameter>
         <parameter key="symedit.routing.route_provider.class">SymEdit\Bundle\CoreBundle\Routing\RouteProvider</parameter>
         <parameter key="symedit.routing.manager.class">SymEdit\Bundle\CoreBundle\Routing\RouteManager</parameter>
@@ -13,6 +14,22 @@
     </parameters>
 
     <services>
+        <!-- Router -->
+        <service id="symedit.dynamic_router" class="%symedit.dynamic_router.class%">
+            <argument type="service" id="router.request_context" />
+            <argument type="service" id="cmf_routing.nested_matcher" />
+            <argument type="service" id="cmf_routing.generator" />
+            <argument>%symedit.routing.route_uri_filter_regexp%</argument>
+            <argument type="service" id="event_dispatcher" on-invalid="ignore" />
+            <argument type="service" id="symedit.routing.route_provider" />
+        </service>
+
+        <!-- Nested Matcher -->
+        <service id="symedit.routing.nested_matcher" class="%cmf_routing.nested_matcher.class%">
+            <argument type="service" id="symedit.routing.route_provider" />
+            <argument type="service" id="cmf_routing.final_matcher"/>
+        </service>
+
         <!-- Route Provider -->
         <service id="symedit.routing.route_provider" class="%symedit.routing.route_provider.class%">
             <argument type="service" id="doctrine" />

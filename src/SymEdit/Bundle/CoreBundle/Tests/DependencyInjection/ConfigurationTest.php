@@ -94,6 +94,9 @@ class ConfigurationTest extends TestCase
                     'form' => 'SymEdit\Bundle\CoreBundle\Form\Type\ContactType',
                 ),
             ),
+            'routing' => array(
+                'route_uri_filter_regexp' => '',
+            ),
         );
     }
 }

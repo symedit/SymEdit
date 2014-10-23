@@ -70,6 +70,12 @@ class Configuration implements ConfigurationInterface
                         ->end()
                     ->end()
                 ->end()
+                ->arrayNode('routing')
+                    ->addDefaultsIfNotSet()
+                    ->children()
+                        ->scalarNode('route_uri_filter_regexp')->defaultValue('')->info('Regexp to skip SymEdit Dynamic router for any matching routes')->end()
+                    ->end()
+                ->end()
             ->end();
 
         $this->addClassesSection($rootNode);

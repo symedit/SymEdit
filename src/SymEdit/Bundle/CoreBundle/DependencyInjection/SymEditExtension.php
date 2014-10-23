@@ -46,6 +46,7 @@ class SymEditExtension extends SymEditResourceExtension implements PrependExtens
         // Process routing Config
         $pageControllers = $this->findBundleResources($container, '/Resources/config/symedit/page_controllers.yml');
         $container->setParameter('symedit.routing.loader.resources', $pageControllers);
+        $container->setParameter('symedit.routing.route_uri_filter_regexp', $config['routing']['route_uri_filter_regexp']);
     }
 
     public function prepend(ContainerBuilder $container)
