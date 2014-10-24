@@ -9,11 +9,11 @@
  * file that was distributed with this source code.
  */
 
-namespace SymEdit\Bundle\CoreBundle\Tests\Controller;
+namespace SymEdit\Bundle\CoreBundle\Tests\Functional;
 
 use SymEdit\Bundle\CoreBundle\Tests\WebTestCase;
 
-class PageControllerTest extends WebTestCase
+class FrontendTest extends WebTestCase
 {
     /**
      * @dataProvider fixtureUrlProvider

@@ -1,15 +1,14 @@
 imports:
     - { resource: config.yml }
 
-parameters:
-    security.user.provider.in_memory.class: SymEdit\Bundle\CoreBundle\Tests\Security\InMemoryUserProvider
-
 framework:
     test: ~
     router:
         resource: "%kernel.root_dir%/config/routing_dev.yml"
         strict_requirements: true
     profiler: { only_exceptions: false }
+    session:
+            storage_id: session.storage.mock_file
 
 assetic:
     use_controller: true
@@ -23,14 +22,30 @@ swiftmailer:
 security:
     firewalls:
         main:
-            pattern: ^/
             http_basic: ~
+            anonymous: true
+
+    access_control:
+        - { path: ^/sym-admin, role: ROLE_ADMIN }
 
     providers:
-        in_memory:
-            memory:
-                users:
-                    admin: { password: foo, roles: 'ROLE_SUPER_ADMIN' }
+        fos_userbundle:
+            id: fos_user.user_provider.username
 
     encoders:
-        FOS\UserBundle\Model\UserInterface: plaintext
+        FOS\UserBundle\Model\UserInterface: sha512
+
+    role_hierarchy:
+        ROLE_ADMIN: ROLE_USER
+        ROLE_SUPER_ADMIN:
+            - ROLE_ADMIN
+            - ROLE_SUPER_EXTEND
+            - ROLE_ADMIN_BLOG
+            - ROLE_ADMIN_WIDGET
+            - ROLE_ADMIN_IMAGE
+            - ROLE_ADMIN_SETTING
+            - ROLE_ADMIN_PAGE
+            - ROLE_ADMIN_USER
+            - ROLE_ADMIN_WEBMASTER
+            - ROLE_ADMIN_EDITABLE
+            - ROLE_ADMIN_STYLIZER
