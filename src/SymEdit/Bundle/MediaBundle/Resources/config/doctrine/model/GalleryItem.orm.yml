@@ -1,5 +1,5 @@
 SymEdit\Bundle\MediaBundle\Model\GalleryItem:
-    type: entity
+    type: mappedSuperclass
     table: gallery_item
     fields:
         id:

@@ -48,7 +48,8 @@ class SymEditBundle extends Bundle
     public function build(ContainerBuilder $container)
     {
         $interfaces = array(
-            'SymEdit\Bundle\CoreBundle\Model\PageInterface'       => 'symedit.model.page.class',
+            'SymEdit\Bundle\CoreBundle\Model\PageInterface' => 'symedit.model.page.class',
+            'SymEdit\Bundle\CoreBundle\Model\RoleInterface' => 'symedit.model.role.class',
         );
 
         $container->addCompilerPass(new ResolveDoctrineTargetEntitiesPass('symedit', $interfaces));

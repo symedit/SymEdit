@@ -1,5 +1,5 @@
 SymEdit\Bundle\WidgetBundle\Model\WidgetArea:
-    type: entity
+    type: mappedSuperclass
     table: widget_area
     fields:
         id:

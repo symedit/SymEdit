@@ -172,6 +172,6 @@ cmf_routing:
     chain:
         routers_by_id:
             router.default: 200
-            cmf_routing.dynamic_router: 100
+            symedit.dynamic_router: 100
     dynamic:
         route_provider_service_id: symedit.routing.route_provider

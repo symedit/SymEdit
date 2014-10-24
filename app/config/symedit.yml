@@ -3,6 +3,12 @@ symedit:
     email:
         sender: no-reply@riwebgurus.com
 
+# Blog Configuration
+symedit_blog:
+    classes:
+        post:
+            model: SymEdit\Bundle\CoreBundle\Model\Post
+
 # SymEdit SEO
 symedit_seo:
     models:

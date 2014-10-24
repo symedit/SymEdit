@@ -1,6 +1,6 @@
 SymEdit\Bundle\AnalyticsBundle\Model\Visit:
     table: visit
-    type: entity
+    type: mappedSuperclass
     indexes:
         class_index:
             columns: [class]

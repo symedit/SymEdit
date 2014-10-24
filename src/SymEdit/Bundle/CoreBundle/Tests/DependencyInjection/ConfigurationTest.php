@@ -86,6 +86,9 @@ class ConfigurationTest extends TestCase
                     'controller' => 'SymEdit\Bundle\CoreBundle\Controller\PageController',
                     'form' => 'SymEdit\Bundle\CoreBundle\Form\Type\PageType',
                 ),
+                'role' => array(
+                    'model' => 'SymEdit\Bundle\CoreBundle\Model\Role',
+                ),
                 'breadcrumbs' => array(
                     'model' => 'SymEdit\Bundle\CoreBundle\Model\Breadcrumbs',
                 ),

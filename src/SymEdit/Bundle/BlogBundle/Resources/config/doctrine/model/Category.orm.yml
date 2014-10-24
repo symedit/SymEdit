@@ -1,5 +1,5 @@
 SymEdit\Bundle\BlogBundle\Model\Category:
-    type: entity
+    type: mappedSuperclass
     table: category
     gedmo:
         tree:

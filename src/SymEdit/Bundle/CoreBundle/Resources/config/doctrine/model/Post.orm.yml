@@ -1,0 +1,10 @@
+SymEdit\Bundle\CoreBundle\Model\Post:
+    type: mappedSuperclass
+    table: post
+    gedmo:
+        loggable: true
+    manyToOne:
+        image:
+            targetEntity: SymEdit\Bundle\MediaBundle\Model\ImageInterface
+            cascade:
+                - persist

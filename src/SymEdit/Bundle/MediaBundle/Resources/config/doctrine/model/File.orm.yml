@@ -1,2 +1,2 @@
 SymEdit\Bundle\MediaBundle\Model\File:
-    type: entity
+    type: mappedSuperclass

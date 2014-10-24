@@ -1,5 +1,5 @@
 SymEdit\Bundle\BlogBundle\Model\Post:
-    type: entity
+    type: mappedSuperclass
     table: post
     gedmo:
         loggable: true
@@ -63,10 +63,6 @@ SymEdit\Bundle\BlogBundle\Model\Post:
         slug_idx:
             columns: [slug]
     manyToOne:
-        image:
-            targetEntity: SymEdit\Bundle\MediaBundle\Model\ImageInterface
-            cascade:
-                - persist
         author:
             targetEntity: SymEdit\Bundle\CoreBundle\Model\UserInterface
     manyToMany:

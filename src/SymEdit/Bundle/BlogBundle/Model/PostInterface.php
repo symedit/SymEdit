@@ -31,9 +31,6 @@ interface PostInterface extends SeoAbleInterface
     public function setAuthor(UserInterface $author = null);
     public function getAuthor();
 
-    public function setImage(ImageInterface $image = null);
-    public function getImage();
-
     public function setCreatedAt($createdAt);
     public function getCreatedAt();
 

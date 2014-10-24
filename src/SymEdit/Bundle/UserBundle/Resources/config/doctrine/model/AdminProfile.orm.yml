@@ -1,5 +1,5 @@
 SymEdit\Bundle\UserBundle\Model\AdminProfile:
-    type: entity
+    type: mappedSuperclass
     table: admin_profile
     fields:
         social:

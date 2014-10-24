@@ -1,5 +1,5 @@
 SymEdit\Bundle\UserBundle\Model\Profile:
-    type: entity
+    type: mappedSuperclass
     table: profile
     inheritanceType: JOINED
     id:
