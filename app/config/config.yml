@@ -1,7 +1,6 @@
 imports:
     - { resource: parameters.yml }
     - { resource: symedit.yml }
-    - { resource: security.yml }
 
 framework:
     esi:                        ~
