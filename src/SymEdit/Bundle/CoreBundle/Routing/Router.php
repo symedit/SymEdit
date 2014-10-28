@@ -1,22 +1,15 @@
 <?php
 
-/*
- * This file is part of the SymEdit package.
- *
- * (c) Craig Blanchette <craig.blanchette@gmail.com>
- *
- * For the full copyright and license information, please view the LICENSE
- * file that was distributed with this source code.
- */
-
 namespace SymEdit\Bundle\CoreBundle\Routing;
 
-use Symfony\Bundle\FrameworkBundle\Routing\DelegatingLoader;
+use Symfony\Bundle\FrameworkBundle\Routing\Router as BaseRouter;
+use Symfony\Component\Routing\RouteCollection;
 
-class RouteLoader extends DelegatingLoader
+class Router extends BaseRouter
 {
     protected $routeManager;
     protected $storage;
+    protected $stored = false;
 
     public function setRouteManager(RouteManager $routeManager)
     {
@@ -28,19 +21,28 @@ class RouteLoader extends DelegatingLoader
         $this->storage = $storage;
     }
 
-    public function load($resource, $type = null)
+    public function getRouteCollection()
     {
-        $collection = parent::load($resource, $type);
-        $stored = array();
+        $collection = parent::getRouteCollection();
 
         // Remove any page controller routes
+        if (!$this->stored) {
+            $this->storeRoutes($collection);
+        }
+
+        return $collection;
+    }
+
+    protected function storeRoutes(RouteCollection $collection)
+    {
+        $stored = array();
+
         foreach ($this->routeManager->getAllRoutes() as $routeName) {
             $stored[$routeName] = $collection->get($routeName);
             $collection->remove($routeName);
         }
 
         $this->storage->save($stored);
-
-        return $collection;
+        $this->stored = true;
     }
 }

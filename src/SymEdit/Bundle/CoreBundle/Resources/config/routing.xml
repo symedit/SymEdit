@@ -6,7 +6,7 @@
 
     <parameters>
         <parameter key="symedit.dynamic_router.class">Symfony\Cmf\Component\Routing\DynamicRouter</parameter>
-        <parameter key="symedit.routing.loader.class">SymEdit\Bundle\CoreBundle\Routing\RouteLoader</parameter>
+        <parameter key="symedit.routing.router.class">SymEdit\Bundle\CoreBundle\Routing\Router</parameter>
         <parameter key="symedit.routing.route_provider.class">SymEdit\Bundle\CoreBundle\Routing\RouteProvider</parameter>
         <parameter key="symedit.routing.manager.class">SymEdit\Bundle\CoreBundle\Routing\RouteManager</parameter>
         <parameter key="symedit.routing.loader.page_controller.class">SymEdit\Bundle\CoreBundle\Routing\PageControllerLoader</parameter>

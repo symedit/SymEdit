@@ -15,13 +15,14 @@ use Symfony\Component\DependencyInjection\Compiler\CompilerPassInterface;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Reference;
 
-class RouterLoaderCompilerPass implements CompilerPassInterface
+class RouterCompilerPass implements CompilerPassInterface
 {
     public function process(ContainerBuilder $container)
     {
-        $routerLoaderDefinition = $container->getDefinition('routing.loader');
-        $routerLoaderDefinition->setClass('%symedit.routing.loader.class%');
+        $routerLoaderDefinition = $container->getDefinition('router.default');
+        $routerLoaderDefinition->setClass('%symedit.routing.router.class%');
         $routerLoaderDefinition->addMethodCall('setRouteManager', array(new Reference('symedit.routing.manager')));
         $routerLoaderDefinition->addMethodCall('setRouteStorage', array(new Reference('symedit.routing.storage')));
+        $container->setAlias('symfony_router', 'router.default');
     }
 }
