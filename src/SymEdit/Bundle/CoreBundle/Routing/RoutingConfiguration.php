@@ -24,6 +24,13 @@ class RoutingConfiguration implements ConfigurationInterface
         $rootNode
             ->useAttributeAsKey('name')
             ->prototype('array')
+                ->validate()
+                    ->always()
+                    ->then(function ($v){
+                        $v['routes'] = array_unique($v['routes']);
+                        return $v;
+                    })
+                ->end()
                 ->children()
                     ->arrayNode('routes')->prototype('scalar')->end()
                 ->end()
