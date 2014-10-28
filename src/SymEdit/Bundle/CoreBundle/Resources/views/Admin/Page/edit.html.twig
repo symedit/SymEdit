@@ -4,7 +4,7 @@
 {% block title %}Pages &raquo; {{ page.title }} &raquo; Edit{% endblock %}
 
 {% block form_actions %}
-<button class="btn btn-primary btn-block" type="submit">{{ 'admin.page.actions.save'|trans }}</button>
+<button class="btn btn-primary" type="submit">{{ 'admin.page.actions.save'|trans }}</button>
 {% if not page.homepage %}{{ macro.delete_button('page_delete', 'admin.page.actions.delete') }}{% endif %}
 {% endblock %}
 

@@ -4,7 +4,7 @@ jQuery(function($) {
         var windowHeight = $(window).height();
         $('.full-height, .full iframe').each(function(){
             var $this = $(this);
-            $this.height(windowHeight - $this.offset().top - 3);
+            $this.height(windowHeight - $this.offset().top - 100);
         });
     }
 

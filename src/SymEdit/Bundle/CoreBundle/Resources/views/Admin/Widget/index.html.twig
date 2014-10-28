@@ -3,7 +3,7 @@
 {% block title %}Showing Widgets{% endblock %}
 
 {% block tabs %}
-<ul class="nav nav-pills nav-stacked">
+<ul class="nav nav-tabs">
     {% for area in areas %}
     <li{% if loop.first %} class="active"{% endif %}>
         <a href="#area_{{ area.area }}" data-toggle="tab">{{ area.area|capitalize }}</a>

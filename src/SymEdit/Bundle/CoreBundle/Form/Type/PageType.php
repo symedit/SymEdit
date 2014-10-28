@@ -188,13 +188,6 @@ class PageType extends AbstractType
         $builder->addEventSubscriber($subscriber);
     }
 
-    public function setDefaultOptions(OptionsResolverInterface $resolver)
-    {
-        $resolver->setDefaults(array(
-            'tabs_class' => 'nav nav-stacked nav-pills',
-        ));
-    }
-
     public function getName()
     {
         return 'symedit_page';

@@ -1,5 +1,5 @@
 {% macro delete_button(id, label, class) %}
-{% set class = class|default('btn btn-warning btn-block') %}
+{% set class = class|default('btn btn-warning') %}
 <button data-target="#{{ id }}" data-message="{{ 'admin.resource.confirm_delete'|trans }}" data-toggle="form-forward" class="{{ class }}" type="button">
     {{ icon('trash') }}
     {{ label|trans }}

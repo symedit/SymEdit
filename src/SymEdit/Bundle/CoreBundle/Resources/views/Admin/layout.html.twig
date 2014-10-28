@@ -15,31 +15,39 @@
         {% endblock %}
     </head>
     <body>
-        {% block navbar %}
-        {% include '@SymEdit/Admin/nav.html.twig' %}
-        {% endblock %}
+        <div id="header">
+            <div id="global">
+                {{ mopa_bootstrap_menu('symedit_admin_user') }}
 
-        {% block heading %}
-        <div id="title">
-            <div class="container">
-                <h1>
-                    <i class="icon-chevron-right"></i>
+                {% block brand %}
+                    {% include '@SymEdit/Admin/brand.html.twig' %}
+                {% endblock %}
+
+                <div id="title">
+                    {{ mopa_bootstrap_icon('chevron-right') }}
                     {{ block('title') }}
-                </h1>
+                </div>
             </div>
         </div>
-        {% endblock %}
 
         {% block flash %}
-        {% include '@SymEdit/Admin/flash.html.twig' %}
+            {% include '@SymEdit/Admin/flash.html.twig' %}
+        {% endblock %}
+
+        {% block navbar %}
+            <div id="menu">
+                {{ mopa_bootstrap_menu('symedit_admin', { 'template': '@SymEdit/Admin/menu.html.twig' }) }}
+            </div>
         {% endblock %}
 
         {% block content_container %}
-        <div class="container">
             <div id="content">
-                {% block content %}{% endblock %}
+                <div class="background-well">
+                    <div class="container-fluid">
+                        {% block content %}{% endblock %}
+                    </div>
+                </div>
             </div>
-        </div>
         {% endblock %}
 
         {% javascripts

@@ -80,9 +80,6 @@ class PostType extends AbstractType
             'label' => 'Summary',
             'horizontal' => false,
             'icon' => 'file',
-            'attr' => array(
-                'class' => 'full',
-            ),
         ));
 
         $summary
@@ -101,9 +98,6 @@ class PostType extends AbstractType
             'label' => 'Content',
             'icon' => 'file',
             'horizontal' => false,
-            'attr' => array(
-                'class' => 'full',
-            ),
         ));
 
         $content
@@ -122,13 +116,6 @@ class PostType extends AbstractType
             ->add($seo)
             ->add($summary)
             ->add($content);
-    }
-
-    public function setDefaultOptions(OptionsResolverInterface $resolver)
-    {
-        $resolver->setDefaults(array(
-            'tabs_class' => 'nav nav-stacked nav-pills',
-        ));
     }
 
     public function getName()
