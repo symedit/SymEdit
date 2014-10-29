@@ -2,15 +2,15 @@
 
 {% block title %}Users &raquo; List{% endblock %}
 
-{% block content %}
-<div class="pull-right">
+{% block actions %}
     <a class="btn btn-primary" href="{{ path('admin_user_create') }}">
         {{ icon('plus') }}
         Create New User
     </a>
-</div>
+{% endblock %}
 
-<h1>Listing Users</h1>
+{% block content %}
+<h4>Listing Users</h4>
 
 <table class="table table-striped">
     <tr>

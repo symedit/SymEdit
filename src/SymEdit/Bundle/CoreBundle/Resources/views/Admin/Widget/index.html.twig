@@ -24,7 +24,7 @@
 <div class="tab-content">
     {% for area in areas %}
     <section id="area_{{ area.area }}" class="{% if loop.first %}active {% endif %}tab-pane widget-area">
-        <h2>{{ area.description }}</h2>
+        <h4>{{ area.description }}</h4>
 
         <div class="row widget-area-sortable" data-toggle="sortable" data-url="{{ path('admin_widget_reorder') }}">
         {% for widget in area.widgets %}

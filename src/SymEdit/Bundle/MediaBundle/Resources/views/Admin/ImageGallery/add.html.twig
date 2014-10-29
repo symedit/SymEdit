@@ -3,5 +3,8 @@
 {% block title %}Gallery &raquo; {{ image_gallery.title }} &raquo; Add{% endblock %}
 
 {% block form_actions %}
-<button class="btn btn-primary btn-block" type="submit">Update Gallery</button>
+<button class="btn btn-primary" type="submit">
+    {{ icon('save') }}
+    Update Gallery
+</button>
 {% endblock %}

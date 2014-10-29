@@ -50,13 +50,6 @@ class CategoryType extends AbstractType
             ->add($seo);
     }
 
-    public function setDefaultOptions(\Symfony\Component\OptionsResolver\OptionsResolverInterface $resolver)
-    {
-        $resolver->setDefaults(array(
-            'tabs_class' => 'nav nav-pills nav-stacked',
-        ));
-    }
-
     public function getName()
     {
         return 'symedit_category';

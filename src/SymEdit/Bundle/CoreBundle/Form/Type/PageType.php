@@ -16,7 +16,6 @@ use SymEdit\Bundle\CoreBundle\Form\DataTransformer\RepositoryTransformer;
 use SymEdit\Bundle\CoreBundle\Form\EventListener\PageTypeSubscriber;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
 class PageType extends AbstractType
 {

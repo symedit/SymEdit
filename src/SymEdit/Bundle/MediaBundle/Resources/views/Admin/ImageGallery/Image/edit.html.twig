@@ -4,7 +4,7 @@
 {% block title %}Images &raquo; {{ image.name }} &raquo; Edit{% endblock %}
 
 {% block form_actions %}
-        <button type="submit" class="btn btn-block btn-primary">{{ icon('save') }} {{ 'admin.image.actions.save'|trans }}</button>
+        <button type="submit" class="btn btn-primary">{{ icon('save') }} {{ 'admin.image.actions.save'|trans }}</button>
         {{ macro.delete_button('image_delete', 'admin.image.actions.delete') }}
 {% endblock %}
 

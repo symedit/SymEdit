@@ -13,12 +13,16 @@
         {{ form_start(form) }}
     {% endif %}
 
-    <div class="tab-holder">
+    <div class="tab-holder clearfix">
         {% block tabs %}
             {% if form is defined %}
                 {{ form_tabs(form) }}
             {% endif %}
         {% endblock %}
+
+        <div class="form-buttons">
+            {% block form_actions %}{% endblock %}
+        </div>
     </div>
 
 
@@ -29,11 +33,6 @@
             {% endif %}
         {% endblock %}
 
-        <div class="form-group actions">
-            <div class="col-sm-offset-3 col-sm-9">
-                {% block form_actions %}{% endblock %}
-            </div>
-        </div>
     </div>
 
     {% if form is defined %}

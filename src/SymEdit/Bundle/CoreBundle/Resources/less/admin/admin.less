@@ -1,16 +1,6 @@
 
-@white:             #ffffff;
-@black:             #000000;
-@blue:              #285D7C;
-@red:               #CF4647;
-@green:             #626574;
-@light_gray:        #E4E4E4;
-@dark_gray:         #142D3C;
-@warning:           #B32222;
-
-@sans_serif:        'Open Sans', sans-serif;
-
 // Include Others
+@import "variables.less";
 @import "elements.less";
 @import "layout.less";
 @import "theme.less";
@@ -70,13 +60,30 @@ img {
 }
 
 #global {
-    background-color: @dark_gray;
+    background-color: @green;
     height: 51px;
     padding-right: 20px;
 
-    a {
+    .navbar-brand {
         color: @white;
     }
+
+    .navbar-right {
+        margin-right: 40px;
+
+        > li > a {
+            color: @white;
+        }
+
+        .open > a {
+            background-color: darken(@green, 20%);
+        }
+
+        > li > a:hover, > li > a:focus {
+            background-color: darken(@green, 15%);
+        }
+    }
+
 }
 
 #title {
@@ -105,7 +112,7 @@ img {
         padding: 4px 0 4px 200px;
 
         &.message {
-            background-color: @green;
+            background-color: @blue;
         }
 
         &.error {
@@ -127,9 +134,10 @@ img {
 // Menu / Sidebar
 
 @sidebar_offset_top:    51px;
-@sidebar_bg:            @blue;
+@sidebar_bg:            @green;
 @sidebar_caret_color:   @white;
 @sidebar_submenu_bg:    darken(@sidebar_bg, 10%);
+@inactive_tab_bg:       @green;
 @menu_icon_width:       90px;
 
 #menu {
@@ -175,7 +183,6 @@ img {
                     border-top: 4px solid transparent;
                     border-bottom: 4px solid transparent;
                     border-width: 5px;
-                    color: fadeout(@black, 60%);
                     margin-top: -20px;
                     float: right;
                 }
@@ -248,34 +255,31 @@ img {
     position: relative;
 
     .nav-tabs {
-        position: absolute;
-        left: 0;
-        top: 0;
-        right: 0;
         padding: 1px 0;
-        background-color: @blue;
-        padding-left: @sidebar_offset;
+        float: left;
+        border: none;
+        margin-right: 40px;
 
         li {
             a {
                 border: none;
-                background-color: @dark_gray;
+                background-color: fadeout(@inactive_tab_bg, 60%);
                 padding: 14px 12px;
-                color: white;
+                color: @white;
                 .rounded(0);
 
                 &:hover {
-                    background-color: darken(@dark_gray, 10%);
+                    background-color: fadeout(@inactive_tab_bg, 50%);
                 }
             }
 
             &.active a {
-                background-color: lighten(@dark_gray, 10%);
+                background-color: @white;
                 border: none;
-                color: white;
+                color: @black;
 
                 &:hover {
-                    background-color: lighten(@dark_gray, 15%);
+                    background-color: darken(@white, 5%);
                 }
             }
         }
@@ -286,18 +290,42 @@ img {
     }
 
     .tab-holder {
-        height: 40px;
+        .form-buttons {
+            margin-top: 2px;
+        }
+    }
+
+    .form-buttons {
+        float: left;
+        padding-bottom: 6px;
+
+        .btn {
+            font-size: 13px;
+            padding: 9px 16px;
+        }
     }
 }
 
 .background-well {
     background-color: white;
-    margin-top: 10px;
-    padding: 20px;
+    padding: 30px 20px;
+}
+
+    // Remove top margins on h tags if it's first
+.background-well, .tab-pane {
+    > h1, > h2, > h3, > h4, > h5, > h6 {
+        &:first-child {
+            margin-top: 0;
+        }
+    }
 }
 
 .well .title {
     margin-top: 0;
+}
+
+#tab-content {
+    position: relative;
 }
 
 
@@ -323,7 +351,7 @@ img {
  */
 i[class^="icon-"], i[class*=" icon-"] {
     &.circle {
-        background-color: @blue;
+        background-color: @brand-primary;
         color: @white;
         margin: 0 4px;
         font-size: 18px;
@@ -349,7 +377,7 @@ i[class^="icon-"], i[class*=" icon-"] {
         &:hover {
             .transition();
             text-decoration: none;
-            background-color: @blue;
+            background-color: @brand-primary;
             color: @white;
             border-color: @black;
 
@@ -367,7 +395,7 @@ i[class^="icon-"], i[class*=" icon-"] {
         width: 40px;
         height: 40px;
         line-height: 39px;
-        background-color: @blue;
+        background-color: @brand-primary;
         text-align: center;
         color: @white;
         position: relative;
@@ -520,9 +548,18 @@ iframe {
     border: 1px solid #aaa;
 }
 
+.full {
+    .redactor_box {
+        position: absolute;
+        left: 0;
+        top: 0;
+        right: 0;
+    }
+}
+
 .redactor_box {
     iframe {
-        border-color: @dark_gray;
+        border: none;
     }
 
     textarea {
@@ -590,7 +627,7 @@ body .redactor_toolbar li a.redactor_btn_bootstrap {
             &:hover {
                 color: @white;
                 text-shadow: 2px 2px 10px rgba(0,0,0,.8);
-                background-color: @blue;
+                background-color: @brand-primary;
             }
         }
     }

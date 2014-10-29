@@ -3,35 +3,34 @@
 
 {% block title %}Image Galleries &raquo; {{ image_gallery.slug }} &raquo; List{% endblock %}
 
+{% block actions %}
+    <a class="btn btn-primary" href="{{ path('admin_gallery_item_create', { gallery_id: image_gallery.id }) }}">
+        {{ icon('plus') }}
+        Add Item
+    </a>
+
+    <a class="btn btn-info" href="{{ path('admin_image_gallery_add', { id: image_gallery.id }) }}">
+        {{ icon('plus') }}
+        Add Existing Items
+    </a>
+
+    {{ macro.delete_button('gallery_delete', 'Delete Gallery', 'btn btn-warning') }}
+{% endblock %}
+
 {% block content %}
-<div class="pull-right">
-    <div class="btn-group">
-        <a class="btn btn-primary" href="{{ path('admin_gallery_item_create', { gallery_id: image_gallery.id }) }}">
-            {{ icon('plus') }}
-            Add Item
-        </a>
-        <a class="btn btn-info" href="{{ path('admin_image_gallery_add', { id: image_gallery.id }) }}">
-            {{ icon('plus') }}
-            Add Existing Items
-        </a>
+    <h2>
+        {{ image_gallery.title }}
+    </h2>
 
-        {{ macro.delete_button('gallery_delete', 'Delete Gallery', 'btn btn-warning') }}
+    <div class="row" id="gallery-items" data-toggle="sortable" data-url="{{ path('admin_gallery_item_reorder') }}">
+        {% for item in image_gallery.items %}
+        <div data-id="{{ item.id }}" class="col-xs-2">
+            <a href="{{ path('admin_gallery_item_update', { id: item.id }) }}" class="thumbnail">
+                <img src="{{ item.image | imagine_filter('symedit_96x96') }}">
+            </a>
+        </div>
+        {% endfor %}
     </div>
-</div>
 
-<h2>
-    {{ image_gallery.title }}
-</h2>
-
-<div class="row" id="gallery-items" data-toggle="sortable" data-url="{{ path('admin_gallery_item_reorder') }}">
-    {% for item in image_gallery.items %}
-    <div data-id="{{ item.id }}" class="col-xs-2">
-        <a href="{{ path('admin_gallery_item_update', { id: item.id }) }}" class="thumbnail">
-            <img src="{{ item.image | imagine_filter('symedit_96x96') }}">
-        </a>
-    </div>
-    {% endfor %}
-</div>
-
-{{ macro.delete_form('gallery_delete', path('admin_image_gallery_delete', {id: image_gallery.id})) }}
+    {{ macro.delete_form('gallery_delete', path('admin_image_gallery_delete', {id: image_gallery.id})) }}
 {% endblock %}

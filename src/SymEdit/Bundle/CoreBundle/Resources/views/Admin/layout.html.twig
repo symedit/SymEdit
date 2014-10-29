@@ -2,6 +2,7 @@
 <html>
     <head>
         <title>{% block title %}SymEdit{% endblock %}</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
         {% block stylesheets %}
         {% stylesheets
             'bundles/symedit/redactor/redactor.css'
@@ -17,7 +18,9 @@
     <body>
         <div id="header">
             <div id="global">
-                {{ mopa_bootstrap_menu('symedit_admin_user') }}
+                <div class="hidden-sm hidden-xs">
+                    {{ mopa_bootstrap_menu('symedit_admin_user') }}
+                </div>
 
                 {% block brand %}
                     {% include '@SymEdit/Admin/brand.html.twig' %}
@@ -25,6 +28,7 @@
 
                 <div id="title">
                     {{ mopa_bootstrap_icon('chevron-right') }}
+                    &nbsp;
                     {{ block('title') }}
                 </div>
             </div>
@@ -42,8 +46,15 @@
 
         {% block content_container %}
             <div id="content">
-                <div class="background-well">
-                    <div class="container-fluid">
+                <div class="container-fluid">
+                    <div class="clearfix">
+                        <div class="form-buttons">
+                            {% block form_actions %}{% endblock %}
+                            {% block actions %}{% endblock %}
+                        </div>
+                    </div>
+
+                    <div class="background-well">
                         {% block content %}{% endblock %}
                     </div>
                 </div>

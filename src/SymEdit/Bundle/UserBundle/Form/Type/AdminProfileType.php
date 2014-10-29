@@ -157,15 +157,6 @@ class AdminProfileType extends BaseType
                 ->add($roles);
     }
 
-    public function setDefaultOptions(OptionsResolverInterface $resolver)
-    {
-        parent::setDefaultOptions($resolver);
-
-        $resolver->setDefaults(array(
-            'tabs_class' => 'nav nav-pills nav-stacked',
-        ));
-    }
-
     public function getName()
     {
         return 'symedit_admin_profile';

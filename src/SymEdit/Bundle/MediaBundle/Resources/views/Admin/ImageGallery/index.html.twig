@@ -2,24 +2,26 @@
 
 {% block title %}Image Galleries &raquo; List{% endblock %}
 
-{% block content %}
-<div class="pull-right">
+{% block actions %}
     <a class="btn btn-primary" href="{{ path('admin_image_gallery_create') }}">
         {{ icon('plus') }}
         Create New Gallery
     </a>
-</div>
+{% endblock %}
 
-{% for gallery in image_galleries %}
-<div>
-    <h4>
-        {{ gallery.title }}
-        <a class="btn btn-xs btn-primary" href="{{ path('admin_image_gallery_update', { id: gallery.id }) }}">Edit</a>
-    </h4>
+{% block content %}
+    {% for gallery in image_galleries %}
+    <div>
+        <h4>
+            {{ gallery.title }}
+            <a class="btn btn-xs btn-primary" href="{{ path('admin_image_gallery_update', { id: gallery.id }) }}">Edit</a>
+        </h4>
 
-    {% for item in gallery.items|slice(0,6) %}
-    <img src="{{ item.image | imagine_filter('symedit_96x96') }}">
+        {% for item in gallery.items|slice(0,6) %}
+        <img src="{{ item.image | imagine_filter('symedit_96x96') }}">
+        {% endfor %}
+    </div>
+    {% else %}
+        <h4>You currently have no galleries, click "Create New Gallery" above to make one!</h4>
     {% endfor %}
-</div>
-{% endfor %}
 {% endblock %}

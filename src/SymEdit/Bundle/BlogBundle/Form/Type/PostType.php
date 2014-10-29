@@ -13,7 +13,6 @@ namespace SymEdit\Bundle\BlogBundle\Form\Type;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 use SymEdit\Bundle\BlogBundle\Model\Post;
 use Doctrine\ORM\EntityRepository;
 
@@ -80,6 +79,9 @@ class PostType extends AbstractType
             'label' => 'Summary',
             'horizontal' => false,
             'icon' => 'file',
+            'attr' => array(
+                'class' => 'full',
+            ),
         ));
 
         $summary
@@ -98,6 +100,9 @@ class PostType extends AbstractType
             'label' => 'Content',
             'icon' => 'file',
             'horizontal' => false,
+            'attr' => array(
+                'class' => 'full',
+            ),
         ));
 
         $content
