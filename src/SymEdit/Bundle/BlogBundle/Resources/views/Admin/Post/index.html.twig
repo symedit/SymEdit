@@ -2,15 +2,14 @@
 
 {% block title %}Blog &raquo; List{% endblock %}
 
-{% block content %}
-
-<a class="pull-right btn btn-primary" href="{{ path('admin_post_create') }}">
+{% block actions %}
+<a class="btn btn-primary" href="{{ path('admin_post_create') }}">
     {{ icon('plus') }}
     Create New Post
 </a>
+{% endblock %}
 
-<h1>Listing Posts</h1>
-
+{% block content %}
 <table class="table table-striped">
     <thead>
         <tr>

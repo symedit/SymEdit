@@ -6,7 +6,7 @@
 
 {% block tabs %}
 {% if form.groups|length > 0 %}
-<ul class="nav nav-pills nav-stacked">
+<ul class="nav nav-tabs">
     {% for group in form.groups %}
     <li{% if loop.first %} class="active"{% endif %}>
         <a href="#group-{{ group.vars.name }}" data-toggle="tab">
@@ -38,7 +38,13 @@
 
 {% block form_actions %}
 {% if form.groups|length > 0 %}
-<button class="btn btn-primary btn-block" type="submit">Save</button>
-<button name="dump" type="submit" class="btn btn-info btn-block">Save and Dump</button>
+    <button class="btn btn-primary" type="submit">
+        {{ icon('save') }}
+        Save
+    </button>
+
+    {% if app.environment == 'prod' %}
+        <button name="dump" type="submit" class="btn btn-info">Save and Dump</button>
+    {% endif %}
 {% endif %}
 {% endblock %}

@@ -17,12 +17,15 @@
 
 {% block title %}Blog &raquo; Categories &raquo; List{% endblock %}
 
+{% block actions %}
+    <a class="btn btn-primary" href="{{ path('admin_category_create') }}">
+        {{ icon('plus') }}
+        New Category
+    </a>
+{% endblock %}
+
 {% block content %}
 <div class="tree">
      {{ _self.tree(categories) }}
-</div>
-
-<div class="form-actions">
-    <a class="btn btn-primary" href="{{ path('admin_category_create') }}">New Category</a>
 </div>
 {% endblock %}
