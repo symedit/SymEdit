@@ -130,7 +130,7 @@ class Media implements MediaInterface
             return null;
         }
 
-        return sprintf('/%s/%s', ltrim($this->getPrefix(), '/'), $this->getPath());
+        return sprintf('/%s/%s', trim($this->getPrefix(), '/'), $this->getPath());
     }
 
     public function getUploadName()
