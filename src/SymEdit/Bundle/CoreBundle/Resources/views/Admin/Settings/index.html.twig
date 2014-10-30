@@ -3,7 +3,7 @@
 {% block title %}Settings{% endblock %}
 
 {% block tabs %}
-<ul class="nav nav-pills nav-stacked">
+<ul class="nav nav-tabs">
 {% for group in form.groups %}
 <li{% if loop.first %} class="active"{% endif %}>
     <a href="#setting-{{ group.vars.name }}" data-toggle="tab">{{ group.vars.label }}</a>
@@ -16,7 +16,6 @@
 <div class="tab-content">
 {% for group in form.groups %}
     <div class="tab-pane{% if loop.first %} active{% endif %}" id="setting-{{ group.vars.name }}">
-        <h2 class="heading">{{ group.vars.label }} Settings</h2>
         {{ form_widget(group) }}
     </div>
 {% endfor %}
@@ -25,5 +24,8 @@
 
 
 {% block form_actions %}
-<button type="submit" class="btn btn-block btn-primary">Update Settings</button>
+<button type="submit" class="btn btn-primary">
+    {{ icon('save') }}
+    Update Settings
+</button>
 {% endblock %}

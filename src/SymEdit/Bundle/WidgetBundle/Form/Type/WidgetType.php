@@ -89,10 +89,6 @@ class WidgetType extends AbstractType
 
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
-        $resolver->setDefaults(array(
-            'tabs_class' => 'nav nav-pills nav-stacked',
-        ));
-
         $resolver->setRequired(array(
             'strategy',
         ));

@@ -16,7 +16,6 @@ use SymEdit\Bundle\CoreBundle\Form\DataTransformer\RepositoryTransformer;
 use SymEdit\Bundle\CoreBundle\Form\EventListener\PageTypeSubscriber;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
 class PageType extends AbstractType
 {
@@ -186,13 +185,6 @@ class PageType extends AbstractType
 
         $subscriber = new PageTypeSubscriber();
         $builder->addEventSubscriber($subscriber);
-    }
-
-    public function setDefaultOptions(OptionsResolverInterface $resolver)
-    {
-        $resolver->setDefaults(array(
-            'tabs_class' => 'nav nav-stacked nav-pills',
-        ));
     }
 
     public function getName()

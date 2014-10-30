@@ -4,8 +4,16 @@
 {% block title %}Gallery &raquo; Item &raquo; Edit{% endblock %}
 
 {% block form_actions %}
-<button class="btn btn-primary btn-block" type="submit">Save Item</button>
-<a class="btn btn-block btn-info" href="{{ path('admin_image_gallery_update', {id: gallery_item.gallery.id }) }}">Back to Gallery</a>
+<a class="btn btn-info" href="{{ path('admin_image_gallery_update', {id: gallery_item.gallery.id }) }}">
+    {{ icon('arrow-left') }}
+    Back to Gallery
+</a>
+
+<button class="btn btn-primary" type="submit">
+    {{ icon('save') }}
+    Save Item
+</button>
+
 {{ macro.delete_button('gallery_item_delete', 'Delete Item') }}
 {% endblock %}
 

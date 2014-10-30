@@ -13,7 +13,6 @@ namespace SymEdit\Bundle\BlogBundle\Form\Type;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 use SymEdit\Bundle\BlogBundle\Model\Post;
 use Doctrine\ORM\EntityRepository;
 
@@ -122,13 +121,6 @@ class PostType extends AbstractType
             ->add($seo)
             ->add($summary)
             ->add($content);
-    }
-
-    public function setDefaultOptions(OptionsResolverInterface $resolver)
-    {
-        $resolver->setDefaults(array(
-            'tabs_class' => 'nav nav-stacked nav-pills',
-        ));
     }
 
     public function getName()

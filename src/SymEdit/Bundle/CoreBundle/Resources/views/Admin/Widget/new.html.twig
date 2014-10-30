@@ -3,5 +3,8 @@
 {% block title %}Widget &raquo; New &raquo; {{ widget.strategy.description|trans({}, 'widget') }}{% endblock %}
 
 {% block form_actions %}
-<button class="btn btn-primary btn-block" type="submit">Create Widget</button>
+<button class="btn btn-primary" type="submit">
+    {{ icon('plus') }}
+    Create Widget
+</button>
 {% endblock %}

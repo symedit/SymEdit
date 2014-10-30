@@ -2,6 +2,7 @@
 <html>
     <head>
         <title>{% block title %}SymEdit{% endblock %}</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
         {% block stylesheets %}
         {% stylesheets
             'bundles/symedit/redactor/redactor.css'
@@ -15,31 +16,49 @@
         {% endblock %}
     </head>
     <body>
-        {% block navbar %}
-        {% include '@SymEdit/Admin/nav.html.twig' %}
-        {% endblock %}
+        <div id="header">
+            <div id="global">
+                <div class="hidden-sm hidden-xs">
+                    {{ mopa_bootstrap_menu('symedit_admin_user') }}
+                </div>
 
-        {% block heading %}
-        <div id="title">
-            <div class="container">
-                <h1>
-                    <i class="icon-chevron-right"></i>
+                {% block brand %}
+                    {% include '@SymEdit/Admin/brand.html.twig' %}
+                {% endblock %}
+
+                <div id="title">
+                    {{ mopa_bootstrap_icon('chevron-right') }}
+                    &nbsp;
                     {{ block('title') }}
-                </h1>
+                </div>
             </div>
         </div>
-        {% endblock %}
 
         {% block flash %}
-        {% include '@SymEdit/Admin/flash.html.twig' %}
+            {% include '@SymEdit/Admin/flash.html.twig' %}
+        {% endblock %}
+
+        {% block navbar %}
+            <div id="menu">
+                {{ mopa_bootstrap_menu('symedit_admin', { 'template': '@SymEdit/Admin/menu.html.twig' }) }}
+            </div>
         {% endblock %}
 
         {% block content_container %}
-        <div class="container">
             <div id="content">
-                {% block content %}{% endblock %}
+                <div class="container-fluid">
+                    <div class="clearfix">
+                        <div class="form-buttons">
+                            {% block form_actions %}{% endblock %}
+                            {% block actions %}{% endblock %}
+                        </div>
+                    </div>
+
+                    <div class="background-well">
+                        {% block content %}{% endblock %}
+                    </div>
+                </div>
             </div>
-        </div>
         {% endblock %}
 
         {% javascripts

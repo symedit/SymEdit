@@ -1,0 +1,27 @@
+{% extends '@SymEdit/Admin/base.html.twig' %}
+
+{% block title %}Files &raquo; List{% endblock %}
+
+{% block actions %}
+    <a class="btn btn-primary" href="{{ path('admin_file_create') }}">
+        {{ icon('plus') }}
+        Add New File
+    </a>
+{% endblock %}
+
+{% block content %}
+    <div class="row">
+      {% for file in files %}
+      <div class="col-md-2">
+          <a class="thumbnail icon" href="{{ path('admin_file_update', {id:file.id}) }}">
+              {{ icon('file') }}
+              {{ file.path }}
+          </a>
+      </div>
+      {% else %}
+          <div class="col-sm-12">
+              <h4>You currently have no files uploaded.</h4>
+          </div>
+      {% endfor %}
+    </div>
+{% endblock %}

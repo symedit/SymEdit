@@ -3,5 +3,8 @@
 {% block title %}Blog &raquo; Category &raquo; Create New{% endblock %}
 
 {% block form_actions %}
-<button class="btn btn-block btn-primary" type="submit">{{ 'admin.category.actions.create'|trans }}</button>
+<button class="btn btn-primary" type="submit">
+    {{ icon('plus') }}
+    {{ 'admin.category.actions.create'|trans }}
+</button>
 {% endblock %}

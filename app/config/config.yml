@@ -86,8 +86,6 @@ mopa_bootstrap:
         render_required_asterisk: true
         render_optional_text: false
         checkbox_label: label
-        tabs:
-            class: nav nav-tabs nav-stacked
 
 # Gaufrette Configuration
 knp_gaufrette:

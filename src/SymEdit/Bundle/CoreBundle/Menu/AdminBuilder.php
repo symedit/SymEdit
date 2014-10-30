@@ -46,7 +46,14 @@ class AdminBuilder implements MenuBuilderInterface
         ));
 
         $pageExtras = array('is_granted' => 'ROLE_ADMIN_PAGE');
-        $content->addChild('Pages', array('dropdown-header' => true, 'extras' => $pageExtras));
+        $content->addChild('Pages', array(
+            'dropdown-header' => true,
+            'extras' => array(
+                'is_granted' => 'ROLE_ADMIN_PAGE',
+                'routes' => array('route' => 'admin_page_update'),
+            ),
+        ));
+
         $content->addChild('New Page', array('route' => 'admin_page_create', 'icon' => 'edit', 'extras' => $pageExtras));
         $content->addChild('List Pages', array('route' => 'admin_page', 'icon' => 'file', 'extras' => $pageExtras));
 

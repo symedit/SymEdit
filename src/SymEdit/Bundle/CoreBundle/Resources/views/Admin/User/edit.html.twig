@@ -3,5 +3,8 @@
 {% block title %}Users &raquo; {{ user.username }} &raquo; Edit{% endblock %}
 
 {% block form_actions %}
-<button type="submit" class="btn btn-primary btn-block">Update User</button>
+<button type="submit" class="btn btn-primary">
+    {{ icon('save') }}
+    Update User
+</button>
 {% endblock %}
