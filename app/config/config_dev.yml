@@ -13,3 +13,6 @@ assetic:
 
 web_profiler:
     toolbar: true
+
+swiftmailer:
+    disable_delivery: true
