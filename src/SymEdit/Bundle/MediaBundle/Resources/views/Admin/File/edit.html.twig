@@ -4,7 +4,11 @@
 {% block title %}File &raquo; {{ file.name }} &raquo; Edit{% endblock %}
 
 {% block form_actions %}
-    <button type="submit" class="btn btn-primary btn-block">{{ icon('save') }} {{ 'admin.file.actions.save'|trans }}</button>
+    <button type="submit" class="btn btn-primary">
+        {{ icon('save') }}
+        {{ 'admin.file.actions.save'|trans }}
+    </button>
+    
     {{ macro.delete_button('file_delete', 'admin.file.actions.delete') }}
 {% endblock %}
 
