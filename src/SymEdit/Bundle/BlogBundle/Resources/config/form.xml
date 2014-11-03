@@ -6,7 +6,6 @@
 
     <services>
         <service id="symedit.form.type.post" class="%symedit.form.type.post.class%">
-            <argument>%fos_user.model.user.class%</argument>
             <tag name="form.type" alias="symedit_post" />
         </service>
 

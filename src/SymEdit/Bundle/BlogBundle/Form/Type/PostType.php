@@ -14,17 +14,9 @@ namespace SymEdit\Bundle\BlogBundle\Form\Type;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use SymEdit\Bundle\BlogBundle\Model\Post;
-use Doctrine\ORM\EntityRepository;
 
 class PostType extends AbstractType
 {
-    protected $userClass;
-
-    public function __construct($userClass)
-    {
-        $this->userClass = $userClass;
-    }
-
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $basic = $builder->create('basic', 'tab', array(
@@ -35,13 +27,9 @@ class PostType extends AbstractType
 
         $basic
             ->add('title', 'text')
-            ->add('author', 'entity', array(
+            ->add('author', 'symedit_user_choose', array(
+                'admin' => true,
                 'property' => 'profile.fullname',
-                'class'    => $this->userClass,
-                'query_builder' => function (EntityRepository $er) {
-                    return $er->createQueryBuilder('u')
-                              ->andWhere('u.admin = true');
-                },
             ))
             ->add('status', 'choice', array(
                 'choices' => array(
