@@ -3,18 +3,9 @@ admin_settings:
     methods: [GET]
     defaults:
         _controller: symedit.controller.settings:indexAction
-        _sylius:
-            template: @SymEdit/Admin/Settings/index.html.twig
-            paginate: false
-            limit: false
 
 admin_settings_update:
     pattern: /
     methods: [PUT, POST]
     defaults:
         _controller: symedit.controller.settings:updateAction
-        _sylius:
-            template: @SymEdit/Admin/Settings/index.html.twig
-            redirect:
-                route: admin_settings_update
-                parameters: { id: $id }

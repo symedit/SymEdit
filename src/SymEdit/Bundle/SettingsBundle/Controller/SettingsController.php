@@ -12,38 +12,22 @@
 namespace SymEdit\Bundle\SettingsBundle\Controller;
 
 use FOS\RestBundle\Controller\FOSRestController;
-use Sylius\Bundle\ResourceBundle\Controller\Configuration;
 use SymEdit\Bundle\SettingsBundle\Model\Settings;
 use Symfony\Component\HttpFoundation\Request;
 
 /**
  * Settings controller.
- *
- * @TODO: Remove sylius from this bundle.. cause why..
- *
- * Also make a settingsLoader or something.. the settings model
- * should just be that. Make it a factory to get the model or something
- * or just hold a reference to the loader. It shouldn't know about caches.
  */
 class SettingsController extends FOSRestController
 {
-    protected $config;
-
-    public function __construct(Configuration $config)
+    public function indexAction()
     {
-        $this->config = $config;
-    }
-
-    public function indexAction(Request $request)
-    {
-        $this->config->setRequest($request);
-
         $settings = $this->getSettings();
         $form = $this->getForm($settings);
 
         $view = $this
             ->view()
-            ->setTemplate($this->config->getTemplate('index.html'))
+            ->setTemplate('@SymEdit/Admin/Settings/index.html.twig')
             ->setData(array(
                 'settings' => $settings->getSettings(),
                 'form' => $form->createView(),
@@ -54,8 +38,6 @@ class SettingsController extends FOSRestController
 
     public function updateAction(Request $request)
     {
-        $this->config->setRequest($request);
-
         $settings = $this->getSettings();
         $form = $this->getForm($settings);
         $form->handleRequest($request);
@@ -66,7 +48,7 @@ class SettingsController extends FOSRestController
 
         $view = $this
             ->view()
-            ->setTemplate($this->config->getTemplate('update.html'))
+            ->setTemplate('@SymEdit/Admin/Settings/index.html.twig')
             ->setData(array(
                 'settings'  => $settings->getSettings(),
                 'form'      => $form->createView(),
@@ -78,7 +60,7 @@ class SettingsController extends FOSRestController
 
     public function getForm($resource = null)
     {
-        return $this->createForm($this->config->getFormType(), $resource);
+        return $this->createForm('symedit_settings', $resource);
     }
 
     /**

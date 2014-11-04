@@ -14,13 +14,6 @@
     <services>
         <!-- Settings Controller -->
         <service id="symedit.controller.settings" class="%symedit.controller.settings.class%">
-            <argument type="service">
-                <service factory-service="sylius.controller.configuration_factory" factory-method="createConfiguration" class="Sylius\Bundle\ResourceBundle\Controller\Configuration">
-                    <argument>symedit</argument>
-                    <argument>settings</argument>
-                    <argument></argument>
-                </service>
-            </argument>
             <call method="setContainer">
                 <argument type="service" id="service_container" />
             </call>
