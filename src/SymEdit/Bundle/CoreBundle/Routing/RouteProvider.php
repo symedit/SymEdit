@@ -11,9 +11,8 @@
 
 namespace SymEdit\Bundle\CoreBundle\Routing;
 
-use Doctrine\Common\Persistence\ManagerRegistry;
-use Sylius\Component\Resource\Repository\RepositoryInterface;
 use SymEdit\Bundle\CoreBundle\Model\PageInterface;
+use Symfony\Bridge\Doctrine\ManagerRegistry;
 use Symfony\Cmf\Bundle\RoutingBundle\Doctrine\DoctrineProvider;
 use Symfony\Cmf\Component\Routing\RouteProviderInterface;
 use Symfony\Component\HttpFoundation\Request;
@@ -26,11 +25,13 @@ class RouteProvider extends DoctrineProvider implements RouteProviderInterface
     protected $routeManager;
     protected $storage;
     protected $routeByNameCache = array();
+    protected $repository;
 
-    public function __construct(ManagerRegistry $managerRegistry, $className = null, RouteManager $routeManager, RouteStorage $storage)
+    public function __construct(RouteManager $routeManager, RouteStorage $storage, ManagerRegistry $managerRegistry, $className = null)
     {
         $this->routeManager = $routeManager;
         $this->storage = $storage;
+
         parent::__construct($managerRegistry, $className);
     }
 
@@ -49,11 +50,9 @@ class RouteProvider extends DoctrineProvider implements RouteProviderInterface
 
     protected function doGetRouteByName($name)
     {
-        $repository = $this->getRepository();
-
         // Homepage route
         if ($name === 'homepage') {
-            $homepage = $repository->findOneBy(array(
+            $homepage = $this->getRepository()->findOneBy(array(
                 'homepage' => true,
             ));
 
@@ -62,7 +61,7 @@ class RouteProvider extends DoctrineProvider implements RouteProviderInterface
 
         // Page route
         if (strpos($name, 'page/') !== false) {
-            $page = $repository->find(substr($name, 5));
+            $page = $this->getRepository()->find(substr($name, 5));
 
             if (!$page) {
                 throw new RouteNotFoundException(sprintf('Could not find route for "%s".', $name));
@@ -71,36 +70,53 @@ class RouteProvider extends DoctrineProvider implements RouteProviderInterface
             return $this->createRoute($page);
         }
 
-        // Route we removed
-        if ($pageController = $this->routeManager->findByRoute($name)) {
-            $page = $repository->findOneBy(array(
-                'pageController' => true,
-                'pageControllerPath' => $pageController->getName(),
-            ));
+        // Finally try to get a Page Controller
+        return $this->getPageControllerRoute($name);
+    }
 
-            $route = $this->storage->getRoute($name);
 
-            // Add Prefix
-            $prefix = rtrim($page->getPath(), '/');
-            $route->setPath($prefix.'/'.ltrim($route->getPath(), '/'));
+    protected function getPageControllerRoute($name)
+    {
+        $pageController = $this->routeManager->findByRoute($name);
 
-            // Add this page
-            $route->addDefaults(array(
-                '_page' => $page,
-            ));
-
-            return $route;
+        if (!$pageController) {
+            throw new RouteNotFoundException('No route found in SymEdit Router');
         }
+
+        $page = $this->getRepository()->findOneBy(array(
+            'pageController' => true,
+            'pageControllerPath' => $pageController->getName(),
+        ));
+
+        // No Page connected so this route is inactive
+        if (!$page) {
+            throw new RouteNotFoundException(sprintf(
+                'Page Controller "%s" does not have an active page so this route is inactive',
+                $pageController->getName()
+            ));
+        }
+
+        $route = $this->storage->getRoute($name);
+
+        // Add Prefix
+        $prefix = rtrim($page->getPath(), '/');
+        $route->setPath($prefix.'/'.ltrim($route->getPath(), '/'));
+
+        // Add this page
+        $route->addDefaults(array(
+            '_page' => $page,
+        ));
+
+        return $route;
     }
 
     public function getRouteCollectionForRequest(Request $request)
     {
         $path = $request->getPathInfo();
         $collection = new RouteCollection();
-        $repository = $this->getRepository();
 
         // Check for direct match
-        $page = $repository->findOneBy(array(
+        $page = $this->getRepository()->findOneBy(array(
             'path' => $path,
             'pageController' => false,
         ));
@@ -113,7 +129,7 @@ class RouteProvider extends DoctrineProvider implements RouteProviderInterface
 
         // Check for page controllers
         $paths = $this->getPathArray($path);
-        $pages = $repository->findBy(array(
+        $pages = $this->getRepository()->findBy(array(
             'path' => $paths,
             'pageController' => true,
         ), array(
@@ -209,6 +225,10 @@ class RouteProvider extends DoctrineProvider implements RouteProviderInterface
      */
     protected function getRepository()
     {
-        return $this->managerRegistry->getRepository($this->className);
+        if (!$this->repository) {
+            $this->repository = $this->managerRegistry->getRepository($this->className);
+        }
+
+        return $this->repository;
     }
 }
