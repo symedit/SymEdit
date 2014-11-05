@@ -12,7 +12,7 @@
 namespace SymEdit\Bundle\CoreBundle\EventListener\Subscriber;
 
 use SymEdit\Bundle\CoreBundle\Model\PageInterface;
-use Sylius\Bundle\ResourceBundle\Event\ResourceEvent;
+use Sylius\Component\Resource\Event\ResourceEvent;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
 class PageSubscriber implements EventSubscriberInterface

@@ -11,7 +11,7 @@
 
 namespace SymEdit\Bundle\CoreBundle\EventListener\Subscriber;
 
-use Sylius\Bundle\ResourceBundle\Event\ResourceEvent;
+use Sylius\Component\Resource\Event\ResourceEvent;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\HttpFoundation\Session\Session;
 use Symfony\Component\Routing\Exception\RouteNotFoundException;
