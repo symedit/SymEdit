@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping"
+                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                  xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping
+                                      http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd"
+                  xmlns:gedmo="http://gediminasm.org/schemas/orm/doctrine-extensions-mapping">
+
+    <mapped-superclass name="SymEdit\Bundle\UserBundle\Model\AdminProfile" table="admin_profile">
+        <field name="social" type="json_array" column="social" nullable="true"/>
+        <field name="summary" type="text" column="summary" nullable="true"/>
+        <field name="biography" type="text" column="biography" nullable="true"/>
+        <field name="display" type="boolean" column="display"/>
+
+        <field name="slug" type="text" column="slug">
+            <gedmo:slug separator="-" fields="firstName,lastName" />
+        </field>
+
+        <many-to-one field="image" target-entity="SymEdit\Bundle\MediaBundle\Model\ImageInterface">
+            <join-columns>
+                <join-column name="image_id" referenced-column-name="id"/>
+            </join-columns>
+            <cascade>
+                <cascade-persist/>
+            </cascade>
+        </many-to-one>
+    </mapped-superclass>
+    
+</doctrine-mapping>

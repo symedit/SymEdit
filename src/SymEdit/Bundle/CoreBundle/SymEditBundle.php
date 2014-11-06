@@ -11,7 +11,7 @@
 
 namespace SymEdit\Bundle\CoreBundle;
 
-use Sylius\Bundle\ResourceBundle\DependencyInjection\Compiler\ResolveDoctrineTargetEntitiesPass;
+use Sylius\Bundle\ResourceBundle\AbstractResourceBundle;
 use Sylius\Bundle\ResourceBundle\SyliusResourceBundle;
 use SymEdit\Bundle\CoreBundle\DependencyInjection\Compiler\ProfileTypeCompilerPass;
 use SymEdit\Bundle\CoreBundle\DependencyInjection\Compiler\RouterCompilerPass;
@@ -19,20 +19,20 @@ use SymEdit\Bundle\CoreBundle\DependencyInjection\Compiler\SymEditExtensionCompi
 use SymEdit\Bundle\CoreBundle\DependencyInjection\Compiler\TwigExceptionCompilerPass;
 use SymEdit\Bundle\CoreBundle\DependencyInjection\Compiler\TwigPathCompilerPass;
 use SymEdit\Bundle\CoreBundle\DependencyInjection\SymEditExtension;
-use SymEdit\Bundle\ResourceBundle\DependencyInjection\Compiler\DoctrineMappingsPass;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
-use Symfony\Component\HttpKernel\Bundle\Bundle;
 use Symfony\Component\HttpKernel\Kernel;
 
-class SymEditBundle extends Bundle
+class SymEditBundle extends AbstractResourceBundle
 {
     private $kernel;
 
     public function __construct(Kernel $kernel = null)
     {
         if ($kernel === null) {
-            throw new \RuntimeException('When you register the SymEdit bundle, be sure to include "$this" in the parameters => '
-                                      . 'new SymEdit\\Bundle\\CoreBundle\\SymEditBundle($this)');
+            throw new \RuntimeException(
+                'When you register the SymEdit bundle, be sure to include "$this" in the parameters => ' .
+                'new SymEdit\\Bundle\\CoreBundle\\SymEditBundle($this)'
+            );
         }
 
         $this->kernel = $kernel;
@@ -47,24 +47,31 @@ class SymEditBundle extends Bundle
 
     public function build(ContainerBuilder $container)
     {
-        $interfaces = array(
-            'SymEdit\Bundle\CoreBundle\Model\PageInterface' => 'symedit.model.page.class',
-            'SymEdit\Bundle\CoreBundle\Model\RoleInterface' => 'symedit.model.role.class',
-        );
+        parent::build($container);
 
-        $container->addCompilerPass(new ResolveDoctrineTargetEntitiesPass('symedit', $interfaces));
         $container->addCompilerPass(new RouterCompilerPass());
         $container->addCompilerPass(new TwigExceptionCompilerPass());
         $container->addCompilerPass(new TwigPathCompilerPass($this->kernel));
         $container->addCompilerPass(new ProfileTypeCompilerPass());
         $container->addCompilerPass(new SymEditExtensionCompilerPass());
+    }
 
-        /**
-         * Add Doctrine Mappings
-         */
-        DoctrineMappingsPass::addMappings($container, array(
-            realpath(__DIR__.'/Resources/config/doctrine/model') => 'SymEdit\Bundle\CoreBundle\Model',
-        ));
+    protected function getModelInterfaces()
+    {
+        return array(
+            'SymEdit\Bundle\CoreBundle\Model\PageInterface' => 'symedit.model.page.class',
+            'SymEdit\Bundle\CoreBundle\Model\RoleInterface' => 'symedit.model.role.class',
+        );
+    }
+
+    protected function getModelNamespace()
+    {
+        return 'SymEdit\Bundle\CoreBundle\Model';
+    }
+
+    protected function getBundlePrefix()
+    {
+        return 'symedit';
     }
 
     public function getContainerExtension()

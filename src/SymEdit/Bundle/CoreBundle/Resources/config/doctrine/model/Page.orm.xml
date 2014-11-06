@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping"
+                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                  xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping
+                                      http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd"
+                  xmlns:gedmo="http://gediminasm.org/schemas/orm/doctrine-extensions-mapping">
+
+    <mapped-superclass name="SymEdit\Bundle\CoreBundle\Model\Page" table="pages">
+        <indexes>
+            <index name="path_idx" columns="path"/>
+        </indexes>
+
+        <id name="id" type="integer" column="id">
+            <generator strategy="IDENTITY"/>
+        </id>
+
+        <field name="homepage" type="boolean" column="homepage"/>
+        <field name="root" type="boolean" column="root"/>
+
+        <field name="name" type="string" column="name" nullable="true">
+            <gedmo:tree-path-source />
+            <gedmo:versioned />
+        </field>
+
+        <field name="tagline" type="string" column="tagline" length="255" nullable="true">
+            <gedmo:versioned />
+        </field>
+
+        <field name="summary" type="text" column="summary" nullable="true">
+            <gedmo:versioned />
+        </field>
+
+        <field name="path" type="string" column="path" unique="true" nullable="true">
+            <gedmo:tree-path append-id="false" separator="/" ends-with-separator="false" />
+        </field>
+
+        <field name="title" type="string" column="title" length="255">
+            <gedmo:versioned />
+        </field>
+
+        <field name="content" type="text" column="content" nullable="true">
+            <gedmo:versioned />
+        </field>
+
+        <field name="seo" type="json_array" column="seo" nullable="true">
+            <gedmo:versioned />
+        </field>
+
+        <field name="pageOrder" type="integer" column="pageOrder">
+            <gedmo:sortable-position/>
+        </field>
+
+        <field name="display" type="boolean" column="display">
+            <gedmo:versioned />
+        </field>
+
+        <field name="crawl" type="boolean" column="crawl">
+            <gedmo:versioned />
+        </field>
+
+        <field name="pageController" type="boolean" column="pageController" nullable="false">
+            <gedmo:versioned />
+        </field>
+
+        <field name="pageControllerPath" type="string" column="pageControllerPath" length="255" nullable="true">
+            <gedmo:versioned />
+        </field>
+
+        <field name="createdAt" type="datetime" column="createdAt" nullable="false">
+            <gedmo:timestampable on="create"/>
+        </field>
+
+        <field name="createdBy" type="string" column="createdBy" nullable="true">
+            <gedmo:blameable on="create"/>
+        </field>
+
+        <field name="updatedAt" type="datetime" column="updatedAt" nullable="false">
+            <gedmo:timestampable on="update"/>
+        </field>
+
+        <field name="updatedBy" type="string" column="updatedBy" nullable="true">
+            <gedmo:blameable on="update"/>
+        </field>
+
+        <field name="level" type="integer" column="level" nullable="true">
+            <gedmo:tree-level />
+        </field>
+
+        <field name="template" type="string" column="template" nullable="true">
+            <gedmo:versioned />
+        </field>
+
+        <one-to-many field="children" target-entity="SymEdit\Bundle\CoreBundle\Model\Page" mapped-by="parent">
+            <order-by>
+                <order-by-field name="pageOrder" direction="ASC"/>
+            </order-by>
+            <cascade>
+                <cascade-remove/>
+                <cascade-persist/>
+            </cascade>
+        </one-to-many>
+
+        <many-to-one field="parent" target-entity="SymEdit\Bundle\CoreBundle\Model\Page" inversed-by="children">
+            <join-columns>
+                <join-column name="parent" referenced-column-name="id" on-delete="SET NULL"/>
+            </join-columns>
+
+            <gedmo:tree-parent />
+            <gedmo:versioned />
+        </many-to-one>
+
+        <gedmo:loggable />
+        <gedmo:tree type="materializedPath" />
+    </mapped-superclass>
+
+</doctrine-mapping>

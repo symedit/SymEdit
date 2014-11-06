@@ -11,14 +11,11 @@
 
 namespace SymEdit\Bundle\UserBundle;
 
-use Sylius\Bundle\ResourceBundle\DependencyInjection\Compiler\ResolveDoctrineTargetEntitiesPass;
+use Sylius\Bundle\ResourceBundle\AbstractResourceBundle;
 use Sylius\Bundle\ResourceBundle\SyliusResourceBundle;
-use SymEdit\Bundle\ResourceBundle\DependencyInjection\Compiler\DoctrineMappingsPass;
 use SymEdit\Bundle\UserBundle\DependencyInjection\SymEditUserExtension;
-use Symfony\Component\DependencyInjection\ContainerBuilder;
-use Symfony\Component\HttpKernel\Bundle\Bundle;
 
-class SymEditUserBundle extends Bundle
+class SymEditUserBundle extends AbstractResourceBundle
 {
     protected $loadProfiles;
 
@@ -34,33 +31,31 @@ class SymEditUserBundle extends Bundle
         );
     }
 
-    public function build(ContainerBuilder $container)
+    protected function getModelInterfaces()
     {
-        parent::build($container);
-
-        $interfaces = array(
-            'SymEdit\Bundle\CoreBundle\Model\UserInterface'    => 'symedit.model.user.class',
-            'SymEdit\Bundle\CoreBundle\Model\ProfileInterface' => 'symedit.model.profile.class',
+        return array(
+            'SymEdit\Bundle\UserBundle\Model\UserInterface'    => 'symedit.model.user.class',
+            'SymEdit\Bundle\UserBundle\Model\ProfileInterface' => 'symedit.model.profile.class',
         );
+    }
 
-        $container->addCompilerPass(new ResolveDoctrineTargetEntitiesPass('symedit_user', $interfaces));
-
-        // Allow child bundle to do this
+    protected function getModelNamespace()
+    {
         if (!$this->loadProfiles) {
-            return;
+            return null;
         }
 
-        /**
-         * Add Doctrine Mappings
-         */
-        DoctrineMappingsPass::addMappings($container, array(
-            realpath(__DIR__.'/Resources/config/doctrine/model') => 'SymEdit\Bundle\UserBundle\Model',
-        ));
+        return 'SymEdit\Bundle\UserBundle\Model';
     }
 
     public function getContainerExtension()
     {
         return new SymEditUserExtension();
+    }
+
+    protected function getBundlePrefix()
+    {
+        return 'symedit_user';
     }
 
     public function getParent()

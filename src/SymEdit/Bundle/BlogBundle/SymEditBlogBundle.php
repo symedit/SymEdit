@@ -11,14 +11,11 @@
 
 namespace SymEdit\Bundle\BlogBundle;
 
-use Sylius\Bundle\ResourceBundle\DependencyInjection\Compiler\ResolveDoctrineTargetEntitiesPass;
+use Sylius\Bundle\ResourceBundle\AbstractResourceBundle;
 use Sylius\Bundle\ResourceBundle\SyliusResourceBundle;
 use SymEdit\Bundle\BlogBundle\DependencyInjection\SymEditBlogExtension;
-use SymEdit\Bundle\ResourceBundle\DependencyInjection\Compiler\DoctrineMappingsPass;
-use Symfony\Component\DependencyInjection\ContainerBuilder;
-use Symfony\Component\HttpKernel\Bundle\Bundle;
 
-class SymEditBlogBundle extends Bundle
+class SymEditBlogBundle extends AbstractResourceBundle
 {
     public static function getSupportedDrivers()
     {
@@ -27,21 +24,22 @@ class SymEditBlogBundle extends Bundle
         );
     }
 
-    public function build(ContainerBuilder $container)
+    protected function getBundlePrefix()
     {
-        $interfaces = array(
-            'SymEdit\Bundle\BlogBundle\Model\PostInterface'       => 'symedit.model.post.class',
-            'SymEdit\Bundle\BlogBundle\Model\CategoryInterface'   => 'symedit.model.category.class',
+        return 'symedit_blog';
+    }
+
+    protected function getModelInterfaces()
+    {
+        return array(
+            'SymEdit\Bundle\BlogBundle\Model\PostInterface'     => 'symedit.model.post.class',
+            'SymEdit\Bundle\BlogBundle\Model\CategoryInterface' => 'symedit.model.category.class',
         );
+    }
 
-        $container->addCompilerPass(new ResolveDoctrineTargetEntitiesPass('symedit_blog', $interfaces));
-
-        /**
-         * Add Doctrine Mappings
-         */
-        DoctrineMappingsPass::addMappings($container, array(
-            realpath(__DIR__.'/Resources/config/doctrine/model') => 'SymEdit\Bundle\BlogBundle\Model',
-        ));
+    protected function getModelNamespace()
+    {
+        return 'SymEdit\Bundle\BlogBundle\Model';
     }
 
     public function getContainerExtension()

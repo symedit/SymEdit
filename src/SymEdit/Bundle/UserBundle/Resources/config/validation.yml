@@ -1,3 +1,10 @@
+SymEdit\Bundle\UserBundle\Model\User:
+    properties:
+        profile:
+            - Valid: ~
+    constraints:
+          - Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity: email
+
 SymEdit\Bundle\UserBundle\Model\Profile:
     properties:
         firstName:

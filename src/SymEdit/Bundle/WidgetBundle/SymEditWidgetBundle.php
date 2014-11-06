@@ -11,17 +11,15 @@
 
 namespace SymEdit\Bundle\WidgetBundle;
 
-use Sylius\Bundle\ResourceBundle\DependencyInjection\Compiler\ResolveDoctrineTargetEntitiesPass;
+use Sylius\Bundle\ResourceBundle\AbstractResourceBundle;
 use Sylius\Bundle\ResourceBundle\SyliusResourceBundle;
-use SymEdit\Bundle\ResourceBundle\DependencyInjection\Compiler\DoctrineMappingsPass;
 use SymEdit\Bundle\WidgetBundle\DependencyInjection\Compiler\WidgetRepositoryCompilerPass;
 use SymEdit\Bundle\WidgetBundle\DependencyInjection\Compiler\WidgetStrategyCompilerPass;
 use SymEdit\Bundle\WidgetBundle\DependencyInjection\Compiler\WidgetVoterCompilerPass;
 use SymEdit\Bundle\WidgetBundle\DependencyInjection\SymEditWidgetExtension;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
-use Symfony\Component\HttpKernel\Bundle\Bundle;
 
-class SymEditWidgetBundle extends Bundle
+class SymEditWidgetBundle extends AbstractResourceBundle
 {
     public static function getSupportedDrivers()
     {
@@ -30,24 +28,31 @@ class SymEditWidgetBundle extends Bundle
         );
     }
 
-    public function build(ContainerBuilder $container)
+    protected function getModelInterfaces()
     {
-        $interfaces = array(
+        return array(
             'SymEdit\Bundle\WidgetBundle\Model\WidgetAreaInterface' => 'symedit.model.widget_area.class',
             'SymEdit\Bundle\WidgetBundle\Model\WidgetInterface'     => 'symedit.model.widget.class',
         );
+    }
 
-        $container->addCompilerPass(new ResolveDoctrineTargetEntitiesPass('symedit_widget', $interfaces));
+    protected function getModelNamespace()
+    {
+        return 'SymEdit\Bundle\WidgetBundle\Model';
+    }
+
+    public function build(ContainerBuilder $container)
+    {
+        parent::build($container);
+
         $container->addCompilerPass(new WidgetStrategyCompilerPass());
         $container->addCompilerPass(new WidgetVoterCompilerPass());
         $container->addCompilerPass(new WidgetRepositoryCompilerPass());
+    }
 
-        /**
-         * Add Doctrine Mappings
-         */
-        DoctrineMappingsPass::addMappings($container, array(
-            realpath(__DIR__.'/Resources/config/doctrine/model') => 'SymEdit\Bundle\WidgetBundle\Model',
-        ));
+    protected function getBundlePrefix()
+    {
+        return 'symedit_widget';
     }
 
     /**
