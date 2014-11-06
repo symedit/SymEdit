@@ -32,7 +32,7 @@
         </field>
 
         <field name="path" type="string" column="path" unique="true" nullable="true">
-            <gedmo:tree-path append-id="false" separator="/" ends-with-separator="false" />
+            <gedmo:tree-path append_id="false" separator="/" ends_with_separator="false" />
         </field>
 
         <field name="title" type="string" column="title" length="255">

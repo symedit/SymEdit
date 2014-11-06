@@ -21,7 +21,7 @@
         </field>
 
         <field name="slug" type="string" column="slug" length="255" nullable="true">
-            <gedmo:tree-path append-id="false" separator="/" ends-with-separator="false" />
+            <gedmo:tree-path append_id="false" separator="/" ends_with_separator="false" />
         </field>
 
         <field name="seo" type="json_array" column="seo" nullable="true"/>
