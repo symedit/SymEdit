@@ -11,6 +11,7 @@
 
 namespace SymEdit\Bundle\AnalyticsBundle\DependencyInjection;
 
+use Symfony\Component\Config\Definition\Builder\ArrayNodeDefinition;
 use Symfony\Component\Config\Definition\Builder\TreeBuilder;
 use Symfony\Component\Config\Definition\ConfigurationInterface;
 
@@ -28,13 +29,39 @@ class Configuration implements ConfigurationInterface
     {
         $treeBuilder = new TreeBuilder();
         $rootNode = $treeBuilder->root('symedit_analytics');
-        
+
         $rootNode
             ->children()
                 ->scalarNode('driver')->cannotBeEmpty()->defaultValue('doctrine/orm')->end()
             ->end()
         ;
 
+        $this->addClassesSection($rootNode);
+
         return $treeBuilder;
+    }
+
+    /**
+     * Add classes config to be processed by the Sylius Resource Bundle
+     *
+     * @param ArrayNodeDefinition $node
+     */
+    private function addClassesSection(ArrayNodeDefinition $node)
+    {
+        $node
+            ->children()
+                ->arrayNode('classes')
+                    ->addDefaultsIfNotSet()
+                    ->children()
+                        ->arrayNode('visit')
+                            ->addDefaultsIfNotSet()
+                            ->children()
+                                ->scalarNode('model')->defaultValue('SymEdit\Bundle\AnalyticsBundle\Model\Visit')->end()
+                            ->end()
+                        ->end()
+                    ->end()
+                ->end()
+            ->end()
+        ;
     }
 }
