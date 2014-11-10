@@ -19,7 +19,7 @@ class AnalyticsController extends Controller
 {
     public function recordAction(Request $request)
     {
-        if ($request->getClientIp() !== '127.0.0.1') {
+        if (!$request->isXmlHttpRequest()) {
             return new Response('', 403);
         }
 
