@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping"
+                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                  xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping
+                                      http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+
+    <entity name="SymEdit\Bundle\MediaBundle\Model\Media" table="media" inheritance-type="SINGLE_TABLE">
+        <discriminator-column name="discr" type="string" length="10"/>
+        <discriminator-map>
+            <discriminator-mapping value="image" class="SymEdit\Bundle\MediaBundle\Model\Image"/>
+            <discriminator-mapping value="file" class="SymEdit\Bundle\MediaBundle\Model\File"/>
+        </discriminator-map>
+        <id name="id" type="integer" column="id">
+            <generator strategy="IDENTITY"/>
+        </id>
+        <field name="path" type="string" column="path" length="255" unique="true"/>
+        <field name="name" type="string" column="name" length="255"/>
+        <field name="updatedAt" type="datetime" column="updatedAt"/>
+    </entity>
+
+</doctrine-mapping>

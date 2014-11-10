@@ -9,7 +9,6 @@
         <parameter key="symedit_analytics.recorder.class">SymEdit\Bundle\AnalyticsBundle\Analytics\Recorder</parameter>
         <parameter key="symedit_analytics.reporter.class">SymEdit\Bundle\AnalyticsBundle\Report\Reporter</parameter>
         <parameter key="symedit_analytics.event_listener.symedit_subject.class">SymEdit\Bundle\AnalyticsBundle\EventListener\SymEditSubjectSubscriber</parameter>
-        <parameter key="symedit_analytics.model.visit.class">SymEdit\Bundle\AnalyticsBundle\Model\Visit</parameter>
         <parameter key="symedit_analytics.twig.extension.class">SymEdit\Bundle\AnalyticsBundle\Twig\AnalyticsExtension</parameter>
     </parameters>
 
@@ -19,19 +18,19 @@
         <!-- Tracker -->
         <service id="symedit_analytics.tracker" class="%symedit_analytics.tracker.class%">
             <argument type="service" id="symedit_analytics.entity_manager" />
-            <argument>%symedit_analytics.model.visit.class%</argument>
+            <argument>%symedit.model.visit.class%</argument>
         </service>
 
         <!-- Recorder -->
         <service id="symedit_analytics.recorder" class="%symedit_analytics.recorder.class%">
             <argument type="service" id="symedit_analytics.entity_manager" />
-            <argument>%symedit_analytics.model.visit.class%</argument>
+            <argument>%symedit.model.visit.class%</argument>
         </service>
 
         <!-- Reporter -->
         <service id="symedit_analytics.reporter" class="%symedit_analytics.reporter.class%">
             <argument type="service" id="symedit_analytics.entity_manager" />
-            <argument>%symedit_analytics.model.visit.class%</argument>
+            <argument>%symedit.model.visit.class%</argument>
             <argument type="collection" />
         </service>
 

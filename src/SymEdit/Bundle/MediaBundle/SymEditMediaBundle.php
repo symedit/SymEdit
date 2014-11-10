@@ -11,14 +11,11 @@
 
 namespace SymEdit\Bundle\MediaBundle;
 
-use Sylius\Bundle\ResourceBundle\DependencyInjection\Compiler\ResolveDoctrineTargetEntitiesPass;
+use Sylius\Bundle\ResourceBundle\AbstractResourceBundle;
 use Sylius\Bundle\ResourceBundle\SyliusResourceBundle;
 use SymEdit\Bundle\MediaBundle\DependencyInjection\SymEditMediaExtension;
-use SymEdit\Bundle\ResourceBundle\DependencyInjection\Compiler\DoctrineMappingsPass;
-use Symfony\Component\DependencyInjection\ContainerBuilder;
-use Symfony\Component\HttpKernel\Bundle\Bundle;
 
-class SymEditMediaBundle extends Bundle
+class SymEditMediaBundle extends AbstractResourceBundle
 {
     public static function getSupportedDrivers()
     {
@@ -27,23 +24,24 @@ class SymEditMediaBundle extends Bundle
         );
     }
 
-    public function build(ContainerBuilder $container)
+    protected function getModelInterfaces()
     {
-        $interfaces = array(
+        return array(
             'SymEdit\Bundle\MediaBundle\Model\ImageInterface' => 'symedit.model.image.class',
             'SymEdit\Bundle\MediaBundle\Model\FileInterface' => 'symedit.model.file.class',
             'SymEdit\Bundle\MediaBundle\Model\ImageGalleryInterface' => 'symedit.model.image_gallery.class',
             'SymEdit\Bundle\MediaBundle\Model\GalleryItemInterface' => 'symedit.model.gallery_item.class',
         );
+    }
 
-        $container->addCompilerPass(new ResolveDoctrineTargetEntitiesPass('symedit', $interfaces));
+    protected function getModelNamespace()
+    {
+        return 'SymEdit\Bundle\MediaBundle\Model';
+    }
 
-        /**
-         * Add Doctrine Mappings
-         */
-        DoctrineMappingsPass::addMappings($container, array(
-            realpath(__DIR__.'/Resources/config/doctrine/model') => 'SymEdit\Bundle\MediaBundle\Model',
-        ));
+    protected function getBundlePrefix()
+    {
+        return 'symedit_media';
     }
 
     public function getContainerExtension()

@@ -36,7 +36,7 @@ class ContextFormFactory implements FactoryInterface
     }
 
     /**
-     * @return \SymEdit\Bundle\CoreBundle\Model\UserInterface $user
+     * @return \SymEdit\Bundle\UserBundle\Model\UserInterface $user
      */
     public function getUser()
     {

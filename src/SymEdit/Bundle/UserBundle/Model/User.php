@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace SymEdit\Bundle\CoreBundle\Model;
+namespace SymEdit\Bundle\UserBundle\Model;
 
 use FOS\UserBundle\Model\User as BaseUser;
 

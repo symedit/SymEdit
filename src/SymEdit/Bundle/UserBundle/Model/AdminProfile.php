@@ -12,7 +12,6 @@
 namespace SymEdit\Bundle\UserBundle\Model;
 
 use SymEdit\Bundle\MediaBundle\Model\ImageInterface;
-use SymEdit\Bundle\CoreBundle\Model\UserInterface;
 
 class AdminProfile extends Profile
 {

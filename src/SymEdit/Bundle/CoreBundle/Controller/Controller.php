@@ -89,7 +89,7 @@ class Controller extends BaseController
     /**
      * Gets the user manager
      *
-     * @return \SymEdit\Bundle\CoreBundle\Model\UserManagerInterface $userManager
+     * @return \SymEdit\Bundle\UserBundle\Model\UserManagerInterface $userManager
      */
     public function getUserManager()
     {

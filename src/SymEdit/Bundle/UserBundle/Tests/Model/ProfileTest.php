@@ -9,11 +9,11 @@
  * file that was distributed with this source code.
  */
 
-namespace SymEdit\Bundle\CoreBundle\Tests\Model;
+namespace SymEdit\Bundle\UserBundle\Tests\Model;
 
-use SymEdit\Bundle\CoreBundle\Model\Profile;
-use SymEdit\Bundle\CoreBundle\Model\ProfileInterface;
-use SymEdit\Bundle\CoreBundle\Tests\TestCase;
+use SymEdit\Bundle\UserBundle\Model\Profile;
+use SymEdit\Bundle\UserBundle\Model\ProfileInterface;
+use SymEdit\Bundle\UserBundle\Tests\TestCase;
 
 class ProfileTest extends TestCase
 {

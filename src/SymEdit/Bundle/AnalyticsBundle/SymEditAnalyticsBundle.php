@@ -11,28 +11,40 @@
 
 namespace SymEdit\Bundle\AnalyticsBundle;
 
+use Sylius\Bundle\ResourceBundle\AbstractResourceBundle;
+use Sylius\Bundle\ResourceBundle\SyliusResourceBundle;
 use SymEdit\Bundle\AnalyticsBundle\DependencyInjection\Compiler\ReportCompilerPass;
 use SymEdit\Bundle\AnalyticsBundle\DependencyInjection\SymEditAnalyticsExtension;
-use SymEdit\Bundle\ResourceBundle\DependencyInjection\Compiler\DoctrineMappingsPass;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
-use Symfony\Component\HttpKernel\Bundle\Bundle;
 
-class SymEditAnalyticsBundle extends Bundle
+class SymEditAnalyticsBundle extends AbstractResourceBundle
 {
+    public static function getSupportedDrivers()
+    {
+        return array(
+            SyliusResourceBundle::DRIVER_DOCTRINE_ORM
+        );
+    }
+
     public function build(ContainerBuilder $container)
     {
-        $container->addCompilerPass(new ReportCompilerPass());
+        parent::build($container);
 
-        /**
-         * Add Doctrine Mappings
-         */
-        DoctrineMappingsPass::addMappings($container, array(
-            realpath(__DIR__.'/Resources/config/doctrine/model') => 'SymEdit\Bundle\AnalyticsBundle\Model',
-        ));
+        $container->addCompilerPass(new ReportCompilerPass());
+    }
+
+    protected function getModelNamespace()
+    {
+        return 'SymEdit\Bundle\AnalyticsBundle\Model';
     }
 
     public function getContainerExtension()
     {
         return new SymEditAnalyticsExtension();
+    }
+
+    protected function getBundlePrefix()
+    {
+        return 'symedit_analytics';
     }
 }

@@ -35,14 +35,17 @@ class RouteProvider extends DoctrineProvider implements RouteProviderInterface
         parent::__construct($managerRegistry, $className);
     }
 
+    /**
+     * Cache routes so we don't have to do database lookups again
+     *
+     * @param string $name
+     * @return Route
+     * @throws RouteNotFoundException
+     */
     public function getRouteByName($name)
     {
         if (!array_key_exists($name, $this->routeByNameCache)) {
-            if ($route = $this->doGetRouteByName($name)) {
-                $this->routeByNameCache[$name] = $route;
-            } else {
-                return;
-            }
+            $this->routeByNameCache[$name] = $this->doGetRouteByName($name);
         }
 
         return $this->routeByNameCache[$name];
@@ -112,22 +115,34 @@ class RouteProvider extends DoctrineProvider implements RouteProviderInterface
 
     public function getRouteCollectionForRequest(Request $request)
     {
-        $path = $request->getPathInfo();
-        $collection = new RouteCollection();
-
         // Check for direct match
         $page = $this->getRepository()->findOneBy(array(
-            'path' => $path,
+            'path' => $request->getPathInfo(),
             'pageController' => false,
         ));
 
         if ($page) {
+            $collection = new RouteCollection();
             $collection->add($page->getRoute(), $this->createRoute($page));
 
             return $collection;
         }
 
-        // Check for page controllers
+        // Try to get Page Controller
+        return $this->findPageControllerForRequest($request);
+    }
+
+    /**
+     * Try to get a page controller based on partial match
+     *
+     * @param Request $request
+     * @return PageInterface
+     */
+    protected function findPageControllerForRequest(Request $request)
+    {
+        $path = $request->getPathInfo();
+        $collection = new RouteCollection();
+
         $paths = $this->getPathArray($path);
         $pages = $this->getRepository()->findBy(array(
             'path' => $paths,
@@ -139,7 +154,7 @@ class RouteProvider extends DoctrineProvider implements RouteProviderInterface
         // Get the one with the longest path
         $page = reset($pages);
 
-        // No page found
+        // Could not find, return empty collction
         if (!$page) {
             return $collection;
         }
@@ -149,19 +164,25 @@ class RouteProvider extends DoctrineProvider implements RouteProviderInterface
         $storedRoutes = $this->storage->getRoutes();
 
         foreach ($pageController->getRoutes() as $routeName) {
+            if (!isset($storedRoutes[$routeName])) {
+                throw new RouteNotFoundException(sprintf(
+                    'Could not find route in page controller config: "%s"'
+                ), $routeName);
+            }
+
             $collection->add($routeName, $storedRoutes[$routeName]);
         }
 
         // Clone the collection so we aren't altering the stored routes
-        $collection = clone $collection;
+        $clonedCollection = clone $collection;
 
         // Add the page's prefix
-        $collection->addPrefix($page->getPath());
-        $collection->addDefaults(array(
+        $clonedCollection->addPrefix($page->getPath());
+        $clonedCollection->addDefaults(array(
             '_page' => $page,
         ));
 
-        return $collection;
+        return $clonedCollection;
     }
 
     /**

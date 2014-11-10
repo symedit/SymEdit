@@ -13,7 +13,7 @@ namespace SymEdit\Bundle\CoreBundle\Menu;
 
 use SymEdit\Bundle\CoreBundle\Event\Events;
 use SymEdit\Bundle\CoreBundle\Event\MenuEvent;
-use SymEdit\Bundle\CoreBundle\Model\UserInterface;
+use SymEdit\Bundle\UserBundle\Model\UserInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 class Builder

@@ -62,7 +62,7 @@ class Configuration implements ConfigurationInterface
                         ->arrayNode('user')
                             ->addDefaultsIfNotSet()
                             ->children()
-                                ->scalarNode('model')->defaultValue('SymEdit\Bundle\CoreBundle\Model\User')->end()
+                                ->scalarNode('model')->defaultValue('SymEdit\Bundle\UserBundle\Model\User')->end()
                                 ->scalarNode('controller')->defaultValue('SymEdit\Bundle\UserBundle\Controller\UserController')->end()
                                 ->scalarNode('repository')->end()
                                 ->scalarNode('form')->defaultValue('SymEdit\Bundle\UserBundle\Form\Type\UserType')->end()

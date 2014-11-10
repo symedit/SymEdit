@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace SymEdit\Bundle\CoreBundle\Model;
+namespace SymEdit\Bundle\UserBundle\Model;
 
 use FOS\UserBundle\Model\UserInterface as BaseUserInterface;
 
@@ -28,7 +28,7 @@ interface UserInterface extends BaseUserInterface
     /**
      * Set user's profile
      *
-     * @param  \SymEdit\Bundle\CoreBundle\Model\ProfileInterface $profile
+     * @param  ProfileInterface $profile
      * @return UserInterface
      */
     public function setProfile(ProfileInterface $profile);

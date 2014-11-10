@@ -12,7 +12,6 @@
 namespace SymEdit\Bundle\UserBundle\Model;
 
 use FOS\UserBundle\Doctrine\UserManager as BaseUserManager;
-use SymEdit\Bundle\CoreBundle\Model\UserManagerInterface;
 
 class UserManager extends BaseUserManager implements UserManagerInterface
 {
@@ -39,7 +38,7 @@ class UserManager extends BaseUserManager implements UserManagerInterface
     }
 
     /**
-     * @return \SymEdit\Bundle\CoreBundle\Model\UserInterface
+     * @return UserInterface
      */
     public function createUser($admin = false)
     {
