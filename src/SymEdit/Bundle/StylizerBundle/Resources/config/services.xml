@@ -7,7 +7,7 @@
     <parameters>
         <parameter key="symedit_stylizer.assetic.command.class">SymEdit\Bundle\StylizerBundle\Command\DumpCommand</parameter>
         <parameter key="symedit_stylizer.dumper.class">SymEdit\Bundle\StylizerBundle\Dumper\Dumper</parameter>
-        <parameter key="symedit_stylizer.injector.chain.class">SymEdit\Bundle\StylizerBundle\Injector\ChainInjector</parameter>
+        <parameter key="symedit_stylizer.injector.class">SymEdit\Bundle\StylizerBundle\Injector\Injector</parameter>
         <parameter key="symedit_stylizer.injector.lessphp.class">SymEdit\Bundle\StylizerBundle\Injector\LessPhpInjector</parameter>
         <parameter key="symedit_stylizer.injector.less.class">SymEdit\Bundle\StylizerBundle\Injector\LessInjector</parameter>
         <parameter key="symedit_stylizer.loader.chain.class">SymEdit\Bundle\StylizerBundle\Loader\LoaderChain</parameter>
@@ -43,7 +43,8 @@
         </service>
 
         <!-- Chain Injector -->
-        <service id="symedit_stylizer.injector" class="%symedit_stylizer.injector.chain.class%">
+        <service id="symedit_stylizer.injector" class="%symedit_stylizer.injector.class%">
+            <argument type="service" id="assetic.filter_manager" />
             <argument type="collection" />
         </service>
 

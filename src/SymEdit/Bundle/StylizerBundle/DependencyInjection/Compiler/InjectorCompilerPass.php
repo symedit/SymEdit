@@ -21,12 +21,10 @@ class InjectorCompilerPass implements CompilerPassInterface
     {
         $injectors = array();
         foreach ($container->findTaggedServiceIds('stylizer.injector') as $id => $attributes) {
-            $definition = $container->getDefinition($id);
-            $definition->addMethodCall('setFilterManager', array(new Reference('assetic.filter_manager')));
             $injectors[] = new Reference($id);
         }
 
         $injectorChainDefinition = $container->getDefinition('symedit_stylizer.injector');
-        $injectorChainDefinition->replaceArgument(0, $injectors);
+        $injectorChainDefinition->replaceArgument(1, $injectors);
     }
 }

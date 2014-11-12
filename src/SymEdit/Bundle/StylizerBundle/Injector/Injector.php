@@ -11,19 +11,23 @@
 
 namespace SymEdit\Bundle\StylizerBundle\Injector;
 
-class ChainInjector extends AbstractInjector
+use Symfony\Bundle\AsseticBundle\FilterManager;
+
+class Injector
 {
+    protected $manager;
     protected $injectors;
 
-    public function __construct(array $injectors = array())
+    public function __construct(FilterManager $manager, array $injectors = array())
     {
+        $this->manager = $manager;
         $this->injectors = $injectors;
     }
 
     public function inject(array $variables = array())
     {
         foreach ($this->injectors as $injector) {
-            $injector->inject($variables);
+            $injector->inject($this->manager, $variables);
         }
     }
 }

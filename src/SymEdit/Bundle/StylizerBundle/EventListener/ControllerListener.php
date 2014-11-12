@@ -11,7 +11,7 @@
 
 namespace SymEdit\Bundle\StylizerBundle\EventListener;
 
-use SymEdit\Bundle\StylizerBundle\Injector\InjectorInterface;
+use SymEdit\Bundle\StylizerBundle\Injector\Injector;
 use SymEdit\Bundle\StylizerBundle\Model\Styles;
 use Symfony\Component\HttpKernel\Event\FilterControllerEvent;
 
@@ -25,7 +25,7 @@ class ControllerListener
     private $controller = 'Symfony\Bundle\AsseticBundle\Controller\AsseticController';
     private $injected;
 
-    public function __construct(Styles $styles, InjectorInterface $injector)
+    public function __construct(Styles $styles, Injector $injector)
     {
         $this->styles = $styles;
         $this->injector = $injector;

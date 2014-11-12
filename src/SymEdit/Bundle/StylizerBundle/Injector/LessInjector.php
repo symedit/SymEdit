@@ -11,12 +11,12 @@
 
 namespace SymEdit\Bundle\StylizerBundle\Injector;
 
-class LessInjector extends AbstractInjector
-{
-    public function inject(array $variables = array())
-    {
-        $manager = $this->getFilterManager();
+use Symfony\Bundle\AsseticBundle\FilterManager;
 
+class LessInjector implements InjectorInterface
+{
+    public function inject(FilterManager $manager, array $variables = array())
+    {
         if ($manager->has('less')) {
             $less = $manager->get('less');
             $less->setGlobalVariables($variables);
