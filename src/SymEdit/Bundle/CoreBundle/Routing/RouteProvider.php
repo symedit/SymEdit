@@ -192,6 +192,11 @@ class RouteProvider extends DoctrineProvider implements RouteProviderInterface
      */
     protected function getPathArray($path)
     {
+        // Homepage
+        if ($path === '/') {
+            return array('/');
+        }
+
         $path = rtrim($path, '/') . '/';
         $paths = array();
         $lastOffset = 1;
