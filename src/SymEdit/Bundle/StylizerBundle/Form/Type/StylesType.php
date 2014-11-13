@@ -59,24 +59,28 @@ class StylesType extends AbstractType
         $config = $group->getVariableConfig();
 
         foreach ($config as $name => $data) {
-
-            $label = isset($data['label']) ? $data['label'] : '';
-            $options = isset($data['options']) ? $data['options'] : array();
-            $type = isset($data['type']) ? $data['type'] : 'text';
-            $constraints = array();
-
-            if (!isset($options['required']) || $options['required']) {
-                $constraints = array(
-                    new NotBlank(),
-                );
-            }
-
-            $builder->add($name, $type, array_merge(array(
-                'label' => $label,
-                'property_path' => sprintf('[%s]', $name),
-                'constraints' => $constraints,
-            ), $options));
+            $this->addVariable($builder, $name, $data);
         }
+    }
+
+    private function addVariable(FormBuilderInterface $builder, $name, $data)
+    {
+        $label = isset($data['label']) ? $data['label'] : '';
+        $options = isset($data['options']) ? $data['options'] : array();
+        $type = isset($data['type']) ? $data['type'] : 'text';
+        $constraints = array();
+
+        if (!isset($options['required']) || $options['required']) {
+            $constraints = array(
+                new NotBlank(),
+            );
+        }
+
+        $builder->add($name, $type, array_merge(array(
+            'label' => $label,
+            'property_path' => sprintf('[%s]', $name),
+            'constraints' => $constraints,
+        ), $options));
     }
 
     public function getName()
