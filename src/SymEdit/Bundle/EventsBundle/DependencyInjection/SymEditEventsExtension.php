@@ -46,12 +46,11 @@ class SymEditEventsExtension extends SymEditResourceExtension implements Prepend
                 ),
                 'assets' => array(
                     'javascripts' => array(
-                        '//cdnjs.cloudflare.com/ajax/libs/moment.js/2.7.0/moment.min.js',
-                        '@SymEditEventsBundle/Resources/js/datetimepicker.min.js',
+                        '@SymEditEventsBundle/Resources/js/bootstrap-datetimepicker.min.js',
                         '@SymEditEventsBundle/Resources/js/activate.js',
                     ),
                     'stylesheets' => array(
-                        '@SymEditEventsBundle/Resources/css/datetimepicker.min.css',
+                        '@SymEditEventsBundle/Resources/css/bootstrap-datetimepicker.min.css',
                     ),
                 ),
             ));
