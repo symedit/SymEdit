@@ -2,30 +2,29 @@
 
 {% block title %}Events &raquo; List{% endblock %}
 
-{% block content %}
-
-<a class="pull-right btn btn-primary" href="{{ path('admin_event_create') }}">
+{% block actions %}
+<a class="btn btn-primary" href="{{ path('admin_event_create') }}">
     {{ icon('plus') }}
     Create New Event
 </a>
+{% endblock %}
 
-<h1>Listing Events</h1>
+{% block content %}
+    <h3>Listing Events</h3>
 
-<table class="table table-striped">
-    <thead>
-        <tr>
-            <th width="40"></th>
-            <th>Title</th>
-            <th>Start Date</th>
-            <th width="60">Actions</th>
-        </tr>
-    </thead>
-    <tbody>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>Start Date</th>
+                <th width="60">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
     {% for event in events %}
             <tr>
-                <td>{{ icon(event.published ? 'eye-open' : 'eye-close') }}</td>
                 <td><a href="{{ path('admin_event_update', { 'id': event.id }) }}">{{ event.title }}</a></td>
-                <td>{{ event.createdAt|date('F j, Y') }}</td>
+                <td>{{ event.eventStart|date('F j, Y') }}</td>
                 <td>
                     <a class="btn btn-primary btn-sm" href="{{ path('admin_event_update', { 'id': event.id }) }}">Edit</a>
                 </td>
@@ -37,5 +36,4 @@
     <div>
         {{ pagerfanta(events) }}
     </div>
-
 {% endblock %}

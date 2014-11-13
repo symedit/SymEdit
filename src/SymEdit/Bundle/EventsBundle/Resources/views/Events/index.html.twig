@@ -1,0 +1,13 @@
+{% extends '@SymEdit/Page/base.html.twig' %}
+
+{% block content %}
+    {{ parent() }}
+
+    <div class="events-list">
+        {% for event in events %}
+            <div class="event">
+                <h3><a href="{{ path('symedit_event_show', { slug: event.slug }) }}">{{ event.title }}</a></h3>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}

@@ -1,20 +1,10 @@
 {% extends '@SymEdit/Admin/tabbed.html.twig' %}
-{% import '@SymEdit/Admin/macro.html.twig' as macro %}
 
-{% block title %}Blog &raquo; {{ post.title|default('(No Title)') }} &raquo; Edit{% endblock %}
+{% block title %}Events &raquo; {{ event.title }} &raquo; Edit{% endblock %}
 
 {% block form_actions %}
-<button class="btn btn-primary btn-block" type="submit">{{ 'admin.post.actions.save'|trans }}</button>
-
-{% if route_exists('blog_preview') %}
-<a target="_blank" class="btn btn-info btn-block" href="{{ path('blog_preview', { slug: post.slug }) }}">{{ 'admin.post.actions.preview'|trans }}</a>
-{% else %}
-<a class="btn btn-info btn-block disabled" href="#" title="{{ 'admin.post.actions.no_preview.help' }}">{{ 'admin.post.actions.no_preview.label'|trans }}</a>
-{% endif %}
-
-{{ macro.delete_button('post_delete', 'admin.post.actions.delete') }}
-{% endblock %}
-
-{% block extra %}
-{{ macro.delete_form('post_delete', path('admin_post_delete', {'id': post.id})) }}
+<button class="btn btn-primary" type="submit">
+    {{ icon('save') }}
+    Update Event
+</button>
 {% endblock %}
