@@ -43,11 +43,9 @@ class EventType extends AbstractType
         $time
             ->add('eventStart', 'datetime', array(
                 'widget' => 'single_text',
-                'datetimepicker' => true,
             ))
             ->add('eventEnd', 'datetime', array(
                 'widget' => 'single_text',
-                'datetimepicker' => true,
                 'required' => false,
             ))
         ;
