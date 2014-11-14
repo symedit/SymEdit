@@ -33,6 +33,16 @@ symedit_seo:
                 - model.getTitle()
             description:
                 - "'Blog posts in ' ~ model.getTitle()"
+        SymEdit\Bundle\EventsBundle\Model\EventInterface:
+            title:
+                - model.getTitle()
+            description:
+                - model.getDescription()
+
+symedit_events:
+    classes:
+        event:
+            model: SymEdit\Bundle\CoreBundle\Model\Event
 
 # Widget Configuration
 symedit_widget:
@@ -107,5 +117,14 @@ symedit_sitemap:
             route:
                 ignore: true
                 path: team_view_slug
+                params:
+                    slug: $slug
+
+        events:
+            method: getUpcoming
+            repository: symedit.repository.event
+            route:
+                ignore: true
+                path: symedit_event_show
                 params:
                     slug: $slug
