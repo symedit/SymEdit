@@ -141,7 +141,6 @@ class RouteProvider extends DoctrineProvider implements RouteProviderInterface
     protected function findPageControllerForRequest(Request $request)
     {
         $path = $request->getPathInfo();
-        $collection = new RouteCollection();
 
         $paths = $this->getPathArray($path);
         $pages = $this->getRepository()->findBy(array(
@@ -156,12 +155,25 @@ class RouteProvider extends DoctrineProvider implements RouteProviderInterface
 
         // Could not find, return empty collction
         if (!$page) {
-            return $collection;
+            return new RouteCollection();
         }
 
+        return $this->getPageControllerRoutes($page);
+    }
+
+    /**
+     * Get a route collection for all routes associated to a page controller
+     *
+     * @param PageInterface $page
+     * @return RouteCollection
+     * @throws RouteNotFoundException
+     */
+    protected function getPageControllerRoutes(PageInterface $page)
+    {
         // Page Controller found, attach specified routes
         $pageController = $this->routeManager->get($page->getPageControllerPath());
         $storedRoutes = $this->storage->getRoutes();
+        $collection = new RouteCollection();
 
         foreach ($pageController->getRoutes() as $routeName) {
             if (!isset($storedRoutes[$routeName])) {
@@ -211,6 +223,20 @@ class RouteProvider extends DoctrineProvider implements RouteProviderInterface
 
     public function getRoutesByNames($names)
     {
+        if ($names === null) {
+            $collection = new RouteCollection();
+
+            $pages = $this->getRepository()->findBy(array(
+                'pageController' => true,
+            ));
+
+            foreach ($pages as $page) {
+                $collection->addCollection($this->getPageControllerRoutes($page));
+            }
+
+            return $collection;
+        }
+
         $routes = array();
 
         foreach ($names as $name) {
