@@ -4,7 +4,7 @@ symedit_events:
     defaults:
         _controller: symedit.controller.event:indexAction
         _sylius:
-            template: @SymEdit/Events/index.html.twig
+            template: @SymEdit/Event/index.html.twig
             method: getUpcoming
             paginate: 10
             sorting:
@@ -16,6 +16,6 @@ symedit_event_show:
     defaults:
         _controller: symedit.controller.event:showAction
         _sylius:
-            template: @SymEdit/Events/show.html.twig
+            template: @SymEdit/Event/show.html.twig
             criteria:
                 slug: $slug
