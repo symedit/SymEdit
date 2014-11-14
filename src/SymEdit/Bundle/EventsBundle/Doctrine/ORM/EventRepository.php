@@ -9,7 +9,8 @@ class EventRepository extends EntityRepository
     public function getUpcoming()
     {
         $qb = $this->getQueryBuilder()
-                   ->where('o.eventEnd < :now')
+                   ->where('o.eventEnd > :now')
+                   ->orWhere('o.eventStart > :now')
                    ->setParameter('now', new \DateTime());
 
         return $this->getPaginator($qb);
