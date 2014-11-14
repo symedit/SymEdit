@@ -16,7 +16,7 @@ use Symfony\Component\HttpFoundation\Response;
 
 class MenuController extends Controller
 {
-    public function renderAction(Request $request)
+    public function renderAction(Request $request, $ulClass = null)
     {
         $lastUpdated = $this->getPageRepository()->getLastUpdated();
 
@@ -29,7 +29,7 @@ class MenuController extends Controller
             return $response;
         }
 
-        return $this->render('@SymEdit/Menu/render.html.twig', array(), $response);
+        return $this->render('@SymEdit/Menu/render.html.twig', array('ulClass' => $ulClass), $response);
     }
 
     protected function getPageRepository()
