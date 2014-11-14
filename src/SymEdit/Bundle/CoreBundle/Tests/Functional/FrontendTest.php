@@ -34,6 +34,8 @@ class FrontendTest extends WebTestCase
             array('/blog/'),                    // Blog
             array('/blog/hello-world'),         //  - Hello World
             array('/blog/category/general'),    //  - Category: General
+            array('/sitemap.xml'),
+            array('/robots.txt'),
         );
     }
 }
