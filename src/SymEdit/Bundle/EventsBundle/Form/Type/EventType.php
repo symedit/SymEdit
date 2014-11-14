@@ -43,9 +43,17 @@ class EventType extends AbstractType
         $time
             ->add('eventStart', 'datetime', array(
                 'widget' => 'single_text',
+                'format' => 'yyyy-MM-dd HH:mm',
+                'attr' => array(
+                    'class' => 'datetimepicker',
+                ),
             ))
             ->add('eventEnd', 'datetime', array(
                 'widget' => 'single_text',
+                'format' => 'yyyy-MM-dd',
+                'attr' => array(
+                    'class' => 'datetimepicker',
+                ),
                 'required' => false,
             ))
         ;
@@ -58,11 +66,8 @@ class EventType extends AbstractType
         ));
 
         $location
-            ->add('address', 'textarea', array(
+            ->add('address', 'text', array(
                 'required' => false,
-                'attr' => array(
-                    'rows' => 3,
-                )
             ))
             ->add('showMap', 'checkbox', array(
                 'required' => false,

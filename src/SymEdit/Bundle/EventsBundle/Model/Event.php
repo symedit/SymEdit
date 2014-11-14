@@ -2,7 +2,7 @@
 
 namespace SymEdit\Bundle\EventsBundle\Model;
 
-class Event
+class Event implements EventInterface
 {
     protected $id;
     protected $title;
@@ -75,7 +75,7 @@ class Event
         return $this->eventEnd;
     }
 
-    public function setEventEnd(\DateTime $eventEnd)
+    public function setEventEnd(\DateTime $eventEnd = null)
     {
         $this->eventEnd = $eventEnd;
 
