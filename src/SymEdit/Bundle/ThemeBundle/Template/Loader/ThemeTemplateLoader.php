@@ -13,10 +13,16 @@ namespace SymEdit\Bundle\ThemeBundle\Template\Loader;
 
 use SymEdit\Bundle\ThemeBundle\Model\Theme;
 
-class ThemeTemplateLoader extends DirectoryTemplateLoader
+class ThemeTemplateLoader extends DirectoriesTemplateLoader
 {
     public function __construct(Theme $theme)
     {
-        parent::__construct(sprintf('%s/Page', $theme->getTemplateDirectory()));
+        $directories = array();
+
+        foreach ($theme->getTemplateDirectories() as $directory) {
+            $directories[] = sprintf('%s/Page', $directory);
+        }
+
+        parent::__construct($directories);
     }
 }

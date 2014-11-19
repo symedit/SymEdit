@@ -41,22 +41,45 @@ class ThemeFactory implements ThemeFactoryInterface
 
     protected function loadTheme($name)
     {
-        $themeFile = $name.'/theme.yml';
+        return $this->createTheme($this->loadThemeData($name));
+    }
+
+    protected function loadThemeData($name, array &$configs = array(), array &$resources = array())
+    {
+
         $cachePath = sprintf('%s/theme_config/%s.php', $this->cacheDir, $name);
         $themeCache = new ConfigCache($cachePath, true);
 
         if (!$themeCache->isFresh()) {
-            $resources = array(
-                new FileResource($this->themeDir.'/'.$themeFile),
-            );
-
-            $themeConfig = $this->loader->load($themeFile);
-            $themeData = $this->processor->processConfiguration($this->configuration, $themeConfig);
-
-            $themeCache->write(sprintf('<?php return %s;', var_export($themeData, true)), $resources);
+            $this->buildCache($themeCache, $name, $configs, $resources);
         }
 
-        return $this->createTheme(require $themeCache);
+        return unserialize(file_get_contents($themeCache));
+    }
+
+    protected function getThemeFile($name)
+    {
+        return sprintf('%s/theme.yml', $name);
+    }
+
+    protected function buildCache(ConfigCache $cache, $name, array &$configs = array(), array &$resources = array())
+    {
+        $themeFile = $this->getThemeFile($name);
+        $themeConfig = $this->loader->load($themeFile);
+        $themeData = $this->processor->processConfiguration($this->configuration, array($themeConfig));
+
+        $resources[] = new FileResource($themeFile);
+        $configs[] = $themeConfig;
+
+        if (isset($themeData['parent'])) {
+            $parent = $this->loadThemeData($themeData['parent'], $configs, $resources);
+
+            // Reprocess Configs
+            $themeData = $this->processor->processConfiguration($this->configuration, array_reverse($configs));
+            $themeData['parent'] = $parent;
+        }
+
+        $cache->write(serialize($themeData), $resources);
     }
 
     /**
@@ -83,6 +106,10 @@ class ThemeFactory implements ThemeFactoryInterface
         $theme->setJavascripts($data['javascripts']);
         $theme->setDirectory($this->themeDir);
         $theme->setPublicDirectory($this->publicDir);
+
+        if (isset($data['parent'])) {
+            $theme->setParentTheme($this->createTheme($data['parent']));
+        }
 
         return $theme;
     }

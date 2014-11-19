@@ -31,7 +31,7 @@ class CopyTemplateCommand extends AbstractThemeCommand
     {
         $name = $input->getArgument('template');
         $source = $this->getTemplateSource(sprintf('@Theme/%s', $name));
-        $destination = sprintf('%s/%s', $this->getTheme()->getTemplateDirectory(), $name);
+        $destination = sprintf('%s/%s', $this->getTheme()->getTemplateDirectories(true), $name);
 
         // Remove it if it exists first
         $fs = new Filesystem();

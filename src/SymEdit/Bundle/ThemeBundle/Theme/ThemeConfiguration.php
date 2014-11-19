@@ -24,6 +24,7 @@ class ThemeConfiguration implements ConfigurationInterface
         $rootNode
             ->children()
                 ->scalarNode('name')->end()
+                ->scalarNode('parent')->defaultNull()->end()
                 ->scalarNode('title')->end()
                 ->scalarNode('description')->end()
                 ->append($this->addAssetNode('stylesheets'))

@@ -13,6 +13,7 @@ namespace SymEdit\Bundle\ThemeBundle\EventListener;
 
 use SymEdit\Bundle\ThemeBundle\Event\Events;
 use SymEdit\Bundle\ThemeBundle\Event\ThemeEvent;
+use SymEdit\Bundle\ThemeBundle\Model\ThemeInterface;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
 class TemplateLoaderSubscriber implements EventSubscriberInterface
@@ -42,16 +43,18 @@ class TemplateLoaderSubscriber implements EventSubscriberInterface
             }
         }
 
-        // No templates in the theme, ignore it.
-        if (!is_dir($theme->getTemplateDirectory())) {
-            return;
-        }
-
         // Make our theme templates override another namespace
         array_unshift($overrides, 'Theme');
 
         foreach (array_reverse($overrides) as $override) {
-            $this->loader->prependPath($theme->getTemplateDirectory(), $override);
+            $this->addThemeDirectories($theme, $override);
+        }
+    }
+
+    protected function addThemeDirectories(ThemeInterface $theme, $override)
+    {
+        foreach (array_reverse($theme->getTemplateDirectories()) as $directory) {
+            $this->loader->prependPath($directory, $override);
         }
     }
 

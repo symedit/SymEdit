@@ -1,0 +1,6 @@
+name: parent
+title: Parent Theme
+description: Parent theme for testing
+stylesheets:
+    inputs:
+        - 'bundles/symedit/bootstrap/css/bootstrap.min.css'

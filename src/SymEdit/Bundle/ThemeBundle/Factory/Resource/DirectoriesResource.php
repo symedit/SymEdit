@@ -12,16 +12,18 @@
 namespace SymEdit\Bundle\ThemeBundle\Factory\Resource;
 
 use SymEdit\Bundle\ThemeBundle\Model\Theme;
-use Assetic\Factory\Resource\DirectoryResource as BaseResource;
+use Assetic\Factory\Resource\CoalescingDirectoryResource as BaseResource;
 
-class DirectoryResource extends BaseResource
+class DirectoriesResource extends BaseResource
 {
-    protected $theme;
-
     public function __construct(Theme $theme)
     {
-        $this->theme = $theme;
+        $directories = array();
 
-        parent::__construct($theme->getTemplateDirectory());
+        foreach ($theme->getTemplateDirectories() as $directory) {
+            $directories[] = new \Assetic\Factory\Resource\DirectoryResource($directory);
+        }
+
+        parent::__construct($directories);
     }
 }

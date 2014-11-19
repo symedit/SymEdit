@@ -35,11 +35,15 @@ Interface ThemeInterface
 
     public function getThemeDirectory();
 
-    public function getTemplateDirectory();
+    public function getTemplateDirectories();
 
     public function setDirectory($directory);
 
     public function getPublicDirectory();
 
     public function setPublicDirectory($publicDirectory);
+
+    public function getParentTheme();
+
+    public function setParentTheme(ThemeInterface $theme);
 }
