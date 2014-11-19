@@ -70,10 +70,28 @@ class ThemeResource implements ResourceInterface
                 continue;
             }
 
-            $prepared[] = $this->theme->getThemeDirectory() . '/' . $input;
+            $prepared[] = $this->findResource($input);
         }
 
         return $prepared;
+    }
+
+    protected function findResource($input)
+    {
+        $currentTheme = $this->theme;
+
+        while ($currentTheme !== null) {
+            $file = $currentTheme->getThemeDirectory() . '/' . $input;
+
+            if (file_exists($file)) {
+                return $file;
+            }
+
+            $currentTheme = $currentTheme->getParentTheme();
+        }
+
+        // Couldn't find just return as is
+        return $this->theme->getDirectory() . '/' . $input;
     }
 
     public function isFresh($timestamp)
