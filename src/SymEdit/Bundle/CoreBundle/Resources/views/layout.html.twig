@@ -11,12 +11,8 @@
 {% endblock %}
 {% block stylesheets %}
 {% stylesheets
-               'bundles/symedit/bootstrap/css/bootstrap.min.css'
-               'bundles/symedit/css/font-awesome.min.css'
+               '@theme_css'
                '@SymEditBundle/Resources/less/system.less'
-               '@SymEditBundle/Resources/less/util.less'
-               '@SymEditBundle/Resources/less/footer.less'
-               '@SymEditBundle/Resources/less/site.less'
                filter='cssrewrite' %}
         <link rel="stylesheet" type="text/css" href="{{ asset_url }}" />
 {% endstylesheets -%}
@@ -30,11 +26,11 @@
         <div id="wrap">
         {% block body %}
             {% block nav %}
-            <div class="container">
-                <nav class="main-nav">
-                    {% include '@SymEdit/Menu/include.html.twig' %}
-                </nav>
-            </div>
+                {% embed '@MopaBootstrap/Navbar/navbar.html.twig' %}
+                    {% block menu %}
+                        {% include '@SymEdit/Menu/include.html.twig' %}
+                    {% endblock %}
+                {% endembed %}
             {% endblock %}
 
             {% block content_container %}

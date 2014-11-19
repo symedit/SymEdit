@@ -1,5 +1,8 @@
-{% set options = { root_options: { childrenAttributes: { class: 'main' }}} %}
-{% set menu = knp_menu_get('tree', [], options) %}
-{% spaceless %}
-{{ knp_menu_render(menu, {template: '@SymEdit/Menu/navigation.html.twig', ancestorClass: 'active', currentClass: 'active'}) }}
-{% endspaceless %}
+{{ mopa_bootstrap_menu('tree', {
+    root_options: {
+        childrenAttributes: {
+            class: ulClass|default('main nav navbar-nav')
+        }
+    },
+    template: '@SymEdit/Menu/navigation.html.twig'
+}) }}
