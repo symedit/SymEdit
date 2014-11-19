@@ -1,0 +1,8 @@
+name: grandparent
+title: Grand parent theme
+description: Grand parent theme for testing
+stylesheets:
+    inputs:
+        - 'bundles/symedit/css/font-awesome.min.css'
+    filters:
+        - cssrewrite
