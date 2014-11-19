@@ -46,7 +46,6 @@ class ThemeFactory implements ThemeFactoryInterface
 
     protected function loadThemeData($name, array &$configs = array(), array &$resources = array())
     {
-
         $cachePath = sprintf('%s/theme_config/%s.php', $this->cacheDir, $name);
         $themeCache = new ConfigCache($cachePath, true);
 

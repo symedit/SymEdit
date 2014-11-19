@@ -1,0 +1,39 @@
+<?php
+
+namespace SymEdit\Bundle\ThemeBundle\Twig;
+
+use SymEdit\Bundle\ThemeBundle\Model\ThemeInterface;
+use Symfony\Bundle\TwigBundle\Loader\FilesystemLoader as BaseFilesystemLoader;
+
+class FilesystemLoader extends BaseFilesystemLoader
+{
+    public function setThemePaths(ThemeInterface $theme, array $overrides = array())
+    {
+        // Allow Theme namespace to access other namespaces
+        foreach ($overrides as $override) {
+            // Get paths we need to override
+            $paths = $this->getPaths($override);
+
+            // For each path we find, allow @Theme to access it
+            $this->prependPaths($paths, 'Theme');
+        }
+
+        // Get Directories
+        $templateDirectories = $theme->getTemplateDirectories();
+
+        // Setup the Theme Template Paths
+        $this->setPaths($templateDirectories, 'Theme');
+
+        // Setup overrides
+        foreach ($overrides as $override) {
+            $this->prependPaths($templateDirectories, $override);
+        }
+    }
+
+    protected function prependPaths(array $paths, $namespace = self::MAIN_NAMESPACE)
+    {
+        foreach ($paths as $path) {
+            $this->prependPath($path, $namespace);
+        }
+    }
+}

@@ -14,6 +14,7 @@ namespace SymEdit\Bundle\ThemeBundle;
 use SymEdit\Bundle\ThemeBundle\DependencyInjection\Compiler\TemplateLoaderPass;
 use SymEdit\Bundle\ThemeBundle\DependencyInjection\Compiler\TemplateResourcesPass;
 use SymEdit\Bundle\ThemeBundle\DependencyInjection\Compiler\ThemeLoaderPass;
+use SymEdit\Bundle\ThemeBundle\DependencyInjection\Compiler\TwigLoaderPass;
 use SymEdit\Bundle\ThemeBundle\DependencyInjection\SymEditThemeExtension;
 use SymEdit\Bundle\ThemeBundle\Event\Events;
 use SymEdit\Bundle\ThemeBundle\Event\ThemeEvent;
@@ -27,6 +28,7 @@ class SymEditThemeBundle extends Bundle
         $container->addCompilerPass(new TemplateResourcesPass());
         $container->addCompilerPass(new TemplateLoaderPass());
         $container->addCompilerPass(new ThemeLoaderPass());
+        $container->addCompilerPass(new TwigLoaderPass());
     }
 
     public function boot()

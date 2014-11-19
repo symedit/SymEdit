@@ -12,7 +12,7 @@
         <parameter key="symedit_theme.theme.config.class">SymEdit\Bundle\ThemeBundle\Theme\ThemeConfiguration</parameter>
         <parameter key="symedit_theme.model.theme.class">SymEdit\Bundle\ThemeBundle\Model\Theme</parameter>
         <parameter key="symedit_theme.cache_dir">%kernel.cache_dir%/symedit_theme</parameter>
-        <parameter key="symedit_theme.event_listener.template_loader.class">SymEdit\Bundle\ThemeBundle\EventListener\TemplateLoaderSubscriber</parameter>
+        <parameter key="symedit_theme.twig.loader.filesystem">SymEdit\Bundle\ThemeBundle\Twig\FilesystemLoader</parameter>
     </parameters>
 
     <services>
@@ -58,13 +58,6 @@
         <!-- Current Theme -->
         <service id="symedit_theme.theme" class="%symedit_theme.model.theme.class%" factory-service="symedit_theme.theme_manager" factory-method="getTheme">
             <argument>%symedit_theme.active_theme%</argument>
-        </service>
-
-        <!-- Twig Path Subscriber -->
-        <service id="symedit_theme.event_listener.template_loader" class="%symedit_theme.event_listener.template_loader.class%">
-            <argument type="service" id="twig.loader" />
-            <argument>%symedit_theme.namespace_overrides%</argument>
-            <tag name="kernel.event_subscriber" />
         </service>
     </services>
 </container>
