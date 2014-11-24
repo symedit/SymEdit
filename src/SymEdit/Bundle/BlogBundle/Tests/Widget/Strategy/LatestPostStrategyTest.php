@@ -33,8 +33,6 @@ class LatestPostStrategyTest extends TestCase
                     ))
                  );
 
-        //$this->assertFalse(var_dump($strategy, true));
-
         $strategy->execute($this->createWidget());
     }
 
