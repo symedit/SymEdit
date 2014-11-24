@@ -108,6 +108,7 @@
 
             <gedmo:tree-parent />
             <gedmo:versioned />
+            <gedmo:sortable-group />
         </many-to-one>
 
         <gedmo:loggable />
