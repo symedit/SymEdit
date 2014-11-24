@@ -15,6 +15,10 @@ use SymEdit\Bundle\WidgetBundle\Widget\Strategy\WidgetStrategyInterface;
 
 interface WidgetInterface
 {
+    const INCLUDE_ALL = 0;
+    const INCLUDE_ONLY = 1;
+    const EXCLUDE_ONLY = 2;
+
     public function getId();
 
     /**

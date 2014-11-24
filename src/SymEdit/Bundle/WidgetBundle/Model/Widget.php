@@ -15,10 +15,6 @@ use SymEdit\Bundle\WidgetBundle\Widget\Strategy\WidgetStrategyInterface;
 
 class Widget implements WidgetInterface
 {
-    const INCLUDE_ALL = 0;
-    const INCLUDE_ONLY = 1;
-    const EXCLUDE_ONLY = 2;
-
     /**
      * @var integer
      */
