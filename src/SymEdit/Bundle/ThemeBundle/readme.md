@@ -14,21 +14,20 @@ folder. It also will allow you to use local assetic files. Themes are comprised
 of a simple YAML definition (in theme.yml):
 
 ```yaml
-theme:
-    name: default
-    parent: base
-    title: Default Theme
-    description: Default Theme for all websites
-    stylesheets:
-        filters: [cssrewrite]
-        inputs:
-           - 'bundles/acmedemo/bootstrap/css/bootstrap.min.css'
-           - 'bundles/acmedemo/css/font-awesome.min.css'
-           - '@AcmeDemoBundle/Resources/less/site.less'
-           - 'css/site.less' # Taken from /{active_theme}/css/site.less
-    javascripts:
-        # Same as stylesheets
-        inputs: []
+name: default
+parent: base
+title: Default Theme
+description: Default Theme for all websites
+stylesheets:
+    filters: [cssrewrite]
+    inputs:
+       - 'bundles/acmedemo/bootstrap/css/bootstrap.min.css'
+       - 'bundles/acmedemo/css/font-awesome.min.css'
+       - '@AcmeDemoBundle/Resources/less/site.less'
+       - 'css/site.less' # Taken from /{active_theme}/css/site.less
+javascripts:
+    # Same as stylesheets
+    inputs: []
 ```
 
 You will now use your css in your templates like so:
