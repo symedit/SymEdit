@@ -11,6 +11,7 @@
 
 namespace SymEdit\Bundle\ThemeBundle\Theme;
 
+use InvalidArgumentException;
 use SymEdit\Bundle\ThemeBundle\Model\ThemeInterface;
 use Symfony\Component\Config\ConfigCache;
 use Symfony\Component\Config\Definition\ConfigurationInterface;
@@ -41,16 +42,40 @@ class ThemeFactory implements ThemeFactoryInterface
 
     protected function loadTheme($name)
     {
-        return $this->createTheme($this->loadThemeData($name));
+        return $this->loadThemeData($name);
     }
 
-    protected function loadThemeData($name, array &$configs = array(), array &$resources = array())
+    protected function getConfigData($name)
+    {
+        $configs = array();
+        $resources = array();
+
+        while (true) {
+            $configFile = $this->getThemeFile($name);
+            $config = $this->loader->load($configFile);
+            $configs[] = $config;
+            $resources[] = new FileResource($configFile);
+
+            if (!isset($config['parent'])) {
+                break;
+            }
+
+            $name = $config['parent'];
+        }
+
+        return array(array_reverse($configs), $resources);
+    }
+
+    /**
+     * @return ThemeInterface
+     */
+    protected function loadThemeData($name)
     {
         $cachePath = sprintf('%s/theme_config/%s.php', $this->cacheDir, $name);
         $themeCache = new ConfigCache($cachePath, true);
 
         if (!$themeCache->isFresh()) {
-            $this->buildCache($themeCache, $name, $configs, $resources);
+            $this->buildCache($themeCache, $name);
         }
 
         return unserialize(file_get_contents($themeCache));
@@ -61,24 +86,16 @@ class ThemeFactory implements ThemeFactoryInterface
         return sprintf('%s/theme.yml', $name);
     }
 
-    protected function buildCache(ConfigCache $cache, $name, array &$configs = array(), array &$resources = array())
+    protected function buildCache(ConfigCache $cache, $name)
     {
-        $themeFile = $this->getThemeFile($name);
-        $themeConfig = $this->loader->load($themeFile);
-        $themeData = $this->processor->processConfiguration($this->configuration, array($themeConfig));
-
-        $resources[] = new FileResource($themeFile);
-        $configs[] = $themeConfig;
+        list($configs, $resources) = $this->getConfigData($name);
+        $themeData = $this->processor->processConfiguration($this->configuration, $configs);
 
         if (isset($themeData['parent'])) {
-            $parent = $this->loadThemeData($themeData['parent'], $configs, $resources);
-
-            // Reprocess Configs
-            $themeData = $this->processor->processConfiguration($this->configuration, array_reverse($configs));
-            $themeData['parent'] = $parent;
+            $themeData['parent'] = $this->loadTheme($themeData['parent']);
         }
 
-        $cache->write(serialize($themeData), $resources);
+        $cache->write(serialize($this->createTheme($themeData)), $resources);
     }
 
     /**
@@ -89,7 +106,7 @@ class ThemeFactory implements ThemeFactoryInterface
         $theme = new $this->model;
 
         if (!$theme instanceof ThemeInterface) {
-            throw new \InvalidArgumentException('Theme model must implement ThemeInterface');
+            throw new InvalidArgumentException('Theme model must implement ThemeInterface');
         }
 
         return $theme;
@@ -107,7 +124,7 @@ class ThemeFactory implements ThemeFactoryInterface
         $theme->setPublicDirectory($this->publicDir);
 
         if (isset($data['parent'])) {
-            $theme->setParentTheme($this->createTheme($data['parent']));
+            $theme->setParentTheme($data['parent']);
         }
 
         return $theme;

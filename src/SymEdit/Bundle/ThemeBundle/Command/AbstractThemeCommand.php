@@ -18,11 +18,18 @@ use Symfony\Component\Finder\Finder;
 abstract class AbstractThemeCommand extends ContainerAwareCommand
 {
     /**
+     * Get a theme, or current them with no name
+     *
+     * @param string $name
      * @return ThemeInterface
      */
-    protected function getTheme()
+    protected function getTheme($name = null)
     {
-        return $this->getContainer()->get('symedit_theme.theme');
+        if ($name === null) {
+            return $this->getContainer()->get('symedit_theme.theme');
+        }
+
+        return $this->getContainer()->get('symedit_theme.theme_manager')->getTheme($name);
     }
 
     /**

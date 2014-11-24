@@ -11,7 +11,7 @@
 
 namespace SymEdit\Bundle\ThemeBundle\Model;
 
-class Theme implements ThemeInterface
+class Theme implements ThemeInterface, \Serializable
 {
     protected $name;
     protected $title;
@@ -149,5 +149,31 @@ class Theme implements ThemeInterface
     protected function getDirectory($name)
     {
         return sprintf('%s/%s', $this->getThemeDirectory(), $name);
+    }
+
+    public function serialize()
+    {
+        return serialize(array(
+            'name' => $this->name,
+            'description' => $this->description,
+            'stylesheets' => $this->stylesheets,
+            'javascripts' => $this->javascripts,
+            'directory' => $this->directory,
+            'publicDirectory' => $this->publicDirectory,
+            'parent' => $this->parent,
+        ));
+    }
+
+    public function unserialize($serialized)
+    {
+        $data = unserialize($serialized);
+
+        $this->name = $data['name'];
+        $this->description = $data['description'];
+        $this->stylesheets = $data['stylesheets'];
+        $this->javascripts = $data['javascripts'];
+        $this->directory = $data['directory'];
+        $this->publicDirectory = $data['publicDirectory'];
+        $this->parent = $data['parent'];
     }
 }
