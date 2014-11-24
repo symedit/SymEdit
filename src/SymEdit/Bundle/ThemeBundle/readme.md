@@ -16,6 +16,7 @@ of a simple YAML definition (in theme.yml):
 ```yaml
 theme:
     name: default
+    parent: base
     title: Default Theme
     description: Default Theme for all websites
     stylesheets:
@@ -52,6 +53,22 @@ other bundles can be intermixed:
 
 This same applies for javascripts as well and you can get it through assetic
 by `@theme_js`.
+
+## Parent Themes
+
+You can set your theme to have a parent (should be the slug of the theme, and
+themes are located in %theme_dir%/{theme_name}/theme.yml). If your theme has a
+parent, then those templates are second in line to be used. After that are the
+overrides. If you use an override like "Framework" then templates being
+referenced like: @Framework/template.html.twig will instead use your theme
+directories to find a template. Likewise, if you use @Theme/template.html and
+it only existed in the @Framework namespace, it would still work.
+
+When using a parent theme, you can also store your assets in any theme you'd
+like, or have them split up. It will start with your current theme and move
+up through all parents trying to locate the resource, so assets in your current
+theme take precedence. This helps if you have lots of similar themes so you can
+store shared assets in a "base" theme.
 
 ## Templates
 

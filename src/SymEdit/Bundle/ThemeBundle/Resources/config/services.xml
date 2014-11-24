@@ -28,14 +28,8 @@
         </service>
 
         <!-- Assetic Theme Directory Resource -->
-        <service id="symedit_theme.twig.theme_resource" class="Assetic\Factory\Resource\CoalescingDirectoryResource">
-            <argument type="collection">
-                <argument type="service">
-                    <service class="SymEdit\Bundle\ThemeBundle\Factory\Resource\DirectoryResource">
-                        <argument type="service" id="symedit_theme.theme" />
-                    </service>
-                </argument>
-            </argument>
+        <service id="symedit_theme.twig.theme_resource" class="SymEdit\Bundle\ThemeBundle\Factory\Resource\DirectoriesResource">
+            <argument type="service" id="symedit_theme.theme" />
             <tag name="assetic.templating.twig" />
             <tag name="assetic.formula_resource" loader="twig" />
         </service>

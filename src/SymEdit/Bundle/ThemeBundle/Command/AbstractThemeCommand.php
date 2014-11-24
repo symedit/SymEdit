@@ -31,7 +31,7 @@ abstract class AbstractThemeCommand extends ContainerAwareCommand
     protected function getTemplateFinder()
     {
         $finder = new Finder();
-        $finder->in($this->getTheme()->getTemplateDirectory());
+        $finder->in($this->getTheme()->getTemplateDirectories());
 
         return $finder;
     }

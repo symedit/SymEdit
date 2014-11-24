@@ -20,6 +20,7 @@ class Theme implements ThemeInterface
     protected $publicDirectory;
     protected $stylesheets;
     protected $javascripts;
+    protected $parent;
 
     public function getName()
     {
@@ -86,9 +87,32 @@ class Theme implements ThemeInterface
         return sprintf('%s/%s', $this->directory, $this->getName());
     }
 
-    public function getTemplateDirectory()
+    public function getTemplateDirectories($first = false)
     {
-        return sprintf('%s/%s', $this->getThemeDirectory(), 'templates');
+        if ($first) {
+            return $this->getTemplateDirectory();
+        }
+
+        $directories = array();
+        $currentTheme = $this;
+
+        while ($currentTheme !== null) {
+            $directory = $currentTheme->getTemplateDirectory();
+            $currentTheme = $currentTheme->getParentTheme();
+
+            if (!is_dir($directory)) {
+                continue;
+            }
+
+            $directories[] = $directory;
+        }
+
+        return $directories;
+    }
+
+    protected function getTemplateDirectory()
+    {
+        return $this->getDirectory('templates');
     }
 
     public function setDirectory($directory)
@@ -108,5 +132,22 @@ class Theme implements ThemeInterface
         $this->publicDirectory = $publicDirectory;
 
         return $this;
+    }
+
+    public function getParentTheme()
+    {
+        return $this->parent;
+    }
+
+    public function setParentTheme(ThemeInterface $theme)
+    {
+        $this->parent = $theme;
+
+        return $this;
+    }
+
+    protected function getDirectory($name)
+    {
+        return sprintf('%s/%s', $this->getThemeDirectory(), $name);
     }
 }
