@@ -2,16 +2,11 @@
 
 namespace SymEdit\Bundle\BlogBundle\Tests\Widget\Strategy;
 
-use SymEdit\Bundle\BlogBundle\Tests\TestCase;
 use SymEdit\Bundle\BlogBundle\Widget\Strategy\LatestPostStrategy;
+use SymEdit\Bundle\WidgetBundle\Test\WidgetStrategyTest;
 
-class LatestPostStrategyTest extends TestCase
+class LatestPostStrategyTest extends WidgetStrategyTest
 {
-    public function createWidget()
-    {
-        return $this->getMockForAbstractClass('SymEdit\Bundle\WidgetBundle\Model\WidgetInterface');
-    }
-
     public function testExecute()
     {
         $repository = $this->getMockBuilder('Sylius\Bundle\ResourceBundle\Doctrine\ORM\EntityRepository')
@@ -43,23 +38,9 @@ class LatestPostStrategyTest extends TestCase
         return new LatestPostStrategy($repository);
     }
 
-    public function testName()
+    protected function getFormBuilder()
     {
-        $strategy = $this->createStrategy();
-        $this->assertEquals('blog_latest_post', $strategy->getName());
-    }
-
-    public function testDescription()
-    {
-        $strategy = $this->createStrategy();
-        $this->assertEquals('blog.latest_post', $strategy->getDescription());
-    }
-
-    public function testBuildForm()
-    {
-        $strategy = $this->createStrategy();
-        $builder = $this->getMockForAbstractClass('Symfony\Component\Form\FormBuilderInterface');
-
+        $builder = parent::getFormBuilder();
         $builder->expects($this->once())
                 ->method('add')
                 ->with(
@@ -67,19 +48,24 @@ class LatestPostStrategyTest extends TestCase
                     $this->equalTo('checkbox')
                 );
 
-        $strategy->buildForm($builder);
+        return $builder;
     }
 
-    public function testDefaultOptions()
+    protected function getDefaultOptions()
     {
-        $strategy = $this->createStrategy();
-        $widget = $this->createWidget();
-        $widget->expects($this->once())
-               ->method('setOptions')
-               ->with($this->equalTo(array(
-                   'show_image' => true,
-               )));
-
-        $strategy->setDefaultOptions($widget);
+        return array(
+            'show_image' => true,
+        );
     }
+
+    protected function getStrategyDescription()
+    {
+        return 'blog.latest_post';
+    }
+
+    protected function getStrategyName()
+    {
+        return 'blog_latest_post';
+    }
+
 }

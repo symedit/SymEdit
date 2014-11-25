@@ -94,6 +94,9 @@ class WidgetTest extends TestCase
         // Set individual option
         $widget->setOption('foo', 'buzz');
         $this->assertEquals('buzz', $widget->getOption('foo'));
+
+        // Test non-existent option
+        $this->assertNull($widget->getOption('none'));
     }
 
     protected function getWidget()
