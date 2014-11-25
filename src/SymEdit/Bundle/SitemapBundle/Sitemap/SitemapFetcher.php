@@ -13,12 +13,13 @@ namespace SymEdit\Bundle\SitemapBundle\Sitemap;
 
 use Symfony\Component\DependencyInjection\ContainerAware;
 use Symfony\Component\PropertyAccess\PropertyAccess;
+use Symfony\Component\Routing\Exception\MissingMandatoryParametersException;
+use Symfony\Component\Routing\Exception\RouteNotFoundException;
 use Symfony\Component\Routing\RouterInterface;
 
 class SitemapFetcher extends ContainerAware
 {
     protected $propertyAccessor;
-    protected $routeCollection;
 
     public function fetchEntries($className, array $parameters)
     {
@@ -152,7 +153,15 @@ class SitemapFetcher extends ContainerAware
 
     protected function hasRoute($routeName)
     {
-        return array_key_exists($routeName, $this->getRouteCollection());
+        try {
+            $this->getRouter()->generate($routeName);
+
+            return true;
+        } catch (MissingMandatoryParametersException $e) {
+            return true;
+        } catch (RouteNotFoundException $e) {
+            return false;
+        }
     }
 
     /**
@@ -161,15 +170,6 @@ class SitemapFetcher extends ContainerAware
     protected function getRouter()
     {
         return $this->container->get('router');
-    }
-
-    protected function getRouteCollection()
-    {
-        if ($this->routeCollection === null) {
-            $this->routeCollection = $this->getRouter()->getRouteCollection()->all();
-        }
-
-        return $this->routeCollection;
     }
 
     protected function getPropertyAccessor()
