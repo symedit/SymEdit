@@ -111,16 +111,6 @@ class PostTest extends TestCase
         $this->assertEquals($updated, $post->getCreatedAt());
     }
 
-    public function testSeo()
-    {
-        $post = $this->getPost();
-        $this->assertNull($post->getSeo());
-
-        $seo = array('title' => 'foo');
-        $post->setSeo($seo);
-        $this->assertEquals($seo, $post->getSeo());
-    }
-
     public function testPublished()
     {
         $post = $this->getPost();

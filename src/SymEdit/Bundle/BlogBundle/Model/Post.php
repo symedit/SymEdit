@@ -13,7 +13,6 @@ namespace SymEdit\Bundle\BlogBundle\Model;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
-use SymEdit\Bundle\MediaBundle\Model\ImageInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 
 class Post implements PostInterface
@@ -75,11 +74,6 @@ class Post implements PostInterface
      * @var integer $status
      */
     protected $status;
-
-    /**
-     * @var array $seo
-     */
-    protected $seo;
 
     public function __construct()
     {
@@ -268,29 +262,6 @@ class Post implements PostInterface
     public function getCategories()
     {
         return $this->categories;
-    }
-
-    /**
-     * Set seo
-     *
-     * @param  array $seo
-     * @return Post
-     */
-    public function setSeo(array $seo = array())
-    {
-        $this->seo = $seo;
-
-        return $this;
-    }
-
-    /**
-     * Get seo
-     *
-     * @return array
-     */
-    public function getSeo()
-    {
-        return $this->seo;
     }
 
     /**

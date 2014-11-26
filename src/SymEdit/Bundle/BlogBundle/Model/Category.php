@@ -57,11 +57,6 @@ class Category implements CategoryInterface
     protected $posts;
 
     /**
-     * @var array $seo
-     */
-    protected $seo;
-
-    /**
      * Constructor
      */
     public function __construct()
@@ -247,29 +242,6 @@ class Category implements CategoryInterface
     public function getChildren()
     {
         return $this->children;
-    }
-
-    /**
-     * Set seo
-     *
-     * @param  array             $seo
-     * @return CategoryInterface
-     */
-    public function setSeo(array $seo = array())
-    {
-        $this->seo = $seo;
-
-        return $this;
-    }
-
-    /**
-     * Get seo
-     *
-     * @return array
-     */
-    public function getSeo()
-    {
-        return $this->seo;
     }
 
     /**

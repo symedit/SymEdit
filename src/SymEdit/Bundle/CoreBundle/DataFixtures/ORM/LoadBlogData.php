@@ -14,7 +14,7 @@ namespace SymEdit\Bundle\CoreBundle\DataFixtures\ORM;
 use Doctrine\Common\Persistence\ObjectManager;
 use Doctrine\Common\DataFixtures\AbstractFixture;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
-use SymEdit\Bundle\BlogBundle\Model\Category;
+use SymEdit\Bundle\CoreBundle\Model\Category;
 use SymEdit\Bundle\CoreBundle\Model\Post;
 
 class LoadBlogData extends AbstractFixture implements OrderedFixtureInterface

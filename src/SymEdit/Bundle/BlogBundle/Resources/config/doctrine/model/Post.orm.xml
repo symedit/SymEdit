@@ -44,10 +44,6 @@
 
         <field name="status" type="integer" column="status"/>
 
-        <field name="seo" type="json_array" column="seo" nullable="true">
-            <gedmo:versioned />
-        </field>
-
         <many-to-one field="author" target-entity="SymEdit\Bundle\UserBundle\Model\UserInterface">
             <join-columns>
                 <join-column name="author_id" referenced-column-name="id"/>

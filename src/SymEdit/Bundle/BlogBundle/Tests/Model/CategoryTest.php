@@ -120,14 +120,6 @@ class CategoryTest extends TestCase
         $this->assertFalse($category->getPosts()->contains($post));
     }
 
-    public function testSeo()
-    {
-        $seo = array('title' => 'foo');
-        $category = $this->getCategory()->setSeo($seo);
-
-        $this->assertEquals($seo, $category->getSeo());
-    }
-
     public function testGetPosts()
     {
         $this->assertEquals(3, count($this->getCategory()->getPosts()));

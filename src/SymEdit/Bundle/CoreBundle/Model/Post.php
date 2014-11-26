@@ -5,12 +5,17 @@ namespace SymEdit\Bundle\CoreBundle\Model;
 use SymEdit\Bundle\BlogBundle\Model\Post as BasePost;
 use SymEdit\Bundle\MediaBundle\Model\ImageInterface;
 
-class Post extends BasePost
+class Post extends BasePost implements PostInterface
 {
     /**
      * @var ImageInterface
      */
     protected $image;
+
+    /**
+     * @var array $seo
+     */
+    protected $seo;
 
    /**
      * Set image
@@ -40,5 +45,28 @@ class Post extends BasePost
     public function getImage()
     {
         return $this->image;
+    }
+
+    /**
+     * Set seo
+     *
+     * @param  array $seo
+     * @return Post
+     */
+    public function setSeo(array $seo = array())
+    {
+        $this->seo = $seo;
+
+        return $this;
+    }
+
+    /**
+     * Get seo
+     *
+     * @return array
+     */
+    public function getSeo()
+    {
+        return $this->seo;
     }
 }

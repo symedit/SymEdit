@@ -24,16 +24,14 @@
             <gedmo:tree-path append_id="false" separator="/" ends_with_separator="false" />
         </field>
 
-        <field name="seo" type="json_array" column="seo" nullable="true"/>
-
-        <one-to-many field="children" target-entity="SymEdit\Bundle\BlogBundle\Model\Category" mapped-by="parent">
+        <one-to-many field="children" target-entity="SymEdit\Bundle\BlogBundle\Model\CategoryInterface" mapped-by="parent">
             <cascade>
                 <cascade-remove/>
                 <cascade-persist/>
             </cascade>
         </one-to-many>
 
-        <many-to-one field="parent" target-entity="SymEdit\Bundle\BlogBundle\Model\Category" inversed-by="children">
+        <many-to-one field="parent" target-entity="SymEdit\Bundle\BlogBundle\Model\CategoryInterface" inversed-by="children">
             <join-columns>
                 <join-column name="parent" referenced-column-name="id" on-delete="SET NULL"/>
             </join-columns>
@@ -41,7 +39,7 @@
             <gedmo:tree-parent />
         </many-to-one>
 
-        <many-to-many field="posts" target-entity="SymEdit\Bundle\CoreBundle\Model\Post" mapped-by="categories">
+        <many-to-many field="posts" target-entity="SymEdit\Bundle\BlogBundle\Model\PostInterface" mapped-by="categories">
             <order-by>
                 <order-by-field name="createdAt" direction="DESC"/>
             </order-by>

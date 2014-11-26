@@ -11,9 +11,7 @@
 
 namespace SymEdit\Bundle\BlogBundle\Model;
 
-use SymEdit\Bundle\SeoBundle\Model\SeoAbleInterface;
-
-interface CategoryInterface extends SeoAbleInterface
+interface CategoryInterface
 {
     public function getId();
 

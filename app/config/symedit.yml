@@ -8,6 +8,8 @@ symedit_blog:
     classes:
         post:
             model: SymEdit\Bundle\CoreBundle\Model\Post
+        category:
+            model: SymEdit\Bundle\CoreBundle\Model\Category
 
 # SymEdit SEO
 symedit_seo:

@@ -11,11 +11,9 @@
 
 namespace SymEdit\Bundle\BlogBundle\Model;
 
-use SymEdit\Bundle\MediaBundle\Model\ImageInterface;
-use SymEdit\Bundle\SeoBundle\Model\SeoAbleInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 
-interface PostInterface extends SeoAbleInterface
+interface PostInterface
 {
     public function getId();
 

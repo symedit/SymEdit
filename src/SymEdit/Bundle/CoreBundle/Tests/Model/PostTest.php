@@ -37,4 +37,14 @@ class PostTest extends TestCase
         $post->setImage($image);
         $this->assertEquals($image, $post->getImage());
     }
+
+    public function testSeo()
+    {
+        $post = $this->getPost();
+        $this->assertNull($post->getSeo());
+
+        $seo = array('title' => 'foo');
+        $post->setSeo($seo);
+        $this->assertEquals($seo, $post->getSeo());
+    }
 }
