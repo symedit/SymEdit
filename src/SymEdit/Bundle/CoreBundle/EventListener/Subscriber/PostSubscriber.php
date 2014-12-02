@@ -31,8 +31,8 @@ class PostSubscriber implements EventSubscriberInterface
     public static function getSubscribedEvents()
     {
         return array(
-            'symedit.post.post_post_create' => 'sharePost',
-            'symedit.post.post_post_update' => 'sharePost',
+            'symedit.post.post_create' => 'sharePost',
+            'symedit.post.post_update' => 'sharePost',
         );
     }
 
