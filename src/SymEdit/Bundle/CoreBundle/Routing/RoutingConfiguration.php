@@ -26,8 +26,9 @@ class RoutingConfiguration implements ConfigurationInterface
             ->prototype('array')
                 ->validate()
                     ->always()
-                    ->then(function ($v){
+                    ->then(function ($v) {
                         $v['routes'] = array_unique($v['routes']);
+
                         return $v;
                     })
                 ->end()

@@ -544,7 +544,7 @@ class Page implements PageInterface
         $path = $this->path;
 
         if ($this->getPageController()) {
-            $path = rtrim($path, '/') . '/';
+            $path = rtrim($path, '/').'/';
         }
 
         return $path;

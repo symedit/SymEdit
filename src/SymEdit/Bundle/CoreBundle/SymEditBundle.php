@@ -30,7 +30,7 @@ class SymEditBundle extends AbstractResourceBundle
     {
         if ($kernel === null) {
             throw new \RuntimeException(
-                'When you register the SymEdit bundle, be sure to include "$this" in the parameters => ' .
+                'When you register the SymEdit bundle, be sure to include "$this" in the parameters => '.
                 'new SymEdit\\Bundle\\CoreBundle\\SymEditBundle($this)'
             );
         }

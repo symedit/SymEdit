@@ -38,7 +38,7 @@ class HtmlStrategy extends AbstractWidgetStrategy
                 'label_render' => false,
                 'attr' => array(
                     'class' => 'wysiwyg-editor',
-                )
+                ),
             ));
     }
 

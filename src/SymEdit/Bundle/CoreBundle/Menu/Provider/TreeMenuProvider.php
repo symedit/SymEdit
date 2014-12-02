@@ -71,7 +71,7 @@ class TreeMenuProvider implements MenuProviderInterface
 
             if ($level > ($root->getLevel()+1)) {
                 throw new \Exception(sprintf('Cannot get a level (%d) higher than this page\'s children (%d), '
-                                           . 'it is impossible to tell the path', $level, ($root->getLevel()+1)));
+                                           .'it is impossible to tell the path', $level, ($root->getLevel()+1)));
             }
 
             while ($root->getLevel() >= $level && $root->getLevel() > 0) {

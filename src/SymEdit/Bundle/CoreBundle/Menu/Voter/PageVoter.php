@@ -37,7 +37,7 @@ class PageVoter implements VoterInterface
             return $item->getExtra('_page_id', null) === $page->getId();
         }
 
-        return null;
+        return;
     }
 
     /**

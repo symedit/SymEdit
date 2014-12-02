@@ -103,5 +103,4 @@ class LoadPageData extends AbstractFixture implements OrderedFixtureInterface
     {
         return 5;
     }
-
 }

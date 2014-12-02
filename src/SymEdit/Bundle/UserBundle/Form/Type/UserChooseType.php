@@ -38,7 +38,7 @@ class UserChooseType extends AbstractType
         ));
 
         $resolver->setNormalizers(array(
-            'query_builder' => function(Options $options, $value) {
+            'query_builder' => function (Options $options, $value) {
                 return function (EntityRepository $er) use ($options) {
                            return $er->createQueryBuilder('u')
                                      ->andWhere('u.admin = :admin')

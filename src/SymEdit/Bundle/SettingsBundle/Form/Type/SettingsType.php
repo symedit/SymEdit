@@ -37,7 +37,6 @@ class SettingsType extends AbstractType
         $config = $this->settings->getConfigData();
 
         foreach ($config as $groupName => $groupData) {
-
             // Check for roles
             if ($groupData['role'] !== null && !$this->context->isGranted($groupData['role'])) {
                 continue;

@@ -43,7 +43,7 @@ class TwigPathCompilerPass implements CompilerPassInterface
         /**
          * Add the SymEdit Locations and all parents
          */
-        array_map(array($this, 'mapBundles'), $this->kernel->getBundle('SymEditBundle',false));
+        array_map(array($this, 'mapBundles'), $this->kernel->getBundle('SymEditBundle', false));
 
         /**
          * Add the paths to the Twig Loader Definition

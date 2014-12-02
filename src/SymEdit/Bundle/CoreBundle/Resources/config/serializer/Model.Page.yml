@@ -53,4 +53,3 @@ SymEdit\Bundle\CoreBundle\Model\Page:
             rel: parent
             href:
                 route: expr(object.getParent().getRoute())
-

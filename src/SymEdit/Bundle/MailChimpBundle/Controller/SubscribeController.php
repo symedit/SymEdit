@@ -42,7 +42,6 @@ class SubscribeController extends Controller
                 ));
 
                 $error = false;
-
             } catch (AlreadySubscribedException $e) {
                 $error = 'already_subscribed';
             } catch (DoesNotExistException $e) {

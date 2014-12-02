@@ -28,7 +28,6 @@ class StylizerController extends Controller
         $form = $this->createForm('symedit_stylizer', $styles);
 
         if ($request->getMethod() === 'POST' && $form->handleRequest($request)->isValid()) {
-
             // Save Styles
             $this->getStyleManager()->saveStyles($styles);
 

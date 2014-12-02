@@ -46,11 +46,11 @@ class PageIterator implements \Iterator
         $this->position++;
 
         while ($this->position < $this->length) {
-             if ($this->valid()) {
-                 break;
-             }
+            if ($this->valid()) {
+                break;
+            }
 
-             $this->position++;
+            $this->position++;
         }
     }
 

@@ -49,7 +49,7 @@ class SymEditSettingsExtension extends SymEditResourceExtension
             $dir = dirname($class->getFileName());
 
             foreach ($extensions as $extension) {
-                $file = $dir.'/Resources/config/settings.' . $extension;
+                $file = $dir.'/Resources/config/settings.'.$extension;
                 if (file_exists($file)) {
                     $files[] = $file;
                 }

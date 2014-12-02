@@ -19,7 +19,6 @@ use Symfony\Component\Console\Input\InputOption;
 
 class InstallCommand extends ContainerAwareCommand
 {
-
     protected function configure()
     {
         $this
@@ -51,7 +50,7 @@ class InstallCommand extends ContainerAwareCommand
             $input = new ArrayInput(array(
                 'command'   => 'doctrine:schema:update',
                 '--force' => true,
-                '-n' => $force
+                '-n' => $force,
             ));
             $returnCode = $command->run($input, $output);
         }

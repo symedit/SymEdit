@@ -142,7 +142,7 @@ class Widget implements WidgetInterface
     public function getOption($option)
     {
         if (!isset($this->options[$option])) {
-            return null;
+            return;
         }
 
         return $this->options[$option];
@@ -207,7 +207,7 @@ class Widget implements WidgetInterface
 
     public function removeAssoc($assoc)
     {
-        foreach ($this->assoc as $key=>$value) {
+        foreach ($this->assoc as $key => $value) {
             if ($assoc == $value) {
                 unset($this->assoc[$key]);
             }

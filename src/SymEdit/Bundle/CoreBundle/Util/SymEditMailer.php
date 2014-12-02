@@ -71,7 +71,6 @@ class SymEditMailer extends TwigSwiftMailer implements SymEditMailerInterface
          * Add extra options
          */
         foreach ($options as $key => $value) {
-
             // Attach the files and continue to next option
             if ($key === 'attachments') {
                 $this->attachFiles($message, $value);

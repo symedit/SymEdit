@@ -23,13 +23,13 @@ class WidgetAssociationTransformer implements DataTransformerInterface
      */
     public function reverseTransform($value)
     {
-         $list = array_map('trim', preg_split('#\n|,#', $value));
+        $list = array_map('trim', preg_split('#\n|,#', $value));
 
-         $filtered = array_filter($list, function ($item) {
+        $filtered = array_filter($list, function ($item) {
              return !empty($item);
          });
 
-         return array_values($filtered);
+        return array_values($filtered);
     }
 
     public function transform($value)

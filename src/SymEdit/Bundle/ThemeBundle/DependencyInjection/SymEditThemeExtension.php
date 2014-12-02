@@ -39,7 +39,7 @@ class SymEditThemeExtension extends Extension implements PrependExtensionInterfa
         $loader = new Loader\XmlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
 
         foreach ($this->configFiles as $file) {
-            $loader->load($file. '.xml');
+            $loader->load($file.'.xml');
         }
 
         $container->setParameter('symedit_theme.theme_directory', $config['theme_directory']);

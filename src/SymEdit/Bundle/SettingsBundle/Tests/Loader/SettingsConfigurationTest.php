@@ -35,8 +35,8 @@ class SettingsConfigurationTest extends TestCase
                                 'Yes', 'No',
                             ),
                         ),
-                    )
-                )
+                    ),
+                ),
             ),
             'group2' => array(
                 'label' => 'group 2',
@@ -44,7 +44,7 @@ class SettingsConfigurationTest extends TestCase
                     'group2setting1' => array(
                         'default' => 'Some Text',
                     ),
-                )
+                ),
             ),
         );
 

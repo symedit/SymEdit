@@ -28,7 +28,7 @@ class SettingShortcode extends AbstractShortcode
         $settingName = current($attr);
 
         if (!$this->symeditSettings->has($settingName)) {
-            return 'Cannot find ' . $settingName;
+            return 'Cannot find '.$settingName;
         } else {
             $settingValue = $this->symeditSettings->get($settingName);
         }

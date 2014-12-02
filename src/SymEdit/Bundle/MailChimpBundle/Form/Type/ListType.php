@@ -38,9 +38,7 @@ class ListType extends AbstractType
             $resolver->setDefaults(array(
                 'choices' => $choices,
             ));
-
         } catch (\Exception $e) {
-
             $resolver->setDefaults(array(
                 'disabled' => true,
                 'help_block' => 'Invalid API Key, cannot choose a list.',

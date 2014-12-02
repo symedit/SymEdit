@@ -42,7 +42,7 @@ class SymEditUserBundle extends AbstractResourceBundle
     protected function getModelNamespace()
     {
         if (!$this->loadProfiles) {
-            return null;
+            return;
         }
 
         return 'SymEdit\Bundle\UserBundle\Model';

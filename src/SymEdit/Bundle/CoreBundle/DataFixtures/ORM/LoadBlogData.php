@@ -47,5 +47,4 @@ class LoadBlogData extends AbstractFixture implements OrderedFixtureInterface
     {
         return 20;
     }
-
 }

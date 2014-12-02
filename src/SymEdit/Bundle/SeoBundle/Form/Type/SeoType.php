@@ -38,7 +38,7 @@ class SeoType extends AbstractType
             ->add('index', 'choice', array(
                 'choices' => array(
                     true => 'Index',
-                    false => 'No Index'
+                    false => 'No Index',
                 ),
                 'label' => 'admin.seo.index',
             ))

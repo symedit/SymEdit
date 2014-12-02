@@ -33,8 +33,7 @@ class ThemeFactory implements ThemeFactoryInterface
         array $themeConfig,
         $debug,
         $cacheDir
-    )
-    {
+    ) {
         $this->loader = $loader;
         $this->configuration = $configuration;
         $this->themeConfig = $themeConfig;
@@ -105,7 +104,7 @@ class ThemeFactory implements ThemeFactoryInterface
      */
     protected function createModel()
     {
-        $theme = new $this->themeConfig['model'];
+        $theme = new $this->themeConfig['model']();
 
         if (!$theme instanceof ThemeInterface) {
             throw new InvalidArgumentException(sprintf('Theme model "%s" must implement ThemeInterface', get_class($theme)));

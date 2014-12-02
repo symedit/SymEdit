@@ -30,7 +30,6 @@ class SitemapFetcher extends ContainerAware
         $routeName = $parameters['route']['path'];
 
         if (!$this->hasRoute($routeName) && $routeName[0] !== '$') {
-
             // Ignore routes that are not found?
             if ($parameters['route']['ignore']) {
                 return array();

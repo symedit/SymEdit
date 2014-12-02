@@ -55,5 +55,4 @@ class RoleType extends AbstractType
     {
         return 'symedit_role';
     }
-
 }

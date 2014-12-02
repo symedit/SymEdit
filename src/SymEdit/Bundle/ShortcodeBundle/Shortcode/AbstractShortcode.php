@@ -19,7 +19,7 @@ abstract class AbstractShortcode implements ShortcodeInterface
 
     public function setSettings(ShortcodeSettingsInterface $settings)
     {
-        $this->settings = $settings;;
+        $this->settings = $settings;
     }
 
     public function getSettings()

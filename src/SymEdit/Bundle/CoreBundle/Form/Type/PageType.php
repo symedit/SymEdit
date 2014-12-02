@@ -154,7 +154,6 @@ class PageType extends AbstractType
                 'label_render' => false,
             ));
 
-
         $advanced = $builder->create('advanced', 'tab', array(
             'label' => 'admin.page.tabs.advanced',
             'icon' => 'cogs',
@@ -172,7 +171,6 @@ class PageType extends AbstractType
                 'label' => 'admin.page.pagecontrollerpath.label',
                 'help_block' => 'admin.page.pagecontrollerpath.help',
             ));
-
 
         // Add all tabs
         $builder

@@ -27,10 +27,10 @@ class WidgetAreaNode extends \Twig_Node
     {
         $compiler
             ->addDebugInfo($this)
-            ->write('echo $this->env->getExtension(\'http_kernel\')->renderFragmentStrategy(\'' . $this->getAttribute('strategy') . '\',')
+            ->write('echo $this->env->getExtension(\'http_kernel\')->renderFragmentStrategy(\''.$this->getAttribute('strategy').'\',')
             ->write('    $this->env->getExtension(\'http_kernel\')')
             ->write('         ->controller(\'SymEditBundle:Widget:renderArea\', array(')
-            ->write('             \'area\' => \'' . $this->getAttribute('area') . '\',')
+            ->write('             \'area\' => \''.$this->getAttribute('area').'\',')
             ->write('         ))')
             ->write('    );');
     }

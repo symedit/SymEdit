@@ -35,7 +35,7 @@ class SymEditUserExtension extends SymEditResourceExtension implements PrependEx
 
         foreach ($config['notifications'] as $type => $notification) {
             if (!$notification['enabled']) {
-                $container->removeDefinition('symedit_user.notification.' . $type);
+                $container->removeDefinition('symedit_user.notification.'.$type);
             } else {
                 $this->remapParameters($container, 'notifications.'.$type, $notification);
             }

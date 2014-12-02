@@ -11,7 +11,7 @@
 
 namespace SymEdit\Bundle\CoreBundle\DataFixtures\ORM;
 
-  use Doctrine\Common\Persistence\ObjectManager;
+use Doctrine\Common\Persistence\ObjectManager;
   use Doctrine\Common\DataFixtures\AbstractFixture;
   use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
   use SymEdit\Bundle\CoreBundle\Model\Role;
@@ -34,7 +34,7 @@ namespace SymEdit\Bundle\CoreBundle\DataFixtures\ORM;
               'ROLE_ADMIN_STYLIZER'  => 'Access to Stylizer',
           );
 
-          foreach ($roles as $role=>$description) {
+          foreach ($roles as $role => $description) {
               $entity = new Role();
               $entity->setRole($role);
               $entity->setDescription($description);

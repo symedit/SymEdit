@@ -44,7 +44,7 @@ class GalleryChooseDataTransformer implements DataTransformerInterface
     public function transform($value)
     {
         if ($value === null) {
-            return null;
+            return;
         }
 
         if ($value instanceof Collection) {

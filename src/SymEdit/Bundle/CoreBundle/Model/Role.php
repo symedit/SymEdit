@@ -13,7 +13,7 @@ namespace SymEdit\Bundle\CoreBundle\Model;
 
 class Role implements RoleInterface
 {
-   /**
+    /**
      * @var integer $id
      */
     protected $id;

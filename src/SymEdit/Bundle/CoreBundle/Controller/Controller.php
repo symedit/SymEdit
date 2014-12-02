@@ -28,7 +28,6 @@ class Controller extends BaseController
         $response = new Response();
 
         if ($this->isCacheable()) {
-
             if ($modified !== null) {
                 $response->setLastModified($modified);
             }
@@ -130,7 +129,7 @@ class Controller extends BaseController
             return $request->attributes->get('_page');
         }
 
-        return null;
+        return;
     }
 
     /**

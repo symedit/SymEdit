@@ -57,7 +57,6 @@ class UniqueThemeCommand extends AbstractThemeCommand
         $parentFile = $parentDirectory.'/'.$themeFile->getRelativePathname();
 
         if ($this->compareFiles($themeFile, $parentFile)) {
-
             $question = sprintf(
                 '<question>"%s" is the same as the template in the <info>%s</info> theme, would you like to remove it from your current theme?</question>',
                 $themeFile->getRelativePathname(),
@@ -66,7 +65,7 @@ class UniqueThemeCommand extends AbstractThemeCommand
 
             if ($this->getHelper('dialog')->askConfirmation($output, $question, false)) {
                 $this->getFilesystem()->remove($themeFile);
-                $output->writeln('Removed ' . $themeFile);
+                $output->writeln('Removed '.$themeFile);
                 $output->writeln('');
             }
         }

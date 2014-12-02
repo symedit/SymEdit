@@ -30,7 +30,7 @@ class GalleryStrategy extends AbstractWidgetStrategy
         $gallery = $this->repository->findOneBySlug($widget->getOption('slider'));
 
         if (!$gallery) {
-            return null;
+            return;
         }
 
         return $this->render('@SymEdit/Widget/Media/gallery.html.twig', array(

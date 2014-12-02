@@ -42,7 +42,6 @@ class BreadcrumbSubscriber implements EventSubscriberInterface
         $request = $event->getRequest();
 
         if ($request->attributes->has('_page')) {
-
             /* @var $page PageInterface */
             $page = $request->attributes->get('_page');
 

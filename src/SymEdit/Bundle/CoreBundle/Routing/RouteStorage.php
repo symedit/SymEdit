@@ -21,7 +21,7 @@ class RouteStorage
 
     public function __construct($cacheDir)
     {
-        $this->cacheFile = $cacheDir . '/routes.php';
+        $this->cacheFile = $cacheDir.'/routes.php';
     }
 
     public function save($routes)

@@ -76,5 +76,4 @@ class SubjectAnnotationSubscriber implements EventSubscriberInterface
             KernelEvents::CONTROLLER => 'onKernelController',
         );
     }
-
 }

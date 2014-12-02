@@ -29,7 +29,7 @@ class DirectoryTemplateLoader implements TemplateLoaderInterface
         if (!is_dir($this->directory)) {
             return;
         }
-        
+
         $finder = new Finder();
         $finder->files()->in($this->directory)->name('*.html.twig');
 

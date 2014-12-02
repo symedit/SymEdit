@@ -45,7 +45,7 @@ class PageController extends ResourceController
         $out = array();
 
         foreach ($pages as $page) {
-            $label = sprintf('%s %s',str_repeat('--', $page->getLevel()), $page->getTitle());
+            $label = sprintf('%s %s', str_repeat('--', $page->getLevel()), $page->getTitle());
 
             $out[] = array(
                 'name' => trim($label),

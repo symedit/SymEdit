@@ -18,7 +18,6 @@ use Symfony\Component\Form\FormView;
 
 class ColorType extends AbstractType
 {
-
     public function buildView(FormView $view, FormInterface $form, array $options)
     {
         $view->vars['type'] = 'color';

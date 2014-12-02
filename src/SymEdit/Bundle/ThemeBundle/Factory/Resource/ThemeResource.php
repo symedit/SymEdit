@@ -81,7 +81,7 @@ class ThemeResource implements ResourceInterface
         $currentTheme = $this->theme;
 
         while ($currentTheme !== null) {
-            $file = $currentTheme->getThemeDirectory() . '/' . $input;
+            $file = $currentTheme->getThemeDirectory().'/'.$input;
 
             if (file_exists($file)) {
                 return $file;
@@ -91,7 +91,7 @@ class ThemeResource implements ResourceInterface
         }
 
         // Couldn't find just return as is
-        return $this->theme->getDirectory() . '/' . $input;
+        return $this->theme->getDirectory().'/'.$input;
     }
 
     public function isFresh($timestamp)

@@ -45,7 +45,7 @@ class PageRepository extends EntityRepository
         );
 
         if ($display !== null) {
-           $criteria['display'] = $display;
+            $criteria['display'] = $display;
         }
 
         return $this->findBy($criteria, $orderBy);
@@ -54,7 +54,7 @@ class PageRepository extends EntityRepository
     public function findPageControllers()
     {
         return $this->findBy(array(
-            'pageController' => true
+            'pageController' => true,
         ));
     }
 

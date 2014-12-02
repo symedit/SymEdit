@@ -57,7 +57,7 @@ class WidgetRegistry extends ContainerAware
             return;
         }
 
-        foreach ($this->strategies as $key=>$id) {
+        foreach ($this->strategies as $key => $id) {
             $strategy = $this->loadKey($key);
 
             if ($strategy->getName() === $name) {
@@ -107,7 +107,7 @@ class WidgetRegistry extends ContainerAware
      */
     public function getStrategies()
     {
-        foreach ($this->strategies as $key=>$id) {
+        foreach ($this->strategies as $key => $id) {
             $this->loadKey($key);
         }
 

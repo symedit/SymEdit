@@ -43,7 +43,7 @@ class Tracker
             return;
         }
 
-        $visit = new $this->visitClass;
+        $visit = new $this->visitClass();
         $visit->setClass(get_class($object));
         $visit->setIdentifier($identifierValue);
 

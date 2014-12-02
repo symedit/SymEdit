@@ -24,7 +24,6 @@ class MediaTest extends TestCase
         return new Media();
     }
 
-
     public function testId()
     {
         $media = $this->createMedia();
@@ -150,7 +149,7 @@ class MediaTest extends TestCase
         $media = $this->createMedia();
         $this->assertNull($media->getNameCallback());
 
-        $callback = function(){};
+        $callback = function () {};
         $media->setNameCallback($callback);
         $this->assertEquals($callback, $media->getNameCallback());
     }

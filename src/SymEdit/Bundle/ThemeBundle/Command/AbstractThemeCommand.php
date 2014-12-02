@@ -20,7 +20,7 @@ abstract class AbstractThemeCommand extends ContainerAwareCommand
     /**
      * Get a theme, or current them with no name
      *
-     * @param string $name
+     * @param  string         $name
      * @return ThemeInterface
      */
     protected function getTheme($name = null)

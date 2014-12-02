@@ -27,7 +27,6 @@ class WidgetController extends Controller
         $widgets = array();
 
         foreach ($widgetArea->getWidgets() as $widget) {
-
             if (!$matcher->isVisible($widget)) {
                 continue;
             }
@@ -64,12 +63,12 @@ class WidgetController extends Controller
 
     private function templateExists($template)
     {
-       $loader = $this->get('twig')->getLoader();
+        $loader = $this->get('twig')->getLoader();
 
-       if ($loader instanceof \Twig_ExistsLoaderInterface) {
-           return $loader->exists($template);
-       }
+        if ($loader instanceof \Twig_ExistsLoaderInterface) {
+            return $loader->exists($template);
+        }
 
-       return false;
+        return false;
     }
 }

@@ -31,7 +31,7 @@ class Recorder
             return;
         }
 
-        $visit = new $this->visitClass;
+        $visit = new $this->visitClass();
         $visit->setClass($className);
         $visit->setIdentifier($identifier);
 

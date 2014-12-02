@@ -29,7 +29,7 @@ class RouteManager
     {
         $this->loader = $loader;
         $this->resources = $resources;
-        $this->cacheFile = $cacheDir . '/page_controllers.php';
+        $this->cacheFile = $cacheDir.'/page_controllers.php';
         $this->debug = $debug;
     }
 

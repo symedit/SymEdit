@@ -11,7 +11,7 @@
 
 namespace SymEdit\Bundle\ThemeBundle\Model;
 
-Interface ThemeInterface
+interface ThemeInterface
 {
     public function getName();
 

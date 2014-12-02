@@ -59,7 +59,7 @@ class ImageController extends ResourceController
 
         if (count($errors) > 0) {
             return new JsonResponse(array(
-                'error' => 'Invalid image: ' . $errors[0]->getMessage(),
+                'error' => 'Invalid image: '.$errors[0]->getMessage(),
             ));
         }
 
@@ -70,7 +70,6 @@ class ImageController extends ResourceController
             return new JsonResponse(array(
                 'filelink' => $image->getWebPath(),
             ));
-
         } catch (\Exception $ex) {
             return new JsonResponse(array(
                 'error' => 'Error uploading, try renaming your image file.',

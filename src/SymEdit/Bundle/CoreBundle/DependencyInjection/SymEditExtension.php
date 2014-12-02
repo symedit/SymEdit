@@ -99,7 +99,7 @@ class SymEditExtension extends SymEditResourceExtension implements PrependExtens
         $formulae = array();
 
         foreach ($resources as $name => $assets) {
-            $formulae['symedit_' . $name] = array($assets, array(), array());
+            $formulae['symedit_'.$name] = array($assets, array(), array());
         }
 
         $container->getDefinition('symedit.assetic.config_resource')->replaceArgument(0, $formulae);

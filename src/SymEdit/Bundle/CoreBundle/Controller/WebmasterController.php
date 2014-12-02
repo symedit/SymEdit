@@ -44,7 +44,6 @@ class WebmasterController extends Controller
             return $this->render('@SymEdit/Webmaster/bingVerify.xml.twig', array(
                 'code' => $code,
             ));
-
         }
 
         throw $this->createNotFoundException();

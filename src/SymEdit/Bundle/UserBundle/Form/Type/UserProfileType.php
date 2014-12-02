@@ -57,5 +57,4 @@ class UserProfileType extends BaseType
     {
         return 'symedit_user_profile';
     }
-
 }

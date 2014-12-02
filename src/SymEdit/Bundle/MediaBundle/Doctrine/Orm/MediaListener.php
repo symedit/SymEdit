@@ -134,7 +134,7 @@ class MediaListener extends AbstractMediaListener
         $qb->select('m.name')
            ->from($class, 'm')
            ->where($qb->expr()->like(
-               'm.name', $qb->expr()->literal($name . '%')
+               'm.name', $qb->expr()->literal($name.'%')
            ))
            ->orderBy('m.name');
 
@@ -149,7 +149,7 @@ class MediaListener extends AbstractMediaListener
 
         $i = 1;
         do {
-            $newName = $name . '-' . $i++;
+            $newName = $name.'-'.$i++;
         } while (in_array(strtolower($newName), $sameNames));
 
         $media->setName($newName);

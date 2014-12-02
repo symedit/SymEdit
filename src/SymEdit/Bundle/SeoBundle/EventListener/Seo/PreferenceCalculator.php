@@ -76,6 +76,6 @@ class PreferenceCalculator implements SeoCalculatorInterface
             }
         }
 
-        return null;
+        return;
     }
 }

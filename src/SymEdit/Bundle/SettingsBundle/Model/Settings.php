@@ -53,7 +53,7 @@ class Settings implements \ArrayAccess
 
     private function loadConfigData()
     {
-        $cachePath = $this->cacheDir . '/settings_config.php';
+        $cachePath = $this->cacheDir.'/settings_config.php';
         $configCache = new ConfigCache($cachePath, $this->debug);
 
         if (!$configCache->isFresh()) {
@@ -94,10 +94,9 @@ class Settings implements \ArrayAccess
 
     private function getMergedSettings()
     {
-        $cache = new ConfigCache($this->cacheDir . '/settings.php', $this->debug);
+        $cache = new ConfigCache($this->cacheDir.'/settings.php', $this->debug);
 
         if (!$cache->isFresh()) {
-
             $file = sprintf('%s/config/settings.yml', $this->rootDir);
             $settings = is_file($file) && is_readable($file) ? Yaml::parse($file) : array();
 
@@ -123,14 +122,14 @@ class Settings implements \ArrayAccess
 
     public function save()
     {
-        file_put_contents($this->rootDir . '/config/settings.yml', Yaml::dump($this->getSettings()));
+        file_put_contents($this->rootDir.'/config/settings.yml', Yaml::dump($this->getSettings()));
 
         // List of cache files to delete
         $cacheFiles = array('settings_config.php', 'settings.php');
 
         // Remove cache file
         foreach ($cacheFiles as $file) {
-            if (file_exists($fileName = $this->cacheDir . '/' . $file)) {
+            if (file_exists($fileName = $this->cacheDir.'/'.$file)) {
                 unlink($fileName);
             }
         }
@@ -209,5 +208,4 @@ class Settings implements \ArrayAccess
         // TODO Do I need this?
         return;
     }
-
 }

@@ -1,5 +1,14 @@
 <?php
 
+/*
+ * This file is part of the SymEdit package.
+ *
+ * (c) Craig Blanchette <craig.blanchette@gmail.com>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
 namespace SymEdit\Bundle\BlogBundle\Tests\Widget\Strategy;
 
 use SymEdit\Bundle\WidgetBundle\Test\WidgetStrategyTest;
@@ -33,6 +42,7 @@ class PopularPostsStrategyTest extends WidgetStrategyTest
     protected function createStrategy($reporter = null)
     {
         $reporter = $reporter === null ? $this->getReporter() : $reporter;
+
         return $this->getMockBuilder('SymEdit\Bundle\BlogBundle\Widget\Strategy\PopularPostsStrategy')
                     ->setMethods(array('render'))
                     ->setConstructorArgs(array($reporter))

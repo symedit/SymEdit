@@ -26,7 +26,7 @@ class TemplateResourcesPass implements CompilerPassInterface
 
         foreach ($bundles as $bundle) {
             $container->setDefinition(
-                'symedit_theme.template.loader.bundle.' . $bundle,
+                'symedit_theme.template.loader.bundle.'.$bundle,
                 new BundleTemplateLoaderDefinition($bundle)
             );
         }

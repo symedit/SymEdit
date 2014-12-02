@@ -51,5 +51,4 @@ class LoadUserData extends AbstractFixture implements OrderedFixtureInterface, C
     {
         return 15;
     }
-
 }

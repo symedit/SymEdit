@@ -50,8 +50,8 @@ class ConfigurationTest extends TestCase
                     'route' => 'test_route',
                     'label' => 'Foo Extension',
                     'icon' => 'bar',
-                )
-            )
+                ),
+            ),
         )));
 
         $this->assertEquals(
@@ -61,7 +61,7 @@ class ConfigurationTest extends TestCase
                     'label' => 'Foo Extension',
                     'role' => 'ROLE_ADMIN',
                     'icon' => 'bar',
-                )
+                ),
             ),
             $config['extensions']
         );

@@ -45,7 +45,7 @@ class Builder implements MenuBuilderInterface
                 'is_granted' => 'ROLE_ADMIN_BLOG',
             ),
         ));
-        
+
         // List Categories
         $content->addChild('List Categories', array(
             'route' => 'admin_category',

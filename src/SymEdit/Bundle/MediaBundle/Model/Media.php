@@ -127,7 +127,7 @@ class Media implements MediaInterface
     public function getWebPath()
     {
         if ($this->path === null) {
-            return null;
+            return;
         }
 
         return sprintf('/%s/%s', trim($this->getPrefix(), '/'), $this->getPath());

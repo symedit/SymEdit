@@ -36,7 +36,6 @@ class ExportController extends Controller
         ));
 
         foreach ($pages as $page) {
-
             $seo = array_replace(array(
                 'description' => '',
                 'keywords' => '',

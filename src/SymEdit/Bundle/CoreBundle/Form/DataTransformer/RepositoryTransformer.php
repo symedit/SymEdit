@@ -42,7 +42,7 @@ class RepositoryTransformer implements DataTransformerInterface
     public function transform($value)
     {
         if ($value === null) {
-            return null;
+            return;
         }
 
         return $value->getId();
