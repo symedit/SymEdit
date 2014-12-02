@@ -11,8 +11,9 @@
 
 namespace SymEdit\Bundle\ThemeBundle\Factory\Resource;
 
-use SymEdit\Bundle\ThemeBundle\Model\Theme;
 use Assetic\Factory\Resource\CoalescingDirectoryResource as BaseResource;
+use Assetic\Factory\Resource\DirectoryResource;
+use SymEdit\Bundle\ThemeBundle\Model\Theme;
 
 class DirectoriesResource extends BaseResource
 {
@@ -21,7 +22,7 @@ class DirectoriesResource extends BaseResource
         $directories = array();
 
         foreach ($theme->getTemplateDirectories() as $directory) {
-            $directories[] = new \Assetic\Factory\Resource\DirectoryResource($directory);
+            $directories[] = new DirectoryResource($directory);
         }
 
         parent::__construct($directories);
