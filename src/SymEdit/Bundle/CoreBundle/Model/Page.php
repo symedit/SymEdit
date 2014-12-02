@@ -656,6 +656,15 @@ class Page implements PageInterface
         });
     }
 
+    public function getSiblings()
+    {
+        if (!$this->getParent()) {
+            return array();
+        }
+
+        return $this->getParent()->getChildren();
+    }
+
     public function getLevel()
     {
         return $this->level;
@@ -668,13 +677,23 @@ class Page implements PageInterface
 
     public function isNameValid(ExecutionContextInterface $context)
     {
-        if ($this->getHomepage()) {
-            if ($this->getName() != '') {
-                $context->addViolationAt('name', 'The "name" field for the Homepage must be blank');
+        if ($this->getHomepage() && $this->getName() != '') {
+            $context->addViolationAt('name', 'The "name" field for the Homepage must be blank');
+
+            return;
+        } elseif (!$this->getHomepage() && $this->getName() == '') {
+            $context->addViolationAt('name', 'The "name" field must not be blank');
+        }
+
+        foreach ($this->getSiblings() as $child) {
+            if ($child === $this) {
+                continue;
             }
-        } else {
-            if ($this->getName() == '') {
-                $context->addViolationAt('name', 'The "name" field must not be blank');
+
+            if ($child->getName() === $this->getName()) {
+                $context->addViolationAt('name', 'This name is already used for another sibling page');
+
+                break;
             }
         }
     }
