@@ -41,9 +41,12 @@
         <service id="symedit_theme.theme.factory" class="%symedit_theme.theme.factory.class%">
             <argument type="service" id="symedit_theme.theme.loader" />
             <argument type="service" id="symedit_theme.theme.config" />
-            <argument>%symedit_theme.theme_directory%</argument>
-            <argument>%symedit_theme.public_directory%</argument>
-            <argument>%symedit_theme.model.theme.class%</argument>
+            <argument type="collection">
+                <argument key="theme_directory">%symedit_theme.theme_directory%</argument>
+                <argument key="public_directory">%symedit_theme.public_directory%</argument>
+                <argument key="model">%symedit_theme.model.theme.class%</argument>
+            </argument>
+            <argument>%kernel.debug%</argument>
             <argument>%kernel.cache_dir%/symedit_theme</argument>
         </service>
 

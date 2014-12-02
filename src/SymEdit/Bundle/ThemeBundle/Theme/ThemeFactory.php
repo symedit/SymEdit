@@ -23,20 +23,22 @@ class ThemeFactory implements ThemeFactoryInterface
 {
     protected $loader;
     protected $configuration;
-    protected $themeDir;
-    protected $publicDir;
-    protected $model;
+    protected $themeConfig;
     protected $cacheDir;
     protected $processor;
 
-    public function __construct(LoaderInterface $loader, ConfigurationInterface $configuration, $themeDir, $publicDir, $model, $cacheDir)
+    public function __construct(
+        LoaderInterface $loader,
+        ConfigurationInterface $configuration,
+        array $themeConfig,
+        $debug,
+        $cacheDir
+    )
     {
         $this->loader = $loader;
         $this->configuration = $configuration;
-        $this->themeDir = $themeDir;
-        $this->publicDir = $publicDir;
-        $this->model = $model;
-        $this->processor = new Processor();
+        $this->themeConfig = $themeConfig;
+        $this->debug = $debug;
         $this->cacheDir = $cacheDir;
     }
 
@@ -72,7 +74,7 @@ class ThemeFactory implements ThemeFactoryInterface
     protected function loadThemeData($name)
     {
         $cachePath = sprintf('%s/theme_config/%s.php', $this->cacheDir, $name);
-        $themeCache = new ConfigCache($cachePath, true);
+        $themeCache = new ConfigCache($cachePath, $this->debug);
 
         if (!$themeCache->isFresh()) {
             $this->buildCache($themeCache, $name);
@@ -89,7 +91,7 @@ class ThemeFactory implements ThemeFactoryInterface
     protected function buildCache(ConfigCache $cache, $name)
     {
         list($configs, $resources) = $this->getConfigData($name);
-        $themeData = $this->processor->processConfiguration($this->configuration, $configs);
+        $themeData = $this->getProcessor()->processConfiguration($this->configuration, $configs);
 
         if (isset($themeData['parent'])) {
             $themeData['parent'] = $this->loadTheme($themeData['parent']);
@@ -103,10 +105,10 @@ class ThemeFactory implements ThemeFactoryInterface
      */
     protected function createModel()
     {
-        $theme = new $this->model;
+        $theme = new $this->themeConfig['model'];
 
         if (!$theme instanceof ThemeInterface) {
-            throw new InvalidArgumentException('Theme model must implement ThemeInterface');
+            throw new InvalidArgumentException(sprintf('Theme model "%s" must implement ThemeInterface', get_class($theme)));
         }
 
         return $theme;
@@ -120,14 +122,23 @@ class ThemeFactory implements ThemeFactoryInterface
         $theme->setDescription($data['description']);
         $theme->setStylesheets($data['stylesheets']);
         $theme->setJavascripts($data['javascripts']);
-        $theme->setDirectory($this->themeDir);
-        $theme->setPublicDirectory($this->publicDir);
+        $theme->setDirectory($this->themeConfig['theme_directory']);
+        $theme->setPublicDirectory($this->themeConfig['public_directory']);
 
         if (isset($data['parent'])) {
             $theme->setParentTheme($data['parent']);
         }
 
         return $theme;
+    }
+
+    protected function getProcessor()
+    {
+        if ($this->processor === null) {
+            $this->processor = new Processor();
+        }
+
+        return $this->processor;
     }
 
     /**
