@@ -16,6 +16,13 @@ use Symfony\Component\Form\FormBuilderInterface;
 
 class CategoryType extends AbstractType
 {
+    protected $class;
+
+    public function __construct($class)
+    {
+        $this->class = $class;
+    }
+
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $basic = $builder->create('basic', 'tab', array(
@@ -32,7 +39,7 @@ class CategoryType extends AbstractType
             ))
             ->add('parent', 'entity', array(
                 'empty_value' => '(Root Category)',
-                'class' => 'SymEdit\Bundle\BlogBundle\Model\Category',
+                'class' => $this->class,
                 'required' => false,
             ));
 

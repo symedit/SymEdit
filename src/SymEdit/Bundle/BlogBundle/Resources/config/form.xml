@@ -10,6 +10,7 @@
         </service>
 
         <service id="symedit.form.type.category" class="%symedit.form.type.category.class%">
+            <argument>%symedit.model.category.class%</argument>
             <tag name="form.type" alias="symedit_category" />
         </service>
     </services>
