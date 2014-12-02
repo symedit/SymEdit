@@ -1,0 +1,12 @@
+SymEdit\Bundle\CoreBundle\Model\Category:
+    exclusion_policy: ALL
+    xml_root_name: page
+    relations:
+        -
+            rel: parent
+            href:
+                route: blog_category_view
+                parameters:
+                    slug: expr(object.getParent().getSlug())
+            exclusion:
+                exclude_if: expr(object.getParent() === null)

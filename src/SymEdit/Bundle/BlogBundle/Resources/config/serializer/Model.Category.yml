@@ -1,0 +1,17 @@
+SymEdit\Bundle\BlogBundle\Model\Category:
+    exclusion_policy: ALL
+    xml_root_name: page
+    properties:
+        id:
+            expose: true
+            type: integer
+        name:
+            expose: true
+        title:
+            expose: true
+            type: string
+        slug:
+            expose: true
+            type: string
+        level:
+            expose: true

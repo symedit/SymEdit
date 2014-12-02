@@ -1,0 +1,56 @@
+SymEdit\Bundle\CoreBundle\Model\Page:
+    exclusion_policy: ALL
+    xml_root_name: page
+    properties:
+        id:
+            expose: true
+            type: integer
+        homepage:
+            expose: true
+        root:
+            expose: true
+        name:
+            expose: true
+        tagline:
+            expose: true
+            type: string
+        summary:
+            expose: true
+            type: string
+        path:
+            expose: true
+            type: string
+        title:
+            expose: true
+            type: string
+        content:
+            expose: true
+            type: string
+        seo:
+            expose: true
+        pageOrder:
+            expose: true
+        createdAt:
+            expose: true
+        createdBy:
+            expose: true
+        updatedAt:
+            expose: true
+        updatedBy:
+            expose: true
+        level:
+            expose: true
+        template:
+            expose: true
+        active:
+            expose: true
+    relations:
+        -
+            rel: self
+            href:
+                route: expr(object.getRoute())
+        -
+            rel: parent
+            href:
+                route: expr(object.getParent().getRoute())
+

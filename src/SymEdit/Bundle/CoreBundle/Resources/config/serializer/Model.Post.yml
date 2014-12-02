@@ -1,0 +1,10 @@
+SymEdit\Bundle\CoreBundle\Model\Post:
+    exclusion_policy: ALL
+    xml_root_name: page
+    relations:
+        -
+            rel: self
+            href:
+                route: blog_slug_view
+                parameters:
+                    slug: expr(object.getSlug())

@@ -1,0 +1,26 @@
+SymEdit\Bundle\BlogBundle\Model\Post:
+    exclusion_policy: ALL
+    xml_root_name: page
+    properties:
+        id:
+            expose: true
+            type: integer
+        title:
+            expose: true
+            type: string
+        slug:
+            expose: true
+            type: string
+        content:
+            expose: true
+        summary:
+            expose: true
+            type: string
+        createdAt:
+            expose: true
+        updatedAt:
+            expose: true
+        publishedAt:
+            expose: true
+        status:
+            expose: true
