@@ -6,3 +6,9 @@ Upgrade to 9.*
     - Page controller names need to be change to underscore from hyphens
     - Page controllers can no longer be defined in the routing, they need
         to be defined in /Resources/config/symedit/page_controllers.yml
+
+Upgrade to 10.*
+===============
+
+    - Change theme.yml files to not have a root element anymore
+    - Possibly run symedit:theme:unique to clean any files that are duplicated
