@@ -11,17 +11,25 @@
 
 namespace SymEdit\Bundle\CoreBundle\DataFixtures\ORM;
 
-use Doctrine\Common\Persistence\ObjectManager;
 use Doctrine\Common\DataFixtures\AbstractFixture;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
-use SymEdit\Bundle\CoreBundle\Model\Page;
+use Doctrine\Common\Persistence\ObjectManager;
+use Symfony\Component\DependencyInjection\ContainerAwareInterface;
+use Symfony\Component\DependencyInjection\ContainerInterface;
 
-class LoadPageData extends AbstractFixture implements OrderedFixtureInterface
+class LoadPageData extends AbstractFixture implements OrderedFixtureInterface, ContainerAwareInterface
 {
+    private $container;
+
+    public function setContainer(ContainerInterface $container = null)
+    {
+        $this->container = $container;
+    }
+
     public function load(ObjectManager $manager)
     {
         // Root Node
-        $page_root = new Page();
+        $page_root = $this->createPage();
         $page_root
             ->setRoot(true)
             ->setName(null)
@@ -38,7 +46,7 @@ class LoadPageData extends AbstractFixture implements OrderedFixtureInterface
         $this->addReference('page-root', $page_root);
 
         // Homepage
-        $page_home = new Page();
+        $page_home = $this->createPage();
         $page_home
             ->setHomepage(true)
             ->setParent($page_root)
@@ -53,7 +61,7 @@ class LoadPageData extends AbstractFixture implements OrderedFixtureInterface
         $this->addReference('page-homepage', $page_home);
 
         // About Page
-        $page_about = new Page();
+        $page_about = $this->createPage();
         $page_about
             ->setParent($page_root)
             ->setTemplate('base.html.twig')
@@ -67,7 +75,7 @@ class LoadPageData extends AbstractFixture implements OrderedFixtureInterface
         $this->addReference('page-about', $page_about);
 
         // Blog Page
-        $page_blog = new Page();
+        $page_blog = $this->createPage();
         $page_blog
             ->setParent($page_root)
             ->setName('blog')
@@ -81,7 +89,22 @@ class LoadPageData extends AbstractFixture implements OrderedFixtureInterface
         $manager->persist($page_blog);
         $this->addReference('page-blog', $page_blog);
 
-        $page_contact = new Page();
+        // Events Page
+        $page_events = $this->createPage();
+        $page_events
+            ->setParent($page_root)
+            ->setName('events')
+            ->setTagline('Upcoming Events')
+            ->setTitle('Events')
+            ->setContent('')
+            ->setPageController(true)
+            ->setPageControllerPath('symedit_events')
+        ;
+
+        $manager->persist($page_events);
+        $this->addReference('page-events', $page_events);
+
+        $page_contact = $this->createPage();
         $page_contact
             ->setParent($page_root)
             ->setName('contact')
@@ -97,6 +120,11 @@ class LoadPageData extends AbstractFixture implements OrderedFixtureInterface
 
         // Write them all
         $manager->flush();
+    }
+
+    protected function createPage()
+    {
+        return $this->container->get('symedit.repository.page')->createNew();
     }
 
     public function getOrder()
