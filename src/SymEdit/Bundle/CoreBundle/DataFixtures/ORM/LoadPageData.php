@@ -89,21 +89,6 @@ class LoadPageData extends AbstractFixture implements OrderedFixtureInterface, C
         $manager->persist($page_blog);
         $this->addReference('page-blog', $page_blog);
 
-        // Events Page
-        $page_events = $this->createPage();
-        $page_events
-            ->setParent($page_root)
-            ->setName('events')
-            ->setTagline('Upcoming Events')
-            ->setTitle('Events')
-            ->setContent('')
-            ->setPageController(true)
-            ->setPageControllerPath('symedit_events')
-        ;
-
-        $manager->persist($page_events);
-        $this->addReference('page-events', $page_events);
-
         $page_contact = $this->createPage();
         $page_contact
             ->setParent($page_root)
