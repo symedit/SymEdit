@@ -1,0 +1,13 @@
+scheme:
+    label: Color Scheme
+    extra:
+        icon: adjust
+    variables:
+        base:
+            label: Theme Color
+            value: "#135D8E"
+            type: color
+        overwrite:
+            label: Child Theme Overwritten
+            value: "#135D8E"
+            type: color
