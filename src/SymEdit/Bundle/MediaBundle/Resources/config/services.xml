@@ -21,13 +21,14 @@
             <argument type="service" id="liip_imagine.cache.manager" />
         </service>
 
+        <!-- File Filesystem -->
+        <service id="symedit_media.filesystem.file" class="Gaufrette\Filesystem" factory-service="knp_gaufrette.filesystem_map" factory-method="get">
+            <argument>symedit_file</argument>
+        </service>
+
         <!-- File Uploader -->
         <service id="symedit_media.file_upload_manager" class="%symedit_media.file_upload_manager.class%">
-            <argument type="service">
-                <service class="Gaufrette\Filesystem" factory-service="knp_gaufrette.filesystem_map" factory-method="get">
-                    <argument>symedit_file</argument>
-                </service>
-            </argument>
+            <argument type="service" id="symedit_media.filesystem.file" />
         </service>
 
         <!-- Slug Namer -->

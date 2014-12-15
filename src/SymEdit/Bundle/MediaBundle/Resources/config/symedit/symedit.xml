@@ -6,11 +6,19 @@
 
     <parameters>
         <parameter key="symedit_media.symedit.menu.class">SymEdit\Bridge\Media\Menu\Builder</parameter>
+        <parameter key="symedit_media.shortcode.link.media.class">SymEdit\Bridge\Media\Shortcode\Link\MediaLink</parameter>
     </parameters>
 
     <services>
+        <!-- Media Menu -->
         <service id="symedit_media.symedit.menu" class="%symedit_media.symedit.menu.class%">
             <tag name="symedit_menu.builder" menu="symedit_admin" />
+        </service>
+
+        <!-- Page Link Generator -->
+        <service id="symedit_media.shortcode.link.media" class="%symedit_media.shortcode.link.media.class%" public="false">
+            <argument type="service" id="symedit.repository.media" />
+            <tag name="symedit.link" />
         </service>
     </services>
 </container>

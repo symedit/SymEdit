@@ -6,13 +6,21 @@
 
     <parameters>
         <parameter key="symedit.shortcode.link.class">SymEdit\Bundle\CoreBundle\Shortcode\LinkShortcode</parameter>
+        <parameter key="symedit.shortcode.link.page.class">SymEdit\Bundle\CoreBundle\Shortcode\Link\PageLink</parameter>
     </parameters>
 
     <services>
         <!-- Link -->
         <service id="symedit.shortcode.link" class="%symedit.shortcode.link.class%" public="false">
+            <!-- Replaced in LinkShortcodeCompilerPass -->
+            <argument type="collection" />
             <argument type="service" id="router" />
             <tag name="symedit_shortcode.shortcode" alias="link" />
+        </service>
+
+        <!-- Page Link Generator -->
+        <service id="symedit.shortcode.link.page" class="%symedit.shortcode.link.page.class%" public="false">
+            <tag name="symedit.link" />
         </service>
     </services>
 </container>

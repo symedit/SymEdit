@@ -11,34 +11,47 @@
 
 namespace SymEdit\Bundle\CoreBundle\Shortcode;
 
+use SymEdit\Bundle\CoreBundle\Shortcode\Link\LinkInterface;
 use SymEdit\Bundle\ShortcodeBundle\Shortcode\AbstractShortcode;
-use Symfony\Component\Routing\Exception\RouteNotFoundException;
 use Symfony\Component\Routing\RouterInterface;
 
 class LinkShortcode extends AbstractShortcode
 {
+    protected $links;
     protected $router;
 
-    public function __construct(RouterInterface $router)
+    public function __construct(array $links, RouterInterface $router)
     {
+        $this->links = $links;
         $this->router = $router;
     }
 
     public function renderShortcode($match, array $attr, $content)
     {
-        if (isset($attr['page-id'])) {
-            $route = 'page/'.$attr['page-id'];
-        } else {
-            return $match;
-        }
+        $out = $match;
 
-        try {
-            $out = $this->router->generate($route);
-        } catch (RouteNotFoundException $e) {
-            $out = $match;
+        /* @var $link LinkInterface */
+        foreach ($this->links as $link) {
+            if (!$link->supports($attr)) {
+                continue;
+            }
+
+            if (($path = $link->generate($this->router, $attr)) !== null) {
+                $out = $path;
+
+                break;
+            }
         }
 
         return $out;
+    }
+
+    protected function generateRoute(LinkInterface $link, $attr)
+    {
+        $routeName = $link->getRouteName($attr);
+        $routeParameters = $link->getRouteParameters($attr);
+
+        return $this->router->generate($routeName, $routeParameters);
     }
 
     public function getName()
