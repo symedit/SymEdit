@@ -48,7 +48,7 @@
                     {% endblock %}
 
                     {% block content %}
-                    {{ Page.content|raw }}
+                    {{ Page.content|shortcode|raw }}
                     {% endblock %}
 
                     {% block supplemental %}
