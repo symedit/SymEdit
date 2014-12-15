@@ -14,7 +14,7 @@ admin_file_json:
         _format: json
     defaults:
         _format: json
-        _controller: symedit.controller.file:indexAction
+        _controller: symedit.controller.file:jsonAction
         _sylius:
             paginate: false
 
@@ -26,6 +26,12 @@ admin_file_create:
         _sylius:
             template: @SymEdit/Admin/File/new.html.twig
             redirect: admin_file
+
+admin_file_quick_upload:
+    pattern: /quick-upload
+    methods: [POST]
+    defaults:
+        _controller: symedit.controller.file:quickUploadAction
 
 admin_file_update:
     pattern: /{id}/edit

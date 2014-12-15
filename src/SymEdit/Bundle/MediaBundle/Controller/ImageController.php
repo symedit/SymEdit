@@ -11,14 +11,12 @@
 
 namespace SymEdit\Bundle\MediaBundle\Controller;
 
-use SymEdit\Bundle\ResourceBundle\Controller\ResourceController;
 use Symfony\Component\HttpFoundation\JsonResponse;
-use Symfony\Component\HttpFoundation\Request;
 
 /**
  * Image controller.
  */
-class ImageController extends ResourceController
+class ImageController extends MediaController
 {
     public function jsonAction()
     {
@@ -46,34 +44,5 @@ class ImageController extends ResourceController
         $cacheManager = $this->container->get('liip_imagine.cache.manager');
 
         return $cacheManager->getBrowserPath($path, $size);
-    }
-
-    public function quickUploadAction(Request $request)
-    {
-        $file = $request->files->get('file');
-        $image = $this->getRepository()->createNew();
-        $image->setFile($file);
-
-        // Validate the new image
-        $errors = $this->get('validator')->validate($image, array('file_only'));
-
-        if (count($errors) > 0) {
-            return new JsonResponse(array(
-                'error' => 'Invalid image: '.$errors[0]->getMessage(),
-            ));
-        }
-
-        try {
-            $this->getManager()->persist($image);
-            $this->getManager()->flush($image);
-
-            return new JsonResponse(array(
-                'filelink' => $image->getWebPath(),
-            ));
-        } catch (\Exception $ex) {
-            return new JsonResponse(array(
-                'error' => 'Error uploading, try renaming your image file.',
-            ));
-        }
     }
 }
