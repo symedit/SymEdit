@@ -64,6 +64,7 @@
         {% javascripts
             'bundles/symedit/js/jquery-1.10.2.min.js'
             'bundles/symedit/js/*.js'
+            'bundles/symedit/redactor/plugins/*.js'
             'bundles/symedit/redactor/redactor.min.js'
             'bundles/symedit/js/snippets/*.js'
             '@symedit_javascripts'
@@ -72,12 +73,11 @@
         {% endjavascripts %}
         <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js"></script>
         <script>
-            Isometriks.redactor_options.imageGetJson = "{{ path('admin_image_json') }}";
-            Isometriks.redactor_options.imageUpload = "{{ path('admin_image_quick_upload') }}";
-            Isometriks.redactor_options.predefinedLinks = "{{ path('admin_page_json') }}";
-            {% stylesheets '@SymEditBundle/Resources/less/wysiwyg.less' %}
-            Isometriks.redactor_iframe.css = '{{ asset_url }}';
-            {% endstylesheets %}
+            Isometriks.redactor_options.imageManagerJson    = {{ path('admin_image_json')|json_encode|raw }};
+            Isometriks.redactor_options.imageUpload         = {{ path('admin_image_quick_upload')|json_encode|raw }};
+            Isometriks.redactor_options.fileManagerJson     = {{ path('admin_file_json')|json_encode|raw }};
+            Isometriks.redactor_options.fileUpload          = {{ path('admin_file_quick_upload')|json_encode|raw }};
+            Isometriks.redactor_options.definedLinks        = {{ path('admin_page_json')|json_encode|raw }};
         </script>
         {% block scripts %}{% endblock %}
     </body>

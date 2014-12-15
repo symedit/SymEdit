@@ -55,7 +55,7 @@ img {
 }
 
 #header {
-    z-index: 100;
+    z-index: 2100;
     position: relative;
 }
 
@@ -63,6 +63,7 @@ img {
     background-color: @green;
     height: 51px;
     padding-right: 20px;
+    position: relative;
 
     .navbar-brand {
         color: @white;
@@ -143,7 +144,7 @@ img {
 #menu {
     position: absolute;
     padding-top: @sidebar_offset_top;
-    z-index: 50;
+    z-index: 2000;
     top: 0;
     left: 0;
     min-height: 100%;
@@ -549,7 +550,7 @@ iframe {
 }
 
 .full {
-    .redactor_box {
+    .redactor-box {
         position: absolute;
         left: 0;
         top: 0;
@@ -557,11 +558,7 @@ iframe {
     }
 }
 
-.redactor_box {
-    iframe {
-        border: none;
-    }
-
+.redactor-box {
     textarea {
         .box-sizing();
         padding: 10px !important;
