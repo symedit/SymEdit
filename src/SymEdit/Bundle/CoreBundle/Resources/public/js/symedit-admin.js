@@ -4,7 +4,7 @@ var Isometriks = (function(){
         buttonSource: true,
         formattingTags: ['p', 'blockquote', 'pre', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6'],
         dragImageUpload: true,
-        convertDivs: false,
+        replaceDivs: false,
         toolbarFixed: false,
         linkProtocol: false,
         plugins: ['imagemanager', 'definedlinks', 'filemanager']
