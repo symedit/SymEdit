@@ -64,7 +64,7 @@ class ThemeResource implements ResourceInterface
         $prepared = array();
 
         foreach ($inputs as $input) {
-            if ($input[0] === '@' || $input[0] === '/' || strpos($input, 'bundles') === 0) {
+            if (!$this->isThemeResource($input)) {
                 $prepared[] = $input;
 
                 continue;
@@ -74,6 +74,17 @@ class ThemeResource implements ResourceInterface
         }
 
         return $prepared;
+    }
+
+    protected function isThemeResource($input)
+    {
+        // Bundle, absolute path, or web/bundles reference
+        if ($input[0] === '@' || $input[0] === '/' || strpos($input, 'bundles') === 0) {
+            return false;
+        }
+
+        // Absolute web path
+        return preg_match('#^((ht|f)tp(s)?:)?//#', $input) === 0;
     }
 
     protected function findResource($input)
