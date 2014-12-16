@@ -33,7 +33,6 @@ class SymEditStylizerExtension extends Extension
         $container->setParameter('symedit_stylizer.loader.files.yaml', $yamlFiles);
 
         $loader->load('services.xml');
-        $loader->load('filters.xml');
 
         $env = $container->getParameter('kernel.environment');
 

@@ -19,7 +19,7 @@ class LessInjector implements InjectorInterface
     {
         if ($manager->has('less')) {
             $less = $manager->get('less');
-            $less->setGlobalVariables($variables);
+            $less->addParserOption('globalVars', $variables);
         }
     }
 }
