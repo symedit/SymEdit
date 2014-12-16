@@ -36,7 +36,7 @@
         "symfony/monolog-bundle":               "~2.3.0",
         "symfony/swiftmailer-bundle":           "~2.3.0",
         "symfony/symfony":                      "~2.3.0",
-        "symfony-cmf/routing-bundle":           "@stable",
+        "symfony-cmf/routing-bundle":           "~1.0",
         "twig/extensions":                      "~1.0",
         "twig/twig":                            "~1.11",
         "white-october/pagerfanta-bundle":      "~1.0.0",
@@ -81,6 +81,11 @@
         ]
     },
     "extra": {
+        "branch-alias": {
+            "dev-master": "0.10-dev"
+        },
+        "symfony-app-dir": "app",
+        "symfony-web-dir": "web",
         "incenteev-parameters": {
             "file": "app/config/parameters.yml"
         }
