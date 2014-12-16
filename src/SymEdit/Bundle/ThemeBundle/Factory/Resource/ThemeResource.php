@@ -91,7 +91,7 @@ class ThemeResource implements ResourceInterface
         }
 
         // Couldn't find just return as is
-        return $this->theme->getDirectory().'/'.$input;
+        return $this->theme->getThemeDirectory().'/'.$input;
     }
 
     public function isFresh($timestamp)
