@@ -28,7 +28,7 @@ class FilesystemLoader extends BaseFilesystemLoader
         }
 
         // Get Directories
-        $templateDirectories = $theme->getTemplateDirectories();
+        $templateDirectories = array_reverse($theme->getTemplateDirectories());
 
         // Setup the Theme Template Paths
         $this->setPaths($templateDirectories, 'Theme');
