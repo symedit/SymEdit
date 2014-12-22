@@ -30,26 +30,18 @@ class ThemeResource implements ResourceInterface
 
     public function getContent()
     {
-        $formulas = array();
-
-        $cssFormula = $this->getFormula($this->theme->getStylesheets());
-        $jsFormula = $this->getFormula($this->theme->getJavascripts());
-
-        if ($cssFormula) {
-            $formulas['theme_css'] = $cssFormula;
-        }
-
-        if ($jsFormula) {
-            $formulas['theme_js'] = $jsFormula;
-        }
+        $formulas = array(
+            'theme_css' => $this->getFormula($this->theme->getStylesheets()),
+            'theme_js' => $this->getFormula($this->theme->getJavascripts()),
+        );
 
         return $formulas;
     }
 
     protected function getFormula($data)
     {
-        if ($data === null) {
-            return false;
+        if (empty($data)) {
+            return array(array(), array(), array());
         }
 
         return array(
