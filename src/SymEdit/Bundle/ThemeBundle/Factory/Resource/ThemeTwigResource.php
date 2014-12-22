@@ -15,7 +15,7 @@ use Assetic\Factory\Resource\CoalescingDirectoryResource as BaseResource;
 use Assetic\Factory\Resource\DirectoryResource;
 use SymEdit\Bundle\ThemeBundle\Model\Theme;
 
-class DirectoriesResource extends BaseResource
+class ThemeTwigResource extends BaseResource
 {
     public function __construct(Theme $theme)
     {

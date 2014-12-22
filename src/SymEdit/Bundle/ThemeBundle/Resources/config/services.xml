@@ -28,7 +28,7 @@
         </service>
 
         <!-- Assetic Theme Directory Resource -->
-        <service id="symedit_theme.twig.theme_resource" class="SymEdit\Bundle\ThemeBundle\Factory\Resource\DirectoriesResource">
+        <service id="symedit_theme.twig.theme_resource" class="SymEdit\Bundle\ThemeBundle\Factory\Resource\ThemeTwigResource">
             <argument type="service" id="symedit_theme.theme" />
             <tag name="assetic.templating.twig" />
             <tag name="assetic.formula_resource" loader="twig" />
