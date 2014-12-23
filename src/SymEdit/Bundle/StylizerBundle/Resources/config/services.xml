@@ -75,6 +75,8 @@
         <service id="symedit_stylizer.style_manager" class="%symedit_stylizer.style_manager.class%">
             <argument type="service" id="symedit_stylizer.loader.chain" />
             <argument type="service" id="symedit_stylizer.storage" />
+            <argument>%kernel.cache_dir%/symedit_stylizer</argument>
+            <argument>%kernel.debug%</argument>
         </service>
 
         <!-- Color Form Type -->

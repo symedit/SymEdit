@@ -11,7 +11,7 @@
 
 namespace SymEdit\Bundle\StylizerBundle\Loader;
 
-class ConfigData
+class ConfigData implements \Serializable
 {
     private $groups = array();
 
@@ -56,5 +56,15 @@ class ConfigData
         }
 
         return $variables;
+    }
+
+    public function serialize()
+    {
+        return serialize($this->groups);
+    }
+
+    public function unserialize($serialized)
+    {
+        $this->groups = unserialize($serialized);
     }
 }

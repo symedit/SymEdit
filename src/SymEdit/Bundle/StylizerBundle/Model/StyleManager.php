@@ -14,6 +14,7 @@ namespace SymEdit\Bundle\StylizerBundle\Model;
 use SymEdit\Bundle\StylizerBundle\Loader\ConfigData;
 use SymEdit\Bundle\StylizerBundle\Loader\LoaderInterface;
 use SymEdit\Bundle\StylizerBundle\Storage\StorageInterface;
+use Symfony\Component\Config\ConfigCache;
 
 class StyleManager
 {
@@ -21,11 +22,14 @@ class StyleManager
     protected $storage;
     protected $configData;
     protected $styles;
+    protected $debug;
 
-    public function __construct(LoaderInterface $loader, StorageInterface $storage)
+    public function __construct(LoaderInterface $loader, StorageInterface $storage, $cacheDir, $debug = true)
     {
         $this->loader = $loader;
         $this->storage = $storage;
+        $this->cacheDir = $cacheDir;
+        $this->debug = $debug;
     }
 
     /**
@@ -36,8 +40,16 @@ class StyleManager
     public function getConfigData()
     {
         if ($this->configData === null) {
-            $this->configData = new ConfigData();
-            $this->loader->loadStyleData($this->configData);
+            $configCache = new ConfigCache(sprintf('%s/config.php', $this->cacheDir), $this->debug);
+
+            if ($configCache->isFresh()) {
+                $this->configData = unserialize(require $configCache);
+            } else {
+                $this->configData = new ConfigData();
+                $this->loader->loadStyleData($this->configData);
+
+                $configCache->write(sprintf('<?php return %s;', var_export(serialize($this->configData), true)));
+            }
         }
 
         return $this->configData;
