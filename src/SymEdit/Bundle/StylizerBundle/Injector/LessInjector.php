@@ -19,7 +19,18 @@ class LessInjector implements InjectorInterface
     {
         if ($manager->has('less')) {
             $less = $manager->get('less');
-            $less->addParserOption('globalVars', $variables);
+            $less->addParserOption('globalVars', $this->sanitize($variables));
         }
+    }
+
+    protected function sanitize(array $variables)
+    {
+        return array_map(function($variable) {
+            if (strpos($variable, '/') !== false) {
+                return '"' . $variable . '"';
+            }
+
+            return $variable;
+        }, $variables);
     }
 }
