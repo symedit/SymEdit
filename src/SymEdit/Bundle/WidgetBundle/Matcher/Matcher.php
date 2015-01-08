@@ -14,7 +14,7 @@ namespace SymEdit\Bundle\WidgetBundle\Matcher;
 use SymEdit\Bundle\WidgetBundle\Model\WidgetInterface;
 use Symfony\Component\Security\Core\Authorization\Voter\VoterInterface;
 
-class Matcher
+class Matcher implements WidgetMatcherInterface
 {
     protected $voters;
 

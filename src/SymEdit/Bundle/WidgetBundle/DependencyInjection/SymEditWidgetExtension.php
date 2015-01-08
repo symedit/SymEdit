@@ -39,6 +39,16 @@ class SymEditWidgetExtension extends SymEditResourceExtension
 
         // Map Fragment Parameters
         $this->remapParameters($container, 'fragment', $config['fragment']);
+
+        // Set Renderers
+        $this->setupRenderers($container, $config['renderer']);
+    }
+
+    protected function setupRenderers(ContainerBuilder $container, array $renderers)
+    {
+        foreach (array('widget', 'area') as $renderer) {
+            $container->setAlias(sprintf('symedit_widget.renderer.%s.default', $renderer), $renderers[$renderer]);
+        }
     }
 
     /**

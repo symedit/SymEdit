@@ -36,6 +36,11 @@ symedit_seo:
 symedit_widget:
     fragment:
         strategy: esi
+    renderer:
+        widget: symedit.widget.renderer.widget
+    classes:
+        widget_area:
+            controller: SymEdit\Bundle\CoreBundle\Controller\WidgetAreaController
 
 # Theme Configuration
 symedit_theme:

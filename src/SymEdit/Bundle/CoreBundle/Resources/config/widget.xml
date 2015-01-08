@@ -5,7 +5,10 @@
            xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
 
     <parameters>
+        <!-- Override -->
         <parameter key="symedit_widget.twig.widget_extension.class">SymEdit\Bridge\Widget\Twig\Extension\WidgetExtension</parameter>
+
+        <parameter key="symedit.widget.renderer.widget.class">SymEdit\Bridge\Widget\Renderer\WidgetRenderer</parameter>
         <parameter key="symedit.widget.strategy.contact_info.class">SymEdit\Bundle\CoreBundle\Widget\Strategy\ContactInfoStrategy</parameter>
         <parameter key="symedit.widget.strategy.google_map.class">SymEdit\Bundle\CoreBundle\Widget\Strategy\GoogleMapStrategy</parameter>
         <parameter key="symedit.widget.strategy.submenu.class">SymEdit\Bundle\CoreBundle\Widget\Strategy\SubmenuStrategy</parameter>
@@ -14,6 +17,13 @@
     </parameters>
 
     <services>
+        <!-- Renderers -->
+        <service id="symedit.widget.renderer.widget" class="%symedit.widget.renderer.widget.class%" parent="symedit_widget.renderer.widget">
+            <call method="setCurrentPage">
+                <argument type="service" id="symedit_page" />
+            </call>
+        </service>
+
         <!-- Widget Strategies -->
         <service id="symedit.widget.strategy.contact_info" class="%symedit.widget.strategy.contact_info.class%"
                  parent="symedit_widget.widget.strategy.template">

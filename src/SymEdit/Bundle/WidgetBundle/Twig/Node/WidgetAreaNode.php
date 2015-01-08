@@ -13,6 +13,8 @@ namespace SymEdit\Bundle\WidgetBundle\Twig\Node;
 
 class WidgetAreaNode extends \Twig_Node
 {
+    protected $controller = 'symedit.controller.widget_area:renderAreaAction';
+
     public function __construct($area, $strategy, $lineno, $tag = null)
     {
         parent::__construct(array(), array('area' => $area, 'strategy' => $strategy), $lineno, $tag);
@@ -29,7 +31,7 @@ class WidgetAreaNode extends \Twig_Node
             ->addDebugInfo($this)
             ->write('echo $this->env->getExtension(\'http_kernel\')->renderFragmentStrategy(\''.$this->getAttribute('strategy').'\',')
             ->write('    $this->env->getExtension(\'http_kernel\')')
-            ->write('         ->controller(\'SymEditBundle:Widget:renderArea\', array(')
+            ->write('         ->controller(\''. $this->controller . '\', array(')
             ->write('             \'area\' => \''.$this->getAttribute('area').'\',')
             ->write('         ))')
             ->write('    );');

@@ -8,6 +8,8 @@
         <parameter key="symedit_widget.matcher.class">SymEdit\Bundle\WidgetBundle\Matcher\Matcher</parameter>
         <parameter key="symedit_widget.voter.include_all.class">SymEdit\Bundle\WidgetBundle\Matcher\Voter\IncludeAllVoter</parameter>
         <parameter key="symedit_widget.voter.uri.class">SymEdit\Bundle\WidgetBundle\Matcher\Voter\UriVoter</parameter>
+        <parameter key="symedit_widget.renderer.widget.class">SymEdit\Bundle\WidgetBundle\Renderer\WidgetRenderer</parameter>
+        <parameter key="symedit_widget.renderer.area.class">SymEdit\Bundle\WidgetBundle\Renderer\WidgetAreaRenderer</parameter>
     </parameters>
 
     <services>
@@ -19,6 +21,15 @@
         <!-- Voters -->
         <service id="symedit_widget.voter.include_all" class="%symedit_widget.voter.include_all.class%">
             <tag name="symedit_widget.voter" priority="-128" />
+        </service>
+
+        <!-- Renderers -->
+        <service id="symedit_widget.renderer.widget" class="%symedit_widget.renderer.widget.class%" />
+
+        <service id="symedit_widget.renderer.area" class="%symedit_widget.renderer.area.class%">
+            <argument type="service" id="twig" />
+            <argument type="service" id="symedit_widget.renderer.widget.default" />
+            <argument type="service" id="symedit_widget.matcher" />
         </service>
     </services>
 </container>

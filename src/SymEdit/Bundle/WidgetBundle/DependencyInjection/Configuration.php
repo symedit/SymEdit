@@ -41,6 +41,13 @@ class Configuration implements ConfigurationInterface
                         ->scalarNode('strategy')->defaultValue('inline')->end()
                     ->end()
                 ->end()
+                ->arrayNode('renderer')
+                    ->addDefaultsIfNotSet()
+                    ->children()
+                        ->scalarNode('widget')->defaultValue('symedit_widget.renderer.widget')->end()
+                        ->scalarNode('area')->defaultValue('symedit_widget.renderer.area')->end()
+                    ->end()
+                ->end()
             ->end();
 
         $this->addClassesSection($rootNode);
@@ -73,6 +80,7 @@ class Configuration implements ConfigurationInterface
                             ->addDefaultsIfNotSet()
                             ->children()
                                 ->scalarNode('model')->defaultValue('SymEdit\Bundle\WidgetBundle\Model\WidgetArea')->end()
+                                ->scalarNode('controller')->defaultValue('SymEdit\Bundle\WidgetBundle\Controller\WidgetAreaController')->end()
                                 ->scalarNode('repository')->end()
                                 ->scalarNode('form')->defaultValue('SymEdit\Bundle\WidgetBundle\Form\Type\WidgetAreaType')->end()
                             ->end()
