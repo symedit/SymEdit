@@ -37,6 +37,9 @@
             <tag name="assetic.formula_resource" loader="symedit_config" />
             <argument type="collection" /> <!-- configured formulae -->
         </service>
+
+        <!-- Synthetic Current Page -->
+        <service id="symedit_page" class="%symedit.model.page.class%" synthetic="true" />
     </services>
 
 </container>

@@ -11,27 +11,33 @@
 
 namespace SymEdit\Bundle\CoreBundle\EventListener;
 
-use Symfony\Component\HttpKernel\Event\FilterControllerEvent;
 use Sylius\Component\Resource\Repository\RepositoryInterface;
+use SymEdit\Bundle\CoreBundle\Model\PageInterface;
+use Symfony\Component\DependencyInjection\ContainerInterface;
+use Symfony\Component\HttpKernel\Event\GetResponseEvent;
 
 /**
  * Checks the request for a _page_id, and then adds the actual Page
  * to the Request instead.
  */
-class PageControllerListener
+class CurrentPageListener
 {
+    private $container;
     private $pageRepository;
 
-    public function __construct(RepositoryInterface $pageRepository)
+    public function __construct(ContainerInterface $container, RepositoryInterface $pageRepository)
     {
+        $this->container = $container;
         $this->pageRepository = $pageRepository;
     }
 
-    public function onKernelController(FilterControllerEvent $event)
+    public function onKernelRequest(GetResponseEvent $event)
     {
         $request = $event->getRequest();
 
         if ($request->attributes->has('_page')) {
+            $this->updateContainer($request->attributes->get('_page'));
+
             return;
         }
 
@@ -49,5 +55,13 @@ class PageControllerListener
         $request->attributes->add(array(
             '_page' => $page,
         ));
+
+        // Add to container
+        $this->updateContainer($page);
+    }
+
+    private function updateContainer(PageInterface $page)
+    {
+        $this->container->set('symedit_page', $page);
     }
 }
