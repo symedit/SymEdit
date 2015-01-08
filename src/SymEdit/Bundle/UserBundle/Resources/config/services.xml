@@ -6,6 +6,7 @@
 
     <parameters>
         <parameter key="symedit.user_manager.class">SymEdit\Bundle\UserBundle\Model\UserManager</parameter>
+        <parameter key="symedit_user.event_listener.password.class">SymEdit\Bundle\UserBundle\EventListener\UpdatePasswordSubscriber</parameter>
     </parameters>
 
     <services>
@@ -17,6 +18,11 @@
             <call method="setAdminProfileClass">
                 <argument>%symedit.model.admin_profile.class%</argument>
             </call>
+        </service>
+
+        <service id="symedit_user.event_listener.password" class="%symedit_user.event_listener.password.class%">
+            <argument type="service" id="symedit_user.user_manager" />
+            <tag name="kernel.event_subscriber" />
         </service>
     </services>
 </container>
