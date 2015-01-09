@@ -1,6 +1,6 @@
 imports:
     - { resource: parameters.yml }
-    - { resource: symedit.yml }
+    - { resource: @SymEditBundle/Resources/config/app/symedit.yml }
 
 framework:
     esi:                        ~
