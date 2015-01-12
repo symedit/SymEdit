@@ -68,6 +68,7 @@ class BackendTest extends WebTestCase
 
             array('/sym-admin/settings'),
             array('/sym-admin/category'),
+            array('/sym-admin/category/new'),
         );
     }
 
