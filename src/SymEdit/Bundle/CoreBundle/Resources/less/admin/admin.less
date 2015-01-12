@@ -329,24 +329,6 @@ img {
     position: relative;
 }
 
-
-
-/**
- * Latches
- */
-
-.latch {
-    position: relative;
-    top: -20px;
-    left: -20px;
-    background-color: rgba(0,0,0,.05);
-    padding: 5px 20px 5px 10px;
-    display: inline-block;
-    margin-bottom: 0;
-    margin-top: 0;
-    .border-radius(0,8px);
-}
-
 /**
  * Icon Circles
  */
@@ -405,41 +387,9 @@ i[class^="icon-"], i[class*=" icon-"] {
     }
 }
 
-.widget-area {
-
-    margin-bottom: 30px;
-
-    a, a:hover {
-        padding-left: 20px;
-        text-decoration: none;
-        margin-bottom: 5px;
-
-        .circle {
-            margin: 0 20px 20px 0;
-        }
-    }
-
-    &:last-child {
-        margin-bottom: 0;
-    }
-
-
-    .widget-area-sortable {
-
-        .widget {
-            clear: both;
-            margin-bottom: 12px;
-        }
-
-        .ui-sortable-placeholder {
-            visibility: visible !important;
-            border: 1px dotted #888;
-            height: 75px;
-            margin: 0 16px;
-            margin-bottom: 12px;
-            background-color: rgba(0,0,0,.05);
-            .rounded(8px);
-        }
+.draggable {
+    *:not(a), &:not(a) {
+        cursor: move;
     }
 }
 
@@ -563,19 +513,6 @@ iframe {
         .box-sizing();
         padding: 10px !important;
         font-family: "Lucida Console", Monaco, monospace !important;
-    }
-}
-
-body .redactor_toolbar li a.redactor_btn_bootstrap {
-    text-align: center;
-    font-size: 14px !important;
-    line-height: 1.8 !important;
-    text-indent: 0;
-    color: #333;
-    background-image: none;
-
-    &:after {
-        content: "B";
     }
 }
 
