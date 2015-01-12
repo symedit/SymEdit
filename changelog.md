@@ -12,3 +12,5 @@ Upgrade to 10.*
 
     - Change theme.yml files to not have a root element anymore
     - Possibly run symedit:theme:unique to clean any files that are duplicated
+    - Move any changes in symedit.yml to config.yml as we are including all the
+      base stuff in the corebundle
