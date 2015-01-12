@@ -20,7 +20,7 @@
         <!-- Renderers -->
         <service id="symedit.widget.renderer.widget" class="%symedit.widget.renderer.widget.class%" parent="symedit_widget.renderer.widget">
             <call method="setCurrentPage">
-                <argument type="service" id="symedit_page" />
+                <argument type="service" id="symedit_page" on-invalid="null" />
             </call>
         </service>
 

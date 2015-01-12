@@ -17,6 +17,8 @@
     <services>
         <!-- Twig Extension -->
         <service id="symedit_widget.twig.widget_extension" class="%symedit_widget.twig.widget_extension.class%">
+            <argument type="service" id="symedit.repository.widget" />
+            <argument type="service" id="service_container" />
             <argument>%symedit_widget.fragment.strategy%</argument>
             <tag name="twig.extension" />
         </service>

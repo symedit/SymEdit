@@ -25,7 +25,7 @@ class WidgetExtension extends BaseExtension
     public function getTokenParsers()
     {
         return array(
-            new WidgetAreaTokenParser($this->strategy),
+            new WidgetAreaTokenParser($this->esiStrategy),
         );
     }
 }
