@@ -21,12 +21,10 @@ class PostType extends BasePostType
         parent::buildBasicForm($builder, $options);
 
         $builder
-            ->add('image', 'symedit_image', array(
-                'require_name' => false,
+            ->add('image', 'symedit_image_choose', array(
                 'required' => false,
                 'show_image' => true,
-                'allow_remove' => true,
-                'label' => 'Featured Image',
+                'label' => 'symedit.form.post.image',
             ))
         ;
     }

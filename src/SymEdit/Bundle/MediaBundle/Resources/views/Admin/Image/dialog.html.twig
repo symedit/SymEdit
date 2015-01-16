@@ -1,0 +1,31 @@
+<div class="modal-dialog">
+    <div class="modal-content">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title">Choose Image</h4>
+        </div>
+
+        <div class="modal-body">
+            <div class="row">
+                <form>
+                    {% for image in images %}
+                        <label class="col-sm-2">
+                            <input type="radio" data-preview="{{ image | imagine_filter('gallery') }}" value="{{ image.id }}" name="symedit-media-choose" class="hidden" />
+
+                            <img src="{{ image | imagine_filter('symedit_96x96') }}">
+                        </label>
+                    {% endfor %}
+                </form>
+            </div>
+        </div>
+
+        <div class="modal-footer">
+            <button type="button" class="btn btn-default btn-sm pull-left" data-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-warning btn-sm" data-toggle="remove">Remove Image</button>
+            <button type="button" class="btn btn-primary btn-sm" data-toggle="choose">
+                {{ icon('save') }}
+                Choose Image
+            </button>
+        </div>
+    </div>
+</div>

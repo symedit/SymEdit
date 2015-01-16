@@ -18,6 +18,16 @@ admin_image_json:
         _sylius:
             paginate: false
 
+admin_image_dialog:
+    pattern: /dialog
+    methods: [GET, POST]
+    defaults:
+        _controller: symedit.controller.image:indexAction
+        _sylius:
+            template: @SymEdit/Admin/Image/dialog.html.twig
+            paginate: false
+            limit: false
+
 admin_image_create:
     pattern: /new
     methods: [GET, POST]
