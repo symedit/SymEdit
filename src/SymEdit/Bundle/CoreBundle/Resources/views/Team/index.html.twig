@@ -7,7 +7,7 @@
     <div class="row">
         {% if profile.image %}
         <div class="col-md-3">
-            <img src="{{ profile.image }}" class="img-circle" alt="{{ profile.fullname }}">
+            <img src="{{ profile.image.webPath }}" class="img-circle" alt="{{ profile.fullname }}">
         </div>
         {% endif %}
 
