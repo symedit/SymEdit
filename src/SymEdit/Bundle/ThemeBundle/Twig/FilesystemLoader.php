@@ -31,7 +31,7 @@ class FilesystemLoader extends BaseFilesystemLoader
         $templateDirectories = array_reverse($theme->getTemplateDirectories());
 
         // Setup the Theme Template Paths
-        $this->setPaths($templateDirectories, 'Theme');
+        $this->prependPaths($templateDirectories, 'Theme');
 
         // Setup overrides (So when you call @MyNamespace it will call the theme templates instead)
         foreach ($overrides as $override) {
