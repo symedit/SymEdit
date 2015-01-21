@@ -176,9 +176,9 @@ class RouteProvider extends DoctrineProvider implements RouteProviderInterface
 
         foreach ($pageController->getRoutes() as $routeName) {
             if (!isset($storedRoutes[$routeName])) {
-                throw new RouteNotFoundException(sprintf(
-                    'Could not find route in page controller config: "%s"'
-                ), $routeName);
+                throw new RouteNotFoundException(
+                    sprintf('Could not find route in page controller config: "%s"', $routeName)
+                );
             }
 
             $collection->add($routeName, $storedRoutes[$routeName]);
