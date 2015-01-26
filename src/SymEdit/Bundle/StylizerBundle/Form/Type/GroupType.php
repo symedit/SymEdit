@@ -27,7 +27,7 @@ class GroupType extends AbstractType
     {
         $resolver->setDefaults(array(
             'extra' => array(),
-            'virtual' => true,
+            'inherit_data' => true,
         ));
     }
 

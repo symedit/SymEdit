@@ -31,13 +31,13 @@ class StylesType extends AbstractType
         $groups = $this->manager->getConfigData()->getGroups();
 
         $allGroups = $builder->create('groups', 'form', array(
-            'virtual' => true,
+            'inherit_data' => true,
             'label' => false,
         ));
 
         foreach ($groups as $groupName => $group) {
             $groupOptions = array(
-                'virtual' => true,
+                'inherit_data' => true,
                 'extra' => $group->getExtra(),
             );
 
