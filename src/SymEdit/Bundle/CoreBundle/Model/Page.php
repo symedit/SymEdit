@@ -662,7 +662,9 @@ class Page implements PageInterface
             return array();
         }
 
-        return $this->getParent()->getChildren();
+        return $this->getParent()->getChildren()->filter(function($element){
+            $element !== $this;
+        });
     }
 
     public function getLevel()
