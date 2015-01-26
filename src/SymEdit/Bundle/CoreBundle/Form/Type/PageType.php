@@ -26,15 +26,9 @@ class PageType extends AbstractType
         $this->pageRepository = $pageRepository;
     }
 
-    public function buildForm(FormBuilderInterface $builder, array $options)
+    protected function buildBasicForm(FormBuilderInterface $builder, array $options)
     {
-        $basic = $builder->create('basic', 'tab', array(
-            'label' => 'admin.page.tabs.basic',
-            'icon' => 'info-sign',
-            'inherit_data' => true,
-        ));
-
-        $basic
+        $builder
             ->add('title', 'text', array(
                 'label' => 'admin.page.title',
             ))
@@ -50,6 +44,8 @@ class PageType extends AbstractType
          * Fetch Page choices from the recursive iterator, we have to make sure
          * that we allow pages with display = false here so we can't use the
          * default
+         *
+         * @TODO: Create symedit_page_parent or something, symedit_page_choose etc.
          */
         $root = $this->pageRepository->findRoot();
         $iterator = $this->pageRepository->getRecursiveIterator(false);
@@ -65,14 +61,14 @@ class PageType extends AbstractType
             $choices[$page->getId()] = str_repeat('--', $page->getLevel()).' '.$page->getTitle();
         }
 
-        $basic->add(
+        $builder->add(
             $builder->create('parent', 'choice', array(
                 'choices' => $choices,
                 'label' => 'admin.page.parent',
             ))->addModelTransformer(new RepositoryTransformer($this->pageRepository))
         );
 
-        $basic
+        $builder
             ->add('tagline', 'text', array(
                 'required' => false,
                 'label' => 'admin.page.tagline',
@@ -81,26 +77,22 @@ class PageType extends AbstractType
                 'required' => false,
                 'help_block' => 'admin.page.display.help',
                 'label' => 'admin.page.display.label',
-            ));
+            ))
+        ;
+    }
 
-        $template = $builder->create('template', 'tab', array(
-            'label' => 'admin.page.tabs.template',
-            'icon' => 'columns',
-            'inherit_data' => true,
-        ));
-
-        $template
+    protected function buildTemplateForm(FormBuilderInterface $builder, array $options)
+    {
+        $builder
             ->add('template', 'template', array(
                 'label' => 'admin.page.template',
-            ));
+            ))
+        ;
+    }
 
-        $seo = $builder->create('seo', 'tab', array(
-            'label' => 'admin.page.tabs.seo',
-            'icon' => 'search',
-            'inherit_data' => true,
-        ));
-
-        $seo
+    protected function buildSeoForm(FormBuilderInterface $builder, array $options)
+    {
+        $builder
             ->add('seo', 'symedit_seo', array(
                 'horizontal_label_offset_class' => '',
             ))
@@ -108,8 +100,88 @@ class PageType extends AbstractType
                 'required' => false,
                 'help_block' => 'admin.page.crawl.help',
                 'label' => 'admin.page.crawl.label',
-            ));
+            ))
+        ;
+    }
 
+    protected function buildSummaryForm(FormBuilderInterface $builder, array $options)
+    {
+        $builder
+            ->add('summary', 'textarea', array(
+                'attr' => array(
+                    'class' => 'wysiwyg-editor',
+                    'style' => 'height: 250px',
+                    'placeholder' => 'Page Summary...',
+                 ),
+                'label' => 'admin.page.summary',
+                'required' => false,
+                'label_render' => false,
+            ))
+        ;
+    }
+
+    protected function buildContentForm(FormBuilderInterface $builder, array $options)
+    {
+        $builder
+            ->add('content', 'textarea', array(
+                'attr' => array(
+                    'class' => 'wysiwyg-editor',
+                    'style' => 'height:500px',
+                    'placeholder' => 'Page Content',
+                ),
+                'required' => false,
+                'label' => 'admin.page.content',
+                'label_render' => false,
+            ))
+        ;
+    }
+
+    protected function buildAdvancedForm(FormBuilderInterface $builder, array $options)
+    {
+        $builder
+            ->add('pageController', 'checkbox', array(
+                'required' => false,
+                'label' => 'admin.page.pagecontroller',
+            ))
+            ->add('pageControllerPath', 'text', array(
+                'attr' => array('class' => 'span6'),
+                'required' => false,
+                'label' => 'admin.page.pagecontrollerpath.label',
+                'help_block' => 'admin.page.pagecontrollerpath.help',
+            ))
+        ;
+    }
+
+    public function buildForm(FormBuilderInterface $builder, array $options)
+    {
+        // Build basic tab
+        $basic = $builder->create('basic', 'tab', array(
+            'label' => 'admin.page.tabs.basic',
+            'icon' => 'info-sign',
+            'inherit_data' => true,
+        ));
+
+        $this->buildBasicForm($basic, $options);
+
+        // Build template tab
+        $template = $builder->create('template', 'tab', array(
+            'label' => 'admin.page.tabs.template',
+            'icon' => 'columns',
+            'inherit_data' => true,
+        ));
+
+        $this->buildTemplateForm($template, $options);
+
+        // Build SEO tab
+        $seo = $builder->create('seo', 'tab', array(
+            'label' => 'admin.page.tabs.seo',
+            'icon' => 'search',
+            'inherit_data' => true,
+        ));
+
+        $this->buildSeoForm($seo, $options);
+
+        // Build Summary tab
         $summary = $builder->create('summary', 'tab', array(
             'label' => 'admin.page.tabs.summary',
             'icon' => 'file',
@@ -120,18 +192,9 @@ class PageType extends AbstractType
             ),
         ));
 
-        $summary
-            ->add('summary', 'textarea', array(
-                'attr' => array(
-                    'class' => 'wysiwyg-editor',
-                    'style' => 'height: 250px',
-                    'placeholder' => 'Page Summary...',
-                 ),
-                'label' => 'admin.page.summary',
-                'required' => false,
-                'label_render' => false,
-            ));
+        $this->buildSummaryForm($summary, $options);
 
+        // Build Content tab
         $content = $builder->create('content', 'tab', array(
             'label' => 'admin.page.tabs.content',
             'icon' => 'file',
@@ -142,35 +205,16 @@ class PageType extends AbstractType
             ),
         ));
 
-        $content
-            ->add('content', 'textarea', array(
-                'attr' => array(
-                    'class' => 'wysiwyg-editor',
-                    'style' => 'height:500px',
-                    'placeholder' => 'Page Content',
-                ),
-                'required' => false,
-                'label' => 'admin.page.content',
-                'label_render' => false,
-            ));
+        $this->buildContentForm($content, $options);
 
+        // Build advanced tab
         $advanced = $builder->create('advanced', 'tab', array(
             'label' => 'admin.page.tabs.advanced',
             'icon' => 'cogs',
             'inherit_data' => true,
         ));
 
-        $advanced
-            ->add('pageController', 'checkbox', array(
-                'required' => false,
-                'label' => 'admin.page.pagecontroller',
-            ))
-            ->add('pageControllerPath', 'text', array(
-                'attr' => array('class' => 'span6'),
-                'required' => false,
-                'label' => 'admin.page.pagecontrollerpath.label',
-                'help_block' => 'admin.page.pagecontrollerpath.help',
-            ));
+        $this->buildAdvancedForm($advanced, $options);
 
         // Add all tabs
         $builder
