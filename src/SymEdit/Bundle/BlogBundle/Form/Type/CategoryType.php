@@ -11,8 +11,8 @@
 
 namespace SymEdit\Bundle\BlogBundle\Form\Type;
 
-use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\Form\AbstractType;
 
 class CategoryType extends AbstractType
 {
@@ -23,15 +23,9 @@ class CategoryType extends AbstractType
         $this->class = $class;
     }
 
-    public function buildForm(FormBuilderInterface $builder, array $options)
+    public function buildBasicForm(FormBuilderInterface $builder, array $options)
     {
-        $basic = $builder->create('basic', 'tab', array(
-            'label' => 'Basic',
-            'inherit_data' => true,
-            'icon' => 'info-sign',
-        ));
-
-        $basic
+        $builder
             ->add('title')
             ->add('name', 'text', array(
                 'label' => 'Slug',
@@ -41,20 +35,13 @@ class CategoryType extends AbstractType
                 'empty_value' => '(Root Category)',
                 'class' => $this->class,
                 'required' => false,
-            ));
+            ))
+        ;
+    }
 
-        $seo = $builder->create('seo', 'tab', array(
-            'label' => 'SEO',
-            'inherit_data' => true,
-            'icon' => 'search',
-        ));
-
-        $seo
-            ->add('seo', 'symedit_seo');
-
-        $builder
-            ->add($basic)
-            ->add($seo);
+    public function buildForm(FormBuilderInterface $builder, array $options)
+    {
+        $this->buildBasicForm($builder, $options);
     }
 
     public function getName()

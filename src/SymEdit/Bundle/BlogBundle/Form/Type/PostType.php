@@ -17,15 +17,9 @@ use SymEdit\Bundle\BlogBundle\Model\Post;
 
 class PostType extends AbstractType
 {
-    public function buildForm(FormBuilderInterface $builder, array $options)
+    protected function buildBasicForm(FormBuilderInterface $builder, array $options)
     {
-        $basic = $builder->create('basic', 'tab', array(
-            'inherit_data' => true,
-            'label' => 'Basic',
-            'icon' => 'info-sign',
-        ));
-
-        $basic
+        $builder
             ->add('title', 'text')
             ->add('author', 'symedit_user_choose', array(
                 'admin' => true,
@@ -43,36 +37,12 @@ class PostType extends AbstractType
                 'multiple' => true,
                 'expanded'  => true,
             ))
-            ->add('image', 'symedit_image', array(
-                'require_name' => false,
-                'required' => false,
-                'show_image' => true,
-                'allow_remove' => true,
-                'label' => 'Featured Image',
-            ));
+        ;
+    }
 
-        $seo = $builder->create('seo', 'tab', array(
-            'inherit_data' => true,
-            'label' => 'SEO',
-            'icon' => 'search',
-        ));
-
-        $seo
-            ->add('seo', 'symedit_seo', array(
-                'horizontal_label_offset_class' => '',
-            ));
-
-        $summary = $builder->create('summary', 'tab', array(
-            'inherit_data' => true,
-            'label' => 'Summary',
-            'horizontal' => false,
-            'icon' => 'file',
-            'attr' => array(
-                'class' => 'full',
-            ),
-        ));
-
-        $summary
+    protected function buildSummaryForm(FormBuilderInterface $builder, array $options)
+    {
+        $builder
             ->add('summary', 'textarea', array(
                 'label_render' => false,
                 'attr' => array(
@@ -81,20 +51,14 @@ class PostType extends AbstractType
                     'placeholder' => 'Post Summary...',
                 ),
                 'required' => false,
-            ));
+            ))
+        ;
+    }
 
-        $content = $builder->create('content', 'tab', array(
-            'inherit_data' => true,
-            'label' => 'Content',
-            'icon' => 'file',
-            'horizontal' => false,
-            'attr' => array(
-                'class' => 'full',
-            ),
-        ));
-
-        $content
-            ->add('content', 'textarea', array(
+    protected function buildContentForm(FormBuilderInterface $builder, array $options)
+    {
+        $builder
+                ->add('content', 'textarea', array(
                 'label_render' => false,
                 'attr' => array(
                     'class' => 'wysiwyg-editor',
@@ -102,13 +66,15 @@ class PostType extends AbstractType
                     'placeholder' => 'Post Content...',
                 ),
                 'required' => false,
-            ));
+            ))
+        ;
+    }
 
-        $builder
-            ->add($basic)
-            ->add($seo)
-            ->add($summary)
-            ->add($content);
+    public function buildForm(FormBuilderInterface $builder, array $options)
+    {
+        $this->buildBasicForm($builder, $options);
+        $this->buildSummaryForm($builder, $options);
+        $this->buildContentForm($builder, $options);
     }
 
     public function getName()
