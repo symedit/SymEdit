@@ -13,23 +13,22 @@ namespace SymEdit\Bundle\UserBundle\Form\Type;
 
 use Symfony\Component\Form\FormBuilderInterface;
 use FOS\UserBundle\Form\Type\ProfileFormType as BaseType;
-use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
 /**
  * @Todo: override the new buildUserForm method instead
  */
 class UserProfileType extends BaseType
 {
-    public function buildForm(FormBuilderInterface $builder, array $options)
+    protected function buildBasicForm(FormBuilderInterface $builder, array $options)
     {
-        $basic = $builder->create('basic', 'tab', array(
-            'inherit_data' => true,
-            'label' => 'Basic',
-        ));
+        $this->buildUserForm($builder, $options);
+    }
 
-        parent::buildForm($basic, $options);
+    protected function buildUserForm(FormBuilderInterface $builder, array $options)
+    {
+        parent::buildUserForm($builder, $options);
 
-        $basic
+        $builder
             ->add('firstName', 'text', array(
                 'label' => 'First Name',
                 'property_path' => 'profile.firstName',
@@ -38,19 +37,23 @@ class UserProfileType extends BaseType
                 'label' => 'Last Name',
                 'required' => false,
                 'property_path' => 'profile.lastName',
-            ));
-
-        $builder
-            ->add($basic);
+            ))
+        ;
     }
 
-    public function setDefaultOptions(OptionsResolverInterface $resolver)
+    public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        parent::setDefaultOptions($resolver);
-
-        $resolver->setDefaults(array(
-            'tabs_class' => 'nav nav-pills nav-stacked',
+        // Basic Tab
+        $basic = $builder->create('basic', 'tab', array(
+            'inherit_data' => true,
+            'label' => 'Basic',
         ));
+
+        $this->buildBasicForm($basic, $options);
+
+        $builder
+            ->add($basic)
+        ;
     }
 
     public function getName()
