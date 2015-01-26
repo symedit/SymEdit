@@ -13,8 +13,9 @@ namespace SymEdit\Bundle\CoreBundle\Form\Type;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+use Symfony\Component\Validator\Constraints\Email;
+use Symfony\Component\Validator\Constraints\NotBlank;
 
 class ContactType extends AbstractType
 {
@@ -33,6 +34,9 @@ class ContactType extends AbstractType
                 'required' => false,
                 'attr' => array(
                     'placeholder' => 'Email',
+                ),
+                'constraints' => array(
+                    new Email(),
                 ),
             ))
             ->add('phone', 'text', array(
