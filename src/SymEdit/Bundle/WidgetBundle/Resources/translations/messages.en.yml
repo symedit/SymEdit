@@ -1,0 +1,18 @@
+symedit:
+    form:
+        widget:
+            tab:
+                basic: Basic
+                options: Options
+            basic:
+                title: Title
+                name:
+                    label: Name
+                    help: Numbers, letters, underscores, or hyphens.
+                area: Area
+                visibility:
+                    label: Visibility
+                    include_all: Include on ALL Pages
+                    include_only: Include ONLY on specified
+                    exclude_only: Exclude ONLY on specified
+                associations: Associations

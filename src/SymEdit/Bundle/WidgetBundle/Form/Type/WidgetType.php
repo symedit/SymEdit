@@ -33,30 +33,36 @@ class WidgetType extends AbstractType
         $transformer = new WidgetAssociationTransformer();
 
         $basic = $builder->create('basic', 'tab', array(
-            'label' => 'Basic',
+            'label' => 'symedit.form.widget.tab.basic',
             'icon' => 'info-sign',
             'inherit_data' => true,
             'data_class' => $this->widgetClass,
-        ))
-            ->add('title')
+        ));
+
+        $basic
+            ->add('title', 'text', array(
+                'label' => 'symedit.form.widget.basic.title',
+            ))
             ->add('name', 'text', array(
-                'help_block' => 'Numbers, letters, underscores, or hyphens.',
+                'label' => 'symedit.form.widget.basic.name.label',
+                'help_block' => 'symedit.form.widget.basic.name.help',
             ))
             ->add('area', 'entity', array(
+                'label' => 'symedit.form.widget.basic.area',
                 'property' => 'area',
                 'class' => $this->widgetAreaClass,
             ))
             ->add('visibility', 'choice', array(
-                'label' => 'Visibility',
+                'label' => 'symedit.form.widget.basic.visibility.label',
                 'choices' => array(
-                    WidgetInterface::INCLUDE_ALL => 'Include on ALL Pages',
-                    WidgetInterface::INCLUDE_ONLY => 'Include ONLY on specified',
-                    WidgetInterface::EXCLUDE_ONLY => 'Exclude ONLY on specified',
+                    WidgetInterface::INCLUDE_ALL => 'symedit.form.widget.basic.visibility.include_all',
+                    WidgetInterface::INCLUDE_ONLY => 'symedit.form.widget.basic.visibility.include_only',
+                    WidgetInterface::EXCLUDE_ONLY => 'symedit.form.widget.basic.visibility.exclude_only',
                 ),
             ))
             ->add(
                 $builder->create('assoc', 'textarea', array(
-                    'label' => 'Associations',
+                    'label' => 'symedit.form.widget.basic.associations',
                     'required' => false,
                     'auto_initialize' => false,
                     'attr' => array(
@@ -71,7 +77,7 @@ class WidgetType extends AbstractType
          * Build the config form from the strategy
          */
         $config = $builder->create('options', 'tab', array(
-            'label' => 'Options',
+            'label' => 'symedit.form.widget.tab.options',
             'icon' => 'cog',
         ));
 
