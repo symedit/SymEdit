@@ -15,7 +15,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 use SymEdit\Bundle\WidgetBundle\Form\DataTransformer\WidgetAssociationTransformer;
-use SymEdit\Bundle\WidgetBundle\Model\Widget;
+use SymEdit\Bundle\WidgetBundle\Model\WidgetInterface;
 
 class WidgetType extends AbstractType
 {
@@ -49,9 +49,9 @@ class WidgetType extends AbstractType
             ->add('visibility', 'choice', array(
                 'label' => 'Visibility',
                 'choices' => array(
-                    Widget::INCLUDE_ALL => 'Include on ALL Pages',
-                    Widget::INCLUDE_ONLY => 'Include ONLY on specified',
-                    Widget::EXCLUDE_ONLY => 'Exclude ONLY on specified',
+                    WidgetInterface::INCLUDE_ALL => 'Include on ALL Pages',
+                    WidgetInterface::INCLUDE_ONLY => 'Include ONLY on specified',
+                    WidgetInterface::EXCLUDE_ONLY => 'Exclude ONLY on specified',
                 ),
             ))
             ->add(
