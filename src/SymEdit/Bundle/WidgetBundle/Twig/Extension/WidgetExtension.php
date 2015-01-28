@@ -12,7 +12,6 @@
 namespace SymEdit\Bundle\WidgetBundle\Twig\Extension;
 
 use Sylius\Component\Resource\Repository\RepositoryInterface;
-use SymEdit\Bundle\WidgetBundle\Renderer\WidgetRendererInterface;
 use SymEdit\Bundle\WidgetBundle\Twig\TokenParser;
 
 class WidgetExtension extends \Twig_Extension

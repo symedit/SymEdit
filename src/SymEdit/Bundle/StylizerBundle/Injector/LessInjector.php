@@ -25,7 +25,7 @@ class LessInjector implements InjectorInterface
 
     protected function sanitize(array $variables)
     {
-        return array_map(function($variable) {
+        return array_map(function ($variable) {
             if (strpos($variable, '/') !== false) {
                 return '"' . $variable . '"';
             }
