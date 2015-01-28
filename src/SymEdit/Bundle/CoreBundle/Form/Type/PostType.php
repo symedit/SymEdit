@@ -36,7 +36,7 @@ class PostType extends BasePostType
         // Build basic tab
         $basic = $builder->create('basic', 'tab', array(
             'inherit_data' => true,
-            'label' => 'Basic',
+            'label' => 'symedit.form.post.tab.basic',
             'icon' => 'info-sign',
         ));
 
@@ -54,7 +54,7 @@ class PostType extends BasePostType
         // Build summary tab
         $summary = $builder->create('summary', 'tab', array(
             'inherit_data' => true,
-            'label' => 'Summary',
+            'label' => 'symedit.form.post.tab.summary',
             'horizontal' => false,
             'icon' => 'file',
             'attr' => array(
@@ -67,7 +67,7 @@ class PostType extends BasePostType
         // Build content tab
         $content = $builder->create('content', 'tab', array(
             'inherit_data' => true,
-            'label' => 'Content',
+            'label' => 'symedit.form.post.tab.content',
             'icon' => 'file',
             'horizontal' => false,
             'attr' => array(

@@ -6,19 +6,19 @@
 {% block form_actions %}
 <button class="btn btn-primary" type="submit">
     {{ icon('save') }}
-    {{ 'admin.post.actions.save'|trans }}
+    {{ 'symedit.form.post.actions.save'|trans }}
 </button>
 
 {% if route_exists('blog_preview') %}
 <a target="_blank" class="btn btn-info" href="{{ path('blog_preview', { slug: post.slug }) }}">
     {{ icon('search') }}
-    {{ 'admin.post.actions.preview'|trans }}
+    {{ 'symedit.form.post.actions.preview'|trans }}
 </a>
 {% else %}
-<a class="btn btn-info disabled" href="#" title="{{ 'admin.post.actions.no_preview.help' }}">{{ 'admin.post.actions.no_preview.label'|trans }}</a>
+<a class="btn btn-info disabled" href="#" title="{{ 'symedit.form.post.actions.no_preview.help' }}">{{ 'symedit.form.post.actions.no_preview.label'|trans }}</a>
 {% endif %}
 
-{{ macro.delete_button('post_delete', 'admin.post.actions.delete') }}
+{{ macro.delete_button('post_delete', 'symedit.form.post.actions.delete') }}
 {% endblock %}
 
 {% block extra %}

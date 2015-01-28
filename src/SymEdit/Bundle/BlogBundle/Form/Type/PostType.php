@@ -17,25 +17,37 @@ use SymEdit\Bundle\BlogBundle\Model\Post;
 
 class PostType extends AbstractType
 {
+    protected $categoryClass;
+
+    public function __construct($categoryClass)
+    {
+        $this->categoryClass = $categoryClass;
+    }
+
     protected function buildBasicForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('title', 'text')
+            ->add('title', 'text', array(
+                'label' => 'symedit.form.post.title',
+            ))
             ->add('author', 'symedit_user_choose', array(
                 'admin' => true,
                 'property' => 'profile.fullname',
+                'label' => 'symedit.form.post.author',
             ))
             ->add('status', 'choice', array(
                 'choices' => array(
                     Post::DRAFT => 'Draft',
                     Post::PUBLISHED => 'Published',
                 ),
+                'label' => 'symedit.form.post.status',
             ))
             ->add('categories', 'entity', array(
                 'property' => 'title',
-                'class'    => 'SymEdit\Bundle\BlogBundle\Model\Category',
+                'class'    => $this->categoryClass,
                 'multiple' => true,
                 'expanded'  => true,
+                'label' => 'symedit.form.post.categories',
             ))
         ;
     }
