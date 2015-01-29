@@ -11,15 +11,11 @@
 
 namespace SymEdit\Bundle\WidgetBundle\DependencyInjection;
 
-use Symfony\Component\DependencyInjection\ContainerBuilder;
 use SymEdit\Bundle\ResourceBundle\DependencyInjection\SymEditResourceExtension;
+use Symfony\Component\DependencyInjection\ContainerBuilder;
+use Symfony\Component\DependencyInjection\Extension\PrependExtensionInterface;
 
-/**
- * This is the class that loads and manages your bundle configuration
- *
- * To learn more see {@link http://symfony.com/doc/current/cookbook/bundles/extension.html}
- */
-class SymEditWidgetExtension extends SymEditResourceExtension
+class SymEditWidgetExtension extends SymEditResourceExtension implements PrependExtensionInterface
 {
     protected $configFiles = array(
         'services', 'widget', 'form',
@@ -49,6 +45,19 @@ class SymEditWidgetExtension extends SymEditResourceExtension
         foreach (array('widget', 'area') as $renderer) {
             $container->setAlias(sprintf('symedit_widget.renderer.%s.default', $renderer), $renderers[$renderer]);
         }
+    }
+    
+    public function prepend(ContainerBuilder $container)
+    {
+        if (!$container->hasExtension('symedit')) {
+            return;
+        }
+
+        $container->prependExtensionConfig('symedit', array(
+            'template_locations' => array(
+                '@SymEditWidgetBundle/Resources/views',
+            ),
+        ));
     }
 
     /**
