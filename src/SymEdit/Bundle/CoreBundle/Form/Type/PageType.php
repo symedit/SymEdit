@@ -30,13 +30,13 @@ class PageType extends AbstractType
     {
         $builder
             ->add('title', 'text', array(
-                'label' => 'admin.page.title',
+                'label' => 'symedit.form.page.title',
             ))
             ->add('name', 'text', array(
-                'label' => 'admin.page.name.label',
+                'label' => 'symedit.form.page.name.label',
                 'help_label_popover' => array(
-                    'title' => 'admin.page.name.popover.title',
-                    'content' => 'admin.page.name.popover.content',
+                    'title' => 'symedit.form.page.name.popover.title',
+                    'content' => 'symedit.form.page.name.popover.content',
                 ),
             ));
 
@@ -64,19 +64,19 @@ class PageType extends AbstractType
         $builder->add(
             $builder->create('parent', 'choice', array(
                 'choices' => $choices,
-                'label' => 'admin.page.parent',
+                'label' => 'symedit.form.page.parent',
             ))->addModelTransformer(new RepositoryTransformer($this->pageRepository))
         );
 
         $builder
             ->add('tagline', 'text', array(
                 'required' => false,
-                'label' => 'admin.page.tagline',
+                'label' => 'symedit.form.page.tagline',
             ))
             ->add('display', 'checkbox', array(
                 'required' => false,
-                'help_block' => 'admin.page.display.help',
-                'label' => 'admin.page.display.label',
+                'help_block' => 'symedit.form.page.display.help',
+                'label' => 'symedit.form.page.display.label',
             ))
         ;
     }
@@ -85,7 +85,7 @@ class PageType extends AbstractType
     {
         $builder
             ->add('template', 'template', array(
-                'label' => 'admin.page.template',
+                'label' => 'symedit.form.page.template',
             ))
         ;
     }
@@ -98,8 +98,8 @@ class PageType extends AbstractType
             ))
             ->add('crawl', 'checkbox', array(
                 'required' => false,
-                'help_block' => 'admin.page.crawl.help',
-                'label' => 'admin.page.crawl.label',
+                'help_block' => 'symedit.form.page.crawl.help',
+                'label' => 'symedit.form.page.crawl.label',
             ))
         ;
     }
@@ -113,7 +113,7 @@ class PageType extends AbstractType
                     'style' => 'height: 250px',
                     'placeholder' => 'Page Summary...',
                  ),
-                'label' => 'admin.page.summary',
+                'label' => 'symedit.form.page.summary',
                 'required' => false,
                 'label_render' => false,
             ))
@@ -130,7 +130,7 @@ class PageType extends AbstractType
                     'placeholder' => 'Page Content',
                 ),
                 'required' => false,
-                'label' => 'admin.page.content',
+                'label' => 'symedit.form.page.content',
                 'label_render' => false,
             ))
         ;
@@ -141,13 +141,13 @@ class PageType extends AbstractType
         $builder
             ->add('pageController', 'checkbox', array(
                 'required' => false,
-                'label' => 'admin.page.pagecontroller',
+                'label' => 'symedit.form.page.pagecontroller',
             ))
             ->add('pageControllerPath', 'text', array(
                 'attr' => array('class' => 'span6'),
                 'required' => false,
-                'label' => 'admin.page.pagecontrollerpath.label',
-                'help_block' => 'admin.page.pagecontrollerpath.help',
+                'label' => 'symedit.form.page.pagecontrollerpath.label',
+                'help_block' => 'symedit.form.page.pagecontrollerpath.help',
             ))
         ;
     }
@@ -156,7 +156,7 @@ class PageType extends AbstractType
     {
         // Build basic tab
         $basic = $builder->create('basic', 'tab', array(
-            'label' => 'admin.page.tabs.basic',
+            'label' => 'symedit.form.page.tabs.basic',
             'icon' => 'info-sign',
             'inherit_data' => true,
         ));
@@ -165,7 +165,7 @@ class PageType extends AbstractType
 
         // Build template tab
         $template = $builder->create('template', 'tab', array(
-            'label' => 'admin.page.tabs.template',
+            'label' => 'symedit.form.page.tabs.template',
             'icon' => 'columns',
             'inherit_data' => true,
         ));
@@ -174,7 +174,7 @@ class PageType extends AbstractType
 
         // Build SEO tab
         $seo = $builder->create('seo', 'tab', array(
-            'label' => 'admin.page.tabs.seo',
+            'label' => 'symedit.form.page.tabs.seo',
             'icon' => 'search',
             'inherit_data' => true,
         ));
@@ -183,7 +183,7 @@ class PageType extends AbstractType
 
         // Build Summary tab
         $summary = $builder->create('summary', 'tab', array(
-            'label' => 'admin.page.tabs.summary',
+            'label' => 'symedit.form.page.tabs.summary',
             'icon' => 'file',
             'inherit_data' => true,
             'horizontal' => false,
@@ -196,7 +196,7 @@ class PageType extends AbstractType
 
         // Build Content tab
         $content = $builder->create('content', 'tab', array(
-            'label' => 'admin.page.tabs.content',
+            'label' => 'symedit.form.page.tabs.content',
             'icon' => 'file',
             'inherit_data' => true,
             'horizontal' => false,
@@ -209,7 +209,7 @@ class PageType extends AbstractType
 
         // Build advanced tab
         $advanced = $builder->create('advanced', 'tab', array(
-            'label' => 'admin.page.tabs.advanced',
+            'label' => 'symedit.form.page.tabs.advanced',
             'icon' => 'cogs',
             'inherit_data' => true,
         ));

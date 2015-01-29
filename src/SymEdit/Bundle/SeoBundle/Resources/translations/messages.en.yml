@@ -1,0 +1,8 @@
+symedit:
+    form:
+        seo:
+            title: Title
+            description: Description
+            keywords: Keywords
+            index: Index
+            follow: Follow

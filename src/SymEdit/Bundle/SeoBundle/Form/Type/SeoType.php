@@ -21,17 +21,17 @@ class SeoType extends AbstractType
     {
         $builder
             ->add('title', 'text', array(
-                'label' => 'admin.seo.title',
+                'label' => 'symedit.form.seo.title',
                 'attr' => array('class' => 'span6', 'data-toggle' => 'char-count', 'data-max' => 65),
                 'required' => false,
             ))
             ->add('description', 'textarea', array(
-                'label' => 'admin.seo.description',
+                'label' => 'symedit.form.seo.description',
                 'attr' => array('class' => 'span6', 'data-toggle' => 'char-count', 'data-max' => 155),
                 'required' => false,
             ))
             ->add('keywords', 'textarea', array(
-                'label' => 'admin.seo.keywords',
+                'label' => 'symedit.form.seo.keywords',
                 'attr' => array('class' => 'span6'),
                 'required' => false,
             ))
@@ -40,14 +40,14 @@ class SeoType extends AbstractType
                     true => 'Index',
                     false => 'No Index',
                 ),
-                'label' => 'admin.seo.index',
+                'label' => 'symedit.form.seo.index',
             ))
             ->add('follow', 'choice', array(
                 'choices' => array(
                     true => 'Follow',
                     false => 'No Follow',
                 ),
-                'label' => 'admin.seo.follow',
+                'label' => 'symedit.form.seo.follow',
             ))
         ;
     }

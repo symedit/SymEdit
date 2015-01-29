@@ -1,0 +1,16 @@
+symedit:
+    form:
+        image:
+            actions:
+                save: Save Image
+                delete: Delete Image
+        file:
+            actions:
+                save: Save File
+                delete: Delete File
+            name:
+                label: Name
+                help: Letters, numbers, underscores, and hyphens
+            file:
+                label: File
+                help: ''

@@ -2,70 +2,44 @@ admin:
     resource:
         confirm_delete: Are you sure you wish to delete this resource?
 
-    # Pages
-    page:
-        title: Title
-        name:
-            label: Name
-            popover:
-                title: Page Name
-                content: >
-                  The Page's "Name" attribute determines the URL of the page.
-                  If the page has any parents, it will use them as well. Eg.
-                  Root > about-us > team becomes /about-us/team
-        tagline: Page Heading
-        template: Template
-        parent: Parent
-        summary: Summary
-        pagecontroller: Page Controller?
-        pagecontrollerpath:
-            label: Controller Path
-            help: >
-              When a controller with the path you specify is called, it will
-              inject this Page. Use the PageController Annotation to link them.
-        display:
-            label: Display
-            help: Show this Page in Navigation
-        crawl:
-            label: Crawl
-            help: Show this Page on sitemap.xml?
-        tabs:
-            basic: Basic
+symedit:
+    form:
+        # Pages
+        page:
+            title: Title
+            name:
+                label: Name
+                popover:
+                    title: Page Name
+                    content: >
+                      The Page's "Name" attribute determines the URL of the page.
+                      If the page has any parents, it will use them as well. Eg.
+                      Root > about-us > team becomes /about-us/team
+            tagline: Page Heading
             template: Template
-            seo: SEO
+            parent: Parent
             summary: Summary
-            content: Content
-            advanced: Advanced
-        actions:
-            save: Save Page
-            delete: Delete Page
-
-    image:
-        actions:
-            save: Save Image
-            delete: Delete Image
-
-    # Widgets
-    widget:
-        actions:
-            save: Save Widget
-            delete: Delete Widget
-    file:
-        actions:
-            save: Save File
-            delete: Delete File
-        name:
-            label: Name
-            help: Letters, numbers, underscores, and hyphens
-        file:
-            label: File
-            help: ''
-
-    seo:
-        title: Title
-        description: Description
-        keywords: Keywords
-        index: Index
-        follow: Follow
+            pagecontroller: Page Controller?
+            pagecontrollerpath:
+                label: Controller Path
+                help: >
+                  When a controller with the path you specify is called, it will
+                  inject this Page. Use the PageController Annotation to link them.
+            display:
+                label: Display
+                help: Show this Page in Navigation
+            crawl:
+                label: Crawl
+                help: Show this Page on sitemap.xml?
+            tabs:
+                basic: Basic
+                template: Template
+                seo: SEO
+                summary: Summary
+                content: Content
+                advanced: Advanced
+            actions:
+                save: Save Page
+                delete: Delete Page
     flash:
         share: 'Share your content:'

@@ -4,6 +4,11 @@ symedit:
             tab:
                 basic: Basic
                 options: Options
+            actions:
+                new: Create New Widget
+                create: Create Widget
+                save: Save Widget
+                delete: Delete Widget
             basic:
                 title: Title
                 name:
