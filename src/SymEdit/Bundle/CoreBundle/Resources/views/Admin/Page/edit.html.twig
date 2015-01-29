@@ -6,10 +6,10 @@
 {% block form_actions %}
 <button class="btn btn-primary" type="submit">
     {{ icon('save') }}
-    {{ 'admin.page.actions.save'|trans }}
+    {{ 'symedit.form.page.actions.save'|trans }}
 </button>
 
-{% if not page.homepage %}{{ macro.delete_button('page_delete', 'admin.page.actions.delete') }}{% endif %}
+{% if not page.homepage %}{{ macro.delete_button('page_delete', 'symedit.form.page.actions.delete') }}{% endif %}
 {% endblock %}
 
 {% block extra %}

@@ -6,16 +6,16 @@
 {% block form_actions %}
     <button type="submit" class="btn btn-primary">
         {{ icon('save') }}
-        {{ 'admin.file.actions.save'|trans }}
+        {{ 'symedit.form.file.actions.save'|trans }}
     </button>
 
-    {{ macro.delete_button('file_delete', 'admin.file.actions.delete') }}
+    {{ macro.delete_button('file_delete', 'symedit.form.file.actions.delete') }}
 {% endblock %}
 
 {% block tab_content %}
 <div class="text-center well">
     <a href="{{ file.webPath }}" target="_blank" class="btn btn-primary btn-lg">
-        View File
+        {{ 'symedit.form.file.actions.view'|trans }}
         {{ icon('external-link') }}
     </a>
 
