@@ -43,14 +43,19 @@ class MediaType extends AbstractType
     public function getValidationGroups(FormInterface $form)
     {
         $config = $form->getConfig();
+        $groups = array();
 
         if ($config->getOption('require_name') && !$config->getOption('allow_blank_name')) {
-            $group = 'require_name';
+            $groups[] = 'require_name';
         } else {
-            $group = 'file_only';
+            $groups[] = 'file_only';
         }
 
-        return array($group);
+        if ($config->getOption('required')) {
+            $groups[] = 'required';
+        }
+
+        return $groups;
     }
 
     public function getName()

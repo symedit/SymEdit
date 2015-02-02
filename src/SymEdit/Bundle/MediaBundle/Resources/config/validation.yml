@@ -16,6 +16,8 @@ SymEdit\Bundle\MediaBundle\Model\Image:
             - Image:
                 groups: [Default, require_name, file_only]
                 maxSize: 10M
+            - NotBlank:
+                groups: [required]
 
 SymEdit\Bundle\MediaBundle\Model\File:
     constraints:
@@ -25,6 +27,8 @@ SymEdit\Bundle\MediaBundle\Model\File:
             - File:
                 groups: [Default, require_name, file_only]
                 maxSize: 100M
+            - NotBlank:
+                groups: [required]
 
 SymEdit\Bundle\MediaBundle\Model\GalleryItem:
     properties:
