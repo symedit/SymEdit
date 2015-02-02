@@ -11,7 +11,7 @@
 
 namespace SymEdit\Bundle\MediaBundle\Model;
 
-class Media implements MediaInterface
+abstract class Media implements MediaInterface
 {
     protected $id;
     protected $callback;
