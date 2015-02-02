@@ -91,25 +91,24 @@
             <gedmo:versioned />
         </field>
 
-        <one-to-many field="children" target-entity="SymEdit\Bundle\CoreBundle\Model\PageInterface" mapped-by="parent">
-            <order-by>
-                <order-by-field name="pageOrder" direction="ASC"/>
-            </order-by>
-            <cascade>
-                <cascade-remove/>
-                <cascade-persist/>
-            </cascade>
-        </one-to-many>
-
-        <many-to-one field="parent" target-entity="SymEdit\Bundle\CoreBundle\Model\PageInterface" inversed-by="children">
-            <join-columns>
-                <join-column name="parent" referenced-column-name="id" on-delete="SET NULL"/>
-            </join-columns>
+        <!-- TODO: Change back to PageInterface -->
+        <many-to-one field="parent" target-entity="SymEdit\Bundle\CoreBundle\Model\Page" inversed-by="children">
+            <join-column name="parent" referenced-column-name="id" on-delete="SET NULL"/>
 
             <gedmo:tree-parent />
             <gedmo:versioned />
             <gedmo:sortable-group />
         </many-to-one>
+
+        <!-- TODO: Change back to PageInterface -->
+        <one-to-many field="children" target-entity="SymEdit\Bundle\CoreBundle\Model\Page" mapped-by="parent">
+            <order-by>
+                <order-by-field name="pageOrder" direction="ASC"/>
+            </order-by>
+            <cascade>
+                <cascade-all />
+            </cascade>
+        </one-to-many>
 
         <gedmo:loggable />
         <gedmo:tree type="materializedPath" />
