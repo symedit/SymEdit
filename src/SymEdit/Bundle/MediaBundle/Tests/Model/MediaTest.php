@@ -21,7 +21,7 @@ class MediaTest extends TestCase
      */
     protected function createMedia()
     {
-        return new Media();
+        return $this->getMockForAbstractClass('SymEdit\Bundle\MediaBundle\Model\Media');
     }
 
     public function testId()
