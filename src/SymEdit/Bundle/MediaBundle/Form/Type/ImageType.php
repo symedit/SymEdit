@@ -33,7 +33,6 @@ class ImageType extends AbstractType
             'required' => true,
             'label' => 'Image',
             'name_label' => 'Image Name',
-            'allow_choose' => false,
             'show_image' => false,
         ));
     }
@@ -41,7 +40,6 @@ class ImageType extends AbstractType
     public function buildView(FormView $view, FormInterface $form, array $options)
     {
         $view->vars['show_image'] = $options['show_image'];
-        $view->vars['allow_choose'] = $options['allow_choose'];
     }
 
     public function getParent()
