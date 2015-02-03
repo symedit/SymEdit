@@ -11,51 +11,37 @@
 
 namespace SymEdit\Bundle\MediaBundle\Form\Type;
 
-use Sylius\Component\Resource\Repository\RepositoryInterface;
-use SymEdit\Bundle\MediaBundle\Form\DataTransformer\GalleryChooseDataTransformer;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\ChoiceList\ObjectChoiceList;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\Form\FormInterface;
+use Symfony\Component\Form\FormView;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
 class ImageChooseType extends AbstractType
 {
-    protected $imageRepository;
-    protected $itemRepository;
+    protected $class;
 
-    public function __construct(RepositoryInterface $imageRepository, RepositoryInterface $itemRepository)
+    public function __construct($class)
     {
-        $this->imageRepository = $imageRepository;
-        $this->itemRepository = $itemRepository;
+        $this->class = $class;
     }
 
-    public function buildForm(FormBuilderInterface $builder, array $options)
+    public function buildView(FormView $view, FormInterface $form, array $options)
     {
-        parent::buildForm($builder, $options);
-
-        $builder->addModelTransformer(new GalleryChooseDataTransformer($this->imageRepository, $this->itemRepository));
+        $view->vars['show_image'] = $options['show_image'];
     }
 
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
-        $choices = array();
-        $labels = array();
-
-        foreach ($this->imageRepository->findAll() as $image) {
-            $choices[] = $image;
-            $labels[] = $image->getName();
-        }
-
         $resolver->setDefaults(array(
-            'expanded' => true,
-            'multiple' => true,
-            'choice_list' => new ObjectChoiceList($choices, 'name'),
+            'show_image' => true,
+            'class' => $this->class,
         ));
     }
 
     public function getParent()
     {
-        return 'choice';
+        return 'entity';
     }
 
     public function getName()

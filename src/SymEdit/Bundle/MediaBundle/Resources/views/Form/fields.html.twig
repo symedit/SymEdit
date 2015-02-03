@@ -19,7 +19,7 @@
         {% endif %}
     </div>
 
-    {% if form.vars is defined and
+   {% if form.vars is defined and
           form.vars.show_image and
           form.vars.data is not null and
           form.vars.data.webpath is not empty %}
@@ -28,12 +28,29 @@
         <img class="img-thumbnail" src="{{ form.vars.data | imagine_filter('gallery') }}">
     </div>
     {% endif %}
+{% endblock %}
+
+{% block symedit_image_choose_widget %}
+<div class="symedit-media-choose row">
+    <div class="col-md-6">
+        <button type="button" data-toggle="symedit-choose-image" data-url="{{ path('admin_image_dialog') }}" class="btn btn-primary btn-sm">Choose Image</button>
+    </div>
+
+    {% if show_image %}
+        {% set hasData = data is not null and data.webpath is not empty %}
+        <div class="col-md-6 symedit-media-container {{ hasData ? 'has-data' : 'no-data' }}">
+            <h5>Current Image</h5>
+            <img class="img-thumbnail symedit-media-image"{% if hasData %} src="{{ data | imagine_filter('gallery') }}"{% endif %}>
+        </div>
+    {% endif %}
+
+    {{ block('hidden_widget') }}
 </div>
 {% endblock %}
 
 
 {# Choose Image Widget #}
-{% block symedit_image_choose_row %}
+{% block symedit_image_gallery_choose_row %}
 <div class="row">
     {% for child in form.children %}
         {% set index = child.vars.value %}

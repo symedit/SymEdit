@@ -1,0 +1,28 @@
+#symedit-media-choose-modal {
+    input[type=radio]:checked ~ img {
+        border: 2px solid red;
+    }
+
+    .modal-body {
+        max-height: 500px;
+        overflow-y: auto;
+    }
+}
+
+.symedit-media-container {
+    &.has-data {
+
+    }
+
+    &.no-data {
+        display: none;
+    }
+}
+
+.modal-backdrop {
+    z-index: 3000;
+}
+
+.modal {
+    z-index: 3100;
+}

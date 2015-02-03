@@ -28,7 +28,7 @@ class ImageGalleryType extends AbstractType
     {
         $builder
             ->add('title')
-            ->add('items', 'symedit_image_choose');
+            ->add('items', 'symedit_image_gallery_choose');
     }
 
     public function setDefaultOptions(OptionsResolverInterface $resolver)

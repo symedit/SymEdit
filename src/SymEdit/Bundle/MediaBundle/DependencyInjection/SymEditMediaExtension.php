@@ -58,6 +58,14 @@ class SymEditMediaExtension extends SymEditResourceExtension implements PrependE
                 'template_locations' => array(
                     '@SymEditMediaBundle/Resources/views',
                 ),
+                'assets' => array(
+                    'stylesheets' => array(
+                        '@SymEditMediaBundle/Resources/less/media.less',
+                    ),
+                    'javascripts' => array(
+                        '@SymEditMediaBundle/Resources/js/media.js',
+                    ),
+                )
             ));
         }
     }

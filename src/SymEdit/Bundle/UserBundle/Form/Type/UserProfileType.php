@@ -11,8 +11,8 @@
 
 namespace SymEdit\Bundle\UserBundle\Form\Type;
 
-use Symfony\Component\Form\FormBuilderInterface;
 use FOS\UserBundle\Form\Type\ProfileFormType as BaseType;
+use Symfony\Component\Form\FormBuilderInterface;
 
 /**
  * @Todo: override the new buildUserForm method instead
@@ -21,7 +21,7 @@ class UserProfileType extends BaseType
 {
     protected function buildBasicForm(FormBuilderInterface $builder, array $options)
     {
-        $this->buildUserForm($builder, $options);
+        parent::buildForm($builder, $options);
     }
 
     protected function buildUserForm(FormBuilderInterface $builder, array $options)
