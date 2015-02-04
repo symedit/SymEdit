@@ -1,0 +1,20 @@
+symedit:
+    form:
+        event:
+            tab:
+                basic: Basic Information
+                time: Time / Date
+                location: Location
+            basic:
+                title: Title
+                description: Description
+                url: URL
+                email: Email
+                phone: Phone
+                price: Price
+            time:
+                start: Event Start
+                end: Event End
+            location:
+                address: Address
+                show_map: Show Map?
