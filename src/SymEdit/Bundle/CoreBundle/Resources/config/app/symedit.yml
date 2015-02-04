@@ -43,6 +43,7 @@ symedit_events:
     classes:
         event:
             model: SymEdit\Bundle\CoreBundle\Model\Event
+            form: SymEdit\Bundle\CoreBundle\Form\Type\EventType
 
 # Widget Configuration
 symedit_widget:

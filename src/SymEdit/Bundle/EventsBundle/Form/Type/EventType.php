@@ -7,41 +7,39 @@ use Symfony\Component\Form\FormBuilderInterface;
 
 class EventType extends AbstractType
 {
-    public function buildForm(FormBuilderInterface $builder, array $options)
+    protected function buildBasicForm(FormBuilderInterface $builder, array $options)
     {
-        $info = $builder->create('information', 'tab', array(
-            'inherit_data' => true,
-            'label' => 'Basic Information',
-            'icon' => 'info-sign',
-        ));
-
-        // Basic Information Tab
-        $info
-            ->add('title')
-            ->add('description')
+        $builder
+            ->add('title', 'text', array(
+                'label' => 'symedit.form.event.basic.title',
+            ))
+            ->add('description', 'textarea', array(
+                'label' => 'symedit.form.event.basic.description',
+            ))
             ->add('url', 'url', array(
+                'label' => 'symedit.form.event.basic.url',
                 'required' => false,
             ))
             ->add('email', 'email', array(
+                'label' => 'symedit.form.event.basic.email',
                 'required' => false,
             ))
             ->add('phone', 'text', array(
+                'label' => 'symedit.form.event.basic.phone',
                 'required' => false,
             ))
             ->add('price', 'text', array(
+                'label' => 'symedit.form.event.basic.price',
                 'required' => 'false',
             ))
         ;
+    }
 
-        // Date / Time Tab
-        $time = $builder->create('time', 'tab', array(
-            'inherit_data' => true,
-            'label' => 'Time / Date',
-            'icon' => 'calendar',
-        ));
-
-        $time
+    protected function buildDateTimeForm(FormBuilderInterface $builder, array $options)
+    {
+        $builder
             ->add('eventStart', 'datetime', array(
+                'label' => 'symedit.form.event.time.start',
                 'widget' => 'single_text',
                 'format' => 'yyyy-MM-dd HH:mm',
                 'attr' => array(
@@ -49,6 +47,7 @@ class EventType extends AbstractType
                 ),
             ))
             ->add('eventEnd', 'datetime', array(
+                'label' => 'symedit.form.event.time.end',
                 'widget' => 'single_text',
                 'format' => 'yyyy-MM-dd',
                 'attr' => array(
@@ -57,30 +56,28 @@ class EventType extends AbstractType
                 'required' => false,
             ))
         ;
+    }
 
-        // Location Tab
-        $location = $builder->create('location', 'tab', array(
-            'inherit_data' => true,
-            'label' => 'Location',
-            'icon' => 'map-marker',
-        ));
-
-        $location
+    protected function buildLocationForm(FormBuilderInterface $builder, array $options)
+    {
+        $builder
             ->add('address', 'text', array(
+                'label' => 'symedit.form.event.location.address',
                 'required' => false,
             ))
             ->add('showMap', 'checkbox', array(
+                'label' => 'symedit.form.event.location.show_map',
                 'required' => false,
                 'label' => 'Show Map?',
             ))
         ;
+    }
 
-        // Add the tabs
-        $builder
-            ->add($info)
-            ->add($time)
-            ->add($location)
-        ;
+    public function buildForm(FormBuilderInterface $builder, array $options)
+    {
+        $this->buildBasicForm($builder, $options);
+        $this->buildDateTimeForm($builder, $options);
+        $this->buildLocationForm($builder, $options);
     }
 
     public function getName()
