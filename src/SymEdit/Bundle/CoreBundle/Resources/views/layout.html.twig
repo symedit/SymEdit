@@ -14,7 +14,7 @@
                '@theme_css'
                '@SymEditBundle/Resources/less/system.less'
                filter='cssrewrite' %}
-        <link rel="stylesheet" type="text/css" href="{{ asset_url }}" />
+        <link rel="stylesheet" type="text/css" href="{{ stylizer_asset(asset_url) }}" />
 {% endstylesheets -%}
 {% endblock %}
         <!--[if lt IE 9]>

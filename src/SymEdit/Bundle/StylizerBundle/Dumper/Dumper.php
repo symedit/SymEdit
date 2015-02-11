@@ -20,10 +20,12 @@ use Symfony\Component\Console\Output\NullOutput;
 class Dumper
 {
     private $command;
+    private $versionManager;
 
-    public function __construct(Command $command)
+    public function __construct(Command $command, VersionManager $versionManager)
     {
         $this->command = $command;
+        $this->versionManager = $versionManager;
 
         /**
          * Setup command
@@ -40,6 +42,9 @@ class Dumper
         $output = new NullOutput();
 
         $code = $this->command->run($input, $output);
+
+        // Bump Version for assets
+        $this->versionManager->bumpVersion();
 
         return $code;
     }

@@ -10,6 +10,11 @@
 </button>
 
 {% if not page.homepage %}{{ macro.delete_button('page_delete', 'symedit.form.page.actions.delete') }}{% endif %}
+
+<a href="{{ path(page.route) }}" class="btn btn-info">
+    {{ icon('globe') }}
+    {{ 'symedit.form.page.actions.view'|trans }}
+</a>
 {% endblock %}
 
 {% block extra %}

@@ -17,6 +17,7 @@
         <parameter key="symedit_stylizer.form.google_font.class">SymEdit\Bundle\StylizerBundle\Form\Type\GoogleFontType</parameter>
         <parameter key="symedit_stylizer.style_manager.class">SymEdit\Bundle\StylizerBundle\Model\StyleManager</parameter>
         <parameter key="symedit_stylizer.storage.yaml.class">SymEdit\Bundle\StylizerBundle\Storage\YamlStorage</parameter>
+        <parameter key="symedit_stylizer.dumper.version_manage.class">SymEdit\Bundle\StylizerBundle\Dumper\VersionManager</parameter>
     </parameters>
 
 
@@ -40,6 +41,7 @@
         <!-- Dumper -->
         <service id="symedit_stylizer.dumper" class="%symedit_stylizer.dumper.class%">
             <argument type="service" id="symedit_stylizer.assetic.command" />
+            <argument type="service" id="symedit_stylizer.version_manager" />
         </service>
 
         <!-- Chain Injector -->
@@ -92,12 +94,18 @@
         <!-- Twig Extension -->
         <service id="symedit_stylizer.twig.stylizer_extension" class="SymEdit\Bundle\StylizerBundle\Twig\Extension\StylizerExtension">
             <argument type="service" id="symedit_stylizer.styles" />
+            <argument type="service" id="symedit_stylizer.version_manager" />
             <tag name="twig.extension" />
         </service>
 
         <!-- Yaml Storage -->
         <service id="symedit_stylizer.storage.yaml" class="%symedit_stylizer.storage.yaml.class%">
             <argument>%kernel.root_dir%/config/styles.yml</argument>
+        </service>
+
+        <!-- Version Manager -->
+        <service id="symedit_stylizer.version_manager" class="%symedit_stylizer.dumper.version_manage.class%">
+            <argument>%kernel.cache_dir%/symedit_stylizer</argument>
         </service>
     </services>
 </container>
