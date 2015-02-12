@@ -31,7 +31,7 @@ class WidgetAreaNode extends \Twig_Node
             ->addDebugInfo($this)
             ->write('echo $this->env->getExtension(\'http_kernel\')->renderFragmentStrategy(\''.$this->getAttribute('strategy').'\',')
             ->write('    $this->env->getExtension(\'http_kernel\')')
-            ->write('         ->controller(\''. $this->controller . '\', array(')
+            ->write('         ->controller(\''.$this->controller.'\', array(')
             ->write('             \'area\' => \''.$this->getAttribute('area').'\',')
             ->write('         ))')
             ->write('    );');

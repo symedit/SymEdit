@@ -46,7 +46,7 @@ class SymEditWidgetExtension extends SymEditResourceExtension implements Prepend
             $container->setAlias(sprintf('symedit_widget.renderer.%s.default', $renderer), $renderers[$renderer]);
         }
     }
-    
+
     public function prepend(ContainerBuilder $container)
     {
         if (!$container->hasExtension('symedit')) {

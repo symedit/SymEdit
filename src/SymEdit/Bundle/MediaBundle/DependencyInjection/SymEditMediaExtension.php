@@ -65,7 +65,7 @@ class SymEditMediaExtension extends SymEditResourceExtension implements PrependE
                     'javascripts' => array(
                         '@SymEditMediaBundle/Resources/js/media.js',
                     ),
-                )
+                ),
             ));
         }
     }

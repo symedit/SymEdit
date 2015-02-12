@@ -28,7 +28,7 @@ class WidgetAreaNode extends BaseNode
             ->addDebugInfo($this)
             ->write('echo $this->env->getExtension(\'http_kernel\')->renderFragmentStrategy(\''.$this->getAttribute('strategy').'\',')
             ->write('    $this->env->getExtension(\'http_kernel\')')
-            ->write('         ->controller(\''. $this->controller . '\', array(')
+            ->write('         ->controller(\''.$this->controller.'\', array(')
             ->write('             \'area\' => \''.$this->getAttribute('area').'\',')
             ->write('             \'_page_id\'   => is_numeric($context[\'Page\']->getId()) ? $context[\'Page\']->getId() : \'\',')
             ->write('         ))')

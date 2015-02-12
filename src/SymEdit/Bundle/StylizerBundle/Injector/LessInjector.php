@@ -27,7 +27,7 @@ class LessInjector implements InjectorInterface
     {
         return array_map(function ($variable) {
             if (strpos($variable, '/') !== false) {
-                return '"' . $variable . '"';
+                return '"'.$variable.'"';
             }
 
             return $variable;

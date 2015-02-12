@@ -26,7 +26,7 @@ class PageLink implements LinkInterface
         try {
             return $router->generate(sprintf('page/%d', (int) $attributes['page-id']));
         } catch (RouteNotFoundException $e) {
-            return null;
+            return;
         }
     }
 }

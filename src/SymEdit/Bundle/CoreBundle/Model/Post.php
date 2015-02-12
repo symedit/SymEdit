@@ -26,7 +26,7 @@ class Post extends BasePost implements PostInterface
      */
     protected $seo;
 
-   /**
+    /**
      * Set image
      *
      * @param  ImageInterface $image
