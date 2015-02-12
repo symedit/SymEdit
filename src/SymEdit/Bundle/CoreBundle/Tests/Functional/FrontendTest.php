@@ -31,6 +31,7 @@ class FrontendTest extends WebTestCase
         return array(
             array('/'),                         // Home
             array('/about'),                    // About
+            array('/events/'),                  // Events
             array('/blog/'),                    // Blog
             array('/blog/hello-world'),         //  - Hello World
             array('/blog/category/general'),    //  - Category: General

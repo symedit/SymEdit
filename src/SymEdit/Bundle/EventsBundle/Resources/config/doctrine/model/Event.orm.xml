@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping"
+                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                  xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping
+                                      http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd"
+                  xmlns:gedmo="http://gediminasm.org/schemas/orm/doctrine-extensions-mapping">
+
+    <mapped-superclass name="SymEdit\Bundle\EventsBundle\Model\Event" table="events">
+        <indexes>
+            <index name="slug_idx" columns="slug"/>
+        </indexes>
+
+        <id name="id" type="integer" column="id">
+            <generator strategy="IDENTITY"/>
+        </id>
+
+        <field name="title" type="string" column="title">
+            <gedmo:versioned />
+        </field>
+
+        <field name="slug" type="string" column="slug" length="255" unique="true">
+            <gedmo:slug unique="true" separator="-" fields="title" />
+        </field>
+
+        <field name="description" type="text" column="description" nullable="true">
+            <gedmo:versioned />
+        </field>
+
+        <field name="eventStart" type="datetime" column="eventStart" nullable="true">
+            <gedmo:versioned />
+        </field>
+
+        <field name="eventEnd" type="datetime" column="eventEnd" nullable="true">
+            <gedmo:versioned />
+        </field>
+
+        <field name="url" type="string" length="255" column="url" nullable="true">
+            <gedmo:versioned />
+        </field>
+
+        <field name="email" type="string" length="255" column="email" nullable="true">
+            <gedmo:versioned />
+        </field>
+
+        <field name="phone" type="string" length="255" column="phone" nullable="true">
+            <gedmo:versioned />
+        </field>
+
+        <field name="price" type="decimal" precision="2" column="price" nullable="true">
+            <gedmo:versioned />
+        </field>
+
+        <field name="address" type="text" column="address" nullable="true">
+            <gedmo:versioned />
+        </field>
+
+        <field name="showMap" type="boolean" column="showMap">
+            <gedmo:versioned />
+        </field>
+
+        <gedmo:loggable />
+    </mapped-superclass>
+
+</doctrine-mapping>

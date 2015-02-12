@@ -1,0 +1,4 @@
+symedit_events:
+    routes:
+        - symedit_events
+        - symedit_event_show

@@ -1,0 +1,39 @@
+{% extends '@SymEdit/Admin/base.html.twig' %}
+
+{% block title %}Events &raquo; List{% endblock %}
+
+{% block actions %}
+<a class="btn btn-primary" href="{{ path('admin_event_create') }}">
+    {{ icon('plus') }}
+    Create New Event
+</a>
+{% endblock %}
+
+{% block content %}
+    <h3>Listing Events</h3>
+
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>Start Date</th>
+                <th width="60">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+    {% for event in events %}
+            <tr>
+                <td><a href="{{ path('admin_event_update', { 'id': event.id }) }}">{{ event.title }}</a></td>
+                <td>{{ event.eventStart|date('F j, Y') }}</td>
+                <td>
+                    <a class="btn btn-primary btn-sm" href="{{ path('admin_event_update', { 'id': event.id }) }}">Edit</a>
+                </td>
+            </tr>
+    {% endfor %}
+        </tbody>
+    </table>
+
+    <div>
+        {{ pagerfanta(events) }}
+    </div>
+{% endblock %}

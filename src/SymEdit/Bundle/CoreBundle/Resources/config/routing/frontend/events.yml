@@ -1,0 +1,21 @@
+symedit_events:
+    pattern: /
+    methods: [GET]
+    defaults:
+        _controller: symedit.controller.event:indexAction
+        _sylius:
+            template: @SymEdit/Event/index.html.twig
+            method: getUpcoming
+            paginate: 10
+            sorting:
+                eventStart: desc
+
+symedit_event_show:
+    pattern: /view/{slug}
+    methods: [GET]
+    defaults:
+        _controller: symedit.controller.event:showAction
+        _sylius:
+            template: @SymEdit/Event/show.html.twig
+            criteria:
+                slug: $slug

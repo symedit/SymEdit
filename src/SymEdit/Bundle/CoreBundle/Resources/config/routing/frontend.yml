@@ -1,6 +1,9 @@
 symedit_blog_controller:
     resource: "@SymEditBundle/Resources/config/routing/frontend/blog.yml"
 
+symedit_events_controller:
+    resource: "@SymEditBundle/Resources/config/routing/frontend/events.yml"
+
 symedit_contact_controller:
     resource: "@SymEditBundle/Resources/config/routing/frontend/contact.yml"
 

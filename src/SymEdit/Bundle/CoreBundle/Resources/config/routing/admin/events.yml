@@ -1,0 +1,40 @@
+admin_event:
+    pattern: /
+    methods: [GET]
+    defaults:
+        _controller: symedit.controller.event:indexAction
+        _sylius:
+            template: @SymEdit/Admin/Event/index.html.twig
+            paginate: 10
+            sorting:
+                eventStart: desc
+
+admin_event_create:
+    pattern: /new
+    methods: [GET, POST]
+    defaults:
+        _controller: symedit.controller.event:createAction
+        _sylius:
+            template: @SymEdit/Admin/Event/new.html.twig
+            redirect:
+                route: admin_event_update
+                parameters: { id: resource.id }
+
+admin_event_update:
+    pattern: /{id}/edit
+    methods: [GET, PUT, POST]
+    defaults:
+        _controller: symedit.controller.event:updateAction
+        _sylius:
+            template: @SymEdit/Admin/Event/edit.html.twig
+            redirect:
+                route: admin_event_update
+                parameters: { id: $id }
+
+admin_event_delete:
+    pattern: /{id}/delete
+    methods: [DELETE]
+    defaults:
+        _controller: symedit.controller.event:deleteAction
+        _sylius:
+            redirect: admin_event

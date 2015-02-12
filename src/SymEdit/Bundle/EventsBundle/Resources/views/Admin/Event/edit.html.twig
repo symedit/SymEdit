@@ -1,0 +1,10 @@
+{% extends '@SymEdit/Admin/Event/crud.html.twig' %}
+
+{% block title %}Events &raquo; {{ event.title }} &raquo; Edit{% endblock %}
+
+{% block form_actions %}
+<button class="btn btn-primary" type="submit">
+    {{ icon('save') }}
+    Update Event
+</button>
+{% endblock %}

@@ -34,41 +34,53 @@ class BackendTest extends WebTestCase
     /**
      * @dataProvider fixtureUrlProvider
      */
-    public function testPages($url)
+    public function testPages($url, $admin = true)
     {
+        $prefix = $admin ? '/sym-admin' : '';
+
         $client = $this->getClient();
-        $client->request('GET', $url);
+        $client->request('GET', $prefix.$url);
         $this->assertTrue($client->getResponse()->isSuccessful());
     }
 
     public function fixtureUrlProvider()
     {
         return array(
-            array('/sym-admin'),
+            array('/'),
 
-            array('/sym-admin/user'),
-            array('/sym-admin/user/new'),
+            array('/user'),
+            array('/user/new'),
 
-            array('/sym-admin/page'),
-            array('/sym-admin/page/new'),
+            array('/page'),
+            array('/page/new'),
 
-            array('/sym-admin/post'),
-            array('/sym-admin/post/new'),
+            array('/post'),
+            array('/post/new'),
 
-            array('/sym-admin/image'),
-            array('/sym-admin/image/new'),
-            array('/sym-admin/image/gallery'),
-            array('/sym-admin/image/gallery/new'),
+            array('/image'),
+            array('/image/new'),
+            array('/image/gallery'),
+            array('/image/gallery/new'),
 
-            array('/sym-admin/file'),
-            array('/sym-admin/file/new'),
+            array('/file'),
+            array('/file/new'),
 
-            array('/sym-admin/widget'),
-            array('/sym-admin/widget/new'),
+            array('/widget'),
+            array('/widget/new'),
 
-            array('/sym-admin/settings'),
-            array('/sym-admin/category'),
-            array('/sym-admin/category/new'),
+            array('/category'),
+            array('/category/new'),
+
+            array('/events'),
+            array('/events/new'),
+
+            array('/settings'),
+
+            array('/stylizer'),
+
+            // Profile
+            array('/profile', false),
+            array('/profile/change-password', false),
         );
     }
 
