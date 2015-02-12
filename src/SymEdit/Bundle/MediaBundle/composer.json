@@ -9,7 +9,6 @@
         }
     ],
     "autoload": {
-        "psr-0": { "SymEdit\\Bundle\\MediaBundle": "" }
-    },
-    "target-dir": "SymEdit/Bundle/MediaBundle"
+        "psr-4": { "SymEdit\\Bundle\\MediaBundle\\": "" }
+    }
 }

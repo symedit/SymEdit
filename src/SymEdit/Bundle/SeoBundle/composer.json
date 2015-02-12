@@ -9,7 +9,6 @@
         }
     ],
     "autoload": {
-        "psr-0": { "SymEdit\\Bundle\\SeoBundle": "" }
-    },
-    "target-dir": "SymEdit/Bundle/SeoBundle"
+        "psr-4": { "SymEdit\\Bundle\\SeoBundle\\": "" }
+    }
 }

@@ -13,7 +13,6 @@
         "sylius/resource-bundle":           "~0.10.0"
     },
     "autoload": {
-        "psr-0": { "SymEdit\\Bundle\\UserBundle": "" }
-    },
-    "target-dir": "SymEdit/Bundle/UserBundle"
+        "psr-4": { "SymEdit\\Bundle\\UserBundle\\": "" }
+    }
 }

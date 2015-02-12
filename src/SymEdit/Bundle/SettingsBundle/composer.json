@@ -9,7 +9,6 @@
         }
     ],
     "autoload": {
-        "psr-0": { "SymEdit\\Bundle\\SettingsBundle": "" }
-    },
-    "target-dir": "SymEdit/Bundle/SettingsBundle"
+        "psr-4": { "SymEdit\\Bundle\\SettingsBundle\\": "" }
+    }
 }

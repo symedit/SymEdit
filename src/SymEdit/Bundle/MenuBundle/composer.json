@@ -1,6 +1,6 @@
 {
-    "name": "symedit/stylizer-bundle",
-    "description": "Dynamic Variables / Dumping for Assetic",
+    "name": "symedit/menu-bundle",
+    "description": "Symfony2 Bundle for managing menus with multiple sources",
     "type": "symfony-bundle",
     "authors": [
         {
@@ -9,6 +9,6 @@
         }
     ],
     "autoload": {
-        "psr-4": { "SymEdit\\Bundle\\StylizerBundle\\": "" }
+        "psr-4": { "SymEdit\\Bundle\\MenuBundle\\": "" }
     }
 }

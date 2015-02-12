@@ -9,7 +9,6 @@
         }
     ],
     "autoload": {
-        "psr-0": { "SymEdit\\Bundle\\ShortcodeBundle": "" }
-    },
-    "target-dir": "SymEdit/Bundle/ShortcodeBundle"
+        "psr-4": { "SymEdit\\Bundle\\ShortcodeBundle\\": "" }
+    }
 }

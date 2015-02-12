@@ -9,7 +9,6 @@
         }
     ],
     "autoload": {
-        "psr-0": { "SymEdit\\Bundle\\SitemapBundle": "" }
-    },
-    "target-dir": "SymEdit/Bundle/SitemapBundle"
+        "psr-4": { "SymEdit\\Bundle\\SitemapBundle\\": "" }
+    }
 }
