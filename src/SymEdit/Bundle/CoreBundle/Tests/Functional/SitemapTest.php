@@ -24,6 +24,7 @@ class SitemapTest extends WebTestCase
             '/',
             '/about',
             '/blog/',
+            '/events/',
             '/contact/',
             '/blog/hello-world',
             '/blog/category/general',

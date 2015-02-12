@@ -34,10 +34,12 @@ class BackendTest extends WebTestCase
     /**
      * @dataProvider fixtureUrlProvider
      */
-    public function testPages($url)
+    public function testPages($url, $admin = true)
     {
+        $prefix = $admin ? '/sym-admin' : '';
+
         $client = $this->getClient();
-        $client->request('GET', '/sym-admin' . $url);
+        $client->request('GET', $prefix.$url);
         $this->assertTrue($client->getResponse()->isSuccessful());
     }
 
@@ -73,6 +75,12 @@ class BackendTest extends WebTestCase
             array('/events/new'),
 
             array('/settings'),
+
+            array('/stylizer'),
+
+            // Profile
+            array('/profile', false),
+            array('/profile/change-password', false),
         );
     }
 
