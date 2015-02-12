@@ -24,6 +24,9 @@ class EventType extends AbstractType
             ))
             ->add('description', 'textarea', array(
                 'label' => 'symedit.form.event.basic.description',
+                'attr' => array(
+                    'rows' => 5,
+                ),
             ))
             ->add('url', 'url', array(
                 'label' => 'symedit.form.event.basic.url',
@@ -39,7 +42,7 @@ class EventType extends AbstractType
             ))
             ->add('price', 'text', array(
                 'label' => 'symedit.form.event.basic.price',
-                'required' => 'false',
+                'required' => false,
             ))
         ;
     }
