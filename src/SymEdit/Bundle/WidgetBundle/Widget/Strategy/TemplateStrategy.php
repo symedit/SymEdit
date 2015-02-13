@@ -20,7 +20,9 @@ class TemplateStrategy extends AbstractWidgetStrategy
     public function execute(WidgetInterface $widget)
     {
         try {
-            $content = $this->render($widget->getOption('template'));
+            $content = $this->render($widget->getOption('template'), array(
+                'widget' => $widget,
+            ));
         } catch (\Exception $e) {
             $content = sprintf('There was an error rendering your template: "%s"', $e->getMessage());
         }
@@ -37,7 +39,8 @@ class TemplateStrategy extends AbstractWidgetStrategy
                 'constraints' => array(
                     new NotBlank(),
                 ),
-            ));
+            ))
+        ;
     }
 
     public function getName()

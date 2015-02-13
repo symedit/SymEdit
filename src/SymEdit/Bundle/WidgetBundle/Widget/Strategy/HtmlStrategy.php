@@ -23,9 +23,9 @@ class HtmlStrategy extends AbstractWidgetStrategy
         ));
     }
 
-    public function setDefaultOptions(WidgetInterface $widget)
+    public function getDefaultOptions(\Symfony\Component\OptionsResolver\OptionsResolver $resolver)
     {
-        $widget->setOptions(array(
+        $resolver->setDefaults(array(
             'html' => 'New HTML Widget',
         ));
     }
@@ -39,7 +39,8 @@ class HtmlStrategy extends AbstractWidgetStrategy
                 'attr' => array(
                     'class' => 'wysiwyg-editor',
                 ),
-            ));
+            ))
+        ;
     }
 
     public function getName()

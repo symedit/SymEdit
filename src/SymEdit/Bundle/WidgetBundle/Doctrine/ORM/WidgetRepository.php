@@ -27,14 +27,14 @@ class WidgetRepository extends EntityRepository
     /**
      * @return WidgetInterface
      */
-    public function createNew($strategyName = null)
+    public function createNew($strategyName = null, array $options = array())
     {
         $class = $this->getClassName();
         $widget = new $class();
 
         if ($strategyName !== null) {
             $widget->setStrategyName($strategyName);
-            $this->registry->init($widget);
+            $this->registry->init($widget, $options);
         }
 
         return $widget;

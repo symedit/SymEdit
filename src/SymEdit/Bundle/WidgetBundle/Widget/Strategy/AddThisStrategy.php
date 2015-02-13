@@ -13,6 +13,7 @@ namespace SymEdit\Bundle\WidgetBundle\Widget\Strategy;
 
 use SymEdit\Bundle\WidgetBundle\Model\WidgetInterface;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class AddThisStrategy extends AbstractWidgetStrategy
 {
@@ -33,9 +34,9 @@ class AddThisStrategy extends AbstractWidgetStrategy
             ));
     }
 
-    public function setDefaultOptions(WidgetInterface $widget)
+    public function getDefaultOptions(OptionsResolver $resolver)
     {
-        $widget->setOptions(array(
+        $resolver->setDefaults(array(
             'include_script' => true,
         ));
     }

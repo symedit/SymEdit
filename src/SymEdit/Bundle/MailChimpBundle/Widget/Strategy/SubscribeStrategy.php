@@ -16,6 +16,7 @@ use SymEdit\Bundle\WidgetBundle\Model\WidgetInterface;
 use SymEdit\Bundle\WidgetBundle\Widget\Strategy\AbstractWidgetStrategy;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\FormFactoryInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Routing\RouterInterface;
 
 class SubscribeStrategy extends AbstractWidgetStrategy
@@ -44,9 +45,9 @@ class SubscribeStrategy extends AbstractWidgetStrategy
         ));
     }
 
-    public function setDefaultOptions(WidgetInterface $widget)
+    public function getDefaultOptions(OptionsResolver $resolver)
     {
-        $widget->setOptions(array(
+        $resolver->setDefaults(array(
             'placeholder' => 'you@email.com',
             'button_text' => 'Subscribe!',
         ));

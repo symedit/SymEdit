@@ -11,10 +11,11 @@
 
 namespace SymEdit\Bundle\WidgetBundle\Widget;
 
-use Symfony\Component\DependencyInjection\ContainerAware;
-use Symfony\Component\DependencyInjection\ContainerInterface;
 use SymEdit\Bundle\WidgetBundle\Model\WidgetInterface;
 use SymEdit\Bundle\WidgetBundle\Widget\Strategy\WidgetStrategyInterface;
+use Symfony\Component\DependencyInjection\ContainerAware;
+use Symfony\Component\DependencyInjection\ContainerInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class WidgetRegistry extends ContainerAware
 {
@@ -125,9 +126,15 @@ class WidgetRegistry extends ContainerAware
      *
      * @param WidgetInterface $widget
      */
-    public function init(WidgetInterface $widget)
+    public function init(WidgetInterface $widget, array $options = array())
     {
         $this->injectStrategy($widget);
-        $widget->getStrategy()->setDefaultOptions($widget);
+
+        $resolver = new OptionsResolver();
+        $widget->getStrategy()->getDefaultOptions($resolver);
+        $resolvedOptions = $resolver->resolve($options);
+
+        // Set options
+        $widget->setOptions($resolvedOptions);
     }
 }

@@ -30,8 +30,8 @@ Build your strategy class:
 ```php
 namespace SymEdit\Bundle\WidgetBundle\Widget\Strategy;
 
-use SymEdit\Bundle\WidgetBundle\Model\WidgetInterface;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class MyStrategy extends AbstractWidgetStrategy
 {
@@ -42,9 +42,9 @@ class MyStrategy extends AbstractWidgetStrategy
         ));
     }
 
-    public function setDefaultOptions(WidgetInterface $widget)
+    public function getDefaultOptions(OptionsResolver $resolver)
     {
-        $widget->setOptions(array(
+        $resolver->setDefaults(array(
             'number' => 5,
         ));
     }

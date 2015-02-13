@@ -15,6 +15,7 @@ use Sylius\Component\Resource\Repository\RepositoryInterface;
 use SymEdit\Bundle\WidgetBundle\Model\WidgetInterface;
 use SymEdit\Bundle\WidgetBundle\Widget\Strategy\AbstractWidgetStrategy;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints\Range;
 
 class RecentPostsStrategy extends AbstractWidgetStrategy
@@ -47,12 +48,13 @@ class RecentPostsStrategy extends AbstractWidgetStrategy
                         'minMessage' => 'Minimum posts is 1, if you want less disable the widget.',
                     )),
                 ),
-            ));
+            ))
+        ;
     }
 
-    public function setDefaultOptions(WidgetInterface $widget)
+    public function getDefaultOptions(OptionsResolver $resolver)
     {
-        $widget->setOptions(array(
+        $resolver->setDefaults(array(
             'max' => 3,
         ));
     }

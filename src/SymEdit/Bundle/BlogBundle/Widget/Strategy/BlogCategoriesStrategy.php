@@ -15,6 +15,7 @@ use Sylius\Component\Resource\Repository\RepositoryInterface;
 use SymEdit\Bundle\WidgetBundle\Model\WidgetInterface;
 use SymEdit\Bundle\WidgetBundle\Widget\Strategy\AbstractWidgetStrategy;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class BlogCategoriesStrategy extends AbstractWidgetStrategy
 {
@@ -45,9 +46,9 @@ class BlogCategoriesStrategy extends AbstractWidgetStrategy
             ));
     }
 
-    public function setDefaultOptions(WidgetInterface $widget)
+    public function getDefaultOptions(OptionsResolver $resolver)
     {
-        $widget->setOptions(array(
+        $resolver->setDefaults(array(
             'counts' => true,
         ));
     }

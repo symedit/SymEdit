@@ -11,8 +11,8 @@
 
 namespace SymEdit\Bundle\CoreBundle\Widget\Strategy;
 
-use SymEdit\Bundle\WidgetBundle\Model\WidgetInterface;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Templating\EngineInterface;
 
 abstract class AbstractWidgetStrategy implements WidgetStrategyInterface
@@ -25,7 +25,7 @@ abstract class AbstractWidgetStrategy implements WidgetStrategyInterface
     /**
      * {@inheritDoc}
      */
-    public function setDefaultOptions(WidgetInterface $widget)
+    public function getDefaultOptions(OptionsResolver $resolver)
     {
     }
 

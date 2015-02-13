@@ -11,7 +11,9 @@
 
 namespace SymEdit\Bundle\WidgetBundle\Test;
 
+use SymEdit\Bundle\WidgetBundle\Model\WidgetInterface;
 use SymEdit\Bundle\WidgetBundle\Widget\Strategy\WidgetStrategyInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 
 abstract class WidgetStrategyTest extends \PHPUnit_Framework_TestCase
 {
@@ -26,6 +28,9 @@ abstract class WidgetStrategyTest extends \PHPUnit_Framework_TestCase
 
     abstract protected function getDefaultOptions();
 
+    /**
+     * @return WidgetInterface
+     */
     protected function createWidget()
     {
         return $this->getMockForAbstractClass('SymEdit\Bundle\WidgetBundle\Model\WidgetInterface');
@@ -51,13 +56,11 @@ abstract class WidgetStrategyTest extends \PHPUnit_Framework_TestCase
     public function testDefaultOptions()
     {
         $strategy = $this->createStrategy();
-        $widget = $this->createWidget();
 
-        $widget->expects($this->once())
-               ->method('setOptions')
-               ->with($this->equalTo($this->getDefaultOptions()));
+        $resolver = new OptionsResolver();
+        $strategy->getDefaultOptions($resolver);
 
-        $strategy->setDefaultOptions($widget);
+        $this->assertEquals($this->getDefaultOptions(), $resolver->resolve());
     }
 
     public function testBuildForm()

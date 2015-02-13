@@ -11,9 +11,9 @@
 
 namespace SymEdit\Bundle\CoreBundle\Widget\Strategy;
 
-use SymEdit\Bundle\WidgetBundle\Model\WidgetInterface;
 use SymEdit\Bundle\WidgetBundle\Widget\Strategy\TemplateStrategy;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class ContactInfoStrategy extends TemplateStrategy
 {
@@ -24,9 +24,11 @@ class ContactInfoStrategy extends TemplateStrategy
     {
     }
 
-    public function setDefaultOptions(WidgetInterface $widget)
+    public function getDefaultOptions(OptionsResolver $resolver)
     {
-        $widget->setOption('template', '@SymEdit/Widget/contact-info.html.twig');
+        $resolver->setDefaults(array(
+            'template' => '@SymEdit/Widget/contact-info.html.twig',
+        ));
     }
 
     public function getName()

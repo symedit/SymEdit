@@ -13,6 +13,7 @@ namespace SymEdit\Bundle\WidgetBundle\Widget\Strategy;
 
 use SymEdit\Bundle\WidgetBundle\Model\WidgetInterface;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Templating\EngineInterface;
 
 interface WidgetStrategyInterface
@@ -40,9 +41,9 @@ interface WidgetStrategyInterface
     public function execute(WidgetInterface $widget);
 
     /**
-     * @param WidgetInterface $widget
+     * @param OptionsResolver $resolver
      */
-    public function setDefaultOptions(WidgetInterface $widget);
+    public function getDefaultOptions(OptionsResolver $resolver);
 
     /**
      * @return EngineInterface

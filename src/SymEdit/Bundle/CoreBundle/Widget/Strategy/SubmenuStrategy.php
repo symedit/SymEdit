@@ -14,6 +14,7 @@ namespace SymEdit\Bundle\CoreBundle\Widget\Strategy;
 use SymEdit\Bundle\CoreBundle\Model\PageInterface;
 use SymEdit\Bundle\WidgetBundle\Model\WidgetInterface;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints\Range;
 
 class SubmenuStrategy extends AbstractWidgetStrategy
@@ -49,12 +50,13 @@ class SubmenuStrategy extends AbstractWidgetStrategy
             ))
             ->add('nav_class', 'text', array(
                 'label' => 'Navigation UL Class',
-            ));
+            ))
+        ;
     }
 
-    public function setDefaultOptions(WidgetInterface $widget)
+    public function getDefaultOptions(OptionsResolver $resolver)
     {
-        $widget->setOptions(array(
+        $resolver->setDefaults(array(
             'level' => 1,
             'nav_class' => 'nav nav-pills nav-stacked',
         ));
