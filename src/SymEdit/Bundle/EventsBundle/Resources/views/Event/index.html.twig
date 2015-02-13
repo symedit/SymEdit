@@ -8,8 +8,21 @@
             <div class="event">
                 <h3>
                     <a href="{{ path('symedit_event_show', { slug: event.slug }) }}">{{ event.title }}</a>
+                    <small>
+                        {{ event.eventStart|date('F jS, Y') }}
+                    </small>
                 </h3>
+
+                {% if event.address is not empty %}
+                <p>
+                    {{ event.address }}
+                </p>
+                {% endif %}
             </div>
+        {% else %}
+            <p>
+                There are currently no upcoming events.
+            </p>
         {% endfor %}
     </div>
 {% endblock %}
