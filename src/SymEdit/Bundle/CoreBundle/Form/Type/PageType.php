@@ -38,37 +38,10 @@ class PageType extends AbstractType
                     'title' => 'symedit.form.page.name.popover.title',
                     'content' => 'symedit.form.page.name.popover.content',
                 ),
-            ));
-
-        /**
-         * Fetch Page choices from the recursive iterator, we have to make sure
-         * that we allow pages with display = false here so we can't use the
-         * default
-         *
-         * @TODO: Create symedit_page_parent or something, symedit_page_choose etc.
-         */
-        $root = $this->pageRepository->findRoot();
-        $iterator = $this->pageRepository->getRecursiveIterator(false);
-
-        $choices = array(
-            $root->getId() => 'Root',
-        );
-
-        foreach ($iterator as $page) {
-            if ($page->getHomepage()) {
-                continue;
-            }
-            $choices[$page->getId()] = str_repeat('--', $page->getLevel()).' '.$page->getTitle();
-        }
-
-        $builder->add(
-            $builder->create('parent', 'choice', array(
-                'choices' => $choices,
+            ))
+            ->add('parent', 'symedit_page_choose', array(
                 'label' => 'symedit.form.page.parent',
-            ))->addModelTransformer(new RepositoryTransformer($this->pageRepository))
-        );
-
-        $builder
+            ))
             ->add('tagline', 'text', array(
                 'required' => false,
                 'label' => 'symedit.form.page.tagline',
