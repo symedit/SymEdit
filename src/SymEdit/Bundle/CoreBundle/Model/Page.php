@@ -663,7 +663,7 @@ class Page implements PageInterface
         }
 
         return $this->getParent()->getChildren()->filter(function ($element) {
-            $element !== $this;
+            return $element !== $this;
         });
     }
 
@@ -688,10 +688,6 @@ class Page implements PageInterface
         }
 
         foreach ($this->getSiblings() as $child) {
-            if ($child === $this) {
-                continue;
-            }
-
             if ($child->getName() === $this->getName()) {
                 $context->addViolationAt('name', 'This name is already used for another sibling page');
 
