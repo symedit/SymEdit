@@ -12,36 +12,31 @@
     </parameters>
 
     <services>
+        <!-- Contact Form -->
         <service id="symedit.form.type.contact" class="%symedit.form.type.contact.class%">
             <tag name="form.type" alias="symedit_contact" />
         </service>
 
+        <!-- Page Form -->
         <service id="symedit.form.type.page" class="%symedit.form.type.page.class%">
             <argument type="service" id="symedit.repository.page" />
             <tag name="form.type" alias="symedit_page" />
         </service>
 
+        <!-- Choose Page Form -->
         <service id="symedit.form.type.page_choose" class="%symedit.form.type.page_choose.class%">
             <argument type="service" id="symedit.repository.page" />
             <tag name="form.type" alias="symedit_page_choose" />
         </service>
 
+        <!-- Role Form -->
         <service id="symedit.form.type.role" class="%symedit.form.type.role.class%">
             <argument type="service" id="doctrine" />
             <argument type="service" id="security.context" />
             <tag name="form.type" alias="symedit_role" />
         </service>
 
-        <service id="symedit.form.type.widget_area" class="%symedit.form.type.widget_area.class%">
-            <tag name="form.type" alias="symedit_widget_area" />
-        </service>
-
-        <service id="symedit.form.type.widget" class="%symedit.form.type.widget.class%">
-            <argument>%symedit.model.widget.class%</argument>
-            <argument>%symedit.model.widget_area.class%</argument>
-            <tag name="form.type" alias="symedit_widget" />
-        </service>
-
+        <!-- Entity Property Form -->
         <service id="symedit.form.type.entity_property" class="%symedit.form.type.entity_property.class%">
             <argument type="service" id="doctrine" />
             <tag name="form.type" alias="entity_property" />
