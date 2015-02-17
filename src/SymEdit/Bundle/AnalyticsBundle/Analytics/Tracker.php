@@ -30,13 +30,22 @@ class Tracker
 
     protected function getIdentifier($class)
     {
-        return $this->manager->getClassMetadata($class)->getSingleIdentifierFieldName();
+        try {
+            return $this->manager->getClassMetadata($class)->getSingleIdentifierFieldName();
+        } catch (\Exception $e) {
+            return false;
+        }
     }
 
     public function track($object)
     {
         $class = get_class($object);
-        $identifier = $this->getIdentifier($class);
+
+        // No identifier
+        if (($identifier = $this->getIdentifier($class)) === false) {
+            return;
+        }
+
         $identifierValue = $this->propertyAccess->getValue($object, $identifier);
 
         if ($identifierValue === null) {
