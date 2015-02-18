@@ -11,25 +11,25 @@
 
 namespace SymEdit\Bundle\CoreBundle\Form\Type;
 
+use Sylius\Component\Resource\Repository\RepositoryInterface;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
-use Doctrine\Bundle\DoctrineBundle\Registry;
 use Symfony\Component\Security\Core\SecurityContext;
 
 class RoleType extends AbstractType
 {
-    private $doctrine;
+    private $repository;
     private $context;
 
-    public function __construct(Registry $doctrine, SecurityContext $context)
+    public function __construct(RepositoryInterface $repository, SecurityContext $context)
     {
-        $this->doctrine = $doctrine;
+        $this->repository = $repository;
         $this->context = $context;
     }
 
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
-        $roles = $this->doctrine->getManager()->getRepository('SymEdit\Bundle\CoreBundle\Model\Role')->findAll();
+        $roles = $this->repository->findAll();
         $choices = array();
 
         foreach ($roles as $role) {

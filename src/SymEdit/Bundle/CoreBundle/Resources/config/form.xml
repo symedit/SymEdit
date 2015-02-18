@@ -31,7 +31,7 @@
 
         <!-- Role Form -->
         <service id="symedit.form.type.role" class="%symedit.form.type.role.class%">
-            <argument type="service" id="doctrine" />
+            <argument type="service" id="symedit.repository.role" />
             <argument type="service" id="security.context" />
             <tag name="form.type" alias="symedit_role" />
         </service>
