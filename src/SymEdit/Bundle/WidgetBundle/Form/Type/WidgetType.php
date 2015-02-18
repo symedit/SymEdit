@@ -42,6 +42,7 @@ class WidgetType extends AbstractType
         $basic
             ->add('title', 'text', array(
                 'label' => 'symedit.form.widget.basic.title',
+                'required' => false,
             ))
             ->add('name', 'text', array(
                 'label' => 'symedit.form.widget.basic.name.label',
