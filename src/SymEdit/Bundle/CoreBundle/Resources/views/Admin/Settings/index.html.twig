@@ -4,7 +4,7 @@
 
 {% block tabs %}
 <ul class="nav nav-tabs">
-{% for group in form.groups %}
+{% for group in form.children if group|length > 0 %}
 <li{% if loop.first %} class="active"{% endif %}>
     <a href="#setting-{{ group.vars.name }}" data-toggle="tab">{{ group.vars.label }}</a>
 </li>
@@ -14,7 +14,7 @@
 
 {% block tab_content %}
 <div class="tab-content">
-{% for group in form.groups %}
+{% for group in form.children if group|length > 0 %}
     <div class="tab-pane{% if loop.first %} active{% endif %}" id="setting-{{ group.vars.name }}">
         {{ form_widget(group) }}
     </div>

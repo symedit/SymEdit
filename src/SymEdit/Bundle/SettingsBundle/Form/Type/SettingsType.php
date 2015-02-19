@@ -30,10 +30,6 @@ class SettingsType extends AbstractType
 
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $groups = $builder->create('groups', 'form', array(
-            'inherit_data' => true,
-        ));
-
         $config = $this->settings->getConfigData();
 
         foreach ($config as $groupName => $groupData) {
@@ -55,10 +51,8 @@ class SettingsType extends AbstractType
                 ));
             }
 
-            $groups->add($groupForm);
+            $builder->add($groupForm);
         }
-
-        $builder->add($groups);
     }
 
     public function setDefaultOptions(OptionsResolverInterface $resolver)

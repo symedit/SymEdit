@@ -20,10 +20,10 @@ use Symfony\Component\HttpFoundation\Request;
  */
 class SettingsController extends FOSRestController
 {
-    public function indexAction()
+    public function indexAction(Request $request)
     {
         $settings = $this->getSettings();
-        $form = $this->getForm($settings);
+        $form = $this->getForm($request, $settings);
 
         $view = $this
             ->view()
@@ -39,11 +39,18 @@ class SettingsController extends FOSRestController
     public function updateAction(Request $request)
     {
         $settings = $this->getSettings();
-        $form = $this->getForm($settings);
-        $form->handleRequest($request);
+        $form = $this->getForm($request, $settings);
 
-        if ($request->isMethod('PUT') || $request->isMethod('POST') && $form->isValid()) {
+        if ($form->submit($request, !$request->isMethod('PATCH'))->isValid()) {
             $settings->save();
+
+            if ($this->isApiRequest($request)) {
+                return $this->handleView($this->view($settings, 204));
+            }
+        }
+
+        if ($this->isApiRequest($request)) {
+            return $this->handleView($this->view($form, 400));
         }
 
         $view = $this
@@ -58,9 +65,24 @@ class SettingsController extends FOSRestController
         return $this->handleView($view);
     }
 
-    public function getForm($resource = null)
+    protected function isApiRequest(Request $request)
     {
+        return $request->getRequestFormat() !== 'html';
+    }
+
+    protected function getForm(Request $request, $resource = null)
+    {
+        if ($this->isApiRequest($request)) {
+            return $this->getApiForm($resource);
+        }
+
         return $this->createForm('symedit_settings', $resource);
+    }
+
+    protected function getApiForm($resource = null) {
+        return $this->get('form.factory')->createNamed('', 'symedit_settings', $resource, array(
+            'csrf_protection' => false,
+        ));
     }
 
     /**
