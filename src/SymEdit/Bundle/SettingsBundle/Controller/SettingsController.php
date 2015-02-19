@@ -79,7 +79,8 @@ class SettingsController extends FOSRestController
         return $this->createForm('symedit_settings', $resource);
     }
 
-    protected function getApiForm($resource = null) {
+    protected function getApiForm($resource = null)
+    {
         return $this->get('form.factory')->createNamed('', 'symedit_settings', $resource, array(
             'csrf_protection' => false,
         ));
