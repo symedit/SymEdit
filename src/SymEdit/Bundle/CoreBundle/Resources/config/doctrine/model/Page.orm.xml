@@ -92,7 +92,7 @@
         </field>
 
         <!-- TODO: Change back to PageInterface -->
-        <many-to-one field="parent" target-entity="SymEdit\Bundle\CoreBundle\Model\PageInterface" inversed-by="children">
+        <many-to-one field="parent" target-entity="SymEdit\Bundle\CoreBundle\Model\Page" inversed-by="children">
             <join-column name="parent" referenced-column-name="id" on-delete="SET NULL"/>
 
             <gedmo:tree-parent />
@@ -101,7 +101,7 @@
         </many-to-one>
 
         <!-- TODO: Change back to PageInterface -->
-        <one-to-many field="children" target-entity="SymEdit\Bundle\CoreBundle\Model\PageInterface" mapped-by="parent">
+        <one-to-many field="children" target-entity="SymEdit\Bundle\CoreBundle\Model\Page" mapped-by="parent">
             <order-by>
                 <order-by-field name="pageOrder" direction="ASC"/>
             </order-by>
