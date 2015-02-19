@@ -21,7 +21,7 @@
         </service>
 
         <service id="symedit_seo.twig.extension" class="%symedit_seo.twig.extension.class%">
-            <argument type="service" id="symedit_seo.seo_manager" />
+            <argument type="service" id="service_container" />
             <call method="setRequest">
                 <argument type="service" id="request" on-invalid="null" strict="false" />
             </call>

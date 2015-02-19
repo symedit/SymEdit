@@ -11,19 +11,21 @@
 
 namespace SymEdit\Bundle\SeoBundle\Twig\Extension;
 
+use SymEdit\Bundle\SeoBundle\Model\SeoInterface;
 use SymEdit\Bundle\SeoBundle\Model\SeoManagerInterface;
-use Symfony\Component\HttpFoundation\Request;
 use SymEdit\Bundle\SeoBundle\Util\SeoTools;
+use Symfony\Component\DependencyInjection\ContainerInterface;
+use Symfony\Component\HttpFoundation\Request;
 
 class SeoExtension extends \Twig_Extension
 {
-    protected $seoManager;
+    protected $container;
     protected $calculatedSeo;
     protected $request;
 
-    public function __construct(SeoManagerInterface $seoManager)
+    public function __construct(ContainerInterface $container)
     {
-        $this->seoManager = $seoManager;
+        $this->container = $container;
     }
 
     public function setRequest(Request $request = null)
@@ -58,15 +60,23 @@ class SeoExtension extends \Twig_Extension
     }
 
     /**
-     * @return SymEdit\Bundle\SeoBundle\Model\SeoInterface
+     * @return SeoInterface
      */
     protected function getCalculatedSeo()
     {
         if ($this->calculatedSeo === null) {
-            $this->calculatedSeo = $this->seoManager->getCalculatedSeo($this->request);
+            $this->calculatedSeo = $this->getSeoManager()->getCalculatedSeo($this->request);
         }
 
         return $this->calculatedSeo;
+    }
+
+    /**
+     * @return SeoManagerInterface
+     */
+    protected function getSeoManager()
+    {
+        return $this->container->get('symedit_seo.seo_manager');
     }
 
     public function getName()
