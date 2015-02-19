@@ -16,13 +16,11 @@ use SymEdit\Bundle\StylizerBundle\Model\Styles;
 
 class StylizerExtension extends \Twig_Extension
 {
-    protected $styles;
-    protected $versionManager;
+    protected $container;
 
-    public function __construct(Styles $styles, VersionManager $versionManager)
+    public function __construct(\Symfony\Component\DependencyInjection\ContainerInterface $container)
     {
-        $this->styles = $styles;
-        $this->versionManager = $versionManager;
+        $this->container = $container;
     }
 
     public function getFunctions()
@@ -33,9 +31,18 @@ class StylizerExtension extends \Twig_Extension
         );
     }
 
+    /**
+     * @return Styles
+     */
+    protected function getStyles()
+    {
+        return $this->container->get('symedit_stylizer.styles');
+    }
+
     public function renderGoogleFonts()
     {
-        $variables = $this->styles->getVariables();
+        // @TODO: Have this save google fonts instead and then fetch it when we need it?
+        $variables = $this->getStyles()->getVariables();
 
         if (!isset($variables['google-fonts'])) {
             return;
@@ -50,15 +57,24 @@ class StylizerExtension extends \Twig_Extension
         return sprintf('<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=%s">', $fonts);
     }
 
+    /**
+     * @return VersionManager
+     */
+    public function getVersionManager()
+    {
+        return $this->container->get('symedit_stylizer.version_manager');
+    }
+
     public function getAssetUrl($url)
     {
         // Get stylizer version as string
-        $stylizerVersion = $this->versionManager->getVersion();
+        $stylizerVersion = $this->getVersionManager()->getVersion();
 
         if ($stylizerVersion === null) {
             return $url;
         }
 
+        // @TODO: Maybe move this logic to the versionmanager? Pass it the url?
         $query = parse_url($url, PHP_URL_QUERY);
         $queryVersion = $query === null ? $stylizerVersion : $query.$stylizerVersion;
         $versionUrl = strtok($url, '?').'?'.$queryVersion;

@@ -93,8 +93,7 @@
 
         <!-- Twig Extension -->
         <service id="symedit_stylizer.twig.stylizer_extension" class="SymEdit\Bundle\StylizerBundle\Twig\Extension\StylizerExtension">
-            <argument type="service" id="symedit_stylizer.styles" />
-            <argument type="service" id="symedit_stylizer.version_manager" />
+            <argument type="service" id="service_container" />
             <tag name="twig.extension" />
         </service>
 
