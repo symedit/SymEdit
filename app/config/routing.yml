@@ -10,5 +10,8 @@ symedit_analytics:
 symedit_mailchimp:
     resource: "@SymEditMailChimpBundle/Resources/config/routing.yml"
 
+symedit_api:
+    resource: "@SymEditApiBundle/Resources/config/routing.yml"
+
 _liip_imagine:
     resource: "@LiipImagineBundle/Resources/config/routing.xml"

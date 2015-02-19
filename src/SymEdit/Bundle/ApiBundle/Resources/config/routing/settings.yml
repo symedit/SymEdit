@@ -1,0 +1,11 @@
+symedit_api_settings:
+    pattern: /
+    methods: [GET]
+    defaults:
+        _controller: symedit.controller.settings:indexAction
+
+symedit_api_settings_update:
+    pattern: /
+    methods: [PUT, PATCH]
+    defaults:
+        _controller: symedit.controller.settings:updateAction

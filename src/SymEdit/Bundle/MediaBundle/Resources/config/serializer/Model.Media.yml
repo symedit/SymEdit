@@ -1,5 +1,6 @@
 SymEdit\Bundle\MediaBundle\Model\Media:
     exclusion_policy: ALL
+    xml_root_name: media
     properties:
         id:
             expose: true

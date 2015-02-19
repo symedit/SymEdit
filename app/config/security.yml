@@ -7,6 +7,16 @@ security:
         FOS\UserBundle\Model\UserInterface: sha512
 
     firewalls:
+        oauth_token:
+            pattern: ^/oauth/v2/token
+            security: false
+
+        api:
+            pattern: ^/api
+            fos_oauth: true
+            stateless: true
+            anonymous: true
+
         main:
             pattern: ^/
             form_login:
@@ -20,6 +30,8 @@ security:
                 key: "%secret%"
 
     access_control:
+        - { path: ^/api, role: IS_AUTHENTICATED_ANONYMOUSLY, ip: [192.168.1.0/24, 127.0.0.1] }
+        - { path: ^/api, role: ROLE_API }
         - { path: ^/login$, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/register, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/resetting, role: IS_AUTHENTICATED_ANONYMOUSLY }
@@ -40,3 +52,4 @@ security:
             - ROLE_ADMIN_WEBMASTER
             - ROLE_ADMIN_EDITABLE
             - ROLE_ADMIN_STYLIZER
+            - ROLE_API

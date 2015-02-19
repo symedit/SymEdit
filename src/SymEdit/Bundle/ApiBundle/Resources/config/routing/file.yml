@@ -1,0 +1,25 @@
+symedit_api_file:
+    pattern: /
+    methods: [GET]
+    defaults:
+        _controller: symedit.controller.file:indexAction
+        _sylius:
+            paginate: $limit
+
+symedit_api_file_create:
+    pattern: /
+    methods: [POST]
+    defaults:
+        _controller: symedit.controller.file:createAction
+
+symedit_api_file_update:
+    pattern: /{id}
+    methods: [PUT, PATCH]
+    defaults:
+        _controller: symedit.controller.file:updateAction
+
+symedit_api_file_delete:
+    pattern: /{id}
+    methods: [DELETE]
+    defaults:
+        _controller: symedit.controller.file:deleteAction

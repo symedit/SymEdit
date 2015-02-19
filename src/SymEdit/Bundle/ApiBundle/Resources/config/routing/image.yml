@@ -1,0 +1,31 @@
+symedit_api_image:
+    pattern: /
+    methods: [GET]
+    defaults:
+        _controller: symedit.controller.image:indexAction
+        _sylius:
+            paginate: $limit
+
+symedit_api_image_create:
+    pattern: /
+    methods: [POST]
+    defaults:
+        _controller: symedit.controller.image:createAction
+
+symedit_api_image_show:
+    pattern: /{id}
+    methods: [GET]
+    defaults:
+        _controller: symedit.controller.image:showAction
+
+symedit_api_image_update:
+    pattern: /{id}
+    methods: [PUT, PATCH]
+    defaults:
+        _controller: symedit.controller.image:updateAction
+
+symedit_api_image_delete:
+    pattern: /{id}
+    methods: [DELETE]
+    defaults:
+        _controller: symedit.controller.image:deleteAction

@@ -1,0 +1,9 @@
+fos_oauth_server_token:
+    resource: "@FOSOAuthServerBundle/Resources/config/routing/token.xml"
+
+fos_oauth_server_authorize:
+    resource: "@FOSOAuthServerBundle/Resources/config/routing/authorize.xml"
+
+symedit_api_main:
+    resource: "@SymEditApiBundle/Resources/config/routing/main.yml"
+    prefix: /api

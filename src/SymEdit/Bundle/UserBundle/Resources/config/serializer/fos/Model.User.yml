@@ -1,0 +1,10 @@
+FOS\UserBundle\Model\User:
+    exclusion_policy: ALL
+    xml_root_name: user
+    properties:
+        id:
+            expose: true
+        username:
+            expose: true
+        email:
+            expose: true

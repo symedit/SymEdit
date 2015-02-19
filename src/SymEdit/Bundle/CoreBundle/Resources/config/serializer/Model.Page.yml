@@ -48,8 +48,6 @@ SymEdit\Bundle\CoreBundle\Model\Page:
         -
             rel: self
             href:
-                route: expr(object.getRoute())
-        -
-            rel: parent
-            href:
-                route: expr(object.getParent().getRoute())
+                route: symedit_api_page_show
+                parameters:
+                    id: expr(object.getId())

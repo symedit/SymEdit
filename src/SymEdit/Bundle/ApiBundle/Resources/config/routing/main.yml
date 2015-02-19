@@ -1,0 +1,27 @@
+symedit_api_pages:
+    resource: "@SymEditApiBundle/Resources/config/routing/page.yml"
+    prefix: /page
+
+symedit_api_images:
+    resource: "@SymEditApiBundle/Resources/config/routing/image.yml"
+    prefix: /image
+
+symedit_api_files:
+    resource: "@SymEditApiBundle/Resources/config/routing/file.yml"
+    prefix: /file
+
+symedit_api_posts:
+    resource: "@SymEditApiBundle/Resources/config/routing/post.yml"
+    prefix: /post
+
+symedit_api_events:
+    resource: "@SymEditApiBundle/Resources/config/routing/events.yml"
+    prefix: /event
+
+symedit_api_settings:
+    resource: "@SymEditApiBundle/Resources/config/routing/settings.yml"
+    prefix: /settings
+
+symedit_api_users:
+    resource: "@SymEditApiBundle/Resources/config/routing/user.yml"
+    prefix: /user

@@ -1,0 +1,6 @@
+SymEdit\Bundle\UserBundle\Model\User:
+    exclusion_policy: ALL
+    xml_root_name: user
+    properties:
+        profile:
+            expose: true

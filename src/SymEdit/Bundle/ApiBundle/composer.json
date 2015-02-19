@@ -1,0 +1,14 @@
+{
+    "name": "symedit/api-bundle",
+    "description": "API bundle for SymEdit",
+    "type": "symfony-bundle",
+    "authors": [
+        {
+            "name": "Craig Blanchette",
+            "email": "craig.blanchette@gmail.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": { "SymEdit\\Bundle\\ApiBundle\\": "" }
+    }
+}
