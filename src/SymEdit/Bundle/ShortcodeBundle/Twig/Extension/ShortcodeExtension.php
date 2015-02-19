@@ -12,6 +12,7 @@
 namespace SymEdit\Bundle\ShortcodeBundle\Twig\Extension;
 
 use SymEdit\Bundle\ShortcodeBundle\Renderer\ShortcodeRendererInterface;
+use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
  * @TODO: Should we inject the container here and load the renderer
@@ -20,11 +21,11 @@ use SymEdit\Bundle\ShortcodeBundle\Renderer\ShortcodeRendererInterface;
  */
 class ShortcodeExtension extends \Twig_Extension
 {
-    protected $renderer;
+    protected $container;
 
-    public function __construct(ShortcodeRendererInterface $renderer)
+    public function __construct(ContainerInterface $container)
     {
-        $this->renderer = $renderer;
+        $this->container = $container;
     }
 
     public function getFilters()
@@ -34,9 +35,18 @@ class ShortcodeExtension extends \Twig_Extension
         );
     }
 
+    /**
+     *
+     * @return ShortcodeRendererInterface
+     */
+    protected function getRenderer()
+    {
+        return $this->container->get('symedit_shortcode.renderer');
+    }
+
     public function renderShortcodes($string)
     {
-        return $this->renderer->renderString($string);
+        return $this->getRenderer()->renderString($string);
     }
 
     public function getName()
