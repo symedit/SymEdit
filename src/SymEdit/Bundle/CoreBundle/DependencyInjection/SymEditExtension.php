@@ -13,9 +13,8 @@ namespace SymEdit\Bundle\CoreBundle\DependencyInjection;
 
 use SymEdit\Bundle\ResourceBundle\DependencyInjection\SymEditResourceExtension;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
-use Symfony\Component\DependencyInjection\Extension\PrependExtensionInterface;
 
-class SymEditExtension extends SymEditResourceExtension implements PrependExtensionInterface
+class SymEditExtension extends SymEditResourceExtension
 {
     protected $configFiles = array(
         'services', 'widget', 'routing', 'form',
@@ -47,46 +46,6 @@ class SymEditExtension extends SymEditResourceExtension implements PrependExtens
         $pageControllers = $this->findBundleResources($container, '/Resources/config/symedit/page_controllers.yml');
         $container->setParameter('symedit.routing.loader.resources', $pageControllers);
         $container->setParameter('symedit.routing.route_uri_filter_regexp', $config['routing']['route_uri_filter_regexp']);
-    }
-
-    public function prepend(ContainerBuilder $container)
-    {
-        /**
-         * FOS User Prepend
-         */
-        $container->prependExtensionConfig('fos_user', array(
-            'firewall_name' => 'main',
-            'service' => array(
-                'mailer' => 'symedit.mailer',
-            ),
-            'registration' => array(
-                'confirmation' => array(
-                    'enabled' => true,
-                    'template' => '@SymEdit/Email/confirm.html.twig',
-                ),
-            ),
-            'resetting' => array(
-                'email' => array(
-                    'template' => '@SymEdit/Email/resetting.html.twig',
-                ),
-            ),
-        ));
-
-        /**
-         * Stof Doctrine Extensions
-         */
-        $container->prependExtensionConfig('stof_doctrine_extensions', array(
-            'orm' => array(
-                'default' => array(
-                    'timestampable' => true,
-                    'sluggable' => true,
-                    'sortable' => true,
-                    'tree' => true,
-                    'loggable' => true,
-                    'blameable' => true,
-                ),
-            ),
-        ));
     }
 
     /**
