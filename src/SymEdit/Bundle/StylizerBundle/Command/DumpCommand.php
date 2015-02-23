@@ -25,5 +25,9 @@ class DumpCommand extends BaseCommand
         $injector->inject($styles->getVariables());
 
         parent::execute($input, $output);
+
+        // Bump version
+        $versionManager = $this->getContainer()->get('symedit_stylizer.version_manager');
+        $versionManager->bumpVersion();
     }
 }
