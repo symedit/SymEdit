@@ -6,13 +6,18 @@
 
     <parameters>
         <parameter key="symedit.report.popular_pages.class">SymEdit\Bundle\CoreBundle\Report\PopularPageReport</parameter>
+        <parameter key="symedit.report.popular_posts.class">SymEdit\Bundle\CoreBundle\Report\PopularPostReport</parameter>
     </parameters>
 
     <services>
         <!-- Popular Pages -->
         <service id="symedit.report.popular_pages" class="%symedit.report.popular_pages.class%" public="false">
-            <argument>%symedit.model.page.class%</argument>
             <tag name="symedit_analytics.report" alias="popular_pages" />
+        </service>
+
+        <!-- Popular Posts -->
+        <service id="symedit.report.popular_posts" class="%symedit.report.popular_posts.class%" public="false">
+            <tag name="symedit_analytics.report" alias="popular_posts" />
         </service>
     </services>
 </container>

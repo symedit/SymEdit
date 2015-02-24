@@ -13,15 +13,23 @@ namespace SymEdit\Bundle\CoreBundle\Report;
 
 use Doctrine\ORM\QueryBuilder;
 use SymEdit\Bundle\AnalyticsBundle\Report\PopularReport;
+use SymEdit\Bundle\BlogBundle\Model\Post;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class PopularPageReport extends PopularReport
+class PopularPostReport extends PopularReport
 {
     public function buildQuery(QueryBuilder $queryBuilder, array $options)
     {
-        parent::buildQuery($queryBuilder, $options)
-            ->andWhere('c.root = false')
-        ;
+        $qb = parent::buildQuery($queryBuilder, $options);
+
+        if ($options['published']) {
+            $qb
+                ->andWhere('c.status = :status')
+                ->setParameter('status', Post::PUBLISHED)
+            ;
+        }
+
+        return $qb;
     }
 
     public function setDefaultOptions(OptionsResolver $resolver)
@@ -29,12 +37,13 @@ class PopularPageReport extends PopularReport
         parent::setDefaultOptions($resolver);
         
         $resolver->setDefaults(array(
-            'model' => 'page',
+            'published' => true,
+            'model' => 'post',
         ));
     }
 
     public function getName()
     {
-        return 'popular_pages';
+        return 'popular_posts';
     }
 }
