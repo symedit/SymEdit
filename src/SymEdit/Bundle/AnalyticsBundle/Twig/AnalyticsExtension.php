@@ -12,21 +12,26 @@
 namespace SymEdit\Bundle\AnalyticsBundle\Twig;
 
 use SymEdit\Bundle\AnalyticsBundle\Analytics\Tracker;
+use SymEdit\Bundle\AnalyticsBundle\Exception\InvalidReportException;
+use SymEdit\Bundle\AnalyticsBundle\Report\Reporter;
 
 class AnalyticsExtension extends \Twig_Extension
 {
     protected $tracker;
     protected $environment;
+    protected $reporter;
 
-    public function __construct(Tracker $tracker)
+    public function __construct(Tracker $tracker, Reporter $reporter)
     {
         $this->tracker = $tracker;
+        $this->reporter = $reporter;
     }
 
     public function getFunctions()
     {
         return array(
             new \Twig_SimpleFunction('symedit_analytics_render', array($this, 'renderAnalytics'), array('is_safe' => array('html', 'js'))),
+            new \Twig_SimpleFunction('symedit_analytics_report', array($this, 'getReport')),
         );
     }
 
@@ -40,6 +45,17 @@ class AnalyticsExtension extends \Twig_Extension
         return $this->environment->render('@SymEditAnalytics/render.html.twig', array(
             'visits' => $this->tracker->getTrackedVisits(),
         ));
+    }
+
+    public function getReport($name, array $options = array())
+    {
+        try {
+            $report = $this->reporter->runReport($name, $options);
+        } catch (InvalidReportException $exception) {
+            return;
+        }
+
+        return $report;
     }
 
     public function getName()
