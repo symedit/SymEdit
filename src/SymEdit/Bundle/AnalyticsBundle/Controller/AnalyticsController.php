@@ -27,11 +27,11 @@ class AnalyticsController extends Controller
         $data = $request->request->get('visits', array());
 
         foreach ($data as $visitData) {
-            if (!isset($visitData['c']) || !isset($visitData['i'])) {
+            if (!isset($visitData['m']) || !isset($visitData['i'])) {
                 continue;
             }
 
-            $recorder->record($visitData['c'], $visitData['i']);
+            $recorder->record($visitData['m'], $visitData['i']);
         }
 
         // Flush recorded visits

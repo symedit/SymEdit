@@ -11,16 +11,14 @@
 
 namespace SymEdit\Bundle\AnalyticsBundle\Report;
 
-use Doctrine\Common\Persistence\ObjectManager;
 use Doctrine\ORM\QueryBuilder;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 
 interface ReportInterface
 {
-    public function buildQuery(ObjectManager $manager, $visitClass, $options = array());
+    public function buildQuery(QueryBuilder $queryBuilder, array $options);
 
-    public function runReport(QueryBuilder $queryBuilder, array $options = array());
-
-    public function getClass(array $options = array());
+    public function setDefaultOptions(OptionsResolver $resolver);
 
     public function getName();
 }

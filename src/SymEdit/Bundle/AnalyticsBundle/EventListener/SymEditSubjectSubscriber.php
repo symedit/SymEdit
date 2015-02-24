@@ -15,10 +15,10 @@ use SymEdit\Bundle\AnalyticsBundle\Analytics\Tracker;
 use SymEdit\Bundle\CoreBundle\Event\Events;
 use SymEdit\Bundle\CoreBundle\Event\SubjectEvent;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
-use Symfony\Component\HttpKernel\Event\FilterControllerEvent;
-use Symfony\Component\HttpKernel\HttpKernelInterface;
-use Symfony\Component\HttpKernel\KernelEvents;
 
+/**
+ * @TODO: Move to corebundle, this doesn't really need to be here.
+ */
 class SymEditSubjectSubscriber implements EventSubscriberInterface
 {
     protected $tracker;
@@ -31,35 +31,11 @@ class SymEditSubjectSubscriber implements EventSubscriberInterface
     public function onSymEditSubjectSet(SubjectEvent $event)
     {
         $subject = $event->getSubject();
-
-        if (is_object($subject) && !$subject instanceof \Traversable) {
-            $this->tracker->track($subject);
-        }
-    }
-
-    public function onKernelController(FilterControllerEvent $event)
-    {
-        if ($event->getRequestType() !== HttpKernelInterface::MASTER_REQUEST) {
-            return;
-        }
-
-        $request = $event->getRequest();
-        $default = $request->get('_default_route', false);
-        $symedit = $request->get('_symedit', array());
-        $nonController = !isset($symedit['page_controller']);
-        $page = $request->get('_page', null);
-
-        if (($page !== null && $page->getId() !== null) && ($default || $nonController)) {
-            $this->tracker->track($page);
-        }
+        $this->tracker->track($subject);
     }
 
     public static function getSubscribedEvents()
     {
-        $events = array(
-            KernelEvents::CONTROLLER => 'onKernelController',
-        );
-
         if (class_exists('SymEdit\Bundle\CoreBundle\Event\Events')) {
             $events[Events::SUBJECT_SET] = 'onSymEditSubjectSet';
         }

@@ -14,7 +14,7 @@ namespace SymEdit\Bundle\AnalyticsBundle\Model;
 class Visit
 {
     private $id;
-    private $class;
+    private $model;
     private $identifier;
     private $visitDate;
 
@@ -28,14 +28,14 @@ class Visit
         return $this->id;
     }
 
-    public function getClass()
+    public function getModel()
     {
-        return $this->class;
+        return $this->model;
     }
 
-    public function setClass($class)
+    public function setModel($model)
     {
-        $this->class = $class;
+        $this->model = $model;
 
         return $this;
     }

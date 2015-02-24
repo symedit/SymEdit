@@ -11,21 +11,28 @@
 
 namespace SymEdit\Bundle\AnalyticsBundle\Report;
 
-use Doctrine\Common\Persistence\ObjectManager;
+use Doctrine\ORM\QueryBuilder;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class PopularReport extends AbstractReport
 {
-    public function buildQuery(ObjectManager $manager, $visitClass, $options = array())
+    public function buildQuery(QueryBuilder $queryBuilder, array $options)
     {
-        $max = $this->getOption($options, 'max', 5);
-
-        return parent::buildQuery($manager, $visitClass, $options)
-                ->orderBy('visits', 'DESC')
-                ->setMaxResults($max);
+        return parent::buildQuery($queryBuilder, $options)
+            ->orderBy('visits', 'DESC')
+            ->setMaxResults($options['max'])
+        ;
     }
 
     public function getName()
     {
         return 'popular';
+    }
+
+    public function setDefaultOptions(OptionsResolver $resolver)
+    {
+        $resolver->setDefaults(array(
+            'max' => 5,
+        ));
     }
 }

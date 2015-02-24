@@ -17,36 +17,27 @@ class Recorder
 {
     protected $manager;
     protected $visitClass;
+    protected $models;
     protected $visits = array();
 
-    public function __construct(ObjectManager $manager, $class)
+    public function __construct(ObjectManager $manager, $class, array $models)
     {
         $this->manager = $manager;
         $this->visitClass = $class;
+        $this->models = $models;
     }
 
-    public function record($className, $identifier)
+    public function record($model, $identifier)
     {
-        if (!$this->classExists($className)) {
+        if (!isset($this->models[$model])) {
             return;
         }
 
         $visit = new $this->visitClass();
-        $visit->setClass($className);
+        $visit->setModel($model);
         $visit->setIdentifier($identifier);
 
         $this->visits[] = $visit;
-    }
-
-    protected function classExists($className)
-    {
-        try {
-            $this->manager->getClassMetadata($className);
-        } catch (\Exception $e) {
-            return false;
-        }
-
-        return true;
     }
 
     public function flush()

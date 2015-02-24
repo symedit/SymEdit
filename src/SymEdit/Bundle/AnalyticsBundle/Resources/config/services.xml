@@ -19,18 +19,22 @@
         <service id="symedit_analytics.tracker" class="%symedit_analytics.tracker.class%">
             <argument type="service" id="symedit_analytics.entity_manager" />
             <argument>%symedit.model.visit.class%</argument>
+            <argument>%symedit_analytics.tracker.models%</argument>
         </service>
 
         <!-- Recorder -->
         <service id="symedit_analytics.recorder" class="%symedit_analytics.recorder.class%">
             <argument type="service" id="symedit_analytics.entity_manager" />
             <argument>%symedit.model.visit.class%</argument>
+            <argument>%symedit_analytics.tracker.models%</argument>
         </service>
 
         <!-- Reporter -->
         <service id="symedit_analytics.reporter" class="%symedit_analytics.reporter.class%">
             <argument type="service" id="symedit_analytics.entity_manager" />
             <argument>%symedit.model.visit.class%</argument>
+            <argument>%symedit_analytics.tracker.models%</argument>
+            <!-- Replaced by Compiler Pass -->
             <argument type="collection" />
         </service>
 
@@ -43,6 +47,7 @@
         <!-- Twig Extension -->
         <service id="symedit_analytics.twig.extension" class="%symedit_analytics.twig.extension.class%">
             <argument type="service" id="symedit_analytics.tracker" />
+            <argument type="service" id="symedit_analytics.reporter" />
             <tag name="twig.extension" />
         </service>
     </services>

@@ -39,6 +39,11 @@ symedit_seo:
             description:
                 - model.getDescription()
 
+symedit_analytics:
+    tracker:
+        page: %symedit.model.page.class%
+        post: %symedit.model.post.class%
+
 symedit_events:
     classes:
         event:

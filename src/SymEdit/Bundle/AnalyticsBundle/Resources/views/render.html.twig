@@ -1,7 +1,7 @@
 <script type="text/javascript">
     var visits = [];
 {% for visit in visits %}
-    visits.push({{ { c: visit.class, i: visit.identifier } | json_encode | raw }});
+    visits.push({{ { m: visit.model, i: visit.identifier } | json_encode | raw }});
 {% endfor %}
     $.post('{{ path('symedit_analytics_record') }}', {'visits': visits});
 </script>

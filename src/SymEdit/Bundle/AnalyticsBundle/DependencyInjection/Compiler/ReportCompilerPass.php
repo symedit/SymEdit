@@ -36,6 +36,6 @@ class ReportCompilerPass implements CompilerPassInterface
         }
 
         $reporterDefinition = $container->getDefinition('symedit_analytics.reporter');
-        $reporterDefinition->replaceArgument(2, $reports);
+        $reporterDefinition->replaceArgument(3, $reports);
     }
 }

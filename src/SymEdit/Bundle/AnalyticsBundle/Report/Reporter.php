@@ -12,6 +12,8 @@
 namespace SymEdit\Bundle\AnalyticsBundle\Report;
 
 use Doctrine\Common\Persistence\ObjectManager;
+use SymEdit\Bundle\AnalyticsBundle\Exception\InvalidReportException;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class Reporter
 {
@@ -19,25 +21,60 @@ class Reporter
     protected $visitClass;
     protected $reports;
 
-    public function __construct(ObjectManager $manager, $visitClass, array $reports = array())
+    public function __construct(ObjectManager $manager, $visitClass, array $models, array $reports = array())
     {
         $this->manager = $manager;
         $this->visitClass = $visitClass;
+        $this->models = $models;
         $this->reports = $reports;
     }
 
     public function runReport($name, array $options = array())
     {
         $report = $this->getReport($name);
-        $queryBuilder = $report->buildQuery($this->manager, $this->visitClass, $options);
+        $queryBuilder = $this->manager->createQueryBuilder();
 
-        return $this->getReport($name)->runReport($queryBuilder, $options);
+        // Build Options
+        $options = $this->buildOptions($report, $options);
+
+        // Build the rest of the query
+        $report->buildQuery($queryBuilder, $options);
+
+        return $queryBuilder->getQuery()->getResult();
     }
 
+    protected function buildOptions(ReportInterface $report, array $options)
+    {
+        $resolver = new OptionsResolver();
+        $report->setDefaultOptions($resolver);
+
+        // Set up some global defaults
+        $resolver->setRequired(array(
+            'model',
+        ));
+
+        $options = $resolver->resolve($options);
+
+        if (!isset($this->models[$options['model']])) {
+            throw new \InvalidArgumentException(sprintf('Model "%s" does not exist', $options['model']));
+        }
+
+        // Set model class name
+        $options['visitClass'] = $this->visitClass;
+        $options['class'] = $this->models[$options['model']];
+
+        return $options;
+    }
+
+    /**
+     * @param string $name
+     * @return ReportInterface
+     * @throws \InvalidArgumentException
+     */
     protected function getReport($name)
     {
         if (!array_key_exists($name, $this->reports)) {
-            throw new \InvalidArgumentException(sprintf('Could not find report "%s".', $name));
+            throw new InvalidReportException(sprintf('Could not find report "%s".', $name));
         }
 
         return $this->reports[$name];

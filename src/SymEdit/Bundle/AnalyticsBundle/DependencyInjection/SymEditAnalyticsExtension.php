@@ -33,6 +33,13 @@ class SymEditAnalyticsExtension extends SymEditResourceExtension
         );
     }
 
+    public function process(array $config, ContainerBuilder $container)
+    {
+        $container->setParameter('symedit_analytics.tracker.models', $config['tracker']);
+
+        return $config;
+    }
+
     public function getAlias()
     {
         return 'symedit_analytics';

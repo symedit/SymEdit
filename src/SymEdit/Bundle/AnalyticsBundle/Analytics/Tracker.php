@@ -18,13 +18,16 @@ class Tracker
 {
     protected $manager;
     protected $visitClass;
+    protected $models;
+    protected $modelsByClass;
     protected $propertyAccess;
     protected $trackedVisits = array();
 
-    public function __construct(ObjectManager $manager, $class)
+    public function __construct(ObjectManager $manager, $class, array $models)
     {
         $this->manager = $manager;
         $this->visitClass = $class;
+        $this->models = $models;
         $this->propertyAccess = PropertyAccess::createPropertyAccessor();
     }
 
@@ -39,10 +42,16 @@ class Tracker
 
     public function track($object)
     {
-        $class = get_class($object);
+        // Get class
+        $className = get_class($object);
+
+        // Check if trackable
+        if (($modelName = $this->getModelName($className)) === null) {
+            return;
+        }
 
         // No identifier
-        if (($identifier = $this->getIdentifier($class)) === false) {
+        if (($identifier = $this->getIdentifier($className)) === false) {
             return;
         }
 
@@ -53,10 +62,19 @@ class Tracker
         }
 
         $visit = new $this->visitClass();
-        $visit->setClass(get_class($object));
+        $visit->setModel($modelName);
         $visit->setIdentifier($identifierValue);
 
         $this->trackedVisits[] = $visit;
+    }
+
+    protected function getModelName($className)
+    {
+        if ($this->modelsByClass === null) {
+            $this->modelsByClass = array_flip($this->models);
+        }
+
+        return isset($this->modelsByClass[$className]) ? $this->modelsByClass[$className] : null;
     }
 
     public function getTrackedVisits()
