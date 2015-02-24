@@ -42,6 +42,11 @@ class Tracker
 
     public function track($object)
     {
+        // Make sure it's an object.
+        if (!is_object($object)) {
+            return;
+        }
+
         // Get class
         $className = get_class($object);
 
