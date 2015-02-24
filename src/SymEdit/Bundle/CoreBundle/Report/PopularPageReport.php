@@ -27,7 +27,7 @@ class PopularPageReport extends PopularReport
     public function setDefaultOptions(OptionsResolver $resolver)
     {
         parent::setDefaultOptions($resolver);
-        
+
         $resolver->setDefaults(array(
             'model' => 'page',
         ));

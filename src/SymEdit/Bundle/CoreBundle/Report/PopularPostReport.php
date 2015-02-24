@@ -35,7 +35,7 @@ class PopularPostReport extends PopularReport
     public function setDefaultOptions(OptionsResolver $resolver)
     {
         parent::setDefaultOptions($resolver);
-        
+
         $resolver->setDefaults(array(
             'published' => true,
             'model' => 'post',
