@@ -12,11 +12,14 @@
 
 {% block blog_content %}
 {{ parent() }}
-{% if posts.haveToPaginate %}
-    <div class="text-align">
-        <div class="paginator">
-            {{ pagerfanta(posts, null, {'routeName': 'blog_archive'}) }}
-        </div>
-    </div>
-{% endif %}
+
+    {% block blog_pagination %}
+        {% if posts.haveToPaginate %}
+            <div class="text-align">
+                <div class="paginator">
+                    {{ pagerfanta(posts, null, {'routeName': 'blog_archive'}) }}
+                </div>
+            </div>
+        {% endif %}
+    {% endblock %}
 {% endblock %}

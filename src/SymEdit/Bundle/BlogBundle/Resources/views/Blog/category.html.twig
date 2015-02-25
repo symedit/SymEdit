@@ -19,5 +19,5 @@ Category &raquo; {{ category.title }}
         There are currently no posts for this category.
     {% endif %}
 
-    {{ pagerfanta(posts) }}
+    {{ block('blog_pagination') }}
 {% endblock %}
