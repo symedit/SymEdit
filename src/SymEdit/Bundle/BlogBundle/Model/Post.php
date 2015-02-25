@@ -76,6 +76,7 @@ class Post implements PostInterface
     {
         $this->setCreatedAt(new \DateTime());
         $this->setUpdatedAt(new \DateTime());
+        $this->setPublishedAt(new \DateTime());
         $this->setStatus(self::DRAFT);
         $this->categories = new ArrayCollection();
     }

@@ -18,11 +18,6 @@ use SymEdit\Bundle\BlogBundle\Model\PostInterface;
 
 class PostRepository extends EntityRepository
 {
-    public function findAllOrdered()
-    {
-        return $this->getRecentQuery()->getResult();
-    }
-
     public function findPublished()
     {
         return $this->findBy(array(
@@ -73,13 +68,31 @@ class PostRepository extends EntityRepository
         return $recent;
     }
 
+    public function getCreatedAtPaginator()
+    {
+        return $this->getPaginator(
+            $this->getCreatedAtQueryBuilder()
+        );
+    }
+
+    /**
+     * @return QueryBuilder
+     */
+    public function getCreatedAtQueryBuilder()
+    {
+        return parent::getQueryBuilder()
+            ->orderBy(sprintf('%s.createdAt', $this->getAlias()), 'DESC')
+        ;
+    }
+
     /**
      * @return QueryBuilder
      */
     public function getQueryBuilder()
     {
         return parent::getQueryBuilder()
-                   ->orderBy(sprintf('%s.createdAt', $this->getAlias()), 'DESC');
+            ->orderBy(sprintf('%s.publishedAt', $this->getAlias()), 'DESC')
+        ;
     }
 
     public function getCollectionQueryBuilder()

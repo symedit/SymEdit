@@ -4,6 +4,7 @@ admin_post:
     defaults:
         _controller: symedit.controller.post:indexAction
         _sylius:
+            method: getCreatedAtPaginator
             template: @SymEdit/Admin/Post/index.html.twig
             paginate: 10
             sorting:
