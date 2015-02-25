@@ -181,7 +181,16 @@ class RouteProvider extends DoctrineProvider implements RouteProviderInterface
                 );
             }
 
-            $collection->add($routeName, $storedRoutes[$routeName]);
+            $route = $storedRoutes[$routeName];
+
+            // Mark the index route
+            if ($route->getPath() === '/') {
+                $route->addDefaults(array(
+                    '_controller_index' => true,
+                ));
+            }
+
+            $collection->add($routeName, $route);
         }
 
         // Clone the collection so we aren't altering the stored routes
