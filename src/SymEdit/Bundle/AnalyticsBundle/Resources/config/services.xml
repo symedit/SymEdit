@@ -8,7 +8,6 @@
         <parameter key="symedit_analytics.tracker.class">SymEdit\Bundle\AnalyticsBundle\Analytics\Tracker</parameter>
         <parameter key="symedit_analytics.recorder.class">SymEdit\Bundle\AnalyticsBundle\Analytics\Recorder</parameter>
         <parameter key="symedit_analytics.reporter.class">SymEdit\Bundle\AnalyticsBundle\Report\Reporter</parameter>
-        <parameter key="symedit_analytics.event_listener.symedit_subject.class">SymEdit\Bundle\AnalyticsBundle\EventListener\SymEditSubjectSubscriber</parameter>
         <parameter key="symedit_analytics.twig.extension.class">SymEdit\Bundle\AnalyticsBundle\Twig\AnalyticsExtension</parameter>
     </parameters>
 
@@ -36,12 +35,6 @@
             <argument>%symedit_analytics.tracker.models%</argument>
             <!-- Replaced by Compiler Pass -->
             <argument type="collection" />
-        </service>
-
-        <!-- SymEdit Subject Listener -->
-        <service id="symedit_analytics.event_listener.symedit_subject" class="%symedit_analytics.event_listener.symedit_subject.class%">
-            <argument type="service" id="symedit_analytics.tracker" />
-            <tag name="kernel.event_subscriber" />
         </service>
 
         <!-- Twig Extension -->

@@ -10,6 +10,7 @@
         <parameter key="symedit.listener.exception.class">SymEdit\Bundle\CoreBundle\EventListener\ExceptionListener</parameter>
 
         <parameter key="symedit.event_subscriber.breadcrumb.class">SymEdit\Bundle\CoreBundle\EventListener\Subscriber\BreadcrumbSubscriber</parameter>
+        <parameter key="symedit.event_subscriber.analytics.class">SymEdit\Bundle\CoreBundle\EventListener\Subscriber\AnalyticsSubscriber</parameter>
         <parameter key="symedit.event_subscriber.page.class">SymEdit\Bundle\CoreBundle\EventListener\Subscriber\PageSubscriber</parameter>
         <parameter key="symedit.event_subscriber.post.class">SymEdit\Bundle\CoreBundle\EventListener\Subscriber\PostSubscriber</parameter>
         <parameter key="symedit.event_subscriber.contact.class">SymEdit\Bundle\CoreBundle\EventListener\Subscriber\ContactSubscriber</parameter>
@@ -38,6 +39,12 @@
         <!-- Breadcrumb Listener -->
         <service id="symedit.event_subscriber.breadcrumb" class="%symedit.event_subscriber.breadcrumb.class%">
             <argument type="service" id="symedit.breadcrumbs" />
+            <tag name="kernel.event_subscriber" />
+        </service>
+
+        <!-- Analytics Subscriber -->
+        <service id="symedit.event_subscriber.analytics" class="%symedit.event_subscriber.analytics.class%">
+            <argument type="service" id="symedit_analytics.tracker" />
             <tag name="kernel.event_subscriber" />
         </service>
 

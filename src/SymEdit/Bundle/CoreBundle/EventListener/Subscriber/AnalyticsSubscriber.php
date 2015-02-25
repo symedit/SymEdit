@@ -9,17 +9,14 @@
  * file that was distributed with this source code.
  */
 
-namespace SymEdit\Bundle\AnalyticsBundle\EventListener;
+namespace SymEdit\Bundle\CoreBundle\EventListener\Subscriber;
 
 use SymEdit\Bundle\AnalyticsBundle\Analytics\Tracker;
 use SymEdit\Bundle\CoreBundle\Event\Events;
 use SymEdit\Bundle\CoreBundle\Event\SubjectEvent;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
-/**
- * @TODO: Move to corebundle, this doesn't really need to be here.
- */
-class SymEditSubjectSubscriber implements EventSubscriberInterface
+class AnalyticsSubscriber implements EventSubscriberInterface
 {
     protected $tracker;
 
@@ -28,7 +25,7 @@ class SymEditSubjectSubscriber implements EventSubscriberInterface
         $this->tracker = $tracker;
     }
 
-    public function onSymEditSubjectSet(SubjectEvent $event)
+    public function onSubjectSet(SubjectEvent $event)
     {
         $subject = $event->getSubject();
         $this->tracker->track($subject);
@@ -36,10 +33,8 @@ class SymEditSubjectSubscriber implements EventSubscriberInterface
 
     public static function getSubscribedEvents()
     {
-        if (class_exists('SymEdit\Bundle\CoreBundle\Event\Events')) {
-            $events[Events::SUBJECT_SET] = 'onSymEditSubjectSet';
-        }
-
-        return $events;
+        return array(
+            Events::SUBJECT_SET => 'onSubjectSet',
+        );
     }
 }
