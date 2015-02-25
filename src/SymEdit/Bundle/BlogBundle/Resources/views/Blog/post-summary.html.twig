@@ -3,7 +3,7 @@
         <a href="{{ path('blog_slug_view', {slug: post.slug}) }}">{{ post.title }}</a>
         <small>
             Posted by {{ post.author.profile.fullname }}
-            on {{ post.createdAt|date('F j, Y') }}
+            on {{ post.publishedAt|date('F j, Y') }}
         </small>
     </h3>
 

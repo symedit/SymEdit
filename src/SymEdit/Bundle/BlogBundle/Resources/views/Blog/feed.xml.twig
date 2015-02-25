@@ -18,7 +18,7 @@
             {%- if post.categories|length > 0 %}
             <category>{{ post.categories|join(', ') }}</category>
             {%- endif %}
-            <pubDate>{{ post.createdAt|date('r') }}</pubDate>
+            <pubDate>{{ post.publishedAt|date('r') }}</pubDate>
         </item>
         {%- endfor %}
     </channel>
