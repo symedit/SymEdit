@@ -43,6 +43,7 @@ symedit_analytics:
     tracker:
         page: %symedit.model.page.class%
         post: %symedit.model.post.class%
+        category: %symedit.model.category.class%
 
 symedit_events:
     classes:
