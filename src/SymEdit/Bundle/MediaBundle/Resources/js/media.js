@@ -71,11 +71,14 @@ jQuery(function($) {
     {
         var $selected = getModal().find('input[name=symedit-media-choose]:checked');
 
-        if ($selected.size()) {
-            getForm().val($selected.val());
+        // Hide modal regardless
+        getModal().modal('hide');
+
+        if (!$selected.size()) {
+            return;
         }
 
-        getModal().modal('hide');
+        getForm().val($selected.val());
         getContainer().addClass('has-data').removeClass('no-data');
         getContainer().find('> img').attr('src', $selected.data('preview'));
     }
