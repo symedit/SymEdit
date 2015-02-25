@@ -23,6 +23,8 @@ blog_rss:
 
 blog_archive:
     pattern: /archive/{page}
+    requirements:
+        page: \d+
     defaults:
         _sylius:
             paginate: "#blog.max_posts#"
