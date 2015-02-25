@@ -3,6 +3,13 @@ SymEdit Analytics Bundle
 
 Track your Doctrine Entities and create reports:
 
+```yaml
+symedit_analytics:
+    tracker:
+        post: SymEdit\Bundle\BlogBundle\Model\Post
+        category: SymEdit\Bundle\BlogBundle\Model\Category
+```
+
 ```php
 // Get an entity
 $post = $repository->find(5);
@@ -24,7 +31,8 @@ Run reports:
 $reporter = $this->get('symedit_analytics.reporter');
 
 $popularPosts = $reporter->runReport('popular', array(
-    'class' => 'SymEdit\Bundle\BlogBundle\Model\Post',
+    'model' => 'post',
+    'max' => 10,
 ));
 ```
 
@@ -34,16 +42,19 @@ Creating your own reports:
 ```php
 class MyReport extends AbstractReport
 {
-    public function buildQuery(QueryBuilder $queryBuilder, $visitClass, array $options = array())
+    public function buildQuery(QueryBuilder $queryBuilder, array $options = array())
     {
-        return parent::buildQuery($queryBuilder, $visitClass, $options)
+        return parent::buildQuery($queryBuilder, $options)
             ->andWhere('c.status = :status')
             ->setParameter('status', Post::STATUS_PUBLISHED);
     }
 
-    public function getClass()
+    public function setDefaultOptions(OptionsResolver $resolver)
     {
-        return 'SymEdit\Bundle\BlogBundle\Model\Post';
+        $resolver->setDefaults(array(
+            'published' => false,
+            'range' => (new \DateTime)->modify('1 week ago'),
+        ));
     }
 
     public function getName()
@@ -66,7 +77,7 @@ And then use your report:
 ```php
 $reporter = $this->get('symedit_analytics.reporter');
 
-$result = $reporter->runReport('my_report');
+$result = $reporter->runReport('my_report', array(/*...*/));
 ```
 
 Unless you change the buildQuery substantially your results will look something
@@ -80,4 +91,13 @@ array(
     ),
     ...
 )
+```
+
+You can also run reports in twig:
+
+```jinja
+{% set report = symedit_analytics_report('popular', { model: 'post' }) %}
+{% for result in report %}
+    {{ object.title }} - {{ visits }}
+{% endfor %}
 ```
