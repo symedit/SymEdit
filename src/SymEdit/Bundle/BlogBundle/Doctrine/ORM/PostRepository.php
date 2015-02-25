@@ -14,7 +14,7 @@ namespace SymEdit\Bundle\BlogBundle\Doctrine\ORM;
 use Doctrine\ORM\QueryBuilder;
 use Sylius\Bundle\ResourceBundle\Doctrine\ORM\EntityRepository;
 use SymEdit\Bundle\BlogBundle\Model\CategoryInterface;
-use SymEdit\Bundle\BlogBundle\Model\Post;
+use SymEdit\Bundle\BlogBundle\Model\PostInterface;
 
 class PostRepository extends EntityRepository
 {
@@ -26,17 +26,18 @@ class PostRepository extends EntityRepository
     public function findPublished()
     {
         return $this->findBy(array(
-            'status' => Post::PUBLISHED,
+            'status' => PostInterface::PUBLISHED,
         ));
     }
 
     public function findByCategoryQueryBuilder(CategoryInterface $category)
     {
         return $this->getQueryBuilder()
-                  ->where(':category MEMBER OF o.categories')
-                  ->andWhere('o.status = :status')
-                  ->setParameter('category', $category)
-                  ->setParameter('status', Post::PUBLISHED);
+            ->where(':category MEMBER OF o.categories')
+            ->andWhere('o.status = :status')
+            ->setParameter('category', $category)
+            ->setParameter('status', PostInterface::PUBLISHED)
+        ;
     }
 
     public function findByCategory(CategoryInterface $category)
@@ -52,7 +53,7 @@ class PostRepository extends EntityRepository
     public function getRecent($max = 3)
     {
         $criteria = array(
-            'status' => Post::PUBLISHED,
+            'status' => PostInterface::PUBLISHED,
         );
 
         return $this->findBy($criteria, null, $max);

@@ -15,22 +15,77 @@ use Symfony\Component\Security\Core\User\UserInterface;
 
 interface PostInterface
 {
+    const DRAFT = 0;
+    const PUBLISHED = 1;
+
+    /**
+     * Get Post ID
+     *
+     * @return integer
+     */
     public function getId();
 
+    /**
+     * Set Post Title
+     *
+     * @param string $title
+     */
     public function setTitle($title);
+
+    /**
+     * Get Post Title
+     *
+     * @return string
+     */
     public function getTitle();
 
+    /**
+     * Set Post Slug
+     *
+     * @param string $slug
+     */
     public function setSlug($slug);
+
+    /**
+     * Get Post Slug
+     *
+     * @return string
+     */
     public function getSlug();
 
+    /**
+     * Set Post Content
+     *
+     * @param string $content
+     */
     public function setContent($content);
+
+    /**
+     * Get Post Content
+     *
+     * @return string
+     */
     public function getContent();
 
+    /**
+     * Set Post Author
+     *
+     * @param UserInterface $author
+     */
     public function setAuthor(UserInterface $author = null);
+
+    /**
+     * Get Post Author
+     *
+     * @return UserInterface
+     */
     public function getAuthor();
 
     public function setCreatedAt($createdAt);
     public function getCreatedAt();
+
+    public function setPublishedAt($publishedAt);
+    public function getPublishedAt();
 
     public function setSummary($summary);
     public function getSummary();

@@ -11,9 +11,9 @@
 
 namespace SymEdit\Bundle\BlogBundle\Form\Type;
 
+use SymEdit\Bundle\BlogBundle\Model\PostInterface;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
-use SymEdit\Bundle\BlogBundle\Model\Post;
 
 class PostType extends AbstractType
 {
@@ -37,8 +37,8 @@ class PostType extends AbstractType
             ))
             ->add('status', 'choice', array(
                 'choices' => array(
-                    Post::DRAFT => 'Draft',
-                    Post::PUBLISHED => 'Published',
+                    PostInterface::DRAFT => 'Draft',
+                    PostInterface::PUBLISHED => 'Published',
                 ),
                 'label' => 'symedit.form.post.status',
             ))

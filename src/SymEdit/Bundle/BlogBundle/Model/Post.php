@@ -17,9 +17,6 @@ use Symfony\Component\Security\Core\User\UserInterface;
 
 class Post implements PostInterface
 {
-    const DRAFT = 0;
-    const PUBLISHED = 1;
-
     /**
      * @var integer $id
      */
@@ -229,6 +226,18 @@ class Post implements PostInterface
     public function getUpdatedAt()
     {
         return $this->updatedAt;
+    }
+
+    public function getPublishedAt()
+    {
+        return $this->publishedAt;
+    }
+
+    public function setPublishedAt($publishedAt)
+    {
+        $this->publishedAt = $publishedAt;
+
+        return $this;
     }
 
     /**

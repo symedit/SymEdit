@@ -13,7 +13,7 @@ namespace SymEdit\Bundle\CoreBundle\Report;
 
 use Doctrine\ORM\QueryBuilder;
 use SymEdit\Bundle\AnalyticsBundle\Report\PopularReport;
-use SymEdit\Bundle\BlogBundle\Model\Post;
+use SymEdit\Bundle\BlogBundle\Model\PostInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class PopularPostReport extends PopularReport
@@ -25,7 +25,7 @@ class PopularPostReport extends PopularReport
         if ($options['published']) {
             $qb
                 ->andWhere('c.status = :status')
-                ->setParameter('status', Post::PUBLISHED)
+                ->setParameter('status', PostInterface::PUBLISHED)
             ;
         }
 
