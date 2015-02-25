@@ -34,6 +34,7 @@ class Configuration implements ConfigurationInterface
             ->children()
                 ->scalarNode('driver')->cannotBeEmpty()->defaultValue('doctrine/orm')->end()
                 ->arrayNode('tracker')
+                    ->useAttributeAsKey('model')
                     ->prototype('scalar')->end()
                 ->end()
             ->end()
