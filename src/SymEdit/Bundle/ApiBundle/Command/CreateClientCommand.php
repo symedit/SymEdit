@@ -45,6 +45,12 @@ class CreateClientCommand extends ContainerAwareCommand
                 InputOption::VALUE_REQUIRED | InputOption::VALUE_IS_ARRAY,
                 'Sets allowed grant type for client.'
             )
+            ->addOption(
+                'json',
+                null,
+                InputOption::VALUE_NONE,
+                'Output data in JSON format'
+            )
             ->setHelp(<<<EOT
 The <info>%command.name%</info>command creates a new client.
 <info>php %command.full_name% [--redirect-uri=...] [--grant-type=...] name</info>
@@ -64,6 +70,18 @@ EOT
         $client->setRedirectUris($input->getOption('redirect-uri'));
         $client->setAllowedGrantTypes($input->getOption('grant-type'));
         $clientManager->updateClient($client);
+
+        // Output JSON so something can consume command output
+        if ($input->getOption('json')) {
+            $output->writeln(
+                json_encode(array(
+                    'public_id' => $client->getPublicId(),
+                    'secret' => $client->getSecret(),
+                ), JSON_PRETTY_PRINT)
+            );
+
+            return;
+        }
 
         $output->writeln(
             sprintf(
