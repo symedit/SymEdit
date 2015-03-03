@@ -7,6 +7,7 @@ admin_post:
             method: getCreatedAtPaginator
             template: @SymEdit/Admin/Post/index.html.twig
             paginate: 10
+            sortable: true
             sorting:
                 createdAt: desc
 
