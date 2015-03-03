@@ -42,6 +42,7 @@ abstract class MediaController extends ResourceController
             $this->getManager()->flush($media);
 
             return new JsonResponse(array(
+                'id' => $media->getId(),
                 'filelink' => $media->getWebPath(),
             ));
         } catch (\Exception $ex) {

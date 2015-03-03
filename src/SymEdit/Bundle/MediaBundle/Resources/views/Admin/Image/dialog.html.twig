@@ -2,20 +2,46 @@
     <div class="modal-content">
         <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-            <h4 class="modal-title">Choose Image</h4>
+            <ul class="nav nav-pills">
+                <li role="presentation" class="active">
+                    <a href="#symedit-media-choose-tab" data-toggle="tab">
+                        Choose Image
+                    </a>
+                </li>
+
+                <li role="presentation">
+                    <a href="#symedit-media-upload-tab" data-toggle="tab">
+                        Upload Image
+                    </a>
+                </li>
+            </ul>
+
         </div>
 
         <div class="modal-body">
-            <div class="row">
-                <form>
-                    {% for image in images %}
-                        <label class="col-sm-2">
-                            <input type="radio" data-preview="{{ image | imagine_filter('gallery') }}" value="{{ image.id }}" name="symedit-media-choose" class="hidden" />
+            <div class="tab-content">
+                <div role="tabpanel" class="tab-pane active" id="symedit-media-choose-tab">
+                    <div class="row">
+                        <form>
+                            {% for image in images %}
+                                <label class="col-sm-2">
+                                    <input type="radio" data-preview="{{ image | imagine_filter('gallery') }}" value="{{ image.id }}" name="symedit-media-choose" class="hidden" />
 
-                            <img src="{{ image | imagine_filter('symedit_96x96') }}">
-                        </label>
-                    {% endfor %}
-                </form>
+                                    <img src="{{ image | imagine_filter('symedit_96x96') }}">
+                                </label>
+                            {% endfor %}
+                        </form>
+                    </div>
+                </div>
+
+                <div role="tabpanel" class="tab-pane" id="symedit-media-upload-tab">
+                    <form class="dropzone" id="symedit-media-dropzone" action="{{ path('admin_image_quick_upload') }}">
+                        <div id="symedit-media-preview" class="hidden"></div>
+                        <div class="fallback">
+                            <input type="file" name="file">
+                        </div>
+                    </form>
+                </div>
             </div>
         </div>
 

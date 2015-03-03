@@ -4,6 +4,7 @@ jQuery(function($) {
 
     var modalId = 'symedit-media-choose-modal';
     var $current;
+    var dropzone;
 
     $('[data-toggle="symedit-choose-image"]').click(function() {
 
@@ -19,6 +20,12 @@ jQuery(function($) {
             if (currentValue) {
                 $(this).find('input[name=symedit-media-choose][value=' + currentValue + ']').prop('checked', 'checked');
             }
+
+            // Setup dropzone
+            dropzone = new Dropzone('#symedit-media-dropzone', {
+                previewsContainer: '#symedit-media-preview'
+            });
+            dropzone.on('success', uploadImage);
 
             $(this).modal();
         });
@@ -63,8 +70,20 @@ jQuery(function($) {
         getForm().val('');
         getModal().modal('hide');
         getContainer().addClass('no-data').removeClass('has-data');
+    }
 
-        console.log(getContainer());
+    function uploadImage(file, response)
+    {
+        var id = response.id;
+        var path = response.filelink;
+
+        // Hide Modal
+        getModal().modal('hide');
+
+        // Set form values
+        getForm().val(id);
+        getContainer().addClass('has-data').removeClass('no-data');
+        getContainer().find('> img').attr('src', path);
     }
 
     function chooseImage()
