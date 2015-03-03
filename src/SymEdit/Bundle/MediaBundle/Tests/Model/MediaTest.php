@@ -16,6 +16,13 @@ use SymEdit\Bundle\MediaBundle\Tests\TestCase;
 
 class MediaTest extends TestCase
 {
+    protected $file;
+
+    public function setUp()
+    {
+        $this->file = tempnam(sys_get_temp_dir(), 'symedit_media');
+    }
+
     /**
      * @return Media
      */
@@ -63,13 +70,17 @@ class MediaTest extends TestCase
     }
 
     /**
-     * @return \Symfony\Component\HttpFoundation\File\UploadedFile Mock Uploaded File
+     * @return \Symfony\Component\HttpFoundation\File\UploadedFile Uploaded File
      */
     protected function createFile()
     {
         return $this->getMockBuilder('Symfony\Component\HttpFoundation\File\UploadedFile', array('guessExtension'))
-                     ->disableOriginalConstructor()
-                     ->getMock();
+            ->enableOriginalConstructor()
+            ->setConstructorArgs(array(
+               $this->file,
+               'media_test',
+            ))
+            ->getMock();
     }
 
     public function testHasFile()

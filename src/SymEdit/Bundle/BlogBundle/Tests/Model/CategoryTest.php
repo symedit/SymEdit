@@ -18,6 +18,14 @@ use SymEdit\Bundle\BlogBundle\Tests\TestCase;
 
 class CategoryTest extends TestCase
 {
+    protected function createPost($status = Post::DRAFT)
+    {
+        $post = new Post();
+        $post->setStatus($status);
+
+        return $post;
+    }
+
     /**
      * @return Category
      */
@@ -25,9 +33,9 @@ class CategoryTest extends TestCase
     {
         $category = new Category();
         $category->setPosts(new ArrayCollection(array(
-            (new Post())->setStatus(Post::PUBLISHED),
-            (new Post())->setStatus(Post::DRAFT),
-            (new Post())->setStatus(Post::PUBLISHED),
+            $this->createPost(Post::PUBLISHED),
+            $this->createPost(Post::DRAFT),
+            $this->createPost(Post::PUBLISHED),
         )));
 
         return $category;
@@ -102,7 +110,7 @@ class CategoryTest extends TestCase
     public function testAddPost()
     {
         $category = $this->getCategory();
-        $post = new Post();
+        $post = $this->createPost();
 
         $category->addPost($post);
 
@@ -112,7 +120,7 @@ class CategoryTest extends TestCase
     public function testRemovePost()
     {
         $category = $this->getCategory();
-        $post = new Post();
+        $post = $this->createPost();
 
         $category->addPost($post);
         $category->removePost($post);

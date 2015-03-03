@@ -25,9 +25,7 @@ class CategoryTest extends TestCase
     {
         $category = new Category();
         $category->setPosts(new ArrayCollection(array(
-            (new Post())->setStatus(Post::PUBLISHED),
-            (new Post())->setStatus(Post::DRAFT),
-            (new Post())->setStatus(Post::PUBLISHED),
+            new Post(),
         )));
 
         return $category;
