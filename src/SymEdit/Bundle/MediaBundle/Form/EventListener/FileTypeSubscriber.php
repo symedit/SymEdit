@@ -68,11 +68,15 @@ class FileTypeSubscriber implements EventSubscriberInterface
 
     public function preSetData(FormEvent $event)
     {
-        $data   = $event->getData();
-        $form   = $event->getForm();
+        $data = $event->getData();
+        $form = $event->getForm();
+        $hasFile = $data !== null && $data->hasFile();
+
+        // Require if there is no file otherwise use the default
+        $required = $hasFile ? false : $this->options['required'];
 
         $form->add('file', 'file', array(
-            'required' => $this->options['required'],
+            'required' => $required,
             'label' => $this->options['file_label'],
             'help_block' => $this->options['file_help'],
         ));
@@ -90,7 +94,7 @@ class FileTypeSubscriber implements EventSubscriberInterface
         }
 
         // If allow remove, add the checkbox
-        if ($data !== null && $data->hasFile() && $this->options['allow_remove']) {
+        if ($hasFile && $this->options['allow_remove']) {
             $form->add('remove', 'checkbox', array(
                 'mapped' => false,
                 'required' => false,

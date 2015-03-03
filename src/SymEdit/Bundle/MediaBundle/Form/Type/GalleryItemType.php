@@ -31,8 +31,9 @@ class GalleryItemType extends AbstractType
                 'label' => 'Caption',
                 'required' => false,
             ))
-            ->add('image', 'symedit_image', array(
+            ->add('image', 'symedit_image_choose', array(
                 'show_image' => true,
+                'required' => false,
             ))
         ;
     }

@@ -9,7 +9,7 @@
         <id name="id" type="integer" column="id">
             <generator strategy="IDENTITY"/>
         </id>
-        <field name="caption" type="string" column="caption" nullable="true"/>
+        <field name="caption" type="text" column="caption" nullable="true"/>
         <field name="position" type="integer" column="position">
             <gedmo:sortable-position />
         </field>
