@@ -1,0 +1,17 @@
+language: php
+
+matrix:
+    include:
+        - php: 5.3
+        - php: 5.4
+        - php: 5.5
+        - php: 5.6
+
+install:
+    - composer --prefer-source install
+
+before_script:
+    - php app/console symedit:install --force
+
+script:
+    - phpunit
