@@ -11,7 +11,6 @@
 
 namespace SymEdit\Bundle\BlogBundle\Tests\Model;
 
-use DateTime;
 use SymEdit\Bundle\BlogBundle\Model\Category;
 use SymEdit\Bundle\BlogBundle\Model\Post;
 use SymEdit\Bundle\BlogBundle\Tests\TestCase;
@@ -88,7 +87,7 @@ class PostTest extends TestCase
     public function testUpdated()
     {
         $post = $this->getPost();
-        $updated = new DateTime();
+        $updated = new \DateTime();
         $updated->modify('+1 second');
 
         // The time it is initalized with should be less than one we just created
@@ -101,7 +100,7 @@ class PostTest extends TestCase
     public function testCreated()
     {
         $post = $this->getPost();
-        $updated = new DateTime();
+        $updated = new \DateTime();
         $updated->modify('+1 second');
 
         // The time it is initalized with should be less than one we just created
@@ -109,6 +108,23 @@ class PostTest extends TestCase
 
         $post->setCreatedAt($updated);
         $this->assertEquals($updated, $post->getCreatedAt());
+    }
+
+    public function testPublishedAt()
+    {
+        $post = $this->getPost();
+        $updated = new \DateTIme();
+        $updated->modify('+1 second');
+
+        // We are going with setting published in constructor
+        // because the doctrine timestampable doesn't trigger the "change"
+        // to published if you create it with published. It should be using
+        // the status to determine if it's published anyway
+        $this->assertNotNull($post->getPublishedAt());
+        $this->assertLessThan($updated, $post->getPublishedAt());
+
+        $post->setPublishedAt($updated);
+        $this->assertEquals($updated, $post->getPublishedAt());
     }
 
     public function testPublished()
