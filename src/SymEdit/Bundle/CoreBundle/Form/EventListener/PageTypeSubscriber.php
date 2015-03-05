@@ -35,7 +35,7 @@ class PageTypeSubscriber implements EventSubscriberInterface
         }
 
         if ($data->getHomepage()) {
-            $basicForm = $form->get('basic');
+            $basicForm = $form->has('basic') ? $form->get('basic') : $form;
             $basicForm->remove('name');
             $basicForm->remove('parent');
         }

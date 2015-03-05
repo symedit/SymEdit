@@ -16,7 +16,7 @@ use Symfony\Component\Form\FormBuilderInterface;
 
 class EventType extends AbstractType
 {
-    protected function buildBasicForm(FormBuilderInterface $builder, array $options)
+    public function buildBasicForm(FormBuilderInterface $builder, array $options)
     {
         $builder
             ->add('title', 'text', array(
@@ -47,7 +47,7 @@ class EventType extends AbstractType
         ;
     }
 
-    protected function buildDateTimeForm(FormBuilderInterface $builder, array $options)
+    public function buildDateTimeForm(FormBuilderInterface $builder, array $options)
     {
         $builder
             ->add('eventStart', 'datetime', array(
@@ -70,7 +70,7 @@ class EventType extends AbstractType
         ;
     }
 
-    protected function buildLocationForm(FormBuilderInterface $builder, array $options)
+    public function buildLocationForm(FormBuilderInterface $builder, array $options)
     {
         $builder
             ->add('address', 'text', array(
