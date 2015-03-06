@@ -58,6 +58,8 @@ symedit_widget:
     renderer:
         widget: symedit.widget.renderer.widget
     classes:
+        widget:
+            form: SymEdit\Bundle\CoreBundle\Form\Type\WidgetType
         widget_area:
             controller: SymEdit\Bundle\CoreBundle\Controller\WidgetAreaController
 

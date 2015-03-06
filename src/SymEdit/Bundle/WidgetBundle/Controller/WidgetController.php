@@ -33,7 +33,16 @@ class WidgetController extends ResourceController
 
     public function getForm($resource = null)
     {
-        return $this->createForm($this->getConfiguration()->getFormType(), $resource, array(
+        $type = $this->getConfiguration()->getFormType();
+
+        if ($this->getConfiguration()->isApiRequest()) {
+            return $this->container->get('form.factory')->createNamed('', $type, $resource, array(
+                'csrf_protection' => false,
+                'strategy' => $resource->getStrategy(),
+            ));
+        }
+
+        return $this->createForm($type, $resource, array(
             'strategy' => $resource->getStrategy(),
         ));
     }

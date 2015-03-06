@@ -28,18 +28,11 @@ class WidgetType extends AbstractType
         $this->widgetAreaClass = $widgetAreaClass;
     }
 
-    public function buildForm(FormBuilderInterface $builder, array $options)
+    public function buildBasicForm(FormBuilderInterface $builder, array $options)
     {
         $transformer = new WidgetAssociationTransformer();
 
-        $basic = $builder->create('basic', 'tab', array(
-            'label' => 'symedit.form.widget.tab.basic',
-            'icon' => 'info-sign',
-            'inherit_data' => true,
-            'data_class' => $this->widgetClass,
-        ));
-
-        $basic
+        $builder
             ->add('title', 'text', array(
                 'label' => 'symedit.form.widget.basic.title',
                 'required' => false,
@@ -70,28 +63,19 @@ class WidgetType extends AbstractType
                         'rows' => 8,
                     ),
                 ))->addModelTransformer($transformer)
-            );
+            )
+        ;
+    }
 
-        $builder->add($basic);
+    public function buildOptionsForm(FormBuilderInterface $builder, array $options)
+    {
+        $options['strategy']->buildForm($builder);
+    }
 
-        /**
-         * Build the config form from the strategy
-         */
-        $config = $builder->create('options', 'tab', array(
-            'label' => 'symedit.form.widget.tab.options',
-            'icon' => 'cog',
-        ));
-
-        $options['strategy']->buildForm($config);
-
-        /**
-         * Add to the final form if config has children
-         */
-        if ($config->count() > 0) {
-            $builder->add($config);
-        }
-
-        return $builder->getForm();
+    public function buildForm(FormBuilderInterface $builder, array $options)
+    {
+        $this->buildBasicForm($builder, $options);
+        $this->buildOptionsForm($builder, $options);
     }
 
     public function setDefaultOptions(OptionsResolverInterface $resolver)

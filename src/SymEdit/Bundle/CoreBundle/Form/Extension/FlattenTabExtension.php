@@ -20,7 +20,7 @@ use Symfony\Component\OptionsResolver\OptionsResolverInterface;
  * attempt to build tabs based on these settings. If build_tabs is enabled
  * then it will create the tabs, if not it will bypass. This assumes that
  * every tab that is made uses inherit_data so it basically only functions
- * on one object at a time but broken into pieces. 
+ * on one object at a time but broken into pieces.
  */
 class FlattenTabExtension extends AbstractTypeExtension
 {
@@ -37,13 +37,25 @@ class FlattenTabExtension extends AbstractTypeExtension
         );
 
         foreach ($tabsData as $name => $data) {
-            if ($buildTabs) {
-                $parent = $builder->create($name, 'tab', array_merge($tabDefaults, $data));
+            $tabOptions = array_merge($tabDefaults, $data);
+            $forceTab = isset($data['force_tab']) ? $data['force_tab'] : false;
+
+            // Remove unused option
+            if ($forceTab) {
+                unset($tabOptions['force_tab']);
+            }
+
+            // Build Tab
+            if ($buildTabs || $forceTab) {
+                $parent = $builder->create($name, 'tab', $tabOptions);
                 $builder->add($parent);
+
+            // Just add it to the main form
             } else {
                 $parent = $builder;
             }
 
+            // Get method name
             $method = sprintf('build%sForm', ucfirst($name));
 
             if (!method_exists($formType, $method)) {
