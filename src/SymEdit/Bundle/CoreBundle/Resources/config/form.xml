@@ -9,6 +9,7 @@
         <parameter key="symedit.form.type.entity_property.class">SymEdit\Bundle\CoreBundle\Form\Type\EntityPropertyType</parameter>
         <parameter key="symedit.form.type.page_choose.class">SymEdit\Bundle\CoreBundle\Form\Type\PageChooseType</parameter>
         <parameter key="symedit.form.factory.context.class">SymEdit\Bundle\CoreBundle\Form\Factory\ContextFormFactory</parameter>
+        <parameter key="symedit.form.extension.flatten_tab.class">SymEdit\Bundle\CoreBundle\Form\Extension\FlattenTabExtension</parameter>
     </parameters>
 
     <services>
@@ -51,6 +52,11 @@
                 <argument key="userType">symedit_user_profile</argument>
                 <argument key="name">symedit_profile</argument>
             </argument>
+        </service>
+
+        <!-- Flatten Tab Extension -->
+        <service id="symedit.form.extension.flatten_tab" class="%symedit.form.extension.flatten_tab.class%">
+            <tag name="form.type_extension" alias="form" />
         </service>
     </services>
 

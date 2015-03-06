@@ -13,6 +13,7 @@ namespace SymEdit\Bundle\CoreBundle\Form\Type;
 
 use SymEdit\Bundle\BlogBundle\Form\Type\CategoryType as BaseCategoryType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
 class CategoryType extends BaseCategoryType
 {
@@ -25,29 +26,23 @@ class CategoryType extends BaseCategoryType
 
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        // Build Basic Tab
-        $basic = $builder->create('basic', 'tab', array(
-            'label' => 'Basic',
-            'inherit_data' => true,
-            'icon' => 'info-sign',
+        // Left blank for tab builder
+    }
+
+    public function setDefaultOptions(OptionsResolverInterface $resolver)
+    {
+        $resolver->setDefaults(array(
+            'tabs_data' => array(
+                'basic' => array(
+                    'label' => 'Basic',
+                    'icon' => 'info-sign',
+                ),
+                'seo' => array(
+                    'label' => 'SEO',
+                    'icon' => 'search',
+                ),
+            ),
         ));
-
-        $this->buildBasicForm($basic, $options);
-
-        // Build SEO Tab
-        $seo = $builder->create('seo', 'tab', array(
-            'label' => 'SEO',
-            'inherit_data' => true,
-            'icon' => 'search',
-        ));
-
-        $this->buildSeoForm($seo, $options);
-
-        // Add tabs
-        $builder
-            ->add($basic)
-            ->add($seo)
-        ;
     }
 
     public function getName()

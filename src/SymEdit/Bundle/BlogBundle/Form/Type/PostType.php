@@ -24,7 +24,7 @@ class PostType extends AbstractType
         $this->categoryClass = $categoryClass;
     }
 
-    protected function buildBasicForm(FormBuilderInterface $builder, array $options)
+    public function buildBasicForm(FormBuilderInterface $builder, array $options)
     {
         $builder
             ->add('title', 'text', array(
@@ -52,7 +52,7 @@ class PostType extends AbstractType
         ;
     }
 
-    protected function buildSummaryForm(FormBuilderInterface $builder, array $options)
+    public function buildSummaryForm(FormBuilderInterface $builder, array $options)
     {
         $builder
             ->add('summary', 'textarea', array(
@@ -67,7 +67,7 @@ class PostType extends AbstractType
         ;
     }
 
-    protected function buildContentForm(FormBuilderInterface $builder, array $options)
+    public function buildContentForm(FormBuilderInterface $builder, array $options)
     {
         $builder
                 ->add('content', 'textarea', array(

@@ -15,6 +15,7 @@ use Sylius\Component\Resource\Repository\RepositoryInterface;
 use SymEdit\Bundle\CoreBundle\Form\EventListener\PageTypeSubscriber;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
 class PageType extends AbstractType
 {
@@ -25,7 +26,7 @@ class PageType extends AbstractType
         $this->pageRepository = $pageRepository;
     }
 
-    protected function buildBasicForm(FormBuilderInterface $builder, array $options)
+    public function buildBasicForm(FormBuilderInterface $builder, array $options)
     {
         $builder
             ->add('title', 'text', array(
@@ -53,7 +54,7 @@ class PageType extends AbstractType
         ;
     }
 
-    protected function buildTemplateForm(FormBuilderInterface $builder, array $options)
+    public function buildTemplateForm(FormBuilderInterface $builder, array $options)
     {
         $builder
             ->add('template', 'template', array(
@@ -62,7 +63,7 @@ class PageType extends AbstractType
         ;
     }
 
-    protected function buildSeoForm(FormBuilderInterface $builder, array $options)
+    public function buildSeoForm(FormBuilderInterface $builder, array $options)
     {
         $builder
             ->add('seo', 'symedit_seo', array(
@@ -76,7 +77,7 @@ class PageType extends AbstractType
         ;
     }
 
-    protected function buildSummaryForm(FormBuilderInterface $builder, array $options)
+    public function buildSummaryForm(FormBuilderInterface $builder, array $options)
     {
         $builder
             ->add('summary', 'textarea', array(
@@ -92,7 +93,7 @@ class PageType extends AbstractType
         ;
     }
 
-    protected function buildContentForm(FormBuilderInterface $builder, array $options)
+    public function buildContentForm(FormBuilderInterface $builder, array $options)
     {
         $builder
             ->add('content', 'textarea', array(
@@ -108,7 +109,7 @@ class PageType extends AbstractType
         ;
     }
 
-    protected function buildAdvancedForm(FormBuilderInterface $builder, array $options)
+    public function buildAdvancedForm(FormBuilderInterface $builder, array $options)
     {
         $builder
             ->add('pageController', 'checkbox', array(
@@ -126,79 +127,51 @@ class PageType extends AbstractType
 
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        // Build basic tab
-        $basic = $builder->create('basic', 'tab', array(
-            'label' => 'symedit.form.page.tabs.basic',
-            'icon' => 'info-sign',
-            'inherit_data' => true,
-        ));
-
-        $this->buildBasicForm($basic, $options);
-
-        // Build template tab
-        $template = $builder->create('template', 'tab', array(
-            'label' => 'symedit.form.page.tabs.template',
-            'icon' => 'columns',
-            'inherit_data' => true,
-        ));
-
-        $this->buildTemplateForm($template, $options);
-
-        // Build SEO tab
-        $seo = $builder->create('seo', 'tab', array(
-            'label' => 'symedit.form.page.tabs.seo',
-            'icon' => 'search',
-            'inherit_data' => true,
-        ));
-
-        $this->buildSeoForm($seo, $options);
-
-        // Build Summary tab
-        $summary = $builder->create('summary', 'tab', array(
-            'label' => 'symedit.form.page.tabs.summary',
-            'icon' => 'file',
-            'inherit_data' => true,
-            'horizontal' => false,
-            'attr' => array(
-                'class' => 'full',
-            ),
-        ));
-
-        $this->buildSummaryForm($summary, $options);
-
-        // Build Content tab
-        $content = $builder->create('content', 'tab', array(
-            'label' => 'symedit.form.page.tabs.content',
-            'icon' => 'file',
-            'inherit_data' => true,
-            'horizontal' => false,
-            'attr' => array(
-                'class' => 'full',
-            ),
-        ));
-
-        $this->buildContentForm($content, $options);
-
-        // Build advanced tab
-        $advanced = $builder->create('advanced', 'tab', array(
-            'label' => 'symedit.form.page.tabs.advanced',
-            'icon' => 'cogs',
-            'inherit_data' => true,
-        ));
-
-        $this->buildAdvancedForm($advanced, $options);
-
-        // Add all tabs
-        $builder
-            ->add($basic)
-            ->add($template)
-            ->add($seo)
-            ->add($summary)
-            ->add($content)
-            ->add($advanced);
+        // Forms built from other methods and tab options in setDefaultOptions
 
         $subscriber = new PageTypeSubscriber();
         $builder->addEventSubscriber($subscriber);
+    }
+
+    public function setDefaultOptions(OptionsResolverInterface $resolver)
+    {
+        $resolver->setDefaults(array(
+            'tabs_data' => array(
+                'basic' => array(
+                    'label' => 'symedit.form.page.tabs.basic',
+                    'icon' => 'info-sign',
+                ),
+                'template' => array(
+                    'label' => 'symedit.form.page.tabs.template',
+                    'icon' => 'columns',
+                ),
+                'seo' => array(
+                    'label' => 'symedit.form.page.tabs.seo',
+                    'icon' => 'search',
+                    'inherit_data' => true,
+                ),
+                'summary' => array(
+                    'label' => 'symedit.form.page.tabs.summary',
+                    'icon' => 'file',
+                    'horizontal' => false,
+                    'attr' => array(
+                        'class' => 'full',
+                    ),
+                ),
+                'content' => array(
+                    'label' => 'symedit.form.page.tabs.content',
+                    'icon' => 'file',
+                    'horizontal' => false,
+                    'attr' => array(
+                        'class' => 'full',
+                    ),
+                ),
+                'advanced' => array(
+                    'label' => 'symedit.form.page.tabs.advanced',
+                    'icon' => 'cogs',
+                ),
+            )
+        ));
     }
 
     public function getName()
