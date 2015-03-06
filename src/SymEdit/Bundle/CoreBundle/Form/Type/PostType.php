@@ -66,7 +66,7 @@ class PostType extends BasePostType
                     'attr' => array(
                         'class' => 'full',
                     ),
-                )
+                ),
             ),
         ));
     }

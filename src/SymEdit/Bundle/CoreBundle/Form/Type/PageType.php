@@ -170,7 +170,7 @@ class PageType extends AbstractType
                     'label' => 'symedit.form.page.tabs.advanced',
                     'icon' => 'cogs',
                 ),
-            )
+            ),
         ));
     }
 

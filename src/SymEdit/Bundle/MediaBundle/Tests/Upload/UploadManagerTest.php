@@ -1,5 +1,14 @@
 <?php
 
+/*
+ * This file is part of the SymEdit package.
+ *
+ * (c) Craig Blanchette <craig.blanchette@gmail.com>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
 namespace SymEdit\Bundle\MediaBundle\Tests\Upload;
 
 use Gaufrette\Filesystem;
@@ -37,7 +46,7 @@ class UploadManagerTest extends TestCase
     {
         $manager = $this->getUploadManager($this->getFilesystem(), array('removeUpload'));
         $media = $this->getMedia();
-        $callback = function(MediaInterface $media) {
+        $callback = function (MediaInterface $media) {
             return 'foo';
         };
 

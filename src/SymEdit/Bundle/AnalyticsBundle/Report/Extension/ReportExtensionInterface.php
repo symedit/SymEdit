@@ -27,7 +27,7 @@ interface ReportExtensionInterface
      * Build query for reports
      *
      * @param QueryBuilder $queryBuilder
-     * @param array $options
+     * @param array        $options
      */
     public function buildQuery(QueryBuilder $queryBuilder, array $options);
 }

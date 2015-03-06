@@ -18,11 +18,9 @@ class AbstractReportExtension implements ReportExtensionInterface
 {
     public function buildQuery(QueryBuilder $queryBuilder, array $options)
     {
-
     }
 
     public function setDefaultOptions(OptionsResolver $resolver)
     {
-        
     }
 }
