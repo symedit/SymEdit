@@ -25,3 +25,22 @@ php app/console symedit:install
 
 This will create the database, load the schema, and install fixtures needed for functional
 tests.
+
+Administration
+--------------
+
+You can administer the site by going to `/sym-admin`, the default username and password are
+`admin` and `test` respectively.
+
+Documentation
+-------------
+
+http://docs.symedit.com
+
+Testing
+-------
+
+Could definitely use some help in this aspect. There are some unit tests and functional
+tests that are run from `phpunit` so you can just run `phpunit` to use the existing tests.
+
+We have a .travis.yml configuration for travis and there is a build.xml for using jenkins.
