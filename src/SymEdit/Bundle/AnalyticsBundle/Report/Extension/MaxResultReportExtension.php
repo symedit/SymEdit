@@ -9,27 +9,30 @@
  * file that was distributed with this source code.
  */
 
-namespace SymEdit\Bundle\AnalyticsBundle\Report;
+namespace SymEdit\Bundle\AnalyticsBundle\Report\Extension;
 
 use Doctrine\ORM\QueryBuilder;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-abstract class AbstractReport implements ReportInterface
+class MaxResultReportExtension extends AbstractReportExtension
 {
     public function buildQuery(QueryBuilder $queryBuilder, array $options)
     {
-        return $queryBuilder
-            ->select('c AS object, COUNT(v) AS visits')
-            ->from($options['class'], 'c')
-            ->leftJoin($options['visitClass'], 'v', 'WITH', 'c.id = v.identifier AND v.model = :model')
-            ->groupBy('v.identifier')
-            ->setParameters(array(
-                'model' => $options['model'],
-            ))
-        ;
+        if ($options['max'] !== null) {
+            $queryBuilder
+                ->setMaxResults($options['max'])
+            ;
+        }
     }
 
     public function setDefaultOptions(OptionsResolver $resolver)
     {
+        $resolver->setDefaults(array(
+            'max' => null,
+        ));
+
+        $resolver->setAllowedTypes(array(
+            'max' => array('null', 'int'),
+        ));
     }
 }

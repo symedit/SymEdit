@@ -35,6 +35,8 @@
             <argument>%symedit_analytics.tracker.models%</argument>
             <!-- Replaced by Compiler Pass -->
             <argument type="collection" />
+            <!-- Replaced by Compiler Pass -->
+            <argument type="collection" />
         </service>
 
         <!-- Twig Extension -->

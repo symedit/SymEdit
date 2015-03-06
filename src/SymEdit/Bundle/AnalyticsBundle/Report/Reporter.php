@@ -14,19 +14,22 @@ namespace SymEdit\Bundle\AnalyticsBundle\Report;
 use Doctrine\Common\Persistence\ObjectManager;
 use SymEdit\Bundle\AnalyticsBundle\Exception\InvalidReportException;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Doctrine\ORM\QueryBuilder;
 
 class Reporter
 {
     protected $manager;
     protected $visitClass;
     protected $reports;
+    protected $extensions;
 
-    public function __construct(ObjectManager $manager, $visitClass, array $models, array $reports = array())
+    public function __construct(ObjectManager $manager, $visitClass, array $models, array $reports = array(), array $extensions = array())
     {
         $this->manager = $manager;
         $this->visitClass = $visitClass;
         $this->models = $models;
         $this->reports = $reports;
+        $this->extensions = $extensions;
     }
 
     public function runReport($name, array $options = array())
@@ -38,15 +41,31 @@ class Reporter
         $options = $this->buildOptions($report, $options);
 
         // Build the rest of the query
-        $report->buildQuery($queryBuilder, $options);
+        $this->buildQuery($report, $queryBuilder, $options);
 
         return $queryBuilder->getQuery()->getResult();
+    }
+
+    protected function buildQuery(ReportInterface $report, QueryBuilder $queryBuilder, array $options)
+    {
+        // Build query from report
+        $report->buildQuery($queryBuilder, $options);
+
+        // Build queries from extensions
+        foreach ($this->extensions as $extension) {
+            $extension->buildQuery($queryBuilder, $options);
+        }
     }
 
     protected function buildOptions(ReportInterface $report, array $options)
     {
         $resolver = new OptionsResolver();
         $report->setDefaultOptions($resolver);
+
+        // Build Extension Options
+        foreach ($this->extensions as $extension) {
+            $extension->setDefaultOptions($resolver);
+        }
 
         // Set up some global defaults
         $resolver->setRequired(array(
@@ -69,7 +88,7 @@ class Reporter
     /**
      * @param  string                    $name
      * @return ReportInterface
-     * @throws \InvalidArgumentException
+     * @throws InvalidArgumentException
      */
     protected function getReport($name)
     {

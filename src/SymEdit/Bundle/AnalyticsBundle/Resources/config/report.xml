@@ -6,12 +6,26 @@
 
     <parameters>
         <parameter key="symedit_analytics.report.popular.class">SymEdit\Bundle\AnalyticsBundle\Report\PopularReport</parameter>
+        <parameter key="symedit_analytics.report.extension.date_time.class">SymEdit\Bundle\AnalyticsBundle\Report\Extension\DateTimeReportExtension</parameter>
+        <parameter key="symedit_analytics.report.extension.max_result.class">SymEdit\Bundle\AnalyticsBundle\Report\Extension\MaxResultReportExtension</parameter>
     </parameters>
 
     <services>
         <!-- Popular -->
         <service id="symedit_analytics.report.popular" class="%symedit_analytics.report.popular.class%" public="false">
             <tag name="symedit_analytics.report" alias="popular" />
+        </service>
+
+        <!-- Extensions -->
+
+        <!-- Date Time Extension -->
+        <service id="symedit_analytics.report.extension.date_time" class="%symedit_analytics.report.extension.date_time.class%">
+            <tag name="symedit_analytics.report_extension" />
+        </service>
+
+        <!-- Max Results Extension -->
+        <service id="symedit_analytics.report.extension.max_result" class="%symedit_analytics.report.extension.max_result.class%">
+            <tag name="symedit_analytics.report_extension" />
         </service>
     </services>
 </container>

@@ -9,21 +9,20 @@
  * file that was distributed with this source code.
  */
 
-namespace SymEdit\Bundle\AnalyticsBundle\Report;
+namespace SymEdit\Bundle\AnalyticsBundle\Report\Extension;
 
 use Doctrine\ORM\QueryBuilder;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class PopularReport extends AbstractReport
+class AbstractReportExtension implements ReportExtensionInterface
 {
     public function buildQuery(QueryBuilder $queryBuilder, array $options)
     {
-        return parent::buildQuery($queryBuilder, $options)
-            ->orderBy('visits', 'DESC')
-        ;
+
     }
 
-    public function getName()
+    public function setDefaultOptions(OptionsResolver $resolver)
     {
-        return 'popular';
+        
     }
 }

@@ -22,6 +22,7 @@ class ReportCompilerPass implements CompilerPassInterface
      */
     public function process(ContainerBuilder $container)
     {
+        // Get reports
         $tags = $container->findTaggedServiceIds('symedit_analytics.report');
         $reports = array();
 
@@ -35,7 +36,16 @@ class ReportCompilerPass implements CompilerPassInterface
             }
         }
 
+        // Get Extensions
+        $tags = $container->findTaggedServiceIds('symedit_analytics.report_extension');
+        $extensions = array();
+
+        foreach ($tags as $id => $tags) {
+            $extensions[] = new Reference($id);
+        }
+
         $reporterDefinition = $container->getDefinition('symedit_analytics.reporter');
         $reporterDefinition->replaceArgument(3, $reports);
+        $reporterDefinition->replaceArgument(4, $extensions);
     }
 }
