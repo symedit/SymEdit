@@ -101,9 +101,8 @@ class AdminProfileType extends BaseType
     protected function buildImageForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('image', 'symedit_image', array(
+            ->add('image', 'symedit_image_choose', array(
                 'required' => false,
-                'require_name' => false,
                 'property_path' => 'profile.image',
             ))
         ;
