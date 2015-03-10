@@ -24,7 +24,7 @@ class Builder implements MenuBuilderInterface
             'icon' => 'search',
             'route' => 'symedit_seo_export',
             'extras' => array(
-                'is_granted' => 'ROLE_SUPER_ADMIN',
+                'is_granted' => 'ROLE_ADMIN_WEBMASTER',
             ),
         ));
 
@@ -32,7 +32,7 @@ class Builder implements MenuBuilderInterface
             'icon' => 'check',
             'route' => 'symedit_seo_analyze',
             'extras' => array(
-                'is_granted' => 'ROLE_SUPER_ADMIN',
+                'is_granted' => 'ROLE_ADMIN_WEBMASTER',
             ),
         ));
     }
