@@ -1,0 +1,26 @@
+<?xml version="1.0" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <parameters>
+        <parameter key="symedit_seo.analyzer.class">SymEdit\Bundle\SeoBundle\Analyze\Analyzer</parameter>
+    </parameters>
+
+    <services>
+        <service id="symedit_seo.analyzer" class="%symedit_seo.analyzer.class%">
+            <!-- Replaced by Compiler Pass -->
+            <argument type="collection" />
+        </service>
+
+        <!-- Analyzers -->
+        <service id="symedit_seo.analyzer.missing_attributes" class="SymEdit\Bundle\SeoBundle\Analyze\Analyzer\MissingAttributesAnalyzer">
+            <tag name="symedit_seo.analyzer" />
+        </service>
+
+        <service id="symedit_seo.analyzer.attribute_length" class="SymEdit\Bundle\SeoBundle\Analyze\Analyzer\AttributeLengthAnalyzer">
+            <tag name="symedit_seo.analyzer" />
+        </service>
+    </services>
+</container>

@@ -11,6 +11,7 @@
 
 namespace SymEdit\Bundle\SeoBundle;
 
+use SymEdit\Bundle\SeoBundle\DependencyInjection\Compiler\AnalyzerCompilerPass;
 use SymEdit\Bundle\SeoBundle\DependencyInjection\Compiler\GetSeoCalculators;
 use SymEdit\Bundle\SeoBundle\DependencyInjection\SymEditSeoExtension;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
@@ -23,6 +24,7 @@ class SymEditSeoBundle extends Bundle
         parent::build($container);
 
         $container->addCompilerPass(new GetSeoCalculators());
+        $container->addCompilerPass(new AnalyzerCompilerPass());
     }
 
     public function getContainerExtension()
