@@ -1,0 +1,39 @@
+{% extends '@SymEdit/Admin/tabbed.html.twig' %}
+
+{% block title %}SEO &raquo; Analyze{% endblock %}
+
+{% block tabs %}
+    <ul class="nav nav-tabs">
+    {% for type, entities in groups if entities|length > 0 %}
+        <li{% if loop.first %} class="active"{% endif %}>
+            <a href="#seo_analyze_{{ type }}" data-toggle="tab">
+                {{ type|capitalize }}
+            </a>
+        </li>
+    {% endfor %}
+    </ul>
+{% endblock %}
+
+{% block tab_content %}
+    <div class="tab-content">
+    {% for type, entities in groups if entities|length > 0 %}
+        <div id="seo_analyze_{{ type }}" class="tab-pane{% if loop.first %} active{% endif %}">
+            {% for context in entities %}
+                <h5>
+                    <a class="btn btn-primary btn-xs" href="{{ path(routes[type], {id: context.object.id}) }}">Edit</a>
+                    <small>(ID: {{ context.object.id }})</small>
+                </h5>
+
+                <ul>
+                {% for issue in context.issues %}
+                    <li>{{ issue }}</li>
+                {% endfor %}
+                </ul>
+            {% endfor %}
+        </div>
+    {% else %}
+        <p>
+            Currently no issues.
+        </p>
+    {% endfor %}
+{% endblock %}

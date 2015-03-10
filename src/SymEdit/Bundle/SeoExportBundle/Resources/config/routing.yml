@@ -1,3 +1,7 @@
 symedit_seo_export:
     resource: "@SymEditSeoExportBundle/Controller/ExportController.php"
     type: annotation
+
+symedit_seo_analyze:
+    resource: "@SymEditSeoExportBundle/Controller/AnalyzeController.php"
+    type: annotation

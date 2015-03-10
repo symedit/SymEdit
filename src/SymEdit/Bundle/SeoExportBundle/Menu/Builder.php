@@ -27,5 +27,13 @@ class Builder implements MenuBuilderInterface
                 'is_granted' => 'ROLE_SUPER_ADMIN',
             ),
         ));
+
+        $site->addChild('SEO Analyze', array(
+            'icon' => 'check',
+            'route' => 'symedit_seo_analyze',
+            'extras' => array(
+                'is_granted' => 'ROLE_SUPER_ADMIN',
+            ),
+        ));
     }
 }
