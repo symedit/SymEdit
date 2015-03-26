@@ -31,7 +31,7 @@ class CategoryType extends AbstractType
             ))
             ->add('name', 'text', array(
                 'label' => 'symedit.form.category.name.label',
-                'help_block' => 'symedit.form.category.title.help',
+                'help_block' => 'symedit.form.category.name.help',
             ))
             ->add('parent', 'entity', array(
                 'label' => 'symedit.form.category.parent.label',
