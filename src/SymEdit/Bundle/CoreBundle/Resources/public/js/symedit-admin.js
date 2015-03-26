@@ -7,6 +7,7 @@ var Isometriks = (function(){
         replaceDivs: false,
         toolbarFixed: false,
         linkProtocol: false,
+        minHeight: 300,
         plugins: ['imagemanager', 'definedlinks', 'filemanager']
     };
 
