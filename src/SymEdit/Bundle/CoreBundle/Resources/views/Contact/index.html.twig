@@ -33,21 +33,21 @@
                     <p>
                         {% if company.phone is not empty %}
                         <span class="circle-icon">
-                            <i class="icon-phone"></i>
+                            {{ icon('phone') }}
                         </span>
                         <span itemprop="telephone">{{ company.phone }}</span> <br>
                         {% endif %}
 
                         {% if company.fax is not empty %}
                         <span class="circle-icon">
-                            <i class="icon-book"></i>
+                            {{ icon('book') }}
                         </span>
                         <span itemprop="faxNumber">{{ company.fax }}</span> <br>
                         {% endif %}
 
                         {% if company.email is not empty %}
                         <span class="circle-icon">
-                            <i class="icon-envelope"></i>
+                            {{ icon('envelope') }}
                         </span>
                         <a itemprop="email" href="mailto:{{ company.email }}">{{ company.email }}</a>
                         {% endif %}
