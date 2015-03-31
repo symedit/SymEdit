@@ -13,12 +13,13 @@ namespace SymEdit\Bundle\StylizerBundle\Twig\Extension;
 
 use SymEdit\Bundle\StylizerBundle\Dumper\VersionManager;
 use SymEdit\Bundle\StylizerBundle\Model\Styles;
+use Symfony\Component\DependencyInjection\ContainerInterface;
 
 class StylizerExtension extends \Twig_Extension
 {
     protected $container;
 
-    public function __construct(\Symfony\Component\DependencyInjection\ContainerInterface $container)
+    public function __construct(ContainerInterface $container)
     {
         $this->container = $container;
     }
