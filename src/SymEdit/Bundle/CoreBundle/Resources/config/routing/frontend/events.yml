@@ -5,7 +5,8 @@ symedit_events:
         _controller: symedit.controller.event:indexAction
         _sylius:
             template: @SymEdit/Event/index.html.twig
-            method: getUpcoming
+            repository:
+                method: getUpcoming
             paginate: 10
             sorting:
                 eventStart: desc

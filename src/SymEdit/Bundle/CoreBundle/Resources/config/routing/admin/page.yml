@@ -5,7 +5,8 @@ admin_page:
         _controller: symedit.controller.page:indexAction
         _sylius:
             paginate: false
-            method: findRoot
+            repository:
+                method: findRoot
             template: @SymEdit/Admin/Page/index.html.twig
 
 admin_page_json:
