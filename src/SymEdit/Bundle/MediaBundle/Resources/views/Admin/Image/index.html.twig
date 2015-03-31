@@ -24,27 +24,3 @@
         </div>
     </div>
 {% endblock %}
-
-{% block stylesheets %}
-    {{ parent() }}
-    <style type="text/css">
-        div.thumbnail-container {
-            width: {{ ((100-columns) / columns)|number_format(4) }}%;
-            margin-bottom: 10px;
-        }
-    </style>
-{% endblock %}
-
-{% block scripts %}
-    <script src="{{ asset('bundles/symedit/js/jquery.masonry.min.js') }}"></script>
-    <script type="text/javascript">
-        $(window).load(function () {
-            $('#images').masonry({
-                gutter: 10,
-                resizeBound: true,
-                itemSelector: '.thumbnail-container',
-                columnWidth: '.thumbnail-container'
-            });
-        });
-    </script>
-{% endblock %}
