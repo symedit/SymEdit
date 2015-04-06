@@ -42,7 +42,11 @@ class WidgetAreaController extends ResourceController
 
     protected function getWidgetArea($area)
     {
-        if (!$widgetArea = $this->getRepository()->findOneByArea($area)) {
+        $widgetArea = $this->getRepository()->findOneBy(array(
+            'area' => $area,
+        ));
+
+        if ($widgetArea) {
             throw new NotFoundHttpException(sprintf('Widget area "%s" does not exist', $area));
         }
 
