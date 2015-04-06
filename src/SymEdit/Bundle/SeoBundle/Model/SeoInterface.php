@@ -14,9 +14,29 @@ namespace SymEdit\Bundle\SeoBundle\Model;
 interface SeoInterface extends SeoAbleInterface
 {
     /**
-     * Adds a meta tag
+     * Add a meta tag
+     *
+     * @param string $type
+     * @param string $key
+     * @param string $content
      */
     public function addMeta($type, $key, $content);
+
+    /**
+     * Shortcut to addMeta('property', ..., ...)
+     *
+     * @param string $property
+     * @param srting $content
+     */
+    public function addMetaProperty($property, $content);
+
+    /**
+     * Shortcut to addMeta('name', ..., ...)
+     *
+     * @param string $name
+     * @param string $content
+     */
+    public function addMetaName($name, $content);
 
     /**
      * Check if meta exists
@@ -25,7 +45,147 @@ interface SeoInterface extends SeoAbleInterface
      */
     public function hasMeta($type, $key = null);
 
+    /**
+     * Get meta tags. Either returns an array or a specific entry
+     *
+     * @param string $type
+     * @param string $key
+     */
+    public function getMetas($type = null, $key = null);
+
+    /**
+     * Set all meta tags
+     *
+     * @param array $metas
+     */
+    public function setMetas(array $metas = array());
+
+    /**
+     * Get links for page, grouped by rel attribute
+     *
+     * @param string $rel
+     */
+    public function getLinks($rel = null);
+
+    /**
+     * Set links. Should be an array of arrays with rel being the key
+     *
+     * @param array $links
+     */
+    public function setLinks(array $links = array());
+
+    /**
+     * Gets current SEO Subject
+     *
+     * @return mixed
+     */
     public function getSubject();
 
+    /**
+     * Set SEO Subject
+     *
+     * @param mixed $subject
+     * @param boolean $replace
+     */
     public function setSubject($subject, $replace = true);
+
+    /**
+     * Get Page Title
+     */
+    public function getTitle();
+
+    /**
+     * Set Page Title
+     *
+     * @param string $title
+     */
+    public function setTitle($title);
+
+    /**
+     * Get Page Description
+     */
+    public function getDescription();
+
+    /**
+     * Set Page Description
+     *
+     * @param string $description
+     */
+    public function setDescription($description);
+
+    /**
+     * Get Keywords
+     */
+    public function getKeywords();
+
+    /**
+     * Set Keywords
+     *
+     * @param string $keywords
+     */
+    public function setKeywords($keywords);
+
+    /**
+     * Add HTML Attribute
+     *
+     * @param string $attr
+     * @param string $value
+     */
+    public function addHtmlAttr($attr, $value);
+
+    /**
+     * Get HTML Attribute(s)
+     *
+     * @param string $attr
+     */
+    public function getHtmlAttrs($attr = null);
+
+    /**
+     * Get index for robots
+     */
+    public function getIndex();
+
+    /**
+     * Set index for robots
+     *
+     * @param boolean $index
+     */
+    public function setIndex($index);
+
+    /**
+     * Set noIndex
+     */
+    public function noIndex();
+
+    /**
+     * Set Index
+     */
+    public function index();
+    
+    /**
+     * Get follow for robots
+     */
+    public function getFollow();
+
+    /**
+     * Set follow for robots
+     *
+     * @param boolean $follow
+     */
+    public function setFollow($follow);
+
+    /**
+     * Set noFollow
+     */
+    public function noFollow();
+
+    /**
+     * Set Follow
+     */
+    public function follow();
+
+    /**
+     * Resets all SEO
+     */
+    public function reset();
 }
