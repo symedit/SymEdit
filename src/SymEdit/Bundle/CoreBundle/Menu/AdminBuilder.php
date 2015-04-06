@@ -58,7 +58,7 @@ class AdminBuilder implements MenuBuilderInterface
         $content->addChild('List Pages', array('route' => 'admin_page', 'icon' => 'file', 'extras' => $pageExtras));
 
         // Media
-        $media = $rootNode->addChild('media', array(
+        $rootNode->addChild('media', array(
             'label' => 'Media',
             'dropdown' => true,
             'caret' => true,
@@ -69,7 +69,7 @@ class AdminBuilder implements MenuBuilderInterface
         ));
 
         // Structure
-        $structure = $rootNode->addChild('structure', array(
+        $rootNode->addChild('structure', array(
             'label' => 'Structure',
             'dropdown' => true,
             'caret' => true,
