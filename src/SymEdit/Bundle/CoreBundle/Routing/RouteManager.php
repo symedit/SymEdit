@@ -23,7 +23,7 @@ class RouteManager
     protected $loader;
     protected $resources;
     protected $pageControllers;
-    protected $cacheDir;
+    protected $cacheFile;
 
     public function __construct(LoaderInterface $loader, array $resources, $cacheDir, $debug)
     {
