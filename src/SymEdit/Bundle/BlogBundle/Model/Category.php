@@ -260,7 +260,7 @@ class Category implements CategoryInterface
     /**
      * Remove posts
      *
-     * @param PostInterface $posts
+     * @param PostInterface $post
      */
     public function removePost(Post $post)
     {
