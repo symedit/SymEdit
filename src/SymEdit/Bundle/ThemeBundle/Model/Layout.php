@@ -16,6 +16,7 @@ class Layout
     protected $key;
     protected $title;
     protected $description;
+    protected $rows;
 
     public function __construct($key, $title = null, $description = null, $rows = null)
     {
