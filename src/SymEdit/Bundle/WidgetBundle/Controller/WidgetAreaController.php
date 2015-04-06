@@ -46,7 +46,7 @@ class WidgetAreaController extends ResourceController
             'area' => $area,
         ));
 
-        if ($widgetArea) {
+        if (!$widgetArea) {
             throw new NotFoundHttpException(sprintf('Widget area "%s" does not exist', $area));
         }
 
