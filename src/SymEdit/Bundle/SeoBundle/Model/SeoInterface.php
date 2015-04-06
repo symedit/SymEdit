@@ -26,7 +26,7 @@ interface SeoInterface extends SeoAbleInterface
      * Shortcut to addMeta('property', ..., ...)
      *
      * @param string $property
-     * @param srting $content
+     * @param string $content
      */
     public function addMetaProperty($property, $content);
 
@@ -161,7 +161,7 @@ interface SeoInterface extends SeoAbleInterface
      * Set Index
      */
     public function index();
-    
+
     /**
      * Get follow for robots
      */
