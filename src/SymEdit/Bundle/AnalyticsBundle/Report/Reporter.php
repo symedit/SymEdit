@@ -20,6 +20,7 @@ class Reporter
 {
     protected $manager;
     protected $visitClass;
+    protected $models;
     protected $reports;
     protected $extensions;
 
