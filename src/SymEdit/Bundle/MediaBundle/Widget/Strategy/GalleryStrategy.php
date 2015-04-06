@@ -27,7 +27,9 @@ class GalleryStrategy extends AbstractWidgetStrategy
 
     public function execute(WidgetInterface $widget)
     {
-        $gallery = $this->repository->findOneBySlug($widget->getOption('slider'));
+        $gallery = $this->repository->findOneBy(array(
+            'slug' => $widget->getOption('slider'),
+        ));
 
         if (!$gallery) {
             return;
