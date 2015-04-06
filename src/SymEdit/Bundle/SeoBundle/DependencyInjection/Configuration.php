@@ -26,10 +26,6 @@ class Configuration implements ConfigurationInterface
 
         $rootNode
             ->children()
-                ->booleanNode('annotations')
-                    ->info('Whether or not to load the annotation subscriber')
-                    ->defaultFalse()
-                ->end()
                 ->arrayNode('limit')
                     ->addDefaultsIfNotSet()
                     ->children()

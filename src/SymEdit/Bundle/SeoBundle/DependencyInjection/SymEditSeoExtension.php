@@ -39,10 +39,6 @@ class SymEditSeoExtension extends Extension
         $loader->load('form.xml');
         $loader->load('analyzers.xml');
 
-        if ($config['annotations']) {
-            $loader->load('annotations.xml');
-        }
-
         // Load the seo preferences
         $this->loadPreferences($container, $config['models']);
     }

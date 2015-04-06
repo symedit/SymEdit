@@ -21,8 +21,6 @@ class SymEditSeoBundle extends Bundle
 {
     public function build(ContainerBuilder $container)
     {
-        parent::build($container);
-
         $container->addCompilerPass(new GetSeoCalculators());
         $container->addCompilerPass(new AnalyzerCompilerPass());
     }
