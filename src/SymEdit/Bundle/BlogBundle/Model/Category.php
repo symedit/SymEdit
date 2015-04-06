@@ -47,7 +47,7 @@ class Category implements CategoryInterface
     protected $level;
 
     /**
-     * @var Array of CategoryInterface
+     * @var ArrayCollection
      */
     protected $children;
 
