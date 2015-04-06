@@ -31,9 +31,6 @@ class PostTest extends TestCase
         $this->assertNull($post->getImage());
 
         $image = $this->getMock('SymEdit\Bundle\MediaBundle\Model\Image');
-        $image->expects($this->once())
-              ->method('setNameCallBack');
-
         $post->setImage($image);
         $this->assertEquals($image, $post->getImage());
     }

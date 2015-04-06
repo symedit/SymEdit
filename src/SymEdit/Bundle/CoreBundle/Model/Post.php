@@ -36,13 +36,6 @@ class Post extends BasePost implements PostInterface
     {
         $this->image = $image;
 
-        if ($this->image !== null) {
-            $this->setUpdatedAt(new \DateTime());
-            $image->setNameCallback(function () {
-                return ltrim($this->getSlug());
-            });
-        }
-
         return $this;
     }
 
