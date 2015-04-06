@@ -84,7 +84,10 @@ class ConfigurationTest extends TestCase
                 'page' => array(
                     'model' => 'SymEdit\Bundle\CoreBundle\Model\Page',
                     'controller' => 'SymEdit\Bundle\CoreBundle\Controller\PageController',
-                    'form' => 'SymEdit\Bundle\CoreBundle\Form\Type\PageType',
+                    'form' => array(
+                        'default' => 'SymEdit\Bundle\CoreBundle\Form\Type\PageType',
+                        'choose' => 'SymEdit\Bundle\CoreBundle\Form\Type\PageChooseType',
+                    ),
                 ),
                 'role' => array(
                     'model' => 'SymEdit\Bundle\CoreBundle\Model\Role',

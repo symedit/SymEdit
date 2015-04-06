@@ -7,7 +7,6 @@
     <parameters>
         <parameter key="symedit.form.type.role.class">SymEdit\Bundle\CoreBundle\Form\Type\RoleType</parameter>
         <parameter key="symedit.form.type.entity_property.class">SymEdit\Bundle\CoreBundle\Form\Type\EntityPropertyType</parameter>
-        <parameter key="symedit.form.type.page_choose.class">SymEdit\Bundle\CoreBundle\Form\Type\PageChooseType</parameter>
         <parameter key="symedit.form.factory.context.class">SymEdit\Bundle\CoreBundle\Form\Factory\ContextFormFactory</parameter>
         <parameter key="symedit.form.extension.flatten_tab.class">SymEdit\Bundle\CoreBundle\Form\Extension\FlattenTabExtension</parameter>
     </parameters>
