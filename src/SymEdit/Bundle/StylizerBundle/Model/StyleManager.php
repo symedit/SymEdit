@@ -20,6 +20,7 @@ class StyleManager
 {
     protected $loader;
     protected $storage;
+    protected $cacheDir;
     protected $configData;
     protected $styles;
     protected $debug;
