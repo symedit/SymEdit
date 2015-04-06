@@ -11,6 +11,7 @@
 
 namespace SymEdit\Bundle\CoreBundle\Controller;
 
+use SymEdit\Bundle\CacheBundle\Decision\CacheDecisionManager;
 use SymEdit\Bundle\SettingsBundle\Model\Settings;
 use SymEdit\Bundle\WidgetBundle\Controller\WidgetAreaController as BaseController;
 use Symfony\Component\HttpFoundation\Response;
@@ -23,13 +24,25 @@ class WidgetAreaController extends BaseController
     protected function getResponse()
     {
         $response = new Response();
-        $settings = $this->getSettings();
-        $sharedMaxAge = $settings->get('widget.shared_max_age');
 
-        // Set shared age
-        $response->setSharedMaxAge($sharedMaxAge);
+        // Check if we can cache or not
+        if (($cache = $this->getCacheManager()) && $cache->decide()) {
+            $settings = $this->getSettings();
+            $sharedMaxAge = $settings->get('widget.shared_max_age');
+
+            // Set shared age
+            $response->setSharedMaxAge($sharedMaxAge);
+        }
 
         return $response;
+    }
+
+    /**
+     * @return CacheDecisionManager
+     */
+    protected function getCacheManager()
+    {
+        return $this->container->has('symedit_cache.decision_manager') ? $this->container->get('symedit_cache.decision_manager') : false;
     }
 
     /**
