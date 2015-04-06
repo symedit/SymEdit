@@ -16,7 +16,7 @@ use Symfony\Component\Routing\Route;
 
 class RouteStorage
 {
-    protected $cacheDir;
+    protected $cacheFile;
     protected $routes;
 
     public function __construct($cacheDir)
