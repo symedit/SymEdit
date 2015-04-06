@@ -47,7 +47,7 @@ class Widget implements WidgetInterface
     protected $strategyName;
 
     /**
-     * @var string
+     * @var WidgetStrategyInterface
      */
     protected $strategy;
 
@@ -66,6 +66,9 @@ class Widget implements WidgetInterface
      */
     protected $createdAt;
 
+    /**
+     * @var integer
+     */
     protected $widgetOrder;
 
     /**

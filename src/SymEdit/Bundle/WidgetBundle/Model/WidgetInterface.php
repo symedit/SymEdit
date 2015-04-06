@@ -22,30 +22,43 @@ interface WidgetInterface
     public function getId();
 
     /**
-     * @return WidgetInterface
      * @param  string          $name
+     * @return WidgetInterface
      */
     public function setName($name);
+
+    /**
+     * @return string $name
+     */
     public function getName();
 
     /**
+     * @param  string          $title
      * @return WidgetInterface
-     * @param  type            $title
      */
     public function setTitle($title);
+
+    /**
+     * @return string $title
+     */
     public function getTitle();
 
+    /**
+     * Get the widget area
+     *
+     * @return WidgetAreaInterface $area
+     */
     public function getArea();
 
     /**
-     * @return WidgetInterface
      * @param  WidgetAreaInterface $area
+     * @return WidgetInterface
      */
     public function setArea(WidgetAreaInterface $area);
 
     /**
-     * @return WidgetInterface
      * @param  array           $options
+     * @return WidgetInterface
      */
     public function setOptions(array $options);
 
@@ -81,7 +94,7 @@ interface WidgetInterface
 
     /**
      * @return WidgetInterface
-     * @param  type            $strategyName
+     * @param  string          $strategyName
      */
     public function setStrategyName($strategyName);
 
