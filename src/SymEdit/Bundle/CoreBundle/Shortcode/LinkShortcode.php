@@ -46,14 +46,6 @@ class LinkShortcode extends AbstractShortcode
         return $out;
     }
 
-    protected function generateRoute(LinkInterface $link, $attr)
-    {
-        $routeName = $link->getRouteName($attr);
-        $routeParameters = $link->getRouteParameters($attr);
-
-        return $this->router->generate($routeName, $routeParameters);
-    }
-
     public function getName()
     {
         return 'link';
