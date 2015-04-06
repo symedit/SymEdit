@@ -29,12 +29,12 @@ interface GalleryItemInterface
     public function getImage();
 
     /**
-     * @param GalleryInterface $gallery
+     * @param ImageGalleryInterface $gallery
      */
     public function setGallery(ImageGalleryInterface $gallery);
 
     /**
-     * @return GalleryInterface $gallery
+     * @return ImageGalleryInterface $gallery
      */
     public function getGallery();
 
