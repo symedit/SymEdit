@@ -84,7 +84,7 @@ interface SeoInterface extends SeoAbleInterface
     /**
      * Set SEO Subject
      *
-     * @param mixed $subject
+     * @param mixed   $subject
      * @param boolean $replace
      */
     public function setSubject($subject, $replace = true);

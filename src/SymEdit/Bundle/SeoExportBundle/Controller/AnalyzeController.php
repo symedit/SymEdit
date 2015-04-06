@@ -31,9 +31,9 @@ class AnalyzeController extends Controller
 
         $entities = array();
         $analyzer = $this->get('symedit_seo.analyzer');
-        
+
         foreach ($repositories as $repositoryName => $route) {
-            $repository = $this->get('symedit.repository.' . $repositoryName);
+            $repository = $this->get('symedit.repository.'.$repositoryName);
             $entities[$repositoryName] = array();
 
             foreach ($repository->findAll() as $object) {

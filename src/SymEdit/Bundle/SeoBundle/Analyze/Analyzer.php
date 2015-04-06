@@ -23,7 +23,7 @@ class Analyzer
     }
 
     /**
-     * @param SeoAbleInterface $object
+     * @param  SeoAbleInterface $object
      * @return AnalyzerContext
      */
     public function analyze(SeoAbleInterface $object)
