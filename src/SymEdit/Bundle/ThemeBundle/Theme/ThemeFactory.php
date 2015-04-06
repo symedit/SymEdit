@@ -24,6 +24,7 @@ class ThemeFactory implements ThemeFactoryInterface
     protected $loader;
     protected $configuration;
     protected $themeConfig;
+    protected $debug;
     protected $cacheDir;
     protected $processor;
 
