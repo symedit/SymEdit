@@ -81,6 +81,19 @@ All your template includes and `extends` should use the @Theme namespace:
 {% endblock %}
 ```
 
+### Parent Templates
+
+You can also use the `@Parent` namespace to access parent templates. This allows
+you to easily override any part of a parent template without Twig trying to
+reference itself. If you're editing `@Theme/Page/base.html.twig' and a parent
+theme has the same template, you can extend it by using
+`@Parent/Page/base.html.twig`. It will search all parents starting with the most
+immediate until it finds one.
+
+**This should only be used in themes that don't, or won't have any children! If
+you extend a theme that uses `@Parent` references, the theme itself becomes the
+parent and will end up referencing itself.**
+
 ## Forms
 
 You can select a template using the `template` form type:

@@ -35,7 +35,7 @@ interface ThemeInterface
 
     public function getThemeDirectory();
 
-    public function getTemplateDirectories();
+    public function getTemplateDirectories($first = false);
 
     public function setDirectory($directory);
 

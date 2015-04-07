@@ -37,6 +37,15 @@ class FilesystemLoader extends BaseFilesystemLoader
         foreach ($overrides as $override) {
             $this->prependPaths($templateDirectories, $override);
         }
+
+        // Create @Parent namespace, don't include the current theme
+        $themeDirectory = $theme->getTemplateDirectories(true);
+
+        $parentDirectories = array_filter($templateDirectories, function($directory) use ($themeDirectory) {
+            return $themeDirectory !== $directory;
+        });
+
+        $this->prependPaths($parentDirectories, 'Parent');
     }
 
     protected function prependPaths(array $paths, $namespace = self::MAIN_NAMESPACE)
