@@ -85,7 +85,7 @@ All your template includes and `extends` should use the @Theme namespace:
 
 You can also use the `@Parent` namespace to access parent templates. This allows
 you to easily override any part of a parent template without Twig trying to
-reference itself. If you're editing `@Theme/Page/base.html.twig' and a parent
+reference itself. If you're editing `@Theme/Page/base.html.twig` and a parent
 theme has the same template, you can extend it by using
 `@Parent/Page/base.html.twig`. It will search all parents starting with the most
 immediate until it finds one.
