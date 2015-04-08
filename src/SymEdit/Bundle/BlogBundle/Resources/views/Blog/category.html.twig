@@ -1,4 +1,4 @@
-{% extends '@SymEdit/Blog/base.html.twig' %}
+{% extends '@SymEdit/Blog/index.html.twig' %}
 
 {% block meta %}
 {{ parent() }}
@@ -12,12 +12,6 @@ Category &raquo; {{ category.title }}
 </a>
 {% endblock %}
 
-{% block blog_content %}
-    {% if posts|length > 0 %}
-        {% include '@SymEdit/Blog/list.html.twig' with { posts: posts } %}
-    {% else %}
-        There are currently no posts for this category.
-    {% endif %}
-
-    {{ block('blog_pagination') }}
+{% block blog_pager %}
+    {{ pagerfanta(posts) }}
 {% endblock %}

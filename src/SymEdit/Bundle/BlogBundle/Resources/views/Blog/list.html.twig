@@ -1,3 +1,5 @@
 {% for post in posts %}
     {% include '@SymEdit/Blog/post-summary.html.twig' %}
+{% else %}
+    <p>There are currently no posts to show.</p>
 {% endfor %}
