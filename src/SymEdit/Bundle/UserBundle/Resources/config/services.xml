@@ -6,10 +6,12 @@
 
     <parameters>
         <parameter key="symedit.user_manager.class">SymEdit\Bundle\UserBundle\Model\UserManager</parameter>
+        <parameter key="symedit_user.event_listener.metadata_subscriber.class">SymEdit\Bundle\UserBundle\EventListener\MetadataSubscriber</parameter>
         <parameter key="symedit_user.event_listener.password.class">SymEdit\Bundle\UserBundle\EventListener\UpdatePasswordSubscriber</parameter>
     </parameters>
 
     <services>
+        <!-- User Manager -->
         <service id="symedit_user.user_manager" public="true" parent="fos_user.user_manager.default" class="%symedit.user_manager.class%">
             <call method="setProfileClass">
                 <argument>%symedit.model.profile.class%</argument>
@@ -20,8 +22,18 @@
             </call>
         </service>
 
+        <!-- Doctrine Metadata Subscriber -->
+        <service id="symedit_user.event_listener.metadata_subscriber" class="%symedit_user.event_listener.metadata_subscriber.class%">
+            <argument>%symedit.model.profile.class%</argument>
+            <argument>%symedit.model.admin_profile.class%</argument>
+
+            <tag name="doctrine.event_subscriber" />
+        </service>
+
+        <!-- User listener / Password updater -->
         <service id="symedit_user.event_listener.password" class="%symedit_user.event_listener.password.class%">
             <argument type="service" id="symedit_user.user_manager" />
+
             <tag name="kernel.event_subscriber" />
         </service>
     </services>
