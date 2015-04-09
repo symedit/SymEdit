@@ -7,7 +7,6 @@
     <parameters>
         <parameter key="symedit.form.type.role.class">SymEdit\Bundle\CoreBundle\Form\Type\RoleType</parameter>
         <parameter key="symedit.form.type.entity_property.class">SymEdit\Bundle\CoreBundle\Form\Type\EntityPropertyType</parameter>
-        <parameter key="symedit.form.factory.context.class">SymEdit\Bundle\CoreBundle\Form\Factory\ContextFormFactory</parameter>
         <parameter key="symedit.form.extension.flatten_tab.class">SymEdit\Bundle\CoreBundle\Form\Extension\FlattenTabExtension</parameter>
     </parameters>
 
@@ -40,17 +39,6 @@
         <service id="symedit.form.type.entity_property" class="%symedit.form.type.entity_property.class%">
             <argument type="service" id="doctrine" />
             <tag name="form.type" alias="entity_property" />
-        </service>
-
-        <!--  Form Factory -->
-        <service id="symedit.form.factory.context" class="%symedit.form.factory.context.class%">
-            <argument type="service" id="form.factory" />
-            <argument type="service" id="security.context" />
-            <argument type="collection">
-                <argument key="adminType">symedit_admin_profile</argument>
-                <argument key="userType">symedit_user_profile</argument>
-                <argument key="name">symedit_profile</argument>
-            </argument>
         </service>
 
         <!-- Flatten Tab Extension -->

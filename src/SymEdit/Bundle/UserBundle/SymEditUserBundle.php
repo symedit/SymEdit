@@ -13,22 +13,24 @@ namespace SymEdit\Bundle\UserBundle;
 
 use Sylius\Bundle\ResourceBundle\AbstractResourceBundle;
 use Sylius\Bundle\ResourceBundle\SyliusResourceBundle;
+use SymEdit\Bundle\UserBundle\DependencyInjection\Compiler\ProfileTypeCompilerPass;
 use SymEdit\Bundle\UserBundle\DependencyInjection\SymEditUserExtension;
+use Symfony\Component\DependencyInjection\ContainerBuilder;
 
 class SymEditUserBundle extends AbstractResourceBundle
 {
-    protected $loadProfiles;
-
-    public function __construct($loadProfiles = true)
-    {
-        $this->loadProfiles = $loadProfiles;
-    }
-
     public static function getSupportedDrivers()
     {
         return array(
             SyliusResourceBundle::DRIVER_DOCTRINE_ORM,
         );
+    }
+
+    public function build(ContainerBuilder $container)
+    {
+        parent::build($container);
+
+        $container->addCompilerPass(new ProfileTypeCompilerPass());
     }
 
     protected function getModelInterfaces()
@@ -41,10 +43,6 @@ class SymEditUserBundle extends AbstractResourceBundle
 
     protected function getModelNamespace()
     {
-        if (!$this->loadProfiles) {
-            return;
-        }
-
         return 'SymEdit\Bundle\UserBundle\Model';
     }
 

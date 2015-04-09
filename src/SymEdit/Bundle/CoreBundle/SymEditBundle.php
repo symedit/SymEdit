@@ -14,7 +14,6 @@ namespace SymEdit\Bundle\CoreBundle;
 use Sylius\Bundle\ResourceBundle\AbstractResourceBundle;
 use Sylius\Bundle\ResourceBundle\SyliusResourceBundle;
 use SymEdit\Bundle\CoreBundle\DependencyInjection\Compiler\LinkShortcodeCompilerPass;
-use SymEdit\Bundle\CoreBundle\DependencyInjection\Compiler\ProfileTypeCompilerPass;
 use SymEdit\Bundle\CoreBundle\DependencyInjection\Compiler\RouterCompilerPass;
 use SymEdit\Bundle\CoreBundle\DependencyInjection\Compiler\SymEditExtensionCompilerPass;
 use SymEdit\Bundle\CoreBundle\DependencyInjection\Compiler\TwigExceptionCompilerPass;
@@ -53,7 +52,6 @@ class SymEditBundle extends AbstractResourceBundle
         $container->addCompilerPass(new RouterCompilerPass());
         $container->addCompilerPass(new TwigExceptionCompilerPass());
         $container->addCompilerPass(new TwigPathCompilerPass($this->kernel));
-        $container->addCompilerPass(new ProfileTypeCompilerPass());
         $container->addCompilerPass(new SymEditExtensionCompilerPass());
         $container->addCompilerPass(new LinkShortcodeCompilerPass());
     }

@@ -9,34 +9,33 @@
  * file that was distributed with this source code.
  */
 
-namespace SymEdit\Bundle\CoreBundle\Form\Factory;
+namespace SymEdit\Bundle\UserBundle\Form\Factory;
 
+use FOS\UserBundle\Form\Factory\FactoryInterface;
+use SymEdit\Bundle\UserBundle\Model\UserInterface;
 use Symfony\Component\Form\FormFactoryInterface;
 use Symfony\Component\Security\Core\SecurityContext;
-use FOS\UserBundle\Form\Factory\FactoryInterface;
 
 class ContextFormFactory implements FactoryInterface
 {
     protected $factory;
     protected $context;
-    protected $options;
 
-    public function __construct(FormFactoryInterface $factory, SecurityContext $context, array $options)
+    public function __construct(FormFactoryInterface $factory, SecurityContext $context)
     {
         $this->factory = $factory;
         $this->context = $context;
-        $this->options = $options;
     }
 
     public function createForm()
     {
-        $type = $this->getUser()->isAdmin() ? $this->options['adminType'] : $this->options['userType'];
+        $type = sprintf('symedit_%s_profile', $this->getUser()->isAdmin() ? 'admin' : 'user');
 
-        return $this->factory->createNamed($this->options['name'], $type);
+        return $this->factory->createNamed('symedit_profile', $type);
     }
 
     /**
-     * @return \SymEdit\Bundle\UserBundle\Model\UserInterface $user
+     * @return UserInterface $user
      */
     public function getUser()
     {

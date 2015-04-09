@@ -4,6 +4,10 @@
            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
            xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
 
+    <parameters>
+        <parameter key="symedit_user.form.factory.context.class">SymEdit\Bundle\UserBundle\Form\Factory\ContextFormFactory</parameter>
+    </parameters>
+
     <services>
         <!-- User Type -->
         <service id="symedit.form.type.user" class="%symedit.form.type.user.class%">
@@ -33,6 +37,12 @@
         <service id="symedit.form.type.user_profile" class="%symedit.form.type.profile.class%">
             <argument>%fos_user.model.user.class%</argument>
             <tag name="form.type" alias="symedit_user_profile" />
+        </service>
+
+        <!--  Form Context Factory -->
+        <service id="symedit_user.form.factory.context" class="%symedit_user.form.factory.context.class%">
+            <argument type="service" id="form.factory" />
+            <argument type="service" id="security.context" />
         </service>
     </services>
 </container>
