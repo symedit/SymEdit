@@ -42,6 +42,15 @@ class PostType extends AbstractType
                 ),
                 'label' => 'symedit.form.post.status',
             ))
+            ->add('publishedAt', 'datetime', array(
+                'label' => 'symedit.form.post.published_at.label',
+                'help_block' => 'symedit.form.post.published_at.help',
+                'widget' => 'single_text',
+                'format' => 'yyyy-MM-dd HH:mm',
+                'attr' => array(
+                    'class' => 'datetimepicker',
+                ),
+            ))
             ->add('categories', 'entity', array(
                 'property' => 'title',
                 'class'    => $this->categoryClass,

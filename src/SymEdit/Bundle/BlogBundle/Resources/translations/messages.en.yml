@@ -9,6 +9,9 @@ symedit:
             author: Author
             status: Status
             categories: Categories
+            published_at:
+                label: Published At
+                help: Updates automatically when status changed to Published
             actions:
                 new: Create New Post
                 create: Create Post
