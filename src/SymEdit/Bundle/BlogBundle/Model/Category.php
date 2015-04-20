@@ -12,7 +12,6 @@
 namespace SymEdit\Bundle\BlogBundle\Model;
 
 use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
 
 class Category implements CategoryInterface
 {
@@ -71,9 +70,7 @@ class Category implements CategoryInterface
     }
 
     /**
-     * Get id
-     *
-     * @return integer
+     * {@inheritDoc}
      */
     public function getId()
     {
@@ -81,10 +78,7 @@ class Category implements CategoryInterface
     }
 
     /**
-     * Set name
-     *
-     * @param  string            $name
-     * @return CategoryInterface
+     * {@inheritDoc}
      */
     public function setName($name)
     {
@@ -94,9 +88,7 @@ class Category implements CategoryInterface
     }
 
     /**
-     * Get name
-     *
-     * @return string
+     * {@inheritDoc}
      */
     public function getName()
     {
@@ -104,10 +96,7 @@ class Category implements CategoryInterface
     }
 
     /**
-     * Set title
-     *
-     * @param  string            $title
-     * @return CategoryInterface
+     * {@inheritDoc}
      */
     public function setTitle($title)
     {
@@ -117,9 +106,7 @@ class Category implements CategoryInterface
     }
 
     /**
-     * Get title
-     *
-     * @return string
+     * {@inheritDoc}
      */
     public function getTitle()
     {
@@ -127,10 +114,7 @@ class Category implements CategoryInterface
     }
 
     /**
-     * Set slug
-     *
-     * @param  string            $slug
-     * @return CategoryInterface
+     * {@inheritDoc}
      */
     public function setSlug($slug)
     {
@@ -140,25 +124,23 @@ class Category implements CategoryInterface
     }
 
     /**
-     * Get slug
-     *
-     * @return string
+     * {@inheritDoc}
      */
     public function getSlug()
     {
         return $this->slug;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public function getRoot()
     {
         return $this->getParent() === null;
     }
 
     /**
-     * Set parent
-     *
-     * @param  CategoryInterface $parent
-     * @return CategoryInterface
+     * {@inheritDoc}
      */
     public function setParent(CategoryInterface $parent = null)
     {
@@ -168,9 +150,7 @@ class Category implements CategoryInterface
     }
 
     /**
-     * Get parent
-     *
-     * @return CategoryInterface
+     * {@inheritDoc}
      */
     public function getParent()
     {
@@ -178,9 +158,7 @@ class Category implements CategoryInterface
     }
 
     /**
-     * Get depth of the category
-     *
-     * @return integer
+     * {@inheritDoc}
      */
     public function getLevel()
     {
@@ -188,10 +166,7 @@ class Category implements CategoryInterface
     }
 
     /**
-     * Set the depth of the category
-     *
-     * @param  integer           $level
-     * @return CategoryInterface
+     * {@inheritDoc}
      */
     public function setLevel($level)
     {
@@ -201,10 +176,7 @@ class Category implements CategoryInterface
     }
 
     /**
-     * Add children
-     *
-     * @param  CategoryInterface $children
-     * @return CategoryInterface
+     * {@inheritDoc}
      */
     public function addChildren(CategoryInterface $children)
     {
@@ -215,9 +187,7 @@ class Category implements CategoryInterface
     }
 
     /**
-     * Remove children
-     *
-     * @param CategoryInterface $children
+     * {@inheritDoc}
      */
     public function removeChildren(CategoryInterface $children)
     {
@@ -225,7 +195,7 @@ class Category implements CategoryInterface
     }
 
     /**
-     * @return CategoryInterface
+     * {@inheritDoc}
      */
     public function setChildren($children)
     {
@@ -235,9 +205,7 @@ class Category implements CategoryInterface
     }
 
     /**
-     * Get children
-     *
-     * @return Collection
+     * {@inheritDoc}
      */
     public function getChildren()
     {
@@ -245,37 +213,33 @@ class Category implements CategoryInterface
     }
 
     /**
-     * Add posts
-     *
-     * @param  PostInterface     $post
-     * @return CategoryInterface
+     * {@inheritDoc}
      */
-    public function addPost(Post $post)
+    public function addPost(PostInterface $post)
     {
-        $this->posts[] = $post;
+        $this->posts->add($post);
 
         return $this;
     }
 
     /**
-     * Remove posts
-     *
-     * @param PostInterface $post
+     * {@inheritDoc}
      */
-    public function removePost(Post $post)
+    public function removePost(PostInterface $post)
     {
         $this->posts->removeElement($post);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public function setPosts($posts)
     {
         $this->posts = $posts;
     }
 
     /**
-     * Get posts
-     *
-     * @return Collection
+     * {@inheritDoc}
      */
     public function getPosts()
     {
@@ -283,7 +247,7 @@ class Category implements CategoryInterface
     }
 
     /**
-     * @return PostInterface
+     * {@inheritDoc}
      */
     public function getPublishedPosts()
     {
@@ -292,6 +256,9 @@ class Category implements CategoryInterface
         });
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public function getTotal()
     {
         return $this->getPublishedPosts()->count();
