@@ -9,6 +9,7 @@
         <parameter key="symedit_settings.cache_folder">symedit_settings</parameter>
         <parameter key="symedit_settings.settings.class">SymEdit\Bundle\SettingsBundle\Model\Settings</parameter>
         <parameter key="symedit_settings.event_listener.request.class">SymEdit\Bundle\SettingsBundle\EventListener\RequestListener</parameter>
+        <parameter key="symedit_settings.expression_language.settings_provider.class">SymEdit\Bundle\SettingsBundle\ExpressionLanguage\Provider\SettingsExpressionLanguageProvider</parameter>
     </parameters>
 
     <services>
@@ -43,10 +44,12 @@
             <tag name="form.type" alias="symedit_settings" />
         </service>
 
-        <!-- Request Settings Listener -->
-        <service id="symedit_settings.event_listener.request" class="%symedit_settings.event_listener.request.class%">
-            <argument type="service" id="symedit_settings.settings" />
-            <tag name="kernel.event_listener" event="kernel.request" />
+        <!-- Expression Language Provider -->
+        <service
+            id="symedit_settings.expression_language.settings_provider"
+            class="%symedit_settings.expression_language.settings_provider.class%"
+            public="false">
+            <tag name="symedit.expression_language_provider" />
         </service>
     </services>
 </container>

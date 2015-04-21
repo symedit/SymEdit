@@ -7,6 +7,7 @@
     <parameters>
         <parameter key="symedit.assetic.config_loader.class">Symfony\Bundle\AsseticBundle\Factory\Loader\ConfigurationLoader</parameter>
         <parameter key="symedit.assetic.config_resource.class">Symfony\Bundle\AsseticBundle\Factory\Resource\ConfigurationResource</parameter>
+        <parameter key="symedit.expression_language.class">SymEdit\Bundle\CoreBundle\ExpressionLanguage\ExpressionLanguage</parameter>
     </parameters>
 
     <services>
@@ -40,6 +41,13 @@
 
         <!-- Synthetic Current Page -->
         <service id="symedit_page" class="%symedit.model.page.class%" synthetic="true" />
+
+        <!-- Expression Language -->
+        <service id="symedit.expression_language" class="%symedit.expression_language.class%">
+            <call method="setContainer">
+                <argument type="service" id="service_container" />
+            </call>
+        </service>
     </services>
 
 </container>
