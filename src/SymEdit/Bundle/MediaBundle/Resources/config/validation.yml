@@ -33,4 +33,5 @@ SymEdit\Bundle\MediaBundle\Model\File:
 SymEdit\Bundle\MediaBundle\Model\GalleryItem:
     properties:
         image:
+            - NotBlank: ~
             - Valid: ~

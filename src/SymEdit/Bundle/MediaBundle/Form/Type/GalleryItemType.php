@@ -33,7 +33,6 @@ class GalleryItemType extends AbstractType
             ))
             ->add('image', 'symedit_image_choose', array(
                 'show_image' => true,
-                'required' => false,
             ))
         ;
     }
