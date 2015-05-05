@@ -11,10 +11,10 @@
 
 namespace SymEdit\Bundle\SettingsBundle\Exception;
 
-class InvalidSettingException extends \Exception
+class InvalidSettingException extends SettingException
 {
-    public function __construct($message)
+    public function __construct($setting)
     {
-        parent::__construct($message);
+        parent::__construct(sprintf('Setting or group with path "%s" does not exist', $setting));
     }
 }

@@ -12,7 +12,7 @@
 namespace SymEdit\Bundle\CoreBundle\Util;
 
 use FOS\UserBundle\Mailer\TwigSwiftMailer;
-use SymEdit\Bundle\SettingsBundle\Model\Settings;
+use SymEdit\Bundle\SettingsBundle\Model\SettingsInterface;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 class SymEditMailer extends TwigSwiftMailer implements SymEditMailerInterface
@@ -20,7 +20,7 @@ class SymEditMailer extends TwigSwiftMailer implements SymEditMailerInterface
     protected $settings;
     protected $fromEmail;
 
-    public function setSettings(Settings $settings)
+    public function setSettings(SettingsInterface $settings)
     {
         $this->settings = $settings;
     }

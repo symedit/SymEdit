@@ -5,9 +5,11 @@
            xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
 
     <parameters>
-        <parameter key="symedit_settings.factory.class">SymEdit\Bundle\SettingsBundle\Factory\ServiceFactory</parameter>
+        <parameter key="symedit_settings.factory.class">SymEdit\Bundle\SettingsBundle\Factory\SettingsFactory</parameter>
         <parameter key="symedit_settings.cache_folder">symedit_settings</parameter>
         <parameter key="symedit_settings.settings.class">SymEdit\Bundle\SettingsBundle\Model\Settings</parameter>
+        <parameter key="symedit_settings.settings_config.class">SymEdit\Bundle\SettingsBundle\Model\SettingsConfig</parameter>
+        <parameter key="symedit_settings.manager.class">SymEdit\Bundle\SettingsBundle\Model\SettingsManager</parameter>
         <parameter key="symedit_settings.event_listener.request.class">SymEdit\Bundle\SettingsBundle\EventListener\RequestListener</parameter>
         <parameter key="symedit_settings.expression_language.settings_provider.class">SymEdit\Bundle\SettingsBundle\ExpressionLanguage\Provider\SettingsExpressionLanguageProvider</parameter>
     </parameters>
@@ -20,27 +22,56 @@
             </call>
         </service>
 
+        <!-- Cache Alias -->
+        <service id="symedit_settings.cache" alias="doctrine_cache.providers.symedit_settings" />
+
         <!-- Settings Factory -->
         <service id="symedit_settings.factory" class="%symedit_settings.factory.class%">
-            <argument type="service" id="symedit_settings.settings" />
+            <argument type="service" id="symedit_settings.loader" />
+            <argument type="service" id="symedit_settings.storage" />
+            <argument type="service" id="symedit_settings.cache" />
+            <argument type="collection" />
+            <argument>%kernel.debug%</argument>
         </service>
 
         <!-- Settings -->
-        <service id="symedit_settings.settings" class="%symedit_settings.settings.class%">
-            <argument type="service" id="symedit_settings.loader" />
-            <argument type="collection" />
-            <argument>%kernel.root_dir%</argument>
-            <argument>%kernel.cache_dir%/%symedit_settings.cache_folder%</argument>
-            <argument>%kernel.debug%</argument>
+        <service
+            id="symedit_settings.settings"
+            class="%symedit_settings.settings.class%"
+            factory-service="symedit_settings.factory"
+            factory-method="getSettings"
+        />
+
+        <!-- Setting Config -->
+        <service
+            id="symedit_settings.settings_config"
+            class="%symedit_settings.settings_config.class%"
+            factory-service="symedit_settings.factory"
+            factory-method="getSettingsConfig"
+        />
+
+        <!-- Settings Manager -->
+        <service id="symedit_settings.manager" class="%symedit_settings.manager.class%">
+            <argument type="service" id="symedit_settings.storage" />
+            <argument type="service" id="symedit_settings.cache" />
         </service>
+
+        <!-- Yaml Storage -->
+        <service id="symedit_settings.storage.yaml" class="SymEdit\Bundle\SettingsBundle\Storage\YamlConfigStorage">
+            <argument>%kernel.root_dir%/config/settings.yml</argument>
+        </service>
+
+        <!-- Storage Alias -->
+        <service id="symedit_settings.storage" alias="symedit_settings.storage.yaml" />
 
         <!-- Settings Alias -->
         <service id="symedit_settings" alias="symedit_settings.settings" />
 
         <!-- Settings Form Type -->
         <service id="symedit_settings.form.type.settings" class="%symedit.form.type.settings.class%">
-            <argument type="service" id="symedit_settings.settings" />
+            <argument type="service" id="symedit_settings.settings_config" />
             <argument type="service" id="security.authorization_checker" />
+            
             <tag name="form.type" alias="symedit_settings" />
         </service>
 

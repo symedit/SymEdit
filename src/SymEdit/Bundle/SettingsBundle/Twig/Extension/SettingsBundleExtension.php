@@ -11,13 +11,13 @@
 
 namespace SymEdit\Bundle\SettingsBundle\Twig\Extension;
 
-use SymEdit\Bundle\SettingsBundle\Model\Settings;
+use SymEdit\Bundle\SettingsBundle\Model\SettingsInterface;
 
 class SettingsBundleExtension extends \Twig_Extension
 {
     private $settings;
 
-    public function __construct(Settings $settings)
+    public function __construct(SettingsInterface $settings)
     {
         $this->settings = $settings;
     }
@@ -31,19 +31,19 @@ class SettingsBundleExtension extends \Twig_Extension
         );
     }
 
-    public function getSetting($offset)
+    public function getSetting($setting)
     {
-        return $this->settings->get($offset);
+        return $this->settings->get($setting);
     }
 
-    public function hasSetting($offset)
+    public function hasSetting($setting)
     {
-        return $this->settings->has($offset);
+        return $this->settings->has($setting);
     }
 
-    public function defaultSetting($offset, $default = null)
+    public function defaultSetting($setting, $default = null)
     {
-        return $this->hasSetting($offset) ? $this->getSetting($offset) : $default;
+        return $this->settings->getDefault($setting, $default);
     }
 
     public function getName()

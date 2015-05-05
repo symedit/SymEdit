@@ -12,7 +12,7 @@
 namespace SymEdit\Bundle\CoreBundle\Controller;
 
 use SymEdit\Bundle\CacheBundle\Decision\CacheDecisionManager;
-use SymEdit\Bundle\SettingsBundle\Model\Settings;
+use SymEdit\Bundle\SettingsBundle\Model\SettingsInterface;
 use SymEdit\Bundle\WidgetBundle\Controller\WidgetAreaController as BaseController;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -46,7 +46,7 @@ class WidgetAreaController extends BaseController
     }
 
     /**
-     * @return Settings
+     * @return SettingsInterface
      */
     protected function getSettings()
     {

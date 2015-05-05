@@ -11,7 +11,7 @@
 
 namespace SymEdit\Bundle\SettingsBundle\Form\Type;
 
-use SymEdit\Bundle\SettingsBundle\Model\Settings;
+use SymEdit\Bundle\SettingsBundle\Model\SettingsConfigInterface;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -19,20 +19,18 @@ use Symfony\Component\Security\Core\Authorization\AuthorizationCheckerInterface;
 
 class SettingsType extends AbstractType
 {
-    private $settings;
+    private $config;
     private $auth;
 
-    public function __construct(Settings $settings, AuthorizationCheckerInterface $auth)
+    public function __construct(SettingsConfigInterface $config, AuthorizationCheckerInterface $auth)
     {
-        $this->settings = $settings;
+        $this->config = $config;
         $this->auth = $auth;
     }
 
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $config = $this->settings->getConfigData();
-
-        foreach ($config as $groupName => $groupData) {
+        foreach ($this->config->getConfig() as $groupName => $groupData) {
             // Check for roles
             if ($groupData['role'] !== null && !$this->auth->isGranted($groupData['role'])) {
                 continue;

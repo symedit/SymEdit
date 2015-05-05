@@ -11,10 +11,6 @@
 
 namespace SymEdit\Bundle\SettingsBundle\Exception;
 
-class DuplicateSettingException extends SettingException
+class SettingException extends \Exception
 {
-    public function __construct($groupName, $settingName)
-    {
-        parent::__construct(sprintf('Duplicate setting definition "%s.%s"', $groupName, $settingName));
-    }
 }
