@@ -27,11 +27,20 @@ class FileController extends MediaController
                 'title' => $file->getName(),
                 'name' => $file->getPath(),
                 'link' => sprintf('[link media-id=%d]', $file->getId()),
-                'size' => sprintf('%dB', $size),
+                'size' => $this->getReadableSize($size),
             );
         }
 
         return new JsonResponse($out);
+    }
+
+    protected function getReadableSize($bytes)
+    {
+        $size = array('B','kB','MB','GB','TB','PB','EB','ZB','YB');
+        $factor = floor((strlen($bytes) - 1) / 3);
+        $units = isset($size[$factor]) ? $size[$factor] : '';
+
+        return sprintf("%.2f", $bytes / pow(1024, $factor)) . $units;
     }
 
     /**
