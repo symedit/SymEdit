@@ -41,6 +41,9 @@ class MetadataSubscriber implements EventSubscriber
         // Set inheritence type
         $metadata->setInheritanceType(ClassMetadataInfo::INHERITANCE_TYPE_JOINED);
 
+        // Set not mapped superclass
+        $metadata->isMappedSuperclass = false;
+
         // Set discriminator column
         $metadata->setDiscriminatorColumn(array(
             'name'   => 'discr',
