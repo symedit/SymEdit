@@ -11,8 +11,8 @@
 
 namespace SymEdit\Bundle\ThemeBundle\Theme;
 
-use InvalidArgumentException;
 use SymEdit\Bundle\ThemeBundle\Model\ThemeInterface;
+use SymEdit\Bundle\ThemeBundle\Theme\Exception\ThemeLoadingException;
 use Symfony\Component\Config\ConfigCache;
 use Symfony\Component\Config\Definition\ConfigurationInterface;
 use Symfony\Component\Config\Definition\Processor;
@@ -88,6 +88,12 @@ class ThemeFactory implements ThemeFactoryInterface
         list($configs, $resources) = $this->getConfigData($name);
         $themeData = $this->getProcessor()->processConfiguration($this->configuration, $configs);
 
+        if ($themeData['name'] !== $name) {
+            throw new ThemeLoadingException(
+                sprintf('Theme name "%s" should match theme folder name "%s".', $themeData['name'], $name)
+            );
+        }
+
         if (isset($themeData['parent'])) {
             $themeData['parent'] = $this->getTheme($themeData['parent']);
         }
@@ -103,7 +109,7 @@ class ThemeFactory implements ThemeFactoryInterface
         $theme = new $this->themeConfig['model']();
 
         if (!$theme instanceof ThemeInterface) {
-            throw new InvalidArgumentException(sprintf('Theme model "%s" must implement ThemeInterface', get_class($theme)));
+            throw new ThemeLoadingException(sprintf('Theme model "%s" must implement ThemeInterface', get_class($theme)));
         }
 
         return $theme;
