@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace SymEdit\Bundle\ThemeBundle\Factory\Resource;
+namespace SymEdit\Bundle\ThemeBundle\Assetic\Factory\Resource;
 
 use Assetic\Factory\Resource\ResourceInterface;
 use SymEdit\Bundle\ThemeBundle\Model\ThemeInterface;

@@ -9,11 +9,11 @@
  * file that was distributed with this source code.
  */
 
-namespace SymEdit\Bundle\ThemeBundle\Factory\Loader;
+namespace SymEdit\Bundle\ThemeBundle\Assetic\Factory\Loader;
 
 use Assetic\Factory\Loader\FormulaLoaderInterface;
 use Assetic\Factory\Resource\ResourceInterface;
-use SymEdit\Bundle\ThemeBundle\Factory\Resource\ThemeResource;
+use SymEdit\Bundle\ThemeBundle\Assetic\Factory\Resource\ThemeResource;
 
 class ThemeLoader implements FormulaLoaderInterface
 {

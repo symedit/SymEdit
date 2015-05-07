@@ -17,18 +17,18 @@
         </service>
 
         <!-- Assetic Theme Loader -->
-        <service id="symedit_theme.assetic.theme_loader" class="SymEdit\Bundle\ThemeBundle\Factory\Loader\ThemeLoader" public="false">
+        <service id="symedit_theme.assetic.theme_loader" class="SymEdit\Bundle\ThemeBundle\Assetic\Factory\Loader\ThemeLoader" public="false">
             <tag name="assetic.formula_loader" alias="theme" />
         </service>
 
         <!-- Assetic Theme Resource -->
-        <service id="symedit_theme.theme_resource" class="SymEdit\Bundle\ThemeBundle\Factory\Resource\ThemeResource" public="false">
+        <service id="symedit_theme.theme_resource" class="SymEdit\Bundle\ThemeBundle\Assetic\Factory\Resource\ThemeResource" public="false">
             <argument type="service" id="symedit_theme.theme" />
             <tag name="assetic.formula_resource" loader="theme" />
         </service>
 
         <!-- Assetic Theme Directory Resource -->
-        <service id="symedit_theme.twig.theme_resource" class="SymEdit\Bundle\ThemeBundle\Factory\Resource\ThemeTwigResource">
+        <service id="symedit_theme.twig.theme_resource" class="SymEdit\Bundle\ThemeBundle\Assetic\Factory\Resource\ThemeTwigResource">
             <argument type="service" id="symedit_theme.theme" />
             <tag name="assetic.templating.twig" />
             <tag name="assetic.formula_resource" loader="twig" />
