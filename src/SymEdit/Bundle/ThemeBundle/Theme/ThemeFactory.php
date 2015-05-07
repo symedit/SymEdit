@@ -42,11 +42,6 @@ class ThemeFactory implements ThemeFactoryInterface
         $this->cacheDir = $cacheDir;
     }
 
-    protected function loadTheme($name)
-    {
-        return $this->loadThemeData($name);
-    }
-
     protected function getConfigData($name)
     {
         $configs = array();
@@ -71,7 +66,7 @@ class ThemeFactory implements ThemeFactoryInterface
     /**
      * @return ThemeInterface
      */
-    protected function loadThemeData($name)
+    public function getTheme($name)
     {
         $cachePath = sprintf('%s/theme_config/%s.php', $this->cacheDir, $name);
         $themeCache = new ConfigCache($cachePath, $this->debug);
@@ -94,7 +89,7 @@ class ThemeFactory implements ThemeFactoryInterface
         $themeData = $this->getProcessor()->processConfiguration($this->configuration, $configs);
 
         if (isset($themeData['parent'])) {
-            $themeData['parent'] = $this->loadTheme($themeData['parent']);
+            $themeData['parent'] = $this->getTheme($themeData['parent']);
         }
 
         $cache->write(serialize($this->createTheme($themeData)), $resources);
@@ -139,16 +134,5 @@ class ThemeFactory implements ThemeFactoryInterface
         }
 
         return $this->processor;
-    }
-
-    /**
-     * Get a Theme
-     *
-     * @param  string         $name
-     * @return ThemeInterface
-     */
-    public function getTheme($name)
-    {
-        return $this->loadTheme($name);
     }
 }
