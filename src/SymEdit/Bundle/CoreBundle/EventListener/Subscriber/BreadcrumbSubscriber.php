@@ -29,11 +29,11 @@ class BreadcrumbSubscriber implements EventSubscriberInterface
     public static function getSubscribedEvents()
     {
         return array(
-            'kernel.controller' => array('onKernelController', 0),
+            'kernel.controller' => array('buildPageCrumbs', 0),
         );
     }
 
-    public function onKernelController(FilterControllerEvent $event)
+    public function buildPageCrumbs(FilterControllerEvent $event)
     {
         if ($event->getRequestType() !== HttpKernel::MASTER_REQUEST) {
             return;
