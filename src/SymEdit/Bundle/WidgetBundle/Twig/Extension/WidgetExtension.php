@@ -13,6 +13,7 @@ namespace SymEdit\Bundle\WidgetBundle\Twig\Extension;
 
 use Sylius\Component\Resource\Repository\RepositoryInterface;
 use SymEdit\Bundle\WidgetBundle\Twig\TokenParser;
+use Symfony\Component\DependencyInjection\ContainerInterface;
 
 class WidgetExtension extends \Twig_Extension
 {
@@ -21,7 +22,7 @@ class WidgetExtension extends \Twig_Extension
     protected $widgetRenderer;
     protected $esiStrategy;
 
-    public function __construct(RepositoryInterface $widgetRepository, \Symfony\Component\DependencyInjection\ContainerInterface $container, $esiStrategy)
+    public function __construct(RepositoryInterface $widgetRepository, ContainerInterface $container, $esiStrategy)
     {
         $this->esiStrategy = $esiStrategy;
         $this->widgetRepository = $widgetRepository;
