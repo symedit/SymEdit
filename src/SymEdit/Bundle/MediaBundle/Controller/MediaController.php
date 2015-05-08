@@ -41,14 +41,19 @@ abstract class MediaController extends ResourceController
             $this->getManager()->persist($media);
             $this->getManager()->flush($media);
 
-            return new JsonResponse(array(
-                'id' => $media->getId(),
-                'filelink' => $media->getWebPath(),
-            ));
+            return $this->getQuickUploadResponse($media);
         } catch (\Exception $ex) {
             return new JsonResponse(array(
                 'error' => 'Error uploading, try renaming your media file.',
             ));
         }
+    }
+
+    protected function getQuickUploadResponse(MediaInterface $media)
+    {
+        return new JsonResponse(array(
+            'id' => $media->getId(),
+            'filelink' => $media->getWebPath(),
+        ));
     }
 }

@@ -11,6 +11,8 @@
 
 namespace SymEdit\Bundle\MediaBundle\Controller;
 
+use Gaufrette\Filesystem;
+use SymEdit\Bundle\MediaBundle\Model\MediaInterface;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
 class FileController extends MediaController
@@ -43,8 +45,17 @@ class FileController extends MediaController
         return sprintf("%.2f", $bytes / pow(1024, $factor)) . $units;
     }
 
+    protected function getQuickUploadResponse(MediaInterface $media)
+    {
+        return new JsonResponse(array(
+            'id' => $media->getId(),
+            'filename' => $media->getName(),
+            'filelink' => $media->getWebPath(),
+        ));
+    }
+
     /**
-     * @return \Gaufrette\Filesystem
+     * @return Filesystem
      */
     protected function getFilesystem()
     {
