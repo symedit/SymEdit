@@ -28,7 +28,7 @@ class FileController extends MediaController
             $out[] = array(
                 'title' => $file->getName(),
                 'name' => $file->getPath(),
-                'link' => sprintf('[link media-id=%d]', $file->getId()),
+                'link' => $this->getMediaLink($file),
                 'size' => $this->getReadableSize($size),
             );
         }
@@ -50,7 +50,7 @@ class FileController extends MediaController
         return new JsonResponse(array(
             'id' => $media->getId(),
             'filename' => $media->getName(),
-            'filelink' => $media->getWebPath(),
+            'filelink' => $this->getMediaLink($media),
         ));
     }
 

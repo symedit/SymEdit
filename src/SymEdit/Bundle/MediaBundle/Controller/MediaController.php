@@ -49,6 +49,11 @@ abstract class MediaController extends ResourceController
         }
     }
 
+    protected function getMediaLink(MediaInterface $media)
+    {
+        return sprintf('[link media-id=%d]', $media->getId());
+    }
+
     protected function getQuickUploadResponse(MediaInterface $media)
     {
         return new JsonResponse(array(
