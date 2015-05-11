@@ -58,6 +58,7 @@ class AppKernel extends Kernel
             new Bazinga\Bundle\HateoasBundle\BazingaHateoasBundle(),
 
             // Doctrine last so mappings work properly
+            new Doctrine\Bundle\DoctrineCacheBundle\DoctrineCacheBundle(),
             new Doctrine\Bundle\DoctrineBundle\DoctrineBundle(),
         );
 

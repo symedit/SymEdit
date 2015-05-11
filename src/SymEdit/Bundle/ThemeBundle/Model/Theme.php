@@ -155,6 +155,7 @@ class Theme implements ThemeInterface, \Serializable
     {
         return serialize(array(
             'name' => $this->name,
+            'title' => $this->title,
             'description' => $this->description,
             'stylesheets' => $this->stylesheets,
             'javascripts' => $this->javascripts,
@@ -169,6 +170,7 @@ class Theme implements ThemeInterface, \Serializable
         $data = unserialize($serialized);
 
         $this->name = $data['name'];
+        $this->title = $data['title'];
         $this->description = $data['description'];
         $this->stylesheets = $data['stylesheets'];
         $this->javascripts = $data['javascripts'];

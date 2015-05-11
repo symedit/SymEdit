@@ -31,6 +31,7 @@ class Configuration implements ConfigurationInterface
 
         $rootNode
             ->children()
+                ->booleanNode('debug')->defaultValue('%kernel.debug%')->end()
                 ->scalarNode('theme_directory')->isRequired()->cannotBeEmpty()->end()
                 ->scalarNode('public_directory')->defaultValue('themes')->cannotBeEmpty()->end()
                 ->scalarNode('active_theme')->defaultValue('default')->cannotBeEmpty()->end()
