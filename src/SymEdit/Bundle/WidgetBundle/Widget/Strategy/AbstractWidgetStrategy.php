@@ -52,8 +52,8 @@ abstract class AbstractWidgetStrategy implements WidgetStrategyInterface
         return $this->templating;
     }
 
-    public function render($name, array $parameters = array())
+    public function render(WidgetInterface $widget, array $parameters = array())
     {
-        return $this->templating->render($name, $parameters);
+        return $this->templating->render($widget->getOption('template'), $parameters);
     }
 }

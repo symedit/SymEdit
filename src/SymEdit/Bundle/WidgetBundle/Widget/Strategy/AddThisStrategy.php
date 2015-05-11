@@ -19,7 +19,7 @@ class AddThisStrategy extends AbstractWidgetStrategy
 {
     public function execute(WidgetInterface $widget)
     {
-        return $this->render('@SymEdit/Widget/addthis.html.twig', array(
+        return $this->render($widget, array(
             'include_script' => $widget->getOption('include_script'),
         ));
     }
@@ -31,13 +31,15 @@ class AddThisStrategy extends AbstractWidgetStrategy
                 'required' => false,
                 'label' => 'Include Javascript File?',
                 'help_block' => 'Try not to include the Javascript file twice on any page.',
-            ));
+            ))
+        ;
     }
 
     public function getDefaultOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
             'include_script' => true,
+            'template' => '@SymEdit/Widget/addthis.html.twig',
         ));
     }
 

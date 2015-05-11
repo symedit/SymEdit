@@ -22,7 +22,7 @@ class RecentPostsStrategy extends AbstractPostStrategy
     {
         $posts = $this->postRepository->getRecent($widget->getOption('max'));
 
-        return $this->render('@SymEdit/Widget/Blog/recent-posts.html.twig', array(
+        return $this->render($widget, array(
             'posts' => $posts,
         ));
     }
@@ -47,6 +47,7 @@ class RecentPostsStrategy extends AbstractPostStrategy
     {
         $resolver->setDefaults(array(
             'max' => 3,
+            'template' => '@SymEdit/Widget/Blog/recent-posts.html.twig',
         ));
     }
 

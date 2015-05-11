@@ -21,7 +21,7 @@ class LatestPostStrategy extends AbstractPostStrategy
     {
         $post = $this->postRepository->getLatestPost();
 
-        return $this->render('@SymEdit/Widget/Blog/latest-post.html.twig', array(
+        return $this->render($widget, array(
             'post' => $post,
         ));
     }
@@ -40,6 +40,7 @@ class LatestPostStrategy extends AbstractPostStrategy
     {
         $resolver->setDefaults(array(
             'show_image' => true,
+            'template' => '@SymEdit/Widget/Blog/latest-post.html.twig',
         ));
     }
 

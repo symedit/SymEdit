@@ -34,7 +34,7 @@ class PopularPostsStrategy extends AbstractWidgetStrategy
         // We don't need the counts here
         $posts = array_map('current', $posts);
 
-        return $this->render('@SymEdit/Widget/Blog/popular-posts.html.twig', array(
+        return $this->render($widget, array(
             'posts' => $posts,
         ));
     }
@@ -59,6 +59,7 @@ class PopularPostsStrategy extends AbstractWidgetStrategy
     {
         $resolver->setDefaults(array(
             'max' => 3,
+            'template' => '@SymEdit/Widget/Blog/popular-posts.html.twig',
         ));
     }
 

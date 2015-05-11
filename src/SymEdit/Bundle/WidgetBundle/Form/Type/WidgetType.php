@@ -11,11 +11,12 @@
 
 namespace SymEdit\Bundle\WidgetBundle\Form\Type;
 
+use SymEdit\Bundle\WidgetBundle\Form\DataTransformer\WidgetAssociationTransformer;
+use SymEdit\Bundle\WidgetBundle\Model\WidgetInterface;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use SymEdit\Bundle\WidgetBundle\Form\DataTransformer\WidgetAssociationTransformer;
-use SymEdit\Bundle\WidgetBundle\Model\WidgetInterface;
+use Symfony\Component\Validator\Constraints\NotBlank;
 
 class WidgetType extends AbstractType
 {
@@ -69,7 +70,20 @@ class WidgetType extends AbstractType
 
     public function buildOptionsForm(FormBuilderInterface $builder, array $options)
     {
-        $options['strategy']->buildForm($builder);
+        $strategy = $options['strategy'];
+
+        // Add custom template override
+        $builder
+            ->add('template', 'text', array(
+                'required' => true,
+                'help_block' => 'symedit.form.widget.options.template.help',
+                'constraints' => array(
+                    new NotBlank(),
+                ),
+            ))
+        ;
+
+        $strategy->buildForm($builder);
     }
 
     public function buildForm(FormBuilderInterface $builder, array $options)

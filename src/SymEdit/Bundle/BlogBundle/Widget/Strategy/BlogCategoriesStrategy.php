@@ -30,7 +30,7 @@ class BlogCategoriesStrategy extends AbstractWidgetStrategy
     {
         $root = $this->categoryRepository->findRoot();
 
-        return $this->render('@SymEdit/Widget/Blog/categories.html.twig', array(
+        return $this->render($widget, array(
             'root' => $root,
             'counts' => $widget->getOption('counts'),
         ));
@@ -43,13 +43,15 @@ class BlogCategoriesStrategy extends AbstractWidgetStrategy
                 'required' => false,
                 'label' => 'Display Counts',
                 'help_block' => 'Display Category counts next to label',
-            ));
+            ))
+        ;
     }
 
     public function getDefaultOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
             'counts' => true,
+            'template' => '@SymEdit/Widget/Blog/categories.html.twig',
         ));
     }
 

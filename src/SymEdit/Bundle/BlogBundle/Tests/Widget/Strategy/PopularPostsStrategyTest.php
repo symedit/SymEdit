@@ -26,17 +26,18 @@ class PopularPostsStrategyTest extends WidgetStrategyTest
                      array('post2', 2),
                  )));
 
+        $widget = $this->createWidget();
         $strategy = $this->createStrategy($reporter);
         $strategy->expects($this->once())
                  ->method('render')
                  ->with(
-                    $this->equalTo('@SymEdit/Widget/Blog/popular-posts.html.twig'),
+                    $this->equalTo($widget),
                     $this->equalTo(array(
                         'posts' => array('post1', 'post2'),
                     ))
                  );
 
-        $strategy->execute($this->createWidget());
+        $strategy->execute($widget);
     }
 
     protected function createStrategy($reporter = null)
@@ -73,6 +74,7 @@ class PopularPostsStrategyTest extends WidgetStrategyTest
     {
         return array(
             'max' => 3,
+            'template' => '@SymEdit/Widget/Blog/popular-posts.html.twig',
         );
     }
 

@@ -61,8 +61,8 @@ interface WidgetStrategyInterface
     public function setTemplating(EngineInterface $templating);
 
     /**
-     * @param string $name       Template name
-     * @param array  $parameters Template parameters
+     * @param WidgetInterface $widget     Template name
+     * @param array           $parameters Template parameters
      */
-    public function render($name, array $parameters = array());
+    public function render(WidgetInterface $widget, array $parameters = array());
 }

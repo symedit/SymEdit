@@ -24,7 +24,7 @@ class GalleryStrategy extends AbstractGalleryStrategy
             return;
         }
 
-        return $this->render('@SymEdit/Widget/Media/gallery.html.twig', array(
+        return $this->render($widget, array(
             'gallery' => $gallery,
         ));
     }
@@ -40,6 +40,13 @@ class GalleryStrategy extends AbstractGalleryStrategy
                 'property_value' => 'slug',
             ))
         ;
+    }
+
+    public function getDefaultOptions(\Symfony\Component\OptionsResolver\OptionsResolver $resolver)
+    {
+        $resolver->setDefaults(array(
+            'template' => '@SymEdit/Widget/Media/gallery.html.twig',
+        ));
     }
 
     public function getName()

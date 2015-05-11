@@ -28,7 +28,7 @@ class SubmenuStrategy extends AbstractWidgetStrategy
             return false;
         }
 
-        return $this->render('@SymEdit/Widget/submenu.html.twig', array(
+        return $this->render($widget, array(
             'page' => $page,
             'nav_class' => $widget->getOption('nav_class'),
             'level' => $widget->getOption('level'),
@@ -59,6 +59,7 @@ class SubmenuStrategy extends AbstractWidgetStrategy
         $resolver->setDefaults(array(
             'level' => 1,
             'nav_class' => 'nav nav-pills nav-stacked',
+            'template' => '@SymEdit/Widget/submenu.html.twig',
         ));
     }
 
