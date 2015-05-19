@@ -12,7 +12,7 @@
 namespace SymEdit\Bundle\StylizerBundle\Loader;
 
 /**
- * Loads data from multiple loaders
+ * Loads data from multiple loaders.
  */
 class LoaderChain implements LoaderInterface
 {

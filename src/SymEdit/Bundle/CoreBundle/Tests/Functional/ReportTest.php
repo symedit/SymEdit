@@ -36,7 +36,7 @@ class ReportTest extends WebTestCase
 
     /**
      * arg1 - Report Name
-     * arg2 - Report Options
+     * arg2 - Report Options.
      *
      * @return array
      */

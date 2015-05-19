@@ -19,9 +19,10 @@ class SeoTools
     }
 
     /**
-     * Removes XSS issues mostly, html entities and strip_tags
+     * Removes XSS issues mostly, html entities and strip_tags.
      *
-     * @param  string $string
+     * @param string $string
+     *
      * @return string
      */
     public static function normalize($string)
@@ -30,7 +31,7 @@ class SeoTools
     }
 
     /**
-     * Removes outer whitespace, and removes double spaces / newlines
+     * Removes outer whitespace, and removes double spaces / newlines.
      *
      * @param string $string
      */
@@ -40,9 +41,10 @@ class SeoTools
     }
 
     /**
-     * Normalize then minify
+     * Normalize then minify.
      *
-     * @param  string $string
+     * @param string $string
+     *
      * @return string
      */
     public static function plain($string, $length = null)

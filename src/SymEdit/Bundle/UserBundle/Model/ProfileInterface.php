@@ -14,14 +14,15 @@ namespace SymEdit\Bundle\UserBundle\Model;
 interface ProfileInterface
 {
     /**
-     * @return integer Profile ID
+     * @return int Profile ID
      */
     public function getId();
 
     /**
-     * Set user's first name
+     * Set user's first name.
      *
-     * @param  string           $firstName
+     * @param string $firstName
+     *
      * @return ProfileInterface
      */
     public function setFirstName($firstName);
@@ -32,9 +33,10 @@ interface ProfileInterface
     public function getFirstName();
 
     /**
-     * Set User's last name
+     * Set User's last name.
      *
-     * @param  string           $lastName
+     * @param string $lastName
+     *
      * @return ProfileInterface
      */
     public function setLastName($lastName);
@@ -56,6 +58,7 @@ interface ProfileInterface
 
     /**
      * @param UserInterface
+     *
      * @return ProfileInterface
      */
     public function setUser(UserInterface $user);

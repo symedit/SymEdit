@@ -39,7 +39,7 @@ class SymEditStylizerExtension extends Extension
         // Setup storage
         $container->setAlias('symedit_stylizer.storage', $config['storage']);
 
-        /**
+        /*
          * This plugs into the AsseticController when in dev mode
          */
         if (strtolower($env) !== 'prod') {

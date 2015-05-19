@@ -42,7 +42,7 @@ class SymEditMediaExtension extends SymEditResourceExtension implements PrependE
 
     public function prepend(ContainerBuilder $container)
     {
-        /**
+        /*
          * Twig Extension
          */
         $container->prependExtensionConfig('twig', array(

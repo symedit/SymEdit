@@ -16,7 +16,7 @@ use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Reference;
 
 /**
- * Code reused from Symfony2 AddSecurityVotersPass
+ * Code reused from Symfony2 AddSecurityVotersPass.
  *
  * @author Johannes M. Schmitt <schmittjoh@gmail.com>
  */

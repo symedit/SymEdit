@@ -16,14 +16,15 @@ use SymEdit\Bundle\BlogBundle\Model\Category as BaseCategory;
 class Category extends BaseCategory implements CategoryInterface
 {
     /**
-     * @var array $seo
+     * @var array
      */
     protected $seo;
 
     /**
-     * Set seo
+     * Set seo.
      *
-     * @param  array             $seo
+     * @param array $seo
+     *
      * @return CategoryInterface
      */
     public function setSeo(array $seo = array())
@@ -34,7 +35,7 @@ class Category extends BaseCategory implements CategoryInterface
     }
 
     /**
-     * Get seo
+     * Get seo.
      *
      * @return array
      */

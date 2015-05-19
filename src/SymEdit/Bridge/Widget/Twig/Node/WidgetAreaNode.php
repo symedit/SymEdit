@@ -15,7 +15,7 @@ use SymEdit\Bundle\WidgetBundle\Twig\Node\WidgetAreaNode as BaseNode;
 
 /**
  * Renders the WidgetAreaNode with the current Page context which is sometimes
- * needed for SymEdit
+ * needed for SymEdit.
  */
 class WidgetAreaNode extends BaseNode
 {

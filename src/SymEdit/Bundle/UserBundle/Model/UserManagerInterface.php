@@ -20,14 +20,14 @@ interface UserManagerInterface extends UserProviderInterface, BaseManager
     public function setAdminProfileClass($adminProfileClass);
 
     /**
-     * Creates a new profile
+     * Creates a new profile.
      *
      * @return ProfileInterface $profile
      */
     public function createProfile($admin = false);
 
     /**
-     * Creates a new user
+     * Creates a new user.
      *
      * @return UserInterface $user
      */

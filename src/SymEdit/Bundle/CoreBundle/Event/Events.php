@@ -14,17 +14,17 @@ namespace SymEdit\Bundle\CoreBundle\Event;
 final class Events
 {
     /**
-     * Menu Events
+     * Menu Events.
      */
     const MENU_VIEW = 'symedit.menu.view';
 
     /**
-     * FOS View / Subject Set
+     * FOS View / Subject Set.
      */
     const SUBJECT_SET = 'symedit.subject.set';
 
     /**
-     * Contact Form
+     * Contact Form.
      */
     const CONTACT_SUBMIT_VALID = 'symedit.contact.valid';
 }

@@ -16,7 +16,7 @@ use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Compiler\CompilerPassInterface;
 
 /**
- * Adds all configured cache voters, taken from Symfony Security Bundle
+ * Adds all configured cache voters, taken from Symfony Security Bundle.
  *
  * @author Johannes M. Schmitt <schmittjoh@gmail.com>
  */

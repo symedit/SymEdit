@@ -19,7 +19,7 @@ class SymEditResourceExtension extends AbstractResourceExtension
     protected $applicationName = 'symedit';
 
     /**
-     * Maps parameters to their equivalent path in their arrays
+     * Maps parameters to their equivalent path in their arrays.
      *
      * @param ContainerBuilder $container
      * @param string           $path

@@ -50,7 +50,7 @@ class SymEditMailer extends TwigSwiftMailer implements SymEditMailerInterface
      */
     protected function sendMessage($templateName, $context, $fromEmail, $toEmail, array $options = array())
     {
-        /**
+        /*
          * Overwrite the fromEmail, you COULD change this with $options though..
          */
         $fromEmail = array(
@@ -67,7 +67,7 @@ class SymEditMailer extends TwigSwiftMailer implements SymEditMailerInterface
             ->setFrom($fromEmail)
             ->setTo($toEmail);
 
-        /**
+        /*
          * Add extra options
          */
         foreach ($options as $key => $value) {

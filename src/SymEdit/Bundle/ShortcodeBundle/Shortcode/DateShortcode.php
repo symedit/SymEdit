@@ -12,7 +12,7 @@
 namespace SymEdit\Bundle\ShortcodeBundle\Shortcode;
 
 /**
- * Render date strings from current date / time
+ * Render date strings from current date / time.
  */
 class DateShortcode extends AbstractShortcode
 {

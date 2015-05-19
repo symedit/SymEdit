@@ -16,21 +16,21 @@ use SymEdit\Bundle\MediaBundle\Model\MediaInterface;
 interface UploadManagerInterface
 {
     /**
-     * Prepare upload and underlying entity so it can be stored
+     * Prepare upload and underlying entity so it can be stored.
      *
      * @param MediaInterface $media
      */
     public function preUpload(MediaInterface $media);
 
     /**
-     * Uploads the file
+     * Uploads the file.
      *
      * @param MediaInterface $media
      */
     public function upload(MediaInterface $media);
 
     /**
-     * Remove the upload
+     * Remove the upload.
      *
      * @param MediaInterface $media
      */

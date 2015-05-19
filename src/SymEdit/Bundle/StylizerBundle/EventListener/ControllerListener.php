@@ -16,7 +16,7 @@ use SymEdit\Bundle\StylizerBundle\Model\Styles;
 use Symfony\Component\HttpKernel\Event\FilterControllerEvent;
 
 /**
- * Listens for assetic controller and injects the variables
+ * Listens for assetic controller and injects the variables.
  */
 class ControllerListener
 {

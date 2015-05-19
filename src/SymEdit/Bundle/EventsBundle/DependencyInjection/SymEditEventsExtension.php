@@ -36,7 +36,7 @@ class SymEditEventsExtension extends SymEditResourceExtension implements Prepend
 
     public function prepend(ContainerBuilder $container)
     {
-        /**
+        /*
          * SymEdit Config, add the views
          */
         if ($container->hasExtension('symedit')) {

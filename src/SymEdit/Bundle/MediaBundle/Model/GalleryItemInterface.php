@@ -14,7 +14,7 @@ namespace SymEdit\Bundle\MediaBundle\Model;
 interface GalleryItemInterface
 {
     /**
-     * @return integer $id
+     * @return int $id
      */
     public function getId();
 
@@ -54,7 +54,7 @@ interface GalleryItemInterface
     public function setPosition($position);
 
     /**
-     * @return integer $position
+     * @return int $position
      */
     public function getPosition();
 }

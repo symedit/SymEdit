@@ -16,13 +16,13 @@ use SymEdit\Bundle\ShortcodeBundle\Model\ShortcodeSettingsInterface;
 interface ShortcodeInterface
 {
     /**
-     * Get the name aka [name {expression here}]
+     * Get the name aka [name {expression here}].
      */
     public function getName();
 
     /**
      * Returns a string with the result in it. This could use twig
-     * or just return a string
+     * or just return a string.
      */
     public function renderShortcode($match, array $attr, $content);
 

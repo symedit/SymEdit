@@ -14,7 +14,7 @@ namespace SymEdit\Bundle\BlogBundle\Model;
 use Doctrine\Common\Collections\ArrayCollection;
 
 /**
- * Interface CategoryInterface
+ * Interface CategoryInterface.
  */
 interface CategoryInterface
 {
@@ -24,21 +24,21 @@ interface CategoryInterface
     public function getId();
 
     /**
-     * Set Category Name
+     * Set Category Name.
      *
      * @param string $name
      */
     public function setName($name);
 
     /**
-     * Get Category Name
+     * Get Category Name.
      *
      * @return string $name
      */
     public function getName();
 
     /**
-     * Set Category Title
+     * Set Category Title.
      *
      * @param string $title
      */
@@ -50,107 +50,107 @@ interface CategoryInterface
     public function getTitle();
 
     /**
-     * Set Slug
+     * Set Slug.
      *
      * @param string $slug
      */
     public function setSlug($slug);
 
     /**
-     * Get Slug
+     * Get Slug.
      *
      * @return string $slug
      */
     public function getSlug();
 
     /**
-     * Set Category Parent
+     * Set Category Parent.
      *
      * @param CategoryInterface $parent
      */
     public function setParent(CategoryInterface $parent = null);
 
     /**
-     * Get Category Parent
+     * Get Category Parent.
      *
      * @return CategoryInterface $parent
      */
     public function getParent();
 
     /**
-     * Get Tree Level
+     * Get Tree Level.
      *
      * @return int $level
      */
     public function getLevel();
 
     /**
-     * Set Tree Level
+     * Set Tree Level.
      *
      * @param int $level
      */
     public function setLevel($level);
 
     /**
-     * Add Children to category
+     * Add Children to category.
      *
      * @param CategoryInterface $children
      */
     public function addChildren(CategoryInterface $children);
 
     /**
-     * Remove Children from Category
+     * Remove Children from Category.
      *
      * @param CategoryInterface $children
      */
     public function removeChildren(CategoryInterface $children);
 
     /**
-     * Get Children
+     * Get Children.
      *
      * @return CategoryInterface[]|ArrayCollection $children
      */
     public function getChildren();
 
     /**
-     * Add Post to Category
+     * Add Post to Category.
      *
      * @param PostInterface $post
      */
     public function addPost(PostInterface $post);
 
     /**
-     * Remove Post from Category
+     * Remove Post from Category.
      *
      * @param PostInterface $post
      */
     public function removePost(PostInterface $post);
 
     /**
-     * Get all posts
+     * Get all posts.
      *
      * @return PostInterface[]|ArrayCollection $posts
      */
     public function getPosts();
 
     /**
-     * Get published posts
+     * Get published posts.
      *
      * @return PostInterface[]|ArrayCollection $posts
      */
     public function getPublishedPosts();
 
     /**
-     * Get total posts in Category currently
+     * Get total posts in Category currently.
      *
      * @return int $total
      */
     public function getTotal();
 
     /**
-     * Whether category is root or not
+     * Whether category is root or not.
      *
-     * @return boolean
+     * @return bool
      */
     public function getRoot();
 }

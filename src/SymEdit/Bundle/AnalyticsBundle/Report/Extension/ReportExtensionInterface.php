@@ -17,14 +17,14 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 interface ReportExtensionInterface
 {
     /**
-     * Set more default options for a report
+     * Set more default options for a report.
      *
      * @param OptionsResolver $resolver
      */
     public function setDefaultOptions(OptionsResolver $resolver);
 
     /**
-     * Build query for reports
+     * Build query for reports.
      *
      * @param QueryBuilder $queryBuilder
      * @param array        $options

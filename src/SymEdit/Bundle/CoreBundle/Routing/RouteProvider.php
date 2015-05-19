@@ -36,10 +36,12 @@ class RouteProvider extends DoctrineProvider implements RouteProviderInterface
     }
 
     /**
-     * Cache routes so we don't have to do database lookups again
+     * Cache routes so we don't have to do database lookups again.
      *
-     * @param  string                 $name
+     * @param string $name
+     *
      * @return Route
+     *
      * @throws RouteNotFoundException
      */
     public function getRouteByName($name)
@@ -132,9 +134,10 @@ class RouteProvider extends DoctrineProvider implements RouteProviderInterface
     }
 
     /**
-     * Try to get a page controller based on partial match
+     * Try to get a page controller based on partial match.
      *
-     * @param  Request       $request
+     * @param Request $request
+     *
      * @return PageInterface
      */
     protected function findPageControllerForRequest(Request $request)
@@ -161,10 +164,12 @@ class RouteProvider extends DoctrineProvider implements RouteProviderInterface
     }
 
     /**
-     * Get a route collection for all routes associated to a page controller
+     * Get a route collection for all routes associated to a page controller.
      *
-     * @param  PageInterface          $page
+     * @param PageInterface $page
+     *
      * @return RouteCollection
+     *
      * @throws RouteNotFoundException
      */
     protected function getPageControllerRoutes(PageInterface $page)

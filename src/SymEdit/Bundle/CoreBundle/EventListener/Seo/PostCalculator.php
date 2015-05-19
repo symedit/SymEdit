@@ -26,7 +26,7 @@ class PostCalculator implements SeoCalculatorInterface
             return;
         }
 
-        /**
+        /*
          * Add OpenGraph Image
          */
         if (($image = $subject->getImage()) !== null) {

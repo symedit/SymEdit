@@ -22,14 +22,15 @@ class Post extends BasePost implements PostInterface
     protected $image;
 
     /**
-     * @var array $seo
+     * @var array
      */
     protected $seo;
 
     /**
-     * Set image
+     * Set image.
      *
-     * @param  ImageInterface $image
+     * @param ImageInterface $image
+     *
      * @return Post
      */
     public function setImage(ImageInterface $image = null)
@@ -40,7 +41,7 @@ class Post extends BasePost implements PostInterface
     }
 
     /**
-     * Get image
+     * Get image.
      *
      * @return ImageInterface
      */
@@ -50,9 +51,10 @@ class Post extends BasePost implements PostInterface
     }
 
     /**
-     * Set seo
+     * Set seo.
      *
-     * @param  array $seo
+     * @param array $seo
+     *
      * @return Post
      */
     public function setSeo(array $seo = array())
@@ -63,7 +65,7 @@ class Post extends BasePost implements PostInterface
     }
 
     /**
-     * Get seo
+     * Get seo.
      *
      * @return array
      */

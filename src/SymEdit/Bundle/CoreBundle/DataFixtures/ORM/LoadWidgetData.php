@@ -32,19 +32,19 @@ class LoadWidgetData extends AbstractFixture implements OrderedFixtureInterface,
 
     public function load(ObjectManager $manager)
     {
-        /**
+        /*
          * Create sidebar
          */
         $sidebar = $this->getWidgetAreaRepository()->createNew();
         $sidebar->setArea('sidebar');
         $sidebar->setDescription('Sidebar Widget Area');
 
-        /**
+        /*
          * Fetch Blog Page
          */
         $blog = $this->getReference('page-blog');
 
-        /**
+        /*
          * Add Categories to Blog
          */
         $categories = $this->getWidgetRepository()->createNew('blog_categories');
@@ -53,7 +53,7 @@ class LoadWidgetData extends AbstractFixture implements OrderedFixtureInterface,
                    ->setVisibility(Widget::INCLUDE_ONLY)
                    ->addAssoc($blog->getId());
 
-        /**
+        /*
          * Add Recent Posts to Blog
          */
         $recent = $this->getWidgetRepository()->createNew('blog_recent_posts');
@@ -62,7 +62,7 @@ class LoadWidgetData extends AbstractFixture implements OrderedFixtureInterface,
                ->setVisibility(Widget::INCLUDE_ONLY)
                ->addAssoc($blog->getId());
 
-        /**
+        /*
          * Add Widgets to Sidebar
          */
         $sidebar->addWidget($categories);
@@ -74,7 +74,7 @@ class LoadWidgetData extends AbstractFixture implements OrderedFixtureInterface,
         $this->addReference('widget-blog-categories', $categories);
         $this->addReference('widget-blog-recent-posts', $recent);
 
-        /**
+        /*
          * Add Featured Area
          */
         $featured = $this->getWidgetAreaRepository()->createNew();
@@ -98,7 +98,7 @@ class LoadWidgetData extends AbstractFixture implements OrderedFixtureInterface,
         $this->addReference('widgetarea-featured', $featured);
         $this->addReference('widget-google_map_featured', $map);
 
-        /**
+        /*
          * Add Supplemental Area
          */
         $supplemental = $this->getWidgetAreaRepository()->createNew();
@@ -110,7 +110,7 @@ class LoadWidgetData extends AbstractFixture implements OrderedFixtureInterface,
 
         $this->addReference('widgetarea-supplemental', $supplemental);
 
-        /**
+        /*
          * Add Footer Area
          */
         $footer = $this->getWidgetAreaRepository()->createNew();
@@ -128,7 +128,7 @@ class LoadWidgetData extends AbstractFixture implements OrderedFixtureInterface,
               ->setVisibility(Widget::INCLUDE_ALL)
               ->setOption('html', '<p>This is all about our company...</p>');
 
-        /**
+        /*
          * Add Widgets to footer
          */
         $footer->addWidget($contact);

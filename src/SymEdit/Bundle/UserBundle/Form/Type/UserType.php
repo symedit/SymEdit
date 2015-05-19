@@ -25,14 +25,14 @@ class UserType extends AbstractType
 
         $basic = $builder->get('basic');
 
-        /**
+        /*
          * Don't require current password.
          */
         if ($basic->has('current_password')) {
             $basic->remove('current_password');
         }
 
-        /**
+        /*
          * This subscriber will require / unrequire the plainPassword field
          * depending on if it's a new user or existing.
          */

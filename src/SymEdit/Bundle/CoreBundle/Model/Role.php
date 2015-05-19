@@ -14,17 +14,17 @@ namespace SymEdit\Bundle\CoreBundle\Model;
 class Role implements RoleInterface
 {
     /**
-     * @var integer $id
+     * @var int
      */
     protected $id;
 
     /**
-     * @var string $role
+     * @var string
      */
     protected $role;
 
     /**
-     * @var string $description
+     * @var string
      */
     protected $description;
 
@@ -34,9 +34,9 @@ class Role implements RoleInterface
     }
 
     /**
-     * Get id
+     * Get id.
      *
-     * @return integer
+     * @return int
      */
     public function getId()
     {
@@ -44,9 +44,10 @@ class Role implements RoleInterface
     }
 
     /**
-     * Set role
+     * Set role.
      *
-     * @param  string $role
+     * @param string $role
+     *
      * @return Role
      */
     public function setRole($role)
@@ -57,7 +58,7 @@ class Role implements RoleInterface
     }
 
     /**
-     * Get role
+     * Get role.
      *
      * @return string
      */
@@ -67,9 +68,10 @@ class Role implements RoleInterface
     }
 
     /**
-     * Set description
+     * Set description.
      *
-     * @param  string $description
+     * @param string $description
+     *
      * @return Role
      */
     public function setDescription($description)
@@ -80,7 +82,7 @@ class Role implements RoleInterface
     }
 
     /**
-     * Get description
+     * Get description.
      *
      * @return string
      */

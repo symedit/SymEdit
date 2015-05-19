@@ -33,7 +33,7 @@ class AdminProfile extends Profile
     }
 
     /**
-     * Gets user's image
+     * Gets user's image.
      *
      * @return ImageInterface
      */
@@ -43,9 +43,10 @@ class AdminProfile extends Profile
     }
 
     /**
-     * Set the user's image
+     * Set the user's image.
      *
-     * @param  ImageInterface $image
+     * @param ImageInterface $image
+     *
      * @return UserInterface
      */
     public function setImage(ImageInterface $image)
@@ -86,7 +87,7 @@ class AdminProfile extends Profile
     }
 
     /**
-     * Get the user's biography
+     * Get the user's biography.
      *
      * @return string $biography
      */
@@ -96,9 +97,10 @@ class AdminProfile extends Profile
     }
 
     /**
-     * Set user biography
+     * Set user biography.
      *
-     * @param  string                                $biography
+     * @param string $biography
+     *
      * @return \SymEdit\Bundle\UserBundle\Model\User
      */
     public function setBiography($biography)

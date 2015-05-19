@@ -22,27 +22,27 @@ interface PageInterface extends SeoAbleInterface, \IteratorAggregate
     public function getId();
 
     /**
-     * @param boolean $homepage
+     * @param bool $homepage
      */
     public function setHomepage($homepage);
 
     /**
-     * @return boolean Whether the page is the homepage
+     * @return bool Whether the page is the homepage
      */
     public function getHomepage();
 
     /**
-     * @param boolean $root
+     * @param bool $root
      */
     public function setRoot($root);
 
     /**
-     * @return boolean Whether the page is the root node
+     * @return bool Whether the page is the root node
      */
     public function getRoot();
 
     /**
-     * Gets the root node
+     * Gets the root node.
      *
      * @return PageInterface
      */
@@ -89,7 +89,8 @@ interface PageInterface extends SeoAbleInterface, \IteratorAggregate
     public function getCreatedBy();
 
     /**
-     * @param  \DateTime     $time
+     * @param \DateTime $time
+     *
      * @return PageInterface
      */
     public function setUpdatedAt($time);
@@ -125,47 +126,47 @@ interface PageInterface extends SeoAbleInterface, \IteratorAggregate
     public function getContent();
 
     /**
-     * @param integer $pageOrder
+     * @param int $pageOrder
      */
     public function setPageOrder($pageOrder);
 
     /**
-     * @return integer Page's level
+     * @return int Page's level
      */
     public function getLevel();
 
     /**
-     * @return integer Page order
+     * @return int Page order
      */
     public function getPageOrder();
 
     /**
-     * @param boolean $display
+     * @param bool $display
      */
     public function setDisplay($display);
 
     /**
-     * @return boolean Whether to display the page or not
+     * @return bool Whether to display the page or not
      */
     public function getDisplay();
 
     /**
-     * @param boolean $crawl
+     * @param bool $crawl
      */
     public function setCrawl($crawl);
 
     /**
-     * @return boolean Whether or not to put page on sitemap
+     * @return bool Whether or not to put page on sitemap
      */
     public function getCrawl();
 
     /**
-     * @param boolean $pageController
+     * @param bool $pageController
      */
     public function setPageController($pageController);
 
     /**
-     * @return boolean Whether page is tied to a controller or not
+     * @return bool Whether page is tied to a controller or not
      */
     public function getPageController();
 
@@ -174,15 +175,16 @@ interface PageInterface extends SeoAbleInterface, \IteratorAggregate
     public function getPageControllerPath();
 
     /**
-     * Set Page's path
+     * Set Page's path.
      *
-     * @param  string        $path
+     * @param string $path
+     *
      * @return PageInterface $page
      */
     public function setPath($path);
 
     /**
-     * Gets the page's path
+     * Gets the page's path.
      *
      * @return string $path
      */

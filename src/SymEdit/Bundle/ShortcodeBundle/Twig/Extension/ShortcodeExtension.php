@@ -36,7 +36,6 @@ class ShortcodeExtension extends \Twig_Extension
     }
 
     /**
-     *
      * @return ShortcodeRendererInterface
      */
     protected function getRenderer()

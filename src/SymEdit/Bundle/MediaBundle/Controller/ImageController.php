@@ -25,7 +25,7 @@ class ImageController extends MediaController
 
         foreach ($images as $image) {
             $out[] = array(
-                'id'    => $image->getId(),
+                'id' => $image->getId(),
                 'thumb' => $this->getThumbnail($image->getPath()),
                 'image' => $image->getWebPath(),
             );

@@ -42,7 +42,7 @@ class FileController extends MediaController
         $factor = floor((strlen($bytes) - 1) / 3);
         $units = isset($size[$factor]) ? $size[$factor] : '';
 
-        return sprintf("%.2f", $bytes / pow(1024, $factor)) . $units;
+        return sprintf('%.2f', $bytes / pow(1024, $factor)).$units;
     }
 
     protected function getQuickUploadResponse(MediaInterface $media)

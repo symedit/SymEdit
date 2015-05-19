@@ -36,7 +36,7 @@ class Configuration implements ConfigurationInterface
     }
 
     /**
-     * Add classes config to be processed by the Sylius Resource Bundle
+     * Add classes config to be processed by the Sylius Resource Bundle.
      *
      * @param ArrayNodeDefinition $node
      */

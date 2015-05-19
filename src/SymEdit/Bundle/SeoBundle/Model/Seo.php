@@ -233,7 +233,7 @@ class Seo implements SeoInterface
             $seo = $seo->getSeo();
         }
 
-        /**
+        /*
          * Reset properties
          */
         $this->reset();
@@ -266,7 +266,7 @@ class Seo implements SeoInterface
             $newValue = $seo[$prop];
             $currentValue = $this->$getter();
 
-            /**
+            /*
              * If not empty, merge this in if it's not blank, always merge
              * arrays.
              */
@@ -277,7 +277,7 @@ class Seo implements SeoInterface
                 continue;
             }
 
-            /**
+            /*
              * - If new value is empty don't change
              * - If we're replacing, then set new one no matter what
              * - If not replacing, check to see if current value is empty first

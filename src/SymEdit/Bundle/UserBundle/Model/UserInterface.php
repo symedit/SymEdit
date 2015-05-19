@@ -16,7 +16,7 @@ use FOS\UserBundle\Model\UserInterface as BaseUserInterface;
 interface UserInterface extends BaseUserInterface
 {
     /**
-     * @return integer Get User ID
+     * @return int Get User ID
      */
     public function getId();
 
@@ -26,15 +26,16 @@ interface UserInterface extends BaseUserInterface
     public function getProfile();
 
     /**
-     * Set user's profile
+     * Set user's profile.
      *
-     * @param  ProfileInterface $profile
+     * @param ProfileInterface $profile
+     *
      * @return UserInterface
      */
     public function setProfile(ProfileInterface $profile);
 
     /**
-     * @return boolean Whether or not user is an admin
+     * @return bool Whether or not user is an admin
      */
     public function isAdmin();
 

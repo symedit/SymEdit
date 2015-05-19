@@ -57,8 +57,8 @@ class SettingsController extends FOSRestController
             ->view()
             ->setTemplate('@SymEdit/Admin/Settings/index.html.twig')
             ->setData(array(
-                'settings'  => $settings->getSettings(),
-                'form'      => $form->createView(),
+                'settings' => $settings->getSettings(),
+                'form' => $form->createView(),
             ))
         ;
 

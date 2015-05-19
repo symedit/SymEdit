@@ -69,8 +69,9 @@ class SymEditExtension extends \Twig_Extension
      * it to be plain text with no breaks. There is a limit which will truncate the text so
      * meta tags won't be filled with too much text.
      *
-     * @param  string $text
-     * @param  int    $limit
+     * @param string $text
+     * @param int    $limit
+     *
      * @return string
      */
     public function plain($text, $limit = null, $ellipsis = null)
@@ -79,7 +80,7 @@ class SymEditExtension extends \Twig_Extension
         $text = htmlentities($text);
         $text = str_replace(array("\n", "\r"), ' ', $text);
         $text = preg_replace('#\s+#', ' ', $text);
-        $len  = strlen($text);
+        $len = strlen($text);
 
         if (isset($limit) && is_int($limit) && $len > $limit) {
             $text = substr($text, 0, $limit);
@@ -93,10 +94,11 @@ class SymEditExtension extends \Twig_Extension
     }
 
     /**
-     * Check for existence of a route
+     * Check for existence of a route.
      *
-     * @param  string  $name Route Name
-     * @return boolean
+     * @param string $name Route Name
+     *
+     * @return bool
      */
     public function routeExists($name)
     {

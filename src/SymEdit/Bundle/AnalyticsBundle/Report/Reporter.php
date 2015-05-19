@@ -87,8 +87,10 @@ class Reporter
     }
 
     /**
-     * @param  string                   $name
+     * @param string $name
+     *
      * @return ReportInterface
+     *
      * @throws InvalidArgumentException
      */
     protected function getReport($name)

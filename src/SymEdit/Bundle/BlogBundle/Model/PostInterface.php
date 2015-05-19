@@ -19,63 +19,63 @@ interface PostInterface
     const PUBLISHED = 1;
 
     /**
-     * Get Post ID
+     * Get Post ID.
      *
-     * @return integer
+     * @return int
      */
     public function getId();
 
     /**
-     * Set Post Title
+     * Set Post Title.
      *
      * @param string $title
      */
     public function setTitle($title);
 
     /**
-     * Get Post Title
+     * Get Post Title.
      *
      * @return string
      */
     public function getTitle();
 
     /**
-     * Set Post Slug
+     * Set Post Slug.
      *
      * @param string $slug
      */
     public function setSlug($slug);
 
     /**
-     * Get Post Slug
+     * Get Post Slug.
      *
      * @return string
      */
     public function getSlug();
 
     /**
-     * Set Post Content
+     * Set Post Content.
      *
      * @param string $content
      */
     public function setContent($content);
 
     /**
-     * Get Post Content
+     * Get Post Content.
      *
      * @return string
      */
     public function getContent();
 
     /**
-     * Set Post Author
+     * Set Post Author.
      *
      * @param UserInterface $author
      */
     public function setAuthor(UserInterface $author = null);
 
     /**
-     * Get Post Author
+     * Get Post Author.
      *
      * @return UserInterface
      */

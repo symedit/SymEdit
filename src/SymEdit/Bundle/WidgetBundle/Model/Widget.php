@@ -16,7 +16,7 @@ use SymEdit\Bundle\WidgetBundle\Widget\Strategy\WidgetStrategyInterface;
 class Widget implements WidgetInterface
 {
     /**
-     * @var integer
+     * @var int
      */
     protected $id;
 
@@ -26,7 +26,6 @@ class Widget implements WidgetInterface
     protected $name;
 
     /**
-     *
      * @var string Widget Title
      */
     protected $title;
@@ -52,7 +51,7 @@ class Widget implements WidgetInterface
     protected $strategy;
 
     /**
-     * @var integer
+     * @var int
      */
     protected $visibility;
 
@@ -67,7 +66,7 @@ class Widget implements WidgetInterface
     protected $createdAt;
 
     /**
-     * @var integer
+     * @var int
      */
     protected $widgetOrder;
 
@@ -216,7 +215,7 @@ class Widget implements WidgetInterface
             }
         }
 
-        /**
+        /*
          * Reset array keys
          */
         $this->assoc = array_values($this->assoc);
@@ -238,7 +237,8 @@ class Widget implements WidgetInterface
     }
 
     /**
-     * @param  \DateTime       $updatedAt
+     * @param \DateTime $updatedAt
+     *
      * @return WidgetInterface $widget
      */
     public function setUpdatedAt($updatedAt)
@@ -262,7 +262,8 @@ class Widget implements WidgetInterface
     }
 
     /**
-     * @param  int    $widgetOrder
+     * @param int $widgetOrder
+     *
      * @return Widget
      */
     public function setWidgetOrder($widgetOrder)

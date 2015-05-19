@@ -21,7 +21,7 @@ use SymEdit\Bundle\WidgetBundle\Widget\Strategy\WidgetStrategyInterface as BaseW
 interface WidgetStrategyInterface extends BaseWidgetStrategyInterface
 {
     /**
-     * Executes the strategy
+     * Executes the strategy.
      *
      * @param WidgetInterface $widget The widget to be rendered
      * @param PageInterface   $page   $name If a page is currently active it will be passed

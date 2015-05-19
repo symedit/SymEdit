@@ -17,7 +17,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
 /**
- * Taken from FOS User Bundle
+ * Taken from FOS User Bundle.
  *
  * FOS\UserBundle\Event\FormEvent
  */

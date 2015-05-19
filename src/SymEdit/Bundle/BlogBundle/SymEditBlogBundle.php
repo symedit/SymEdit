@@ -32,7 +32,7 @@ class SymEditBlogBundle extends AbstractResourceBundle
     protected function getModelInterfaces()
     {
         return array(
-            'SymEdit\Bundle\BlogBundle\Model\PostInterface'     => 'symedit.model.post.class',
+            'SymEdit\Bundle\BlogBundle\Model\PostInterface' => 'symedit.model.post.class',
             'SymEdit\Bundle\BlogBundle\Model\CategoryInterface' => 'symedit.model.category.class',
         );
     }

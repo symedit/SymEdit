@@ -24,9 +24,10 @@ class RepositoryTransformer implements DataTransformerInterface
     }
 
     /**
-     * Convert to database value
+     * Convert to database value.
      *
-     * @param  type $value
+     * @param type $value
+     *
      * @return type
      */
     public function reverseTransform($value)
@@ -35,7 +36,7 @@ class RepositoryTransformer implements DataTransformerInterface
     }
 
     /**
-     * Convert to form value
+     * Convert to form value.
      *
      * @param type $value
      */

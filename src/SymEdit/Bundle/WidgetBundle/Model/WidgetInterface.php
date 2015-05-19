@@ -22,7 +22,8 @@ interface WidgetInterface
     public function getId();
 
     /**
-     * @param  string          $name
+     * @param string $name
+     *
      * @return WidgetInterface
      */
     public function setName($name);
@@ -33,7 +34,8 @@ interface WidgetInterface
     public function getName();
 
     /**
-     * @param  string          $title
+     * @param string $title
+     *
      * @return WidgetInterface
      */
     public function setTitle($title);
@@ -44,62 +46,68 @@ interface WidgetInterface
     public function getTitle();
 
     /**
-     * Get the widget area
+     * Get the widget area.
      *
      * @return WidgetAreaInterface $area
      */
     public function getArea();
 
     /**
-     * @param  WidgetAreaInterface $area
+     * @param WidgetAreaInterface $area
+     *
      * @return WidgetInterface
      */
     public function setArea(WidgetAreaInterface $area);
 
     /**
-     * @param  array           $options
+     * @param array $options
+     *
      * @return WidgetInterface
      */
     public function setOptions(array $options);
 
     /**
      * @return WidgetInterface
-     * @param  string          $option
-     * @param  mixed           $value
+     *
+     * @param string $option
+     * @param mixed  $value
      */
     public function setOption($option, $value);
 
     /**
-     * Get all options
+     * Get all options.
      *
      * @return array $options
      */
     public function getOptions();
 
     /**
-     * Get an option's value
+     * Get an option's value.
      *
-     * @param  string $option
-     * @return mixed  $value
+     * @param string $option
+     *
+     * @return mixed $value
      */
     public function getOption($option);
 
     /**
-     * Check if option exists
+     * Check if option exists.
      *
-     * @param  string  $option
-     * @return boolean
+     * @param string $option
+     *
+     * @return bool
      */
     public function hasOption($option);
 
     /**
      * @return WidgetInterface
-     * @param  string          $strategyName
+     *
+     * @param string $strategyName
      */
     public function setStrategyName($strategyName);
 
     /**
-     * Get the strategy name
+     * Get the strategy name.
      *
      * @return string $strategyName
      */
@@ -112,43 +120,48 @@ interface WidgetInterface
 
     /**
      * @return WidgetInterface
-     * @param  WidgetStrategyInterface $strategy
+     *
+     * @param WidgetStrategyInterface $strategy
      */
     public function setStrategy(WidgetStrategyInterface $strategy);
 
     /**
      * @return WidgetInterface
-     * @param  integer         $visibility
+     *
+     * @param int $visibility
      */
     public function setVisibility($visibility);
 
     /**
-     * Gets the visibility of the widget
+     * Gets the visibility of the widget.
      *
-     * @return integer $visibility
+     * @return int $visibility
      */
     public function getVisibility();
 
     /**
      * @return WidgetInterface
-     * @param  array           $assoc
+     *
+     * @param array $assoc
      */
     public function setAssoc(array $assoc);
 
     /**
      * @return WidgetInterface
-     * @param  string          $assoc
+     *
+     * @param string $assoc
      */
     public function addAssoc($assoc);
 
     /**
      * @return WidgetInterface
-     * @param  string          $assoc
+     *
+     * @param string $assoc
      */
     public function removeAssoc($assoc);
 
     /**
-     * Get all associations
+     * Get all associations.
      *
      * @return array $assoc
      */

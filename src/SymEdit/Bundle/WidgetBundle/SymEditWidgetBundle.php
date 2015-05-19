@@ -32,7 +32,7 @@ class SymEditWidgetBundle extends AbstractResourceBundle
     {
         return array(
             'SymEdit\Bundle\WidgetBundle\Model\WidgetAreaInterface' => 'symedit.model.widget_area.class',
-            'SymEdit\Bundle\WidgetBundle\Model\WidgetInterface'     => 'symedit.model.widget.class',
+            'SymEdit\Bundle\WidgetBundle\Model\WidgetInterface' => 'symedit.model.widget.class',
         );
     }
 

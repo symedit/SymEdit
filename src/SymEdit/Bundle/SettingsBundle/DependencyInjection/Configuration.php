@@ -16,7 +16,7 @@ use Symfony\Component\Config\Definition\Builder\TreeBuilder;
 use Symfony\Component\Config\Definition\ConfigurationInterface;
 
 /**
- * SymEditSettings Configuration
+ * SymEditSettings Configuration.
  */
 class Configuration implements ConfigurationInterface
 {
@@ -34,7 +34,7 @@ class Configuration implements ConfigurationInterface
     }
 
     /**
-     * Add classes config to be processed by the Sylius Resource Bundle
+     * Add classes config to be processed by the Sylius Resource Bundle.
      *
      * @param ArrayNodeDefinition $node
      */

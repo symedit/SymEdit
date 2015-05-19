@@ -15,7 +15,7 @@ use SymEdit\Bundle\WidgetBundle\Model\WidgetInterface;
 use Symfony\Component\HttpFoundation\Request;
 
 /**
- * Test the URI of the Request against the associations
+ * Test the URI of the Request against the associations.
  */
 class UriVoter extends StringPathVoter
 {

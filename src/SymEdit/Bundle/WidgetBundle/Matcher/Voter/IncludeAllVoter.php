@@ -16,7 +16,7 @@ use SymEdit\Bundle\WidgetBundle\Model\Widget;
 
 /**
  * If visibility is set to INCLUDE_ALL then it should
- * be rendered regardless
+ * be rendered regardless.
  */
 class IncludeAllVoter implements VoterInterface
 {

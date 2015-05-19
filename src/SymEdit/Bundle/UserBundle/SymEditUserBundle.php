@@ -36,7 +36,7 @@ class SymEditUserBundle extends AbstractResourceBundle
     protected function getModelInterfaces()
     {
         return array(
-            'SymEdit\Bundle\UserBundle\Model\UserInterface'    => 'symedit.model.user.class',
+            'SymEdit\Bundle\UserBundle\Model\UserInterface' => 'symedit.model.user.class',
             'SymEdit\Bundle\UserBundle\Model\ProfileInterface' => 'symedit.model.profile.class',
         );
     }

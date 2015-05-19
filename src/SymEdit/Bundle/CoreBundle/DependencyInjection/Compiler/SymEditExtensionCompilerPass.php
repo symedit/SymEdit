@@ -17,7 +17,7 @@ use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Loader\XmlFileLoader;
 
 /**
- * Check configs for symedit.xml and load it if it exists
+ * Check configs for symedit.xml and load it if it exists.
  */
 class SymEditExtensionCompilerPass implements CompilerPassInterface
 {

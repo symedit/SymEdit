@@ -41,7 +41,7 @@ class PageVoter implements VoterInterface
     }
 
     /**
-     * Get current page if there is one
+     * Get current page if there is one.
      *
      * @return SymEdit\Bundle\CoreBundle\Model\PageInterface|null $page
      */

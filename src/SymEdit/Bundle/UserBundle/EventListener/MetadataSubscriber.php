@@ -46,8 +46,8 @@ class MetadataSubscriber implements EventSubscriber
 
         // Set discriminator column
         $metadata->setDiscriminatorColumn(array(
-            'name'   => 'discr',
-            'type'   => 'string',
+            'name' => 'discr',
+            'type' => 'string',
             'length' => 20,
         ));
 

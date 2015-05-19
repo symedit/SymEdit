@@ -22,7 +22,7 @@ class BackendTest extends WebTestCase
         if ($this->client === null) {
             $this->client = static::createClient(array(), array(
                 'PHP_AUTH_USER' => 'admin',
-                'PHP_AUTH_PW'   => 'test',
+                'PHP_AUTH_PW' => 'test',
             ));
 
             $this->client->followRedirects();

@@ -14,7 +14,6 @@ namespace SymEdit\Bundle\CoreBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller as BaseController;
 use Symfony\Component\HttpFoundation\Response;
 use SymEdit\Bundle\CoreBundle\Model\Seo;
-use SymEdit\Bundle\CoreBundle\Model\SeoInterface;
 
 class Controller extends BaseController
 {
@@ -43,7 +42,7 @@ class Controller extends BaseController
      * Determines whether the response should be cached or not, checks the
      * settings for the cache setting, and whether or not live editing is allowed.
      *
-     * @return boolean
+     * @return bool
      */
     public function isCacheable()
     {
@@ -56,7 +55,7 @@ class Controller extends BaseController
     }
 
     /**
-     * Gets Settings
+     * Gets Settings.
      *
      * @return \SymEdit\Bundle\SettingsBundle\Model\Settings Settings
      */
@@ -66,7 +65,7 @@ class Controller extends BaseController
     }
 
     /**
-     * Gets Mailer
+     * Gets Mailer.
      *
      * @return \SymEdit\Bundle\CoreBundle\Util\SymEditMailerInterface
      */
@@ -76,7 +75,7 @@ class Controller extends BaseController
     }
 
     /**
-     * Gets the breadcrumbs
+     * Gets the breadcrumbs.
      *
      * @return \SymEdit\Bundle\CoreBundle\Model\BreadcrumbsInterface $breadcrumbs
      */
@@ -86,7 +85,7 @@ class Controller extends BaseController
     }
 
     /**
-     * Gets the user manager
+     * Gets the user manager.
      *
      * @return \SymEdit\Bundle\UserBundle\Model\UserManagerInterface $userManager
      */
@@ -96,7 +95,7 @@ class Controller extends BaseController
     }
 
     /**
-     * Adds a breadcrumb to the current request
+     * Adds a breadcrumb to the current request.
      *
      * @param string $title
      * @param string $path
@@ -104,7 +103,7 @@ class Controller extends BaseController
      */
     public function addBreadcrumb($title, $path = null, array $params = array())
     {
-        /**
+        /*
          * If no path supplied, use the matched one
          */
         if ($path === null || $params === null) {
@@ -117,7 +116,7 @@ class Controller extends BaseController
     }
 
     /**
-     * Gets the current page if there is one, or returns null
+     * Gets the current page if there is one, or returns null.
      *
      * @return \SymEdit\Bundle\CoreBundle\Model\PageInterface|null
      */
@@ -133,7 +132,7 @@ class Controller extends BaseController
     }
 
     /**
-     * Gets the current SEO
+     * Gets the current SEO.
      *
      * @return \SymEdit\Bundle\SeoBundle\Model\SeoInterface
      */

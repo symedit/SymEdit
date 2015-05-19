@@ -18,14 +18,14 @@ use Symfony\Component\HttpFoundation\Request;
 /**
  * Checks to see if you added the _seo attribute to routing
  * or to the request dynamically. If it exists, overwrite
- * the current SEO
+ * the current SEO.
  */
 class RequestCalculator implements SeoCalculatorInterface
 {
     protected $request;
 
     /**
-     * Set the Request
+     * Set the Request.
      *
      * @param \Symfony\Component\HttpFoundation\Request $request
      */

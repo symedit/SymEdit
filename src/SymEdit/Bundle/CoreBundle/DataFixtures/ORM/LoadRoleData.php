@@ -12,27 +12,27 @@
 namespace SymEdit\Bundle\CoreBundle\DataFixtures\ORM;
 
 use Doctrine\Common\Persistence\ObjectManager;
-  use Doctrine\Common\DataFixtures\AbstractFixture;
-  use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
-  use SymEdit\Bundle\CoreBundle\Model\Role;
+use Doctrine\Common\DataFixtures\AbstractFixture;
+use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
+use SymEdit\Bundle\CoreBundle\Model\Role;
 
-  class LoadRoleData extends AbstractFixture implements OrderedFixtureInterface
-  {
+class LoadRoleData extends AbstractFixture implements OrderedFixtureInterface
+{
       public function load(ObjectManager $manager)
       {
           $roles = array(
-              'ROLE_ADMIN'           => 'Admin Access',
-              'ROLE_SUPER_ADMIN'     => 'Super Admin',
-              'ROLE_ADMIN_PAGE'      => 'Page Access',
-              'ROLE_ADMIN_PAGE_SEO'  => 'Page SEO Access',
+              'ROLE_ADMIN' => 'Admin Access',
+              'ROLE_SUPER_ADMIN' => 'Super Admin',
+              'ROLE_ADMIN_PAGE' => 'Page Access',
+              'ROLE_ADMIN_PAGE_SEO' => 'Page SEO Access',
               'ROLE_ADMIN_WEBMASTER' => 'Webmaster Tools Access',
-              'ROLE_ADMIN_BLOG'      => 'Blog Access',
-              'ROLE_ADMIN_IMAGE'     => 'Image Access',
-              'ROLE_ADMIN_EVENT'     => 'Event Access',
-              'ROLE_ADMIN_WIDGET'    => 'Widget Access',
-              'ROLE_ADMIN_SETTING'   => 'Settings Access',
-              'ROLE_ADMIN_USER'      => 'User Access',
-              'ROLE_ADMIN_STYLIZER'  => 'Access to Stylizer',
+              'ROLE_ADMIN_BLOG' => 'Blog Access',
+              'ROLE_ADMIN_IMAGE' => 'Image Access',
+              'ROLE_ADMIN_EVENT' => 'Event Access',
+              'ROLE_ADMIN_WIDGET' => 'Widget Access',
+              'ROLE_ADMIN_SETTING' => 'Settings Access',
+              'ROLE_ADMIN_USER' => 'User Access',
+              'ROLE_ADMIN_STYLIZER' => 'Access to Stylizer',
           );
 
           foreach ($roles as $role => $description) {
@@ -47,8 +47,8 @@ use Doctrine\Common\Persistence\ObjectManager;
           $manager->flush();
       }
 
-      public function getOrder()
-      {
-          return 10;
-      }
-  }
+    public function getOrder()
+    {
+        return 10;
+    }
+}

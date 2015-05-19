@@ -35,7 +35,7 @@ class PageRepository extends EntityRepository
 
     /**
      * Get pages that are actually routes, this means pages that aren't
-     * the root node, or page controllers
+     * the root node, or page controllers.
      */
     public function findCMSPages($display = null, array $orderBy = array())
     {

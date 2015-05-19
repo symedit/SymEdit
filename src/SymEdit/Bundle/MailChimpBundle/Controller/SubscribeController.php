@@ -22,7 +22,7 @@ class SubscribeController extends Controller
 {
     public function subscribeAction(Request $request)
     {
-        $form  = $this->getForm();
+        $form = $this->getForm();
         $error = 'form';
 
         if ($form->handleRequest($request)->isValid()) {

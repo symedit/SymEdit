@@ -26,7 +26,7 @@ class MenuEvent extends Event
     }
 
     /**
-     * Gets the root menu item
+     * Gets the root menu item.
      *
      * @return MenuItem
      */

@@ -60,7 +60,7 @@ class Builder
         $userMenu->addChild('Change Password', array('route' => 'fos_user_change_password', 'icon' => 'lock'));
         $userMenu->addChild('Logout', array('route' => 'fos_user_security_logout', 'icon' => 'off'));
 
-        /**
+        /*
          * Dispatch Menu Event
          */
         $event = new MenuEvent($menu, 'symedit_admin_user');

@@ -35,13 +35,15 @@ class LayoutManager
     }
 
     /**
-     * Get a layout for a template
-     * @param  TemplateInterface      $template
+     * Get a layout for a template.
+     *
+     * @param TemplateInterface $template
+     *
      * @return TemplateInterface|null
      */
     public function getLayout(TemplateInterface $template)
     {
-        /**
+        /*
          * Use array_key_exists instead of isset since we're using
          * null if a template doesn't get loaded and isset will try every time
          */

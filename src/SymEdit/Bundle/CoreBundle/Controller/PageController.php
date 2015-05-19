@@ -23,7 +23,7 @@ class PageController extends ResourceController
         /* @var $page PageInterface */
         $page = $request->get('_page');
 
-        /**
+        /*
          * Check for template
          */
         if (($template = $page->getTemplate()) === null) {

@@ -28,9 +28,9 @@ class FileTypeSubscriber implements EventSubscriberInterface
     public static function getSubscribedEvents()
     {
         return array(
-            FormEvents::PRE_SET_DATA  => 'preSetData',
-            FormEvents::POST_SUBMIT   => 'postSubmit',
-            FormEvents::SUBMIT        => 'submit',
+            FormEvents::PRE_SET_DATA => 'preSetData',
+            FormEvents::POST_SUBMIT => 'postSubmit',
+            FormEvents::SUBMIT => 'submit',
         );
     }
 

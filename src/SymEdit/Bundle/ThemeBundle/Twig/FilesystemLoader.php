@@ -41,7 +41,7 @@ class FilesystemLoader extends BaseFilesystemLoader
         // Create @Parent namespace, don't include the current theme
         $themeDirectory = $theme->getTemplateDirectories(true);
 
-        $parentDirectories = array_filter($templateDirectories, function($directory) use ($themeDirectory) {
+        $parentDirectories = array_filter($templateDirectories, function ($directory) use ($themeDirectory) {
             return $themeDirectory !== $directory;
         });
 

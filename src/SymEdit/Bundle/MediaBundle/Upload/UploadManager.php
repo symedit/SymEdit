@@ -25,7 +25,7 @@ class UploadManager implements UploadManagerInterface
     }
 
     /**
-     * Prepare file for upload
+     * Prepare file for upload.
      */
     public function preUpload(MediaInterface $media)
     {
@@ -39,7 +39,7 @@ class UploadManager implements UploadManagerInterface
     }
 
     /**
-     * Uploads the file
+     * Uploads the file.
      *
      * @param MediaInterface $media
      */

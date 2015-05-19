@@ -38,7 +38,7 @@ class InstallCommand extends ContainerAwareCommand
             $output->writeln('Creating database...');
 
             $command = $this->getApplication()->find('doctrine:database:create');
-            $input   = new ArrayInput(array('command' => 'doctrine:database:create', '-n' => $force));
+            $input = new ArrayInput(array('command' => 'doctrine:database:create', '-n' => $force));
             $returnCode = $command->run($input, $output);
         }
 
@@ -48,7 +48,7 @@ class InstallCommand extends ContainerAwareCommand
 
             $command = $this->getApplication()->find('doctrine:schema:update');
             $input = new ArrayInput(array(
-                'command'   => 'doctrine:schema:update',
+                'command' => 'doctrine:schema:update',
                 '--force' => true,
                 '-n' => $force,
             ));
@@ -60,7 +60,7 @@ class InstallCommand extends ContainerAwareCommand
             $output->writeln('Loading Fixtures...');
 
             $command = $this->getApplication()->find('doctrine:fixtures:load');
-            $input   = new ArrayInput(array('doctrine:fixtures:load'));
+            $input = new ArrayInput(array('doctrine:fixtures:load'));
             $input->setInteractive(!$force);
             $returnCode = $command->run($input, $output);
         }

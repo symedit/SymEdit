@@ -27,7 +27,7 @@ class Dumper
         $this->command = $command;
         $this->versionManager = $versionManager;
 
-        /**
+        /*
          * Setup command
          */
         $definition = $this->command->getDefinition();

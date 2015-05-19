@@ -16,22 +16,22 @@ use Doctrine\Common\Collections\ArrayCollection;
 class Category implements CategoryInterface
 {
     /**
-     * @var integer $id
+     * @var int
      */
     protected $id;
 
     /**
-     * @var string $name
+     * @var string
      */
     protected $name;
 
     /**
-     * @var string $title
+     * @var string
      */
     protected $title;
 
     /**
-     * @var string $slug
+     * @var string
      */
     protected $slug;
 
@@ -41,7 +41,7 @@ class Category implements CategoryInterface
     protected $parent;
 
     /**
-     * @var integer
+     * @var int
      */
     protected $level;
 
@@ -56,7 +56,7 @@ class Category implements CategoryInterface
     protected $posts;
 
     /**
-     * Constructor
+     * Constructor.
      */
     public function __construct()
     {

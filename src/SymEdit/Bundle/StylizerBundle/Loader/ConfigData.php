@@ -23,14 +23,14 @@ class ConfigData implements \Serializable
 
         $group = $this->groups[$name];
 
-        /**
+        /*
          * Allow overriding labels
          */
         if (isset($data['label'])) {
             $group->setLabel($data['label']);
         }
 
-        /**
+        /*
          * Add optional arguments
          */
         if (isset($data['extra'])) {

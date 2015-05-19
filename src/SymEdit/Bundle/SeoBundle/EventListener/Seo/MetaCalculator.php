@@ -20,14 +20,14 @@ class MetaCalculator implements SeoCalculatorInterface
     {
         $seo = $event->getSeo();
 
-        /**
+        /*
          * Set meta description from seo description variable
          */
         if (!$seo->hasMeta('name', 'description')) {
             $seo->addMetaName('description', $seo->getDescription());
         }
 
-        /**
+        /*
          * Set robots from index / follow variables
          */
         if (!$seo->hasMeta('name', 'robots')) {

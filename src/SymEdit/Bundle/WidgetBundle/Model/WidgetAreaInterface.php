@@ -23,7 +23,7 @@ interface WidgetAreaInterface
     public function getArea();
 
     /**
-     * Set area slug
+     * Set area slug.
      *
      * @param string $area
      */
@@ -55,7 +55,8 @@ interface WidgetAreaInterface
     public function getWidgets();
 
     /**
-     * @param  \Doctrine\Common\Collections\ArrayCollection $widgets
+     * @param \Doctrine\Common\Collections\ArrayCollection $widgets
+     *
      * @return WidgetAreaInterface
      */
     public function setWidgets(ArrayCollection $widgets);

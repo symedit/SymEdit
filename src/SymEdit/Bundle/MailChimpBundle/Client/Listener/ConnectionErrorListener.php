@@ -17,7 +17,7 @@ use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 /**
  * This needs to run before the other error listener since the other one
  * assumes your API key is correct. We can't really make that assumption
- * with users so we check to see if there's no response (aka it couldn't connect)
+ * with users so we check to see if there's no response (aka it couldn't connect).
  */
 class ConnectionErrorListener implements EventSubscriberInterface
 {

@@ -34,7 +34,7 @@ class StyleManager
     }
 
     /**
-     * Get the config data
+     * Get the config data.
      *
      * @return ConfigData
      */

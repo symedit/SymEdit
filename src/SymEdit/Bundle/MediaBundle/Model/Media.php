@@ -32,9 +32,10 @@ abstract class Media implements MediaInterface
     }
 
     /**
-     * Set path
+     * Set path.
      *
-     * @param  string        $path
+     * @param string $path
+     *
      * @return BeverageImage
      */
     public function setPath($path)
@@ -45,7 +46,7 @@ abstract class Media implements MediaInterface
     }
 
     /**
-     * Get path
+     * Get path.
      *
      * @return string
      */
@@ -69,9 +70,10 @@ abstract class Media implements MediaInterface
     }
 
     /**
-     * Set updatedAt
+     * Set updatedAt.
      *
-     * @param  \DateTime     $updatedAt
+     * @param \DateTime $updatedAt
+     *
      * @return BeverageImage
      */
     public function setUpdatedAt(\DateTime $updatedAt)
@@ -87,7 +89,7 @@ abstract class Media implements MediaInterface
     }
 
     /**
-     * Get updatedAt
+     * Get updatedAt.
      *
      * @return \DateTime
      */

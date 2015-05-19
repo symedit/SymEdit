@@ -18,97 +18,97 @@ use Symfony\Component\Validator\ExecutionContextInterface;
 class Page implements PageInterface
 {
     /**
-     * @var integer $id
+     * @var int
      */
     protected $id;
 
     /**
-     * @var boolean $homepage
+     * @var bool
      */
     protected $homepage;
 
     /**
-     * @var boolean $root
+     * @var bool
      */
     protected $root;
 
     /**
-     * @var string $name
+     * @var string
      */
     protected $name;
 
     /**
-     * @var string $tagline
+     * @var string
      */
     protected $tagline;
 
     /**
-     * @var string $summary
+     * @var string
      */
     protected $summary;
 
     /**
-     * @var string $path
+     * @var string
      */
     protected $path;
 
     /**
-     * @var string $title
+     * @var string
      */
     protected $title;
 
     /**
-     * @var string $content
+     * @var string
      */
     protected $content;
 
     /**
-     * @var array $seo
+     * @var array
      */
     protected $seo;
 
     /**
-     * @var integer $pageOrder
+     * @var int
      */
     protected $pageOrder;
 
     /**
-     * @var boolean $display
+     * @var bool
      */
     protected $display;
 
     /**
-     * @var boolean $crawl
+     * @var bool
      */
     protected $crawl;
 
     /**
-     * @var boolean $pageController
+     * @var bool
      */
     protected $pageController;
 
     /**
-     * @var string $pageControllerPath
+     * @var string
      */
     protected $pageControllerPath;
 
     /**
-     * @var \DateTime $createdAt
+     * @var \DateTime
      */
     protected $createdAt;
 
     /**
-     * @var string $createdBy
+     * @var string
      */
     protected $createdBy;
 
     /**
-     * @var \DateTime $updatedAt
+     * @var \DateTime
      */
     protected $updatedAt;
 
     /**
-     * @var string $updatedBy
+     * @var string
      */
     protected $updatedBy;
 
@@ -123,7 +123,7 @@ class Page implements PageInterface
     protected $children;
 
     /**
-     * @var integer $level
+     * @var int
      */
     protected $level;
 
@@ -140,7 +140,7 @@ class Page implements PageInterface
     }
 
     /**
-     * Constructor
+     * Constructor.
      */
     public function __construct()
     {
@@ -155,9 +155,9 @@ class Page implements PageInterface
     }
 
     /**
-     * Get id
+     * Get id.
      *
-     * @return integer
+     * @return int
      */
     public function getId()
     {
@@ -165,9 +165,10 @@ class Page implements PageInterface
     }
 
     /**
-     * Set homepage
+     * Set homepage.
      *
-     * @param  boolean $homepage
+     * @param bool $homepage
+     *
      * @return Page
      */
     public function setHomepage($homepage)
@@ -178,9 +179,9 @@ class Page implements PageInterface
     }
 
     /**
-     * Get homepage
+     * Get homepage.
      *
-     * @return boolean
+     * @return bool
      */
     public function getHomepage()
     {
@@ -188,9 +189,10 @@ class Page implements PageInterface
     }
 
     /**
-     * Set root
+     * Set root.
      *
-     * @param  boolean $root
+     * @param bool $root
+     *
      * @return Page
      */
     public function setRoot($root)
@@ -201,9 +203,9 @@ class Page implements PageInterface
     }
 
     /**
-     * Get root
+     * Get root.
      *
-     * @return boolean
+     * @return bool
      */
     public function getRoot()
     {
@@ -222,9 +224,10 @@ class Page implements PageInterface
     }
 
     /**
-     * Set name
+     * Set name.
      *
-     * @param  string $name
+     * @param string $name
+     *
      * @return Page
      */
     public function setName($name)
@@ -235,7 +238,7 @@ class Page implements PageInterface
     }
 
     /**
-     * Get name
+     * Get name.
      *
      * @return string
      */
@@ -245,9 +248,10 @@ class Page implements PageInterface
     }
 
     /**
-     * Set tagline
+     * Set tagline.
      *
-     * @param  string $tagline
+     * @param string $tagline
+     *
      * @return Page
      */
     public function setTagline($tagline)
@@ -258,7 +262,7 @@ class Page implements PageInterface
     }
 
     /**
-     * Get tagline
+     * Get tagline.
      *
      * @return string
      */
@@ -268,9 +272,10 @@ class Page implements PageInterface
     }
 
     /**
-     * Set summary
+     * Set summary.
      *
-     * @param  string $summary
+     * @param string $summary
+     *
      * @return Page
      */
     public function setSummary($summary)
@@ -281,7 +286,7 @@ class Page implements PageInterface
     }
 
     /**
-     * Get summary
+     * Get summary.
      *
      * @return string
      */
@@ -291,9 +296,10 @@ class Page implements PageInterface
     }
 
     /**
-     * Set title
+     * Set title.
      *
-     * @param  string $title
+     * @param string $title
+     *
      * @return Page
      */
     public function setTitle($title)
@@ -304,7 +310,7 @@ class Page implements PageInterface
     }
 
     /**
-     * Get title
+     * Get title.
      *
      * @return string
      */
@@ -314,9 +320,10 @@ class Page implements PageInterface
     }
 
     /**
-     * Set content
+     * Set content.
      *
-     * @param  string $content
+     * @param string $content
+     *
      * @return Page
      */
     public function setContent($content)
@@ -327,7 +334,7 @@ class Page implements PageInterface
     }
 
     /**
-     * Get content
+     * Get content.
      *
      * @return string
      */
@@ -337,9 +344,10 @@ class Page implements PageInterface
     }
 
     /**
-     * Set seo
+     * Set seo.
      *
-     * @param  array $seo
+     * @param array $seo
+     *
      * @return Page
      */
     public function setSeo(array $seo = array())
@@ -350,7 +358,7 @@ class Page implements PageInterface
     }
 
     /**
-     * Get seo
+     * Get seo.
      *
      * @return array
      */
@@ -360,9 +368,10 @@ class Page implements PageInterface
     }
 
     /**
-     * Set pageOrder
+     * Set pageOrder.
      *
-     * @param  integer $pageOrder
+     * @param int $pageOrder
+     *
      * @return Page
      */
     public function setPageOrder($pageOrder)
@@ -373,9 +382,9 @@ class Page implements PageInterface
     }
 
     /**
-     * Get pageOrder
+     * Get pageOrder.
      *
-     * @return integer
+     * @return int
      */
     public function getPageOrder()
     {
@@ -383,9 +392,10 @@ class Page implements PageInterface
     }
 
     /**
-     * Set display
+     * Set display.
      *
-     * @param  boolean $display
+     * @param bool $display
+     *
      * @return Page
      */
     public function setDisplay($display)
@@ -396,9 +406,9 @@ class Page implements PageInterface
     }
 
     /**
-     * Get display
+     * Get display.
      *
-     * @return boolean
+     * @return bool
      */
     public function getDisplay()
     {
@@ -406,9 +416,10 @@ class Page implements PageInterface
     }
 
     /**
-     * Set crawl
+     * Set crawl.
      *
-     * @param  boolean $crawl
+     * @param bool $crawl
+     *
      * @return Page
      */
     public function setCrawl($crawl)
@@ -419,9 +430,9 @@ class Page implements PageInterface
     }
 
     /**
-     * Get crawl
+     * Get crawl.
      *
-     * @return boolean
+     * @return bool
      */
     public function getCrawl()
     {
@@ -429,9 +440,10 @@ class Page implements PageInterface
     }
 
     /**
-     * Set pageController
+     * Set pageController.
      *
-     * @param  boolean $pageController
+     * @param bool $pageController
+     *
      * @return Page
      */
     public function setPageController($pageController)
@@ -442,9 +454,9 @@ class Page implements PageInterface
     }
 
     /**
-     * Get pageController
+     * Get pageController.
      *
-     * @return boolean
+     * @return bool
      */
     public function getPageController()
     {
@@ -452,9 +464,10 @@ class Page implements PageInterface
     }
 
     /**
-     * Set pageControllerPath
+     * Set pageControllerPath.
      *
-     * @param  string $pageControllerPath
+     * @param string $pageControllerPath
+     *
      * @return Page
      */
     public function setPageControllerPath($pageControllerPath)
@@ -465,7 +478,7 @@ class Page implements PageInterface
     }
 
     /**
-     * Get pageControllerPath
+     * Get pageControllerPath.
      *
      * @return string
      */
@@ -475,7 +488,7 @@ class Page implements PageInterface
     }
 
     /**
-     * Gets time created
+     * Gets time created.
      *
      * @return \DateTime $createdAt
      */
@@ -485,7 +498,7 @@ class Page implements PageInterface
     }
 
     /**
-     * Get created by
+     * Get created by.
      *
      * @return string
      */
@@ -495,9 +508,10 @@ class Page implements PageInterface
     }
 
     /**
-     * Set updated at
+     * Set updated at.
      *
-     * @param  \DateTime $time
+     * @param \DateTime $time
+     *
      * @return Page
      */
     public function setUpdatedAt($time)
@@ -508,7 +522,7 @@ class Page implements PageInterface
     }
 
     /**
-     * Get updated at
+     * Get updated at.
      *
      * @return \DateTime
      */
@@ -518,7 +532,7 @@ class Page implements PageInterface
     }
 
     /**
-     * Get Updated By
+     * Get Updated By.
      *
      * @return string
      */
@@ -535,7 +549,7 @@ class Page implements PageInterface
     }
 
     /**
-     * Get path
+     * Get path.
      *
      * @return string
      */
@@ -556,9 +570,10 @@ class Page implements PageInterface
     }
 
     /**
-     * Set parent
+     * Set parent.
      *
-     * @param  PageInterface $parent
+     * @param PageInterface $parent
+     *
      * @return PageInterface
      */
     public function setParent(PageInterface $parent = null)
@@ -569,7 +584,7 @@ class Page implements PageInterface
     }
 
     /**
-     * Get parent
+     * Get parent.
      *
      * @return PageInterface
      */
@@ -579,9 +594,10 @@ class Page implements PageInterface
     }
 
     /**
-     * Add children
+     * Add children.
      *
-     * @param  PageInterface $children
+     * @param PageInterface $children
+     *
      * @return Page
      */
     public function addChildren(PageInterface $children)
@@ -593,7 +609,7 @@ class Page implements PageInterface
     }
 
     /**
-     * Remove children
+     * Remove children.
      *
      * @param PageInterface $children
      */
@@ -603,7 +619,7 @@ class Page implements PageInterface
     }
 
     /**
-     * Get children
+     * Get children.
      *
      * @return Doctrine\Common\Collections\Collection
      */
@@ -613,9 +629,10 @@ class Page implements PageInterface
     }
 
     /**
-     * Set template
+     * Set template.
      *
-     * @param  string $template
+     * @param string $template
+     *
      * @return Page
      */
     public function setTemplate($template)
@@ -626,7 +643,7 @@ class Page implements PageInterface
     }
 
     /**
-     * Get template
+     * Get template.
      *
      * @return string
      */

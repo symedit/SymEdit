@@ -24,7 +24,7 @@ class AnalyzeController extends Controller
     public function indexAction()
     {
         $repositories = array(
-            'page'      => array(
+            'page' => array(
                 'route' => 'admin_page_update',
                 'criteria' => array(
                     'root' => false,
@@ -36,7 +36,7 @@ class AnalyzeController extends Controller
                 'criteria' => array(),
             ),
 
-            'category'  => array(
+            'category' => array(
                 'route' => 'admin_category_update',
                 'criteria' => array(),
             ),

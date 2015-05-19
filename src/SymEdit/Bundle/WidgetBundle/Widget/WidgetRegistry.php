@@ -34,8 +34,10 @@ class WidgetRegistry extends ContainerAware
     }
 
     /**
-     * @param  string                  $name Strategy Name
+     * @param string $name Strategy Name
+     *
      * @return WidgetStrategyInterface
+     *
      * @throws \Exception
      */
     public function getStrategy($name)
@@ -49,7 +51,7 @@ class WidgetRegistry extends ContainerAware
 
     private function loadStrategy($name)
     {
-        /**
+        /*
          * If we passed an alias then it can load quicker
          */
         if (isset($this->strategies[$name])) {
@@ -81,7 +83,7 @@ class WidgetRegistry extends ContainerAware
         $strategy->setTemplating($this->getTemplating());
         $this->loadedStrategies[$strategy->getName()] = $strategy;
 
-        /**
+        /*
          * Check if keys/alias match. If not you should fix it
          */
         if (is_string($key) && $strategy->getName() !== $key) {
@@ -103,7 +105,6 @@ class WidgetRegistry extends ContainerAware
     }
 
     /**
-     *
      * @return WidgetStrategyInterface
      */
     public function getStrategies()
@@ -122,7 +123,7 @@ class WidgetRegistry extends ContainerAware
     }
 
     /**
-     * Initiates the Widget with the strategy default options
+     * Initiates the Widget with the strategy default options.
      *
      * @param WidgetInterface $widget
      */

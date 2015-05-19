@@ -19,12 +19,12 @@ use Symfony\Component\Templating\EngineInterface;
 interface WidgetStrategyInterface
 {
     /**
-     * Get widget unique name
+     * Get widget unique name.
      */
     public function getName();
 
     /**
-     * Get description of the widget
+     * Get description of the widget.
      */
     public function getDescription();
 
@@ -34,7 +34,7 @@ interface WidgetStrategyInterface
     public function buildForm(FormBuilderInterface $builder);
 
     /**
-     * Executes the strategy
+     * Executes the strategy.
      *
      * @param WidgetInterface $widget The widget to be rendered
      */

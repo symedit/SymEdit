@@ -174,7 +174,7 @@ class AdminProfileType extends BaseType
 
         $this->buildRolesForm($roles, $options);
 
-        /**
+        /*
          * Build rest of form
          */
         $builder

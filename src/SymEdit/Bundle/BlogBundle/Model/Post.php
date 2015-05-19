@@ -18,12 +18,12 @@ use Symfony\Component\Security\Core\User\UserInterface;
 class Post implements PostInterface
 {
     /**
-     * @var integer $id
+     * @var int
      */
     protected $id;
 
     /**
-     * @var string $title
+     * @var string
      */
     protected $title;
 
@@ -33,42 +33,42 @@ class Post implements PostInterface
     protected $author;
 
     /**
-     * @var string $slug
+     * @var string
      */
     protected $slug;
 
     /**
-     * @var string $content
+     * @var string
      */
     protected $content;
 
     /**
-     * @var string $summary
+     * @var string
      */
     protected $summary;
 
     /**
-     * @var \DateTime $createdAt
+     * @var \DateTime
      */
     protected $createdAt;
 
     /**
-     * @var \DateTime $updatedAt
+     * @var \DateTime
      */
     protected $updatedAt;
 
     /**
-     * @var \DateTime $publishedAt
+     * @var \DateTime
      */
     protected $publishedAt;
 
     /**
-     * @var ArrayCollection $categories
+     * @var ArrayCollection
      */
     protected $categories;
 
     /**
-     * @var integer $status
+     * @var int
      */
     protected $status;
 
@@ -82,9 +82,9 @@ class Post implements PostInterface
     }
 
     /**
-     * Get id
+     * Get id.
      *
-     * @return integer
+     * @return int
      */
     public function getId()
     {
@@ -92,9 +92,10 @@ class Post implements PostInterface
     }
 
     /**
-     * Set title
+     * Set title.
      *
-     * @param  string $title
+     * @param string $title
+     *
      * @return Post
      */
     public function setTitle($title)
@@ -105,7 +106,7 @@ class Post implements PostInterface
     }
 
     /**
-     * Get title
+     * Get title.
      *
      * @return string
      */
@@ -115,9 +116,10 @@ class Post implements PostInterface
     }
 
     /**
-     * Set slug
+     * Set slug.
      *
-     * @param  string $slug
+     * @param string $slug
+     *
      * @return Post
      */
     public function setSlug($slug)
@@ -128,7 +130,7 @@ class Post implements PostInterface
     }
 
     /**
-     * Get slug
+     * Get slug.
      *
      * @return string
      */
@@ -138,9 +140,10 @@ class Post implements PostInterface
     }
 
     /**
-     * Set content
+     * Set content.
      *
-     * @param  string $content
+     * @param string $content
+     *
      * @return Post
      */
     public function setContent($content)
@@ -151,7 +154,7 @@ class Post implements PostInterface
     }
 
     /**
-     * Get content
+     * Get content.
      *
      * @return string
      */
@@ -161,9 +164,10 @@ class Post implements PostInterface
     }
 
     /**
-     * Set author
+     * Set author.
      *
-     * @param  UserInterface $author
+     * @param UserInterface $author
+     *
      * @return Post
      */
     public function setAuthor(UserInterface $author = null)
@@ -174,7 +178,7 @@ class Post implements PostInterface
     }
 
     /**
-     * Get author
+     * Get author.
      *
      * @return UserInterface
      */
@@ -184,9 +188,10 @@ class Post implements PostInterface
     }
 
     /**
-     * Set createdAt
+     * Set createdAt.
      *
-     * @param  \DateTime $createdAt
+     * @param \DateTime $createdAt
+     *
      * @return Post
      */
     public function setCreatedAt($createdAt)
@@ -197,7 +202,7 @@ class Post implements PostInterface
     }
 
     /**
-     * Get createdAt
+     * Get createdAt.
      *
      * @return \DateTime
      */
@@ -207,9 +212,10 @@ class Post implements PostInterface
     }
 
     /**
-     * Set updatedAt
+     * Set updatedAt.
      *
-     * @param  \DateTime $updatedAt
+     * @param \DateTime $updatedAt
+     *
      * @return Post
      */
     public function setUpdatedAt($updatedAt)
@@ -220,7 +226,7 @@ class Post implements PostInterface
     }
 
     /**
-     * Get updatedAt
+     * Get updatedAt.
      *
      * @return \DateTime
      */
@@ -242,9 +248,10 @@ class Post implements PostInterface
     }
 
     /**
-     * Add categories
+     * Add categories.
      *
-     * @param  CategoryInterface $category
+     * @param CategoryInterface $category
+     *
      * @return Post
      */
     public function addCategory(CategoryInterface $category)
@@ -255,7 +262,7 @@ class Post implements PostInterface
     }
 
     /**
-     * Remove categories
+     * Remove categories.
      *
      * @param CategoryInterface $category
      */
@@ -265,7 +272,7 @@ class Post implements PostInterface
     }
 
     /**
-     * Get categories
+     * Get categories.
      *
      * @return Collection
      */
@@ -275,9 +282,10 @@ class Post implements PostInterface
     }
 
     /**
-     * Set summary
+     * Set summary.
      *
-     * @param  string $summary
+     * @param string $summary
+     *
      * @return Post
      */
     public function setSummary($summary)
@@ -288,7 +296,7 @@ class Post implements PostInterface
     }
 
     /**
-     * Get summary
+     * Get summary.
      *
      * @return string
      */
@@ -298,9 +306,10 @@ class Post implements PostInterface
     }
 
     /**
-     * Set status
+     * Set status.
      *
-     * @param  integer $status
+     * @param int $status
+     *
      * @return Post
      */
     public function setStatus($status)
@@ -311,9 +320,9 @@ class Post implements PostInterface
     }
 
     /**
-     * Get status
+     * Get status.
      *
-     * @return integer
+     * @return int
      */
     public function getStatus()
     {
@@ -321,9 +330,9 @@ class Post implements PostInterface
     }
 
     /**
-     * Whether the post is published or not
+     * Whether the post is published or not.
      *
-     * @return boolean
+     * @return bool
      */
     public function isPublished()
     {

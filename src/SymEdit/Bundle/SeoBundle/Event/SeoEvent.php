@@ -16,7 +16,7 @@ use Symfony\Component\HttpFoundation\Request;
 use SymEdit\Bundle\SeoBundle\Model\SeoInterface;
 
 /**
- * Event for SEO
+ * Event for SEO.
  */
 class SeoEvent extends Event
 {
@@ -24,7 +24,7 @@ class SeoEvent extends Event
     protected $request;
 
     /**
-     * Constructor
+     * Constructor.
      *
      * @param SeoInterface $seo
      * @param Request      $request
@@ -36,7 +36,7 @@ class SeoEvent extends Event
     }
 
     /**
-     * Get the request
+     * Get the request.
      *
      * @return Request|null
      */
@@ -46,7 +46,7 @@ class SeoEvent extends Event
     }
 
     /**
-     * Get the current Seo instance
+     * Get the current Seo instance.
      *
      * @return SeoInterface
      */
@@ -56,7 +56,7 @@ class SeoEvent extends Event
     }
 
     /**
-     * Replace the current Seo instance
+     * Replace the current Seo instance.
      *
      * @param SeoInterface $seo
      */

@@ -14,14 +14,14 @@ namespace SymEdit\Bundle\StylizerBundle\Storage;
 interface StorageInterface
 {
     /**
-     * Save the styles
+     * Save the styles.
      *
      * @param array $styles
      */
     public function save(array $styles);
 
     /**
-     * Load the current styles
+     * Load the current styles.
      *
      * @return array $styles
      */

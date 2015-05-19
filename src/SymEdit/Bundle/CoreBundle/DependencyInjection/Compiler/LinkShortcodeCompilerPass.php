@@ -16,7 +16,7 @@ use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Reference;
 
 /**
- * Find Link generators and replace argument
+ * Find Link generators and replace argument.
  */
 class LinkShortcodeCompilerPass implements CompilerPassInterface
 {

@@ -24,7 +24,7 @@ class ThemeEvent extends Event
     }
 
     /**
-     * Get the theme
+     * Get the theme.
      *
      * @return ThemeInterface
      */

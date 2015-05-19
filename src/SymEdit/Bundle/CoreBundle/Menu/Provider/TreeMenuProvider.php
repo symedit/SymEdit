@@ -40,7 +40,7 @@ class TreeMenuProvider implements MenuProviderInterface
         $menu = $this->factory->createItem('root', $rootOptions);
         $this->populateChildren($menu, $this->getRoot($options));
 
-        /**
+        /*
          * Dispatch Menu Event
          */
         $event = new MenuEvent($menu, 'tree');
@@ -50,7 +50,7 @@ class TreeMenuProvider implements MenuProviderInterface
     }
 
     /**
-     * Gets root elements from options
+     * Gets root elements from options.
      *
      * @return PageInterface
      */
@@ -62,16 +62,16 @@ class TreeMenuProvider implements MenuProviderInterface
             $root = $this->pageRepository->findOneBy(array('root' => true));
         }
 
-        /**
+        /*
          * If you provide a 'level' it will move up the tree until it matches
          * your desired level.
          */
         if (isset($options['level'])) {
             $level = $options['level'];
 
-            if ($level > ($root->getLevel()+1)) {
+            if ($level > ($root->getLevel() + 1)) {
                 throw new \Exception(sprintf('Cannot get a level (%d) higher than this page\'s children (%d), '
-                                           .'it is impossible to tell the path', $level, ($root->getLevel()+1)));
+                                           .'it is impossible to tell the path', $level, ($root->getLevel() + 1)));
             }
 
             while ($root->getLevel() >= $level && $root->getLevel() > 0) {
@@ -83,7 +83,6 @@ class TreeMenuProvider implements MenuProviderInterface
     }
 
     /**
-     *
      * @param NodeInterface $node
      * @param PageInterface $children
      */

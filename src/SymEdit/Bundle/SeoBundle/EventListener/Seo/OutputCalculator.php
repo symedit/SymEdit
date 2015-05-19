@@ -30,13 +30,13 @@ class OutputCalculator implements SeoCalculatorInterface
     {
         $seo = $event->getSeo();
 
-        /**
+        /*
          * Trim title
          */
         $title = SeoTools::plain($seo->getTitle(), $this->maxTitleLength);
         $seo->setTitle($title);
 
-        /**
+        /*
          * Trim meta description
          */
         if ($seo->hasMeta('name', 'description')) {

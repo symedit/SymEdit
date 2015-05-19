@@ -29,7 +29,7 @@ class PageSubscriber implements EventSubscriberInterface
         /* @var $page PageInterface */
         $page = $event->getSubject();
 
-        /**
+        /*
          * Don't allow deletion of homepage / root
          */
         if ($page->getHomepage() || $page->getRoot()) {

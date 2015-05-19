@@ -29,7 +29,7 @@ class ResourceController extends BaseResourceController
     }
 
     /**
-     * Bulk reorder, for drag and drops
+     * Bulk reorder, for drag and drops.
      */
     public function reorderAction(Request $request)
     {

@@ -49,7 +49,7 @@ class MediaListener extends AbstractMediaListener
         if ($this->isValid($object)) {
             $this->preUpload($object);
 
-            /**
+            /*
              * Compute changeset
              */
             $em = $args->getEntityManager();
@@ -123,7 +123,7 @@ class MediaListener extends AbstractMediaListener
         $name = $media->getName();
         $entity = $em->getRepository($class)->findOneBy(array('name' => $name));
 
-        /**
+        /*
          * No entity found, must be unique
          */
         if (!$entity) {

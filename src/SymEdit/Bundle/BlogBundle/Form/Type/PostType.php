@@ -53,9 +53,9 @@ class PostType extends AbstractType
             ))
             ->add('categories', 'entity', array(
                 'property' => 'title',
-                'class'    => $this->categoryClass,
+                'class' => $this->categoryClass,
                 'multiple' => true,
-                'expanded'  => true,
+                'expanded' => true,
                 'label' => 'symedit.form.post.categories',
             ))
         ;

@@ -16,7 +16,7 @@ use Symfony\Component\Routing\RouterInterface;
 interface LinkInterface
 {
     /**
-     * Check to see if this link can return a route
+     * Check to see if this link can return a route.
      *
      * @param array $attributes
      */

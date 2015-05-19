@@ -55,7 +55,7 @@ class PostRepository extends EntityRepository
     }
 
     /**
-     * Get just the most recent post
+     * Get just the most recent post.
      */
     public function getLatestPost()
     {

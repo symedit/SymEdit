@@ -33,16 +33,16 @@ class BreadcrumbTest extends TestCase
     }
 
     /**
-     * Test initial count
+     * Test initial count.
      */
     public function testBreadcrumbs()
     {
-        /**
+        /*
          * Test initial count
          */
         $this->assertBreadcrumbCount(2);
 
-        /**
+        /*
          * Test unshift to add to beginning
          */
         $this->breadcrumbs->unshift('First', 'first');
@@ -52,7 +52,7 @@ class BreadcrumbTest extends TestCase
 
         $this->assertBreadcrumbCount(3);
 
-        /**
+        /*
          * Test popping
          */
         $popped = $this->breadcrumbs->pop();

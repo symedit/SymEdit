@@ -34,7 +34,7 @@ class WidgetAreaTokenParser extends \Twig_TokenParser
     }
 
     /**
-     * Allows this to be overriden
+     * Allows this to be overriden.
      */
     protected function getWidgetAreaNode($area, $strategy, $lineno, $tag)
     {

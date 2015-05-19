@@ -19,7 +19,7 @@ class ListChildrenStrategy extends AbstractWidgetStrategy
 {
     public function execute(WidgetInterface $widget, PageInterface $page = null)
     {
-        /**
+        /*
          * Don't render without a current page
          */
         if ($page === null) {

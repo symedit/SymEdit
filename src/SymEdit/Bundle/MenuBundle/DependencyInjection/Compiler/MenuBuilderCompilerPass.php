@@ -17,7 +17,7 @@ use Symfony\Component\DependencyInjection\Exception\ParameterNotFoundException;
 use Symfony\Component\DependencyInjection\Reference;
 
 /**
- * Build an array of menus into form:
+ * Build an array of menus into form:.
  *
  * array(
  *     'menu_name' => array(
