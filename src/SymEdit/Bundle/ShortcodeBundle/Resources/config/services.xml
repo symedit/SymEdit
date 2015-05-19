@@ -10,6 +10,7 @@
         <parameter key="symedit_shortcode.twig.extension.shortcode.class">SymEdit\Bundle\ShortcodeBundle\Twig\Extension\ShortcodeExtension</parameter>
 
         <parameter key="symedit_shortcode.shortcode.icon.class">SymEdit\Bundle\ShortcodeBundle\Shortcode\IconShortcode</parameter>
+        <parameter key="symedit_shortcode.shortcode.date.class">SymEdit\Bundle\ShortcodeBundle\Shortcode\DateShortcode</parameter>
     </parameters>
 
     <services>
@@ -32,6 +33,10 @@
         <!-- Example Shortcodes -->
         <service id="symedit_shortcode.shortcode.icon" class="%symedit_shortcode.shortcode.icon.class%">
             <tag name="symedit_shortcode.shortcode" alias="icon" />
+        </service>
+
+        <service id="symedit_shortcode.shortcode.date" class="%symedit_shortcode.shortcode.date.class%">
+            <tag name="symedit_shortcode.shortcode" alias="date" />
         </service>
     </services>
 </container>
