@@ -1,0 +1,15 @@
+symedit_form_builder_process:
+    path: /{name}/process
+    methods: [POST]
+    defaults:
+        _controller: symedit.controller.form_builder:processAction
+        _sylius:
+            template: @SymEdit/FormBuilder/process.html.twig
+
+symedit_form_builder_success:
+    path: /{name}/success
+    methods: [GET]
+    defaults:
+        _controller: symedit.controller.form_builder:showAction
+        _sylius:
+            template: @SymEdit/FormBuilder/success.html.twig

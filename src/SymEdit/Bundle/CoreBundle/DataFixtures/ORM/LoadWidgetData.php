@@ -11,31 +11,20 @@
 
 namespace SymEdit\Bundle\CoreBundle\DataFixtures\ORM;
 
-use Doctrine\Common\DataFixtures\AbstractFixture;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
-use SymEdit\Bundle\WidgetBundle\Model\Widget;
-use Symfony\Component\DependencyInjection\ContainerAwareInterface;
-use Symfony\Component\DependencyInjection\ContainerInterface;
+use SymEdit\Bundle\CoreBundle\DataFixtures\AbstractFixture;
+use SymEdit\Bundle\WidgetBundle\Model\WidgetAreaInterface;
+use SymEdit\Bundle\WidgetBundle\Model\WidgetInterface;
 
-class LoadWidgetData extends AbstractFixture implements OrderedFixtureInterface, ContainerAwareInterface
+class LoadWidgetData extends AbstractFixture implements OrderedFixtureInterface
 {
-    /**
-     * @var ContainerInterface
-     */
-    private $container;
-
-    public function setContainer(ContainerInterface $container = null)
-    {
-        $this->container = $container;
-    }
-
     public function load(ObjectManager $manager)
     {
         /*
          * Create sidebar
          */
-        $sidebar = $this->getWidgetAreaRepository()->createNew();
+        $sidebar = $this->createWidgetArea();
         $sidebar->setArea('sidebar');
         $sidebar->setDescription('Sidebar Widget Area');
 
@@ -47,19 +36,19 @@ class LoadWidgetData extends AbstractFixture implements OrderedFixtureInterface,
         /*
          * Add Categories to Blog
          */
-        $categories = $this->getWidgetRepository()->createNew('blog_categories');
+        $categories = $this->createWidget('blog_categories');
         $categories->setName('blog_categories')
                    ->setTitle('Blog Categories')
-                   ->setVisibility(Widget::INCLUDE_ONLY)
+                   ->setVisibility(WidgetInterface::INCLUDE_ONLY)
                    ->addAssoc($blog->getId());
 
         /*
          * Add Recent Posts to Blog
          */
-        $recent = $this->getWidgetRepository()->createNew('blog_recent_posts');
+        $recent = $this->createWidget('blog_recent_posts');
         $recent->setName('blog_recent_posts')
                ->setTitle('Recent Posts')
-               ->setVisibility(Widget::INCLUDE_ONLY)
+               ->setVisibility(WidgetInterface::INCLUDE_ONLY)
                ->addAssoc($blog->getId());
 
         /*
@@ -77,7 +66,7 @@ class LoadWidgetData extends AbstractFixture implements OrderedFixtureInterface,
         /*
          * Add Featured Area
          */
-        $featured = $this->getWidgetAreaRepository()->createNew();
+        $featured = $this->createWidgetArea();
         $featured
             ->setArea('featured')
             ->setDescription('Featured Widget Area at top of page');
@@ -85,10 +74,10 @@ class LoadWidgetData extends AbstractFixture implements OrderedFixtureInterface,
         // Google Map for Contact Page
         $contact_page = $this->getReference('page-contact');
 
-        $map = $this->getWidgetRepository()->createNew('google_map');
+        $map = $this->createWidget('google_map');
         $map
             ->setName('google_map_featured')
-            ->setVisibility(Widget::INCLUDE_ONLY)
+            ->setVisibility(WidgetInterface::INCLUDE_ONLY)
             ->addAssoc($contact_page->getId());
 
         $featured->addWidget($map);
@@ -101,31 +90,64 @@ class LoadWidgetData extends AbstractFixture implements OrderedFixtureInterface,
         /*
          * Add Supplemental Area
          */
-        $supplemental = $this->getWidgetAreaRepository()->createNew();
+        $supplemental = $this->createWidgetArea();
         $supplemental
             ->setArea('supplemental')
             ->setDescription('Widget area following the content region');
 
         $manager->persist($supplemental);
 
+        /**
+         * Add Contact Page Info Widget
+         */
+        $contactInfo = $this->createWidget('template');
+        $contactInfo
+            ->setName('contact_page_info')
+            ->setTitle('Our Contact Details')
+            ->setVisibility(WidgetInterface::INCLUDE_ONLY)
+            ->setOption('template', '@SymEdit/Widget/contact-page-info.html.twig')
+            ->addAssoc($contact_page->getId())
+        ;
+
+        // Add widget to area
+        $supplemental->addWidget($contactInfo);
+
+        /**
+         * Add Widget to Contact Page
+         */
+        $formBuilder = $this->getReference('form_builder-contact');
+        $contactFormWidget = $this->createWidget('form_builder')
+            ->setName('contact-us-form')
+            ->setTitle('Send us a message')
+            ->setOptions(array(
+                'form_builder_id' => $formBuilder->getId(),
+                'template' => '@SymEdit/Widget/FormBuilder/contact.html.twig',
+            ))
+            ->setVisibility(WidgetInterface::INCLUDE_ONLY)
+            ->addAssoc($contact_page->getId())
+        ;
+
+        // Add widget to area
+        $supplemental->addWidget($contactFormWidget);
+
         $this->addReference('widgetarea-supplemental', $supplemental);
 
         /*
          * Add Footer Area
          */
-        $footer = $this->getWidgetAreaRepository()->createNew();
+        $footer = $this->createWidgetArea();
         $footer->setArea('footer');
         $footer->setDescription('Footer Widget Area');
 
-        $contact = $this->getWidgetRepository()->createNew('contact_info');
+        $contact = $this->createWidget('contact_info');
         $contact->setName('contact_info')
                 ->setTitle('Contact Information')
-                ->setVisibility(Widget::INCLUDE_ALL);
+                ->setVisibility(WidgetInterface::INCLUDE_ALL);
 
-        $about = $this->getWidgetRepository()->createNew('html');
+        $about = $this->createWidget('html');
         $about->setName('about')
               ->setTitle('About Us')
-              ->setVisibility(Widget::INCLUDE_ALL)
+              ->setVisibility(WidgetInterface::INCLUDE_ALL)
               ->setOption('html', '<p>This is all about our company...</p>');
 
         /*
@@ -143,18 +165,26 @@ class LoadWidgetData extends AbstractFixture implements OrderedFixtureInterface,
         $manager->flush();
     }
 
-    protected function getWidgetRepository()
+    /**
+     * @param string $strategy
+     *
+     * @return WidgetInterface
+     */
+    protected function createWidget($strategy)
     {
-        return $this->container->get('symedit.repository.widget');
+        return $this->getRepository('widget')->createNew($strategy);
     }
 
-    protected function getWidgetAreaRepository()
+    /**
+     * @return WidgetAreaInterface
+     */
+    protected function createWidgetArea()
     {
-        return $this->container->get('symedit.repository.widget_area');
+        return $this->getRepository('widget_area')->createNew();
     }
 
     public function getOrder()
     {
-        return 25;
+        return 30;
     }
 }

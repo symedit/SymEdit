@@ -11,10 +11,10 @@
 
 namespace SymEdit\Bundle\CoreBundle\DataFixtures\ORM;
 
-use Doctrine\Common\Persistence\ObjectManager;
-use Doctrine\Common\DataFixtures\AbstractFixture;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
-use SymEdit\Bundle\CoreBundle\Model\Role;
+use Doctrine\Common\Persistence\ObjectManager;
+use SymEdit\Bundle\CoreBundle\DataFixtures\AbstractFixture;
+use SymEdit\Bundle\CoreBundle\Model\RoleInterface;
 
 class LoadRoleData extends AbstractFixture implements OrderedFixtureInterface
 {
@@ -33,10 +33,11 @@ class LoadRoleData extends AbstractFixture implements OrderedFixtureInterface
               'ROLE_ADMIN_SETTING' => 'Settings Access',
               'ROLE_ADMIN_USER' => 'User Access',
               'ROLE_ADMIN_STYLIZER' => 'Access to Stylizer',
+              'ROLE_ADMIN_FORM_BUILDER' => 'Access to Form Builder',
           );
 
         foreach ($roles as $role => $description) {
-            $entity = new Role();
+            $entity = $this->createRole();
             $entity->setRole($role);
             $entity->setDescription($description);
             $manager->persist($entity);
@@ -45,6 +46,14 @@ class LoadRoleData extends AbstractFixture implements OrderedFixtureInterface
         }
 
         $manager->flush();
+    }
+
+    /**
+     * @return RoleInterface
+     */
+    protected function createRole()
+    {
+        return $this->getRepository('role')->createNew();
     }
 
     public function getOrder()

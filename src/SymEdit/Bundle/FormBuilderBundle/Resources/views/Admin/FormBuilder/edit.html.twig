@@ -1,0 +1,17 @@
+{% extends '@SymEdit/Admin/tabbed.html.twig' %}
+{% import '@SymEdit/Admin/macro.html.twig' as macro %}
+
+{% block title %}Form Builder &raquo; {{ form_builder.name }} &raquo; Edit{% endblock %}
+
+{% block form_actions %}
+<button class="btn btn-primary" type="submit">
+    {{ icon('save') }}
+    {{ 'symedit.form.form_builder.actions.save'|trans }}
+</button>
+
+{#{{ macro.delete_button('post_delete', 'symedit.form.post.actions.delete') }}#}
+{% endblock %}
+
+{% block extra %}
+{#{{ macro.delete_form('post_delete', path('admin_post_delete', {'id': post.id})) }}#}
+{% endblock %}

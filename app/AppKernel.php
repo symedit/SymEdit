@@ -34,6 +34,7 @@ class AppKernel extends Kernel
             new SymEdit\Bundle\CacheBundle\SymEditCacheBundle(),
             new SymEdit\Bundle\MenuBundle\SymEditMenuBundle(),
             new SymEdit\Bundle\EventsBundle\SymEditEventsBundle(),
+            new SymEdit\Bundle\FormBuilderBundle\SymEditFormBuilderBundle(),
             new SymEdit\Bundle\ApiBundle\SymEditApiBundle(),
 
             // Isometriks Bundles

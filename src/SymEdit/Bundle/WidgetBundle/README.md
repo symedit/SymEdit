@@ -37,7 +37,7 @@ class MyStrategy extends AbstractWidgetStrategy
 {
     public function execute(WidgetInterface $widget)
     {
-        return $this->render('MyBundle:Widget:mywidget.html.twig', array(
+        return $this->render($widget, array(
             'number' => $widget->getOption('number'),
         ));
     }
@@ -45,6 +45,7 @@ class MyStrategy extends AbstractWidgetStrategy
     public function getDefaultOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
+            'template' => 'MyBundle:Widget:mywidget.html.twig',
             'number' => 5,
         ));
     }

@@ -1,0 +1,82 @@
+admin_form:
+    path: /
+    defaults:
+        _controller: symedit.controller.form_builder:indexAction
+        _sylius:
+            template: @SymEdit/Admin/FormBuilder/index.html.twig
+
+admin_form_create:
+    path: /new
+    methods: [GET, POST]
+    defaults:
+        _controller: symedit.controller.form_builder:createAction
+        _sylius:
+            template: @SymEdit/Admin/FormBuilder/new.html.twig
+            redirect:
+                route: admin_form_update
+                parameters: { id: $id }
+
+admin_form_show:
+    path: /{id}
+    methods: [GET]
+    defaults:
+        _controller: symedit.controller.form_builder:showAction
+        _sylius:
+            template: @SymEdit/Admin/FormBuilder/show.html.twig
+
+admin_form_preview:
+    path: /{id}/preview
+    methods: [GET]
+    defaults:
+        _controller: symedit.controller.form_builder:previewAction
+        _sylius:
+            template: @SymEdit/Admin/FormBuilder/preview.html.twig
+
+admin_form_update:
+    path: /{id}/edit
+    methods: [GET, PUT, POST]
+    defaults:
+        _controller: symedit.controller.form_builder:updateAction
+        _sylius:
+            template: @SymEdit/Admin/FormBuilder/edit.html.twig
+            redirect:
+                route: admin_form_update
+                parameters: { id: $id }
+
+admin_form_element_choose:
+    path: /{formId}/element/choose
+    methods: [GET]
+    defaults:
+        _controller: symedit.controller.form_element:chooseAction
+        _sylius:
+            template: @SymEdit/Admin/FormElement/choose.html.twig
+
+admin_form_element_create:
+    path: /{formId}/element/{type}/new
+    methods: [GET, POST]
+    defaults:
+        _controller: symedit.controller.form_element:createAction
+        _sylius:
+            template: @SymEdit/Admin/FormElement/new.html.twig
+            redirect:
+                route: admin_form_show
+                parameters: { id: $formId }
+
+admin_form_element_update:
+    path: /element/{id}/edit
+    methods: [GET, PUT, POST]
+    defaults:
+        _controller: symedit.controller.form_element:updateAction
+        _sylius:
+            template: @SymEdit/Admin/FormElement/edit.html.twig
+            redirect: admin_form_element_update
+
+admin_form_element_delete:
+    path: /{formId}/element/{id}/delete
+    methods: [DELETE]
+    defaults:
+        _controller: symedit.controller.form_element:deleteAction
+        _sylius:
+            redirect:
+                route: admin_form_show
+                parameters: { id: $formId }

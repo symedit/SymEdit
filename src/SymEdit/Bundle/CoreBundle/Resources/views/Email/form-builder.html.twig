@@ -1,0 +1,20 @@
+{% extends '@SymEdit/Email/base.html.twig' %}
+
+{% block subject %}Form Submission - {{ form_builder.legend }}{% endblock %}
+
+{% block body_text %}
+    {% for pair in pairs %}
+        {{ pair.label }}{{ "\t\t\t"|raw }}{{ pair.value }}
+    {% endfor %}
+{% endblock %}
+
+{% block content %}
+    <table>
+        {% for pair in pairs %}
+            <tr>
+                <th>{{ pair.label }}</th>
+                <td>{{ pair.value }}</td>
+            </tr>
+        {% endfor %}
+    </table>
+{% endblock %}

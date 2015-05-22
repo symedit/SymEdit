@@ -1,0 +1,34 @@
+{% set type = sylius_settings_get('seo.business_type') %}
+
+<div itemscope itemtype="http://schema.org/{{ type }}">
+    {% set company = sylius_settings_all('company') %}
+    <address>
+        <p>
+            <strong>{{ company.name }}</strong> <br>
+            <span itemprop="address">{{ company.address|nl2br }}</span>
+        </p>
+
+        <p>
+            {% if company.phone is not empty %}
+            <span class="circle-icon">
+                {{ icon('phone') }}
+            </span>
+            <span itemprop="telephone">{{ company.phone }}</span> <br>
+            {% endif %}
+
+            {% if company.fax is not empty %}
+            <span class="circle-icon">
+                {{ icon('book') }}
+            </span>
+            <span itemprop="faxNumber">{{ company.fax }}</span> <br>
+            {% endif %}
+
+            {% if company.email is not empty %}
+            <span class="circle-icon">
+                {{ icon('envelope') }}
+            </span>
+            <a itemprop="email" href="mailto:{{ company.email }}">{{ company.email }}</a>
+            {% endif %}
+        </p>
+    </address>
+</div>

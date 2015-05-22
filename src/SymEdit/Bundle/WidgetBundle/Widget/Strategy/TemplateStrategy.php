@@ -18,9 +18,7 @@ class TemplateStrategy extends AbstractWidgetStrategy
     public function execute(WidgetInterface $widget)
     {
         try {
-            $content = $this->render($widget->getOption('template'), array(
-                'widget' => $widget,
-            ));
+            $content = $this->render($widget);
         } catch (\Exception $e) {
             $content = sprintf('There was an error rendering your template: "%s"', $e->getMessage());
         }
