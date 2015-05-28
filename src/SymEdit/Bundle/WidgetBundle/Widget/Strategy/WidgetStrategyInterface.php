@@ -46,6 +46,11 @@ interface WidgetStrategyInterface
     public function getDefaultOptions(OptionsResolver $resolver);
 
     /**
+     * @return array Array compatible with Symfony Response setCache()
+     */
+    public function getCacheOptions(WidgetInterface $widget);
+
+    /**
      * @return EngineInterface
      */
     public function getTemplating();

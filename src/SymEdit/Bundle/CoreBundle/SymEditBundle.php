@@ -19,6 +19,7 @@ use SymEdit\Bundle\CoreBundle\DependencyInjection\Compiler\RouterCompilerPass;
 use SymEdit\Bundle\CoreBundle\DependencyInjection\Compiler\SymEditExtensionCompilerPass;
 use SymEdit\Bundle\CoreBundle\DependencyInjection\Compiler\TwigExceptionCompilerPass;
 use SymEdit\Bundle\CoreBundle\DependencyInjection\Compiler\TwigPathCompilerPass;
+use SymEdit\Bundle\CoreBundle\DependencyInjection\Compiler\WidgetTwigExtensionCompilerPass;
 use SymEdit\Bundle\CoreBundle\DependencyInjection\SymEditExtension;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\HttpKernel\Kernel;
@@ -56,6 +57,7 @@ class SymEditBundle extends AbstractResourceBundle
         $container->addCompilerPass(new SymEditExtensionCompilerPass());
         $container->addCompilerPass(new LinkShortcodeCompilerPass());
         $container->addCompilerPass(new ExpressionLanguageCompilerPass());
+        $container->addCompilerPass(new WidgetTwigExtensionCompilerPass());
     }
 
     protected function getModelInterfaces()

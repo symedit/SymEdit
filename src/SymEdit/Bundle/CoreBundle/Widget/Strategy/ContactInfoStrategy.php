@@ -11,6 +11,7 @@
 
 namespace SymEdit\Bundle\CoreBundle\Widget\Strategy;
 
+use SymEdit\Bundle\WidgetBundle\Model\WidgetInterface;
 use SymEdit\Bundle\WidgetBundle\Widget\Strategy\TemplateStrategy;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -29,6 +30,17 @@ class ContactInfoStrategy extends TemplateStrategy
         $resolver->setDefaults(array(
             'template' => '@SymEdit/Widget/contact-info.html.twig',
         ));
+    }
+
+    /**
+     * @todo This should be cached until settings change
+     */
+    public function getCacheOptions(WidgetInterface $widget)
+    {
+        return array(
+            'public' => true,
+            's_maxage' => 60,
+        );
     }
 
     public function getName()

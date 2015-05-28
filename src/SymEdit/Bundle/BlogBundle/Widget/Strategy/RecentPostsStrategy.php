@@ -11,22 +11,13 @@
 
 namespace SymEdit\Bundle\BlogBundle\Widget\Strategy;
 
-use SymEdit\Bundle\BlogBundle\Repository\PostRepositoryInterface;
 use SymEdit\Bundle\WidgetBundle\Model\WidgetInterface;
-use SymEdit\Bundle\WidgetBundle\Widget\Strategy\AbstractWidgetStrategy;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints\Range;
 
-class RecentPostsStrategy extends AbstractWidgetStrategy
+class RecentPostsStrategy extends AbstractPostStrategy
 {
-    private $postRepository;
-
-    public function __construct(PostRepositoryInterface $postRepository)
-    {
-        $this->postRepository = $postRepository;
-    }
-
     public function execute(WidgetInterface $widget)
     {
         $posts = $this->postRepository->getRecent($widget->getOption('max'));

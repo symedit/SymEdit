@@ -11,26 +11,15 @@
 
 namespace SymEdit\Bundle\MediaBundle\Widget\Strategy;
 
-use Sylius\Component\Resource\Repository\RepositoryInterface;
 use SymEdit\Bundle\WidgetBundle\Model\WidgetInterface;
-use SymEdit\Bundle\WidgetBundle\Widget\Strategy\AbstractWidgetStrategy;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class SliderStrategy extends AbstractWidgetStrategy
+class SliderStrategy extends AbstractGalleryStrategy
 {
-    protected $repository;
-
-    public function __construct(RepositoryInterface $repository)
-    {
-        $this->repository = $repository;
-    }
-
     public function execute(WidgetInterface $widget)
     {
-        $gallery = $this->repository->findOneBy(array(
-            'slug' => $widget->getOption('slider'),
-        ));
+        $gallery = $this->getGallery($widget);
 
         if (!$gallery) {
             return;

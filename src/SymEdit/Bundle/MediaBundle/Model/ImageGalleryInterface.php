@@ -26,4 +26,11 @@ interface ImageGalleryInterface
     public function addItem(GalleryItemInterface $image);
 
     public function removeItem(GalleryItemInterface $image);
+
+    public function setUpdatedAt(\DateTime $updatedAt);
+
+    /**
+     * @return \DateTime Time of late update
+     */
+    public function getUpdatedAt();
 }

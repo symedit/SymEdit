@@ -40,6 +40,11 @@ class UriVoter extends StringPathVoter
             return false;
         }
 
-        return $this->checkValue($widget, $this->getRequest()->getUri());
+        return $this->checkValue($widget, trim($this->getRequest()->getUri(), '/'));
+    }
+
+    protected function cleanAssociation($assoc)
+    {
+        return trim($assoc, '/');
     }
 }

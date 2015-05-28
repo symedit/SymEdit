@@ -25,18 +25,7 @@ class WidgetRenderer implements WidgetRendererInterface
 
     public function render(WidgetInterface $widget)
     {
-        $content = $this->getStrategy($widget)->execute($widget);
-
-        if ($content === false) {
-            return false;
-        }
-
-        return array(
-            'id' => $widget->getId(),
-            'name' => $widget->getName(),
-            'title' => $widget->getTitle(),
-            'content' => $content,
-        );
+        return $this->getStrategy($widget)->execute($widget);
     }
 
     protected function getStrategy(WidgetInterface $widget)

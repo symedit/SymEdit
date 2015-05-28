@@ -126,6 +126,20 @@ interface WidgetInterface
     public function getVisibility();
 
     /**
+     * Get last updated date
+     *
+     * @return \DateTime Last updated date.
+     */
+    public function getUpdatedAt();
+
+    /**
+     * Get created at date
+     *
+     * @return \DateTime Get date created.
+     */
+    public function getCreatedAt();
+
+    /**
      * @return WidgetInterface
      *
      * @param array $assoc

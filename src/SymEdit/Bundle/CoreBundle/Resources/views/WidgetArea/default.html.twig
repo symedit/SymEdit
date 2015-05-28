@@ -4,7 +4,7 @@
     <div class="widget {{ widget.name }}">
         {% if widget.title is not empty %}<h4>{{ widget.title }}</h4>{% endif %}
         <div>
-            {{ widget.content|raw }}
+            {{ symedit_widget_render(widget) }}
         </div>
     </div>
 {% endfor %}

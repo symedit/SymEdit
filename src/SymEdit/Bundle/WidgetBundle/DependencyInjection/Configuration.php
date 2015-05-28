@@ -80,7 +80,7 @@ class Configuration implements ConfigurationInterface
                             ->addDefaultsIfNotSet()
                             ->children()
                                 ->scalarNode('model')->defaultValue('SymEdit\Bundle\WidgetBundle\Model\WidgetArea')->end()
-                                ->scalarNode('controller')->defaultValue('SymEdit\Bundle\WidgetBundle\Controller\WidgetAreaController')->end()
+                                ->scalarNode('controller')->defaultValue('Sylius\Bundle\ResourceBundle\Controller\ResourceController')->end()
                                 ->scalarNode('repository')->end()
                                 ->scalarNode('form')->defaultValue('SymEdit\Bundle\WidgetBundle\Form\Type\WidgetAreaType')->end()
                             ->end()
