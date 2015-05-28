@@ -11,6 +11,7 @@
 
 namespace SymEdit\Bundle\WidgetBundle\Widget\Strategy;
 
+use SymEdit\Bundle\WidgetBundle\Model\WidgetInterface;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Templating\EngineInterface;
@@ -24,6 +25,14 @@ abstract class AbstractWidgetStrategy implements WidgetStrategyInterface
 
     public function getDefaultOptions(OptionsResolver $resolver)
     {
+    }
+
+    public function getCacheOptions(WidgetInterface $widget)
+    {
+        return array(
+            'public' => true,
+            'last_modified' => $widget->getUpdatedAt(),
+        );
     }
 
     public function buildForm(FormBuilderInterface $builder)

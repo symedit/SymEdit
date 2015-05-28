@@ -16,6 +16,10 @@
             <gedmo:slug unique="true" separator="-" fields="title" />
         </field>
 
+        <field name="updatedAt" type="datetime" column="updatedAt">
+            <gedmo:timestampable on="update" />
+        </field>
+
         <one-to-many field="items" target-entity="SymEdit\Bundle\MediaBundle\Model\GalleryItemInterface" mapped-by="gallery">
             <order-by>
                 <order-by-field name="position" direction="ASC"/>

@@ -23,11 +23,17 @@ class Matcher implements WidgetMatcherInterface
         $this->voters = $voters;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public function addVoter(VoterInterface $voter)
     {
         $this->voters[] = $voter;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public function isVisible(WidgetInterface $widget)
     {
         foreach ($this->voters as $voter) {
@@ -37,5 +43,23 @@ class Matcher implements WidgetMatcherInterface
         }
 
         return false;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getVisible(\Traversable $widgets)
+    {
+        $visibleWidgets = array();
+
+        foreach ($widgets as $widget) {
+            if (!$this->isVisible($widget)) {
+                continue;
+            }
+
+            $visibleWidgets[] = $widget;
+        }
+
+        return $visibleWidgets;
     }
 }

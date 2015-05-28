@@ -58,7 +58,7 @@ class StringPathVoter implements VoterInterface
         $string = rtrim($string, '/');
 
         foreach ($widget->getAssoc() as $assoc) {
-            $assoc = rtrim($assoc, '/');
+            $assoc = $this->cleanAssociation($assoc);
 
             if (strpos($assoc, '*') !== false) {
                 $exp = sprintf('#%s#i', str_replace('\*', '.+?', preg_quote($assoc)));
@@ -74,5 +74,10 @@ class StringPathVoter implements VoterInterface
         }
 
         return false;
+    }
+
+    protected function cleanAssociation($assoc)
+    {
+        return rtrim($assoc, '/');
     }
 }

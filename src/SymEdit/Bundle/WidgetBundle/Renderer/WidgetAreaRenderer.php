@@ -13,7 +13,6 @@ namespace SymEdit\Bundle\WidgetBundle\Renderer;
 
 use SymEdit\Bundle\WidgetBundle\Matcher\WidgetMatcherInterface;
 use SymEdit\Bundle\WidgetBundle\Model\WidgetAreaInterface;
-use SymEdit\Bundle\WidgetBundle\Model\WidgetInterface;
 use Symfony\Component\Templating\TemplateReference;
 
 class WidgetAreaRenderer implements WidgetAreaRendererInterface
@@ -22,40 +21,22 @@ class WidgetAreaRenderer implements WidgetAreaRendererInterface
     protected $widgetRenderer;
     protected $matcher;
 
-    public function __construct(\Twig_Environment $twig, WidgetRendererInterface $widgetRenderer, WidgetMatcherInterface $matcher)
+    public function __construct(\Twig_Environment $twig, WidgetMatcherInterface $matcher)
     {
         $this->twig = $twig;
-        $this->widgetRenderer = $widgetRenderer;
         $this->matcher = $matcher;
     }
 
-    public function render(WidgetAreaInterface $widgetArea)
+    public function render(WidgetAreaInterface $widgetArea, $template = null)
     {
-        $widgets = array();
+        $widgets = $this->matcher->getVisible($widgetArea->getWidgets());
 
-        foreach ($widgetArea->getWidgets() as $widget) {
-            if (!$this->matcher->isVisible($widget)) {
-                continue;
-            }
-
-            if (($widgetData = $this->executeWidget($widget)) === false) {
-                continue;
-            }
-
-            $widgets[] = $widgetData;
-        }
-
-        return $this->renderTemplate($widgetArea, $widgets);
+        return $this->renderTemplate($widgetArea, $widgets, $template);
     }
 
-    protected function executeWidget(WidgetInterface $widget)
+    protected function renderTemplate(WidgetAreaInterface $widgetArea, array $widgets, $template = null)
     {
-        return $this->widgetRenderer->render($widget);
-    }
-
-    protected function renderTemplate(WidgetAreaInterface $widgetArea, array $widgets)
-    {
-        $templateName = sprintf('@SymEdit/WidgetArea/%s.html.twig', $widgetArea->getArea());
+        $templateName = $template === null ? sprintf('@SymEdit/WidgetArea/%s.html.twig', $widgetArea->getArea()) : $template;
         $template = new TemplateReference($templateName);
 
         if (!$this->templateExists($template)) {

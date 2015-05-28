@@ -12,56 +12,69 @@
 namespace SymEdit\Bundle\WidgetBundle\Twig\Extension;
 
 use Sylius\Component\Resource\Repository\RepositoryInterface;
-use SymEdit\Bundle\WidgetBundle\Twig\TokenParser;
-use Symfony\Component\DependencyInjection\ContainerInterface;
+use SymEdit\Bundle\WidgetBundle\Model\WidgetInterface;
+use SymEdit\Bundle\WidgetBundle\Renderer\WidgetAreaRendererInterface;
+use Symfony\Component\HttpKernel\Controller\ControllerReference;
+use Symfony\Component\HttpKernel\Fragment\FragmentHandler;
 
 class WidgetExtension extends \Twig_Extension
 {
     protected $widgetRepository;
-    protected $container;
-    protected $widgetRenderer;
+    protected $widgetAreaRepository;
+    protected $widgetAreaRenderer;
+    protected $handler;
     protected $esiStrategy;
 
-    public function __construct(RepositoryInterface $widgetRepository, ContainerInterface $container, $esiStrategy)
+    public function __construct(
+        RepositoryInterface $widgetRepository,
+        RepositoryInterface $widgetAreaRepository,
+        WidgetAreaRendererInterface $widgetAreaRenderer,
+        FragmentHandler $handler,
+        $esiStrategy
+    )
     {
-        $this->esiStrategy = $esiStrategy;
         $this->widgetRepository = $widgetRepository;
-        $this->container = $container;
+        $this->widgetAreaRepository = $widgetAreaRepository;
+        $this->widgetAreaRenderer = $widgetAreaRenderer;
+        $this->handler = $handler;
+        $this->esiStrategy = $esiStrategy;
     }
 
     public function getFunctions()
     {
         return array(
-            new \Twig_SimpleFunction('symedit_widget_get', array($this, 'getWidget')),
+            new \Twig_SimpleFunction('symedit_widget_area_render', array($this, 'renderWidgetArea'), array('is_safe' => array('html'))),
+            new \Twig_SimpleFunction('symedit_widget_render', array($this, 'renderWidget'), array('needs_context' => true, 'is_safe' => array('html'))),
         );
     }
 
-    public function getWidget($name)
+    public function renderWidgetArea($area, $template = null)
     {
-        $widget = $this->widgetRepository->findOneBy(array(
-            'name' => $name,
+        $widgetArea = $this->widgetAreaRepository->findOneBy(array(
+            'area' => $area,
         ));
 
-        if (!$widget) {
-            return;
+        if ($widgetArea === null) {
+            return '';
         }
 
-        return $this->getWidgetRenderer()->render($widget);
+        return $this->widgetAreaRenderer->render($widgetArea, $template);
     }
 
-    protected function getWidgetRenderer()
+    public function renderWidget($context, WidgetInterface $widget)
     {
-        if ($this->widgetRenderer === null) {
-            $this->widgetRenderer = $this->container->get('symedit_widget.renderer.widget.default');
-        }
+        $controller = new ControllerReference(
+            'symedit.controller.widget:renderAction',
+            $this->getControllerAttributes($widget, $context)
+        );
 
-        return $this->widgetRenderer;
+        return $this->handler->render($controller, $this->esiStrategy);
     }
 
-    public function getTokenParsers()
+    protected function getControllerAttributes(WidgetInterface $widget, $context)
     {
         return array(
-            new TokenParser\WidgetAreaTokenParser($this->esiStrategy),
+            'id' => $widget->getId(),
         );
     }
 

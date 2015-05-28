@@ -11,7 +11,7 @@
 
 namespace SymEdit\Bridge\Widget\Twig\Extension;
 
-use SymEdit\Bridge\Widget\Twig\TokenParser\WidgetAreaTokenParser;
+use SymEdit\Bundle\WidgetBundle\Model\WidgetInterface;
 use SymEdit\Bundle\WidgetBundle\Twig\Extension\WidgetExtension as BaseExtension;
 
 /**
@@ -19,13 +19,11 @@ use SymEdit\Bundle\WidgetBundle\Twig\Extension\WidgetExtension as BaseExtension;
  */
 class WidgetExtension extends BaseExtension
 {
-    /**
-     * {@inheritDoc}
-     */
-    public function getTokenParsers()
+    protected function getControllerAttributes(WidgetInterface $widget, $context)
     {
         return array(
-            new WidgetAreaTokenParser($this->esiStrategy),
+            'id' => $widget->getId(),
+            '_page_id' => $context['Page']->getId(),
         );
     }
 }
