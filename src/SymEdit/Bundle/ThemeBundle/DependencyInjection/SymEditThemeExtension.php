@@ -42,6 +42,7 @@ class SymEditThemeExtension extends Extension implements PrependExtensionInterfa
             $loader->load($file.'.xml');
         }
 
+        $container->setParameter('symedit_theme.debug', $config['debug']);
         $container->setParameter('symedit_theme.theme_directory', $config['theme_directory']);
         $container->setParameter('symedit_theme.public_directory', $config['public_directory']);
         $container->setParameter('symedit_theme.active_theme', $config['active_theme']);
@@ -62,7 +63,20 @@ class SymEditThemeExtension extends Extension implements PrependExtensionInterfa
             ),
         ));
 
-        /*
+        /**
+         * Doctrine Cache
+         */
+        $container->prependExtensionConfig('doctrine_cache', array(
+            'providers' => array(
+                'symedit_theme' => array(
+                    'file_system' => array(
+                        'directory' => '%kernel.cache_dir%/symedit_theme',
+                    ),
+                ),
+            ),
+        ));
+
+        /**
          * Stylizer Extension
          */
         if ($container->hasExtension('symedit_stylizer')) {
