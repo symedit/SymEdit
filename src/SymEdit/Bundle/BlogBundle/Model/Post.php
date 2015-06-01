@@ -194,7 +194,7 @@ class Post implements PostInterface
      *
      * @return Post
      */
-    public function setCreatedAt($createdAt)
+    public function setCreatedAt(\DateTime $createdAt)
     {
         $this->createdAt = $createdAt;
 
@@ -218,7 +218,7 @@ class Post implements PostInterface
      *
      * @return Post
      */
-    public function setUpdatedAt($updatedAt)
+    public function setUpdatedAt(\DateTime $updatedAt)
     {
         $this->updatedAt = $updatedAt;
 
@@ -240,7 +240,7 @@ class Post implements PostInterface
         return $this->publishedAt;
     }
 
-    public function setPublishedAt($publishedAt)
+    public function setPublishedAt(\DateTime $publishedAt)
     {
         $this->publishedAt = $publishedAt;
 

@@ -81,10 +81,44 @@ interface PostInterface
      */
     public function getAuthor();
 
-    public function setCreatedAt($createdAt);
+    /**
+     * Set created at.
+     *
+     * @param \DateTime $createdAt
+     */
+    public function setCreatedAt(\DateTime $createdAt);
+
+    /**
+     * Get Created at.
+     *
+     * @return \DateTime Get date created.
+     */
     public function getCreatedAt();
 
-    public function setPublishedAt($publishedAt);
+    /**
+     * Set Updated at.
+     *
+     * @param \DateTime $updatedAt
+     */
+    public function setUpdatedAt(\DateTime $updatedAt);
+
+    /**
+     * @return \DateTime Date and time last updated.
+     */
+    public function getUpdatedAt();
+
+    /**
+     * Set Published At.
+     *
+     * @param \DateTime $publishedAt
+     */
+    public function setPublishedAt(\DateTime $publishedAt);
+
+    /**
+     * Get Published At.
+     *
+     * @return \DateTIme Get published at date.
+     */
     public function getPublishedAt();
 
     public function setSummary($summary);
