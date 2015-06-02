@@ -15,7 +15,7 @@ use Sylius\Component\Resource\Repository\RepositoryInterface;
 use SymEdit\Bundle\CoreBundle\Form\DataTransformer\RepositoryTransformer;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class PageChooseType extends AbstractType
 {
@@ -38,7 +38,7 @@ class PageChooseType extends AbstractType
         return 'choice';
     }
 
-    public function setDefaultOptions(OptionsResolverInterface $resolver)
+    public function configureOptions(OptionsResolver $resolver)
     {
         $root = $this->pageRepository->findRoot();
         $iterator = $this->pageRepository->getRecursiveIterator(false);

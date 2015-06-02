@@ -1,11 +1,11 @@
 symedit_api_settings:
-    pattern: /
+    path: /
     methods: [GET]
     defaults:
         _controller: symedit.controller.settings:indexAction
 
 symedit_api_settings_update:
-    pattern: /
+    path: /
     methods: [PUT, PATCH]
     defaults:
         _controller: symedit.controller.settings:updateAction

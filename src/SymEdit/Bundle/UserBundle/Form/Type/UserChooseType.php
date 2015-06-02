@@ -14,7 +14,7 @@ namespace SymEdit\Bundle\UserBundle\Form\Type;
 use Doctrine\ORM\EntityRepository;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\OptionsResolver\Options;
-use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class UserChooseType extends AbstractType
 {
@@ -30,23 +30,26 @@ class UserChooseType extends AbstractType
         return 'entity';
     }
 
-    public function setDefaultOptions(OptionsResolverInterface $resolver)
+    public function configureOptions(OptionsResolver $resolver)
     {
+        // Set Defaults
         $resolver->setDefaults(array(
             'class' => $this->userClass,
             'admin' => false,
         ));
 
-        $resolver->setNormalizers(array(
-            'query_builder' => function (Options $options, $value) {
-                return function (EntityRepository $er) use ($options) {
-                           return $er->createQueryBuilder('u')
-                                     ->andWhere('u.admin = :admin')
-                                     ->setParameter('admin', $options['admin'])
-                                  ;
-                       };
-            },
-        ));
+        // Query builder relies on option so create callback
+        $resolver->setDefault('query_builder', function(Options $options) {
+            $closure = function (EntityRepository $er) use ($options) {
+
+                return $er->createQueryBuilder('u')
+                    ->andWhere('u.admin = :admin')
+                    ->setParameter('admin', $options['admin'])
+                ;
+            };
+
+            return $closure;
+        });
     }
 
     public function getName()

@@ -13,7 +13,7 @@ namespace SymEdit\Bundle\WidgetBundle\Form\Type;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 use SymEdit\Bundle\WidgetBundle\Form\DataTransformer\WidgetAssociationTransformer;
 use SymEdit\Bundle\WidgetBundle\Model\WidgetInterface;
 
@@ -78,7 +78,7 @@ class WidgetType extends AbstractType
         $this->buildOptionsForm($builder, $options);
     }
 
-    public function setDefaultOptions(OptionsResolverInterface $resolver)
+    public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setRequired(array(
             'strategy',

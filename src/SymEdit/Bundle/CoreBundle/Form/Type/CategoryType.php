@@ -13,7 +13,7 @@ namespace SymEdit\Bundle\CoreBundle\Form\Type;
 
 use SymEdit\Bundle\BlogBundle\Form\Type\CategoryType as BaseCategoryType;
 use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class CategoryType extends BaseCategoryType
 {
@@ -29,7 +29,7 @@ class CategoryType extends BaseCategoryType
         // Left blank for tab builder
     }
 
-    public function setDefaultOptions(OptionsResolverInterface $resolver)
+    public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
             'tabs_data' => array(

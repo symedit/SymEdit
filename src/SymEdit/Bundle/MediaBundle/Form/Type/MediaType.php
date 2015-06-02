@@ -15,7 +15,7 @@ use SymEdit\Bundle\MediaBundle\Form\EventListener\FileTypeSubscriber;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\FormInterface;
-use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class MediaType extends AbstractType
 {
@@ -24,7 +24,7 @@ class MediaType extends AbstractType
         $builder->addEventSubscriber(new FileTypeSubscriber($options));
     }
 
-    public function setDefaultOptions(OptionsResolverInterface $resolver)
+    public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
             'require_name' => true,

@@ -1,5 +1,5 @@
 symedit_api_event:
-    pattern: /
+    path: /
     methods: [GET]
     defaults:
         _controller: symedit.controller.event:indexAction
@@ -9,25 +9,25 @@ symedit_api_event:
                 eventStart: desc
 
 symedit_api_event_create:
-    pattern: /
+    path: /
     methods: [POST]
     defaults:
         _controller: symedit.controller.event:createAction
 
 symedit_api_event_show:
-    pattern: /{id}
+    path: /{id}
     methods: [GET]
     defaults:
         _controller: symedit.controller.event:showAction
 
 symedit_api_event_update:
-    pattern: /{id}
+    path: /{id}
     methods: [PUT, PATCH]
     defaults:
         _controller: symedit.controller.event:updateAction
 
 symedit_api_event_delete:
-    pattern: /{id}
+    path: /{id}
     methods: [DELETE]
     defaults:
         _controller: symedit.controller.event:deleteAction

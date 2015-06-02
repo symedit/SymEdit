@@ -14,7 +14,7 @@ namespace SymEdit\Bundle\MediaBundle\Form\Type;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\Form\FormView;
-use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class ImageChooseType extends AbstractType
 {
@@ -30,7 +30,7 @@ class ImageChooseType extends AbstractType
         $view->vars['show_image'] = $options['show_image'];
     }
 
-    public function setDefaultOptions(OptionsResolverInterface $resolver)
+    public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
             'show_image' => true,

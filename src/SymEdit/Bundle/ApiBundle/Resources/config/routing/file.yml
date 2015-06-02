@@ -1,5 +1,5 @@
 symedit_api_file:
-    pattern: /
+    path: /
     methods: [GET]
     defaults:
         _controller: symedit.controller.file:indexAction
@@ -7,19 +7,19 @@ symedit_api_file:
             paginate: $limit
 
 symedit_api_file_create:
-    pattern: /
+    path: /
     methods: [POST]
     defaults:
         _controller: symedit.controller.file:createAction
 
 symedit_api_file_update:
-    pattern: /{id}
+    path: /{id}
     methods: [PUT, PATCH]
     defaults:
         _controller: symedit.controller.file:updateAction
 
 symedit_api_file_delete:
-    pattern: /{id}
+    path: /{id}
     methods: [DELETE]
     defaults:
         _controller: symedit.controller.file:deleteAction

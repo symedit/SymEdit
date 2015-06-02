@@ -13,7 +13,7 @@ namespace SymEdit\Bundle\CoreBundle\Form\Type;
 
 use SymEdit\Bundle\EventsBundle\Form\Type\EventType as BaseEventType;
 use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class EventType extends BaseEventType
 {
@@ -22,7 +22,7 @@ class EventType extends BaseEventType
         // Left blank for tab builder
     }
 
-    public function setDefaultOptions(OptionsResolverInterface $resolver)
+    public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
             'tabs_data' => array(

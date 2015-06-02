@@ -12,7 +12,7 @@
 namespace SymEdit\Bundle\StylizerBundle\Form\Type;
 
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\FormView;
 use Symfony\Component\Form\FormInterface;
 
@@ -23,7 +23,7 @@ class GroupType extends AbstractType
         $view->vars['extra'] = $options['extra'];
     }
 
-    public function setDefaultOptions(OptionsResolverInterface $resolver)
+    public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
             'extra' => array(),

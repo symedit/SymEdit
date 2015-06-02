@@ -1,5 +1,5 @@
 symedit_api_user:
-    pattern: /
+    path: /
     methods: [GET]
     defaults:
         _controller: symedit.controller.user:indexAction
@@ -8,19 +8,19 @@ symedit_api_user:
                 username: asc
 
 symedit_api_user_create:
-    pattern: /
+    path: /
     methods: [POST]
     defaults:
         _controller: symedit.controller.user:createAction
 
 symedit_api_user_show:
-    pattern: /{id}
+    path: /{id}
     methods: [GET]
     defaults:
         _controller: symedit.controller.user:showAction
 
 symedit_api_user_update:
-    pattern: /{id}
+    path: /{id}
     methods: [PUT, PATCH]
     defaults:
         _controller: symedit.controller.user:updateAction

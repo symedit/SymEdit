@@ -16,7 +16,7 @@ use SymEdit\Bundle\MediaBundle\Form\DataTransformer\GalleryChooseDataTransformer
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\ChoiceList\ObjectChoiceList;
 use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class ImageGalleryChooseType extends AbstractType
 {
@@ -36,7 +36,7 @@ class ImageGalleryChooseType extends AbstractType
         $builder->addModelTransformer(new GalleryChooseDataTransformer($this->imageRepository, $this->itemRepository));
     }
 
-    public function setDefaultOptions(OptionsResolverInterface $resolver)
+    public function configureOptions(OptionsResolver $resolver)
     {
         $choices = array();
         $labels = array();

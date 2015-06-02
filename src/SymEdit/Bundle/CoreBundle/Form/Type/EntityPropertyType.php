@@ -12,7 +12,7 @@
 namespace SymEdit\Bundle\CoreBundle\Form\Type;
 
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 use Doctrine\Bundle\DoctrineBundle\Registry;
 use Symfony\Component\PropertyAccess\PropertyAccess;
 use Symfony\Component\Form\Extension\Core\ChoiceList\SimpleChoiceList;
@@ -27,7 +27,7 @@ class EntityPropertyType extends AbstractType
         $this->doctrine = $doctrine;
     }
 
-    public function setDefaultOptions(OptionsResolverInterface $resolver)
+    public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setRequired(array(
             'property_value',

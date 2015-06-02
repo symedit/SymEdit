@@ -13,7 +13,7 @@ namespace SymEdit\Bundle\CoreBundle\Form\Type;
 
 use SymEdit\Bundle\WidgetBundle\Form\Type\WidgetType as BaseWidgetType;
 use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class WidgetType extends BaseWidgetType
 {
@@ -22,9 +22,9 @@ class WidgetType extends BaseWidgetType
         // Left blank for tab builder
     }
 
-    public function setDefaultOptions(OptionsResolverInterface $resolver)
+    public function configureOptions(OptionsResolver $resolver)
     {
-        parent::setDefaultOptions($resolver);
+        parent::configureOptions($resolver);
 
         $resolver->setDefaults(array(
             'tabs_data' => array(

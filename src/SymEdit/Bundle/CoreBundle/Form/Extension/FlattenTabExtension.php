@@ -13,7 +13,7 @@ namespace SymEdit\Bundle\CoreBundle\Form\Extension;
 
 use Symfony\Component\Form\AbstractTypeExtension;
 use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
  * This extension will see if tabs_data is defined and if it is, will
@@ -69,7 +69,7 @@ class FlattenTabExtension extends AbstractTypeExtension
         }
     }
 
-    public function setDefaultOptions(OptionsResolverInterface $resolver)
+    public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
             'build_tabs' => true,

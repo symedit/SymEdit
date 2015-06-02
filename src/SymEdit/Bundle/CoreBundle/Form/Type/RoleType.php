@@ -13,7 +13,7 @@ namespace SymEdit\Bundle\CoreBundle\Form\Type;
 
 use Sylius\Component\Resource\Repository\RepositoryInterface;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Security\Core\SecurityContext;
 
 class RoleType extends AbstractType
@@ -27,7 +27,7 @@ class RoleType extends AbstractType
         $this->context = $context;
     }
 
-    public function setDefaultOptions(OptionsResolverInterface $resolver)
+    public function configureOptions(OptionsResolver $resolver)
     {
         $roles = $this->repository->findAll();
         $choices = array();

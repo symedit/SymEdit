@@ -15,7 +15,7 @@ use Sylius\Component\Resource\Repository\RepositoryInterface;
 use SymEdit\Bundle\CoreBundle\Form\EventListener\PageTypeSubscriber;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class PageType extends AbstractType
 {
@@ -127,13 +127,13 @@ class PageType extends AbstractType
 
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        // Forms built from other methods and tab options in setDefaultOptions
+        // Forms built from other methods and tab options in configureOptions
 
         $subscriber = new PageTypeSubscriber();
         $builder->addEventSubscriber($subscriber);
     }
 
-    public function setDefaultOptions(OptionsResolverInterface $resolver)
+    public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
             'tabs_data' => array(

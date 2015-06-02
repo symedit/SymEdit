@@ -13,7 +13,7 @@ namespace SymEdit\Bundle\CoreBundle\Form\Type;
 
 use SymEdit\Bundle\BlogBundle\Form\Type\PostType as BasePostType;
 use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class PostType extends BasePostType
 {
@@ -39,7 +39,7 @@ class PostType extends BasePostType
         ;
     }
 
-    public function setDefaultOptions(OptionsResolverInterface $resolver)
+    public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
             'tabs_data' => array(

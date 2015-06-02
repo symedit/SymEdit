@@ -79,7 +79,7 @@ class PostType extends AbstractType
     public function buildContentForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-                ->add('content', 'textarea', array(
+            ->add('content', 'textarea', array(
                 'label_render' => false,
                 'attr' => array(
                     'class' => 'wysiwyg-editor',

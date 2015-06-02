@@ -12,7 +12,7 @@
 namespace SymEdit\Bundle\MailChimpBundle\Form\Type;
 
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 use ZfrMailChimp\Client\MailChimpClient;
 
 class ListType extends AbstractType
@@ -24,7 +24,7 @@ class ListType extends AbstractType
         $this->client = $client;
     }
 
-    public function setDefaultOptions(OptionsResolverInterface $resolver)
+    public function configureOptions(OptionsResolver $resolver)
     {
         $choices = array();
 

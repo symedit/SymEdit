@@ -1,5 +1,5 @@
 symedit_mailchimp_subscribe:
-    pattern: /mailchimp-subscribe
+    path: /mailchimp-subscribe
     methods: [POST]
     defaults:
         _controller: SymEditMailChimpBundle:Subscribe:subscribe
