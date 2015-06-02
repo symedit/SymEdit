@@ -46,7 +46,7 @@ class VersionManager
             return;
         }
 
-        return $this->version = require $cache;
+        return $this->version = require $cache->getPath();
     }
 
     public function setVersion($version)

@@ -73,7 +73,7 @@ class Settings implements \ArrayAccess
             $configCache->write(sprintf('<?php return %s;', var_export($config, true)), $resources);
         }
 
-        return require $cachePath;
+        return require $configCache->getPath();
     }
 
     public function getDefaultValues()
@@ -108,7 +108,7 @@ class Settings implements \ArrayAccess
             $cache->write(sprintf('<?php return %s;', var_export($merged, true)));
         }
 
-        return require $cache;
+        return require $cache->getPath();
     }
 
     public function getSettings()

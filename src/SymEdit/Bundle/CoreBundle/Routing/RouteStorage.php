@@ -41,7 +41,7 @@ class RouteStorage
 
     protected function loadRoutes()
     {
-        $serializedRoutes = require $this->getCache();
+        $serializedRoutes = require $this->getCache()->getPath();
         $this->routes = array_map('unserialize', $serializedRoutes);
     }
 

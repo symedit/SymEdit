@@ -44,7 +44,7 @@ class StyleManager
             $configCache = new ConfigCache(sprintf('%s/config.php', $this->cacheDir), $this->debug);
 
             if ($configCache->isFresh()) {
-                $this->configData = unserialize(require $configCache);
+                $this->configData = unserialize(require $configCache->getPath());
             } else {
                 $this->configData = new ConfigData();
                 $this->loader->loadStyleData($this->configData);
