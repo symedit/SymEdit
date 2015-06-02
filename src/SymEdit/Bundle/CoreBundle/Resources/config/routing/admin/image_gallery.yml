@@ -1,5 +1,5 @@
 admin_image_gallery:
-    pattern: /
+    path: /
     methods: [GET]
     defaults:
         _controller: symedit.controller.image_gallery:indexAction
@@ -9,7 +9,7 @@ admin_image_gallery:
             limit: false
 
 admin_image_gallery_create:
-    pattern: /new
+    path: /new
     methods: [GET, POST]
     defaults:
         _controller: symedit.controller.image_gallery:createAction
@@ -20,7 +20,7 @@ admin_image_gallery_create:
                 parameters: { id: $id }
 
 admin_image_gallery_add:
-    pattern: /{id}/add
+    path: /{id}/add
     methods: [GET, PUT, POST]
     defaults:
         _controller: symedit.controller.image_gallery:updateAction
@@ -31,7 +31,7 @@ admin_image_gallery_add:
                 parameters: { id: $id }
 
 admin_image_gallery_update:
-    pattern: /{id}/edit
+    path: /{id}/edit
     methods: [GET, PUT, POST]
     defaults:
         _controller: symedit.controller.image_gallery:updateAction
@@ -42,7 +42,7 @@ admin_image_gallery_update:
                 parameters: { id: $id }
 
 admin_image_gallery_delete:
-    pattern: /{id}/delete
+    path: /{id}/delete
     methods: [DELETE]
     defaults:
         _controller: symedit.controller.image_gallery:deleteAction
@@ -51,7 +51,7 @@ admin_image_gallery_delete:
 
 # Gallery Item Routes
 admin_gallery_item_create:
-    pattern: /{gallery_id}/item/new
+    path: /{gallery_id}/item/new
     methods: [GET, POST]
     defaults:
         _controller: symedit.controller.gallery_item:createAction
@@ -62,7 +62,7 @@ admin_gallery_item_create:
                 parameters: { id: $gallery_id }
 
 admin_gallery_item_update:
-    pattern: /item/{id}/edit
+    path: /item/{id}/edit
     methods: [GET, PUT, POST]
     defaults:
         _controller: symedit.controller.gallery_item:updateAction
@@ -73,7 +73,7 @@ admin_gallery_item_update:
                 parameters: { id: $id }
 
 admin_gallery_item_delete:
-    pattern: /item/{id}/delete
+    path: /item/{id}/delete
     methods: [DELETE]
     defaults:
         _controller: symedit.controller.gallery_item:deleteAction
@@ -81,7 +81,7 @@ admin_gallery_item_delete:
             redirect: admin_image_gallery
 
 admin_gallery_item_reorder:
-    pattern: /reorder
+    path: /reorder
     methods: [POST]
     defaults:
         _controller: symedit.controller.gallery_item:reorderAction

@@ -1,5 +1,5 @@
 admin_file:
-    pattern: /
+    path: /
     methods: [GET]
     defaults:
         _controller: symedit.controller.file:indexAction
@@ -9,7 +9,7 @@ admin_file:
             limit: false
 
 admin_file_json:
-    pattern: /list.{_format}
+    path: /list.{_format}
     requirements:
         _format: json
     defaults:
@@ -19,7 +19,7 @@ admin_file_json:
             paginate: false
 
 admin_file_create:
-    pattern: /new
+    path: /new
     methods: [GET, POST]
     defaults:
         _controller: symedit.controller.file:createAction
@@ -28,13 +28,13 @@ admin_file_create:
             redirect: admin_file
 
 admin_file_quick_upload:
-    pattern: /quick-upload
+    path: /quick-upload
     methods: [POST]
     defaults:
         _controller: symedit.controller.file:quickUploadAction
 
 admin_file_update:
-    pattern: /{id}/edit
+    path: /{id}/edit
     methods: [GET, PUT, POST]
     defaults:
         _controller: symedit.controller.file:updateAction
@@ -45,7 +45,7 @@ admin_file_update:
                 parameters: { id: $id }
 
 admin_file_delete:
-    pattern: /{id}/delete
+    path: /{id}/delete
     methods: [DELETE]
     defaults:
         _controller: symedit.controller.file:deleteAction

@@ -1,5 +1,5 @@
 admin_image:
-    pattern: /
+    path: /
     methods: [GET]
     defaults:
         _controller: symedit.controller.image:indexAction
@@ -9,7 +9,7 @@ admin_image:
             limit: false
 
 admin_image_json:
-    pattern: /list.{_format}
+    path: /list.{_format}
     requirements:
         _format: json
     defaults:
@@ -19,7 +19,7 @@ admin_image_json:
             paginate: false
 
 admin_image_dialog:
-    pattern: /dialog
+    path: /dialog
     methods: [GET, POST]
     defaults:
         _controller: symedit.controller.image:indexAction
@@ -29,7 +29,7 @@ admin_image_dialog:
             limit: false
 
 admin_image_create:
-    pattern: /new
+    path: /new
     methods: [GET, POST]
     defaults:
         _controller: symedit.controller.image:createAction
@@ -38,13 +38,13 @@ admin_image_create:
             redirect: admin_image_update
 
 admin_image_quick_upload:
-    pattern: /quick-upload
+    path: /quick-upload
     methods: [POST]
     defaults:
         _controller: symedit.controller.image:quickUploadAction
 
 admin_image_update:
-    pattern: /{id}/edit
+    path: /{id}/edit
     methods: [GET, PUT, POST]
     defaults:
         _controller: symedit.controller.image:updateAction
@@ -55,7 +55,7 @@ admin_image_update:
                 parameters: { id: $id }
 
 admin_image_delete:
-    pattern: /{id}/delete
+    path: /{id}/delete
     methods: [DELETE]
     defaults:
         _controller: symedit.controller.image:deleteAction

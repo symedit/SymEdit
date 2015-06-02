@@ -1,9 +1,9 @@
 contact:
-    pattern: /
+    path: /
     defaults:
         _controller: symedit.controller.contact:indexAction
 
 contact_success:
-    pattern: /success
+    path: /success
     defaults:
         _controller: symedit.controller.contact:successAction

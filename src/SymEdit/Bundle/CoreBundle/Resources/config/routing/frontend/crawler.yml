@@ -1,5 +1,5 @@
 robots:
-    pattern: /robots.{_format}
+    path: /robots.{_format}
     requirements:
         _format: txt
     defaults:
@@ -7,7 +7,7 @@ robots:
         _format: txt
 
 sitemap:
-    pattern: /sitemap.{_format}
+    path: /sitemap.{_format}
     requirements:
         _format: xml
     defaults:

@@ -1,5 +1,5 @@
 admin_category:
-    pattern: /
+    path: /
     methods: [GET]
     defaults:
         _controller: symedit.controller.category:indexAction
@@ -10,7 +10,7 @@ admin_category:
                 method: findRoot
 
 admin_category_create:
-    pattern: /new
+    path: /new
     methods: [GET, POST]
     defaults:
         _controller: symedit.controller.category:createAction
@@ -19,7 +19,7 @@ admin_category_create:
             redirect: admin_category
 
 admin_category_update:
-    pattern: /{id}/edit
+    path: /{id}/edit
     methods: [GET, PUT, POST]
     defaults:
         _controller: symedit.controller.category:updateAction
@@ -30,7 +30,7 @@ admin_category_update:
                 parameters: { id: $id }
 
 admin_category_delete:
-    pattern: /{id}/delete
+    path: /{id}/delete
     methods: [DELETE]
     defaults:
         _controller: symedit.controller.category:deleteAction

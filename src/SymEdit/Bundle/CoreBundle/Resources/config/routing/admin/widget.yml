@@ -1,5 +1,5 @@
 admin_widget:
-    pattern: /
+    path: /
     methods: [GET]
     defaults:
         _controller: symedit.controller.widget:indexAction
@@ -7,7 +7,7 @@ admin_widget:
             template: @SymEdit/Admin/Widget/index.html.twig
 
 admin_widget_choose:
-    pattern: /new
+    path: /new
     methods: [GET]
     defaults:
         _controller: symedit.controller.widget:chooseAction
@@ -15,7 +15,7 @@ admin_widget_choose:
             template: @SymEdit/Admin/Widget/choose.html.twig
 
 admin_widget_create:
-    pattern: /new/{strategyName}
+    path: /new/{strategyName}
     methods: [GET, POST]
     defaults:
         _controller: symedit.controller.widget:createAction
@@ -26,7 +26,7 @@ admin_widget_create:
                 parameters: { id: resource.id }
 
 admin_widget_update:
-    pattern: /{id}/edit
+    path: /{id}/edit
     methods: [GET, PUT, POST]
     defaults:
         _controller: symedit.controller.widget:updateAction
@@ -37,7 +37,7 @@ admin_widget_update:
                 parameters: { id: $id }
 
 admin_widget_delete:
-    pattern: /{id}/delete
+    path: /{id}/delete
     methods: [DELETE]
     defaults:
         _controller: symedit.controller.widget:deleteAction
@@ -45,7 +45,7 @@ admin_widget_delete:
             redirect: admin_widget
 
 admin_widget_reorder:
-    pattern: /reorder
+    path: /reorder
     methods: [POST]
     defaults:
         _controller: symedit.controller.widget:reorderAction

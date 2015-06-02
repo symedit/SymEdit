@@ -1,12 +1,12 @@
 webmaster_google_verify:
-    pattern: /google{request_code}.html
+    path: /google{request_code}.html
     requirements:
         request_code: "[a-z0-9]{16}"
     defaults:
         _controller: SymEditBundle:Webmaster:googleVerify
 
 webmaster_bing_verify:
-    pattern: /BingSiteAuth.{_format}
+    path: /BingSiteAuth.{_format}
     requirements:
         _format: xml
     defaults:

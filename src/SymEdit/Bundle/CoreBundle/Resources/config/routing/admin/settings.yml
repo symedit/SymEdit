@@ -1,11 +1,11 @@
 admin_settings:
-    pattern: /
+    path: /
     methods: [GET]
     defaults:
         _controller: symedit.controller.settings:indexAction
 
 admin_settings_update:
-    pattern: /
+    path: /
     methods: [PUT, POST]
     defaults:
         _controller: symedit.controller.settings:updateAction

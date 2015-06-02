@@ -1,5 +1,5 @@
 symedit_events:
-    pattern: /
+    path: /
     methods: [GET]
     defaults:
         _controller: symedit.controller.event:indexAction
@@ -12,7 +12,7 @@ symedit_events:
                 eventStart: desc
 
 symedit_event_show:
-    pattern: /view/{slug}
+    path: /view/{slug}
     methods: [GET]
     defaults:
         _controller: symedit.controller.event:showAction

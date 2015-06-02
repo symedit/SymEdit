@@ -1,5 +1,5 @@
 team:
-    pattern: /
+    path: /
     defaults:
         _controller: symedit.controller.admin_profile:indexAction
         _sylius:
@@ -10,7 +10,7 @@ team:
                 lastName: asc
 
 team_view_slug:
-    pattern: /{slug}
+    path: /{slug}
     defaults:
         _controller: symedit.controller.admin_profile:showAction
         _sylius:

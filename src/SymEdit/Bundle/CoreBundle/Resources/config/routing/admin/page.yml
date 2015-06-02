@@ -1,5 +1,5 @@
 admin_page:
-    pattern: /
+    path: /
     methods: [GET]
     defaults:
         _controller: symedit.controller.page:indexAction
@@ -10,7 +10,7 @@ admin_page:
             template: @SymEdit/Admin/Page/index.html.twig
 
 admin_page_json:
-    pattern: /list.{_format}
+    path: /list.{_format}
     requirements:
         _format: json
     defaults:
@@ -20,7 +20,7 @@ admin_page_json:
             paginate: false
 
 admin_page_create:
-    pattern: /new
+    path: /new
     methods: [GET, POST]
     defaults:
         _controller: symedit.controller.page:createAction
@@ -31,7 +31,7 @@ admin_page_create:
                 parameters: { id: resource.id }
 
 admin_page_update:
-    pattern: /{id}/edit
+    path: /{id}/edit
     methods: [GET, PUT, POST]
     defaults:
         _controller: symedit.controller.page:updateAction
@@ -42,7 +42,7 @@ admin_page_update:
                 parameters: { id: $id }
 
 admin_page_delete:
-    pattern: /{id}/delete
+    path: /{id}/delete
     methods: [DELETE]
     defaults:
         _controller: symedit.controller.page:deleteAction
@@ -50,7 +50,7 @@ admin_page_delete:
             redirect: admin_page
 
 admin_page_reorder:
-    pattern: /reorder
+    path: /reorder
     methods: [POST]
     defaults:
         _controller: symedit.controller.page:reorderAction

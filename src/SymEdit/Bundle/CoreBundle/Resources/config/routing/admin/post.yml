@@ -1,5 +1,5 @@
 admin_post:
-    pattern: /
+    path: /
     methods: [GET]
     defaults:
         _controller: symedit.controller.post:indexAction
@@ -13,7 +13,7 @@ admin_post:
                 createdAt: desc
 
 admin_post_create:
-    pattern: /new
+    path: /new
     methods: [GET, POST]
     defaults:
         _controller: symedit.controller.post:createAction
@@ -24,7 +24,7 @@ admin_post_create:
                 parameters: { id: resource.id }
 
 admin_post_update:
-    pattern: /{id}/edit
+    path: /{id}/edit
     methods: [GET, PUT, POST]
     defaults:
         _controller: symedit.controller.post:updateAction
@@ -35,7 +35,7 @@ admin_post_update:
                 parameters: { id: $id }
 
 admin_post_delete:
-    pattern: /{id}/delete
+    path: /{id}/delete
     methods: [DELETE]
     defaults:
         _controller: symedit.controller.post:deleteAction

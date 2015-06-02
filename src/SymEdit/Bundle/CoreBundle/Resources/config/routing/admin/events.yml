@@ -1,5 +1,5 @@
 admin_event:
-    pattern: /
+    path: /
     methods: [GET]
     defaults:
         _controller: symedit.controller.event:indexAction
@@ -10,7 +10,7 @@ admin_event:
                 eventStart: desc
 
 admin_event_create:
-    pattern: /new
+    path: /new
     methods: [GET, POST]
     defaults:
         _controller: symedit.controller.event:createAction
@@ -21,7 +21,7 @@ admin_event_create:
                 parameters: { id: resource.id }
 
 admin_event_update:
-    pattern: /{id}/edit
+    path: /{id}/edit
     methods: [GET, PUT, POST]
     defaults:
         _controller: symedit.controller.event:updateAction
@@ -32,7 +32,7 @@ admin_event_update:
                 parameters: { id: $id }
 
 admin_event_delete:
-    pattern: /{id}/delete
+    path: /{id}/delete
     methods: [DELETE]
     defaults:
         _controller: symedit.controller.event:deleteAction

@@ -2,7 +2,7 @@
 # with a prefix or use the page controller. Doesn't need to be here
 
 blog:
-    pattern: /
+    path: /
     defaults:
         _controller: symedit.controller.post:indexAction
         _format: html
@@ -13,7 +13,7 @@ blog:
                 status: 1
 
 blog_rss:
-    pattern: /feed.xml
+    path: /feed.xml
     defaults:
         _format: rss
         _controller: symedit.controller.post:indexAction
@@ -22,7 +22,7 @@ blog_rss:
             paginate: false
 
 blog_archive:
-    pattern: /archive/{page}
+    path: /archive/{page}
     requirements:
         page: \d+
     defaults:
@@ -38,7 +38,7 @@ blog_archive:
         page: 1
 
 blog_preview:
-    pattern: /preview/{slug}
+    path: /preview/{slug}
     defaults:
         _sylius:
             template: @SymEdit/Blog/single.html.twig
@@ -47,7 +47,7 @@ blog_preview:
         _controller: symedit.controller.post:previewAction
 
 blog_slug_view:
-    pattern: /{slug}
+    path: /{slug}
     requirements:
         slug: "[a-z0-9_-]+"
     defaults:
@@ -62,7 +62,7 @@ blog_slug_view:
                 public: true
 
 blog_category_view:
-    pattern: /category/{slug}/{page}
+    path: /category/{slug}/{page}
     requirements:
         page: \d+
         slug: "[a-z0-9_\-\/]+?"
@@ -75,7 +75,7 @@ blog_category_view:
         page: 1
 
 blog_category_rss:
-    pattern: /category/{slug}/feed.xml
+    path: /category/{slug}/feed.xml
     requirements:
         slug: "[a-z0-9_\-\/]+?"
     defaults:
