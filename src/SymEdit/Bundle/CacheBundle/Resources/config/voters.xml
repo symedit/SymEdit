@@ -17,7 +17,7 @@
 
         <!-- Role Voter -->
         <service id="symedit_cache.voter.role" class="%symedit_cache.voter.role.class%">
-            <argument type="service" id="security.context" />
+            <argument type="service" id="security.authorization_checker" />
             <argument type="collection" />
             <tag name="symedit_cache.voter" />
         </service>

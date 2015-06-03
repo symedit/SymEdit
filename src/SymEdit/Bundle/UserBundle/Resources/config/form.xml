@@ -42,7 +42,7 @@
         <!--  Form Context Factory -->
         <service id="symedit_user.form.factory.context" class="%symedit_user.form.factory.context.class%">
             <argument type="service" id="form.factory" />
-            <argument type="service" id="security.context" />
+            <argument type="service" id="security.token_storage" />
         </service>
     </services>
 </container>

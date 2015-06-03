@@ -11,53 +11,20 @@
 
 namespace SymEdit\Bundle\CoreBundle\Controller;
 
+use SymEdit\Bundle\CoreBundle\Model\BreadcrumbsInterface;
+use SymEdit\Bundle\CoreBundle\Model\PageInterface;
+use SymEdit\Bundle\CoreBundle\Util\SymEditMailerInterface;
+use SymEdit\Bundle\SeoBundle\Model\SeoInterface;
+use SymEdit\Bundle\SettingsBundle\Model\Settings;
+use SymEdit\Bundle\UserBundle\Model\UserManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller as BaseController;
-use Symfony\Component\HttpFoundation\Response;
-use SymEdit\Bundle\CoreBundle\Model\Seo;
 
 class Controller extends BaseController
 {
     /**
-     * Creates a new response and only sets it to public if caching is allowed.
-     *
-     * @return \Symfony\Component\HttpFoundation\Response Response Object
-     */
-    public function createResponse(\DateTime $modified = null)
-    {
-        $response = new Response();
-
-        if ($this->isCacheable()) {
-            if ($modified !== null) {
-                $response->setLastModified($modified);
-            }
-
-            $response->setPublic();
-            $response->setSharedMaxAge(60);
-        }
-
-        return $response;
-    }
-
-    /**
-     * Determines whether the response should be cached or not, checks the
-     * settings for the cache setting, and whether or not live editing is allowed.
-     *
-     * @return bool
-     */
-    public function isCacheable()
-    {
-        $settings = $this->getSettings();
-
-        $cacheable = $settings->has('advanced.caching') && $settings->get('advanced.caching') === 'cache';
-        $admin = $this->get('security.context')->isGranted('ROLE_ADMIN');
-
-        return $cacheable && !$admin;
-    }
-
-    /**
      * Gets Settings.
      *
-     * @return \SymEdit\Bundle\SettingsBundle\Model\Settings Settings
+     * @return Settings Settings
      */
     public function getSettings()
     {
@@ -67,7 +34,7 @@ class Controller extends BaseController
     /**
      * Gets Mailer.
      *
-     * @return \SymEdit\Bundle\CoreBundle\Util\SymEditMailerInterface
+     * @return SymEditMailerInterface
      */
     public function getMailer()
     {
@@ -77,7 +44,7 @@ class Controller extends BaseController
     /**
      * Gets the breadcrumbs.
      *
-     * @return \SymEdit\Bundle\CoreBundle\Model\BreadcrumbsInterface $breadcrumbs
+     * @return BreadcrumbsInterface $breadcrumbs
      */
     public function getBreadcrumbs()
     {
@@ -87,7 +54,7 @@ class Controller extends BaseController
     /**
      * Gets the user manager.
      *
-     * @return \SymEdit\Bundle\UserBundle\Model\UserManagerInterface $userManager
+     * @return UserManagerInterface $userManager
      */
     public function getUserManager()
     {
@@ -118,7 +85,7 @@ class Controller extends BaseController
     /**
      * Gets the current page if there is one, or returns null.
      *
-     * @return \SymEdit\Bundle\CoreBundle\Model\PageInterface|null
+     * @return PageInterface|null
      */
     public function getCurrentPage()
     {
@@ -134,15 +101,10 @@ class Controller extends BaseController
     /**
      * Gets the current SEO.
      *
-     * @return \SymEdit\Bundle\SeoBundle\Model\SeoInterface
+     * @return SeoInterface
      */
     public function getSeo()
     {
         return $this->get('symedit_seo.seo');
-    }
-
-    protected function addFlash($type, $message)
-    {
-        $this->get('session')->getFlashBag()->add($type, $message);
     }
 }

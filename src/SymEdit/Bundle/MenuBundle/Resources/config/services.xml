@@ -21,7 +21,7 @@
         </service>
 
         <service id="symedit_menu.extension.security" class="%symedit_menu.extension.security.class%">
-            <argument type="service" id="security.context" />
+            <argument type="service" id="security.authorization_checker" />
             <tag name="symedit_menu.menu_extension" />
         </service>
 

@@ -14,17 +14,17 @@ namespace SymEdit\Bundle\CoreBundle\Form\Type;
 use Sylius\Component\Resource\Repository\RepositoryInterface;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Symfony\Component\Security\Core\SecurityContext;
+use Symfony\Component\Security\Core\Authorization\AuthorizationCheckerInterface;
 
 class RoleType extends AbstractType
 {
     private $repository;
-    private $context;
+    private $auth;
 
-    public function __construct(RepositoryInterface $repository, SecurityContext $context)
+    public function __construct(RepositoryInterface $repository, AuthorizationCheckerInterface $auth)
     {
         $this->repository = $repository;
-        $this->context = $context;
+        $this->auth = $auth;
     }
 
     public function configureOptions(OptionsResolver $resolver)
@@ -33,7 +33,7 @@ class RoleType extends AbstractType
         $choices = array();
 
         foreach ($roles as $role) {
-            if ($this->context->isGranted($role->getRole())) {
+            if ($this->auth->isGranted($role->getRole())) {
                 $choices[$role->getRole()] = $role->getDescription();
             }
         }

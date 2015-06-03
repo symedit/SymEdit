@@ -11,23 +11,23 @@
 
 namespace SymEdit\Bundle\CacheBundle\Decision\Voter;
 
-use Symfony\Component\Security\Core\SecurityContextInterface;
+use Symfony\Component\Security\Core\Authorization\AuthorizationCheckerInterface;
 
 class RoleCacheVoter implements CacheVoterInterface
 {
-    protected $context;
+    protected $auth;
     protected $roles;
 
-    public function __construct(SecurityContextInterface $context, array $roles = array())
+    public function __construct(AuthorizationCheckerInterface $auth, array $roles = array())
     {
-        $this->context = $context;
+        $this->auth = $auth;
         $this->roles = $roles;
     }
 
     public function isCacheable($resource = null)
     {
         foreach ($this->roles as $role) {
-            if ($this->context->isGranted($role)) {
+            if ($this->auth->isGranted($role)) {
                 return self::FAIL;
             }
         }

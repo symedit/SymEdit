@@ -32,7 +32,7 @@ class PostType extends AbstractType
             ))
             ->add('author', 'symedit_user_choose', array(
                 'admin' => true,
-                'property' => 'profile.fullname',
+                'choice_label' => 'profile.fullname',
                 'label' => 'symedit.form.post.author',
             ))
             ->add('status', 'choice', array(
@@ -52,7 +52,7 @@ class PostType extends AbstractType
                 ),
             ))
             ->add('categories', 'entity', array(
-                'property' => 'title',
+                'choice_label' => 'title',
                 'class' => $this->categoryClass,
                 'multiple' => true,
                 'expanded' => true,

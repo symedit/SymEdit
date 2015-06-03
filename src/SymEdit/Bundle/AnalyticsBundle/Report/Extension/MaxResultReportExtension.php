@@ -31,8 +31,6 @@ class MaxResultReportExtension extends AbstractReportExtension
             'max' => null,
         ));
 
-        $resolver->setAllowedTypes(array(
-            'max' => array('null', 'int'),
-        ));
+        $resolver->setAllowedTypes('max', array('null', 'int'));
     }
 }

@@ -18,17 +18,13 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
 
 class Builder
 {
-    protected $container;
     protected $factory;
-    protected $context;
-    protected $eventDispatcher;
+    protected $container;
     protected $extensions;
 
     public function __construct(ContainerInterface $container, $extensions = array())
     {
         $this->factory = $container->get('knp_menu.factory');
-        $this->context = $container->get('security.context');
-        $this->eventDispatcher = $container->get('event_dispatcher');
         $this->container = $container;
         $this->extensions = $extensions;
     }
@@ -38,7 +34,7 @@ class Builder
      */
     protected function getUser()
     {
-        return $this->context->getToken()->getUser();
+        return $this->container->get('security.token_storage')->getToken()->getUser();
     }
 
     public function adminUserMenu()
@@ -64,7 +60,7 @@ class Builder
          * Dispatch Menu Event
          */
         $event = new MenuEvent($menu, 'symedit_admin_user');
-        $this->eventDispatcher->dispatch(Events::MENU_VIEW, $event);
+        $this->container->get('event_dispatcher')->dispatch(Events::MENU_VIEW, $event);
 
         return $event->getRootNode();
     }

@@ -12,15 +12,15 @@
 namespace SymEdit\Bundle\MenuBundle\Extension;
 
 use Knp\Menu\ItemInterface;
-use Symfony\Component\Security\Core\SecurityContextInterface;
+use Symfony\Component\Security\Core\Authorization\AuthorizationCheckerInterface;
 
 class SecurityExtension extends AbstractMenuItemExtension
 {
-    protected $securityContext;
+    protected $auth;
 
-    public function __construct(SecurityContextInterface $securityContext)
+    public function __construct(AuthorizationCheckerInterface $auth)
     {
-        $this->securityContext = $securityContext;
+        $this->auth = $auth;
     }
 
     protected function modifyItem(ItemInterface $item, array $options)
@@ -31,7 +31,7 @@ class SecurityExtension extends AbstractMenuItemExtension
             return;
         }
 
-        if (!$this->securityContext->isGranted($extras['is_granted'])) {
+        if (!$this->auth->isGranted($extras['is_granted'])) {
             $this->removeItem($item);
         }
     }

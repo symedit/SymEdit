@@ -43,7 +43,7 @@ class WidgetType extends AbstractType
             ))
             ->add('area', 'entity', array(
                 'label' => 'symedit.form.widget.basic.area',
-                'property' => 'area',
+                'choice_label' => 'area',
                 'class' => $this->widgetAreaClass,
             ))
             ->add('visibility', 'choice', array(

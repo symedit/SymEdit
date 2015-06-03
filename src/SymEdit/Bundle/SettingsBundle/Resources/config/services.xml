@@ -40,7 +40,7 @@
         <!-- Settings Form Type -->
         <service id="symedit_settings.form.type.settings" class="%symedit.form.type.settings.class%">
             <argument type="service" id="symedit_settings.settings" />
-            <argument type="service" id="security.context" />
+            <argument type="service" id="security.authorization_checker" />
             <tag name="form.type" alias="symedit_settings" />
         </service>
 
