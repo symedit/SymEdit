@@ -37,13 +37,10 @@ class PostController extends ResourceController
         }
 
         $config = $this->getConfiguration();
-
-        $posts = $this->getRepository()->findByCategoryQueryBuilder($category);
-        $paginator = $this
-            ->getRepository()
-            ->getPaginator($posts)
+        $paginator = $this->getRepository()->getCategoryPaginator($category)
             ->setMaxPerPage($config->getPaginationMaxPerPage())
-            ->setCurrentPage($request->get('page', 1), true, true);
+            ->setCurrentPage($request->get('page', 1), true, true)
+        ;
 
         $view = $this
             ->view()

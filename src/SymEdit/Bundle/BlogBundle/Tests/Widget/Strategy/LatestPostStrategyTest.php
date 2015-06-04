@@ -18,8 +18,7 @@ class LatestPostStrategyTest extends WidgetStrategyTest
 {
     public function testExecute()
     {
-        $repository = $this->getMockBuilder('Sylius\Bundle\ResourceBundle\Doctrine\ORM\EntityRepository')
-                           ->setMethods(array('getLatestPost'))
+        $repository = $this->getMockBuilder('SymEdit\Bundle\BlogBundle\Repository\PostRepositoryInterface')
                            ->disableOriginalConstructor()
                            ->getMock();
 
@@ -42,7 +41,7 @@ class LatestPostStrategyTest extends WidgetStrategyTest
 
     protected function createStrategy()
     {
-        $repository = $this->getMockForAbstractClass('Sylius\Component\Resource\Repository\RepositoryInterface');
+        $repository = $this->getMock('SymEdit\Bundle\BlogBundle\Repository\PostRepositoryInterface');
 
         return new LatestPostStrategy($repository);
     }

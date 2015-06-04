@@ -15,8 +15,9 @@ use Doctrine\ORM\QueryBuilder;
 use Sylius\Bundle\ResourceBundle\Doctrine\ORM\EntityRepository;
 use SymEdit\Bundle\BlogBundle\Model\CategoryInterface;
 use SymEdit\Bundle\BlogBundle\Model\PostInterface;
+use SymEdit\Bundle\BlogBundle\Repository\PostRepositoryInterface;
 
-class PostRepository extends EntityRepository
+class PostRepository extends EntityRepository implements PostRepositoryInterface
 {
     public function findPublished()
     {
@@ -25,7 +26,7 @@ class PostRepository extends EntityRepository
         ));
     }
 
-    public function findByCategoryQueryBuilder(CategoryInterface $category)
+    protected function findByCategoryQueryBuilder(CategoryInterface $category)
     {
         return $this->getQueryBuilder()
             ->where(':category MEMBER OF o.categories')
@@ -35,14 +36,16 @@ class PostRepository extends EntityRepository
         ;
     }
 
+    public function getCategoryPaginator(CategoryInterface $category)
+    {
+        return $this->getPaginator(
+            $this->findByCategoryQueryBuilder($category)
+        );
+    }
+
     public function findByCategory(CategoryInterface $category)
     {
         return $this->findByCategoryQueryBuilder($category)->getQuery()->getResult();
-    }
-
-    public function getRecentQuery()
-    {
-        return $this->getQueryBuilder()->getQuery();
     }
 
     public function getRecent($max = 3)
@@ -78,7 +81,7 @@ class PostRepository extends EntityRepository
     /**
      * @return QueryBuilder
      */
-    public function getCreatedAtQueryBuilder()
+    protected function getCreatedAtQueryBuilder()
     {
         return parent::getQueryBuilder()
             ->orderBy(sprintf('%s.createdAt', $this->getAlias()), 'DESC')

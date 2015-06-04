@@ -11,7 +11,7 @@
 
 namespace SymEdit\Bundle\BlogBundle\Widget\Strategy;
 
-use Sylius\Component\Resource\Repository\RepositoryInterface;
+use SymEdit\Bundle\BlogBundle\Repository\PostRepositoryInterface;
 use SymEdit\Bundle\WidgetBundle\Model\WidgetInterface;
 use SymEdit\Bundle\WidgetBundle\Widget\Strategy\AbstractWidgetStrategy;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -21,7 +21,7 @@ class LatestPostStrategy extends AbstractWidgetStrategy
 {
     private $postRepository;
 
-    public function __construct(RepositoryInterface $postRepository)
+    public function __construct(PostRepositoryInterface $postRepository)
     {
         $this->postRepository = $postRepository;
     }

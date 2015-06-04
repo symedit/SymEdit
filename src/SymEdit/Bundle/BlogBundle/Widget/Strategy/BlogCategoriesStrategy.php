@@ -11,7 +11,7 @@
 
 namespace SymEdit\Bundle\BlogBundle\Widget\Strategy;
 
-use Sylius\Component\Resource\Repository\RepositoryInterface;
+use SymEdit\Bundle\BlogBundle\Repository\CategoryRepositoryInterface;
 use SymEdit\Bundle\WidgetBundle\Model\WidgetInterface;
 use SymEdit\Bundle\WidgetBundle\Widget\Strategy\AbstractWidgetStrategy;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -19,16 +19,16 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class BlogCategoriesStrategy extends AbstractWidgetStrategy
 {
-    protected $repository;
+    protected $categoryRepository;
 
-    public function __construct(RepositoryInterface $repository)
+    public function __construct(CategoryRepositoryInterface $categoryRepository)
     {
-        $this->repository = $repository;
+        $this->categoryRepository = $categoryRepository;
     }
 
     public function execute(WidgetInterface $widget)
     {
-        $root = $this->repository->findRoot();
+        $root = $this->categoryRepository->findRoot();
 
         return $this->render('@SymEdit/Widget/Blog/categories.html.twig', array(
             'root' => $root,
