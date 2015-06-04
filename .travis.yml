@@ -11,7 +11,7 @@ install:
     - composer --prefer-source install
 
 before_script:
-    - php app/console symedit:install --force
+    - php app/console symedit:install --force --env=test
 
 script:
     - phpunit
