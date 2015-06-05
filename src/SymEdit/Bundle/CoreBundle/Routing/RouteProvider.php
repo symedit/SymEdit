@@ -223,7 +223,7 @@ class RouteProvider extends DoctrineProvider implements RouteProviderInterface
         }
 
         $path = rtrim($path, '/').'/';
-        $paths = array();
+        $paths = array('/');
         $lastOffset = 1;
 
         while (($lastOffset = strpos($path, '/', $lastOffset)) !== false) {
