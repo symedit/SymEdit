@@ -24,7 +24,9 @@
         </service>
 
         <!-- Renderers -->
-        <service id="symedit_widget.renderer.widget" class="%symedit_widget.renderer.widget.class%" />
+        <service id="symedit_widget.renderer.widget" class="%symedit_widget.renderer.widget.class%">
+            <argument type="service" id="symedit_widget.widget.registry" />
+        </service>
 
         <service id="symedit_widget.renderer.area" class="%symedit_widget.renderer.area.class%">
             <argument type="service" id="twig" />

@@ -26,7 +26,7 @@ class WidgetRenderer extends BaseRenderer
 
     public function render(WidgetInterface $widget)
     {
-        $content = $widget->getStrategy()->execute($widget, $this->page);
+        $content = $this->getStrategy($widget)->execute($widget, $this->page);
 
         if ($content === false) {
             return false;

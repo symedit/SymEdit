@@ -12,12 +12,20 @@
 namespace SymEdit\Bundle\WidgetBundle\Renderer;
 
 use SymEdit\Bundle\WidgetBundle\Model\WidgetInterface;
+use SymEdit\Bundle\WidgetBundle\Widget\WidgetRegistry;
 
 class WidgetRenderer implements WidgetRendererInterface
 {
+    protected $registry;
+
+    public function __construct(WidgetRegistry $registry)
+    {
+        $this->registry = $registry;
+    }
+
     public function render(WidgetInterface $widget)
     {
-        $content = $widget->getStrategy()->execute($widget);
+        $content = $this->getStrategy($widget)->execute($widget);
 
         if ($content === false) {
             return false;
@@ -29,5 +37,10 @@ class WidgetRenderer implements WidgetRendererInterface
             'title' => $widget->getTitle(),
             'content' => $content,
         );
+    }
+
+    protected function getStrategy(WidgetInterface $widget)
+    {
+        return $this->registry->getStrategy($widget->getStrategyName());
     }
 }

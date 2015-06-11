@@ -116,12 +116,6 @@ class WidgetRegistry extends ContainerAware
         return $this->loadedStrategies;
     }
 
-    public function injectStrategy(WidgetInterface $widget)
-    {
-        $strategy = $this->getStrategy($widget->getStrategyName());
-        $widget->setStrategy($strategy);
-    }
-
     /**
      * Initiates the Widget with the strategy default options.
      *
@@ -129,10 +123,9 @@ class WidgetRegistry extends ContainerAware
      */
     public function init(WidgetInterface $widget, array $options = array())
     {
-        $this->injectStrategy($widget);
-
         $resolver = new OptionsResolver();
-        $widget->getStrategy()->getDefaultOptions($resolver);
+        $strategy = $this->getStrategy($widget->getStrategyName());
+        $strategy->getDefaultOptions($resolver);
         $resolvedOptions = $resolver->resolve($options);
 
         // Set options

@@ -11,8 +11,6 @@
 
 namespace SymEdit\Bundle\WidgetBundle\Model;
 
-use SymEdit\Bundle\WidgetBundle\Widget\Strategy\WidgetStrategyInterface;
-
 interface WidgetInterface
 {
     const INCLUDE_ALL = 0;
@@ -112,18 +110,6 @@ interface WidgetInterface
      * @return string $strategyName
      */
     public function getStrategyName();
-
-    /**
-     * @return WidgetStrategyInterface $strategy
-     */
-    public function getStrategy();
-
-    /**
-     * @return WidgetInterface
-     *
-     * @param WidgetStrategyInterface $strategy
-     */
-    public function setStrategy(WidgetStrategyInterface $strategy);
 
     /**
      * @return WidgetInterface

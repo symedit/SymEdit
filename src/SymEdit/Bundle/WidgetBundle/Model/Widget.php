@@ -11,8 +11,6 @@
 
 namespace SymEdit\Bundle\WidgetBundle\Model;
 
-use SymEdit\Bundle\WidgetBundle\Widget\Strategy\WidgetStrategyInterface;
-
 class Widget implements WidgetInterface
 {
     /**
@@ -44,11 +42,6 @@ class Widget implements WidgetInterface
      * @var string
      */
     protected $strategyName;
-
-    /**
-     * @var WidgetStrategyInterface
-     */
-    protected $strategy;
 
     /**
      * @var int
@@ -165,20 +158,6 @@ class Widget implements WidgetInterface
     public function getStrategyName()
     {
         return $this->strategyName;
-    }
-
-    /**
-     * @return WidgetStrategyInterface
-     */
-    public function getStrategy()
-    {
-        return $this->strategy;
-    }
-
-    public function setStrategy(WidgetStrategyInterface $strategy)
-    {
-        $this->strategy = $strategy;
-        $this->strategyName = $strategy->getName();
     }
 
     public function setVisibility($visibility)

@@ -8,12 +8,4 @@
         <parameter key="symedit.repository.widget.class">SymEdit\Bundle\WidgetBundle\Doctrine\ORM\WidgetRepository</parameter>
         <parameter key="symedit.repository.widget_area.class">Sylius\Bundle\ResourceBundle\Doctrine\ORM\EntityRepository</parameter>
     </parameters>
-
-    <services>
-        <!-- Widget Listener -->
-        <service id="symedit_widget.widget.listener" class="SymEdit\Bundle\WidgetBundle\Doctrine\ORM\WidgetListener">
-            <argument type="service" id="symedit_widget.widget.registry" />
-            <tag name="doctrine.event_subscriber" />
-        </service>
-    </services>
 </container>

@@ -50,7 +50,7 @@
                     </td>
 
                     <td>
-                        {{ widget.strategy.description|trans({}, 'widget') }}
+                        {{ registry.getStrategy(widget.strategyName).description|trans({}, 'widget') }}
                     </td>
 
                     <td>

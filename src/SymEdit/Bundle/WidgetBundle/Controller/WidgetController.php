@@ -12,6 +12,7 @@
 namespace SymEdit\Bundle\WidgetBundle\Controller;
 
 use SymEdit\Bundle\ResourceBundle\Controller\ResourceController;
+use SymEdit\Bundle\WidgetBundle\Model\WidgetInterface;
 use SymEdit\Bundle\WidgetBundle\Widget\WidgetRegistry;
 use Symfony\Component\HttpFoundation\Request;
 
@@ -26,6 +27,7 @@ class WidgetController extends ResourceController
             ->setTemplate('@SymEdit/Admin/Widget/index.html.twig')
             ->setData(array(
                 'areas' => $areas,
+                'registry' => $this->getRegistry(),
             ));
 
         return $this->handleView($view);
@@ -38,12 +40,12 @@ class WidgetController extends ResourceController
         if ($this->getConfiguration()->isApiRequest()) {
             return $this->container->get('form.factory')->createNamed('', $type, $resource, array(
                 'csrf_protection' => false,
-                'strategy' => $resource->getStrategy(),
+                'strategy' => $this->getStrategy($resource),
             ));
         }
 
         return $this->createForm($type, $resource, array(
-            'strategy' => $resource->getStrategy(),
+            'strategy' => $this->getStrategy($resource),
         ));
     }
 
@@ -75,5 +77,18 @@ class WidgetController extends ResourceController
         }
 
         return $widget;
+    }
+
+    protected function getStrategy(WidgetInterface $widget)
+    {
+        return $this->getRegistry()->getStrategy($widget->getStrategyName());
+    }
+
+    /**
+     * @return WidgetRegistry
+     */
+    protected function getRegistry()
+    {
+        return $this->get('symedit_widget.widget.registry');
     }
 }
