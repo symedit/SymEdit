@@ -13,8 +13,9 @@ namespace SymEdit\Bundle\SettingsBundle\DependencyInjection;
 
 use SymEdit\Bundle\ResourceBundle\DependencyInjection\SymEditResourceExtension;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
+use Symfony\Component\DependencyInjection\Extension\PrependExtensionInterface;
 
-class SymEditSettingsExtension extends SymEditResourceExtension
+class SymEditSettingsExtension extends SymEditResourceExtension implements PrependExtensionInterface
 {
     protected $configFiles = array(
         'services', 'loader', 'twig', 'shortcode',
@@ -37,8 +38,8 @@ class SymEditSettingsExtension extends SymEditResourceExtension
         $settingsFiles = $this->getSettingsFiles($bundles, array('yml', 'xml'));
 
         // Set settings files
-        $settingsDefinition = $container->getDefinition('symedit_settings.settings');
-        $settingsDefinition->replaceArgument(1, $settingsFiles);
+        $settingsDefinition = $container->getDefinition('symedit_settings.factory');
+        $settingsDefinition->replaceArgument(3, $settingsFiles);
     }
 
     private function getSettingsFiles($bundles, array $extensions = array())
@@ -57,6 +58,20 @@ class SymEditSettingsExtension extends SymEditResourceExtension
         }
 
         return $files;
+    }
+
+    public function prepend(ContainerBuilder $container)
+    {
+        $container->prependExtensionConfig('doctrine_cache', array(
+            'providers' => array(
+                'symedit_settings' => array(
+                    'php_file' => array(
+                        'extension' => 'php',
+                        'directory' => '%kernel.cache_dir%/symedit_settings',
+                    ),
+                ),
+            ),
+        ));
     }
 
     public function getAlias()

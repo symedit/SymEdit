@@ -15,7 +15,7 @@ use SymEdit\Bundle\CoreBundle\Model\BreadcrumbsInterface;
 use SymEdit\Bundle\CoreBundle\Model\PageInterface;
 use SymEdit\Bundle\CoreBundle\Util\SymEditMailerInterface;
 use SymEdit\Bundle\SeoBundle\Model\SeoInterface;
-use SymEdit\Bundle\SettingsBundle\Model\Settings;
+use SymEdit\Bundle\SettingsBundle\Model\SettingsInterface;
 use SymEdit\Bundle\UserBundle\Model\UserManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller as BaseController;
 
@@ -24,7 +24,7 @@ class Controller extends BaseController
     /**
      * Gets Settings.
      *
-     * @return Settings Settings
+     * @return SettingsInterface Settings
      */
     public function getSettings()
     {

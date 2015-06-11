@@ -12,7 +12,8 @@
 namespace SymEdit\Bundle\SettingsBundle\Controller;
 
 use FOS\RestBundle\Controller\FOSRestController;
-use SymEdit\Bundle\SettingsBundle\Model\Settings;
+use SymEdit\Bundle\SettingsBundle\Model\SettingsInterface;
+use SymEdit\Bundle\SettingsBundle\Model\SettingsManager;
 use Symfony\Component\HttpFoundation\Request;
 
 /**
@@ -29,7 +30,7 @@ class SettingsController extends FOSRestController
             ->view()
             ->setTemplate('@SymEdit/Admin/Settings/index.html.twig')
             ->setData(array(
-                'settings' => $settings->getSettings(),
+                'settings' => $settings->all(),
                 'form' => $form->createView(),
             ));
 
@@ -42,7 +43,7 @@ class SettingsController extends FOSRestController
         $form = $this->getForm($request, $settings);
 
         if ($form->submit($request, !$request->isMethod('PATCH'))->isValid()) {
-            $settings->save();
+            $this->getSettingsManager()->save($settings);
 
             if ($this->isApiRequest($request)) {
                 return $this->handleView($this->view($settings, 204));
@@ -57,7 +58,7 @@ class SettingsController extends FOSRestController
             ->view()
             ->setTemplate('@SymEdit/Admin/Settings/index.html.twig')
             ->setData(array(
-                'settings' => $settings->getSettings(),
+                'settings' => $settings->all(),
                 'form' => $form->createView(),
             ))
         ;
@@ -87,10 +88,18 @@ class SettingsController extends FOSRestController
     }
 
     /**
-     * @return Settings
+     * @return SettingsInterface
      */
     protected function getSettings()
     {
         return $this->get('symedit_settings.settings');
+    }
+
+    /**
+     * @return SettingsManager
+     */
+    protected function getSettingsManager()
+    {
+        return $this->get('symedit_settings.manager');
     }
 }

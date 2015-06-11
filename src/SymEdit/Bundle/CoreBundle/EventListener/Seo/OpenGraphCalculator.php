@@ -13,13 +13,13 @@ namespace SymEdit\Bundle\CoreBundle\EventListener\Seo;
 
 use SymEdit\Bundle\SeoBundle\Event\SeoEvent;
 use SymEdit\Bundle\SeoBundle\Model\SeoCalculatorInterface;
-use SymEdit\Bundle\SettingsBundle\Model\Settings;
+use SymEdit\Bundle\SettingsBundle\Model\SettingsInterface;
 
 class OpenGraphCalculator implements SeoCalculatorInterface
 {
     protected $settings;
 
-    public function __construct(Settings $settings)
+    public function __construct(SettingsInterface $settings)
     {
         $this->settings = $settings;
     }

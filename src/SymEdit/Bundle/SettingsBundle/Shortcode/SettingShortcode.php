@@ -11,14 +11,14 @@
 
 namespace SymEdit\Bundle\SettingsBundle\Shortcode;
 
-use SymEdit\Bundle\SettingsBundle\Model\Settings;
+use SymEdit\Bundle\SettingsBundle\Model\SettingsInterface;
 use SymEdit\Bundle\ShortcodeBundle\Shortcode\AbstractShortcode;
 
 class SettingShortcode extends AbstractShortcode
 {
     protected $symeditSettings;
 
-    public function __construct(Settings $settings)
+    public function __construct(SettingsInterface $settings)
     {
         $this->symeditSettings = $settings;
     }
