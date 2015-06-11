@@ -44,7 +44,7 @@ class WidgetController extends ResourceController
     protected function getWidgetResponse(WidgetInterface $widget)
     {
         $response = new Response();
-        $response->setCache($widget->getStrategy()->getCacheOptions($widget));
+        $response->setCache($this->getStrategy($widget)->getCacheOptions($widget));
 
         return $response;
     }
