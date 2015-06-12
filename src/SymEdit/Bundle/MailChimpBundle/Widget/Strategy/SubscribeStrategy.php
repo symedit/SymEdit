@@ -53,6 +53,13 @@ class SubscribeStrategy extends AbstractWidgetStrategy
         ));
     }
 
+    public function getCacheOptions(WidgetInterface $widget)
+    {
+        return array(
+            'private' => true,
+        );
+    }
+
     public function buildForm(FormBuilderInterface $builder)
     {
         $builder

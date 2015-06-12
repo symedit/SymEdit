@@ -11,21 +11,12 @@
 
 namespace SymEdit\Bundle\BlogBundle\Widget\Strategy;
 
-use SymEdit\Bundle\BlogBundle\Repository\PostRepositoryInterface;
 use SymEdit\Bundle\WidgetBundle\Model\WidgetInterface;
-use SymEdit\Bundle\WidgetBundle\Widget\Strategy\AbstractWidgetStrategy;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class LatestPostStrategy extends AbstractWidgetStrategy
+class LatestPostStrategy extends AbstractPostStrategy
 {
-    private $postRepository;
-
-    public function __construct(PostRepositoryInterface $postRepository)
-    {
-        $this->postRepository = $postRepository;
-    }
-
     public function execute(WidgetInterface $widget)
     {
         $post = $this->postRepository->getLatestPost();
@@ -41,7 +32,8 @@ class LatestPostStrategy extends AbstractWidgetStrategy
             ->add('show_image', 'checkbox', array(
                 'label' => 'Show Image',
                 'required' => false,
-            ));
+            ))
+        ;
     }
 
     public function getDefaultOptions(OptionsResolver $resolver)

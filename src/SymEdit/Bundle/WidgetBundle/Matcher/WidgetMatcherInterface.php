@@ -16,6 +16,26 @@ use Symfony\Component\Security\Core\Authorization\Voter\VoterInterface;
 
 interface WidgetMatcherInterface
 {
+    /**
+     * Add a new voter to the matcher.
+     *
+     * @param VoterInterface $voter
+     */
     public function addVoter(VoterInterface $voter);
+
+    /**
+     * Determine if a single widget is visible.
+     *
+     * @param WidgetInterface $widget
+     * @return boolean Whether widget is visible or not
+     */
     public function isVisible(WidgetInterface $widget);
+
+    /**
+     * Take array of widgets and return only the visible ones.
+     *
+     * @param array $widgets
+     * @return array
+     */
+    public function getVisible(\Traversable $widgets);
 }

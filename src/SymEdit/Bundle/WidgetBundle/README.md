@@ -49,6 +49,18 @@ class MyStrategy extends AbstractWidgetStrategy
         ));
     }
 
+    /**
+     * Return array of options to pass to Response::setCache,
+     * if it should not be cached return array('private' => true)
+     */
+    public function getCacheOptions(WidgetInterface $widget)
+    {
+        return array(
+            'public' => true,
+            'last_modified' => $widget->getUpdatedAt(),
+        );
+    }
+
     public function buildForm(FormBuilderInterface $builder)
     {
         $builder
@@ -79,6 +91,19 @@ Add it to your services:
 Rendering Widgets
 -----------------
 
+This renders a widget area:
+
 ```jinja
-{% widgetarea 'footer' %}
+{{ symedit_widget_area_render('footer') }}
 ```
+
+In your widget area templates you should use:
+
+```jinja
+{% for widget in widgets %}
+    {{ symedit_widget_render(widget) }}
+{% endfor %}
+```
+
+This is a passthrough for the fragment renderer so if you turn on ESI then
+you can cache the rest of your page except for the widgets.

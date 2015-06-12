@@ -19,10 +19,12 @@ class ImageGallery implements ImageGalleryInterface
     protected $title;
     protected $slug;
     protected $items;
+    protected $updatedAt;
 
     public function __construct()
     {
         $this->items = new ArrayCollection();
+        $this->updatedAt = new \DateTime();
     }
 
     public function getId()
@@ -55,6 +57,9 @@ class ImageGallery implements ImageGalleryInterface
     public function addItem(GalleryItemInterface $item)
     {
         if (!$this->items->contains($item)) {
+            // Update
+            $this->setUpdated();
+
             $item->setGallery($this);
             $this->items->add($item);
         }
@@ -65,8 +70,30 @@ class ImageGallery implements ImageGalleryInterface
     public function removeItem(GalleryItemInterface $item)
     {
         if ($this->items->contains($item)) {
+            // Update
+            $this->setUpdated();
+
             $this->items->removeElement($item);
         }
+
+        return $this;
+    }
+
+    protected function setUpdated()
+    {
+        $this->setUpdatedAt(new \DateTime());
+
+        return $this;
+    }
+
+    public function getUpdatedAt()
+    {
+        return $this->updatedAt;
+    }
+
+    public function setUpdatedAt(\DateTime $updatedAt)
+    {
+        $this->updatedAt = $updatedAt;
 
         return $this;
     }

@@ -44,7 +44,7 @@
                 {% block heading %}<h1>{{ Page.tagline|default(Page.title) }}</h1>{% endblock %}
                 <div id="content">
                     {% block featured %}
-                    {% widgetarea 'featured' %}
+                        {{ symedit_widget_area_render('featured') }}
                     {% endblock %}
 
                     {% block content %}
@@ -52,7 +52,7 @@
                     {% endblock %}
 
                     {% block supplemental %}
-                    {% widgetarea 'supplemental' %}
+                        {{ symedit_widget_area_render('supplemental') }}
                     {% endblock %}
                 </div>
             </div>
@@ -64,7 +64,7 @@
         {% block footer %}
         <footer id="footer">
             <div class="container">
-                {% widgetarea 'footer' %}
+                {{ symedit_widget_area_render('footer') }}
             </div>
         </footer>
         {% endblock %}

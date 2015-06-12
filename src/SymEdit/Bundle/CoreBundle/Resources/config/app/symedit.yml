@@ -60,8 +60,7 @@ symedit_widget:
     classes:
         widget:
             form: SymEdit\Bundle\CoreBundle\Form\Type\WidgetType
-        widget_area:
-            controller: SymEdit\Bundle\CoreBundle\Controller\WidgetAreaController
+            controller: SymEdit\Bundle\CoreBundle\Controller\WidgetController
 
 # Theme Configuration
 symedit_theme:

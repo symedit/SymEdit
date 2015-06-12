@@ -23,6 +23,15 @@
             <tag name="symedit_widget.voter" priority="-128" />
         </service>
 
+        <!-- TODO: Fix this with ESI
+        <service id="symedit_widget.voter.uri" class="%symedit_widget.voter.uri.class%">
+            <call method="setRequest">
+                <argument type="service" id="request" on-invalid="null" strict="false" />
+            </call>
+            <tag name="symedit_widget.voter" />
+        </service>
+        -->
+
         <!-- Renderers -->
         <service id="symedit_widget.renderer.widget" class="%symedit_widget.renderer.widget.class%">
             <argument type="service" id="symedit_widget.widget.registry" />
@@ -30,7 +39,6 @@
 
         <service id="symedit_widget.renderer.area" class="%symedit_widget.renderer.area.class%">
             <argument type="service" id="twig" />
-            <argument type="service" id="symedit_widget.renderer.widget.default" />
             <argument type="service" id="symedit_widget.matcher" />
         </service>
     </services>

@@ -15,5 +15,5 @@ use SymEdit\Bundle\WidgetBundle\Model\WidgetAreaInterface;
 
 interface WidgetAreaRendererInterface
 {
-    public function render(WidgetAreaInterface $widgetArea);
+    public function render(WidgetAreaInterface $widgetArea, $template = null);
 }
