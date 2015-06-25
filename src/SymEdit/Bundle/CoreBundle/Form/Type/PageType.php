@@ -11,7 +11,6 @@
 
 namespace SymEdit\Bundle\CoreBundle\Form\Type;
 
-use Sylius\Component\Resource\Repository\RepositoryInterface;
 use SymEdit\Bundle\CoreBundle\Form\EventListener\PageTypeSubscriber;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -19,13 +18,6 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class PageType extends AbstractType
 {
-    protected $pageRepository;
-
-    public function __construct(RepositoryInterface $pageRepository)
-    {
-        $this->pageRepository = $pageRepository;
-    }
-
     public function buildBasicForm(FormBuilderInterface $builder, array $options)
     {
         $builder

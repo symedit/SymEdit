@@ -11,15 +11,14 @@
 
 namespace SymEdit\Bundle\CoreBundle\Menu\Provider;
 
+use Knp\Menu\FactoryInterface;
+use Knp\Menu\MenuItem;
+use Knp\Menu\Provider\MenuProviderInterface;
 use SymEdit\Bundle\CoreBundle\Event\Events;
 use SymEdit\Bundle\CoreBundle\Event\MenuEvent;
 use SymEdit\Bundle\CoreBundle\Model\PageInterface;
-use Sylius\Component\Resource\Repository\RepositoryInterface;
+use SymEdit\Bundle\CoreBundle\Repository\PageRepositoryInterface;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
-use Knp\Menu\FactoryInterface;
-use Knp\Menu\MenuItem;
-use Knp\Menu\NodeInterface;
-use Knp\Menu\Provider\MenuProviderInterface;
 
 class TreeMenuProvider implements MenuProviderInterface
 {
@@ -27,7 +26,7 @@ class TreeMenuProvider implements MenuProviderInterface
     protected $factory;
     protected $eventDispatcher;
 
-    public function __construct(FactoryInterface $factory, RepositoryInterface $pageRepository, EventDispatcherInterface $eventDispatcher)
+    public function __construct(FactoryInterface $factory, PageRepositoryInterface $pageRepository, EventDispatcherInterface $eventDispatcher)
     {
         $this->factory = $factory;
         $this->pageRepository = $pageRepository;
@@ -83,8 +82,8 @@ class TreeMenuProvider implements MenuProviderInterface
     }
 
     /**
-     * @param NodeInterface $node
-     * @param PageInterface $children
+     * @param MenuItem $menu
+     * @param PageInterface $parent
      */
     protected function populateChildren(MenuItem $menu, PageInterface $parent)
     {

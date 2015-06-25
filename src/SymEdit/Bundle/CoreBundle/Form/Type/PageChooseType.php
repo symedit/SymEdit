@@ -11,8 +11,8 @@
 
 namespace SymEdit\Bundle\CoreBundle\Form\Type;
 
-use Sylius\Component\Resource\Repository\RepositoryInterface;
 use SymEdit\Bundle\CoreBundle\Form\DataTransformer\RepositoryTransformer;
+use SymEdit\Bundle\CoreBundle\Repository\PageRepositoryInterface;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -21,7 +21,7 @@ class PageChooseType extends AbstractType
 {
     protected $pageRepository;
 
-    public function __construct(RepositoryInterface $pageRepository)
+    public function __construct(PageRepositoryInterface $pageRepository)
     {
         $this->pageRepository = $pageRepository;
     }

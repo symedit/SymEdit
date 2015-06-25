@@ -11,8 +11,8 @@
 
 namespace SymEdit\Bundle\CoreBundle\EventListener;
 
-use Sylius\Component\Resource\Repository\RepositoryInterface;
 use SymEdit\Bundle\CoreBundle\Model\PageInterface;
+use SymEdit\Bundle\CoreBundle\Repository\PageRepositoryInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\HttpKernel\Event\GetResponseEvent;
 
@@ -25,7 +25,7 @@ class CurrentPageListener
     private $container;
     private $pageRepository;
 
-    public function __construct(ContainerInterface $container, RepositoryInterface $pageRepository)
+    public function __construct(ContainerInterface $container, PageRepositoryInterface $pageRepository)
     {
         $this->container = $container;
         $this->pageRepository = $pageRepository;

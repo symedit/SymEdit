@@ -13,8 +13,9 @@ namespace SymEdit\Bundle\CoreBundle\Doctrine\ORM;
 
 use Sylius\Bundle\ResourceBundle\Doctrine\ORM\EntityRepository;
 use SymEdit\Bundle\CoreBundle\Iterator\RecursivePageIterator;
+use SymEdit\Bundle\CoreBundle\Repository\PageRepositoryInterface;
 
-class PageRepository extends EntityRepository
+class PageRepository extends EntityRepository implements PageRepositoryInterface
 {
     public function findRoot()
     {
@@ -33,24 +34,6 @@ class PageRepository extends EntityRepository
         return new \RecursiveIteratorIterator($this->getIterator($display), \RecursiveIteratorIterator::SELF_FIRST);
     }
 
-    /**
-     * Get pages that are actually routes, this means pages that aren't
-     * the root node, or page controllers.
-     */
-    public function findCMSPages($display = null, array $orderBy = array())
-    {
-        $criteria = array(
-            'root' => false,
-            'pageController' => false,
-        );
-
-        if ($display !== null) {
-            $criteria['display'] = $display;
-        }
-
-        return $this->findBy($criteria, $orderBy);
-    }
-
     public function findPageControllers()
     {
         return $this->findBy(array(
@@ -58,19 +41,15 @@ class PageRepository extends EntityRepository
         ));
     }
 
-    public function getPath($path)
-    {
-        return $this->findOneByPath($path);
-    }
-
     public function getLastUpdated()
     {
         $result = $this->createQueryBuilder('o')
-                    ->select('o.updatedAt')
-                    ->orderBy('o.updatedAt', 'DESC')
-                    ->setMaxResults(1)
-                    ->getQuery()
-                    ->getSingleResult();
+            ->select('o.updatedAt')
+            ->orderBy('o.updatedAt', 'DESC')
+            ->setMaxResults(1)
+            ->getQuery()
+            ->getSingleResult()
+        ;
 
         return current($result);
     }

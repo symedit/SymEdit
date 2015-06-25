@@ -11,6 +11,7 @@
 
 namespace SymEdit\Bundle\CoreBundle\Controller;
 
+use SymEdit\Bundle\CoreBundle\Repository\PageRepositoryInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -32,6 +33,9 @@ class MenuController extends Controller
         return $this->render('@SymEdit/Menu/render.html.twig', array('ulClass' => $ulClass), $response);
     }
 
+    /**
+     * @return PageRepositoryInterface
+     */
     protected function getPageRepository()
     {
         return $this->get('symedit.repository.page');
