@@ -13,13 +13,14 @@ namespace SymEdit\Bundle\WidgetBundle\Widget\Strategy;
 
 use SymEdit\Bundle\WidgetBundle\Model\WidgetInterface;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints\NotBlank;
 
 class DisqusStrategy extends AbstractWidgetStrategy
 {
     public function execute(WidgetInterface $widget)
     {
-        return $this->render('@SymEdit/Widget/disqus.html.twig', array(
+        return $this->render($widget, array(
             'shortname' => $widget->getOption('shortname'),
         ));
     }
@@ -33,7 +34,15 @@ class DisqusStrategy extends AbstractWidgetStrategy
                 'constraints' => array(
                     new NotBlank(),
                 ),
-            ));
+            ))
+        ;
+    }
+
+    public function getDefaultOptions(OptionsResolver $resolver)
+    {
+        $resolver->setDefaults(array(
+            'template' => '@SymEdit/Widget/disqus.html.twig',
+        ));
     }
 
     public function getName()

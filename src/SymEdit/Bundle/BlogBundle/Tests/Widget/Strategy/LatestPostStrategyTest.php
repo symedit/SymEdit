@@ -26,17 +26,19 @@ class LatestPostStrategyTest extends WidgetStrategyTest
                    ->method('getLatestPost')
                    ->will($this->returnValue('foo'));
 
+        $widget = $this->createWidget();
+
         $strategy = $this->getMock('SymEdit\Bundle\BlogBundle\Widget\Strategy\LatestPostStrategy', array('render'), array($repository));
         $strategy->expects($this->once())
                  ->method('render')
                  ->with(
-                    $this->equalTo('@SymEdit/Widget/Blog/latest-post.html.twig'),
+                    $this->equalTo($widget),
                     $this->equalTo(array(
                         'post' => 'foo',
                     ))
                  );
 
-        $strategy->execute($this->createWidget());
+        $strategy->execute($widget);
     }
 
     protected function createStrategy()
@@ -63,6 +65,7 @@ class LatestPostStrategyTest extends WidgetStrategyTest
     {
         return array(
             'show_image' => true,
+            'template' => '@SymEdit/Widget/Blog/latest-post.html.twig',
         );
     }
 

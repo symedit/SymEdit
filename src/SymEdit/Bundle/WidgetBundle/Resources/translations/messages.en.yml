@@ -21,3 +21,6 @@ symedit:
                     include_only: Include ONLY on specified
                     exclude_only: Exclude ONLY on specified
                 associations: Associations
+            options:
+                template:
+                    help: Override the default template to customize rendering

@@ -11,18 +11,15 @@
 
 namespace SymEdit\Bundle\CoreBundle\Widget\Strategy;
 
+use SymEdit\Bundle\CoreBundle\Model\PageInterface;
 use SymEdit\Bundle\WidgetBundle\Model\WidgetInterface;
-use SymEdit\Bundle\WidgetBundle\Widget\Strategy\TemplateStrategy;
-use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class ContactInfoStrategy extends TemplateStrategy
+class ContactInfoStrategy extends AbstractWidgetStrategy
 {
-    /**
-     * Return just the regular form, you can't change the template.
-     */
-    public function buildForm(FormBuilderInterface $builder)
+    public function execute(WidgetInterface $widget, PageInterface $page = null)
     {
+        return $this->render($widget);
     }
 
     public function getDefaultOptions(OptionsResolver $resolver)

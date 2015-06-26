@@ -25,7 +25,7 @@ class SliderStrategy extends AbstractGalleryStrategy
             return;
         }
 
-        return $this->render('@SymEdit/Widget/Media/slider.html.twig', array(
+        return $this->render($widget, array(
             'gallery' => $gallery,
             'thumbnails' => $widget->getOption('thumbnails'),
             'stretch' => $widget->getOption('stretch'),
@@ -39,6 +39,7 @@ class SliderStrategy extends AbstractGalleryStrategy
             'thumbnails' => false,
             'stretch' => false,
             'controls' => false,
+            'template' => '@SymEdit/Widget/Media/slider.html.twig',
         ));
     }
 

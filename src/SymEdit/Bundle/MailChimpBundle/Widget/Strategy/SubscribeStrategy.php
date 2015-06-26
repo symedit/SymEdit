@@ -38,7 +38,7 @@ class SubscribeStrategy extends AbstractWidgetStrategy
             'list' => $widget->getOption('list'),
         ));
 
-        return $this->render('@SymEdit/Widget/MailChimp/subscribe-form.html.twig', array(
+        return $this->render($widget, array(
             'form' => $form->createView(),
             'placeholder' => $widget->getOption('placeholder'),
             'button_text' => $widget->getOption('button_text'),
@@ -50,6 +50,7 @@ class SubscribeStrategy extends AbstractWidgetStrategy
         $resolver->setDefaults(array(
             'placeholder' => 'you@email.com',
             'button_text' => 'Subscribe!',
+            'template' => '@SymEdit/Widget/MailChimp/subscribe-form.html.twig',
         ));
     }
 

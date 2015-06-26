@@ -14,22 +14,17 @@ namespace SymEdit\Bundle\CoreBundle\Widget\Strategy;
 use SymEdit\Bundle\CoreBundle\Model\PageInterface;
 use SymEdit\Bundle\WidgetBundle\Model\WidgetInterface;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class GoogleMapStrategy extends AbstractWidgetStrategy
 {
     public function execute(WidgetInterface $widget, PageInterface $page = null)
     {
-        try {
-            $address = $widget->getOption('address');
+        $address = $widget->getOption('address');
 
-            $content = $this->render('@SymEdit/CMS/map.html.twig', array(
-                'query' => empty($address) ? null : $address,
-            ));
-        } catch (\Exception $e) {
-            $content = sprintf('There was an error rendering your template: "%s"', $e->getMessage());
-        }
-
-        return $content;
+        return $this->render($widget, array(
+            'query' => empty($address) ? null : $address,
+        ));
     }
 
     public function buildForm(FormBuilderInterface $builder)
@@ -43,7 +38,15 @@ class GoogleMapStrategy extends AbstractWidgetStrategy
                     'rows' => 5,
                     'cols' => 50,
                 ),
-            ));
+            ))
+        ;
+    }
+
+    public function getDefaultOptions(OptionsResolver $resolver)
+    {
+        $resolver->setDefaults(array(
+            'template' => '@SymEdit/CMS/map.html.twig',
+        ));
     }
 
     public function getName()

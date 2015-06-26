@@ -13,20 +13,22 @@ namespace SymEdit\Bundle\WidgetBundle\Widget\Strategy;
 
 use SymEdit\Bundle\WidgetBundle\Model\WidgetInterface;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class HtmlStrategy extends AbstractWidgetStrategy
 {
     public function execute(WidgetInterface $widget)
     {
-        return $this->render('@SymEdit/Widget/html.html.twig', array(
+        return $this->render($widget, array(
             'html' => $widget->getOption('html'),
         ));
     }
 
-    public function getDefaultOptions(\Symfony\Component\OptionsResolver\OptionsResolver $resolver)
+    public function getDefaultOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
             'html' => 'New HTML Widget',
+            'template' => '@SymEdit/Widget/html.html.twig',
         ));
     }
 

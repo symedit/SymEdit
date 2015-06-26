@@ -14,6 +14,7 @@ namespace SymEdit\Bundle\CoreBundle\Widget\Strategy;
 use SymEdit\Bundle\CoreBundle\Iterator\PageIterator;
 use SymEdit\Bundle\CoreBundle\Model\PageInterface;
 use SymEdit\Bundle\WidgetBundle\Model\WidgetInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class ListChildrenStrategy extends AbstractWidgetStrategy
 {
@@ -26,9 +27,16 @@ class ListChildrenStrategy extends AbstractWidgetStrategy
             return false;
         }
 
-        return $this->render('@SymEdit/Widget/list-children.html.twig', array(
+        return $this->render($widget, array(
             'page' => $page,
             'children' => new PageIterator($page),
+        ));
+    }
+
+    public function getDefaultOptions(OptionsResolver $resolver)
+    {
+        $resolver->setDefaults(array(
+            'template' => '@SymEdit/Widget/list-children.html.twig',
         ));
     }
 

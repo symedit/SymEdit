@@ -14,7 +14,6 @@ namespace SymEdit\Bundle\BlogBundle\Widget\Strategy;
 use SymEdit\Bundle\BlogBundle\Repository\PostRepositoryInterface;
 use SymEdit\Bundle\WidgetBundle\Model\WidgetInterface;
 use SymEdit\Bundle\WidgetBundle\Widget\Strategy\AbstractWidgetStrategy;
-use Symfony\Component\OptionsResolver\OptionsResolver;
 
 abstract class AbstractPostStrategy extends AbstractWidgetStrategy
 {
@@ -39,12 +38,5 @@ abstract class AbstractPostStrategy extends AbstractWidgetStrategy
             'public' => true,
             'last_modified' => $latestPost->getUpdatedAt(),
         );
-    }
-
-    public function getDefaultOptions(OptionsResolver $resolver)
-    {
-        $resolver->setDefaults(array(
-            'show_image' => true,
-        ));
     }
 }
