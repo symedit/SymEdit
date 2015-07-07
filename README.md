@@ -6,6 +6,9 @@ and easily extendable for developers. It tries to stay close to Symfony best pra
 and methodology so if you know how to use Symfony you can easily add new controllers,
 routing, forms, etc. and override the default ones as well.
 
+![Admin Screenshot](http://symedit.com/media/image/screenshot.png "Admin Screenshot")
+
+
 Installation
 ------------
 
