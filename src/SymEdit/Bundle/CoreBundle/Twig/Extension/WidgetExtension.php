@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace SymEdit\Bridge\Widget\Twig\Extension;
+namespace SymEdit\Bundle\CoreBundle\Twig\Extension;
 
 use SymEdit\Bundle\WidgetBundle\Model\WidgetInterface;
 use SymEdit\Bundle\WidgetBundle\Twig\Extension\WidgetExtension as BaseExtension;

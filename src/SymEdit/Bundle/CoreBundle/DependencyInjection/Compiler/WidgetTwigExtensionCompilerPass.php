@@ -23,6 +23,6 @@ class WidgetTwigExtensionCompilerPass implements CompilerPassInterface
         }
 
         $definition = $container->getDefinition('symedit_widget.twig.widget_extension');
-        $definition->setClass('SymEdit\Bridge\Widget\Twig\Extension\WidgetExtension');
+        $definition->setClass('SymEdit\Bundle\CoreBundle\Twig\Extension\WidgetExtension');
     }
 }

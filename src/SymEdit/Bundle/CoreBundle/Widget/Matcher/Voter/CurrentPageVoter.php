@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace SymEdit\Bridge\Widget\Matcher\Voter;
+namespace SymEdit\Bundle\CoreBundle\Widget\Matcher\Voter;
 
 use SymEdit\Bundle\CoreBundle\Model\PageInterface;
 use SymEdit\Bundle\WidgetBundle\Matcher\Voter\StringPathVoter;
