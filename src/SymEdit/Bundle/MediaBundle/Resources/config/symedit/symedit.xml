@@ -5,8 +5,8 @@
            xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
 
     <parameters>
-        <parameter key="symedit_media.symedit.menu.class">SymEdit\Bridge\Media\Menu\Builder</parameter>
-        <parameter key="symedit_media.shortcode.link.media.class">SymEdit\Bridge\Media\Shortcode\Link\MediaLink</parameter>
+        <parameter key="symedit_media.symedit.menu.class">SymEdit\Bundle\CoreBundle\Menu\MediaBuilder</parameter>
+        <parameter key="symedit_media.shortcode.link.media.class">SymEdit\Bundle\CoreBundle\Shortcode\Link\MediaLink</parameter>
     </parameters>
 
     <services>

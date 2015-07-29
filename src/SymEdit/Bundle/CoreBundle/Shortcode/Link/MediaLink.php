@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace SymEdit\Bridge\Media\Shortcode\Link;
+namespace SymEdit\Bundle\CoreBundle\Shortcode\Link;
 
 use Sylius\Component\Resource\Repository\RepositoryInterface;
 use SymEdit\Bundle\CoreBundle\Shortcode\Link\LinkInterface;

@@ -9,12 +9,12 @@
  * file that was distributed with this source code.
  */
 
-namespace SymEdit\Bridge\Stylizer\Menu;
+namespace SymEdit\Bundle\CoreBundle\Menu;
 
 use SymEdit\Bundle\MenuBundle\Model\MenuBuilderInterface;
 use SymEdit\Bundle\MenuBundle\Model\MenuInterface;
 
-class Builder implements MenuBuilderInterface
+class StylizerBuilder implements MenuBuilderInterface
 {
     public function buildMenu(MenuInterface $menu, array $options)
     {
