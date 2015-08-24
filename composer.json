@@ -32,7 +32,7 @@
         "mopa/bootstrap-bundle":                "dev-master@dev",
         "sensio/distribution-bundle":           "~3.0,>=3.0.12",
         "sensio/framework-extra-bundle":        "~3.0.0,>=3.0.2",
-        "stof/doctrine-extensions-bundle":      "~1.1.0",
+        "stof/doctrine-extensions-bundle":      "~1.2.0",
         "sylius/resource-bundle":               "~0.14.0",
         "symfony/assetic-bundle":               "~2.3",
         "symfony/monolog-bundle":               "~2.4",
