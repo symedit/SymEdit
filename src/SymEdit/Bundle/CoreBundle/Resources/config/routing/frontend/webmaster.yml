@@ -12,3 +12,19 @@ webmaster_bing_verify:
     defaults:
         _controller: SymEditBundle:Webmaster:bingVerify
         _format: xml
+
+robots:
+    path: /robots.{_format}
+    requirements:
+        _format: txt
+    defaults:
+        _controller: SymEditBundle:Webmaster:robots
+        _format: txt
+
+sitemap:
+    path: /sitemap.{_format}
+    requirements:
+        _format: xml
+    defaults:
+        _controller: SymEditSitemapBundle:Sitemap:index
+        _format: xml

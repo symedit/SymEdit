@@ -11,19 +11,18 @@
 
 namespace SymEdit\Bundle\MailChimpBundle\Client;
 
-use SymEdit\Bundle\SettingsBundle\Model\SettingsInterface;
+use Sylius\Bundle\SettingsBundle\Manager\SettingsManagerInterface;
+use SymEdit\Bundle\MailChimpBundle\Client\Listener\ConnectionErrorListener;
 use ZfrMailChimp\Client\MailChimpClient;
 
 class SettingsClient extends MailChimpClient
 {
-    public function __construct(SettingsInterface $settings, $version = self::LATEST_API_VERSION)
+    public function __construct(SettingsManagerInterface $settings, $version = self::LATEST_API_VERSION)
     {
-        if (!$settings->has('mailchimp.api_key')) {
-            throw new \Exception('Mailchimp API Key not specified');
-        }
+        $mailchimp = $settings->loadSettings('mailchimp');
 
-        parent::__construct($settings->get('mailchimp.api_key'), $version);
+        parent::__construct($mailchimp->get('api_key'), $version);
 
-        $this->getEventDispatcher()->addSubscriber(new Listener\ConnectionErrorListener());
+        $this->getEventDispatcher()->addSubscriber(new ConnectionErrorListener());
     }
 }

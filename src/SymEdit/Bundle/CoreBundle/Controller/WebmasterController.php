@@ -15,11 +15,7 @@ class WebmasterController extends Controller
 {
     public function googleVerifyAction($request_code)
     {
-        $settings = $this->get('symedit_settings.settings');
-
-        if ($settings->has('webmaster.google_verify')) {
-            $code = $settings->get('webmaster.google_verify');
-
+        if ($code = $settings->get('webmaster.google_verify')) {
             if (strpos($code, 'google') === 0) {
                 $code = substr($code, 6);
             }
@@ -36,16 +32,26 @@ class WebmasterController extends Controller
 
     public function bingVerifyAction()
     {
-        $settings = $this->get('symedit_settings.settings');
-
-        if ($settings->has('webmaster.bing_verify')) {
-            $code = $settings->get('webmaster.bing_verify');
-
+        if ($code = $this->getWebmasterSettings()->get('bing_verify')) {
             return $this->render('@SymEdit/Webmaster/bingVerify.xml.twig', array(
                 'code' => $code,
             ));
         }
 
         throw $this->createNotFoundException();
+    }
+
+    public function robotsAction()
+    {
+        $allow = $this->getWebmasterSettings()->get('robots') === 'allow';
+
+        return $this->render('@SymEdit/Crawler/robots.txt.twig', array(
+            'Allow' => $allow,
+        ));
+    }
+
+    protected function getWebmasterSettings()
+    {
+        return $this->get('sylius.settings.manager')->loadSettings('webmaster');
     }
 }

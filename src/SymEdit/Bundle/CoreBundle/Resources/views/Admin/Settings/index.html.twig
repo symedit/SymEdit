@@ -6,7 +6,7 @@
 <ul class="nav nav-tabs">
 {% for group in form.children if group|length > 0 %}
 <li{% if loop.first %} class="active"{% endif %}>
-    <a href="#setting-{{ group.vars.name }}" data-toggle="tab">{{ group.vars.label }}</a>
+    <a href="#setting-{{ group.vars.name }}" data-toggle="tab">{{ ('symedit.settings.tabs.' ~ group.vars.name)|trans }}</a>
 </li>
 {% endfor %}
 </ul>

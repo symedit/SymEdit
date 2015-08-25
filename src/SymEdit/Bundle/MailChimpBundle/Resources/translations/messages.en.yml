@@ -1,0 +1,7 @@
+symedit:
+    settings:
+        tabs:
+            mailchimp: MailChimp
+        mailchimp:
+            api_key: API Key
+            default_list: Default List

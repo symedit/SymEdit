@@ -46,3 +46,32 @@ symedit:
             image: Featured Image
     flash:
         share: 'Share your content:'
+    settings:
+        tabs:
+            advanced: Advanced
+            company: Company
+            social: Social
+            seo: SEO
+            webmaster: Webmaster
+        advanced:
+            caching: Caching
+            ttl: TTL
+            widget_max_age:
+                label: Widget Cache
+                help: Widgets will only update every this amount of seconds.
+        company:
+            logo: Logo
+            name: Company Name
+            address: Address
+            email: Contact Email
+            phone: Phone
+            fax: Fax
+        seo:
+            head_extra: Extra <head> contents
+            business_type: Business Type
+        webmaster:
+            google_analytics_enabled: Enable Google Analytics?
+            google_analytics: Google Analytics Code
+            google_verify: Webmaster Tools Verify
+            bing_verify: Bing Verify
+            robots: Allow Robots?

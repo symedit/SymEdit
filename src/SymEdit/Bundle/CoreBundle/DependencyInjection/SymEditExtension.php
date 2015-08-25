@@ -30,6 +30,7 @@ class SymEditExtension extends SymEditResourceExtension
         'report.xml',
         'shortcode.xml',
         'cache.xml',
+        'settings.xml'
     );
 
     /**

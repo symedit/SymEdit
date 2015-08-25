@@ -3,11 +3,11 @@
     will default it to the company when you'd rather have nothing
 #}
 {%- if social is not defined %}
-    {% set social = symedit_settings_get('social') %}
+    {% set social = sylius_settings_all('social') %}
 {% endif -%}
 
 {%- if name is not defined %}
-    {% set name = symedit_settings_get('company.name') %}
+    {% set name = sylius_settings_get('company.name') %}
 {% endif -%}
 
 {% for key, value in social if value is not empty %}

@@ -11,11 +11,11 @@
 
 namespace SymEdit\Bundle\CoreBundle\Controller;
 
+use Sylius\Bundle\SettingsBundle\Manager\SettingsManagerInterface;
 use SymEdit\Bundle\CoreBundle\Model\BreadcrumbsInterface;
 use SymEdit\Bundle\CoreBundle\Model\PageInterface;
 use SymEdit\Bundle\CoreBundle\Util\SymEditMailerInterface;
 use SymEdit\Bundle\SeoBundle\Model\SeoInterface;
-use SymEdit\Bundle\SettingsBundle\Model\SettingsInterface;
 use SymEdit\Bundle\UserBundle\Model\UserManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller as BaseController;
 
@@ -24,11 +24,11 @@ class Controller extends BaseController
     /**
      * Gets Settings.
      *
-     * @return SettingsInterface Settings
+     * @return SettingsManagerInterface Settings
      */
     public function getSettings()
     {
-        return $this->get('symedit_settings.settings');
+        return $this->get('sylius.settings.manager');
     }
 
     /**

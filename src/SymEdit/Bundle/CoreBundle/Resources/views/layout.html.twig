@@ -7,7 +7,7 @@
         {{ meta|raw }}
 {% endfor %}
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-{{ (symedit_settings_get('seo.head_extra')|default(''))|raw }}
+{{ (sylius_settings_get('seo.head_extra')|default(''))|raw }}
 {% endblock %}
 {% block stylesheets %}
 {% stylesheets
@@ -27,6 +27,14 @@
         {% block body %}
             {% block nav %}
                 {% embed '@MopaBootstrap/Navbar/navbar.html.twig' %}
+                    {% block brand %}
+                        {% set logo = sylius_settings_get('company.logo') %}
+                        {% if logo %}
+                            <a href="{{ path('homepage') }}" class="navbar-brand">
+                                <img class="img-reponsive" src="{{ logo.webPath }}" />
+                            </a>
+                        {% endif %}
+                    {% endblock %}
                     {% block menu %}
                         {% include '@SymEdit/Menu/include.html.twig' %}
                     {% endblock %}

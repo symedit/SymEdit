@@ -22,8 +22,9 @@
         </service>
 
         <!-- Widget Strategies -->
-        <service id="symedit.widget.strategy.contact_info" class="%symedit.widget.strategy.contact_info.class%"
-                 parent="symedit_widget.widget.strategy.template">
+        <service id="symedit.widget.strategy.contact_info" class="%symedit.widget.strategy.contact_info.class%">
+            <argument type="service" id="sylius.repository.parameter" />
+            
             <tag name="symedit_widget.widget_strategy" alias="contact_info" />
         </service>
 
