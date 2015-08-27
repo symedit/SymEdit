@@ -11,7 +11,7 @@
     <li{% if loop.first %} class="active"{% endif %}>
         <a href="#group-{{ group.vars.name }}" data-toggle="tab">
         {% if group.vars.extra.icon is defined %}
-            <i class="icon-{{ group.vars.extra.icon }}"></i>
+            {{ icon(group.vars.extra.icon) }}
         {% endif %}
             {{ group.vars.label }}
         </a>

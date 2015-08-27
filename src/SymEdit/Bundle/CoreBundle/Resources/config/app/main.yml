@@ -89,7 +89,7 @@ fos_rest:
 mopa_bootstrap:
     menu: ~
     icons:
-        icon_set: fontawesome
+        icon_set: fontawesome4
     form:
         show_legend: false
         render_required_asterisk: true

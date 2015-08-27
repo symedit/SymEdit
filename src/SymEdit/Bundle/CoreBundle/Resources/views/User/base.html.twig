@@ -12,7 +12,7 @@
                     {% for message in app.session.flashbag.get('success')|default([]) %}
                         <div class="alert alert-success">
                             <button type="button" class="close" data-dismiss="alert">&times;</button>
-                            <h4><i class="icon-thumbs-up"></i> Great!</h4>
+                            <h4>{{ icon('thumbs-up') }} Great!</h4>
                             {{ message }}
                         </div>
                     {% endfor %}
@@ -20,7 +20,7 @@
                     {% for message in app.session.flashbag.get('error')|default([]) %}
                         <div class="alert alert-block">
                             <button type="button" class="close" data-dismiss="alert">&times;</button>
-                            <h4><i class="icon-warning"></i> Great!</h4>
+                            <h4>{{ icon('warning') }} Great!</h4>
                             {{ message }}
                         </div>
                     {% endfor %}

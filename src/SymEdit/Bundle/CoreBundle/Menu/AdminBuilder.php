@@ -62,7 +62,7 @@ class AdminBuilder implements MenuBuilderInterface
             'label' => 'Media',
             'dropdown' => true,
             'caret' => true,
-            'icon' => 'picture',
+            'icon' => 'image',
             'extras' => array(
                 'remove_leaf' => true,
             ),
@@ -109,7 +109,7 @@ class AdminBuilder implements MenuBuilderInterface
 
         // Help
         $rootNode
-            ->addChild('Help', array('uri' => 'http://docs.symedit.com/guide', 'icon' => 'question-sign'))
+            ->addChild('Help', array('uri' => 'http://docs.symedit.com/guide', 'icon' => 'question-circle'))
             ->setLinkAttribute('target', '_blank');
     }
 }

@@ -19,7 +19,7 @@
 
     <div class="meta">
         <span class="author">
-            <i class="icon-pencil"></i>
+            {{ icon('pencil') }}
 
             {% set profile = post.author.profile %}
             {% if profile.social.google_plus is defined and profile.social.google_plus is not empty %}
@@ -30,7 +30,7 @@
         </span>
 
         <span class="date">
-            <i class="icon-time"></i>
+            {{ icon('time') }}
             <span itemprop="dateCreated">{{ post.publishedAt|date('F j, Y') }}</span>
         </span>
     </div>
