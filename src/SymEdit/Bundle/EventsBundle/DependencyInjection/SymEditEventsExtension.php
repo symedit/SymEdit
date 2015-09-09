@@ -18,7 +18,7 @@ use Symfony\Component\DependencyInjection\Extension\PrependExtensionInterface;
 class SymEditEventsExtension extends SymEditResourceExtension implements PrependExtensionInterface
 {
     protected $configFiles = array(
-        'form', // 'widget',
+        'form.xml', // 'widget',
     );
 
     /**

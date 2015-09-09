@@ -18,7 +18,7 @@ use Symfony\Component\DependencyInjection\Extension\PrependExtensionInterface;
 class SymEditBlogExtension extends SymEditResourceExtension implements PrependExtensionInterface
 {
     protected $configFiles = array(
-        'form', 'widget', 'report',
+        'form.xml', 'widget.xml',
     );
 
     /**

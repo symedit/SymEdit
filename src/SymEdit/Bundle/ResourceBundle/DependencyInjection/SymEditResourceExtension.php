@@ -12,7 +12,7 @@
 namespace SymEdit\Bundle\ResourceBundle\DependencyInjection;
 
 use Symfony\Component\DependencyInjection\ContainerBuilder;
-use Sylius\Bundle\ResourceBundle\DependencyInjection\AbstractResourceExtension;
+use Sylius\Bundle\ResourceBundle\DependencyInjection\Extension\AbstractResourceExtension;
 
 class SymEditResourceExtension extends AbstractResourceExtension
 {

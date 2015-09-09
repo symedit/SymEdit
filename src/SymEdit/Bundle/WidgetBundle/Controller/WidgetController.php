@@ -64,7 +64,7 @@ class WidgetController extends ResourceController
         return $this->handleView($view);
     }
 
-    public function getForm($resource = null)
+    public function getForm($resource = null, array $options = array())
     {
         $type = $this->getConfiguration()->getFormType();
 

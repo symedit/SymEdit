@@ -17,10 +17,19 @@ use Symfony\Component\DependencyInjection\ContainerBuilder;
 class SymEditExtension extends SymEditResourceExtension
 {
     protected $configFiles = array(
-        'services', 'widget', 'routing', 'form',
-        'event', 'twig', 'util', 'profiler',
-        'menu', 'seo', 'report', 'shortcode',
-        'cache',
+        'services.xml',
+        'widget.xml',
+        'routing.xml',
+        'form.xml',
+        'event.xml',
+        'twig.xml',
+        'util.xml',
+        'profiler.xml',
+        'menu.xml',
+        'seo.xml',
+        'report.xml',
+        'shortcode.xml',
+        'cache.xml',
     );
 
     /**
@@ -28,7 +37,7 @@ class SymEditExtension extends SymEditResourceExtension
      */
     public function load(array $configs, ContainerBuilder $container)
     {
-        list($config) = $this->configure(
+        $config = $this->configure(
             $configs,
             new Configuration(),
             $container,

@@ -18,7 +18,9 @@ use Symfony\Component\DependencyInjection\Extension\PrependExtensionInterface;
 class SymEditMediaExtension extends SymEditResourceExtension implements PrependExtensionInterface
 {
     protected $configFiles = array(
-        'services', 'form', 'widget',
+        'services.xml',
+        'form.xml',
+        'widget.xml',
     );
 
     /**
@@ -26,7 +28,7 @@ class SymEditMediaExtension extends SymEditResourceExtension implements PrependE
      */
     public function load(array $config, ContainerBuilder $container)
     {
-        list($config) = $this->configure(
+        $config = $this->configure(
             $config,
             new Configuration(),
             $container,

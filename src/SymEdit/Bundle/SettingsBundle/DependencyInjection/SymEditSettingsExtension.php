@@ -18,7 +18,7 @@ use Symfony\Component\DependencyInjection\Extension\PrependExtensionInterface;
 class SymEditSettingsExtension extends SymEditResourceExtension implements PrependExtensionInterface
 {
     protected $configFiles = array(
-        'services', 'loader', 'twig', 'shortcode',
+        'services.xml', 'loader.xml', 'twig.xml', 'shortcode.xml',
     );
 
     /**

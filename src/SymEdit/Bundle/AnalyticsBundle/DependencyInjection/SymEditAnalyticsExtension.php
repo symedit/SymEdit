@@ -17,7 +17,7 @@ use Symfony\Component\DependencyInjection\ContainerBuilder;
 class SymEditAnalyticsExtension extends SymEditResourceExtension
 {
     protected $configFiles = array(
-        'services', 'report',
+        'services.xml', 'report.xml',
     );
 
     /**

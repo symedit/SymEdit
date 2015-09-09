@@ -54,7 +54,7 @@ class PostRepository extends EntityRepository implements PostRepositoryInterface
             'status' => PostInterface::PUBLISHED,
         );
 
-        return $this->findBy($criteria, null, $max);
+        return $this->findBy($criteria, array(), $max);
     }
 
     /**
