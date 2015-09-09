@@ -22,7 +22,7 @@ class MediaBuilder implements MenuBuilderInterface
         $imageExtras = array('is_granted' => 'ROLE_ADMIN_IMAGE');
 
         $media->addChild('Images', array('dropdown-header' => true, 'extras' => $imageExtras));
-        $media->addChild('View Images', array('route' => 'admin_image', 'icon' => 'picture', 'extras' => $imageExtras));
+        $media->addChild('View Images', array('route' => 'admin_image', 'icon' => 'image', 'extras' => $imageExtras));
         $media->addChild('Upload Image', array('route' => 'admin_image_create', 'icon' => 'upload', 'extras' => $imageExtras));
         $media->addChild('Galleries', array('route' => 'admin_image_gallery', 'icon' => 'film', 'extras' => $imageExtras));
 
