@@ -34,3 +34,8 @@ symedit:
                 create: Create Category
                 save: Save Category
                 delete: Delete Category
+    settings:
+        tabs:
+            blog: Blog
+        blog:
+            max_posts: Max Posts to List

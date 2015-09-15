@@ -1,8 +1,0 @@
-widget:
-    label: Widgets
-    settings:
-        shared_max_age:
-            type: integer
-            options:
-                label: Max Shared Cache
-            default: 3600

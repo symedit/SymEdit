@@ -11,11 +11,11 @@
 
 namespace SymEdit\Bundle\CoreBundle\Util;
 
-use SymEdit\Bundle\SettingsBundle\Model\SettingsInterface;
+use Sylius\Bundle\SettingsBundle\Manager\SettingsManagerInterface;
 
 interface SymEditMailerInterface
 {
-    public function setSettings(SettingsInterface $settings);
+    public function setSettings(SettingsManagerInterface $settings);
 
     public function setEmailSender($fromEmail);
 

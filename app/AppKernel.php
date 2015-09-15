@@ -21,7 +21,6 @@ class AppKernel extends Kernel
             new SymEdit\Bundle\StylizerBundle\SymEditStylizerBundle(),
             new SymEdit\Bundle\BlogBundle\SymEditBlogBundle(),
             new SymEdit\Bundle\UserBundle\SymEditUserBundle(),
-            new SymEdit\Bundle\SettingsBundle\SymEditSettingsBundle(),
             new SymEdit\Bundle\WidgetBundle\SymEditWidgetBundle(),
             new SymEdit\Bundle\CoreBundle\SymEditBundle($this),
             new SymEdit\Bundle\SeoExportBundle\SymEditSeoExportBundle(),
@@ -44,8 +43,10 @@ class AppKernel extends Kernel
             new FOS\RestBundle\FOSRestBundle(),
             new FOS\UserBundle\FOSUserBundle(),
             new FOS\OAuthServerBundle\FOSOAuthServerBundle(),
+            new Doctrine\Bundle\DoctrineCacheBundle\DoctrineCacheBundle(),
 
             new Sylius\Bundle\ResourceBundle\SyliusResourceBundle(),
+            new Sylius\Bundle\SettingsBundle\SyliusSettingsBundle(),
             new JMS\SerializerBundle\JMSSerializerBundle($this),
             new JMS\AopBundle\JMSAopBundle(),
             new Knp\Bundle\MenuBundle\KnpMenuBundle(),
@@ -58,7 +59,6 @@ class AppKernel extends Kernel
             new Bazinga\Bundle\HateoasBundle\BazingaHateoasBundle(),
 
             // Doctrine last so mappings work properly
-            new Doctrine\Bundle\DoctrineCacheBundle\DoctrineCacheBundle(),
             new Doctrine\Bundle\DoctrineBundle\DoctrineBundle(),
         );
 

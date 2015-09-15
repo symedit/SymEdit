@@ -11,7 +11,7 @@
         {{ block('heading') }}
 
         <div>
-            {{ Page.content|raw }}
+            {{ Page.content|shortcode|raw }}
         </div>
     </div>
 
@@ -19,11 +19,11 @@
 
     <div class="container">
     {% block content %}
-        {% set type = symedit_settings_default('seo.business_type', 'LocalBusiness') %}
+        {% set type = sylius_settings_get('seo.business_type') %}
         <div class="row">
             <div class="col-md-6" itemscope itemtype="http://schema.org/{{ type }}">
                 <h4>Our Contact Details</h4>
-                {% set company = symedit_settings_get('company') %}
+                {% set company = sylius_settings_all('company') %}
                 <address>
                     <p>
                         <strong>{{ company.name }}</strong> <br>

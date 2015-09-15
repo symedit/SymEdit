@@ -8,6 +8,7 @@
         <parameter key="symedit.assetic.config_loader.class">Symfony\Bundle\AsseticBundle\Factory\Loader\ConfigurationLoader</parameter>
         <parameter key="symedit.assetic.config_resource.class">Symfony\Bundle\AsseticBundle\Factory\Resource\ConfigurationResource</parameter>
         <parameter key="symedit.expression_language.class">SymEdit\Bundle\CoreBundle\ExpressionLanguage\ExpressionLanguage</parameter>
+        <parameter key="symedit.expression_language.settings_provider.class">SymEdit\Bundle\CoreBundle\ExpressionLanguage\Provider\SettingsExpressionLanguageProvider</parameter>
     </parameters>
 
     <services>
@@ -47,6 +48,14 @@
             <call method="setContainer">
                 <argument type="service" id="service_container" />
             </call>
+        </service>
+
+        <!-- Expression Language Provider -->
+        <service
+            id="symedit.expression_language.settings_provider"
+            class="%symedit.expression_language.settings_provider.class%"
+            public="false">
+            <tag name="symedit.expression_language_provider" />
         </service>
     </services>
 

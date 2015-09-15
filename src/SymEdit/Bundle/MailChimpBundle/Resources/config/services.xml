@@ -12,7 +12,7 @@
 
     <services>
         <service id="symedit_mailchimp.client" class="%symedit_mailchimp.client.class%">
-            <argument type="service" id="symedit_settings.settings" />
+            <argument type="service" id="sylius.settings.manager" />
         </service>
 
         <service id="symedit_mailchimp.form.type.list" class="%symedit_mailchimp.form.type.list.class%">

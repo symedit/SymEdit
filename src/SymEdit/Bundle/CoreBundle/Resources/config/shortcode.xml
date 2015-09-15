@@ -7,6 +7,7 @@
     <parameters>
         <parameter key="symedit.shortcode.link.class">SymEdit\Bundle\CoreBundle\Shortcode\LinkShortcode</parameter>
         <parameter key="symedit.shortcode.link.page.class">SymEdit\Bundle\CoreBundle\Shortcode\Link\PageLink</parameter>
+        <parameter key="symedit.shortcode.setting.class">SymEdit\Bundle\CoreBundle\Shortcode\SettingShortcode</parameter>
     </parameters>
 
     <services>
@@ -22,5 +23,12 @@
         <service id="symedit.shortcode.link.page" class="%symedit.shortcode.link.page.class%" public="false">
             <tag name="symedit.link" />
         </service>
+
+        <!-- Settings -->
+        <service id="symedit.shortcode.setting" class="%symedit.shortcode.setting.class%" public="false">
+            <argument type="service" id="sylius.settings.manager" />
+            <tag name="symedit_shortcode.shortcode" alias="setting" />
+        </service>
     </services>
+
 </container>

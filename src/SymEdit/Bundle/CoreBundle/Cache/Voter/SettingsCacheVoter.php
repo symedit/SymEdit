@@ -11,21 +11,23 @@
 
 namespace SymEdit\Bundle\CoreBundle\Cache\Voter;
 
+use Sylius\Bundle\SettingsBundle\Manager\SettingsManagerInterface;
 use SymEdit\Bundle\CacheBundle\Decision\Voter\CacheVoterInterface;
-use SymEdit\Bundle\SettingsBundle\Model\SettingsInterface;
 
 class SettingsCacheVoter implements CacheVoterInterface
 {
     protected $settings;
 
-    public function __construct(SettingsInterface $settings)
+    public function __construct(SettingsManagerInterface $settings)
     {
         $this->settings = $settings;
     }
 
     public function isCacheable($resource = null)
     {
-        if ($this->settings->getDefault('advanced.caching', 'none') !== 'cache') {
+        $advanced = $this->settings->loadSettings('advanced');
+
+        if ($advanced->get('caching') !== 'cache') {
             return self::FAIL;
         }
 

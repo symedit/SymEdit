@@ -9,8 +9,14 @@
     </parameters>
 
     <services>
+        <!-- Blog Menu -->
         <service id="symedit_blog.symedit.menu" class="%symedit_blog.symedit.menu.class%">
             <tag name="symedit_menu.builder" menu="symedit_admin" />
+        </service>
+
+        <!-- Blog Settings -->
+        <service id="symedit_blog.settings_schema.blog" class="SymEdit\Bundle\BlogBundle\Settings\BlogSettingsSchema">
+            <tag name="sylius.settings_schema" namespace="blog" />
         </service>
     </services>
 </container>

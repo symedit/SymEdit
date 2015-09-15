@@ -12,7 +12,7 @@
 namespace SymEdit\Bundle\CoreBundle\Util;
 
 use FOS\UserBundle\Mailer\TwigSwiftMailer;
-use SymEdit\Bundle\SettingsBundle\Model\SettingsInterface;
+use Sylius\Bundle\SettingsBundle\Manager\SettingsManagerInterface;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 class SymEditMailer extends TwigSwiftMailer implements SymEditMailerInterface
@@ -20,7 +20,7 @@ class SymEditMailer extends TwigSwiftMailer implements SymEditMailerInterface
     protected $settings;
     protected $fromEmail;
 
-    public function setSettings(SettingsInterface $settings)
+    public function setSettings(SettingsManagerInterface $settings)
     {
         $this->settings = $settings;
     }
@@ -32,7 +32,7 @@ class SymEditMailer extends TwigSwiftMailer implements SymEditMailerInterface
 
     public function sendAdmin($templateName, $context, array $options = array())
     {
-        $toEmail = $this->settings['company']['email'];
+        $toEmail = $this->getCompanySettings()->get('email');
 
         $this->sendMessage($templateName, $context, null, $toEmail, $options);
     }
@@ -54,7 +54,7 @@ class SymEditMailer extends TwigSwiftMailer implements SymEditMailerInterface
          * Overwrite the fromEmail, you COULD change this with $options though..
          */
         $fromEmail = array(
-            $this->fromEmail => $this->settings->get('company.name'),
+            $this->fromEmail => $this->getCompanySettings()->get('name'),
         );
 
         $template = $this->twig->loadTemplate($templateName);
@@ -97,6 +97,11 @@ class SymEditMailer extends TwigSwiftMailer implements SymEditMailerInterface
         }
 
         $this->mailer->send($message);
+    }
+
+    protected function getCompanySettings()
+    {
+        return $this->settings->loadSettings('company');
     }
 
     protected function attachFiles(\Swift_Message $message, $files)

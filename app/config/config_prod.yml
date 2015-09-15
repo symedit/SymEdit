@@ -20,3 +20,12 @@ monolog:
             type:  stream
             path:  "%kernel.logs_dir%/%kernel.environment%.log"
             level: debug
+
+doctrine_cache:
+    providers:
+        sylius_settings:
+            type: apc
+            namespace: sylius_settings
+        symedit_theme:
+            type: apc
+            namespace: symedit_theme

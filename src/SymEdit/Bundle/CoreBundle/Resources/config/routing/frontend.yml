@@ -10,8 +10,5 @@ symedit_contact_controller:
 symedit_team_controller:
     resource: "@SymEditBundle/Resources/config/routing/frontend/team.yml"
 
-symedit_crawler_controller:
-    resource: "@SymEditBundle/Resources/config/routing/frontend/crawler.yml"
-
 symedit_webmaster_controller:
     resource: "@SymEditBundle/Resources/config/routing/frontend/webmaster.yml"

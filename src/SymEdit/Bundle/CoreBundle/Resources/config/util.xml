@@ -9,16 +9,9 @@
     </parameters>
 
     <services>
-        <!--<service id="symedit.mailer" class="%symedit.util.mailer.class%">
-            <argument type="service" id="symedit_settings.settings" />
-            <argument type="service" id="templating" />
-            <argument type="service" id="mailer" />
-            <argument>%swiftmailer.transport.smtp.username%</argument>
-        </service>-->
-
         <service parent="fos_user.mailer.twig_swift" public="true" id="symedit.mailer" class="%symedit.util.mailer.class%">
             <call method="setSettings">
-                <argument type="service" id="symedit_settings.settings" />
+                <argument type="service" id="sylius.settings.manager" />
             </call>
 
             <call method="setEmailSender">

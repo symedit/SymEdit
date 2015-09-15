@@ -11,8 +11,8 @@
 
 namespace SymEdit\Bundle\CoreBundle\Controller;
 
+use Sylius\Bundle\SettingsBundle\Model\Settings;
 use SymEdit\Bundle\CacheBundle\Decision\CacheDecisionManager;
-use SymEdit\Bundle\SettingsBundle\Model\SettingsInterface;
 use SymEdit\Bundle\WidgetBundle\Controller\WidgetController as BaseWidgetController;
 use SymEdit\Bundle\WidgetBundle\Model\WidgetInterface;
 use Symfony\Component\HttpFoundation\Response;
@@ -29,7 +29,28 @@ class WidgetController extends BaseWidgetController
             return new Response();
         }
 
-        return parent::getWidgetResponse($widget);
+        $response = parent::getWidgetResponse($widget);
+
+        // Don't add TTL if response is private / non-cacheable
+        if (!$response->isCacheable()) {
+            return $response;
+        }
+
+        // Get Settings for TTL
+        $ttl = $this->getWidgetSettings()->get('widget_max_age');
+
+        // Set Max Age
+        $response->setSharedMaxAge($ttl);
+
+        return $response;
+    }
+
+    /**
+     * @return Settings
+     */
+    public function getWidgetSettings()
+    {
+        return $this->get('sylius.settings.manager')->loadSettings('advanced');
     }
 
     /**
@@ -38,13 +59,5 @@ class WidgetController extends BaseWidgetController
     protected function getCacheManager()
     {
         return $this->container->get('symedit_cache.decision_manager');
-    }
-
-    /**
-     * @return SettingsInterface
-     */
-    protected function getSettings()
-    {
-        return $this->get('symedit_settings.settings');
     }
 }

@@ -11,15 +11,15 @@
 
 namespace SymEdit\Bundle\CoreBundle\EventListener\Seo;
 
+use Sylius\Bundle\SettingsBundle\Manager\SettingsManagerInterface;
 use SymEdit\Bundle\SeoBundle\Event\SeoEvent;
 use SymEdit\Bundle\SeoBundle\Model\SeoCalculatorInterface;
-use SymEdit\Bundle\SettingsBundle\Model\SettingsInterface;
 
 class OpenGraphCalculator implements SeoCalculatorInterface
 {
     protected $settings;
 
-    public function __construct(SettingsInterface $settings)
+    public function __construct(SettingsManagerInterface $settings)
     {
         $this->settings = $settings;
     }
@@ -29,7 +29,8 @@ class OpenGraphCalculator implements SeoCalculatorInterface
         $seo = $event->getSeo();
 
         if (!$seo->hasMeta('property', 'og:site_name')) {
-            $seo->addMetaProperty('og:site_name', $this->settings->get('company.name'));
+            $company = $this->settings->loadSettings('company');
+            $seo->addMetaProperty('og:site_name', $company->get('name'));
         }
     }
 }
