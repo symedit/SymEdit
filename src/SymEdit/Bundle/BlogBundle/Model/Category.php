@@ -70,7 +70,7 @@ class Category implements CategoryInterface
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function getId()
     {
@@ -78,7 +78,7 @@ class Category implements CategoryInterface
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function setName($name)
     {
@@ -88,7 +88,7 @@ class Category implements CategoryInterface
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function getName()
     {
@@ -96,7 +96,7 @@ class Category implements CategoryInterface
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function setTitle($title)
     {
@@ -106,7 +106,7 @@ class Category implements CategoryInterface
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function getTitle()
     {
@@ -114,7 +114,7 @@ class Category implements CategoryInterface
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function setSlug($slug)
     {
@@ -124,7 +124,7 @@ class Category implements CategoryInterface
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function getSlug()
     {
@@ -132,7 +132,7 @@ class Category implements CategoryInterface
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function getRoot()
     {
@@ -140,7 +140,7 @@ class Category implements CategoryInterface
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function setParent(CategoryInterface $parent = null)
     {
@@ -150,7 +150,7 @@ class Category implements CategoryInterface
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function getParent()
     {
@@ -158,7 +158,7 @@ class Category implements CategoryInterface
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function getLevel()
     {
@@ -166,7 +166,7 @@ class Category implements CategoryInterface
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function setLevel($level)
     {
@@ -176,7 +176,7 @@ class Category implements CategoryInterface
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function addChildren(CategoryInterface $children)
     {
@@ -187,7 +187,7 @@ class Category implements CategoryInterface
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function removeChildren(CategoryInterface $children)
     {
@@ -195,7 +195,7 @@ class Category implements CategoryInterface
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function setChildren($children)
     {
@@ -205,7 +205,7 @@ class Category implements CategoryInterface
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function getChildren()
     {
@@ -213,7 +213,7 @@ class Category implements CategoryInterface
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function addPost(PostInterface $post)
     {
@@ -223,7 +223,7 @@ class Category implements CategoryInterface
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function removePost(PostInterface $post)
     {
@@ -231,7 +231,7 @@ class Category implements CategoryInterface
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function setPosts($posts)
     {
@@ -239,7 +239,7 @@ class Category implements CategoryInterface
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function getPosts()
     {
@@ -247,7 +247,7 @@ class Category implements CategoryInterface
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function getPublishedPosts()
     {
@@ -257,7 +257,7 @@ class Category implements CategoryInterface
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function getTotal()
     {

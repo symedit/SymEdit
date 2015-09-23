@@ -36,7 +36,7 @@ class SeoDataCollector extends DataCollector
 
         foreach ($blankError as $blankKey) {
             if (empty($this->data[$blankKey])) {
-                $total++;
+                ++$total;
             }
         }
 

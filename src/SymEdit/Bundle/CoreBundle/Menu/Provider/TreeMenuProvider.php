@@ -82,7 +82,7 @@ class TreeMenuProvider implements MenuProviderInterface
     }
 
     /**
-     * @param MenuItem $menu
+     * @param MenuItem      $menu
      * @param PageInterface $parent
      */
     protected function populateChildren(MenuItem $menu, PageInterface $parent)

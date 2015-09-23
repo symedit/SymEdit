@@ -19,7 +19,7 @@ use Symfony\Component\PropertyAccess\PropertyAccess;
 class ResourceController extends BaseResourceController
 {
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      *
      * Here for AOP
      */

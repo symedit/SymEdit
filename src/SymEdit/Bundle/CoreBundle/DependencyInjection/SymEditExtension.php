@@ -30,11 +30,11 @@ class SymEditExtension extends SymEditResourceExtension
         'report.xml',
         'shortcode.xml',
         'cache.xml',
-        'settings.xml'
+        'settings.xml',
     );
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function load(array $configs, ContainerBuilder $container)
     {

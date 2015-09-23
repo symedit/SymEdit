@@ -228,7 +228,7 @@ class RouteProvider extends DoctrineProvider implements RouteProviderInterface
 
         while (($lastOffset = strpos($path, '/', $lastOffset)) !== false) {
             $paths[] = substr($path, 0, $lastOffset);
-            $lastOffset++;
+            ++$lastOffset;
         }
 
         return $paths;

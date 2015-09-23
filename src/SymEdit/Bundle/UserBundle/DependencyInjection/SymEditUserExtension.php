@@ -19,7 +19,7 @@ class SymEditUserExtension extends SymEditResourceExtension implements PrependEx
 {
     protected $configFiles = array(
         'services.xml',
-        'form.xml', 
+        'form.xml',
         'notifications.xml',
     );
 
@@ -60,7 +60,7 @@ class SymEditUserExtension extends SymEditResourceExtension implements PrependEx
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function getAlias()
     {

@@ -32,9 +32,10 @@ class ThemeManager
     }
 
     /**
-     * Get a theme by its name
+     * Get a theme by its name.
      *
      * @param string $name
+     *
      * @return ThemeInterface
      */
     public function getTheme($name)
@@ -64,7 +65,7 @@ class ThemeManager
     }
 
     /**
-     * Gets all themes
+     * Gets all themes.
      *
      * @return ThemeInterface[]
      */
@@ -76,7 +77,6 @@ class ThemeManager
             try {
                 $this->getTheme($name);
             } catch (ThemeLoadingException $e) {
-
             }
         }
 

@@ -39,6 +39,7 @@ class WidgetController extends ResourceController
 
     /**
      * @param WidgetInterface $widget
+     *
      * @return Response
      */
     protected function getWidgetResponse(WidgetInterface $widget)

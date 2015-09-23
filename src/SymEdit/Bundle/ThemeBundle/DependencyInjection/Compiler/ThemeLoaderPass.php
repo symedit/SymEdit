@@ -18,7 +18,7 @@ use Symfony\Component\DependencyInjection\Reference;
 class ThemeLoaderPass implements CompilerPassInterface
 {
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function process(ContainerBuilder $container)
     {

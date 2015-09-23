@@ -31,8 +31,7 @@ class WidgetExtension extends \Twig_Extension
         WidgetAreaRendererInterface $widgetAreaRenderer,
         FragmentHandler $handler,
         $esiStrategy
-    )
-    {
+    ) {
         $this->widgetRepository = $widgetRepository;
         $this->widgetAreaRepository = $widgetAreaRepository;
         $this->widgetAreaRenderer = $widgetAreaRenderer;

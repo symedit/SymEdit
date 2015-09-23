@@ -17,7 +17,7 @@ use SymEdit\Bundle\CoreBundle\Repository\ParameterRepositoryInterface;
 class ParameterRepository extends EntityRepository implements ParameterRepositoryInterface
 {
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function getLastUpdated()
     {

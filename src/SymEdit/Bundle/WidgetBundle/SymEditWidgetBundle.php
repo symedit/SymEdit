@@ -56,7 +56,7 @@ class SymEditWidgetBundle extends AbstractResourceBundle
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function getContainerExtension()
     {

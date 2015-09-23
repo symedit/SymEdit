@@ -18,37 +18,39 @@ use SymEdit\Bundle\CoreBundle\Model\PageInterface;
 interface PageRepositoryInterface extends RepositoryInterface
 {
     /**
-     * Gets root Page
+     * Gets root Page.
      *
      * @return PageInterface
      */
     public function findRoot();
 
     /**
-     * Get page iterator
+     * Get page iterator.
      *
      * @param bool $display Whether or not to get pages with display set
+     *
      * @return RecursivePageIterator
      */
     public function getIterator($display = true);
 
     /**
-     * Get recursive iterator
+     * Get recursive iterator.
      *
      * @param bool $display Whether or not to get pages with display set
+     *
      * @return \RecursiveIteratorIterator
      */
     public function getRecursiveIterator($display = true);
 
     /**
-     * Get all pages with page controllers
+     * Get all pages with page controllers.
      *
      * @return PageInterface[]
      */
     public function findPageControllers();
 
     /**
-     * Get last updated Page
+     * Get last updated Page.
      *
      * @return PageInterface
      */

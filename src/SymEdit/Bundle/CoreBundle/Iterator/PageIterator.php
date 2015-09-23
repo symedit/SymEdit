@@ -43,14 +43,14 @@ class PageIterator implements \Iterator
 
     public function next()
     {
-        $this->position++;
+        ++$this->position;
 
         while ($this->position < $this->length) {
             if ($this->valid()) {
                 break;
             }
 
-            $this->position++;
+            ++$this->position;
         }
     }
 

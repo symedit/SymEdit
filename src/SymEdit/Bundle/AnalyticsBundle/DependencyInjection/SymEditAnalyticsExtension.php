@@ -21,7 +21,7 @@ class SymEditAnalyticsExtension extends SymEditResourceExtension
     );
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function load(array $config, ContainerBuilder $container)
     {

@@ -17,7 +17,7 @@ use Symfony\Component\HttpKernel\Bundle\Bundle;
 class SymEditSeoExportBundle extends Bundle
 {
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function getContainerExtension()
     {

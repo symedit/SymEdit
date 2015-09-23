@@ -17,7 +17,7 @@ use SymEdit\Bundle\BlogBundle\Repository\CategoryRepositoryInterface;
 class CategoryRepository extends EntityRepository implements CategoryRepositoryInterface
 {
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function findRoots()
     {
@@ -27,7 +27,7 @@ class CategoryRepository extends EntityRepository implements CategoryRepositoryI
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function findRoot()
     {

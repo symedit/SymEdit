@@ -25,7 +25,7 @@ class GalleryItem implements GalleryItemInterface
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function setGallery(ImageGalleryInterface $gallery)
     {
@@ -35,7 +35,7 @@ class GalleryItem implements GalleryItemInterface
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function getGallery()
     {
@@ -43,7 +43,7 @@ class GalleryItem implements GalleryItemInterface
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function setImage(ImageInterface $image)
     {
@@ -53,7 +53,7 @@ class GalleryItem implements GalleryItemInterface
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function getImage()
     {
@@ -73,7 +73,7 @@ class GalleryItem implements GalleryItemInterface
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function setPosition($position)
     {
@@ -83,7 +83,7 @@ class GalleryItem implements GalleryItemInterface
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function getPosition()
     {

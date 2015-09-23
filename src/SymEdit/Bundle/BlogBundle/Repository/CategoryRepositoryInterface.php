@@ -17,14 +17,14 @@ use SymEdit\Bundle\BlogBundle\Model\CategoryInterface;
 interface CategoryRepositoryInterface extends RepositoryInterface
 {
     /**
-     * Get all root categories
+     * Get all root categories.
      *
      * @return CategoryInterface[]
      */
     public function findRoots();
 
     /**
-     * Returns a blank category with children set as roots
+     * Returns a blank category with children set as roots.
      *
      * @return CategoryInterface
      */

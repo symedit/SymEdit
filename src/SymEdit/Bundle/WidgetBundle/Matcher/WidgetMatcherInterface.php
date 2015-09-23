@@ -27,7 +27,8 @@ interface WidgetMatcherInterface
      * Determine if a single widget is visible.
      *
      * @param WidgetInterface $widget
-     * @return boolean Whether widget is visible or not
+     *
+     * @return bool Whether widget is visible or not
      */
     public function isVisible(WidgetInterface $widget);
 
@@ -35,6 +36,7 @@ interface WidgetMatcherInterface
      * Take array of widgets and return only the visible ones.
      *
      * @param array $widgets
+     *
      * @return array
      */
     public function getVisible(\Traversable $widgets);

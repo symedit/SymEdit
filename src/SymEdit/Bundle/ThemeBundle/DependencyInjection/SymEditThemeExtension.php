@@ -27,7 +27,7 @@ class SymEditThemeExtension extends Extension implements PrependExtensionInterfa
     );
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function load(array $configs, ContainerBuilder $container)
     {
@@ -61,7 +61,7 @@ class SymEditThemeExtension extends Extension implements PrependExtensionInterfa
             ),
         ));
 
-        /**
+        /*
          * Doctrine Cache
          */
         $container->prependExtensionConfig('doctrine_cache', array(
@@ -74,7 +74,7 @@ class SymEditThemeExtension extends Extension implements PrependExtensionInterfa
             ),
         ));
 
-        /**
+        /*
          * Stylizer Extension
          */
         if ($container->hasExtension('symedit_stylizer')) {

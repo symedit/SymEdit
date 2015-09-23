@@ -20,7 +20,7 @@ use Symfony\Component\HttpFoundation\Response;
 class WidgetController extends BaseWidgetController
 {
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     protected function getWidgetResponse(WidgetInterface $widget)
     {

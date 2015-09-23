@@ -23,7 +23,7 @@ use Symfony\Component\DependencyInjection\Reference;
 class TemplateLoaderPass implements CompilerPassInterface
 {
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function process(ContainerBuilder $container)
     {

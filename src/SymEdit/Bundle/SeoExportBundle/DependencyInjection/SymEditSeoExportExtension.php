@@ -24,7 +24,7 @@ use Symfony\Component\DependencyInjection\Loader;
 class SymEditSeoExportExtension extends Extension
 {
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function load(array $configs, ContainerBuilder $container)
     {
@@ -36,7 +36,7 @@ class SymEditSeoExportExtension extends Extension
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function getAlias()
     {

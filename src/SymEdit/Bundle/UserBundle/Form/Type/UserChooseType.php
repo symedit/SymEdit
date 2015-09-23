@@ -39,7 +39,7 @@ class UserChooseType extends AbstractType
         ));
 
         // Query builder relies on option so create callback
-        $resolver->setDefault('query_builder', function(Options $options) {
+        $resolver->setDefault('query_builder', function (Options $options) {
             $closure = function (EntityRepository $er) use ($options) {
 
                 return $er->createQueryBuilder('u')

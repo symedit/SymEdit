@@ -12,7 +12,6 @@
 namespace SymEdit\Bundle\CoreBundle\Shortcode\Link;
 
 use Sylius\Component\Resource\Repository\RepositoryInterface;
-use SymEdit\Bundle\CoreBundle\Shortcode\Link\LinkInterface;
 use Symfony\Component\Routing\RouterInterface;
 
 class MediaLink implements LinkInterface

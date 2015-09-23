@@ -29,7 +29,7 @@ class PageVoter implements VoterInterface
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function matchItem(ItemInterface $item)
     {

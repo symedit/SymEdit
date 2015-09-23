@@ -19,7 +19,7 @@ use Symfony\Component\DependencyInjection\Loader;
 class SymEditStylizerExtension extends Extension
 {
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function load(array $configs, ContainerBuilder $container)
     {
@@ -63,7 +63,7 @@ class SymEditStylizerExtension extends Extension
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function getAlias()
     {

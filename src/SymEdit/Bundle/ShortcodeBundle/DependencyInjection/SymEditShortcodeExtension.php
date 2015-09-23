@@ -24,7 +24,7 @@ use Symfony\Component\DependencyInjection\Loader;
 class SymEditShortcodeExtension extends Extension
 {
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function load(array $configs, ContainerBuilder $container)
     {

@@ -24,7 +24,7 @@ abstract class AbstractWidgetStrategy implements WidgetStrategyInterface
     protected $templating;
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function getDefaultOptions(OptionsResolver $resolver)
     {
@@ -39,14 +39,14 @@ abstract class AbstractWidgetStrategy implements WidgetStrategyInterface
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function buildForm(FormBuilderInterface $builder)
     {
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function setTemplating(EngineInterface $templating)
     {
@@ -54,7 +54,7 @@ abstract class AbstractWidgetStrategy implements WidgetStrategyInterface
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function getTemplating()
     {
@@ -62,7 +62,7 @@ abstract class AbstractWidgetStrategy implements WidgetStrategyInterface
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function render(WidgetInterface $widget, array $parameters = array())
     {

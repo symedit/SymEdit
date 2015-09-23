@@ -24,7 +24,7 @@ class SymEditWidgetExtension extends SymEditResourceExtension implements Prepend
     );
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function load(array $config, ContainerBuilder $container)
     {
@@ -63,7 +63,7 @@ class SymEditWidgetExtension extends SymEditResourceExtension implements Prepend
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function getAlias()
     {

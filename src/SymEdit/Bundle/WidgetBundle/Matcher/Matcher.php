@@ -24,7 +24,7 @@ class Matcher implements WidgetMatcherInterface
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function addVoter(VoterInterface $voter)
     {
@@ -32,7 +32,7 @@ class Matcher implements WidgetMatcherInterface
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function isVisible(WidgetInterface $widget)
     {
@@ -46,7 +46,7 @@ class Matcher implements WidgetMatcherInterface
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function getVisible(\Traversable $widgets)
     {

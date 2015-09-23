@@ -35,7 +35,7 @@ class RequestCalculator implements SeoCalculatorInterface
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function calculateSeo(SeoEvent $event)
     {

@@ -24,7 +24,7 @@ class SymEditMediaExtension extends SymEditResourceExtension implements PrependE
     );
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function load(array $config, ContainerBuilder $container)
     {
@@ -74,7 +74,7 @@ class SymEditMediaExtension extends SymEditResourceExtension implements PrependE
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function getAlias()
     {
