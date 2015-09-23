@@ -37,10 +37,11 @@ class PostType extends AbstractType
             ))
             ->add('status', 'choice', array(
                 'choices' => array(
-                    PostInterface::DRAFT => 'Draft',
-                    PostInterface::PUBLISHED => 'Published',
+                    PostInterface::DRAFT => 'symedit.form.post.status.choices.draft',
+                    PostInterface::PUBLISHED => 'symedit.form.post.status.choices.published',
+                    PostInterface::SCHEDULED => 'symedit.form.post.status.choices.scheduled',
                 ),
-                'label' => 'symedit.form.post.status',
+                'label' => 'symedit.form.post.status.label',
             ))
             ->add('publishedAt', 'datetime', array(
                 'label' => 'symedit.form.post.published_at.label',

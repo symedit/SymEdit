@@ -21,18 +21,17 @@ class PostRepository extends EntityRepository implements PostRepositoryInterface
 {
     public function findPublished()
     {
-        return $this->findBy(array(
-            'status' => PostInterface::PUBLISHED,
-        ));
+        return $this->getPublishedQueryBuilder()
+            ->getQuery()
+            ->getResult()
+        ;
     }
 
     protected function findByCategoryQueryBuilder(CategoryInterface $category)
     {
-        return $this->getQueryBuilder()
-            ->where(':category MEMBER OF o.categories')
-            ->andWhere('o.status = :status')
+        return $this->getPublishedQueryBuilder()
+            ->andwhere(':category MEMBER OF o.categories')
             ->setParameter('category', $category)
-            ->setParameter('status', PostInterface::PUBLISHED)
         ;
     }
 
@@ -50,11 +49,11 @@ class PostRepository extends EntityRepository implements PostRepositoryInterface
 
     public function getRecent($max = 3)
     {
-        $criteria = array(
-            'status' => PostInterface::PUBLISHED,
-        );
-
-        return $this->findBy($criteria, array(), $max);
+        return $this->getPublishedQueryBuilder()
+            ->setMaxResults($max)
+            ->getQuery()
+            ->getResult()
+        ;
     }
 
     /**
@@ -76,6 +75,26 @@ class PostRepository extends EntityRepository implements PostRepositoryInterface
         return $this->getPaginator(
             $this->getCreatedAtQueryBuilder()
         );
+    }
+
+    public function getPublishedPaginator()
+    {
+        return $this->getPaginator(
+            $this->getPublishedQueryBuilder()
+        );
+    }
+
+    public function getPublishedQueryBuilder()
+    {
+        return $this->getQueryBuilder()
+            ->where('o.status = :published')
+            ->orWhere('o.status = :scheduled AND o.publishedAt <= :now')
+            ->setParameters(array(
+                'published' => PostInterface::PUBLISHED,
+                'scheduled' => PostInterface::SCHEDULED,
+                'now' => new \DateTime(),
+            ))
+        ;
     }
 
     /**
