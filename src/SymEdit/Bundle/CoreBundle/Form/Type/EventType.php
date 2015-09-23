@@ -28,7 +28,7 @@ class EventType extends BaseEventType
             'tabs_data' => array(
                 'basic' => array(
                     'label' => 'symedit.form.event.tab.basic',
-                    'icon' => 'info-sign',
+                    'icon' => 'info-circle',
                 ),
                 'dateTime' => array(
                     'label' => 'symedit.form.event.tab.time',

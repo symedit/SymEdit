@@ -30,7 +30,7 @@ class WidgetType extends BaseWidgetType
             'tabs_data' => array(
                 'basic' => array(
                     'label' => 'symedit.form.widget.tab.basic',
-                    'icon' => 'info-sign',
+                    'icon' => 'info-circle',
                     'data_class' => $this->widgetClass,
                 ),
                 'options' => array(

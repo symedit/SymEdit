@@ -45,7 +45,7 @@ class PostType extends BasePostType
             'tabs_data' => array(
                 'basic' => array(
                     'label' => 'symedit.form.post.tab.basic',
-                    'icon' => 'info-sign',
+                    'icon' => 'info-circle',
                 ),
                 'seo' => array(
                     'label' => 'SEO',

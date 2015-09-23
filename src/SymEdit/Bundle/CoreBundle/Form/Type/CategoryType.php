@@ -35,7 +35,7 @@ class CategoryType extends BaseCategoryType
             'tabs_data' => array(
                 'basic' => array(
                     'label' => 'Basic',
-                    'icon' => 'info-sign',
+                    'icon' => 'info-circle',
                 ),
                 'seo' => array(
                     'label' => 'SEO',

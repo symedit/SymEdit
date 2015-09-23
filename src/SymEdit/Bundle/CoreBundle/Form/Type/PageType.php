@@ -131,7 +131,7 @@ class PageType extends AbstractType
             'tabs_data' => array(
                 'basic' => array(
                     'label' => 'symedit.form.page.tabs.basic',
-                    'icon' => 'info-sign',
+                    'icon' => 'info-circle',
                 ),
                 'template' => array(
                     'label' => 'symedit.form.page.tabs.template',
