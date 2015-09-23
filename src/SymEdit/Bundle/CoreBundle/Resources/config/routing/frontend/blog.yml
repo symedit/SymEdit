@@ -9,8 +9,8 @@ blog:
         _sylius:
             paginate: expr:setting('blog.max_posts', 5)
             template: @SymEdit/Blog/index.html.twig
-            criteria:
-                status: 1
+            repository:
+                method: getPublishedPaginator
 
 blog_rss:
     path: /feed.xml
@@ -51,12 +51,9 @@ blog_slug_view:
     requirements:
         slug: "[a-z0-9_-]+"
     defaults:
-        _controller: symedit.controller.post:showAction
+        _controller: symedit.controller.post:showPublishedAction
         _sylius:
             template: @SymEdit/Blog/single.html.twig
-            criteria:
-                slug: $slug
-                status: 1
             cache:
                 last_modified: resource.updatedAt
                 public: true

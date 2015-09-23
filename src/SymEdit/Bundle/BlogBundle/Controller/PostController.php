@@ -17,6 +17,17 @@ use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 
 class PostController extends ResourceController
 {
+    public function showPublishedAction(Request $request)
+    {
+        $post = $this->findOr404($request);
+
+        if (!$post->isPublished()) {
+            throw $this->createNotFoundException('Post not published');
+        }
+
+        return $this->showAction($request);
+    }
+
     public function previewAction(Request $request)
     {
         if ($this->get('security.authorization_checker')->isGranted('ROLE_ADMIN')) {

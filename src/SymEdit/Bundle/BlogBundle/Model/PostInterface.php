@@ -17,6 +17,7 @@ interface PostInterface
 {
     const DRAFT = 0;
     const PUBLISHED = 1;
+    const SCHEDULED = 2;
 
     /**
      * Get Post ID.

@@ -3,15 +3,23 @@ symedit:
         post:
             tab:
                 basic: Basic
+                seo: SEO
                 summary: Summary
                 content: Content
             title: Title
             author: Author
-            status: Status
+            status:
+                label: Status
+                choices:
+                    draft: Draft
+                    published: Published
+                    scheduled: Scheduled
             categories: Categories
             published_at:
                 label: Published At
-                help: Updates automatically when status changed to Published
+                help: >
+                        Updates automatically when status changed to Published.
+                        Use "Scheduled" to use a date in the future.
             actions:
                 new: Create New Post
                 create: Create Post

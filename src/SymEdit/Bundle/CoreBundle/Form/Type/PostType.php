@@ -48,7 +48,7 @@ class PostType extends BasePostType
                     'icon' => 'info-sign',
                 ),
                 'seo' => array(
-                    'label' => 'SEO',
+                    'label' => 'symedit.form.post.tab.seo',
                     'icon' => 'search',
                 ),
                 'summary' => array(
