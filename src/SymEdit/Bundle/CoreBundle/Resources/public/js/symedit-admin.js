@@ -8,7 +8,12 @@ var Isometriks = (function(){
         toolbarFixed: false,
         linkProtocol: false,
         minHeight: 300,
-        plugins: ['imagemanager', 'definedlinks', 'filemanager']
+        plugins: [
+            'imagemanager',
+            'definedlinks',
+            'filemanager',
+            'video'
+        ]
     };
 
     return {

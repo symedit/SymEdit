@@ -1,8 +1,6 @@
-if (!RedactorPlugins) var RedactorPlugins = {};
-
 (function($)
 {
-	RedactorPlugins.filemanager = function()
+	$.Redactor.prototype.filemanager = function()
 	{
 		return {
 			init: function()
@@ -34,7 +32,7 @@ if (!RedactorPlugins) var RedactorPlugins = {};
 						var ul = $('<ul id="redactor-modal-list">');
 						$.each(data, $.proxy(function(key, val)
 						{
-							var a = $('<a href="#" title="' + val.title + '" rel="' + val.link + '">' + val.title + ' <span style="font-size: 11px; color: #888;">' + val.name + '</span> <span style="position: absolute; right: 10px; font-size: 11px; color: #888;">(' + val.size + ')</span></a>');
+							var a = $('<a href="#" title="' + val.title + '" rel="' + val.link + '" class="redactor-file-manager-link">' + val.title + ' <span style="font-size: 11px; color: #888;">' + val.name + '</span> <span style="position: absolute; right: 10px; font-size: 11px; color: #888;">(' + val.size + ')</span></a>');
 							var li = $('<li />');
 
 							a.on('click', $.proxy(this.filemanager.insert, this));
@@ -55,7 +53,9 @@ if (!RedactorPlugins) var RedactorPlugins = {};
 			{
 				e.preventDefault();
 
-				this.file.insert('<a href="' + $(e.target).attr('rel') + '">' + $(e.target).attr('title') + '</a>');
+				var $target = $(e.target).closest('.redactor-file-manager-link');
+
+				this.file.insert('<a href="' + $target.attr('rel') + '">' + $target.attr('title') + '</a>');
 			}
 		};
 	};
