@@ -336,6 +336,14 @@ class Post implements PostInterface
      */
     public function isPublished()
     {
-        return $this->status === self::PUBLISHED;
+        if ($this->getStatus() === self::PUBLISHED) {
+            return true;
+        }
+
+        if ($this->getStatus() === self::SCHEDULED) {
+            return $this->getPublishedAt() <= new \DateTime();
+        }
+
+        return false;
     }
 }
