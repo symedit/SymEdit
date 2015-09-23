@@ -37,9 +37,6 @@ class ContactInfoStrategy extends AbstractWidgetStrategy
         ));
     }
 
-    /**
-     * @todo This should be cached until settings change
-     */
     public function getCacheOptions(WidgetInterface $widget)
     {
         $updatedAt = $this->parameterRepository->getLastUpdated();

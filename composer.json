@@ -61,8 +61,7 @@
         "symedit/stylizer-bundle":      "self.version",
         "symedit/theme-bundle":         "self.version",
         "symedit/user-bundle":          "self.version",
-        "symedit/widget-bundle":        "self.version",
-        "symedit/widget-bridge":        "self.version"
+        "symedit/widget-bundle":        "self.version"
     },
     "autoload": {
         "psr-0": { "SymEdit\\": "src/" }
