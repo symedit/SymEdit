@@ -56,3 +56,19 @@ admin_page_reorder:
         _controller: symedit.controller.page:reorderAction
         _sylius:
             sortable_position: pageOrder
+
+admin_page_history:
+    path: /{id}/history
+    methods: [GET]
+    defaults:
+        _controller: symedit.controller.page:historyAction
+        _sylius:
+            template: @SymEdit/Admin/Page/history.html.twig
+
+admin_page_revert:
+    path: /{id}/revert/{version}
+    methods: [PATCH]
+    defaults:
+        _controller: symedit.controller.page:revertAction
+        _sylius:
+            redirect: admin_page_update

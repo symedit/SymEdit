@@ -43,6 +43,7 @@ symedit:
                 save: Save Page
                 delete: Delete Page
                 view: View Page
+                back: Back to Page
         post:
             image: Featured Image
     settings:
@@ -74,3 +75,10 @@ symedit:
             google_verify: Webmaster Tools Verify
             bing_verify: Bing Verify
             robots: Allow Robots?
+    security:
+        logout: Logout
+        change_password: Change Password
+        profile: My Profile
+    history:
+        view: View History
+        revert: Revert

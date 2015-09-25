@@ -447,13 +447,17 @@ i[class^="icon-"], i[class*=" icon-"] {
 }
 
 .tree {
-    [class^="icon-"], [class*=" icon-"] {
+    .fa {
         margin-right: 5px;
     }
 
     li {
         list-style: none;
-        padding: 6px 0;
+        padding: 2px 0;
+    }
+
+    ul ul {
+        padding-left: 16px;
     }
 
     li:last-child {
@@ -462,15 +466,17 @@ i[class^="icon-"], i[class*=" icon-"] {
 
     a {
         border: 1px solid transparent;
-        padding: 4px 12px;
+        padding: 8px 12px;
+        display: block;
+        max-width: 200px;
         .transition(.3s);
+        .rounded(10px);
     }
 
     a:hover {
         text-decoration: none;
-        border: 1px solid rgba(255,255,255,.3);
-        background-color: rgba(255,255,255,.1);
-        .rounded(3px);
+        color: @white;
+        background-color: @green;
     }
 }
 

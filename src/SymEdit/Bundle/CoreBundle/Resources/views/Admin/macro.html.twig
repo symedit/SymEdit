@@ -12,3 +12,12 @@
     <input type="hidden" name="confirmed" value="1">
 </form>
 {% endmacro %}
+
+{% macro patch(url, message, icon, button) %}
+<form action="{{ url }}" method="post" novalidate>
+    <input type="hidden" name="_method" value="PATCH">
+    <button class="btn btn-{{ button|default('success') }}" type="submit">
+        {{ icon ? icon(icon) : '' }} <span>{{ message }}</span>
+    </button>
+</form>
+{% endmacro %}

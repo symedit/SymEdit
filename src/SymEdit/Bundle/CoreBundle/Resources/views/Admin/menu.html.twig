@@ -10,7 +10,7 @@
     {%- endif %}
     </div>
 
-    {{ block('label') }}
+    {{ item.label|trans }}
 
     {%- if item.extras.caret|default(false) %}
         <b class="caret"></b>

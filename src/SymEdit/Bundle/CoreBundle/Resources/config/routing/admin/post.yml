@@ -41,3 +41,19 @@ admin_post_delete:
         _controller: symedit.controller.post:deleteAction
         _sylius:
             redirect: admin_post
+
+admin_post_history:
+    path: /{id}/history
+    methods: [GET]
+    defaults:
+        _controller: symedit.controller.post:historyAction
+        _sylius:
+            template: @SymEdit/Admin/Post/history.html.twig
+
+admin_post_revert:
+    path: /{id}/revert/{version}
+    methods: [PATCH]
+    defaults:
+        _controller: symedit.controller.post:revertAction
+        _sylius:
+            redirect: admin_post_update

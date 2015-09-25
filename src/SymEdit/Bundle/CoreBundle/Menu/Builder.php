@@ -52,9 +52,23 @@ class Builder
             'label' => $user->getProfile()->getFullname(),
         ));
 
-        $userMenu->addChild('My Profile', array('route' => 'fos_user_profile_show', 'icon' => 'user'));
-        $userMenu->addChild('Change Password', array('route' => 'fos_user_change_password', 'icon' => 'lock'));
-        $userMenu->addChild('Logout', array('route' => 'fos_user_security_logout', 'icon' => 'off'));
+        $userMenu->addChild('My Profile', array(
+            'label' => 'symedit.security.profile',
+            'route' => 'fos_user_profile_show',
+            'icon' => 'user'
+        ));
+
+        $userMenu->addChild('Change Password', array(
+            'label' => 'symedit.security.change_password',
+            'route' => 'fos_user_change_password',
+            'icon' => 'lock'
+        ));
+
+        $userMenu->addChild('Logout', array(
+            'label' => 'symedit.security.logout',
+            'route' => 'fos_user_security_logout',
+            'icon' => 'power-off'
+        ));
 
         /*
          * Dispatch Menu Event
