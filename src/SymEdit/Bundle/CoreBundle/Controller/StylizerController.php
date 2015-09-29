@@ -12,6 +12,8 @@
 namespace SymEdit\Bundle\CoreBundle\Controller;
 
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use SymEdit\Bundle\StylizerBundle\Model\StyleManager;
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 
 /**
@@ -35,9 +37,9 @@ class StylizerController extends Controller
             if ($request->request->has('dump')) {
                 $this->getDumper()->dump();
 
-                $this->addFlash('success', 'Styles saved and dumped');
+                $this->addFlash('success', 'symedit.stylizer.save_and_dump');
             } else {
-                $this->addFlash('success', 'Styles Saved');
+                $this->addFlash('success', 'symedit.stylizer.save');
             }
         }
 
@@ -47,7 +49,7 @@ class StylizerController extends Controller
     }
 
     /**
-     * @return \SymEdit\Bundle\StylizerBundle\Model\StyleManager $manager
+     * @return StyleManager $manager
      */
     protected function getStyleManager()
     {

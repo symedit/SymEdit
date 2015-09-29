@@ -14,6 +14,7 @@ namespace SymEdit\Bundle\CoreBundle\Controller;
 use SymEdit\Bundle\CoreBundle\Event\Events;
 use SymEdit\Bundle\CoreBundle\Event\FormEvent;
 use SymEdit\Bundle\CoreBundle\Model\PageInterface;
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 

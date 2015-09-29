@@ -1,7 +1,7 @@
 <div id="flash">
     {% for url in app.session.flashbag.get('share')|default([]) %}
         <div class="flash-message share">
-            <div class="share-text">{{ 'symedit.flash.share'|trans }}</div>
+            <div class="share-text">{{ 'symedit.flash.share'|trans({}, 'flashes') }}</div>
             <div class="addthis_toolbox addthis_default_style" addthis:url="{{ url }}">
                 <a class="addthis_button_preferred_1"></a>
                 <a class="addthis_button_preferred_2"></a>
@@ -13,14 +13,14 @@
 
     {% for message in app.session.flashbag.get('success')|default([]) %}
         <div class="flash-message message">
-            {{ icon('thumbs-up') }} {{ message|trans }}
+            {{ icon('thumbs-up') }} {{ message|trans({}, 'flashes') }}
         </div>
     {% endfor %}
 
 
     {% for message in app.session.flashbag.get('error')|default([]) %}
         <div class="flash-message error">
-            {{ icon('warning-sign') }} {{ message|trans }}
+            {{ icon('warning-sign') }} {{ message|trans({}, 'flashes') }}
         </div>
     {% endfor %}
 </div>

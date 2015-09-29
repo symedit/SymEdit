@@ -11,11 +11,13 @@
 
 namespace SymEdit\Bundle\CoreBundle\Controller;
 
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+
 class WebmasterController extends Controller
 {
     public function googleVerifyAction($request_code)
     {
-        if ($code = $settings->get('webmaster.google_verify')) {
+        if ($code = $this->getWebmasterSettings()->get('webmaster.google_verify')) {
             if (strpos($code, 'google') === 0) {
                 $code = substr($code, 6);
             }

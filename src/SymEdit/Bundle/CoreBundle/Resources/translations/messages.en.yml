@@ -44,8 +44,6 @@ symedit:
                 view: View Page
         post:
             image: Featured Image
-    flash:
-        share: 'Share your content:'
     settings:
         tabs:
             advanced: Advanced

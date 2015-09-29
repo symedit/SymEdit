@@ -12,6 +12,7 @@
 namespace SymEdit\Bundle\CoreBundle\Controller;
 
 use SymEdit\Bundle\CoreBundle\Repository\PageRepositoryInterface;
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
