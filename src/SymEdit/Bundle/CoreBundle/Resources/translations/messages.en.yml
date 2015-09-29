@@ -8,11 +8,11 @@ symedit:
         page:
             title: Title
             name:
-                label: Name
+                label: Slug
                 popover:
                     title: Page Name
                     content: >
-                      The Page's "Name" attribute determines the URL of the page.
+                      The Page's "Slug" attribute determines the URL of the page.
                       If the page has any parents, it will use them as well. Eg.
                       Root > about-us > team becomes /about-us/team
             tagline: Page Heading

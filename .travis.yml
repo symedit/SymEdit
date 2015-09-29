@@ -10,6 +10,7 @@ matrix:
         - php: 7.0
 
 install:
+    - composer self-update
     - composer --prefer-source install
 
 before_script:
@@ -17,3 +18,4 @@ before_script:
 
 script:
     - phpunit
+    - bin/behat
