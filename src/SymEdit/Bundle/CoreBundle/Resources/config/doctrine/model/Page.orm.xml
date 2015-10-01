@@ -91,6 +91,12 @@
             <gedmo:versioned />
         </field>
 
+        <many-to-one field="image" target-entity="SymEdit\Bundle\MediaBundle\Model\ImageInterface">
+            <cascade>
+                <cascade-persist/>
+            </cascade>
+        </many-to-one>
+
         <many-to-one field="parent" target-entity="SymEdit\Bundle\CoreBundle\Model\PageInterface" inversed-by="children">
             <join-column name="parent" referenced-column-name="id" on-delete="SET NULL"/>
 

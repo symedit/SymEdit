@@ -28,6 +28,7 @@ symedit:
             display:
                 label: Display
                 help: Show this Page in Navigation
+            image: Featured Image
             crawl:
                 label: Crawl
                 help: Show this Page on sitemap.xml?

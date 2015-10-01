@@ -29,6 +29,7 @@ class PageType extends AbstractType
                 'help_label_popover' => array(
                     'title' => 'symedit.form.page.name.popover.title',
                     'content' => 'symedit.form.page.name.popover.content',
+                    'icon' => 'info-circle',
                 ),
             ))
             ->add('parent', 'symedit_page_choose', array(
@@ -42,6 +43,11 @@ class PageType extends AbstractType
                 'required' => false,
                 'help_block' => 'symedit.form.page.display.help',
                 'label' => 'symedit.form.page.display.label',
+            ))
+            ->add('image', 'symedit_image_choose', array(
+                'required' => false,
+                'show_image' => true,
+                'label' => 'symedit.form.page.image',
             ))
         ;
     }

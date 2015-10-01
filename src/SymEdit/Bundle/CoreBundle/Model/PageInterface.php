@@ -11,8 +11,9 @@
 
 namespace SymEdit\Bundle\CoreBundle\Model;
 
-use Symfony\Component\Validator\ExecutionContextInterface;
+use SymEdit\Bundle\MediaBundle\Model\ImageInterface;
 use SymEdit\Bundle\SeoBundle\Model\SeoAbleInterface;
+use Symfony\Component\Validator\ExecutionContextInterface;
 
 interface PageInterface extends SeoAbleInterface, \IteratorAggregate
 {
@@ -149,6 +150,16 @@ interface PageInterface extends SeoAbleInterface, \IteratorAggregate
      * @return bool Whether to display the page or not
      */
     public function getDisplay();
+
+    /**
+     * @return ImageInterface
+     */
+    public function getImage();
+
+    /**
+     * @param ImageInterface $image
+     */
+    public function setImage(ImageInterface $image);
 
     /**
      * @param bool $crawl

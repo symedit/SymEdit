@@ -12,7 +12,9 @@
 namespace SymEdit\Bundle\CoreBundle\Model;
 
 use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use SymEdit\Bundle\CoreBundle\Iterator\RecursivePageIterator;
+use SymEdit\Bundle\MediaBundle\Model\ImageInterface;
 use Symfony\Component\Validator\ExecutionContextInterface;
 
 class Page implements PageInterface
@@ -76,6 +78,11 @@ class Page implements PageInterface
      * @var bool
      */
     protected $display;
+
+    /**
+     * @var ImageInterface
+     */
+    protected $image;
 
     /**
      * @var bool
@@ -416,6 +423,21 @@ class Page implements PageInterface
     }
 
     /**
+     * {@inheritdoc}
+     */
+    public function getImage()
+    {
+        return $this->image;
+    }
+
+    public function setImage(ImageInterface $image)
+    {
+        $this->image = $image;
+
+        return $this;
+    }
+
+    /**
      * Set crawl.
      *
      * @param bool $crawl
@@ -621,7 +643,7 @@ class Page implements PageInterface
     /**
      * Get children.
      *
-     * @return Doctrine\Common\Collections\Collection
+     * @return Collection
      */
     public function getChildren()
     {
