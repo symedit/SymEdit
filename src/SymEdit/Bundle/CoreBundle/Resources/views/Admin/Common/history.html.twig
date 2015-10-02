@@ -1,0 +1,47 @@
+{% import '@SymEdit/Admin/macro.html.twig' as macro %}
+
+{% macro format_value(value) %}
+    {% if value is iterable %}
+        <ul>
+            {% for k, v in value %}
+                <li>
+                    <strong>{{ k|humanize }}</strong>
+                    {{ _self.format_value(v) }}
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        {{ value }}
+    {% endif %}
+{% endmacro %}
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Action</th>
+            <th>Logged At</th>
+            <th>Data</th>
+            <th>Author</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for entry in entries %}
+            <tr>
+                <td>
+                    {{ entry.action }}
+                </td>
+                <td>{{ entry.loggedAt|date }} (#{{ entry.version }})</td>
+                <td>
+                    {{ _self.format_value(entry.data) }}
+                </td>
+                <td>{{ entry.username|default('None') }}</td>
+                <td>
+                    {% if revert_route is defined and not loop.first %}
+                        {{ macro.patch(path(revert_route, {'id': entry.objectId, 'version': entry.version}), message|default('symedit.history.revert'|trans), 'undo') }}
+                    {% endif %}
+                </td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>

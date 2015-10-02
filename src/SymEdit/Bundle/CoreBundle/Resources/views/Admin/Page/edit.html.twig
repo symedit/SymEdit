@@ -15,6 +15,11 @@
     {{ icon('globe') }}
     {{ 'symedit.form.page.actions.view'|trans }}
 </a>
+
+<a href="{{ path('admin_page_history', {'id': page.id}) }}" class="btn btn-warning">
+    {{ icon('history') }}
+    {{ 'symedit.history.view'|trans }}
+</a>
 {% endblock %}
 
 {% block extra %}

@@ -1,0 +1,14 @@
+{% extends '@SymEdit/Admin/base.html.twig' %}
+
+{% block title %}History of {{ post.title }} Page{% endblock %}
+
+{% block actions %}
+<a class="btn btn-info" href="{{ path('admin_post_update', {'id': post.id}) }}">
+    {{ icon('arrow-left') }}
+    {{ 'symedit.form.post.actions.back'|trans }}
+</a>
+{% endblock %}
+
+{% block content %}
+    {% include '@SymEdit/Admin/Common/history.html.twig' with {'revert_route': 'admin_post_revert'} %}
+{% endblock %}

@@ -54,6 +54,24 @@ class ResourceController extends BaseResourceController
         return $this->handleView($view);
     }
 
+    public function historyAction(Request $request)
+    {
+        $resource = $this->findOr404($request);
+        $repository = $this->get('doctrine')->getManager()->getRepository('Gedmo\Loggable\Entity\LogEntry');
+        $entries = $repository->getLogEntries($resource);
+
+        $view = $this
+            ->view()
+            ->setTemplate($this->config->getTemplate('history.html'))
+            ->setData(array(
+                $this->config->getResourceName() => $resource,
+                'entries' => $entries,
+            ))
+        ;
+
+        return $this->handleView($view);
+    }
+
     /**
      * @return ObjectManager
      */
