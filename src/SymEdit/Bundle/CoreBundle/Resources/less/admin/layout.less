@@ -15,7 +15,6 @@
 
 .layout-container {
     background-color: #fff;
-    display: table;
     width: 50px;
     border: 2px solid #333;
     padding: 3px 1px;
@@ -31,68 +30,75 @@
         .drop-shadow(0,0,10px,.7);
     }
 
-    > .r {
-        > div {
-            display: table-cell;
-            height: 17px;
-            width: 1%;
-        }
+    > .row-container {
+        display: table;
+        width: 100%;
 
-        /////////////////////////////////
-        // Text
-        /////////////////////////////////
-        .t,.h {
-            background-image: url('@{image-text}');
-        }
+        > .r {
+            display: table-row;
 
-        /////////////////////////////////
-        // Half text
-        /////////////////////////////////
-        .h {
-            background-position: 0 -9px;
-            background-repeat: repeat-x;
-        }
-
-        /////////////////////////////////
-        // Image
-        /////////////////////////////////
-        .i {
-            background-image: url('@{image-image}');
-            position: relative;
-
-            &:after {
-                content: " ";
-                height: 100%;
-                border-right: 2px solid #333;
-                position: absolute;
-                right: 0;
+            > div {
+                display: table-cell;
+                height: 17px;
+                width: 1%;
             }
 
-            &:before {
-                content: " ";
-                height: 100%;
-                border-left: 2px solid #333;
-                position: absolute;
-                left: 0;
+            /////////////////////////////////
+            // Text
+            /////////////////////////////////
+            .t,.h {
+                background-image: url('@{image-text}');
             }
-        }
 
-        /////////////////////////////////
-        // Form
-        /////////////////////////////////
-        .f {
-            background-image: url('@{image-form}');
-            border-left: 1px solid #333;
-            border-right: 1px solid #333;
-        }
+            /////////////////////////////////
+            // Half text
+            /////////////////////////////////
+            .h {
+                background-position: 0 -9px;
+                background-repeat: repeat-x;
+            }
 
-        /////////////////////////////////
-        // Home
-        /////////////////////////////////
-        .H {
-            background-image: url('@{image-home}');
-            background-repeat: no-repeat;
-            background-position: top center;
+            /////////////////////////////////
+            // Image
+            /////////////////////////////////
+            .i {
+                background-image: url('@{image-image}');
+                position: relative;
+
+                &:after {
+                    content: " ";
+                    height: 100%;
+                    border-right: 2px solid #333;
+                    position: absolute;
+                    right: 0;
+                }
+
+                &:before {
+                    content: " ";
+                    height: 100%;
+                    border-left: 2px solid #333;
+                    position: absolute;
+                    left: 0;
+                }
+            }
+
+            /////////////////////////////////
+            // Form
+            /////////////////////////////////
+            .f {
+                background-image: url('@{image-form}');
+                border-left: 1px solid #333;
+                border-right: 1px solid #333;
+            }
+
+            /////////////////////////////////
+            // Home
+            /////////////////////////////////
+            .H {
+                background-image: url('@{image-home}');
+                background-repeat: no-repeat;
+                background-position: top center;
+            }
         }
     }
 }
