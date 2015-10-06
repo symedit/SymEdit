@@ -53,6 +53,13 @@
             <tag name="kernel.event_subscriber" />
         </service>
 
+        <!-- Page Display Options Subscriber -->
+        <service id="symedit.event_subscriber.page_display_options" class="SymEdit\Bundle\CoreBundle\EventListener\Subscriber\PageDisplayOptionsSubscriber">
+            <argument type="service" id="symedit.repository.widget_area" />
+
+            <tag name="kernel.event_subscriber" />
+        </service>
+
         <!-- Post Subscriber -->
         <service id="symedit.event_subscriber.post" class="%symedit.event_subscriber.post.class%">
             <argument type="service" id="session" />

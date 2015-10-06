@@ -29,6 +29,17 @@ class Template implements TemplateInterface
         return $this->key;
     }
 
+    public function getType()
+    {
+        $parts = explode('/', ltrim($this->getKey(), '/'), 2);
+
+        if (count($parts) === 1) {
+            return null;
+        }
+
+        return $parts[0];
+    }
+
     public function getKey()
     {
         return $this->key;

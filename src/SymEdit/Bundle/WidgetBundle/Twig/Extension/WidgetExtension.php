@@ -42,12 +42,12 @@ class WidgetExtension extends \Twig_Extension
     public function getFunctions()
     {
         return array(
-            new \Twig_SimpleFunction('symedit_widget_area_render', array($this, 'renderWidgetArea'), array('is_safe' => array('html'))),
+            new \Twig_SimpleFunction('symedit_widget_area_render', array($this, 'renderWidgetArea'), array('needs_context' => true, 'is_safe' => array('html'))),
             new \Twig_SimpleFunction('symedit_widget_render', array($this, 'renderWidget'), array('needs_context' => true, 'is_safe' => array('html'))),
         );
     }
 
-    public function renderWidgetArea($area, $template = null)
+    public function renderWidgetArea($context, $area, $template = null)
     {
         $widgetArea = $this->widgetAreaRepository->findOneBy(array(
             'area' => $area,

@@ -27,14 +27,14 @@ class PageController extends ResourceController
          * Check for template
          */
         if (($template = $page->getTemplate()) === null) {
-            $template = 'base.html.twig';
+            $template = '@Theme/Page/base.html.twig';
         }
 
         $view = $this
             ->view()
             ->setTemplateVar('Page')
             ->setData($page)
-            ->setTemplate(sprintf('@SymEdit/Page/%s', $template));
+            ->setTemplate($template);
 
         return $this->handleView($view);
     }

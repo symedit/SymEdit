@@ -11,13 +11,23 @@
 
 namespace SymEdit\Bundle\CoreBundle\Form\Type;
 
+use SymEdit\Bundle\CoreBundle\Event\DisplayOptionsEvent;
+use SymEdit\Bundle\CoreBundle\Event\Events;
 use SymEdit\Bundle\CoreBundle\Form\EventListener\PageTypeSubscriber;
+use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class PageType extends AbstractType
 {
+    protected $eventDispatcher;
+
+    public function __construct(EventDispatcherInterface $eventDispatcher)
+    {
+        $this->eventDispatcher = $eventDispatcher;
+    }
+
     public function buildBasicForm(FormBuilderInterface $builder, array $options)
     {
         $builder
@@ -57,6 +67,8 @@ class PageType extends AbstractType
         $builder
             ->add('template', 'template', array(
                 'label' => 'symedit.form.page.template',
+                'directory' => 'Page',
+                'display_layouts' => true,
             ))
         ;
     }
@@ -105,6 +117,12 @@ class PageType extends AbstractType
                 'label_render' => false,
             ))
         ;
+    }
+
+    public function buildDisplayOptionsForm(FormBuilderInterface $builder, array $options)
+    {
+        $optionsEvent = new DisplayOptionsEvent($builder, $options);
+        $this->eventDispatcher->dispatch(Events::PAGE_DISPLAY_OPTIONS, $optionsEvent);
     }
 
     public function buildAdvancedForm(FormBuilderInterface $builder, array $options)
@@ -163,6 +181,11 @@ class PageType extends AbstractType
                     'attr' => array(
                         'class' => 'full',
                     ),
+                ),
+                'displayOptions' => array(
+                    'label' => 'Display',
+                    'icon' => 'cog',
+                    'inherit_data' => false,
                 ),
                 'advanced' => array(
                     'label' => 'symedit.form.page.tabs.advanced',

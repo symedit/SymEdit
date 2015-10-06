@@ -42,7 +42,7 @@ class LoadPageData extends AbstractFixture implements OrderedFixtureInterface
         $page_home
             ->setHomepage(true)
             ->setParent($page_root)
-            ->setTemplate('home.html.twig')
+            ->setTemplate('@Theme/Page/home.html.twig')
             ->setName('')
             ->setTagline('Welcome to My Wonderful Website!')
             ->setTitle('Home')
@@ -56,7 +56,7 @@ class LoadPageData extends AbstractFixture implements OrderedFixtureInterface
         $page_about = $this->createPage();
         $page_about
             ->setParent($page_root)
-            ->setTemplate('base.html.twig')
+            ->setTemplate('@Theme/Page/base.html.twig')
             ->setName('about')
             ->setTagline('About My Website')
             ->setTitle('About')

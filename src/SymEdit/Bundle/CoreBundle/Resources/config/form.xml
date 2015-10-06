@@ -18,6 +18,8 @@
 
         <!-- Page Form -->
         <service id="symedit.form.type.page" class="%symedit.form.type.page.class%">
+            <argument type="service" id="event_dispatcher" />
+
             <tag name="form.type" alias="symedit_page" />
         </service>
 

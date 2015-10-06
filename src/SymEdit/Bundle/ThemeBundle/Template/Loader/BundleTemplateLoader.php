@@ -15,10 +15,20 @@ use Symfony\Component\HttpKernel\KernelInterface;
 
 class BundleTemplateLoader extends DirectoriesTemplateLoader
 {
-    public function __construct($bundle, KernelInterface $kernel, $type = 'Page')
-    {
-        $directories = $kernel->locateResource(sprintf('@%s/Resources/views/%s', $bundle, $type), null, false);
+    protected $bundle;
+    protected $kernel;
 
-        parent::__construct(array_reverse($directories));
+    public function __construct($bundle, KernelInterface $kernel)
+    {
+        $this->bundle = $bundle;
+        $this->kernel = $kernel;
+    }
+
+    protected function getDirectories()
+    {
+        $location = sprintf('@%s/Resources/views', $this->bundle);
+        $directories = $this->kernel->locateResource($location, null, false);
+
+        return array_reverse($directories);
     }
 }

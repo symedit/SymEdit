@@ -15,14 +15,15 @@ use SymEdit\Bundle\ThemeBundle\Model\Theme;
 
 class ThemeTemplateLoader extends DirectoriesTemplateLoader
 {
+    protected $theme;
+
     public function __construct(Theme $theme)
     {
-        $directories = array();
+        $this->theme = $theme;
+    }
 
-        foreach ($theme->getTemplateDirectories() as $directory) {
-            $directories[] = sprintf('%s/Page', $directory);
-        }
-
-        parent::__construct($directories);
+    protected function getDirectories()
+    {
+        return $this->theme->getTemplateDirectories();
     }
 }

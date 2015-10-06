@@ -19,6 +19,7 @@ use Symfony\Component\Form\FormEvent;
 use Symfony\Component\Form\FormEvents;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\Form\FormView;
+use Symfony\Component\OptionsResolver\Options;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class TemplateType extends AbstractType
@@ -34,16 +35,20 @@ class TemplateType extends AbstractType
 
     public function buildView(FormView $view, FormInterface $form, array $options)
     {
-        $templates = $this->templateManager->getTemplates($options['directory']);
-
-        // The layout manager injects the layout if it finds one
-        array_map(array($this->layoutManager, 'getLayout'), $templates);
-
-        $view->vars['templates'] = $this->templateManager->getTemplateTree($options['directory']);
+        $view->vars = array_merge($view->vars, array(
+            'templates' => $this->templateManager->getTemplateTree($options['directory']),
+            'namespace' => $options['namespace'],
+            'display_layouts' => $options['display_layouts'],
+            'layout_manager' => $this->layoutManager,
+        ));
     }
 
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
+        if (!$options['display_layouts']) {
+            parent::buildForm($builder, $options);
+        }
+
         // Set the default value if none is set
         $builder->addEventListener(FormEvents::PRE_SET_DATA, function (FormEvent $event) use ($options) {
             if ($event->getData() === null) {
@@ -55,17 +60,36 @@ class TemplateType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
+            'namespace' => 'Theme',
+            'display_layouts' => false,
             'default_template' => 'base.html.twig',
-            'directory' => 'Page',
             'attr' => array(
                 'data-toggle' => 'template-target',
             ),
         ));
+
+
+        $resolver->setRequired('directory');
+        $resolver->setRequired('namespace');
+
+        // Get Choice Normalizer
+        $normalizer = function (Options $options) {
+            $choices = array();
+
+            foreach ($this->templateManager->getTemplates($options['directory']) as $template) {
+                $name = sprintf('@%s/%s', $options['namespace'], $template->getKey());
+                $choices[$name] = $template->getKey();
+            }
+
+            return $choices;
+        };
+
+        $resolver->setNormalizer('choices', $normalizer);
     }
 
     public function getParent()
     {
-        return 'hidden';
+        return 'choice';
     }
 
     public function getName()
