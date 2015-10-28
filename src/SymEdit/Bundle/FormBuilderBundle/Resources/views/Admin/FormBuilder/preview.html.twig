@@ -1,0 +1,16 @@
+{% extends '@SymEdit/Admin/layout.html.twig' %}
+
+{% block title %}Form Builder &raquo; {{ form_builder.name }}{% endblock %}
+
+{% block actions %}
+    <a class="btn btn-info" href="{{ path('admin_form_show', { id:form_builder.id }) }}">
+        Back To Form
+    </a>
+{% endblock %}
+
+{% block content %}
+    <h2>{{ form_builder.legend }}</h2>
+
+    {{ form(form) }}
+
+{% endblock %}

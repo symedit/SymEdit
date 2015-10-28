@@ -1,0 +1,44 @@
+{% extends '@SymEdit/Admin/layout.html.twig' %}
+
+{% block title %}Form Builder &raquo; {{ form_builder.name }}{% endblock %}
+
+{% block actions %}
+    <a class="btn btn-info" href="{{ path('admin_form') }}">
+        {{ 'symedit.form.form_builder.actions.back'|trans }}
+    </a>
+    <a class="btn btn-primary" href="{{ path('admin_form_element_choose', { formId: form_builder.id }) }}">
+        {{ icon('plus') }}
+        {{ 'symedit.form.form_element.actions.new'|trans }}
+    </a>
+    <a class="btn btn-success" href="{{ path('admin_form_preview', { id: form_builder.id }) }}">
+        {{ icon('search') }}
+        {{ 'symedit.form.form_builder.actions.preview'|trans }}
+    </a>
+{% endblock %}
+
+{% block content %}
+    <h2>{{ form_builder.legend }}</h2>
+
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Label</th>
+                <th>Type</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        {% for element in form_builder.formElements %}
+            <tr>
+                <td>{{ element.id }}</td>
+                <td>{{ element.options.label|default('') }}</td>
+                <td>{{ element.type|trans({}, 'SymEditFormBuilder') }}</td>
+                <td>
+                    <a class="btn btn-primary btn-xs" href="{{ path('admin_form_element_update', { id: element.id }) }}">
+                        Edit
+                    </a>
+                </td>
+            </tr>
+        {% endfor %}
+    </table>
+{% endblock %}

@@ -1,0 +1,27 @@
+<?xml version="1.0" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <services>
+        <service id="symedit.form.type.form_element" class="%symedit.form.type.form_element.class%">
+            <argument type="service" id="symedit_form_builder.builder_registry" />
+            <argument>%symedit.model.form_element.class%</argument>
+
+            <tag name="form.type" alias="symedit_form_element" />
+        </service>
+
+        <service id="symedit_form_builder.form.factory" class="SymEdit\Bundle\FormBuilderBundle\Form\FormBuilderFactory">
+            <argument type="service" id="symedit_form_builder.builder_registry" />
+            <argument type="service" id="form.factory" />
+            <argument type="service" id="event_dispatcher" />
+            <argument type="service" id="router" />
+            <argument>%symedit_form_builder.action_route%</argument>
+        </service>
+
+        <service id="symedit_form_builder.form.processor" class="SymEdit\Bundle\FormBuilderBundle\Form\FormProcessor">
+            <argument type="service" id="symedit_form_builder.builder_registry" />
+        </service>
+    </services>
+</container>

@@ -1,0 +1,38 @@
+<?xml version="1.0" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <services>
+        <service id="symedit_form_builder.builder_registry" class="SymEdit\Bundle\FormBuilderBundle\Builder\FieldBuilderRegistry">
+            <argument type="service" id="symedit_form_builder.builder.base"></argument>
+
+            <!-- Replaced with compiler pass -->
+            <argument type="collection" />
+        </service>
+
+        <!-- Base Field -->
+        <service id="symedit_form_builder.builder.base" class="SymEdit\Bundle\FormBuilderBundle\Builder\Field\BaseFieldBuilder" public="false" />
+
+        <!-- Text Field -->
+        <service id="symedit_form_builder.builder.text" class="SymEdit\Bundle\FormBuilderBundle\Builder\Field\TextFieldBuilder" public="false">
+            <tag name="symedit_form_builder.builder" type="text" />
+        </service>
+
+        <!-- Textarea Field -->
+        <service id="symedit_form_builder.builder.textarea" class="SymEdit\Bundle\FormBuilderBundle\Builder\Field\TextAreaFieldBuilder" public="false">
+            <tag name="symedit_form_builder.builder" type="textarea" />
+        </service>
+
+        <!-- Checkbox Field -->
+        <service id="symedit_form_builder.builder.checkbox" class="SymEdit\Bundle\FormBuilderBundle\Builder\Field\CheckboxFieldBuilder" public="false">
+            <tag name="symedit_form_builder.builder" type="checkbox" />
+        </service>
+
+        <!-- Email Field -->
+        <service id="symedit_form_builder.builder.email" class="SymEdit\Bundle\FormBuilderBundle\Builder\Field\EmailFieldBuilder" public="false">
+            <tag name="symedit_form_builder.builder" type="email" />
+        </service>
+    </services>
+</container>

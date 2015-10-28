@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping"
+                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                  xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping
+                                      http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd"
+                  xmlns:gedmo="http://gediminasm.org/schemas/orm/doctrine-extensions-mapping">
+
+    <mapped-superclass name="SymEdit\Bundle\FormBuilderBundle\Model\Form" table="form">
+        <id name="id" type="integer" column="id">
+            <generator strategy="IDENTITY"/>
+        </id>
+        <field name="name" type="string" column="name"/>
+        <field name="legend" type="string" column="legend"/>
+        <field name="updatedAt" type="datetime" column="updatedAt">
+            <gedmo:timestampable on="update" />
+        </field>
+
+        <one-to-many field="elements" target-entity="SymEdit\Bundle\FormBuilderBundle\Model\FormElementInterface" mapped-by="form">
+            <cascade>
+                <cascade-remove/>
+                <cascade-persist/>
+            </cascade>
+        </one-to-many>
+    </mapped-superclass>
+</doctrine-mapping>

@@ -1,0 +1,15 @@
+<?xml version="1.0" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <services>
+        <service id="symedit_form_builder.widget.strategy.form_builder" class="SymEdit\Bundle\FormBuilderBundle\Widget\Strategy\FormBuilderStrategy">
+            <argument type="service" id="symedit.repository.form_builder" />
+            <argument type="service" id="symedit_form_builder.form.factory" />
+
+            <tag name="symedit_widget.widget_strategy" alias="form_builder" />
+        </service>
+    </services>
+</container>

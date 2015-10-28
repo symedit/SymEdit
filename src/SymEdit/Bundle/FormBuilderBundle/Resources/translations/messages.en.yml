@@ -1,0 +1,16 @@
+symedit:
+    form:
+        form_builder:
+            actions:
+                new: Create New Form
+                save: Save Form
+                preview: Preview Form
+                delete: Delete Form
+                back: Back To Forms
+        form_element:
+            actions:
+                new: Add Form Element
+                create: Create Element
+                save: Save Element
+                delete: Delete Element
+                back: Back To Form

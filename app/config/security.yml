@@ -65,3 +65,4 @@ security:
             - ROLE_ADMIN_STYLIZER
             - ROLE_ADMIN_SETTING_ADVANCED
             - ROLE_API
+            - ROLE_ADMIN_FORM_BUILDER

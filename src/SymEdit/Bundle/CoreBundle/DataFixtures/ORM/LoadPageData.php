@@ -11,21 +11,13 @@
 
 namespace SymEdit\Bundle\CoreBundle\DataFixtures\ORM;
 
-use Doctrine\Common\DataFixtures\AbstractFixture;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
-use Symfony\Component\DependencyInjection\ContainerAwareInterface;
-use Symfony\Component\DependencyInjection\ContainerInterface;
+use SymEdit\Bundle\CoreBundle\DataFixtures\AbstractFixture;
+use SymEdit\Bundle\CoreBundle\Model\PageInterface;
 
-class LoadPageData extends AbstractFixture implements OrderedFixtureInterface, ContainerAwareInterface
+class LoadPageData extends AbstractFixture implements OrderedFixtureInterface
 {
-    private $container;
-
-    public function setContainer(ContainerInterface $container = null)
-    {
-        $this->container = $container;
-    }
-
     public function load(ObjectManager $manager)
     {
         // Root Node
@@ -111,8 +103,6 @@ class LoadPageData extends AbstractFixture implements OrderedFixtureInterface, C
             ->setTagline('Contact Us Now!')
             ->setTitle('Contact')
             ->setContent('')
-            ->setPageController(true)
-            ->setPageControllerPath('symedit_contact')
         ;
 
         $manager->persist($page_contact);
@@ -122,9 +112,12 @@ class LoadPageData extends AbstractFixture implements OrderedFixtureInterface, C
         $manager->flush();
     }
 
+    /**
+     * @return PageInterface
+     */
     protected function createPage()
     {
-        return $this->container->get('symedit.repository.page')->createNew();
+        return $this->getRepository('page')->createNew();
     }
 
     public function getOrder()

@@ -1,0 +1,7 @@
+SymEdit\Bundle\FormBuilderBundle\Model\FormElement:
+    properties:
+        name:
+            - Regex:
+                pattern: "/^[a-z0-9_-]+$/"
+                message: "You may only use lowercase letters, numbers, underscores or hyphens"
+

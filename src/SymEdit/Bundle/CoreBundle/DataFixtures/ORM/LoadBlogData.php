@@ -11,10 +11,11 @@
 
 namespace SymEdit\Bundle\CoreBundle\DataFixtures\ORM;
 
-use Doctrine\Common\Persistence\ObjectManager;
-use Doctrine\Common\DataFixtures\AbstractFixture;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
+use Doctrine\Common\Persistence\ObjectManager;
+use SymEdit\Bundle\CoreBundle\DataFixtures\AbstractFixture;
 use SymEdit\Bundle\CoreBundle\Model\Category;
+use SymEdit\Bundle\CoreBundle\Model\CategoryInterface;
 use SymEdit\Bundle\CoreBundle\Model\Post;
 
 class LoadBlogData extends AbstractFixture implements OrderedFixtureInterface
@@ -22,7 +23,7 @@ class LoadBlogData extends AbstractFixture implements OrderedFixtureInterface
     public function load(ObjectManager $manager)
     {
         // Create a general category
-        $category_general = new Category();
+        $category_general = $this->createCategory();
         $category_general
             ->setName('general')
             ->setTitle('General');
@@ -30,7 +31,7 @@ class LoadBlogData extends AbstractFixture implements OrderedFixtureInterface
         $manager->persist($category_general);
 
         // Create a default post
-        $post_default = new Post();
+        $post_default = $this->createPost();
         $post_default
             ->setAuthor($this->getReference('user-admin'))
             ->setTitle('Hello World!')
@@ -41,6 +42,19 @@ class LoadBlogData extends AbstractFixture implements OrderedFixtureInterface
 
         // Write them all
         $manager->flush();
+    }
+
+    /**
+     * @return CategoryInterface
+     */
+    protected function createCategory()
+    {
+        return $this->getRepository('category')->createNew();
+    }
+
+    protected function createPost()
+    {
+        return $this->getRepository('post')->createNew();
     }
 
     public function getOrder()

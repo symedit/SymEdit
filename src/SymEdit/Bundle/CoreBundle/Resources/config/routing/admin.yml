@@ -38,6 +38,10 @@ symedit_admin_widget_controller:
     resource: "@SymEditBundle/Resources/config/routing/admin/widget.yml"
     prefix: /widget
 
+symedit_admin_form_builder_controller:
+    resource: "@SymEditBundle/Resources/config/routing/admin/form_builder.yml"
+    prefix: /form-builder
+
 # Below not converted
 
 symedit_admin_dashboard_controller:

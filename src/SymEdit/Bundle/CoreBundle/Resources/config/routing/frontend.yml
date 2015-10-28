@@ -12,3 +12,7 @@ symedit_team_controller:
 
 symedit_webmaster_controller:
     resource: "@SymEditBundle/Resources/config/routing/frontend/webmaster.yml"
+
+symedit_form_builder_controller:
+    resource: "@SymEditBundle/Resources/config/routing/frontend/form_builder.yml"
+    prefix: /form-builder
