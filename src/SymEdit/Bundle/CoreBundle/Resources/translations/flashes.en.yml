@@ -1,8 +1,6 @@
 symedit:
     share: 'Share your content:'
     page:
-        created: The Page has been successfully created.
-        updated: The Page has been successfully updated.
         root_or_home: Cannot delete homepage or root page.
     stylizer:
         save: Styles Saved

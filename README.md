@@ -46,4 +46,6 @@ Testing
 Could definitely use some help in this aspect. There are some unit tests and functional
 tests that are run from `phpunit` so you can just run `phpunit` to use the existing tests.
 
-We have a .travis.yml configuration for travis and there is a build.xml for using jenkins.
+There are also Behat tests which can be run by using `bin/behat` once you've run composer install.
+
+We have a .travis.yml configuration for travis.

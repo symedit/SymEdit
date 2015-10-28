@@ -51,9 +51,6 @@ class BackendTest extends WebTestCase
             array('/user'),
             array('/user/new'),
 
-            array('/page'),
-            array('/page/new'),
-
             array('/post'),
             array('/post/new'),
 

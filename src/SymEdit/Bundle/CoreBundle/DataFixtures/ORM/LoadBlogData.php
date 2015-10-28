@@ -36,7 +36,9 @@ class LoadBlogData extends AbstractFixture implements OrderedFixtureInterface
             ->setAuthor($this->getReference('user-admin'))
             ->setTitle('Hello World!')
             ->setStatus(Post::PUBLISHED)
-            ->setContent('<p>Here is your first blog post! You will probably want to delete this.</p>');
+            ->setContent('<p>Here is your first blog post! You will probably want to delete this.</p>')
+            ->addCategory($category_general)
+        ;
 
         $manager->persist($post_default);
 

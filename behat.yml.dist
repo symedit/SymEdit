@@ -1,0 +1,37 @@
+default:
+    formatters:
+        pretty:
+            verbose: true
+    suites:
+        homepage:
+            contexts:
+                - Behat\MinkExtension\Context\MinkContext
+                - SymEdit\Bundle\CoreBundle\Behat\WebContext
+            filters:
+                tags: "@homepage"
+        pages:
+            contexts:
+                - Behat\MinkExtension\Context\MinkContext
+                - SymEdit\Bundle\CoreBundle\Behat\WebContext
+            filters:
+                tags: "@pages"
+        blog:
+            contexts:
+                - Behat\MinkExtension\Context\MinkContext
+                - SymEdit\Bundle\CoreBundle\Behat\WebContext
+                - SymEdit\Bundle\BlogBundle\Behat\BlogContext
+            filters:
+                tags: "@blog, @posts"
+        sitemap:
+            contexts:
+                - Behat\MinkExtension\Context\MinkContext
+                - SymEdit\Bundle\CoreBundle\Behat\WebContext
+                - SymEdit\Bundle\CoreBundle\Behat\SitemapContext
+            filters:
+                tags: "@sitemap"
+    extensions:
+        Behat\MinkExtension:
+            sessions:
+                default:
+                    symfony2: ~
+        Behat\Symfony2Extension: ~
