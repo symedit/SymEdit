@@ -70,12 +70,12 @@ abstract class DefaultContext extends RawMinkContext implements Context, KernelA
                 sprintf('%s for criteria "%s" was not found.', str_replace('_', ' ', ucfirst($type)), serialize($criteria))
             );
         }
-        
+
         return $resource;
     }
 
     /**
-     * Get Container
+     * Get Container.
      *
      * @return ContainerInterface
      */

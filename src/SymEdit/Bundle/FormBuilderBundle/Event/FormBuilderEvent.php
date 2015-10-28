@@ -27,7 +27,7 @@ class FormBuilderEvent extends Event
     }
 
     /**
-     * Get form builder model
+     * Get form builder model.
      *
      * @return FormInterface
      */
@@ -37,7 +37,7 @@ class FormBuilderEvent extends Event
     }
 
     /**
-     * Get the Symfony Form
+     * Get the Symfony Form.
      *
      * @return SymfonyFormInterface
      */

@@ -34,7 +34,7 @@ interface FormElementInterface
     public function setName($name);
 
     /**
-     * Set form element type
+     * Set form element type.
      *
      * @param string $type
      */
@@ -46,7 +46,7 @@ interface FormElementInterface
     public function getForm();
 
     /**
-     * Set form
+     * Set form.
      *
      * @param FormInterface $form
      */
@@ -72,17 +72,18 @@ interface FormElementInterface
     public function getExtra($extra, $default = null);
 
     /**
-     * Set an extra value
+     * Set an extra value.
      *
      * @param string $extra
-     * @param mixed $value
+     * @param mixed  $value
      */
     public function setExtra($extra, $value);
 
     /**
-     * Get single value from options
+     * Get single value from options.
      *
      * @param string $option Option to get.
+     *
      * @return mixed Get option value.
      */
     public function getOption($option);

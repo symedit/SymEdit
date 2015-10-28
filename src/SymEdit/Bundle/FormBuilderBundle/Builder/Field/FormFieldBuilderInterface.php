@@ -20,28 +20,28 @@ use Symfony\Component\Form\FormBuilderInterface;
 interface FormFieldBuilderInterface
 {
     /**
-     * Build Form Options
+     * Build Form Options.
      *
      * @param FormBuilderInterface $builder
      */
     public function buildOptionsForm(FormBuilderInterface $builder);
 
     /**
-     * Process result
+     * Process result.
      *
      * @param FormBuilderResultInterface $result
      */
     public function processResult(FormBuilderResultInterface $result, FormElementInterface $formElement, $value);
 
     /**
-     * Build Form Config
+     * Build Form Config.
      *
      * @param FormElementConfig $config
      */
     public function buildFormConfig(FormElementConfigInterface $config);
 
     /**
-     * Get Parent
+     * Get Parent.
      *
      * @return string
      */

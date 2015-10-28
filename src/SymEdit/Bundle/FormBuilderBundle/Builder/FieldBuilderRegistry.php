@@ -34,7 +34,7 @@ class FieldBuilderRegistry
     }
 
     /**
-     * Gets all builders for a type
+     * Gets all builders for a type.
      *
      * @param string $type
      *

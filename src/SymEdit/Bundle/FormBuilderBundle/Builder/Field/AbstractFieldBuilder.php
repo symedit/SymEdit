@@ -32,6 +32,6 @@ abstract class AbstractFieldBuilder implements FormFieldBuilderInterface
 
     public function getParent()
     {
-        return null;
+        return;
     }
 }

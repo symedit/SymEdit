@@ -52,7 +52,7 @@ class SymEditFormBuilderExtension extends SymEditResourceExtension implements Pr
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function getAlias()
     {

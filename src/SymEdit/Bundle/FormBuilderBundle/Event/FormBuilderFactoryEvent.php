@@ -26,7 +26,7 @@ class FormBuilderFactoryEvent extends Event
     }
 
     /**
-     * Get Form
+     * Get Form.
      *
      * @return FormInterface
      */

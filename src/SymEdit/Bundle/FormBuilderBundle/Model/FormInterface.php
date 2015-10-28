@@ -21,7 +21,7 @@ interface FormInterface
     public function getId();
 
     /**
-     * Slug
+     * Slug.
      *
      * @return string Unique slug for form name to be used in urls
      */
@@ -45,7 +45,7 @@ interface FormInterface
     public function removeFormElement(FormElementInterface $element);
 
     /**
-     * Set the updated time
+     * Set the updated time.
      *
      * @param \DateTime $updatedAt
      */

@@ -18,8 +18,7 @@ use Symfony\Component\Form\FormInterface as SymfonyFormInterface;
 interface FormProcessorInterface
 {
     /**
-     *
-     * @param FormInterface $model
+     * @param FormInterface        $model
      * @param SymfonyFormInterface $form
      *
      * @return FormBuilderResult

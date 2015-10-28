@@ -27,7 +27,7 @@ class FormBuilderStrategy extends AbstractWidgetStrategy
     {
         $this->repository = $repository;
         $this->factory = $factory;
-   }
+    }
 
     public function execute(WidgetInterface $widget)
     {

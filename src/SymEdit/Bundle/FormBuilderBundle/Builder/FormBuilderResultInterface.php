@@ -29,36 +29,36 @@ interface FormBuilderResultInterface
     public function getReplyTo();
 
     /**
-     * Get Symfony Form Data
+     * Get Symfony Form Data.
      *
      * @return array
      */
     public function getData();
 
     /**
-     * Add A Pair
+     * Add A Pair.
      * 
      * @param string $label
-     * @param mixed $value
+     * @param mixed  $value
      */
     public function addPair($label, $value);
 
     /**
-     * Get Data paired with form labels
+     * Get Data paired with form labels.
      *
      * @return array
      */
     public function getPairs();
 
     /**
-     * Get Underlying SymEdit Model Class
+     * Get Underlying SymEdit Model Class.
      *
      * @return FormInterface
      */
     public function getModel();
 
     /**
-     * Gets Symfony Form
+     * Gets Symfony Form.
      *
      * @return SymfonyFormInterface
      */

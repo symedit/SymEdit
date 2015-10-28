@@ -33,7 +33,7 @@ class WebContext extends DefaultContext implements SnippetAcceptingContext
         $this->assertSession()->addressEquals($this->generatePageUrl($page));
     }
 
-     /**
+    /**
      * @Given website has default configuration
      */
     public function websiteHasDefaultConfiguration()

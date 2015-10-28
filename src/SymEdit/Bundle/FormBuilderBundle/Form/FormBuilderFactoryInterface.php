@@ -20,7 +20,8 @@ interface FormBuilderFactoryInterface
      * Build form from form model.
      *
      * @param FormInterface $form
-     * @param type $data
+     * @param type          $data
+     *
      * @return SymfonyFormInterface
      */
     public function build(FormInterface $form, $data = null);

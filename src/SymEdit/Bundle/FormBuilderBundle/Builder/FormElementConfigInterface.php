@@ -24,7 +24,7 @@ interface FormElementConfigInterface
     public function getType();
 
     public function setType($type);
-    
+
     public function getName();
 
     /**

@@ -47,7 +47,7 @@ class FormElementController extends ResourceController
             ->setData(array(
                 'formBuilder' => $formBuilder,
                 'formElement' => $formElement,
-                'form' => $form->createView()
+                'form' => $form->createView(),
             ))
         ;
 
@@ -72,7 +72,7 @@ class FormElementController extends ResourceController
 
     public function getForm($resource = null, array $options = array())
     {
-        $form =  $this->config->getFormType();
+        $form = $this->config->getFormType();
 
         return $this->createForm($form, $resource, array(
             'field_type' => $resource->getType(),

@@ -97,7 +97,7 @@ class LoadWidgetData extends AbstractFixture implements OrderedFixtureInterface
 
         $manager->persist($supplemental);
 
-        /**
+        /*
          * Add Contact Page Info Widget
          */
         $contactInfo = $this->createWidget('template');
@@ -112,7 +112,7 @@ class LoadWidgetData extends AbstractFixture implements OrderedFixtureInterface
         // Add widget to area
         $supplemental->addWidget($contactInfo);
 
-        /**
+        /*
          * Add Widget to Contact Page
          */
         $formBuilder = $this->getReference('form_builder-contact');

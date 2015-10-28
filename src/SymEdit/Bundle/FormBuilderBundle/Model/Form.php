@@ -94,7 +94,7 @@ class Form implements FormInterface
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function setUpdatedAt(\DateTime $updatedAt)
     {

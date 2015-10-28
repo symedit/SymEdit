@@ -18,7 +18,7 @@ class GetResponseFormBuilderResultEvent extends FormBuilderResultEvent
     protected $response;
 
     /**
-     * Set Response for event
+     * Set Response for event.
      *
      * @param Response $response
      */
@@ -28,7 +28,7 @@ class GetResponseFormBuilderResultEvent extends FormBuilderResultEvent
     }
 
     /**
-     * Get Response
+     * Get Response.
      *
      * @return Response|null
      */

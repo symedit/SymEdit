@@ -55,19 +55,19 @@ class Builder
         $userMenu->addChild('My Profile', array(
             'label' => 'symedit.security.profile',
             'route' => 'fos_user_profile_show',
-            'icon' => 'user'
+            'icon' => 'user',
         ));
 
         $userMenu->addChild('Change Password', array(
             'label' => 'symedit.security.change_password',
             'route' => 'fos_user_change_password',
-            'icon' => 'lock'
+            'icon' => 'lock',
         ));
 
         $userMenu->addChild('Logout', array(
             'label' => 'symedit.security.logout',
             'route' => 'fos_user_security_logout',
-            'icon' => 'power-off'
+            'icon' => 'power-off',
         ));
 
         /*

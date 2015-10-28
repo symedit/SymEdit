@@ -26,7 +26,7 @@ class FormProcessor implements FormProcessorInterface
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function process(FormInterface $model, SymfonyFormInterface $form)
     {
