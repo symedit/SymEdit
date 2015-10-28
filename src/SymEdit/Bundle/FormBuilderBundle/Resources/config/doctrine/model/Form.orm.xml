@@ -17,6 +17,9 @@
         </field>
 
         <one-to-many field="elements" target-entity="SymEdit\Bundle\FormBuilderBundle\Model\FormElementInterface" mapped-by="form">
+            <order-by>
+                <order-by-field name="position" direction="ASC"/>
+            </order-by>
             <cascade>
                 <cascade-remove/>
                 <cascade-persist/>

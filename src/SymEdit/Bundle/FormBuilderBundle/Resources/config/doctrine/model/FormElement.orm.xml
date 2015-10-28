@@ -12,6 +12,9 @@
         </id>
         <field name="type" type="string" column="type"/>
         <field name="name" type="string" column="name"/>
+        <field name="position" type="integer" column="position">
+            <gedmo:sortable-position/>
+        </field>
         <field name="options" type="json_array" column="options"/>
 
         <many-to-one field="form" target-entity="SymEdit\Bundle\FormBuilderBundle\Model\FormInterface" inversed-by="elements"/>

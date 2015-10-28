@@ -57,7 +57,7 @@ class Configuration implements ConfigurationInterface
                                 ->arrayNode('form')
                                     ->addDefaultsIfNotSet()
                                     ->children()
-                                        ->scalarNode('default')->defaultValue('SymEdit\Bundle\FormBuilderBundle\Form\Type\FormType')->end()
+                                        ->scalarNode('default')->defaultValue('SymEdit\Bundle\FormBuilderBundle\Form\Type\FormBuilderType')->end()
                                     ->end()
                                 ->end()
                             ->end()

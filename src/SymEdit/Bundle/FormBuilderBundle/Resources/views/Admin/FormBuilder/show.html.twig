@@ -28,8 +28,9 @@
                 <th>Actions</th>
             </tr>
         </thead>
+        <tbody data-toggle="sortable" data-url="{{ path('admin_form_element_reorder') }}">
         {% for element in form_builder.formElements %}
-            <tr>
+            <tr data-id="{{ element.id }}">
                 <td>{{ element.id }}</td>
                 <td>{{ element.options.label|default('') }}</td>
                 <td>{{ element.type|trans({}, 'SymEditFormBuilder') }}</td>
@@ -40,5 +41,6 @@
                 </td>
             </tr>
         {% endfor %}
+        </tbody>
     </table>
 {% endblock %}

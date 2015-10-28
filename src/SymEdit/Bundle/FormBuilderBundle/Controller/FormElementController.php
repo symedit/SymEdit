@@ -12,7 +12,7 @@
 namespace SymEdit\Bundle\FormBuilderBundle\Controller;
 
 use SymEdit\Bundle\FormBuilderBundle\Model\FormElementInterface;
-use Sylius\Bundle\ResourceBundle\Controller\ResourceController;
+use SymEdit\Bundle\ResourceBundle\Controller\ResourceController;
 use Symfony\Component\HttpFoundation\Request;
 
 class FormElementController extends ResourceController

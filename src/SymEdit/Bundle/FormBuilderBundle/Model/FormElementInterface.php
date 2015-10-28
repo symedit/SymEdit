@@ -53,6 +53,20 @@ interface FormElementInterface
     public function setForm(FormInterface $form);
 
     /**
+     * Get position order
+     *
+     * @return int Position
+     */
+    public function getPosition();
+
+    /**
+     * Set order position.
+     *
+     * @param int $position
+     */
+    public function setPosition($position);
+
+    /**
      * Set options for form element.
      *
      * @param array $options
