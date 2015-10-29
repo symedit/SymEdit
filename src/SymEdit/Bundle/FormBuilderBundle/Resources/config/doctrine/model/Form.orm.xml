@@ -10,7 +10,7 @@
         <id name="id" type="integer" column="id">
             <generator strategy="IDENTITY"/>
         </id>
-        <field name="name" type="string" column="name"/>
+        <field name="name" type="string" unique="true" column="name"/>
         <field name="legend" type="string" column="legend"/>
         <field name="updatedAt" type="datetime" column="updatedAt">
             <gedmo:timestampable on="update" />

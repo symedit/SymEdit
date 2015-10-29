@@ -25,7 +25,8 @@
                 <td>{{ form_builder.name }}</td>
                 <td>
                     <a class="btn btn-default btn-sm" href="{{ path('admin_form_show', { 'id': form_builder.id }) }}">
-                        View
+                        {{ icon('reorder') }}
+                        {{ 'symedit.form.form_builder.actions.manage'|trans }}
                     </a>
                     <a class="btn btn-primary btn-sm" href="{{ path('admin_form_update', { 'id': form_builder.id }) }}">
                         {{ icon('pencil') }}

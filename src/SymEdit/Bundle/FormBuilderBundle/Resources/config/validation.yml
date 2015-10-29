@@ -1,3 +1,7 @@
+SymEdit\Bundle\FormBuilderBundle\Model\Form:
+    constraints:
+        - Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity: name
+
 SymEdit\Bundle\FormBuilderBundle\Model\FormElement:
     properties:
         name:

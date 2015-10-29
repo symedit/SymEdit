@@ -4,6 +4,7 @@
 
 {% block actions %}
     <a class="btn btn-info" href="{{ path('admin_form') }}">
+        {{ icon('arrow-left') }}
         {{ 'symedit.form.form_builder.actions.back'|trans }}
     </a>
     <a class="btn btn-primary" href="{{ path('admin_form_element_choose', { formId: form_builder.id }) }}">

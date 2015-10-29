@@ -4,14 +4,24 @@
 {% block title %}Form Builder &raquo; {{ form_builder.name }} &raquo; Edit{% endblock %}
 
 {% block form_actions %}
+<a class="btn btn-info" href="{{ path('admin_form') }}">
+    {{ icon('arrow-left') }}
+    {{ 'symedit.form.form_builder.actions.back'|trans }}
+</a>
+
 <button class="btn btn-primary" type="submit">
     {{ icon('save') }}
     {{ 'symedit.form.form_builder.actions.save'|trans }}
 </button>
 
-{#{{ macro.delete_button('post_delete', 'symedit.form.post.actions.delete') }}#}
+<a class="btn btn-info" href="{{ path('admin_form_show', { 'id': form_builder.id }) }}">
+    {{ icon('reorder') }}
+    {{ 'symedit.form.form_builder.actions.manage'|trans }}
+</a>
+
+{{ macro.delete_button('form_builder_delete', 'symedit.form.form_builder.actions.delete') }}
 {% endblock %}
 
 {% block extra %}
-{#{{ macro.delete_form('post_delete', path('admin_post_delete', {'id': post.id})) }}#}
+{{ macro.delete_form('form_builder_delete', path('admin_form_delete', {'id': form_builder.id})) }}
 {% endblock %}

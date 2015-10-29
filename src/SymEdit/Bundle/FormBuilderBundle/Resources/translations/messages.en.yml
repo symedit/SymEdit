@@ -3,10 +3,12 @@ symedit:
         form_builder:
             actions:
                 new: Create New Form
+                create: Create Form
                 save: Save Form
                 preview: Preview Form
                 delete: Delete Form
                 back: Back To Forms
+                manage: Manage Fields
         form_element:
             actions:
                 new: Add Form Element

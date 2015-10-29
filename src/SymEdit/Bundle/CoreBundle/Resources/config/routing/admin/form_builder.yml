@@ -12,9 +12,7 @@ admin_form_create:
         _controller: symedit.controller.form_builder:createAction
         _sylius:
             template: @SymEdit/Admin/FormBuilder/new.html.twig
-            redirect:
-                route: admin_form_update
-                parameters: { id: $id }
+            redirect: admin_form_update
 
 admin_form_show:
     path: /{id}
@@ -39,9 +37,15 @@ admin_form_update:
         _controller: symedit.controller.form_builder:updateAction
         _sylius:
             template: @SymEdit/Admin/FormBuilder/edit.html.twig
-            redirect:
-                route: admin_form_update
-                parameters: { id: $id }
+            redirect: admin_form_update
+
+admin_form_delete:
+    path: /{id}/delete
+    methods: [DELETE]
+    defaults:
+        _controller: symedit.controller.form_builder:deleteAction
+        _sylius:
+            redirect: admin_form
 
 admin_form_element_choose:
     path: /{formId}/element/choose

@@ -5,6 +5,7 @@
 
 {% block form_actions %}
 <a class="btn btn-info" href="{{ path('admin_form_show', { id: form_element.form.id } ) }}">
+    {{ icon('arrow-left') }}
     {{ 'symedit.form.form_element.actions.back'|trans }}
 </a>
 

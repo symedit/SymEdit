@@ -35,6 +35,10 @@ class FormBuilderStrategy extends AbstractWidgetStrategy
             'id' => $widget->getOption('form_builder_id'),
         ));
 
+        if (!$model) {
+            return sprintf('Form Builder #%s not found.', $widget->getOption('form_builder_id'));
+        }
+
         $form = $this->factory->build($model);
 
         return $this->render($widget, array(
