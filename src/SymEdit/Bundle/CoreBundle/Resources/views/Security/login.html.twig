@@ -10,7 +10,7 @@
         <h3>Login</h3>
 
         {% if error %}
-        <div class="alert">{{ error|trans({}, 'FOSUserBundle') }}</div>
+        <div class="alert">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
         {% endif %}
 
         <form id="symedit-login" class="col-md-4" action="{{ path("fos_user_security_check") }}" method="post">
