@@ -28,4 +28,5 @@ doctrine:
 # Don't prevent forms from submitting
 isometriks_spam:
     timed:
-        min: 0
+        min: ~
+        max: ~
