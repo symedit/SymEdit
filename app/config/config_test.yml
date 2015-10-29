@@ -24,3 +24,8 @@ swiftmailer:
 doctrine:
     dbal:
         dbname:   %database_name%_test
+
+# Don't prevent forms from submitting
+isometriks_spam:
+    timed:
+        min: 0
