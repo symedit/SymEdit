@@ -80,7 +80,7 @@ symedit_media:
 # Shortcode Configuration
 symedit_shortcode:
     settings:
-        icon: fontawesome
+        icon: fontawesome4
 
 # Cache Configuration
 symedit_cache:
