@@ -29,6 +29,7 @@ class EmailFieldBuilder extends AbstractFieldBuilder
             ->add('replyTo', 'checkbox', array(
                 'required' => false,
                 'property_path' => '[extra][replyTo]',
+                'help_block' => 'If filled, use as a reply-to field so notification emails will reply to this address.',
             ))
         ;
     }
