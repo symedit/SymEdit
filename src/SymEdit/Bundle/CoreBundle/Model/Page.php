@@ -60,6 +60,11 @@ class Page implements PageInterface
     protected $title;
 
     /**
+     * @var array
+     */
+    protected $displayOptions = array();
+
+    /**
      * @var string
      */
     protected $content;
@@ -324,6 +329,24 @@ class Page implements PageInterface
     public function getTitle()
     {
         return $this->title;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setDisplayOptions(array $displayOptions)
+    {
+        $this->displayOptions = $displayOptions;
+
+        return $this;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getDisplayOptions()
+    {
+        return $this->displayOptions;
     }
 
     /**

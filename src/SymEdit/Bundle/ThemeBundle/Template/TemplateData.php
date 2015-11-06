@@ -19,11 +19,22 @@ class TemplateData
 
     public function addTemplate(Template $template)
     {
-        $this->templates[$template->getKey()] = $template;
+        $type = $template->getType();
+
+        // Don't add templates with no type aka, no subfolder
+        if ($type === null) {
+            return;
+        }
+
+        if (!isset($this->templates[$type])) {
+            $this->template[$type] = array();
+        }
+
+        $this->templates[$type][$template->getKey()] = $template;
     }
 
-    public function getTemplates()
+    public function getTemplates($type)
     {
-        return $this->templates;
+       return isset($this->templates[$type]) ? $this->templates[$type] : array();
     }
 }

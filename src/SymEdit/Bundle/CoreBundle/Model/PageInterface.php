@@ -127,6 +127,18 @@ interface PageInterface extends SeoAbleInterface, \IteratorAggregate
     public function getContent();
 
     /**
+     * Set Display Options.
+     *
+     * @param array $displayOptions
+     */
+    public function setDisplayOptions(array $displayOptions);
+
+    /**
+     * @return array Display Options.
+     */
+    public function getDisplayOptions();
+
+    /**
      * @param int $pageOrder
      */
     public function setPageOrder($pageOrder);

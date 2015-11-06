@@ -24,12 +24,12 @@ class TemplateManager
         $this->loader = $loader;
     }
 
-    public function getTemplates($directory = null)
+    public function getTemplates($directory)
     {
-        return $this->getTemplateData()->getTemplates();
+        return $this->getTemplateData()->getTemplates($directory);
     }
 
-    public function getTemplateTree($directory = null)
+    public function getTemplateTree($directory)
     {
         $tree = array();
 

@@ -22,9 +22,14 @@ class DirectoriesTemplateLoader implements TemplateLoaderInterface
         $this->directories = $directories;
     }
 
+    protected function getDirectories()
+    {
+        return $this->directories;
+    }
+
     public function loadTemplateData(TemplateData $templateData)
     {
-        foreach ($this->directories as $directory) {
+        foreach ($this->getDirectories() as $directory) {
             $loader = new DirectoryTemplateLoader($directory);
             $loader->loadTemplateData($templateData);
         }

@@ -39,6 +39,10 @@
             <gedmo:versioned />
         </field>
 
+        <field name="displayOptions" type="json_array" column="displayOptions">
+            <gedmo:versioned />
+        </field>
+
         <field name="content" type="text" column="content" nullable="true">
             <gedmo:versioned />
         </field>
