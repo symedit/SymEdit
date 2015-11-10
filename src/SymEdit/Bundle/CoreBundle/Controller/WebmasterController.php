@@ -17,7 +17,9 @@ class WebmasterController extends Controller
 {
     public function googleVerifyAction($request_code)
     {
-        if ($code = $this->getWebmasterSettings()->get('webmaster.google_verify')) {
+        $code = $this->getWebmasterSettings()->get('google_verify');
+
+        if ($code) {
             if (strpos($code, 'google') === 0) {
                 $code = substr($code, 6);
             }
@@ -34,7 +36,9 @@ class WebmasterController extends Controller
 
     public function bingVerifyAction()
     {
-        if ($code = $this->getWebmasterSettings()->get('bing_verify')) {
+        $code = $this->getWebmasterSettings()->get('bing_verify');
+
+        if ($code) {
             return $this->render('@SymEdit/Webmaster/bingVerify.xml.twig', array(
                 'code' => $code,
             ));
