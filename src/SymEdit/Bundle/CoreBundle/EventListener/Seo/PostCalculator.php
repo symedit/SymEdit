@@ -30,7 +30,8 @@ class PostCalculator implements SeoCalculatorInterface
          * Add OpenGraph Image
          */
         if (($image = $subject->getImage()) !== null) {
-            $seo->addMetaProperty('og:image', $image->getWebPath());
+            $path = $event->getRequest()->getUriForPath($image->getWebPath());
+            $seo->addMetaProperty('og:image', $path);
         }
     }
 }
