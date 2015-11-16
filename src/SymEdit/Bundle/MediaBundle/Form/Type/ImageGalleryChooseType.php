@@ -11,6 +11,7 @@
 
 namespace SymEdit\Bundle\MediaBundle\Form\Type;
 
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Sylius\Component\Resource\Repository\RepositoryInterface;
 use SymEdit\Bundle\MediaBundle\Form\DataTransformer\GalleryChooseDataTransformer;
 use Symfony\Component\Form\AbstractType;
@@ -55,7 +56,7 @@ class ImageGalleryChooseType extends AbstractType
 
     public function getParent()
     {
-        return 'choice';
+        return ChoiceType::class;
     }
 
     public function getName()

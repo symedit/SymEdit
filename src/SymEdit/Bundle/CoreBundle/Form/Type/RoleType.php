@@ -11,6 +11,7 @@
 
 namespace SymEdit\Bundle\CoreBundle\Form\Type;
 
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Sylius\Component\Resource\Repository\RepositoryInterface;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -48,7 +49,7 @@ class RoleType extends AbstractType
 
     public function getParent()
     {
-        return 'choice';
+        return ChoiceType::class;
     }
 
     public function getName()

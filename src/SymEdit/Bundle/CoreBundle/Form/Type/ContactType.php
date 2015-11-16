@@ -11,6 +11,9 @@
 
 namespace SymEdit\Bundle\CoreBundle\Form\Type;
 
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -22,7 +25,7 @@ class ContactType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('name', 'text', array(
+            ->add('name', TextType::class, array(
                 'attr' => array(
                     'placeholder' => 'Name',
                 ),
@@ -30,7 +33,7 @@ class ContactType extends AbstractType
                     new NotBlank(),
                 ),
             ))
-            ->add('email', 'email', array(
+            ->add('email', EmailType::class, array(
                 'required' => false,
                 'attr' => array(
                     'placeholder' => 'Email',
@@ -39,7 +42,7 @@ class ContactType extends AbstractType
                     new Email(),
                 ),
             ))
-            ->add('phone', 'text', array(
+            ->add('phone', TextType::class, array(
                 'label' => 'Phone',
                 'attr' => array(
                     'placeholder' => 'Phone',
@@ -48,7 +51,7 @@ class ContactType extends AbstractType
                     new NotBlank(),
                 ),
             ))
-            ->add('message', 'textarea', array(
+            ->add('message', TextareaType::class, array(
                 'label' => 'Message',
                 'attr' => array(
                     'rows' => 5,

@@ -11,10 +11,12 @@
 
 namespace SymEdit\Bundle\FormBuilderBundle\Form\Type;
 
+use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use SymEdit\Bundle\FormBuilderBundle\Builder\FieldBuilderRegistry;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class FormElementType extends AbstractType
 {
@@ -30,10 +32,10 @@ class FormElementType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('name', 'text', array(
+            ->add('name', TextType::class, array(
                 'required' => false,
             ))
-            ->add('type', 'hidden')
+            ->add('type', HiddenType::class)
         ;
 
         $optionsBuilder = $builder->create('options', 'form');
@@ -49,7 +51,7 @@ class FormElementType extends AbstractType
         $builder->add($optionsBuilder);
     }
 
-    public function setDefaultOptions(OptionsResolverInterface $resolver)
+    public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
             'field_type' => 'form',

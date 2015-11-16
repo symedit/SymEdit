@@ -42,7 +42,8 @@
         "twig/extensions":                      "~1.0",
         "twig/twig":                            "~1.11",
         "white-october/pagerfanta-bundle":      "~1.0",
-        "zfr/zfr-mailchimp":                    "~2.0"
+        "zfr/zfr-mailchimp":                    "~2.0",
+        "umpirsky/symfony-upgrade-fixer": "^0.1.1"
     },
     "require-dev": {
         "behat/behat": "^3.0",

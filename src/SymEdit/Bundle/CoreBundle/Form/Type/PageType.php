@@ -11,6 +11,9 @@
 
 namespace SymEdit\Bundle\CoreBundle\Form\Type;
 
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use SymEdit\Bundle\CoreBundle\Event\DisplayOptionsEvent;
 use SymEdit\Bundle\CoreBundle\Event\Events;
 use SymEdit\Bundle\CoreBundle\Form\EventListener\PageTypeSubscriber;
@@ -31,10 +34,10 @@ class PageType extends AbstractType
     public function buildBasicForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('title', 'text', array(
+            ->add('title', TextType::class, array(
                 'label' => 'symedit.form.page.title',
             ))
-            ->add('name', 'text', array(
+            ->add('name', TextType::class, array(
                 'label' => 'symedit.form.page.name.label',
                 'help_label_popover' => array(
                     'title' => 'symedit.form.page.name.popover.title',
@@ -45,11 +48,11 @@ class PageType extends AbstractType
             ->add('parent', 'symedit_page_choose', array(
                 'label' => 'symedit.form.page.parent',
             ))
-            ->add('tagline', 'text', array(
+            ->add('tagline', TextType::class, array(
                 'required' => false,
                 'label' => 'symedit.form.page.tagline',
             ))
-            ->add('display', 'checkbox', array(
+            ->add('display', CheckboxType::class, array(
                 'required' => false,
                 'help_block' => 'symedit.form.page.display.help',
                 'label' => 'symedit.form.page.display.label',
@@ -79,7 +82,7 @@ class PageType extends AbstractType
             ->add('seo', 'symedit_seo', array(
                 'horizontal_label_offset_class' => '',
             ))
-            ->add('crawl', 'checkbox', array(
+            ->add('crawl', CheckboxType::class, array(
                 'required' => false,
                 'help_block' => 'symedit.form.page.crawl.help',
                 'label' => 'symedit.form.page.crawl.label',
@@ -90,7 +93,7 @@ class PageType extends AbstractType
     public function buildSummaryForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('summary', 'textarea', array(
+            ->add('summary', TextareaType::class, array(
                 'attr' => array(
                     'class' => 'wysiwyg-editor',
                     'style' => 'height: 250px',
@@ -106,7 +109,7 @@ class PageType extends AbstractType
     public function buildContentForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('content', 'textarea', array(
+            ->add('content', TextareaType::class, array(
                 'attr' => array(
                     'class' => 'wysiwyg-editor',
                     'style' => 'height:500px',
@@ -128,11 +131,11 @@ class PageType extends AbstractType
     public function buildAdvancedForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('pageController', 'checkbox', array(
+            ->add('pageController', CheckboxType::class, array(
                 'required' => false,
                 'label' => 'symedit.form.page.pagecontroller',
             ))
-            ->add('pageControllerPath', 'text', array(
+            ->add('pageControllerPath', TextType::class, array(
                 'attr' => array('class' => 'span6'),
                 'required' => false,
                 'label' => 'symedit.form.page.pagecontrollerpath.label',

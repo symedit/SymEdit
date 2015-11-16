@@ -11,6 +11,10 @@
 
 namespace SymEdit\Bundle\BlogBundle\Form\Type;
 
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use SymEdit\Bundle\BlogBundle\Model\PostInterface;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -27,7 +31,7 @@ class PostType extends AbstractType
     public function buildBasicForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('title', 'text', array(
+            ->add('title', TextType::class, array(
                 'label' => 'symedit.form.post.title',
             ))
             ->add('author', 'symedit_user_choose', array(
@@ -35,7 +39,7 @@ class PostType extends AbstractType
                 'choice_label' => 'profile.fullname',
                 'label' => 'symedit.form.post.author',
             ))
-            ->add('status', 'choice', array(
+            ->add('status', ChoiceType::class, array(
                 'choices' => array(
                     PostInterface::DRAFT => 'symedit.form.post.status.choices.draft',
                     PostInterface::PUBLISHED => 'symedit.form.post.status.choices.published',
@@ -43,7 +47,7 @@ class PostType extends AbstractType
                 ),
                 'label' => 'symedit.form.post.status.label',
             ))
-            ->add('publishedAt', 'datetime', array(
+            ->add('publishedAt', DateTimeType::class, array(
                 'label' => 'symedit.form.post.published_at.label',
                 'help_block' => 'symedit.form.post.published_at.help',
                 'widget' => 'single_text',
@@ -65,7 +69,7 @@ class PostType extends AbstractType
     public function buildSummaryForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('summary', 'textarea', array(
+            ->add('summary', TextareaType::class, array(
                 'label_render' => false,
                 'attr' => array(
                     'class' => 'wysiwyg-editor',
@@ -80,7 +84,7 @@ class PostType extends AbstractType
     public function buildContentForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('content', 'textarea', array(
+            ->add('content', TextareaType::class, array(
                 'label_render' => false,
                 'attr' => array(
                     'class' => 'wysiwyg-editor',

@@ -11,6 +11,8 @@
 
 namespace SymEdit\Bundle\MailChimpBundle\Form\Type;
 
+use Symfony\Component\Form\Extension\Core\Type\HiddenType;
+use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -30,12 +32,12 @@ class SubscribeType extends AbstractType
         }
 
         $builder
-            ->add('email', 'email', array(
+            ->add('email', EmailType::class, array(
                 'constraints' => array(
                     new Email(),
                 ),
             ))
-            ->add('list', 'hidden', $options)
+            ->add('list', HiddenType::class, $options)
         ;
     }
 

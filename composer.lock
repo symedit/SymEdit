@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "3a543f65240b590e0b52490e579888fa",
-    "content-hash": "13007573a37a85d9b42f319ace3c084e",
+    "hash": "0dbb0ff809d08333f0f9ad37485591df",
+    "content-hash": "fe6b767a5245e717a4538a37da9a6806",
     "packages": [
         {
             "name": "behat/transliterator",
@@ -1048,6 +1048,60 @@
                 "orm"
             ],
             "time": "2015-08-31 12:59:39"
+        },
+        {
+            "name": "fabpot/php-cs-fixer",
+            "version": "v1.10.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/FriendsOfPHP/PHP-CS-Fixer.git",
+                "reference": "e8b3c4e41dc1484210fdc45363c41af6c2d56f20"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/FriendsOfPHP/PHP-CS-Fixer/zipball/e8b3c4e41dc1484210fdc45363c41af6c2d56f20",
+                "reference": "e8b3c4e41dc1484210fdc45363c41af6c2d56f20",
+                "shasum": ""
+            },
+            "require": {
+                "ext-tokenizer": "*",
+                "php": ">=5.3.6",
+                "sebastian/diff": "~1.1",
+                "symfony/console": "~2.3",
+                "symfony/event-dispatcher": "~2.1",
+                "symfony/filesystem": "~2.1",
+                "symfony/finder": "~2.1",
+                "symfony/process": "~2.3",
+                "symfony/stopwatch": "~2.5"
+            },
+            "require-dev": {
+                "satooshi/php-coveralls": "0.7.*@dev"
+            },
+            "bin": [
+                "php-cs-fixer"
+            ],
+            "type": "application",
+            "autoload": {
+                "psr-4": {
+                    "Symfony\\CS\\": "Symfony/CS/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Dariusz Rumiński",
+                    "email": "dariusz.ruminski@gmail.com"
+                },
+                {
+                    "name": "Fabien Potencier",
+                    "email": "fabien@symfony.com"
+                }
+            ],
+            "description": "A tool to automatically fix PHP code style",
+            "time": "2015-10-21 19:19:43"
         },
         {
             "name": "friendsofsymfony/oauth-server-bundle",
@@ -2832,6 +2886,58 @@
             "time": "2012-12-21 11:40:51"
         },
         {
+            "name": "sebastian/diff",
+            "version": "1.3.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/sebastianbergmann/diff.git",
+                "reference": "863df9687835c62aa423a22412d26fa2ebde3fd3"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/sebastianbergmann/diff/zipball/863df9687835c62aa423a22412d26fa2ebde3fd3",
+                "reference": "863df9687835c62aa423a22412d26fa2ebde3fd3",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.3"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "~4.2"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.3-dev"
+                }
+            },
+            "autoload": {
+                "classmap": [
+                    "src/"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Kore Nordmann",
+                    "email": "mail@kore-nordmann.de"
+                },
+                {
+                    "name": "Sebastian Bergmann",
+                    "email": "sebastian@phpunit.de"
+                }
+            ],
+            "description": "Diff implementation",
+            "homepage": "http://www.github.com/sebastianbergmann/diff",
+            "keywords": [
+                "diff"
+            ],
+            "time": "2015-02-22 15:13:53"
+        },
+        {
             "name": "sensio/distribution-bundle",
             "version": "v4.0.3",
             "target-dir": "Sensio/Bundle/DistributionBundle",
@@ -3919,6 +4025,54 @@
                 "templating"
             ],
             "time": "2015-11-05 12:49:06"
+        },
+        {
+            "name": "umpirsky/symfony-upgrade-fixer",
+            "version": "v0.1.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/umpirsky/Symfony-Upgrade-Fixer.git",
+                "reference": "f81d5a18fab67b0e36198a8d3b73ee8b23bdebf1"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/umpirsky/Symfony-Upgrade-Fixer/zipball/f81d5a18fab67b0e36198a8d3b73ee8b23bdebf1",
+                "reference": "f81d5a18fab67b0e36198a8d3b73ee8b23bdebf1",
+                "shasum": ""
+            },
+            "require": {
+                "fabpot/php-cs-fixer": "^1.10",
+                "php": ">=5.4"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^4.8"
+            },
+            "bin": [
+                "bin/symfony-upgrade-fixer"
+            ],
+            "type": "application",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "0.1-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Symfony\\Upgrade\\": "src/Symfony/Upgrade/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Saša Stamenković",
+                    "email": "umpirsky@gmail.com"
+                }
+            ],
+            "description": "Analyzes your Symfony project and tries to make it compatible with the new version of Symfony framework.",
+            "time": "2015-11-15 18:54:42"
         },
         {
             "name": "white-october/pagerfanta-bundle",

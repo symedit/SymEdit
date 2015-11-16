@@ -11,6 +11,7 @@
 
 namespace SymEdit\Bundle\BlogBundle\Form\Type;
 
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\AbstractType;
 
@@ -26,10 +27,10 @@ class CategoryType extends AbstractType
     public function buildBasicForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('title', 'text', array(
+            ->add('title', TextType::class, array(
                 'label' => 'symedit.form.category.title',
             ))
-            ->add('name', 'text', array(
+            ->add('name', TextType::class, array(
                 'label' => 'symedit.form.category.name.label',
                 'help_block' => 'symedit.form.category.name.help',
             ))

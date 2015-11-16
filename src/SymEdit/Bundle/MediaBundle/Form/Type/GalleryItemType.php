@@ -11,6 +11,7 @@
 
 namespace SymEdit\Bundle\MediaBundle\Form\Type;
 
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -27,7 +28,7 @@ class GalleryItemType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('caption', 'textarea', array(
+            ->add('caption', TextareaType::class, array(
                 'label' => 'Caption',
                 'required' => false,
             ))

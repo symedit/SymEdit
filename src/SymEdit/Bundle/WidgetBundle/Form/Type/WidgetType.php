@@ -11,6 +11,8 @@
 
 namespace SymEdit\Bundle\WidgetBundle\Form\Type;
 
+use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use SymEdit\Bundle\WidgetBundle\Form\DataTransformer\WidgetAssociationTransformer;
 use SymEdit\Bundle\WidgetBundle\Model\WidgetInterface;
 use Symfony\Component\Form\AbstractType;
@@ -34,11 +36,11 @@ class WidgetType extends AbstractType
         $transformer = new WidgetAssociationTransformer();
 
         $builder
-            ->add('title', 'text', array(
+            ->add('title', TextType::class, array(
                 'label' => 'symedit.form.widget.basic.title',
                 'required' => false,
             ))
-            ->add('name', 'text', array(
+            ->add('name', TextType::class, array(
                 'label' => 'symedit.form.widget.basic.name.label',
                 'help_block' => 'symedit.form.widget.basic.name.help',
             ))
@@ -47,7 +49,7 @@ class WidgetType extends AbstractType
                 'choice_label' => 'area',
                 'class' => $this->widgetAreaClass,
             ))
-            ->add('visibility', 'choice', array(
+            ->add('visibility', ChoiceType::class, array(
                 'label' => 'symedit.form.widget.basic.visibility.label',
                 'choices' => array(
                     WidgetInterface::INCLUDE_ALL => 'symedit.form.widget.basic.visibility.include_all',
@@ -74,7 +76,7 @@ class WidgetType extends AbstractType
 
         // Add custom template override
         $builder
-            ->add('template', 'text', array(
+            ->add('template', TextType::class, array(
                 'required' => true,
                 'help_block' => 'symedit.form.widget.options.template.help',
                 'constraints' => array(

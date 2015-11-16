@@ -11,6 +11,9 @@
 
 namespace SymEdit\Bundle\SeoBundle\Form\Type;
 
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -20,29 +23,29 @@ class SeoType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('title', 'text', array(
+            ->add('title', TextType::class, array(
                 'label' => 'symedit.form.seo.title',
                 'attr' => array('class' => 'span6', 'data-toggle' => 'char-count', 'data-max' => 65),
                 'required' => false,
             ))
-            ->add('description', 'textarea', array(
+            ->add('description', TextareaType::class, array(
                 'label' => 'symedit.form.seo.description',
                 'attr' => array('class' => 'span6', 'data-toggle' => 'char-count', 'data-max' => 155),
                 'required' => false,
             ))
-            ->add('keywords', 'textarea', array(
+            ->add('keywords', TextareaType::class, array(
                 'label' => 'symedit.form.seo.keywords',
                 'attr' => array('class' => 'span6'),
                 'required' => false,
             ))
-            ->add('index', 'choice', array(
+            ->add('index', ChoiceType::class, array(
                 'choices' => array(
                     true => 'Index',
                     false => 'No Index',
                 ),
                 'label' => 'symedit.form.seo.index',
             ))
-            ->add('follow', 'choice', array(
+            ->add('follow', ChoiceType::class, array(
                 'choices' => array(
                     true => 'Follow',
                     false => 'No Follow',

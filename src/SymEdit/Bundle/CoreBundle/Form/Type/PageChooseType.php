@@ -11,6 +11,7 @@
 
 namespace SymEdit\Bundle\CoreBundle\Form\Type;
 
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use SymEdit\Bundle\CoreBundle\Form\DataTransformer\RepositoryTransformer;
 use SymEdit\Bundle\CoreBundle\Repository\PageRepositoryInterface;
 use Symfony\Component\Form\AbstractType;
@@ -35,7 +36,7 @@ class PageChooseType extends AbstractType
 
     public function getParent()
     {
-        return 'choice';
+        return ChoiceType::class;
     }
 
     public function configureOptions(OptionsResolver $resolver)
