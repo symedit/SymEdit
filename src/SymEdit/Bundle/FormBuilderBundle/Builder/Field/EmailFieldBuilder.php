@@ -39,6 +39,8 @@ class EmailFieldBuilder extends AbstractFieldBuilder
         if ($formElement->getExtra('replyTo', false) && $value !== null) {
             $result->addReplyTo($value);
         }
+
+        return parent::processResult($result, $formElement, $value);
     }
 
     public function buildFormConfig(FormElementConfigInterface $config)

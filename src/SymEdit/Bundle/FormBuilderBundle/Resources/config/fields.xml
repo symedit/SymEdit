@@ -34,5 +34,10 @@
         <service id="symedit_form_builder.builder.email" class="SymEdit\Bundle\FormBuilderBundle\Builder\Field\EmailFieldBuilder" public="false">
             <tag name="symedit_form_builder.builder" type="email" />
         </service>
+
+        <!-- Choice Field -->
+        <service id="symedit_form_builder.builder.choice" class="SymEdit\Bundle\FormBuilderBundle\Builder\Field\ChoiceFieldBuilder" public="false">
+            <tag name="symedit_form_builder.builder" type="choice" />
+        </service>
     </services>
 </container>

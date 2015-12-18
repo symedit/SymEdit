@@ -1,10 +1,25 @@
 {% extends '@SymEdit/Email/base.html.twig' %}
 
+{% macro format_value(value) %}
+    {% if value is iterable %}
+        <ul>
+            {% for k, v in value %}
+                <li>
+                    <strong>{{ k|humanize }}:</strong>
+                    {{ _self.format_value(v) }}
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        {{ value }}
+    {% endif %}
+{% endmacro %}
+
 {% block subject %}Form Submission - {{ form_builder.legend }}{% endblock %}
 
 {% block body_text %}
     {% for pair in pairs %}
-        {{ pair.label }}{{ "\t\t\t"|raw }}{{ pair.value }}
+        {{ pair.label }}{{ "\t\t\t"|raw }}{{ pair.value is iterable ? pair.value|join(', ') : pair.value }}
     {% endfor %}
 {% endblock %}
 
@@ -13,7 +28,7 @@
         {% for pair in pairs %}
             <tr>
                 <th>{{ pair.label }}</th>
-                <td>{{ pair.value }}</td>
+                <td>{{ _self.format_value(pair.value) }}</td>
             </tr>
         {% endfor %}
     </table>

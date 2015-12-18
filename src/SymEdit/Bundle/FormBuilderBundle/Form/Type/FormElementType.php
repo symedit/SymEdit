@@ -36,7 +36,9 @@ class FormElementType extends AbstractType
             ->add('type', 'hidden')
         ;
 
-        $optionsBuilder = $builder->create('options', 'form');
+        $optionsBuilder = $builder->create('options', 'form', array(
+            'embed_form' => true
+         ));
 
         // Get builders from registry
         $fieldBuilders = $this->registry->getFieldBuilders($options['field_type']);

@@ -24,6 +24,7 @@ abstract class AbstractFieldBuilder implements FormFieldBuilderInterface
 
     public function processResult(FormBuilderResultInterface $result, FormElementInterface $formElement, $value)
     {
+        return $value;
     }
 
     public function buildFormConfig(FormElementConfigInterface $config)

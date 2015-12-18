@@ -39,11 +39,11 @@ class FormProcessor implements FormProcessorInterface
             $label = isset($options['label']) ? $options['label'] : sprintf('Element %d', $element->getId());
             $value = $data[$config->getName()];
 
-            $result->addPair($label, $value);
-
             // Let field modify result if needed
             $field = $this->registry->getFieldBuilder($element->getType());
-            $field->processResult($result, $element, $value);
+            $value = $field->processResult($result, $element, $value);
+
+            $result->addPair($label, $value);
         }
 
         return $result;

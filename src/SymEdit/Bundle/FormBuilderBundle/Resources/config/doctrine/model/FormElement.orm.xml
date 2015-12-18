@@ -11,7 +11,7 @@
             <generator strategy="IDENTITY"/>
         </id>
         <field name="type" type="string" column="type"/>
-        <field name="name" type="string" column="name"/>
+        <field name="name" type="string" column="name" nullable="true"/>
         <field name="position" type="integer" column="position">
             <gedmo:sortable-position/>
         </field>
