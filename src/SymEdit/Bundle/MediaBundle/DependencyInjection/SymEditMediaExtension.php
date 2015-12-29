@@ -63,6 +63,7 @@ class SymEditMediaExtension extends SymEditResourceExtension implements PrependE
                 'assets' => array(
                     'stylesheets' => array(
                         '@SymEditMediaBundle/Resources/less/media.less',
+                        '@SymEditMediaBundle/Resources/css/dropzone.css',
                     ),
                     'javascripts' => array(
                         '@SymEditMediaBundle/Resources/js/media.js',
