@@ -52,7 +52,7 @@
 
 {# Choose Image Widget #}
 {% block symedit_image_gallery_choose_row %}
-<div class="row">
+<div class="row symedit-gallery-choose">
     {% for child in form.children %}
         {% set index = child.vars.value %}
         {% set image = form.vars.choices[index].data %}

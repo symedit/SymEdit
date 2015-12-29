@@ -2,6 +2,14 @@
 
 {% block title %}Images &raquo; Upload{% endblock %}
 
+{% block extra %}
+    <h4>Or Drag and Drop</h4>
+
+    <div class="background-well">
+        <form action="{{ path('admin_image_quick_upload') }}" class="dropzone"></form>
+    </div>
+{% endblock %}
+
 {% block form_actions %}
     <button class="btn btn-primary" type="submit">
         {{ icon('upload') }}
