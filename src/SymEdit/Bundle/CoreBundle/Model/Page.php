@@ -453,7 +453,7 @@ class Page implements PageInterface
         return $this->image;
     }
 
-    public function setImage(ImageInterface $image)
+    public function setImage(ImageInterface $image = null)
     {
         $this->image = $image;
 
