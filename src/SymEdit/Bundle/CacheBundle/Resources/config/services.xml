@@ -4,17 +4,21 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
 
-    <!--
-    <parameters>
-        <parameter key="sym_edit_cache.example.class">SymEdit\Bundle\CacheBundle\Example</parameter>
-    </parameters>
-    -->
-
     <services>
+        <!-- Property Accessor -->
         <service id="symedit_cache.property_accessor"
                  class="Symfony\Component\PropertyAccess\PropertyAccessor"
                  factory-class="Symfony\Component\PropertyAccess\PropertyAccess"
                  factory-method="createPropertyAccessor">
+        </service>
+
+        <!-- Widget Cache Susbcriber -->
+        <service id="symedit_cache.event_listener.widget_subscriber" class="SymEdit\Bundle\CacheBundle\EventListener\WidgetCacheSubscriber">
+            <argument type="service" id="symedit_cache.decision_manager" />
+            <argument type="service" id="sylius.settings.manager" />
+            <!--<argument type="service" id="fos_http_cache.handler.tag_handler" />-->
+
+            <tag name="kernel.event_subscriber" />
         </service>
     </services>
 </container>

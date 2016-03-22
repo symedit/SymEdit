@@ -12,6 +12,8 @@
 namespace SymEdit\Bundle\WidgetBundle\Controller;
 
 use SymEdit\Bundle\ResourceBundle\Controller\ResourceController;
+use SymEdit\Bundle\WidgetBundle\Event\Events;
+use SymEdit\Bundle\WidgetBundle\Event\WidgetEvent;
 use SymEdit\Bundle\WidgetBundle\Model\WidgetInterface;
 use SymEdit\Bundle\WidgetBundle\Renderer\WidgetRendererInterface;
 use SymEdit\Bundle\WidgetBundle\Widget\WidgetRegistry;
@@ -23,16 +25,24 @@ class WidgetController extends ResourceController
     public function renderAction(Request $request)
     {
         $widget = $this->findOr404($request);
+        $strategy = $this->getStrategy($widget);
+
+        // Prepare pre render event
+        $preEvent = new WidgetEvent($widget, $strategy, new Response());
+        $this->get('event_dispatcher')->dispatch(Events::WIDGET_PRE_RENDER, $preEvent);
 
         // Setup response
-        $response = $this->getWidgetResponse($widget);
+        $response = $preEvent->getResponse();
 
-        if ($response->isNotModified($request)) {
-            return $response;
+        // Set Response content if not cached
+        if (!$response->isNotModified($request)) {
+            $content = $this->getWidgetRenderer()->render($widget);
+            $response->setContent($content);
         }
 
-        $content = $this->getWidgetRenderer()->render($widget);
-        $response->setContent($content);
+        // Dispatch post render event
+        $postEvent = new WidgetEvent($widget, $strategy, $response);
+        $this->get('event_dispatcher')->dispatch(Events::WIDGET_POST_RENDER, $postEvent);
 
         return $response;
     }

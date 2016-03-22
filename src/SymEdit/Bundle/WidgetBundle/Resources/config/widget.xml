@@ -31,6 +31,11 @@
             <argument>%symedit_widget.widget.strategies%</argument>
         </service>
 
+        <!-- Cache Listener -->
+        <service id="symedit_widget.event_listener.cache_subscriber" class="SymEdit\Bundle\WidgetBundle\EventListener\WidgetCacheSubscriber">
+            <tag name="kernel.event_subscriber" />
+        </service>
+
         <!-- Widget Strategies -->
         <service id="symedit_widget.widget.strategy.html" class="%symedit_widget.widget.strategy.html.class%">
             <tag name="symedit_widget.widget_strategy" alias="html" />
