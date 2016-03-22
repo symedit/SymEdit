@@ -26,8 +26,13 @@ class ParameterRepository extends EntityRepository implements ParameterRepositor
             ->orderBy('o.updatedAt', 'DESC')
             ->setMaxResults(1)
             ->getQuery()
-            ->getSingleResult()
+            ->getOneOrNullResult()
         ;
+
+        // No settings, return epoch
+        if ($result === null) {
+            return (new \DateTime())->setTimestamp(0);
+        }
 
         return current($result);
     }
