@@ -64,16 +64,21 @@ class LayoutManager
         try {
             $layoutData = $this->loader->load($template->getPath());
         } catch (\Exception $e) {
-            return $this->createLayout($template->getKey());
+            return $this->createLayout($template->getKey(), $template->getKey());
         }
 
         // Did we even find a layout?
         if ($layoutData === null) {
-            return $this->createLayout($template->getKey());
+            return $this->createLayout($template->getKey(), $template->getKey());
         }
 
         try {
-            $processed = $this->getProcessor()->processConfiguration($this->configuration, array($layoutData));
+            $processed = $this->getProcessor()->processConfiguration($this->configuration, array(
+                array(
+                    'title' => $template->getKey(),
+                ),
+                $layoutData
+            ));
         } catch (InvalidConfigurationException $e) {
             return $this->createLayout($template->getKey());
         }
