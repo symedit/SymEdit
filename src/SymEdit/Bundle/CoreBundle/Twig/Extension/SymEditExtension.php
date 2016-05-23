@@ -18,7 +18,7 @@ use Symfony\Component\Routing\Exception\RouteNotFoundException;
 /**
  * @TODO: Uhh don't inject the container. There's only like 2 services in here now, this is gross.
  */
-class SymEditExtension extends \Twig_Extension
+class SymEditExtension extends \Twig_Extension implements \Twig_Extension_GlobalsInterface
 {
     /**
      * @var ContainerInterface
