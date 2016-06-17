@@ -89,11 +89,11 @@ class PostRepository extends EntityRepository implements PostRepositoryInterface
         return $this->getQueryBuilder('o')
             ->where('o.status = :published')
             ->orWhere('o.status = :scheduled AND o.publishedAt <= :now')
-            ->setParameters(array(
+            ->setParameters([
                 'published' => PostInterface::PUBLISHED,
                 'scheduled' => PostInterface::SCHEDULED,
                 'now' => new \DateTime(),
-            ))
+            ])
         ;
     }
 

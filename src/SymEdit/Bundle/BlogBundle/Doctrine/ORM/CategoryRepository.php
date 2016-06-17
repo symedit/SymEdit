@@ -22,9 +22,9 @@ class CategoryRepository extends EntityRepository implements CategoryRepositoryI
      */
     public function findRoots()
     {
-        return $this->findBy(array(
+        return $this->findBy([
             'parent' => null,
-        ));
+        ]);
     }
 
     /**

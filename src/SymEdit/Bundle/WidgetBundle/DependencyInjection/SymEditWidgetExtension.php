@@ -19,11 +19,11 @@ use Symfony\Component\DependencyInjection\Loader\XmlFileLoader;
 
 class SymEditWidgetExtension extends SymEditResourceExtension implements PrependExtensionInterface
 {
-    protected $configFiles = array(
+    protected $configFiles = [
         'services.xml',
         'widget.xml',
         'form.xml',
-    );
+    ];
 
     /**
      * {@inheritdoc}
@@ -59,7 +59,7 @@ class SymEditWidgetExtension extends SymEditResourceExtension implements Prepend
 
     protected function setupRenderers(ContainerBuilder $container, array $renderers)
     {
-        foreach (array('widget', 'area') as $renderer) {
+        foreach (['widget', 'area'] as $renderer) {
             $container->setAlias(sprintf('symedit_widget.renderer.%s.default', $renderer), $renderers[$renderer]);
         }
     }
@@ -70,11 +70,11 @@ class SymEditWidgetExtension extends SymEditResourceExtension implements Prepend
             return;
         }
 
-        $container->prependExtensionConfig('symedit', array(
-            'template_locations' => array(
+        $container->prependExtensionConfig('symedit', [
+            'template_locations' => [
                 '@SymEditWidgetBundle/Resources/views',
-            ),
-        ));
+            ],
+        ]);
     }
 
     /**

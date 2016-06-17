@@ -23,7 +23,7 @@ class TwigPathCompilerPass implements CompilerPassInterface
     public function __construct(Kernel $kernel)
     {
         $this->kernel = $kernel;
-        $this->locations = array();
+        $this->locations = [];
     }
 
     public function process(ContainerBuilder $container)
@@ -38,12 +38,12 @@ class TwigPathCompilerPass implements CompilerPassInterface
         /*
          * Add the override paths sent to symedit
          */
-        array_map(array($this, 'addLocation'), $container->getParameter('symedit.template_locations'));
+        array_map([$this, 'addLocation'], $container->getParameter('symedit.template_locations'));
 
         /*
          * Add the SymEdit Locations and all parents
          */
-        array_map(array($this, 'mapBundles'), $this->kernel->getBundle('SymEditBundle', false));
+        array_map([$this, 'mapBundles'], $this->kernel->getBundle('SymEditBundle', false));
 
         /*
          * Add the paths to the Twig Loader Definition
@@ -51,7 +51,7 @@ class TwigPathCompilerPass implements CompilerPassInterface
         $loader = $container->getDefinition('twig.loader.filesystem');
 
         foreach (array_reverse($this->getLocations()) as $location) {
-            $loader->addMethodCall('prependPath', array($location, 'SymEdit'));
+            $loader->addMethodCall('prependPath', [$location, 'SymEdit']);
         }
     }
 

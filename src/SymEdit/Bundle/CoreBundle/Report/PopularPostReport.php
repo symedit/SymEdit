@@ -36,10 +36,10 @@ class PopularPostReport extends PopularReport
     {
         parent::setDefaultOptions($resolver);
 
-        $resolver->setDefaults(array(
+        $resolver->setDefaults([
             'published' => true,
             'model' => 'post',
-        ));
+        ]);
     }
 
     public function getName()

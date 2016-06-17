@@ -30,16 +30,16 @@ class StylesType extends AbstractType
     {
         $groups = $this->manager->getConfigData()->getGroups();
 
-        $allGroups = $builder->create('groups', 'form', array(
+        $allGroups = $builder->create('groups', 'form', [
             'inherit_data' => true,
             'label' => false,
-        ));
+        ]);
 
         foreach ($groups as $groupName => $group) {
-            $groupOptions = array(
+            $groupOptions = [
                 'inherit_data' => true,
                 'extra' => $group->getExtra(),
-            );
+            ];
 
             if ($group->getLabel() !== null) {
                 $groupOptions['label'] = $group->getLabel();
@@ -66,21 +66,21 @@ class StylesType extends AbstractType
     private function addVariable(FormBuilderInterface $builder, $name, $data)
     {
         $label = isset($data['label']) ? $data['label'] : '';
-        $options = isset($data['options']) ? $data['options'] : array();
+        $options = isset($data['options']) ? $data['options'] : [];
         $type = isset($data['type']) ? $data['type'] : 'text';
-        $constraints = array();
+        $constraints = [];
 
         if (!isset($options['required']) || $options['required']) {
-            $constraints = array(
+            $constraints = [
                 new NotBlank(),
-            );
+            ];
         }
 
-        $builder->add($name, $type, array_merge(array(
+        $builder->add($name, $type, array_merge([
             'label' => $label,
             'property_path' => sprintf('[%s]', $name),
             'constraints' => $constraints,
-        ), $options));
+        ], $options));
     }
 
     public function getName()

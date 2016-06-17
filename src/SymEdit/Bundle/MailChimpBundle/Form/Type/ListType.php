@@ -26,7 +26,7 @@ class ListType extends AbstractType
 
     public function configureOptions(OptionsResolver $resolver)
     {
-        $choices = array();
+        $choices = [];
 
         try {
             $lists = $this->client->getLists();
@@ -35,14 +35,14 @@ class ListType extends AbstractType
                 $choices[$list['id']] = $list['name'];
             }
 
-            $resolver->setDefaults(array(
+            $resolver->setDefaults([
                 'choices' => $choices,
-            ));
+            ]);
         } catch (\Exception $e) {
-            $resolver->setDefaults(array(
+            $resolver->setDefaults([
                 'disabled' => true,
                 'help_block' => 'Invalid API Key, cannot choose a list.',
-            ));
+            ]);
         }
     }
 

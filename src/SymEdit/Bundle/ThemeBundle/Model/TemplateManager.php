@@ -31,7 +31,7 @@ class TemplateManager
 
     public function getTemplateTree($directory)
     {
-        $tree = array();
+        $tree = [];
 
         $templates = $this->getTemplates($directory);
         ksort($templates);
@@ -57,7 +57,7 @@ class TemplateManager
 
         foreach ($parts as $part) {
             if (!isset($location[$part])) {
-                $location[$part] = array();
+                $location[$part] = [];
             }
 
             $location = &$location[$part];

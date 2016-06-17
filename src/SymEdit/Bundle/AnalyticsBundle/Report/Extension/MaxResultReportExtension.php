@@ -27,10 +27,10 @@ class MaxResultReportExtension extends AbstractReportExtension
 
     public function setDefaultOptions(OptionsResolver $resolver)
     {
-        $resolver->setDefaults(array(
+        $resolver->setDefaults([
             'max' => null,
-        ));
+        ]);
 
-        $resolver->setAllowedTypes('max', array('null', 'int'));
+        $resolver->setAllowedTypes('max', ['null', 'int']);
     }
 }

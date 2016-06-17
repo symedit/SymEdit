@@ -74,10 +74,10 @@ class SymEditExtension extends SymEditResourceExtension
      */
     protected function processAssets(ContainerBuilder $container, array $resources)
     {
-        $formulae = array();
+        $formulae = [];
 
         foreach ($resources as $name => $assets) {
-            $formulae['symedit_'.$name] = array($assets, array(), array());
+            $formulae['symedit_'.$name] = [$assets, [], []];
         }
 
         $container->getDefinition('symedit.assetic.config_resource')->replaceArgument(0, $formulae);

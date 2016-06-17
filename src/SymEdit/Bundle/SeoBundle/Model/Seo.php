@@ -26,11 +26,11 @@ class Seo implements SeoInterface
     protected $links;
     protected $htmlAttrs;
 
-    public static $allowedProperties = array(
+    public static $allowedProperties = [
         'title', 'description', 'keywords',
         'subject', 'index', 'follow',
         'metas', 'links', 'htmlAttrs',
-    );
+    ];
 
     public function __construct($subject = null)
     {
@@ -47,15 +47,15 @@ class Seo implements SeoInterface
         $this->index = true;
         $this->follow = true;
 
-        $this->metas = array();
-        $this->links = array();
-        $this->htmlAttrs = array();
+        $this->metas = [];
+        $this->links = [];
+        $this->htmlAttrs = [];
     }
 
     public function addMeta($type, $key, $content)
     {
         if (!isset($this->metas[$type])) {
-            $this->metas[$type] = array();
+            $this->metas[$type] = [];
         }
 
         $this->metas[$type][$key] = $content;
@@ -95,7 +95,7 @@ class Seo implements SeoInterface
         return $key === null ? $metas : $metas[$key];
     }
 
-    public function setMetas(array $metas = array())
+    public function setMetas(array $metas = [])
     {
         $this->metas = $metas;
     }
@@ -103,7 +103,7 @@ class Seo implements SeoInterface
     public function addLink($rel, $href)
     {
         if (!isset($this->links[$rel])) {
-            $this->links[$rel] = array();
+            $this->links[$rel] = [];
         }
 
         $this->links[$rel][] = $href;
@@ -116,7 +116,7 @@ class Seo implements SeoInterface
         return $rel === null ? $this->links : $this->links[$rel];
     }
 
-    public function setLinks(array $links = array())
+    public function setLinks(array $links = [])
     {
         $this->links = $links;
     }
@@ -290,7 +290,7 @@ class Seo implements SeoInterface
 
     public function getSeo()
     {
-        $outputArray = array();
+        $outputArray = [];
 
         foreach (self::$allowedProperties as $prop) {
             $method = sprintf('get%s', ucfirst($prop));

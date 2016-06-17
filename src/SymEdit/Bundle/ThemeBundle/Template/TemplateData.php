@@ -15,7 +15,7 @@ use SymEdit\Bundle\ThemeBundle\Model\Template;
 
 class TemplateData
 {
-    protected $templates = array();
+    protected $templates = [];
 
     public function addTemplate(Template $template)
     {
@@ -27,7 +27,7 @@ class TemplateData
         }
 
         if (!isset($this->templates[$type])) {
-            $this->template[$type] = array();
+            $this->template[$type] = [];
         }
 
         $this->templates[$type][$template->getKey()] = $template;
@@ -35,6 +35,6 @@ class TemplateData
 
     public function getTemplates($type)
     {
-       return isset($this->templates[$type]) ? $this->templates[$type] : array();
+       return isset($this->templates[$type]) ? $this->templates[$type] : [];
     }
 }

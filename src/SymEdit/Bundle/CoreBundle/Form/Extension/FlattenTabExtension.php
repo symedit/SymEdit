@@ -32,9 +32,9 @@ class FlattenTabExtension extends AbstractTypeExtension
         $tabsData = $options['tabs_data'];
         $formType = $builder->getType()->getInnerType();
 
-        $tabDefaults = array(
+        $tabDefaults = [
             'inherit_data' => true,
-        );
+        ];
 
         foreach ($tabsData as $name => $data) {
             $tabOptions = array_merge($tabDefaults, $data);
@@ -65,16 +65,16 @@ class FlattenTabExtension extends AbstractTypeExtension
             }
 
             // call buildTabNameForm
-            call_user_func(array($formType, $method), $parent, $options);
+            call_user_func([$formType, $method], $parent, $options);
         }
     }
 
     public function configureOptions(OptionsResolver $resolver)
     {
-        $resolver->setDefaults(array(
+        $resolver->setDefaults([
             'build_tabs' => true,
-            'tabs_data' => array(),
-        ));
+            'tabs_data' => [],
+        ]);
     }
 
     public function getExtendedType()

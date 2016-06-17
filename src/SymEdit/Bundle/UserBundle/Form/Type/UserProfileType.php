@@ -29,25 +29,25 @@ class UserProfileType extends BaseType
         parent::buildUserForm($builder, $options);
 
         $builder
-            ->add('firstName', 'text', array(
+            ->add('firstName', 'text', [
                 'label' => 'First Name',
                 'property_path' => 'profile.firstName',
-            ))
-            ->add('lastName', 'text', array(
+            ])
+            ->add('lastName', 'text', [
                 'label' => 'Last Name',
                 'required' => false,
                 'property_path' => 'profile.lastName',
-            ))
+            ])
         ;
     }
 
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         // Basic Tab
-        $basic = $builder->create('basic', 'tab', array(
+        $basic = $builder->create('basic', 'tab', [
             'inherit_data' => true,
             'label' => 'Basic',
-        ));
+        ]);
 
         $this->buildBasicForm($basic, $options);
 

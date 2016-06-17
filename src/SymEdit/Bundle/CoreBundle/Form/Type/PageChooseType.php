@@ -43,9 +43,9 @@ class PageChooseType extends AbstractType
         $root = $this->pageRepository->findRoot();
         $iterator = $this->pageRepository->getRecursiveIterator(false);
 
-        $choices = array(
+        $choices = [
             $root->getId() => 'Root',
-        );
+        ];
 
         foreach ($iterator as $page) {
             if ($page->getHomepage()) {
@@ -54,9 +54,9 @@ class PageChooseType extends AbstractType
             $choices[$page->getId()] = str_repeat('--', $page->getLevel()).' '.$page->getTitle();
         }
 
-        $resolver->setDefaults(array(
+        $resolver->setDefaults([
             'choices' => $choices,
-        ));
+        ]);
     }
 
     public function getName()

@@ -43,15 +43,15 @@ class SymEditApiExtension extends SymEditResourceExtension implements PrependExt
             throw new ServiceNotFoundException('fos_oauth_server required to use API Bundle');
         }
 
-        $container->prependExtensionConfig('fos_oauth_server', array(
+        $container->prependExtensionConfig('fos_oauth_server', [
             'db_driver' => 'orm',
             'client_class' => '%symedit.model.client.class%',
             'access_token_class' => '%symedit.model.access_token.class%',
             'refresh_token_class' => '%symedit.model.refresh_token.class%',
             'auth_code_class' => '%symedit.model.auth_code.class%',
-            'service' => array(
+            'service' => [
                 'user_provider' => 'fos_user.user_provider.username',
-            ),
-        ));
+            ],
+        ]);
     }
 }

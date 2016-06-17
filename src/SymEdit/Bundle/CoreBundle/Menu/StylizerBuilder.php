@@ -20,6 +20,6 @@ class StylizerBuilder implements MenuBuilderInterface
     {
         $site = $menu->getRootNode()->getChild('site');
 
-        $site->addChild('Stylizer', array('route' => 'admin_stylizer', 'icon' => 'magic', 'extras' => array('is_granted' => 'ROLE_ADMIN_STYLIZER')));
+        $site->addChild('Stylizer', ['route' => 'admin_stylizer', 'icon' => 'magic', 'extras' => ['is_granted' => 'ROLE_ADMIN_STYLIZER']]);
     }
 }

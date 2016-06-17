@@ -56,9 +56,9 @@ class AnalyticsSubscriber implements EventSubscriberInterface
 
     public static function getSubscribedEvents()
     {
-        return array(
+        return [
             Events::SUBJECT_SET => 'onSubjectSet',
             KernelEvents::CONTROLLER => 'onKernelController',
-        );
+        ];
     }
 }

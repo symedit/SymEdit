@@ -24,10 +24,10 @@ class Configuration implements ConfigurationInterface
         $treeBuilder = new TreeBuilder();
         $rootNode = $treeBuilder->root('symedit_sitemap');
 
-        $allowedFreq = array(
+        $allowedFreq = [
             'always', 'hourly', 'daily', 'weekly', 'monthly',
             'yearly', 'never',
-        );
+        ];
 
         $rootNode
             ->children()
@@ -45,11 +45,11 @@ class Configuration implements ConfigurationInterface
                                 ->beforeNormalization()
                                     ->ifTrue(function ($v) { return !is_array($v); })
                                     ->then(function ($v) {
-                                        return array(
+                                        return [
                                             'path' => $v,
-                                            'params' => array(),
+                                            'params' => [],
                                             'ignore' => false,
-                                        );
+                                        ];
                                     })
                                 ->end()
                             ->end()

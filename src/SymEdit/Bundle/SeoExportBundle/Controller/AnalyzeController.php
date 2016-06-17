@@ -23,32 +23,32 @@ class AnalyzeController extends Controller
      */
     public function indexAction()
     {
-        $repositories = array(
-            'page' => array(
+        $repositories = [
+            'page' => [
                 'route' => 'admin_page_update',
-                'criteria' => array(
+                'criteria' => [
                     'root' => false,
-                ),
-            ),
+                ],
+            ],
 
-            'post' => array(
+            'post' => [
                 'route' => 'admin_post_update',
-                'criteria' => array(),
-            ),
+                'criteria' => [],
+            ],
 
-            'category' => array(
+            'category' => [
                 'route' => 'admin_category_update',
-                'criteria' => array(),
-            ),
-        );
+                'criteria' => [],
+            ],
+        ];
 
-        $entities = array();
-        $routes = array();
+        $entities = [];
+        $routes = [];
         $analyzer = $this->get('symedit_seo.analyzer');
 
         foreach ($repositories as $repositoryName => $config) {
             $repository = $this->get('symedit.repository.'.$repositoryName);
-            $entities[$repositoryName] = array();
+            $entities[$repositoryName] = [];
             $routes[$repositoryName] = $config['route'];
 
             foreach ($repository->findBy($config['criteria']) as $object) {
@@ -60,9 +60,9 @@ class AnalyzeController extends Controller
             }
         }
 
-        return array(
+        return [
             'groups' => $entities,
             'routes' => $routes,
-        );
+        ];
     }
 }

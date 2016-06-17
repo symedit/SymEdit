@@ -19,9 +19,9 @@ class SymEditBlogBundle extends AbstractResourceBundle
 {
     public function getSupportedDrivers()
     {
-        return array(
+        return [
             SyliusResourceBundle::DRIVER_DOCTRINE_ORM,
-        );
+        ];
     }
 
     protected function getBundlePrefix()

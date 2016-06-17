@@ -22,7 +22,7 @@ class MediaListener extends AbstractMediaListener
 {
     public function getSubscribedEvents()
     {
-        return array(
+        return [
             Events::prePersist,
             Events::preUpdate,
 
@@ -32,7 +32,7 @@ class MediaListener extends AbstractMediaListener
 
             Events::onFlush,
             Events::postLoad,
-        );
+        ];
     }
 
     public function prePersist(LifecycleEventArgs $args)
@@ -121,7 +121,7 @@ class MediaListener extends AbstractMediaListener
     {
         $class = get_class($media);
         $name = $media->getName();
-        $entity = $em->getRepository($class)->findOneBy(array('name' => $name));
+        $entity = $em->getRepository($class)->findOneBy(['name' => $name]);
 
         /*
          * No entity found, must be unique
@@ -142,7 +142,7 @@ class MediaListener extends AbstractMediaListener
         $query->setHydrationMode(\Doctrine\ORM\Query::HYDRATE_ARRAY);
         $result = $query->execute();
 
-        $sameNames = array();
+        $sameNames = [];
         foreach ($result as $record) {
             $sameNames[] = strtolower($record['name']);
         }

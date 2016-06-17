@@ -24,29 +24,29 @@ class GalleryStrategy extends AbstractGalleryStrategy
             return;
         }
 
-        return $this->render($widget, array(
+        return $this->render($widget, [
             'gallery' => $gallery,
-        ));
+        ]);
     }
 
     public function buildForm(FormBuilderInterface $builder)
     {
         $builder
-            ->add('slider', 'entity_property', array(
+            ->add('slider', 'entity_property', [
                 'label' => 'Gallery',
                 'help_block' => 'Choose gallery to display',
                 'class' => $this->repository->getClassName(),
                 'property' => 'title',
                 'property_value' => 'slug',
-            ))
+            ])
         ;
     }
 
     public function getDefaultOptions(\Symfony\Component\OptionsResolver\OptionsResolver $resolver)
     {
-        $resolver->setDefaults(array(
+        $resolver->setDefaults([
             'template' => '@SymEdit/Widget/Media/gallery.html.twig',
-        ));
+        ]);
     }
 
     public function getName()

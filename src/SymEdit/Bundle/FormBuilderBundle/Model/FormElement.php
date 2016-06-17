@@ -17,7 +17,7 @@ class FormElement implements FormElementInterface
     protected $type;
     protected $name;
     protected $position;
-    protected $options = array();
+    protected $options = [];
     protected $form;
 
     public function getId()
@@ -90,7 +90,7 @@ class FormElement implements FormElementInterface
     public function setExtra($extra, $value)
     {
         if (!isset($this->options['extra'])) {
-            $this->options['extra'] = array();
+            $this->options['extra'] = [];
         }
 
         $this->options['extra'][$extra] = $value;

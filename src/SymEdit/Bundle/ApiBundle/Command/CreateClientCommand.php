@@ -74,10 +74,10 @@ EOT
         // Output JSON so something can consume command output
         if ($input->getOption('json')) {
             $output->writeln(
-                json_encode(array(
+                json_encode([
                     'public_id' => $client->getPublicId(),
                     'secret' => $client->getSecret(),
-                ), JSON_PRETTY_PRINT)
+                ], JSON_PRETTY_PRINT)
             );
 
             return;

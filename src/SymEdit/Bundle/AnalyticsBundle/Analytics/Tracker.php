@@ -21,7 +21,7 @@ class Tracker
     protected $models;
     protected $modelsByClass;
     protected $propertyAccess;
-    protected $trackedVisits = array();
+    protected $trackedVisits = [];
 
     public function __construct(ObjectManager $manager, $class, array $models)
     {

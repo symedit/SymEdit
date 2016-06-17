@@ -13,20 +13,20 @@ namespace SymEdit\Bundle\CoreBundle\Model;
 
 class Breadcrumbs implements BreadcrumbsInterface
 {
-    protected $crumbs = array();
+    protected $crumbs = [];
 
     public function all()
     {
         return $this->crumbs;
     }
 
-    public function unshift($title, $path, $params = array())
+    public function unshift($title, $path, $params = [])
     {
-        array_unshift($this->crumbs, array(
+        array_unshift($this->crumbs, [
             'title' => $title,
             'path' => $path,
             'params' => $params,
-        ));
+        ]);
     }
 
     public function pop()
@@ -34,13 +34,13 @@ class Breadcrumbs implements BreadcrumbsInterface
         return array_pop($this->crumbs);
     }
 
-    public function push($title, $path, $params = array())
+    public function push($title, $path, $params = [])
     {
-        $this->crumbs[] = array(
+        $this->crumbs[] = [
             'title' => $title,
             'path' => $path,
             'params' => $params,
-        );
+        ];
     }
 
     public function getIterator()

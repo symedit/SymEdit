@@ -69,10 +69,10 @@ class WidgetController extends ResourceController
         $view = $this
             ->view()
             ->setTemplate('@SymEdit/Admin/Widget/index.html.twig')
-            ->setData(array(
+            ->setData([
                 'areas' => $areas,
                 'registry' => $this->getRegistry(),
-            ));
+            ]);
 
         return $this->handleView($view);
     }
@@ -87,9 +87,9 @@ class WidgetController extends ResourceController
         $view = View::create()
             ->setTemplate('@SymEdit/Admin/Widget/choose.html.twig')
             ->setTemplateVar('strategies')
-            ->setData(array(
+            ->setData([
                 'strategies' => $strategies,
-            ));
+            ]);
 
         return $this->viewHandler->handle($configuration, $view);
     }

@@ -72,9 +72,9 @@ class Widget implements WidgetInterface, ResourceInterface
 
     public function __construct()
     {
-        $this->setOptions(array());
+        $this->setOptions([]);
         $this->setVisibility(self::INCLUDE_ALL);
-        $this->setAssoc(array());
+        $this->setAssoc([]);
         $this->setUpdatedAt(new \DateTime());
     }
 

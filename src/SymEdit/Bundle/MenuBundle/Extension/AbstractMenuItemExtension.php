@@ -16,7 +16,7 @@ use SymEdit\Bundle\MenuBundle\Model\MenuInterface;
 
 abstract class AbstractMenuItemExtension implements MenuExtensionInterface
 {
-    public function modifyMenu(MenuInterface $menu, array $options = array())
+    public function modifyMenu(MenuInterface $menu, array $options = [])
     {
         $this->recurseItem($menu->getRootNode(), $options);
     }

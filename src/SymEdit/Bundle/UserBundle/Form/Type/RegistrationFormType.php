@@ -19,15 +19,15 @@ class RegistrationFormType extends BaseType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('firstName', 'text', array(
+            ->add('firstName', 'text', [
                 'label' => 'First Name',
                 'property_path' => 'profile.firstName',
-            ))
-            ->add('lastName', 'text', array(
+            ])
+            ->add('lastName', 'text', [
                 'label' => 'Last Name',
                 'required' => false,
                 'property_path' => 'profile.lastName',
-            ))
+            ])
         ;
 
         parent::buildForm($builder, $options);

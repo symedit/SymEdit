@@ -46,15 +46,15 @@ class PageController extends ResourceController
     public function jsonAction()
     {
         $pages = $this->getRepository()->getRecursiveIterator();
-        $out = array();
+        $out = [];
 
         foreach ($pages as $page) {
             $label = sprintf('%s %s', str_repeat('--', $page->getLevel()), $page->getTitle());
 
-            $out[] = array(
+            $out[] = [
                 'name' => trim($label),
                 'url' => sprintf('[link page-id=%d]', $page->getId()),
-            );
+            ];
         }
 
         return new JsonResponse($out);

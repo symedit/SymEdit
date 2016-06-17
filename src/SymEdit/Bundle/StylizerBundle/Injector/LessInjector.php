@@ -15,7 +15,7 @@ use Symfony\Bundle\AsseticBundle\FilterManager;
 
 class LessInjector implements InjectorInterface
 {
-    public function inject(FilterManager $manager, array $variables = array())
+    public function inject(FilterManager $manager, array $variables = [])
     {
         if ($manager->has('less')) {
             $less = $manager->get('less');

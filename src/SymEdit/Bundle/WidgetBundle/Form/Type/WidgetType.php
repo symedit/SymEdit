@@ -37,36 +37,36 @@ class WidgetType extends AbstractType
         $transformer = new WidgetAssociationTransformer();
 
         $builder
-            ->add('title', 'text', array(
+            ->add('title', 'text', [
                 'label' => 'symedit.form.widget.basic.title',
                 'required' => false,
-            ))
-            ->add('name', 'text', array(
+            ])
+            ->add('name', 'text', [
                 'label' => 'symedit.form.widget.basic.name.label',
                 'help_block' => 'symedit.form.widget.basic.name.help',
-            ))
-            ->add('area', 'entity', array(
+            ])
+            ->add('area', 'entity', [
                 'label' => 'symedit.form.widget.basic.area',
                 'choice_label' => 'area',
                 'class' => $this->widgetAreaClass,
-            ))
-            ->add('visibility', 'choice', array(
+            ])
+            ->add('visibility', 'choice', [
                 'label' => 'symedit.form.widget.basic.visibility.label',
-                'choices' => array(
+                'choices' => [
                     WidgetInterface::INCLUDE_ALL => 'symedit.form.widget.basic.visibility.include_all',
                     WidgetInterface::INCLUDE_ONLY => 'symedit.form.widget.basic.visibility.include_only',
                     WidgetInterface::EXCLUDE_ONLY => 'symedit.form.widget.basic.visibility.exclude_only',
-                ),
-            ))
+                ],
+            ])
             ->add(
-                $builder->create('assoc', 'textarea', array(
+                $builder->create('assoc', 'textarea', [
                     'label' => 'symedit.form.widget.basic.associations',
                     'required' => false,
                     'auto_initialize' => false,
-                    'attr' => array(
+                    'attr' => [
                         'rows' => 8,
-                    ),
-                ))->addModelTransformer($transformer)
+                    ],
+                ])->addModelTransformer($transformer)
             )
         ;
     }
@@ -77,13 +77,13 @@ class WidgetType extends AbstractType
 
         // Add custom template override
         $builder
-            ->add('template', 'text', array(
+            ->add('template', 'text', [
                 'required' => true,
                 'help_block' => 'symedit.form.widget.options.template.help',
-                'constraints' => array(
+                'constraints' => [
                     new NotBlank(),
-                ),
-            ))
+                ],
+            ])
         ;
 
         $strategy->buildForm($builder);
@@ -97,9 +97,9 @@ class WidgetType extends AbstractType
 
     public function configureOptions(OptionsResolver $resolver)
     {
-        $resolver->setRequired(array(
+        $resolver->setRequired([
             'strategy',
-        ));
+        ]);
     }
 
     public function getName()

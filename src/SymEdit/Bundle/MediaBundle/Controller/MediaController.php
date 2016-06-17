@@ -29,12 +29,12 @@ abstract class MediaController extends ResourceController
         $media->setFile($file);
 
         // Validate the new image
-        $errors = $this->get('validator')->validate($media, array('file_only'));
+        $errors = $this->get('validator')->validate($media, ['file_only']);
 
         if (count($errors) > 0) {
-            return new JsonResponse(array(
+            return new JsonResponse([
                 'error' => 'Invalid media: '.$errors[0]->getMessage(),
-            ));
+            ]);
         }
 
         try {
@@ -43,9 +43,9 @@ abstract class MediaController extends ResourceController
 
             return $this->getQuickUploadResponse($media);
         } catch (\Exception $ex) {
-            return new JsonResponse(array(
+            return new JsonResponse([
                 'error' => 'Error uploading, try renaming your media file.',
-            ));
+            ]);
         }
     }
 
@@ -56,9 +56,9 @@ abstract class MediaController extends ResourceController
 
     protected function getQuickUploadResponse(MediaInterface $media)
     {
-        return new JsonResponse(array(
+        return new JsonResponse([
             'id' => $media->getId(),
             'filelink' => $media->getWebPath(),
-        ));
+        ]);
     }
 }

@@ -29,51 +29,51 @@ class CompanySettingsSchema implements SchemaInterface
     public function buildForm(FormBuilderInterface $builder)
     {
         $builder
-            ->add('logo', 'symedit_image_choose', array(
+            ->add('logo', 'symedit_image_choose', [
                 'label' => 'symedit.settings.company.logo',
                 'required' => false,
-            ))
-            ->add('name', null, array(
+            ])
+            ->add('name', null, [
                 'label' => 'symedit.settings.company.name',
                 'required' => false,
-            ))
-            ->add('address', 'textarea', array(
+            ])
+            ->add('address', 'textarea', [
                 'label' => 'symedit.settings.company.address',
                 'required' => false,
-            ))
-            ->add('email', 'email', array(
+            ])
+            ->add('email', 'email', [
                 'label' => 'symedit.settings.company.email',
-            ))
-            ->add('phone', null, array(
+            ])
+            ->add('phone', null, [
                 'label' => 'symedit.settings.company.phone',
                 'required' => false,
-            ))
-            ->add('fax', null, array(
+            ])
+            ->add('fax', null, [
                 'label' => 'symedit.settings.company.fax',
                 'required' => false,
-            ))
+            ])
         ;
     }
 
     public function buildSettings(SettingsBuilderInterface $builder)
     {
         $builder
-            ->setDefaults(array(
+            ->setDefaults([
                 'logo' => null,
                 'name' => 'SymEdit Site',
                 'address' => '5 SymEdit Way',
                 'email' => 'contact@mysite.com',
                 'phone' => '(123)-123-1234',
                 'fax' => '',
-            ))
-            ->setAllowedTypes(array(
-                'logo' => array('null', 'SymEdit\Bundle\MediaBundle\Model\ImageInterface'),
-                'name' => array('string', 'null'),
-                'address' => array('string', 'null'),
-                'email' => array('string'),
-                'phone' => array('string', 'null'),
-                'fax' => array('string', 'null'),
-            ))
+            ])
+            ->setAllowedTypes([
+                'logo' => ['null', 'SymEdit\Bundle\MediaBundle\Model\ImageInterface'],
+                'name' => ['string', 'null'],
+                'address' => ['string', 'null'],
+                'email' => ['string'],
+                'phone' => ['string', 'null'],
+                'fax' => ['string', 'null'],
+            ])
             ->setTransformer('logo', new ResourceToIdentifierTransformer($this->imageRepository))
         ;
     }

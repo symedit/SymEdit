@@ -45,23 +45,23 @@ class MetadataSubscriber implements EventSubscriber
         $metadata->isMappedSuperclass = false;
 
         // Set discriminator column
-        $metadata->setDiscriminatorColumn(array(
+        $metadata->setDiscriminatorColumn([
             'name' => 'discr',
             'type' => 'string',
             'length' => 20,
-        ));
+        ]);
 
         // Set map
-        $metadata->setDiscriminatorMap(array(
+        $metadata->setDiscriminatorMap([
             'user' => $this->profile,
             'admin' => $this->adminProfile,
-        ));
+        ]);
     }
 
     public function getSubscribedEvents()
     {
-        return array(
+        return [
             'loadClassMetadata',
-        );
+        ];
     }
 }

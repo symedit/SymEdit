@@ -32,10 +32,10 @@ class ImageChooseType extends AbstractType
 
     public function configureOptions(OptionsResolver $resolver)
     {
-        $resolver->setDefaults(array(
+        $resolver->setDefaults([
             'show_image' => true,
             'class' => $this->class,
-        ));
+        ]);
     }
 
     public function getParent()

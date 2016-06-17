@@ -18,10 +18,10 @@ class TextAreaFieldBuilder extends AbstractFieldBuilder
     public function buildOptionsForm(FormBuilderInterface $builder)
     {
         $builder
-            ->add('rows', 'integer', array(
+            ->add('rows', 'integer', [
                 'property_path' => '[attr][rows]',
                 'data' => 3,
-            ))
+            ])
         ;
     }
 

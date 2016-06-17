@@ -29,18 +29,18 @@ class EntityPropertyType extends AbstractType
 
     public function configureOptions(OptionsResolver $resolver)
     {
-        $resolver->setRequired(array(
+        $resolver->setRequired([
             'property_value',
             'property',
             'class',
-        ));
+        ]);
 
         $doctrine = $this->doctrine;
 
         $choiceList = function (Options $options) use ($doctrine) {
             $entities = $doctrine->getManager()->getRepository($options['class'])->findAll();
 
-            $choices = array();
+            $choices = [];
             $accessor = PropertyAccess::createPropertyAccessor();
             $i = 0;
 
@@ -57,10 +57,10 @@ class EntityPropertyType extends AbstractType
             return new SimpleChoiceList($choices);
         };
 
-        $resolver->setDefaults(array(
+        $resolver->setDefaults([
             'property_value' => null,
             'choice_list' => $choiceList,
-        ));
+        ]);
     }
 
     public function getParent()

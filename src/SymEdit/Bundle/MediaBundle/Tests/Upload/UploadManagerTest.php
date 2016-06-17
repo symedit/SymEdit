@@ -32,7 +32,7 @@ class UploadManagerTest extends TestCase
     {
         return $this->getMockBuilder('SymEdit\Bundle\MediaBundle\Upload\UploadManager')
             ->setMethods($methods)
-            ->setConstructorArgs(array($filesystem))
+            ->setConstructorArgs([$filesystem])
             ->getMock()
         ;
     }
@@ -44,7 +44,7 @@ class UploadManagerTest extends TestCase
 
     public function testPreUpload()
     {
-        $manager = $this->getUploadManager($this->getFilesystem(), array('removeUpload'));
+        $manager = $this->getUploadManager($this->getFilesystem(), ['removeUpload']);
         $media = $this->getMedia();
         $callback = function (MediaInterface $media) {
             return 'foo';

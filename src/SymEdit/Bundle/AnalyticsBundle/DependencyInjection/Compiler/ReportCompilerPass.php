@@ -24,7 +24,7 @@ class ReportCompilerPass implements CompilerPassInterface
     {
         // Get reports
         $tags = $container->findTaggedServiceIds('symedit_analytics.report');
-        $reports = array();
+        $reports = [];
 
         foreach ($tags as $id => $tags) {
             foreach ($tags as $attr) {
@@ -38,7 +38,7 @@ class ReportCompilerPass implements CompilerPassInterface
 
         // Get Extensions
         $tags = $container->findTaggedServiceIds('symedit_analytics.report_extension');
-        $extensions = array();
+        $extensions = [];
 
         foreach ($tags as $id => $tags) {
             $extensions[] = new Reference($id);

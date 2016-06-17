@@ -20,7 +20,7 @@ class ConfigurationTest extends TestCase
     public function testDefaultConfig()
     {
         $processor = new Processor();
-        $config = $processor->processConfiguration(new Configuration(), array());
+        $config = $processor->processConfiguration(new Configuration(), []);
 
         $this->assertEquals(
             self::getBundleDefaultConfig(),
@@ -35,74 +35,74 @@ class ConfigurationTest extends TestCase
     {
         $processor = new Processor();
         $configuration = new Configuration();
-        $processor->processConfiguration($configuration, array(
+        $processor->processConfiguration($configuration, [
             'driver' => 'some/other/driver',
-        ));
+        ]);
     }
 
     public function testExtensions()
     {
         $processor = new Processor();
         $configuration = new Configuration();
-        $config = $processor->processConfiguration($configuration, array(array(
-            'extensions' => array(
-                array(
+        $config = $processor->processConfiguration($configuration, [[
+            'extensions' => [
+                [
                     'route' => 'test_route',
                     'label' => 'Foo Extension',
                     'icon' => 'bar',
-                ),
-            ),
-        )));
+                ],
+            ],
+        ]]);
 
         $this->assertEquals(
-            array(
-                array(
+            [
+                [
                     'route' => 'test_route',
                     'label' => 'Foo Extension',
                     'role' => 'ROLE_ADMIN',
                     'icon' => 'bar',
-                ),
-            ),
+                ],
+            ],
             $config['extensions']
         );
     }
 
     protected static function getBundleDefaultConfig()
     {
-        return array(
+        return [
             'driver' => 'doctrine/orm',
-            'extensions' => array(),
-            'email' => array(
+            'extensions' => [],
+            'email' => [
                 'sender' => 'email@example.com',
-            ),
-            'template_locations' => array(),
-            'assets' => array(
-                'javascripts' => array(),
-                'stylesheets' => array(),
-            ),
-            'classes' => array(
-                'page' => array(
+            ],
+            'template_locations' => [],
+            'assets' => [
+                'javascripts' => [],
+                'stylesheets' => [],
+            ],
+            'classes' => [
+                'page' => [
                     'model' => 'SymEdit\Bundle\CoreBundle\Model\Page',
                     'controller' => 'SymEdit\Bundle\CoreBundle\Controller\PageController',
-                    'form' => array(
+                    'form' => [
                         'default' => 'SymEdit\Bundle\CoreBundle\Form\Type\PageType',
                         'choose' => 'SymEdit\Bundle\CoreBundle\Form\Type\PageChooseType',
-                    ),
-                ),
-                'role' => array(
+                    ],
+                ],
+                'role' => [
                     'model' => 'SymEdit\Bundle\CoreBundle\Model\Role',
-                ),
-                'breadcrumbs' => array(
+                ],
+                'breadcrumbs' => [
                     'model' => 'SymEdit\Bundle\CoreBundle\Model\Breadcrumbs',
-                ),
-                'contact' => array(
+                ],
+                'contact' => [
                     'controller' => 'SymEdit\Bundle\CoreBundle\Controller\ContactController',
                     'form' => 'SymEdit\Bundle\CoreBundle\Form\Type\ContactType',
-                ),
-            ),
-            'routing' => array(
+                ],
+            ],
+            'routing' => [
                 'route_uri_filter_regexp' => '',
-            ),
-        );
+            ],
+        ];
     }
 }

@@ -15,9 +15,9 @@ use SymEdit\Bundle\ThemeBundle\Template\TemplateData;
 
 class TemplateLoaderChain implements TemplateLoaderInterface
 {
-    protected $loaders = array();
+    protected $loaders = [];
 
-    public function __construct($loaders = array())
+    public function __construct($loaders = [])
     {
         $this->loaders = $loaders;
     }

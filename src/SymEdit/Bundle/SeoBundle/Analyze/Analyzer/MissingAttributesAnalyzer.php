@@ -16,9 +16,9 @@ use SymEdit\Bundle\SeoBundle\Analyze\AnalyzerContext;
 
 class MissingAttributesAnalyzer implements AnalyzerInterface
 {
-    public static $attributes = array(
+    public static $attributes = [
         'title', 'description',
-    );
+    ];
 
     public function analyze(SeoAbleInterface $object, AnalyzerContext $context)
     {

@@ -19,7 +19,7 @@ class ThemeTwigResource extends BaseResource
 {
     public function __construct(Theme $theme)
     {
-        $directories = array();
+        $directories = [];
 
         foreach ($theme->getTemplateDirectories() as $directory) {
             $directories[] = new DirectoryResource($directory);

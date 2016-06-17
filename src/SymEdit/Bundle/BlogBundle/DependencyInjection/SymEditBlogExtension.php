@@ -50,11 +50,11 @@ class SymEditBlogExtension extends SymEditResourceExtension implements PrependEx
             return;
         }
 
-        $container->prependExtensionConfig('symedit', array(
-            'template_locations' => array(
+        $container->prependExtensionConfig('symedit', [
+            'template_locations' => [
                 '@SymEditBlogBundle/Resources/views',
-            ),
-        ));
+            ],
+        ]);
     }
 
     public function getAlias()

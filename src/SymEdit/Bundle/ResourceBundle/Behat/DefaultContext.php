@@ -28,12 +28,12 @@ abstract class DefaultContext extends RawMinkContext implements Context, KernelA
         $this->kernel = $kernel;
     }
 
-    protected function generateUrl($route, array $parameters = array(), $absolute = false)
+    protected function generateUrl($route, array $parameters = [], $absolute = false)
     {
         return $this->locatePath($this->getService('router')->generate($route, $parameters, $absolute));
     }
 
-    protected function generatePageUrl($page, array $parameters = array())
+    protected function generatePageUrl($page, array $parameters = [])
     {
         $route = str_replace(' ', '_', trim($page));
 
@@ -48,7 +48,7 @@ abstract class DefaultContext extends RawMinkContext implements Context, KernelA
      */
     protected function findOneByName($type, $name)
     {
-        return $this->findOneBy($type, array('name' => trim($name)));
+        return $this->findOneBy($type, ['name' => trim($name)]);
     }
     /**
      * @param string $type

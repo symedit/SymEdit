@@ -22,7 +22,7 @@ class ThemeLoaderPass implements CompilerPassInterface
      */
     public function process(ContainerBuilder $container)
     {
-        $themeLoaders = array();
+        $themeLoaders = [];
         foreach ($container->findTaggedServiceIds('symedit_theme.theme_loader') as $id => $attributes) {
             $themeLoaders[] = new Reference($id);
         }

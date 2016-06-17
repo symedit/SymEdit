@@ -20,7 +20,7 @@ class LoadRoleData extends AbstractFixture implements OrderedFixtureInterface
 {
     public function load(ObjectManager $manager)
     {
-        $roles = array(
+        $roles = [
               'ROLE_ADMIN' => 'Admin Access',
               'ROLE_SUPER_ADMIN' => 'Super Admin',
               'ROLE_ADMIN_PAGE' => 'Page Access',
@@ -34,7 +34,7 @@ class LoadRoleData extends AbstractFixture implements OrderedFixtureInterface
               'ROLE_ADMIN_USER' => 'User Access',
               'ROLE_ADMIN_STYLIZER' => 'Access to Stylizer',
               'ROLE_ADMIN_FORM_BUILDER' => 'Access to Form Builder',
-          );
+          ];
 
         foreach ($roles as $role => $description) {
             $entity = $this->createRole();

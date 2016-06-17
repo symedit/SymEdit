@@ -19,7 +19,7 @@ class FormBuilderFactoryEvent extends Event
     protected $form;
     protected $options;
 
-    public function __construct(FormInterface $form, array $options = array())
+    public function __construct(FormInterface $form, array $options = [])
     {
         $this->form = $form;
         $this->options = $options;

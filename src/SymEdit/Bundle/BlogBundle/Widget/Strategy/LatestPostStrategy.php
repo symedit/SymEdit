@@ -21,27 +21,27 @@ class LatestPostStrategy extends AbstractPostStrategy
     {
         $post = $this->postRepository->getLatestPost();
 
-        return $this->render($widget, array(
+        return $this->render($widget, [
             'post' => $post,
-        ));
+        ]);
     }
 
     public function buildForm(FormBuilderInterface $builder)
     {
         $builder
-            ->add('show_image', 'checkbox', array(
+            ->add('show_image', 'checkbox', [
                 'label' => 'Show Image',
                 'required' => false,
-            ))
+            ])
         ;
     }
 
     public function getDefaultOptions(OptionsResolver $resolver)
     {
-        $resolver->setDefaults(array(
+        $resolver->setDefaults([
             'show_image' => true,
             'template' => '@SymEdit/Widget/Blog/latest-post.html.twig',
-        ));
+        ]);
     }
 
     public function getName()

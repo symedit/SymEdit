@@ -56,30 +56,30 @@ class SymEditMediaExtension extends SymEditResourceExtension implements PrependE
         /*
          * Twig Extension
          */
-        $container->prependExtensionConfig('twig', array(
-            'form' => array(
-                'resources' => array(
+        $container->prependExtensionConfig('twig', [
+            'form' => [
+                'resources' => [
                     'SymEditMediaBundle:Form:fields.html.twig',
-                ),
-            ),
-        ));
+                ],
+            ],
+        ]);
 
         if ($container->hasExtension('symedit')) {
-            $container->prependExtensionConfig('symedit', array(
-                'template_locations' => array(
+            $container->prependExtensionConfig('symedit', [
+                'template_locations' => [
                     '@SymEditMediaBundle/Resources/views',
-                ),
-                'assets' => array(
-                    'stylesheets' => array(
+                ],
+                'assets' => [
+                    'stylesheets' => [
                         '@SymEditMediaBundle/Resources/less/media.less',
                         '@SymEditMediaBundle/Resources/css/dropzone.css',
-                    ),
-                    'javascripts' => array(
+                    ],
+                    'javascripts' => [
                         '@SymEditMediaBundle/Resources/js/media.js',
                         '@SymEditMediaBundle/Resources/js/dropzone.js',
-                    ),
-                ),
-            ));
+                    ],
+                ],
+            ]);
         }
     }
 

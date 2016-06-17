@@ -32,9 +32,9 @@ class SettingsController extends FOSRestController
         $view = $this
             ->view()
             ->setTemplate('@SymEdit/Admin/Settings/index.html.twig')
-            ->setData(array(
+            ->setData([
                 'form' => $form->createView(),
-            ))
+            ])
         ;
 
         return $this->handleView($view);
@@ -60,7 +60,7 @@ class SettingsController extends FOSRestController
         $settings = $this->getSettingsManager();
         $schemas = $this->getSchemaRegistry()->getSchemas();
         $builder = $this->createFormBuilder()->create('sylius_settings', 'form');
-        $data = array();
+        $data = [];
 
         foreach ($schemas as $namespace => $schema) {
             // Check roles

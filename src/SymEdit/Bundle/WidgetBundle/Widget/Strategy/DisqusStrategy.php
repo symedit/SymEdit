@@ -20,29 +20,29 @@ class DisqusStrategy extends AbstractWidgetStrategy
 {
     public function execute(WidgetInterface $widget)
     {
-        return $this->render($widget, array(
+        return $this->render($widget, [
             'shortname' => $widget->getOption('shortname'),
-        ));
+        ]);
     }
 
     public function buildForm(FormBuilderInterface $builder)
     {
         $builder
-            ->add('shortname', 'text', array(
+            ->add('shortname', 'text', [
                 'required' => true,
                 'label' => 'Shortname',
-                'constraints' => array(
+                'constraints' => [
                     new NotBlank(),
-                ),
-            ))
+                ],
+            ])
         ;
     }
 
     public function getDefaultOptions(OptionsResolver $resolver)
     {
-        $resolver->setDefaults(array(
+        $resolver->setDefaults([
             'template' => '@SymEdit/Widget/disqus.html.twig',
-        ));
+        ]);
     }
 
     public function getName()

@@ -19,5 +19,5 @@ interface WidgetFactoryInterface extends FactoryInterface
     /**
      * @return WidgetInterface
      */
-    public function createFromStrategy($strategyName = null, array $options = array());
+    public function createFromStrategy($strategyName = null, array $options = []);
 }

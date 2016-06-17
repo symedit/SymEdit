@@ -19,7 +19,7 @@ class FormElementConfig implements FormElementConfigInterface
     protected $element;
     protected $type;
     protected $name;
-    protected $constraints = array();
+    protected $constraints = [];
 
     public function __construct(FormElementInterface $element)
     {

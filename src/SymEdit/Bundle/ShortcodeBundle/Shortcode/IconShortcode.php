@@ -16,11 +16,11 @@ namespace SymEdit\Bundle\ShortcodeBundle\Shortcode;
  */
 class IconShortcode extends AbstractShortcode
 {
-    protected static $patterns = array(
+    protected static $patterns = [
         'glyphicon' => '<span class="glyphicon glyphicon-%s"></span>',
         'fontawesome' => '<i class="icon-%s"></i>',
         'fontawesome4' => '<i class="fa fa-%s"></i>',
-    );
+    ];
 
     public function renderShortcode($match, array $attr, $content)
     {

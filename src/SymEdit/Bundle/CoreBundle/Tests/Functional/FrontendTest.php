@@ -28,15 +28,15 @@ class FrontendTest extends WebTestCase
 
     public function fixtureUrlProvider()
     {
-        return array(
-            array('/'),                         // Home
-            array('/about'),                    // About
-            array('/events/'),                  // Events
-            array('/blog/'),                    // Blog
-            array('/blog/hello-world'),         //  - Hello World
-            array('/blog/category/general'),    //  - Category: General
-            array('/sitemap.xml'),
-            array('/robots.txt'),
-        );
+        return [
+            ['/'],                         // Home
+            ['/about'],                    // About
+            ['/events/'],                  // Events
+            ['/blog/'],                    // Blog
+            ['/blog/hello-world'],         //  - Hello World
+            ['/blog/category/general'],    //  - Category: General
+            ['/sitemap.xml'],
+            ['/robots.txt'],
+        ];
     }
 }

@@ -20,10 +20,10 @@ class BackendTest extends WebTestCase
     protected function getClient()
     {
         if ($this->client === null) {
-            $this->client = static::createClient(array(), array(
+            $this->client = static::createClient([], [
                 'PHP_AUTH_USER' => 'admin',
                 'PHP_AUTH_PW' => 'test',
-            ));
+            ]);
 
             $this->client->followRedirects();
         }
@@ -45,40 +45,40 @@ class BackendTest extends WebTestCase
 
     public function fixtureUrlProvider()
     {
-        return array(
-            array('/'),
+        return [
+            ['/'],
 
-            array('/user'),
-            array('/user/new'),
+            ['/user'],
+            ['/user/new'],
 
-            array('/post'),
-            array('/post/new'),
+            ['/post'],
+            ['/post/new'],
 
-            array('/image'),
-            array('/image/new'),
-            array('/image/gallery'),
-            array('/image/gallery/new'),
+            ['/image'],
+            ['/image/new'],
+            ['/image/gallery'],
+            ['/image/gallery/new'],
 
-            array('/file'),
-            array('/file/new'),
+            ['/file'],
+            ['/file/new'],
 
-            array('/widget'),
-            array('/widget/new'),
+            ['/widget'],
+            ['/widget/new'],
 
-            array('/category'),
-            array('/category/new'),
+            ['/category'],
+            ['/category/new'],
 
-            array('/events'),
-            array('/events/new'),
+            ['/events'],
+            ['/events/new'],
 
-            array('/settings'),
+            ['/settings'],
 
-            array('/stylizer'),
+            ['/stylizer'],
 
             // Profile
-            array('/profile', false),
-            array('/profile/change-password', false),
-        );
+            ['/profile', false],
+            ['/profile/change-password', false],
+        ];
     }
 
     /**
@@ -93,22 +93,22 @@ class BackendTest extends WebTestCase
 
     public function fixtureWidgetProvider()
     {
-        return array(
-            array('blog_recent_posts'),
-            array('blog_latest_post'),
-            array('blog_popular_posts'),
-            array('blog_categories'),
-            array('html'),
-            array('template'),
-            array('disqus'),
-            array('addthis'),
-            array('contact_info'),
-            array('google_map'),
-            array('submenu'),
-            array('list_children'),
-            array('slider'),
-            array('gallery'),
-            array('mailchimp_subscribe'),
-        );
+        return [
+            ['blog_recent_posts'],
+            ['blog_latest_post'],
+            ['blog_popular_posts'],
+            ['blog_categories'],
+            ['html'],
+            ['template'],
+            ['disqus'],
+            ['addthis'],
+            ['contact_info'],
+            ['google_map'],
+            ['submenu'],
+            ['list_children'],
+            ['slider'],
+            ['gallery'],
+            ['mailchimp_subscribe'],
+        ];
     }
 }

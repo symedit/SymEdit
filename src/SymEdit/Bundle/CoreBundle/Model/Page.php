@@ -63,7 +63,7 @@ class Page implements PageInterface, ResourceInterface
     /**
      * @var array
      */
-    protected $displayOptions = array();
+    protected $displayOptions = [];
 
     /**
      * @var string
@@ -381,7 +381,7 @@ class Page implements PageInterface, ResourceInterface
      *
      * @return Page
      */
-    public function setSeo(array $seo = array())
+    public function setSeo(array $seo = [])
     {
         $this->seo = $seo;
 
@@ -722,7 +722,7 @@ class Page implements PageInterface, ResourceInterface
     public function getSiblings()
     {
         if (!$this->getParent()) {
-            return array();
+            return [];
         }
 
         return $this->getParent()->getChildren()->filter(function ($element) {

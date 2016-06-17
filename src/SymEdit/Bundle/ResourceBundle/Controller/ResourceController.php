@@ -47,9 +47,9 @@ class ResourceController extends BaseResourceController
         $view = $this->view()
             ->setFormat('json')
             ->setTemplateVar('status')
-            ->setData(array(
+            ->setData([
                 'status' => true,
-            ));
+            ]);
 
         return $this->handleView($view);
     }
@@ -63,10 +63,10 @@ class ResourceController extends BaseResourceController
         $view = $this
             ->view()
             ->setTemplate($this->config->getTemplate('history.html'))
-            ->setData(array(
+            ->setData([
                 $this->config->getResourceName() => $resource,
                 'entries' => $entries,
-            ))
+            ])
         ;
 
         return $this->handleView($view);

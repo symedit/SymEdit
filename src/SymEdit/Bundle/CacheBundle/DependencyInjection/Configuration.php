@@ -36,7 +36,7 @@ class Configuration implements ConfigurationInterface
                     ->addDefaultsIfNotSet()
                     ->children()
                         ->variableNode('roles')
-                            ->defaultValue(array())
+                            ->defaultValue([])
                         ->end()
                     ->end()
                 ->end()

@@ -30,7 +30,7 @@ class GalleryChooseDataTransformer implements DataTransformerInterface
     {
         $images = array_filter($value, function ($v) { return $v !== null; });
 
-        $galleryItems = array();
+        $galleryItems = [];
         foreach ($images as $image) {
             $item = $this->itemRepository->createNew();
             $item->setImage($image);

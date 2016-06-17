@@ -21,14 +21,14 @@ class ImageController extends MediaController
     public function jsonAction()
     {
         $images = $this->getRepository()->findAll();
-        $out = array();
+        $out = [];
 
         foreach ($images as $image) {
-            $out[] = array(
+            $out[] = [
                 'id' => $image->getId(),
                 'thumb' => $this->getThumbnail($image->getPath()),
                 'image' => $image->getWebPath(),
-            );
+            ];
         }
 
         return new JsonResponse($out);

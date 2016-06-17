@@ -41,9 +41,9 @@ class PostController extends ResourceController
 
     public function showCategoryAction(Request $request, $slug)
     {
-        $category = $this->get('symedit.repository.category')->findOneBy(array(
+        $category = $this->get('symedit.repository.category')->findOneBy([
             'slug' => $slug,
-        ));
+        ]);
 
         if ($category === null) {
             throw $this->createNotFoundException(sprintf('Category with slug "%s" not found', $category));
@@ -58,10 +58,10 @@ class PostController extends ResourceController
         $view = View::create()
             ->setTemplate($configuration->getTemplate('index.html'))
             ->setTemplateVar('category')
-            ->setData(array(
+            ->setData([
                 'category' => $category,
                 'posts' => $paginator,
-            ));
+            ]);
 
         return $this->viewHandler->handle($configuration, $view);
     }

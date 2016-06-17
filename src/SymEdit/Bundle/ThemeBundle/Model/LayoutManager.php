@@ -21,7 +21,7 @@ class LayoutManager
     protected $loader;
     protected $configuration;
     protected $processor;
-    protected $layouts = array();
+    protected $layouts = [];
 
     public function __construct(LoaderInterface $loader, ConfigurationInterface $configuration)
     {
@@ -73,12 +73,12 @@ class LayoutManager
         }
 
         try {
-            $processed = $this->getProcessor()->processConfiguration($this->configuration, array(
-                array(
+            $processed = $this->getProcessor()->processConfiguration($this->configuration, [
+                [
                     'title' => $template->getKey(),
-                ),
+                ],
                 $layoutData
-            ));
+            ]);
         } catch (InvalidConfigurationException $e) {
             return $this->createLayout($template->getKey());
         }

@@ -30,15 +30,15 @@ class FormElementType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('name', 'text', array(
+            ->add('name', 'text', [
                 'required' => false,
-            ))
+            ])
             ->add('type', 'hidden')
         ;
 
-        $optionsBuilder = $builder->create('options', 'form', array(
+        $optionsBuilder = $builder->create('options', 'form', [
             'embed_form' => true
-         ));
+         ]);
 
         // Get builders from registry
         $fieldBuilders = $this->registry->getFieldBuilders($options['field_type']);
@@ -53,10 +53,10 @@ class FormElementType extends AbstractType
 
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
-        $resolver->setDefaults(array(
+        $resolver->setDefaults([
             'field_type' => 'form',
             'data_class' => $this->class,
-        ));
+        ]);
     }
 
     public function getName()

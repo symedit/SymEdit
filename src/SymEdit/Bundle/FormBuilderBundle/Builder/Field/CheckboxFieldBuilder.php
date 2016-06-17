@@ -18,11 +18,11 @@ class CheckboxFieldBuilder extends AbstractFieldBuilder
     public function buildOptionsForm(FormBuilderInterface $builder)
     {
         $builder
-            ->add('data', 'checkbox', array(
+            ->add('data', 'checkbox', [
                 'label' => 'Default Value',
                 'required' => false,
                 'property_path' => '[data]',
-            ))
+            ])
         ;
     }
 }

@@ -50,8 +50,8 @@ class SyliusResourceInterceptor implements MethodInterceptorInterface
         $resource = $controller->findOr404($request);
 
         // Cache Options
-        $options = $request->attributes->get('_sylius', array());
-        $cacheOptions = array_key_exists('cache', $options) ? $options['cache'] : array();
+        $options = $request->attributes->get('_sylius', []);
+        $cacheOptions = array_key_exists('cache', $options) ? $options['cache'] : [];
 
         // Build the actual cache options since we'll need to use it twice
         $this->parser->process($cacheOptions, $resource);

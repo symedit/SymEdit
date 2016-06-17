@@ -41,7 +41,7 @@ class WidgetFactory implements WidgetFactoryInterface
      * @param array $options
      * @return WidgetInterface
      */
-    public function createFromStrategy($strategyName = null, array $options = array())
+    public function createFromStrategy($strategyName = null, array $options = [])
     {
         $widget = $this->createNew();
 

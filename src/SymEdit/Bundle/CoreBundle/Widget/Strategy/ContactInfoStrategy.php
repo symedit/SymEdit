@@ -32,9 +32,9 @@ class ContactInfoStrategy extends AbstractWidgetStrategy
 
     public function getDefaultOptions(OptionsResolver $resolver)
     {
-        $resolver->setDefaults(array(
+        $resolver->setDefaults([
             'template' => '@SymEdit/Widget/contact-info.html.twig',
-        ));
+        ]);
     }
 
     public function getCacheOptions(WidgetInterface $widget)
@@ -46,10 +46,10 @@ class ContactInfoStrategy extends AbstractWidgetStrategy
             return parent::getCacheOptions($widget);
         }
 
-        return array(
+        return [
             'public' => true,
             'last_modified' => $updatedAt,
-        );
+        ];
     }
 
     public function getName()

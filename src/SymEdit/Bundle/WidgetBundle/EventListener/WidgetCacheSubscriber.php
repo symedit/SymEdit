@@ -28,10 +28,10 @@ class WidgetCacheSubscriber implements EventSubscriberInterface
 
     public static function getSubscribedEvents()
     {
-        return array(
-            Events::WIDGET_PRE_RENDER => array(
-                array('setStrategyCache', 128),
-            )
-        );
+        return [
+            Events::WIDGET_PRE_RENDER => [
+                ['setStrategyCache', 128],
+            ]
+        ];
     }
 }

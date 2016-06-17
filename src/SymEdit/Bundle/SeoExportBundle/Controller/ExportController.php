@@ -25,31 +25,31 @@ class ExportController extends Controller
     public function indexAction()
     {
         $repository = $this->get('symedit.repository.page');
-        $pages = $repository->findBy(array(
+        $pages = $repository->findBy([
             'root' => false,
-        ));
+        ]);
 
         $fh = fopen('php://temp', 'w+');
 
-        fputcsv($fh, array(
+        fputcsv($fh, [
             'id', 'path', 'title', 'tagline', 'meta description', 'meta keywords', 'seo title', 'index', 'follow',
-        ));
+        ]);
 
         foreach ($pages as $page) {
-            $seo = array_replace(array(
+            $seo = array_replace([
                 'description' => '',
                 'keywords' => '',
                 'title' => '',
                 'index' => '',
                 'follow' => '',
-            ), (array) $page->getSeo());
+            ], (array) $page->getSeo());
 
-            $data = array(
+            $data = [
                 'id' => $page->getId(),
                 'path' => $page->getPath(),
                 'title' => $page->getTitle(),
                 'tagline' => $page->getTagline(),
-            ) + $seo;
+            ] + $seo;
 
             fputcsv($fh, $data);
         }

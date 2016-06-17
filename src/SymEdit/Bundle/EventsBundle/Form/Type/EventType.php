@@ -19,69 +19,69 @@ class EventType extends AbstractType
     public function buildBasicForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('title', 'text', array(
+            ->add('title', 'text', [
                 'label' => 'symedit.form.event.basic.title',
-            ))
-            ->add('description', 'textarea', array(
+            ])
+            ->add('description', 'textarea', [
                 'label' => 'symedit.form.event.basic.description',
-                'attr' => array(
+                'attr' => [
                     'rows' => 5,
-                ),
-            ))
-            ->add('url', 'url', array(
+                ],
+            ])
+            ->add('url', 'url', [
                 'label' => 'symedit.form.event.basic.url',
                 'required' => false,
-            ))
-            ->add('email', 'email', array(
+            ])
+            ->add('email', 'email', [
                 'label' => 'symedit.form.event.basic.email',
                 'required' => false,
-            ))
-            ->add('phone', 'text', array(
+            ])
+            ->add('phone', 'text', [
                 'label' => 'symedit.form.event.basic.phone',
                 'required' => false,
-            ))
-            ->add('price', 'text', array(
+            ])
+            ->add('price', 'text', [
                 'label' => 'symedit.form.event.basic.price',
                 'required' => false,
-            ))
+            ])
         ;
     }
 
     public function buildDateTimeForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('eventStart', 'datetime', array(
+            ->add('eventStart', 'datetime', [
                 'label' => 'symedit.form.event.time.start',
                 'widget' => 'single_text',
                 'format' => 'yyyy-MM-dd HH:mm',
-                'attr' => array(
+                'attr' => [
                     'class' => 'datetimepicker',
-                ),
-            ))
-            ->add('eventEnd', 'datetime', array(
+                ],
+            ])
+            ->add('eventEnd', 'datetime', [
                 'label' => 'symedit.form.event.time.end',
                 'widget' => 'single_text',
                 'format' => 'yyyy-MM-dd',
-                'attr' => array(
+                'attr' => [
                     'class' => 'datetimepicker',
-                ),
+                ],
                 'required' => false,
-            ))
+            ])
         ;
     }
 
     public function buildLocationForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('address', 'text', array(
+            ->add('address', 'text', [
                 'label' => 'symedit.form.event.location.address',
                 'required' => false,
-            ))
-            ->add('showMap', 'checkbox', array(
+            ])
+            ->add('showMap', 'checkbox', [
                 'label' => 'symedit.form.event.location.show_map',
                 'required' => false,
                 'label' => 'Show Map?',
-            ))
+            ])
         ;
     }
 

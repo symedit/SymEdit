@@ -25,10 +25,10 @@ class GroupType extends AbstractType
 
     public function configureOptions(OptionsResolver $resolver)
     {
-        $resolver->setDefaults(array(
-            'extra' => array(),
+        $resolver->setDefaults([
+            'extra' => [],
             'inherit_data' => true,
-        ));
+        ]);
     }
 
     public function getName()

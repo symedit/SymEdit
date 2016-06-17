@@ -40,7 +40,7 @@ class PostTest extends TestCase
         $post = $this->getPost();
         $this->assertNull($post->getSeo());
 
-        $seo = array('title' => 'foo');
+        $seo = ['title' => 'foo'];
         $post->setSeo($seo);
         $this->assertEquals($seo, $post->getSeo());
     }

@@ -43,9 +43,9 @@ class StylizerController extends Controller
             }
         }
 
-        return $this->render('@SymEdit/Admin/Stylizer/index.html.twig', array(
+        return $this->render('@SymEdit/Admin/Stylizer/index.html.twig', [
             'form' => $form->createView(),
-        ));
+        ]);
     }
 
     /**

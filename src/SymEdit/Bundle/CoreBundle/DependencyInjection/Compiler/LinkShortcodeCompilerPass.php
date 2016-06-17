@@ -22,7 +22,7 @@ class LinkShortcodeCompilerPass implements CompilerPassInterface
 {
     public function process(ContainerBuilder $container)
     {
-        $links = array();
+        $links = [];
 
         foreach ($container->findTaggedServiceIds('symedit.link') as $id => $tags) {
             $links[] = new Reference($id);

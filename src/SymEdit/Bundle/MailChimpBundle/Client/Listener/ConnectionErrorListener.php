@@ -23,9 +23,9 @@ class ConnectionErrorListener implements EventSubscriberInterface
 {
     public static function getSubscribedEvents()
     {
-        return array('request.exception' => array(
-            array('handleError', 5),
-        ));
+        return ['request.exception' => [
+            ['handleError', 5],
+        ]];
     }
 
     public function handleError(Event $event)

@@ -49,7 +49,7 @@ class SymEditStylizerExtension extends Extension
 
     private function getYamlStyleFiles($bundles)
     {
-        $files = array();
+        $files = [];
         foreach ($bundles as $bundle) {
             $class = new \ReflectionClass($bundle);
             $dir = dirname($class->getFileName());

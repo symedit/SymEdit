@@ -20,17 +20,17 @@ class FileController extends MediaController
     public function jsonAction()
     {
         $files = $this->getRepository()->findAll();
-        $out = array();
+        $out = [];
 
         foreach ($files as $file) {
             $size = $this->getFilesystem()->get($file->getPath())->getSize();
 
-            $out[] = array(
+            $out[] = [
                 'title' => $file->getName(),
                 'name' => $file->getPath(),
                 'link' => $this->getMediaLink($file),
                 'size' => $this->getReadableSize($size),
-            );
+            ];
         }
 
         return new JsonResponse($out);
@@ -38,7 +38,7 @@ class FileController extends MediaController
 
     protected function getReadableSize($bytes)
     {
-        $size = array('B','kB','MB','GB','TB','PB','EB','ZB','YB');
+        $size = ['B','kB','MB','GB','TB','PB','EB','ZB','YB'];
         $factor = floor((strlen($bytes) - 1) / 3);
         $units = isset($size[$factor]) ? $size[$factor] : '';
 
@@ -47,11 +47,11 @@ class FileController extends MediaController
 
     protected function getQuickUploadResponse(MediaInterface $media)
     {
-        return new JsonResponse(array(
+        return new JsonResponse([
             'id' => $media->getId(),
             'filename' => $media->getName(),
             'filelink' => $this->getMediaLink($media),
-        ));
+        ]);
     }
 
     /**

@@ -19,11 +19,11 @@ use Symfony\Component\DependencyInjection\Loader\XmlFileLoader;
 
 class SymEditFormBuilderExtension extends SymEditResourceExtension implements PrependExtensionInterface
 {
-    protected $configFiles = array(
+    protected $configFiles = [
         'services.xml',
         'fields.xml',
         'widget.xml',
-    );
+    ];
 
     /**
      * {@inheritdoc}
@@ -56,11 +56,11 @@ class SymEditFormBuilderExtension extends SymEditResourceExtension implements Pr
             return;
         }
 
-        $container->prependExtensionConfig('symedit', array(
-            'template_locations' => array(
+        $container->prependExtensionConfig('symedit', [
+            'template_locations' => [
                 '@SymEditFormBuilderBundle/Resources/views',
-            ),
-        ));
+            ],
+        ]);
     }
 
     /**

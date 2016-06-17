@@ -31,7 +31,7 @@ class SeoDataCollector extends DataCollector
         $seo = $request->attributes->get('_seo');
         $this->data = $seo->getSeo();
 
-        $blankError = array('title', 'description');
+        $blankError = ['title', 'description'];
         $total = 0;
 
         foreach ($blankError as $blankKey) {

@@ -30,19 +30,19 @@ class PageDisplayOptionsSubscriber implements EventSubscriberInterface
         $builder = $event->getFormBuilder();
 
         foreach ($this->widgetAreaRepository->findAll() as $widgetArea) {
-            $builder->add($widgetArea->getArea(), 'template', array(
+            $builder->add($widgetArea->getArea(), 'template', [
                 'placeholder' => 'No Override',
                 'directory' => 'WidgetArea',
                 'required' => false,
                 'property_path' => sprintf('[%s][template]', $widgetArea->getArea()),
-            ));
+            ]);
         }
     }
 
     public static function getSubscribedEvents()
     {
-        return array(
+        return [
             Events::PAGE_DISPLAY_OPTIONS => 'addWidgetAreaOptions',
-        );
+        ];
     }
 }

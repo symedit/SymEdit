@@ -55,8 +55,8 @@ class RouteManager
         $configuration = new RoutingConfiguration();
         $processor = new Processor();
 
-        $configs = array();
-        $resources = array();
+        $configs = [];
+        $resources = [];
         foreach ($this->resources as $resource) {
             $configs[] = $this->loader->load($resource);
             $resources[] = new FileResource($resource);
@@ -97,7 +97,7 @@ class RouteManager
 
     public function getAllRoutes()
     {
-        $routes = array();
+        $routes = [];
 
         foreach ($this->getPageControllers() as $pageController) {
             $routes = array_merge($routes, $pageController->getRoutes());

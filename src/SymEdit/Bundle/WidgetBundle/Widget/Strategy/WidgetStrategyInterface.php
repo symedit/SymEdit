@@ -64,5 +64,5 @@ interface WidgetStrategyInterface
      * @param WidgetInterface $widget     Template name
      * @param array           $parameters Template parameters
      */
-    public function render(WidgetInterface $widget, array $parameters = array());
+    public function render(WidgetInterface $widget, array $parameters = []);
 }

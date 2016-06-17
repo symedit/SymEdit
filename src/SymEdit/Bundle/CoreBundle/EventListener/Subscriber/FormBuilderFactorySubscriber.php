@@ -19,16 +19,16 @@ class FormBuilderFactorySubscriber implements EventSubscriberInterface
 {
     public function onFormBuild(FormBuilderFactoryEvent $event)
     {
-        $event->mergeOptions(array(
+        $event->mergeOptions([
             'timed_spam' => true,
             'honeypot' => true,
-        ));
+        ]);
     }
 
     public static function getSubscribedEvents()
     {
-        return array(
+        return [
             Events::FORM_BUILD => 'onFormBuild',
-        );
+        ];
     }
 }

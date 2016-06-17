@@ -43,9 +43,9 @@ class StringPathVoterTest extends TestCase
         $voter = new StringPathVoter('/foo/bar');
         $widget = $this->createWidget();
         $widget->setVisibility(Widget::INCLUDE_ONLY);
-        $widget->setAssoc(array(
+        $widget->setAssoc([
             $association,
-        ));
+        ]);
 
         $this->assertTrue($voter->isVisible($widget));
     }
@@ -58,23 +58,23 @@ class StringPathVoterTest extends TestCase
         $voter = new StringPathVoter('/foo/bar');
         $widget = $this->createWidget();
         $widget->setVisibility(Widget::EXCLUDE_ONLY);
-        $widget->setAssoc(array(
+        $widget->setAssoc([
             $association,
-        ));
+        ]);
 
         $this->assertFalse($voter->isVisible($widget));
     }
 
     public function matchingPathsProvider()
     {
-        return array(
-            array('/foo/bar/'),
-            array('/foo/bar'),
-            array('/foo/*/'),
-            array('/foo/*'),
-            array('/*/'),
-            array('/*'),
-            array('*'),
-        );
+        return [
+            ['/foo/bar/'],
+            ['/foo/bar'],
+            ['/foo/*/'],
+            ['/foo/*'],
+            ['/*/'],
+            ['/*'],
+            ['*'],
+        ];
     }
 }

@@ -19,9 +19,9 @@ class UserTypeSubscriber implements EventSubscriberInterface
 {
     public static function getSubscribedEvents()
     {
-        return array(
+        return [
             FormEvents::PRE_SET_DATA => 'preSetData',
-        );
+        ];
     }
 
     public function preSetData(FormEvent $event)
@@ -31,13 +31,13 @@ class UserTypeSubscriber implements EventSubscriberInterface
 
         $basic = $form->get('basic');
 
-        $basic->add('plainPassword', 'repeated', array(
+        $basic->add('plainPassword', 'repeated', [
             'required' => ($data === null || $data->getId() === null),
             'type' => 'password',
-            'options' => array('translation_domain' => 'FOSUserBundle'),
-            'first_options' => array('label' => 'form.password'),
-            'second_options' => array('label' => 'form.password_confirmation'),
+            'options' => ['translation_domain' => 'FOSUserBundle'],
+            'first_options' => ['label' => 'form.password'],
+            'second_options' => ['label' => 'form.password_confirmation'],
             'invalid_message' => 'fos_user.password.mismatch',
-        ));
+        ]);
     }
 }

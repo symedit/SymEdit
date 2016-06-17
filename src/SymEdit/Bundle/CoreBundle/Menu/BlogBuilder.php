@@ -21,38 +21,38 @@ class BlogBuilder implements MenuBuilderInterface
         $content = $menu->getRootNode()->getChild('content');
 
         // Blog Heading
-        $content->addChild('Blog', array(
+        $content->addChild('Blog', [
             'dropdown-header' => true,
-            'extras' => array(
+            'extras' => [
                 'is_granted' => 'ROLE_ADMIN_BLOG',
-            ),
-        ));
+            ],
+        ]);
 
         // New Post
-        $content->addChild('New Post', array(
+        $content->addChild('New Post', [
             'route' => 'admin_post_create',
             'icon' => 'edit',
-            'extras' => array(
+            'extras' => [
                 'is_granted' => 'ROLE_ADMIN_BLOG',
-            ),
-        ));
+            ],
+        ]);
 
         // List Posts
-        $content->addChild('List Posts', array(
+        $content->addChild('List Posts', [
             'route' => 'admin_post',
             'icon' => 'th-list',
-            'extras' => array(
+            'extras' => [
                 'is_granted' => 'ROLE_ADMIN_BLOG',
-            ),
-        ));
+            ],
+        ]);
 
         // List Categories
-        $content->addChild('List Categories', array(
+        $content->addChild('List Categories', [
             'route' => 'admin_category',
             'icon' => 'tags',
-            'extras' => array(
+            'extras' => [
                 'is_granted' => 'ROLE_ADMIN_BLOG',
-            ),
-        ));
+            ],
+        ]);
     }
 }

@@ -40,7 +40,7 @@ class SitemapManager
     {
         $sitemap = new Sitemap();
         foreach ($this->getModels() as $className => $parameters) {
-            array_map(array($sitemap, 'addEntry'), $this->fetcher->fetchEntries($className, $parameters));
+            array_map([$sitemap, 'addEntry'], $this->fetcher->fetchEntries($className, $parameters));
         }
 
         return $sitemap;

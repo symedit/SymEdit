@@ -20,43 +20,43 @@ class SeoType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('title', 'text', array(
+            ->add('title', 'text', [
                 'label' => 'symedit.form.seo.title',
-                'attr' => array('class' => 'span6', 'data-toggle' => 'char-count', 'data-max' => 65),
+                'attr' => ['class' => 'span6', 'data-toggle' => 'char-count', 'data-max' => 65],
                 'required' => false,
-            ))
-            ->add('description', 'textarea', array(
+            ])
+            ->add('description', 'textarea', [
                 'label' => 'symedit.form.seo.description',
-                'attr' => array('class' => 'span6', 'data-toggle' => 'char-count', 'data-max' => 155),
+                'attr' => ['class' => 'span6', 'data-toggle' => 'char-count', 'data-max' => 155],
                 'required' => false,
-            ))
-            ->add('keywords', 'textarea', array(
+            ])
+            ->add('keywords', 'textarea', [
                 'label' => 'symedit.form.seo.keywords',
-                'attr' => array('class' => 'span6'),
+                'attr' => ['class' => 'span6'],
                 'required' => false,
-            ))
-            ->add('index', 'choice', array(
-                'choices' => array(
+            ])
+            ->add('index', 'choice', [
+                'choices' => [
                     true => 'Index',
                     false => 'No Index',
-                ),
+                ],
                 'label' => 'symedit.form.seo.index',
-            ))
-            ->add('follow', 'choice', array(
-                'choices' => array(
+            ])
+            ->add('follow', 'choice', [
+                'choices' => [
                     true => 'Follow',
                     false => 'No Follow',
-                ),
+                ],
                 'label' => 'symedit.form.seo.follow',
-            ))
+            ])
         ;
     }
 
     public function configureOptions(OptionsResolver $resolver)
     {
-        $resolver->setDefaults(array(
+        $resolver->setDefaults([
             'label_render' => false,
-        ));
+        ]);
     }
 
     public function getName()

@@ -19,11 +19,11 @@ use Symfony\Component\DependencyInjection\Loader\XmlFileLoader;
 
 class SymEditUserExtension extends SymEditResourceExtension implements PrependExtensionInterface
 {
-    protected $configFiles = array(
+    protected $configFiles = [
         'services.xml',
         'form.xml',
         'notifications.xml',
-    );
+    ];
 
     /**
      * {@inheritdoc}
@@ -64,17 +64,17 @@ class SymEditUserExtension extends SymEditResourceExtension implements PrependEx
 
     public function prepend(ContainerBuilder $container)
     {
-        $container->prependExtensionConfig('fos_user', array(
+        $container->prependExtensionConfig('fos_user', [
             'user_class' => '%symedit.model.user.class%',
-            'service' => array(
+            'service' => [
                 'user_manager' => 'symedit_user.user_manager',
-            ),
-            'registration' => array(
-                'form' => array(
+            ],
+            'registration' => [
+                'form' => [
                     'type' => 'symedit_user_registration',
-                ),
-            ),
-        ));
+                ],
+            ],
+        ]);
     }
 
     /**

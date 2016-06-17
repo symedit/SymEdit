@@ -30,14 +30,14 @@ class SymEditMailer extends TwigSwiftMailer implements SymEditMailerInterface
         $this->fromEmail = $fromEmail;
     }
 
-    public function sendAdmin($templateName, $context, array $options = array())
+    public function sendAdmin($templateName, $context, array $options = [])
     {
         $toEmail = $this->getCompanySettings()->get('email');
 
         $this->sendMessage($templateName, $context, null, $toEmail, $options);
     }
 
-    public function send($toEmail, $templateName, $context, array $options = array())
+    public function send($toEmail, $templateName, $context, array $options = [])
     {
         $this->sendMessage($templateName, $context, null, $toEmail, $options);
     }
@@ -48,14 +48,14 @@ class SymEditMailer extends TwigSwiftMailer implements SymEditMailerInterface
      * @param string $fromEmail
      * @param string $toEmail
      */
-    protected function sendMessage($templateName, $context, $fromEmail, $toEmail, array $options = array())
+    protected function sendMessage($templateName, $context, $fromEmail, $toEmail, array $options = [])
     {
         /*
          * Overwrite the fromEmail, you COULD change this with $options though..
          */
-        $fromEmail = array(
+        $fromEmail = [
             $this->fromEmail => $this->getCompanySettings()->get('name'),
-        );
+        ];
 
         $template = $this->twig->loadTemplate($templateName);
         $subject = $template->renderBlock('subject', $context);
@@ -106,7 +106,7 @@ class SymEditMailer extends TwigSwiftMailer implements SymEditMailerInterface
 
     protected function attachFiles(\Swift_Message $message, $files)
     {
-        $files = is_array($files) ? $files : array($files);
+        $files = is_array($files) ? $files : [$files];
 
         foreach ($files as $file) {
             $attachment = \Swift_Attachment::fromPath($file);

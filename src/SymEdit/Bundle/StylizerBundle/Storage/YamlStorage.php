@@ -25,9 +25,9 @@ class YamlStorage implements StorageInterface
 
     public function load()
     {
-        $data = is_file($this->file) && is_readable($this->file) ? Yaml::parse(file_get_contents($this->file)) : array();
+        $data = is_file($this->file) && is_readable($this->file) ? Yaml::parse(file_get_contents($this->file)) : [];
 
-        return is_array($data) ? $data : array();
+        return is_array($data) ? $data : [];
     }
 
     public function save(array $styles)

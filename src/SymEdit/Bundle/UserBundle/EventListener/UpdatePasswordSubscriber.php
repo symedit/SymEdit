@@ -38,8 +38,8 @@ class UpdatePasswordSubscriber implements EventSubscriberInterface
 
     public static function getSubscribedEvents()
     {
-        return array(
+        return [
             'symedit.user.pre_update' => 'updateUser',
-        );
+        ];
     }
 }

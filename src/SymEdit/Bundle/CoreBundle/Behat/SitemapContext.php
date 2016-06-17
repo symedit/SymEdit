@@ -26,7 +26,7 @@ class SitemapContext extends DefaultContext implements SnippetAcceptingContext
         $xml = $this->getSession()->getPage()->getContent();
         $crawler = new Crawler($xml);
         $assertUrls = explode("\n", $string->getRaw());
-        $foundUrls = array();
+        $foundUrls = [];
 
         foreach ($crawler->filter('url > loc') as $node) {
             $foundUrls[] = parse_url($node->nodeValue, PHP_URL_PATH);

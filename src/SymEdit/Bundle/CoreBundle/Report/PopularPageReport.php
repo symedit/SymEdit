@@ -28,9 +28,9 @@ class PopularPageReport extends PopularReport
     {
         parent::setDefaultOptions($resolver);
 
-        $resolver->setDefaults(array(
+        $resolver->setDefaults([
             'model' => 'page',
-        ));
+        ]);
     }
 
     public function getName()

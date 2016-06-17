@@ -44,11 +44,11 @@ class SlugNamerTest extends TestCase
 
     public function slugProvider()
     {
-        return array(
-            array('basic', 'basic'),
-            array('some space', 'some-space'),
-            array('mañana', 'manana'),
-            array('uPPer CaSE', 'upper-case'),
-        );
+        return [
+            ['basic', 'basic'],
+            ['some space', 'some-space'],
+            ['mañana', 'manana'],
+            ['uPPer CaSE', 'upper-case'],
+        ];
     }
 }

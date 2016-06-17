@@ -38,11 +38,11 @@ class FormBuilderFactory implements FormBuilderFactoryInterface
 
     public function build(FormInterface $form, $data = null)
     {
-        $options = array(
+        $options = [
             'label' => $form->getLegend(),
             'method' => 'POST',
-            'action' => $this->router->generate($this->route, array('name' => $form->getName())),
-        );
+            'action' => $this->router->generate($this->route, ['name' => $form->getName()]),
+        ];
 
         // Dispatch event to tie in any options
         $event = new FormBuilderFactoryEvent($form, $options);

@@ -19,12 +19,12 @@ class FormBuilderType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('name', 'text', array(
+            ->add('name', 'text', [
                 'required' => true,
-            ))
-            ->add('legend', 'text', array(
+            ])
+            ->add('legend', 'text', [
                 'required' => true,
-            ))
+            ])
         ;
     }
 

@@ -31,18 +31,18 @@ class CategoryType extends BaseCategoryType
 
     public function configureOptions(OptionsResolver $resolver)
     {
-        $resolver->setDefaults(array(
-            'tabs_data' => array(
-                'basic' => array(
+        $resolver->setDefaults([
+            'tabs_data' => [
+                'basic' => [
                     'label' => 'Basic',
                     'icon' => 'info-circle',
-                ),
-                'seo' => array(
+                ],
+                'seo' => [
                     'label' => 'SEO',
                     'icon' => 'search',
-                ),
-            ),
-        ));
+                ],
+            ],
+        ]);
     }
 
     public function getName()

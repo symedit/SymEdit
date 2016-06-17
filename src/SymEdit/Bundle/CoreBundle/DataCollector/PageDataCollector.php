@@ -22,10 +22,10 @@ class PageDataCollector extends DataCollector
         if ($request->attributes->has('_page')) {
             $page = $request->attributes->get('_page');
 
-            $this->data = array(
+            $this->data = [
                 'page' => $page,
                 'controller' => $request->attributes->get('_controller'),
-            );
+            ];
         } else {
             $this->data['page'] = null;
         }

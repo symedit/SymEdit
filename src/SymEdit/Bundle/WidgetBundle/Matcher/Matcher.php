@@ -18,7 +18,7 @@ class Matcher implements WidgetMatcherInterface
 {
     protected $voters;
 
-    public function __construct($voters = array())
+    public function __construct($voters = [])
     {
         $this->voters = $voters;
     }
@@ -50,7 +50,7 @@ class Matcher implements WidgetMatcherInterface
      */
     public function getVisible(\Traversable $widgets)
     {
-        $visibleWidgets = array();
+        $visibleWidgets = [];
 
         foreach ($widgets as $widget) {
             if (!$this->isVisible($widget)) {

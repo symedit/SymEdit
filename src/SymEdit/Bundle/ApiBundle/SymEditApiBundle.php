@@ -19,9 +19,9 @@ class SymEditApiBundle extends AbstractResourceBundle
 {
     public function getSupportedDrivers()
     {
-        return array(
+        return [
             SyliusResourceBundle::DRIVER_DOCTRINE_ORM,
-        );
+        ];
     }
 
     protected function getBundlePrefix()
@@ -31,12 +31,12 @@ class SymEditApiBundle extends AbstractResourceBundle
 
     protected function getModelInterfaces()
     {
-        return array(
+        return [
             'SymEdit\Bundle\ApiBundle\Model\AccessTokenInterface' => 'symedit.model.access_token.class',
             'SymEdit\Bundle\ApiBundle\Model\AuthCodeInterface' => 'symedit.model.auth_code.class',
             'SymEdit\Bundle\ApiBundle\Model\ClientInterface' => 'symedit.model.client.class',
             'SymEdit\Bundle\ApiBundle\Model\RefreshTokenInterface' => 'symedit.model.refresh_token.class',
-        );
+        ];
     }
 
     protected function getModelNamespace()

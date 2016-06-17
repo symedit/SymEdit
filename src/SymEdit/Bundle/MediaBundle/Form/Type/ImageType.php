@@ -27,14 +27,14 @@ class ImageType extends AbstractType
 
     public function configureOptions(OptionsResolver $resolver)
     {
-        $resolver->setDefaults(array(
+        $resolver->setDefaults([
             'data_class' => $this->class,
             'require_name' => true,
             'required' => true,
             'label' => 'Image',
             'name_label' => 'Image Name',
             'show_image' => false,
-        ));
+        ]);
     }
 
     public function buildView(FormView $view, FormInterface $form, array $options)

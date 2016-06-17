@@ -19,9 +19,9 @@ class PageSubscriber implements EventSubscriberInterface
 {
     public static function getSubscribedEvents()
     {
-        return array(
+        return [
             'symedit.page.pre_delete' => 'pagePreDelete',
-        );
+        ];
     }
 
     public function pagePreDelete(ResourceEvent $event)

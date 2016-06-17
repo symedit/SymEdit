@@ -20,48 +20,48 @@ class WebmasterSettingsSchema implements SchemaInterface
     public function buildForm(FormBuilderInterface $builder)
     {
         $builder
-            ->add('google_analytics_enabled', 'choice', array(
+            ->add('google_analytics_enabled', 'choice', [
                 'label' => 'symedit.settings.webmaster.google_analytics_enabled',
                 'required' => false,
-                'choices' => array(
+                'choices' => [
                     true => 'Enabled',
                     false => 'Disabled',
-                ),
-            ))
-            ->add('google_analytics', 'text', array(
+                ],
+            ])
+            ->add('google_analytics', 'text', [
                 'label' => 'symedit.settings.webmaster.google_analytics',
                 'required' => false,
-                'attr' => array('placeholder' => 'UA-12345678'),
-            ))
-            ->add('google_verify', 'text', array(
+                'attr' => ['placeholder' => 'UA-12345678'],
+            ])
+            ->add('google_verify', 'text', [
                 'label' => 'symedit.settings.webmaster.google_verify',
                 'required' => false,
-                'attr' => array('placeholder' => 'google123456789012'),
-            ))
-            ->add('bing_verify', 'text', array(
+                'attr' => ['placeholder' => 'google123456789012'],
+            ])
+            ->add('bing_verify', 'text', [
                 'label' => 'symedit.settings.webmaster.bing_verify',
                 'required' => false,
-            ))
-            ->add('robots', 'choice', array(
+            ])
+            ->add('robots', 'choice', [
                 'label' => 'symedit.settings.webmaster.robots',
-                'choices' => array(
+                'choices' => [
                     'deny' => 'Deny All',
                     'allow' => 'Allow All',
-                ),
-            ))
+                ],
+            ])
         ;
     }
 
     public function buildSettings(SettingsBuilderInterface $builder)
     {
         $builder
-            ->setDefaults(array(
+            ->setDefaults([
                 'google_analytics_enabled' => true,
                 'google_analytics' => null,
                 'google_verify' => null,
                 'bing_verify' => null,
                 'robots' => 'deny',
-            ))
+            ])
         ;
     }
 }

@@ -23,7 +23,7 @@ class Layout
         $this->key = $key;
         $this->title = $title;
         $this->description = $description;
-        $this->rows = array();
+        $this->rows = [];
 
         if (is_array($rows)) {
             foreach ($rows as $row) {
@@ -69,7 +69,7 @@ class Layout
         return $this->rows;
     }
 
-    public function setRows(array $rows = array())
+    public function setRows(array $rows = [])
     {
         $this->rows = $rows;
     }

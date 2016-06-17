@@ -43,11 +43,11 @@ class WidgetAreaRenderer implements WidgetAreaRendererInterface
             $template->set('name', '@SymEdit/WidgetArea/default.html.twig');
         }
 
-        return $this->twig->render($template, array(
+        return $this->twig->render($template, [
             'widgetArea' => $widgetArea,
             'widgets' => $widgets,
             'area' => $widgetArea->getArea(),
-        ));
+        ]);
     }
 
     private function templateExists($template)

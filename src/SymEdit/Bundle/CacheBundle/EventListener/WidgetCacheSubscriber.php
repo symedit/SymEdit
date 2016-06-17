@@ -64,11 +64,11 @@ class WidgetCacheSubscriber implements EventSubscriberInterface
 
     public static function getSubscribedEvents()
     {
-        return array(
-            Events::WIDGET_PRE_RENDER => array(
-                array('decideWidgetCache', 256),
-                array('setSharedCache', 64),
-            ),
-        );
+        return [
+            Events::WIDGET_PRE_RENDER => [
+                ['decideWidgetCache', 256],
+                ['setSharedCache', 64],
+            ],
+        ];
     }
 }

@@ -39,10 +39,10 @@ class PageController implements \Serializable
 
     public function serialize()
     {
-        return serialize(array(
+        return serialize([
             'name' => $this->name,
             'routes' => $this->routes,
-        ));
+        ]);
     }
 
     public function unserialize($serialized)

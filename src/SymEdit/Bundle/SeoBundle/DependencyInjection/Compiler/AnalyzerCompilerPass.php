@@ -20,7 +20,7 @@ class AnalyzerCompilerPass implements CompilerPassInterface
     public function process(ContainerBuilder $container)
     {
         $tags = $container->findTaggedServiceIds('symedit_seo.analyzer');
-        $analyzers = array();
+        $analyzers = [];
 
         foreach ($tags as $id => $tags) {
             $analyzers[] = new Reference($id);

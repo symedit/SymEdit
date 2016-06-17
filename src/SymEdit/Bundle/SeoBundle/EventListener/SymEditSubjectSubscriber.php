@@ -21,7 +21,7 @@ class SymEditSubjectSubscriber implements EventSubscriberInterface
     protected $seoManager;
     protected $preferences;
 
-    public function __construct(SeoManagerInterface $seoManager, array $preferences = array())
+    public function __construct(SeoManagerInterface $seoManager, array $preferences = [])
     {
         $this->seoManager = $seoManager;
         $this->preferences = $preferences;
@@ -51,7 +51,7 @@ class SymEditSubjectSubscriber implements EventSubscriberInterface
 
     public static function getSubscribedEvents()
     {
-        $events = array();
+        $events = [];
 
         if (class_exists('SymEdit\Bundle\CoreBundle\Event\Events')) {
             $events[Events::SUBJECT_SET] = 'onSymEditSubjectSet';

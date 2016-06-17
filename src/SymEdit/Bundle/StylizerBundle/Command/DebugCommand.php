@@ -30,10 +30,10 @@ class DebugCommand extends ContainerAwareCommand
         $table = $this->getHelper('table');
         $styles = $this->getContainer()->get('symedit_stylizer.styles');
 
-        $table->setHeaders(array('Name', 'Value'));
+        $table->setHeaders(['Name', 'Value']);
 
         foreach ($styles->getVariables() as $name => $value) {
-            $table->addRow(array($name, $value));
+            $table->addRow([$name, $value]);
         }
 
         $table->render($output);

@@ -19,7 +19,7 @@ interface SymEditMailerInterface
 
     public function setEmailSender($fromEmail);
 
-    public function sendAdmin($templateName, $context, array $options = array());
+    public function sendAdmin($templateName, $context, array $options = []);
 
-    public function send($toEmail, $templateName, $context, array $options = array());
+    public function send($toEmail, $templateName, $context, array $options = []);
 }

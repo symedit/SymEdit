@@ -24,7 +24,7 @@ class AnalyticsController extends Controller
         }
 
         $recorder = $this->get('symedit_analytics.recorder');
-        $data = $request->request->get('visits', array());
+        $data = $request->request->get('visits', []);
 
         foreach ($data as $visitData) {
             if (!isset($visitData['m']) || !isset($visitData['i'])) {

@@ -21,9 +21,9 @@ class SymEditUserBundle extends AbstractResourceBundle
 {
     public function getSupportedDrivers()
     {
-        return array(
+        return [
             SyliusResourceBundle::DRIVER_DOCTRINE_ORM,
-        );
+        ];
     }
 
     public function build(ContainerBuilder $container)

@@ -16,15 +16,15 @@ use SymEdit\Bundle\SeoBundle\Analyze\AnalyzerContext;
 
 class AttributeLengthAnalyzer implements AnalyzerInterface
 {
-    public static $maxLength = array(
+    public static $maxLength = [
         'title' => 65,
         'description' => 155,
-    );
+    ];
 
-    public static $minLength = array(
+    public static $minLength = [
         'title' => 25,
         'description' => 50,
-    );
+    ];
 
     public function analyze(SeoAbleInterface $object, AnalyzerContext $context)
     {

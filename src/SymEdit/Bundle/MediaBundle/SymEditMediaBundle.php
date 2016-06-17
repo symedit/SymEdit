@@ -19,19 +19,19 @@ class SymEditMediaBundle extends AbstractResourceBundle
 {
     public function getSupportedDrivers()
     {
-        return array(
+        return [
             SyliusResourceBundle::DRIVER_DOCTRINE_ORM,
-        );
+        ];
     }
 
     protected function getModelInterfaces()
     {
-        return array(
+        return [
             'SymEdit\Bundle\MediaBundle\Model\ImageInterface' => 'symedit.model.image.class',
             'SymEdit\Bundle\MediaBundle\Model\FileInterface' => 'symedit.model.file.class',
             'SymEdit\Bundle\MediaBundle\Model\ImageGalleryInterface' => 'symedit.model.image_gallery.class',
             'SymEdit\Bundle\MediaBundle\Model\GalleryItemInterface' => 'symedit.model.gallery_item.class',
-        );
+        ];
     }
 
     protected function getModelNamespace()

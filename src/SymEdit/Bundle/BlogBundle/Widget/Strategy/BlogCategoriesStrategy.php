@@ -30,29 +30,29 @@ class BlogCategoriesStrategy extends AbstractWidgetStrategy
     {
         $root = $this->categoryRepository->findRoot();
 
-        return $this->render($widget, array(
+        return $this->render($widget, [
             'root' => $root,
             'counts' => $widget->getOption('counts'),
-        ));
+        ]);
     }
 
     public function buildForm(FormBuilderInterface $builder)
     {
         $builder
-            ->add('counts', 'checkbox', array(
+            ->add('counts', 'checkbox', [
                 'required' => false,
                 'label' => 'Display Counts',
                 'help_block' => 'Display Category counts next to label',
-            ))
+            ])
         ;
     }
 
     public function getDefaultOptions(OptionsResolver $resolver)
     {
-        $resolver->setDefaults(array(
+        $resolver->setDefaults([
             'counts' => true,
             'template' => '@SymEdit/Widget/Blog/categories.html.twig',
-        ));
+        ]);
     }
 
     public function getName()

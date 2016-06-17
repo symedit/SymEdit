@@ -27,9 +27,9 @@ class ContactSubscriber implements EventSubscriberInterface
 
     public static function getSubscribedEvents()
     {
-        return array(
+        return [
             Events::CONTACT_SUBMIT_VALID => 'sendAdminEmail',
-        );
+        ];
     }
 
     public function sendAdminEmail(FormEvent $event)
@@ -37,12 +37,12 @@ class ContactSubscriber implements EventSubscriberInterface
         $data = $event->getForm()->getData();
 
         // Set ReplyTo
-        $options = empty($data['email']) ? array() : array(
+        $options = empty($data['email']) ? [] : [
             'replyTo' => $data['email'],
-        );
+        ];
 
-        $this->mailer->sendAdmin('@SymEdit/Contact/contact.html.twig', array(
+        $this->mailer->sendAdmin('@SymEdit/Contact/contact.html.twig', [
             'Form' => $data,
-        ), $options);
+        ], $options);
     }
 }

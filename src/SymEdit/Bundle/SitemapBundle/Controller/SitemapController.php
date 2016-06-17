@@ -26,8 +26,8 @@ class SitemapController extends ContainerAware
         $event = new SitemapEvent($sitemap);
         $this->container->get('event_dispatcher')->dispatch(SitemapEvents::SITEMAP_VIEW, $event);
 
-        return $this->container->get('templating')->renderResponse('SymEditSitemapBundle:Sitemap:index.xml.twig', array(
+        return $this->container->get('templating')->renderResponse('SymEditSitemapBundle:Sitemap:index.xml.twig', [
             'sitemap' => $sitemap,
-        ));
+        ]);
     }
 }

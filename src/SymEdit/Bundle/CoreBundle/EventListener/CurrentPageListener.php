@@ -55,9 +55,9 @@ class CurrentPageListener
         }
 
         // Add it to the request
-        $request->attributes->add(array(
+        $request->attributes->add([
             '_page' => $page,
-        ));
+        ]);
 
         // Add to container
         $this->updateContainer($page);

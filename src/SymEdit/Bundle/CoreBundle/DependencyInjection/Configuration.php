@@ -34,7 +34,7 @@ class Configuration implements ConfigurationInterface
         $treeBuilder = new TreeBuilder();
         $rootNode = $treeBuilder->root('symedit');
 
-        $supportedDrivers = array('doctrine/orm', 'doctrine/mongodb');
+        $supportedDrivers = ['doctrine/orm', 'doctrine/mongodb'];
 
         $rootNode
             ->children()

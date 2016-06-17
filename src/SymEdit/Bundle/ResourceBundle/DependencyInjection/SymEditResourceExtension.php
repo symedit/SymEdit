@@ -37,7 +37,7 @@ abstract class SymEditResourceExtension extends AbstractResourceExtension
     protected function findBundleResources(ContainerBuilder $container, $pattern)
     {
         $bundles = $container->getParameter('kernel.bundles');
-        $files = array();
+        $files = [];
 
         foreach ($bundles as $bundle) {
             $class = new \ReflectionClass($bundle);

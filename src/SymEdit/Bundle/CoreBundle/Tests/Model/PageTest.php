@@ -26,7 +26,7 @@ class PageTest extends TestCase
 
     public function testRouteName()
     {
-        $page = $this->getMock(get_class($this->createPage()), array('getId'));
+        $page = $this->getMock(get_class($this->createPage()), ['getId']);
         $page->expects($this->any())
              ->method('getId')
              ->will($this->returnValue(38));

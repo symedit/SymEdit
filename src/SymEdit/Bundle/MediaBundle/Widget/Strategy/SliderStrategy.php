@@ -25,46 +25,46 @@ class SliderStrategy extends AbstractGalleryStrategy
             return;
         }
 
-        return $this->render($widget, array(
+        return $this->render($widget, [
             'gallery' => $gallery,
             'thumbnails' => $widget->getOption('thumbnails'),
             'stretch' => $widget->getOption('stretch'),
             'controls' => $widget->getOption('controls'),
-        ));
+        ]);
     }
 
     public function getDefaultOptions(OptionsResolver $resolver)
     {
-        $resolver->setDefaults(array(
+        $resolver->setDefaults([
             'thumbnails' => false,
             'stretch' => false,
             'controls' => false,
             'template' => '@SymEdit/Widget/Media/slider.html.twig',
-        ));
+        ]);
     }
 
     public function buildForm(FormBuilderInterface $builder)
     {
         $builder
-            ->add('slider', 'entity_property', array(
+            ->add('slider', 'entity_property', [
                 'label' => 'Slider',
                 'help_block' => 'Choose slider to display',
                 'class' => $this->repository->getClassName(),
                 'property' => 'title',
                 'property_value' => 'slug',
-            ))
-            ->add('thumbnails', 'checkbox', array(
+            ])
+            ->add('thumbnails', 'checkbox', [
                 'label' => 'Show Thumbnails',
                 'required' => false,
-            ))
-            ->add('stretch', 'checkbox', array(
+            ])
+            ->add('stretch', 'checkbox', [
                 'label' => 'Stretch',
                 'required' => false,
-            ))
-            ->add('controls', 'checkbox', array(
+            ])
+            ->add('controls', 'checkbox', [
                 'label' => 'Show Controls',
                 'required' => false,
-            ))
+            ])
         ;
     }
 

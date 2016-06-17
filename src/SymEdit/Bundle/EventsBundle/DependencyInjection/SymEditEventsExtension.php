@@ -46,20 +46,20 @@ class SymEditEventsExtension extends SymEditResourceExtension implements Prepend
          * SymEdit Config, add the views
          */
         if ($container->hasExtension('symedit')) {
-            $container->prependExtensionConfig('symedit', array(
-                'template_locations' => array(
+            $container->prependExtensionConfig('symedit', [
+                'template_locations' => [
                     '@SymEditEventsBundle/Resources/views',
-                ),
-                'assets' => array(
-                    'javascripts' => array(
+                ],
+                'assets' => [
+                    'javascripts' => [
                         '@SymEditEventsBundle/Resources/js/bootstrap-datetimepicker.min.js',
                         '@SymEditEventsBundle/Resources/js/activate.js',
-                    ),
-                    'stylesheets' => array(
+                    ],
+                    'stylesheets' => [
                         '@SymEditEventsBundle/Resources/css/bootstrap-datetimepicker.min.css',
-                    ),
-                ),
-            ));
+                    ],
+                ],
+            ]);
         }
     }
 

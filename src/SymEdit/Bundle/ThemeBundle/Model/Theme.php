@@ -93,7 +93,7 @@ class Theme implements ThemeInterface, \Serializable
             return $this->getTemplateDirectory();
         }
 
-        $directories = array();
+        $directories = [];
         $currentTheme = $this;
 
         while ($currentTheme !== null) {
@@ -153,7 +153,7 @@ class Theme implements ThemeInterface, \Serializable
 
     public function serialize()
     {
-        return serialize(array(
+        return serialize([
             'name' => $this->name,
             'title' => $this->title,
             'description' => $this->description,
@@ -162,7 +162,7 @@ class Theme implements ThemeInterface, \Serializable
             'directory' => $this->directory,
             'publicDirectory' => $this->publicDirectory,
             'parent' => $this->parent,
-        ));
+        ]);
     }
 
     public function unserialize($serialized)

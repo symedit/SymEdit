@@ -35,10 +35,10 @@ class SeoExtension extends \Twig_Extension
 
     public function getFunctions()
     {
-        return array(
-            new \Twig_SimpleFunction('symedit_seo_title', array($this, 'getSeoTitle'), array('is_safe' => array('html'))),
-            new \Twig_SimpleFunction('symedit_seo_metas', array($this, 'getSeoMetas'), array('is_safe' => array('html'))),
-        );
+        return [
+            new \Twig_SimpleFunction('symedit_seo_title', [$this, 'getSeoTitle'], ['is_safe' => ['html']]),
+            new \Twig_SimpleFunction('symedit_seo_metas', [$this, 'getSeoMetas'], ['is_safe' => ['html']]),
+        ];
     }
 
     public function getSeoTitle()
@@ -48,7 +48,7 @@ class SeoExtension extends \Twig_Extension
 
     public function getSeoMetas()
     {
-        $metas = array();
+        $metas = [];
 
         foreach ($this->getCalculatedSeo()->getMetas() as $type => $tag) {
             foreach ($tag as $key => $content) {

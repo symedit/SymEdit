@@ -28,39 +28,39 @@ class SubmenuStrategy extends AbstractWidgetStrategy
             return false;
         }
 
-        return $this->render($widget, array(
+        return $this->render($widget, [
             'page' => $page,
             'nav_class' => $widget->getOption('nav_class'),
             'level' => $widget->getOption('level'),
-        ));
+        ]);
     }
 
     public function buildForm(FormBuilderInterface $builder)
     {
         $builder
-            ->add('level', 'integer', array(
+            ->add('level', 'integer', [
                 'label' => 'Menu level',
                 'help_block' => 'Level to display, cannot be greater than current page. Starts at 1',
-                'constraints' => array(
-                    new Range(array(
+                'constraints' => [
+                    new Range([
                         'min' => 1,
                         'minMessage' => 'Minimum level is 1',
-                    )),
-                ),
-            ))
-            ->add('nav_class', 'text', array(
+                    ]),
+                ],
+            ])
+            ->add('nav_class', 'text', [
                 'label' => 'Navigation UL Class',
-            ))
+            ])
         ;
     }
 
     public function getDefaultOptions(OptionsResolver $resolver)
     {
-        $resolver->setDefaults(array(
+        $resolver->setDefaults([
             'level' => 1,
             'nav_class' => 'nav nav-pills nav-stacked',
             'template' => '@SymEdit/Widget/submenu.html.twig',
-        ));
+        ]);
     }
 
     public function getName()

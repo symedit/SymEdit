@@ -18,7 +18,7 @@ class SettingsExpressionLanguageProvider implements ExpressionFunctionProviderIn
 {
     public function getFunctions()
     {
-        return array(
+        return [
             new ExpressionFunction(
                 'setting',
 
@@ -43,6 +43,6 @@ class SettingsExpressionLanguageProvider implements ExpressionFunctionProviderIn
                     return $settings->get($name);
                 }
             ),
-        );
+        ];
     }
 }

@@ -19,7 +19,7 @@ interface BreadcrumbsInterface extends \IteratorAggregate, \Countable
      * @param string $path
      * @param array  $params
      */
-    public function push($title, $path, $params = array());
+    public function push($title, $path, $params = []);
 
     /**
      * Adds a breadcrumb to the bottom of the stack.
@@ -27,7 +27,7 @@ interface BreadcrumbsInterface extends \IteratorAggregate, \Countable
      * @param string $path
      * @param array  $params
      */
-    public function unshift($title, $path, $params = array());
+    public function unshift($title, $path, $params = []);
 
     /**
      * Returns the breadcrumb on the top of the stack.

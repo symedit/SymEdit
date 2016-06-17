@@ -24,10 +24,10 @@ class FormBuilderController extends ResourceController
     {
         $resource = $this->findOr404($request);
 
-        return $this->render('@SymEdit/Admin/FormBuilder/preview.html.twig', array(
+        return $this->render('@SymEdit/Admin/FormBuilder/preview.html.twig', [
             'form_builder' => $resource,
             'form' => $this->getFactory()->build($resource)->createView(),
-        ));
+        ]);
     }
 
     public function processAction(Request $request)
@@ -48,15 +48,15 @@ class FormBuilderController extends ResourceController
                 return $response;
             }
 
-            return $this->redirectToRoute('symedit_form_builder_success', array(
+            return $this->redirectToRoute('symedit_form_builder_success', [
                 'name' => $resource->getName(),
-            ));
+            ]);
         }
 
-        return $this->render('@SymEdit/FormBuilder/process.html.twig', array(
+        return $this->render('@SymEdit/FormBuilder/process.html.twig', [
             'form_builder' => $resource,
             'form' => $form->createView(),
-        ));
+        ]);
     }
 
     /**

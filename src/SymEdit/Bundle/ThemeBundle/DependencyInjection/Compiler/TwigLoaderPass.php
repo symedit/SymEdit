@@ -24,9 +24,9 @@ class TwigLoaderPass implements CompilerPassInterface
     {
         $loaderDefinition = $container->getDefinition('twig.loader.filesystem');
         $loaderDefinition->setClass('%symedit_theme.twig.loader.filesystem%');
-        $loaderDefinition->addMethodCall('setThemePaths', array(
+        $loaderDefinition->addMethodCall('setThemePaths', [
             new Reference('symedit_theme.theme'),
             $container->getParameter('symedit_theme.namespace_overrides'),
-        ));
+        ]);
     }
 }

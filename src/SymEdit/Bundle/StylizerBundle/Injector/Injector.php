@@ -18,13 +18,13 @@ class Injector
     protected $manager;
     protected $injectors;
 
-    public function __construct(FilterManager $manager, array $injectors = array())
+    public function __construct(FilterManager $manager, array $injectors = [])
     {
         $this->manager = $manager;
         $this->injectors = $injectors;
     }
 
-    public function inject(array $variables = array())
+    public function inject(array $variables = [])
     {
         foreach ($this->injectors as $injector) {
             $injector->inject($this->manager, $variables);

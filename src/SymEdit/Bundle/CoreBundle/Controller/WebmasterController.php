@@ -25,9 +25,9 @@ class WebmasterController extends Controller
             }
 
             if ($code === $request_code) {
-                return $this->render('@SymEdit/Webmaster/googleVerify.html.twig', array(
+                return $this->render('@SymEdit/Webmaster/googleVerify.html.twig', [
                     'code' => $code,
-                ));
+                ]);
             }
         }
 
@@ -39,9 +39,9 @@ class WebmasterController extends Controller
         $code = $this->getWebmasterSettings()->get('bing_verify');
 
         if ($code) {
-            return $this->render('@SymEdit/Webmaster/bingVerify.xml.twig', array(
+            return $this->render('@SymEdit/Webmaster/bingVerify.xml.twig', [
                 'code' => $code,
-            ));
+            ]);
         }
 
         throw $this->createNotFoundException();
@@ -51,9 +51,9 @@ class WebmasterController extends Controller
     {
         $allow = $this->getWebmasterSettings()->get('robots') === 'allow';
 
-        return $this->render('@SymEdit/Crawler/robots.txt.twig', array(
+        return $this->render('@SymEdit/Crawler/robots.txt.twig', [
             'Allow' => $allow,
-        ));
+        ]);
     }
 
     protected function getWebmasterSettings()

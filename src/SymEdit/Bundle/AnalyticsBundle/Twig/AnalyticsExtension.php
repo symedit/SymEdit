@@ -29,20 +29,20 @@ class AnalyticsExtension extends \Twig_Extension
 
     public function getFunctions()
     {
-        return array(
-            new \Twig_SimpleFunction('symedit_analytics_render', array($this, 'renderAnalytics'), array('needs_environment' => true, 'is_safe' => array('html', 'js'))),
-            new \Twig_SimpleFunction('symedit_analytics_report', array($this, 'getReport')),
-        );
+        return [
+            new \Twig_SimpleFunction('symedit_analytics_render', [$this, 'renderAnalytics'], ['needs_environment' => true, 'is_safe' => ['html', 'js']]),
+            new \Twig_SimpleFunction('symedit_analytics_report', [$this, 'getReport']),
+        ];
     }
 
     public function renderAnalytics(\Twig_Environment $env)
     {
-        return $env->render('@SymEditAnalytics/render.html.twig', array(
+        return $env->render('@SymEditAnalytics/render.html.twig', [
             'visits' => $this->tracker->getTrackedVisits(),
-        ));
+        ]);
     }
 
-    public function getReport($name, array $options = array())
+    public function getReport($name, array $options = [])
     {
         try {
             $report = $this->reporter->runReport($name, $options);

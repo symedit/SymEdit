@@ -40,18 +40,18 @@ class PreferenceCalculator implements SeoCalculatorInterface
         $title = $this->calculateProperty($subject, $preference->getTitle());
         $description = $this->calculateProperty($subject, $preference->getDescription());
 
-        $seo->merge(array(
+        $seo->merge([
             'title' => $title,
             'description' => $description,
-        ));
+        ]);
     }
 
     protected function calculateProperty($subject, array $expressions)
     {
         foreach ($expressions as $expression) {
-            $string = $this->language->evaluate($expression, array(
+            $string = $this->language->evaluate($expression, [
                 'model' => $subject,
-            ));
+            ]);
 
             if (trim($string)) {
                 return $string;
