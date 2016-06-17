@@ -13,6 +13,7 @@ namespace SymEdit\Bundle\WidgetBundle\Form\Type;
 
 use SymEdit\Bundle\WidgetBundle\Form\DataTransformer\WidgetAssociationTransformer;
 use SymEdit\Bundle\WidgetBundle\Model\WidgetInterface;
+use SymEdit\Bundle\WidgetBundle\Widget\WidgetRegistry;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -20,11 +21,13 @@ use Symfony\Component\Validator\Constraints\NotBlank;
 
 class WidgetType extends AbstractType
 {
+    protected $registry;
     protected $widgetClass;
     protected $widgetAreaClass;
 
-    public function __construct($widgetClass, $widgetAreaClass)
+    public function __construct(WidgetRegistry $registry, $widgetClass, $widgetAreaClass)
     {
+        $this->registry = $registry;
         $this->widgetClass = $widgetClass;
         $this->widgetAreaClass = $widgetAreaClass;
     }
@@ -70,7 +73,7 @@ class WidgetType extends AbstractType
 
     public function buildOptionsForm(FormBuilderInterface $builder, array $options)
     {
-        $strategy = $options['strategy'];
+        $strategy = $this->registry->getStrategy($options['strategy']);
 
         // Add custom template override
         $builder

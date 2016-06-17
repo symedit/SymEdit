@@ -13,11 +13,12 @@ namespace SymEdit\Bundle\CoreBundle\Model;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+use Sylius\Component\Resource\Model\ResourceInterface;
 use SymEdit\Bundle\CoreBundle\Iterator\RecursivePageIterator;
 use SymEdit\Bundle\MediaBundle\Model\ImageInterface;
 use Symfony\Component\Validator\ExecutionContextInterface;
 
-class Page implements PageInterface
+class Page implements PageInterface, ResourceInterface
 {
     /**
      * @var int

@@ -13,7 +13,7 @@ namespace SymEdit\Bundle\CoreBundle\Repository;
 
 use Sylius\Component\Resource\Repository\RepositoryInterface;
 
-interface ParameterRepositoryInterface extends RepositoryInterface
+interface SettingsRepositoryInterface extends RepositoryInterface
 {
     /**
      * Gets DateTime for last updated setting.

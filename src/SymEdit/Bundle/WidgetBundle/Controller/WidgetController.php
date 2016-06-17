@@ -11,6 +11,7 @@
 
 namespace SymEdit\Bundle\WidgetBundle\Controller;
 
+use FOS\RestBundle\View\View;
 use SymEdit\Bundle\ResourceBundle\Controller\ResourceController;
 use SymEdit\Bundle\WidgetBundle\Event\Events;
 use SymEdit\Bundle\WidgetBundle\Event\WidgetEvent;
@@ -24,7 +25,8 @@ class WidgetController extends ResourceController
 {
     public function renderAction(Request $request)
     {
-        $widget = $this->findOr404($request);
+        $configuration = $this->requestConfigurationFactory->create($this->metadata, $request);
+        $widget = $this->findOr404($configuration);
         $strategy = $this->getStrategy($widget);
 
         // Prepare pre render event
@@ -75,50 +77,21 @@ class WidgetController extends ResourceController
         return $this->handleView($view);
     }
 
-    public function getForm($resource = null, array $options = array())
-    {
-        $type = $this->getConfiguration()->getFormType();
-
-        if ($this->getConfiguration()->isApiRequest()) {
-            return $this->container->get('form.factory')->createNamed('', $type, $resource, array(
-                'csrf_protection' => false,
-                'strategy' => $this->getStrategy($resource),
-            ));
-        }
-
-        return $this->createForm($type, $resource, array(
-            'strategy' => $this->getStrategy($resource),
-        ));
-    }
-
-    public function chooseAction()
+    public function chooseAction(Request $request)
     {
         /* @var $registry WidgetRegistry */
         $registry = $this->get('symedit_widget.widget.registry');
         $strategies = $registry->getStrategies();
+        $configuration = $this->requestConfigurationFactory->create($this->metadata, $request);
 
-        $view = $this
-            ->view()
+        $view = View::create()
             ->setTemplate('@SymEdit/Admin/Widget/choose.html.twig')
             ->setTemplateVar('strategies')
             ->setData(array(
                 'strategies' => $strategies,
             ));
 
-        return $this->handleView($view);
-    }
-
-    public function createNew()
-    {
-        $strategyName = $this->getRequest()->get('strategyName');
-
-        try {
-            $widget = $this->getRepository()->createNew($strategyName);
-        } catch (\Exception $e) {
-            throw $this->createNotFoundException(sprintf('Widget with strategy name "%s" does not exist', $strategyName));
-        }
-
-        return $widget;
+        return $this->viewHandler->handle($configuration, $view);
     }
 
     protected function getStrategy(WidgetInterface $widget)

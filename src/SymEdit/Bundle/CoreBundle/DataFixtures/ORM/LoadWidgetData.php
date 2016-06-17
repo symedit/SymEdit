@@ -172,7 +172,7 @@ class LoadWidgetData extends AbstractFixture implements OrderedFixtureInterface
      */
     protected function createWidget($strategy)
     {
-        return $this->getRepository('widget')->createNew($strategy);
+        return $this->getFactory('widget')->createFromStrategy($strategy);
     }
 
     /**
@@ -180,7 +180,7 @@ class LoadWidgetData extends AbstractFixture implements OrderedFixtureInterface
      */
     protected function createWidgetArea()
     {
-        return $this->getRepository('widget_area')->createNew();
+        return $this->getFactory('widget_area')->createNew();
     }
 
     public function getOrder()

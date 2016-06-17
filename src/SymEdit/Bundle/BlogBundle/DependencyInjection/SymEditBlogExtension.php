@@ -12,26 +12,36 @@
 namespace SymEdit\Bundle\BlogBundle\DependencyInjection;
 
 use SymEdit\Bundle\ResourceBundle\DependencyInjection\SymEditResourceExtension;
+use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Extension\PrependExtensionInterface;
+use Symfony\Component\DependencyInjection\Loader\XmlFileLoader;
 
 class SymEditBlogExtension extends SymEditResourceExtension implements PrependExtensionInterface
 {
-    protected $configFiles = array(
-        'form.xml', 'widget.xml',
-    );
-
     /**
      * {@inheritdoc}
      */
     public function load(array $config, ContainerBuilder $container)
     {
-        $this->configure(
-            $config,
-            new Configuration(),
-            $container,
-            self::CONFIGURE_LOADER | self::CONFIGURE_DATABASE | self::CONFIGURE_PARAMETERS
-        );
+        $config = $this->processConfiguration($this->getConfiguration($config, $container), $config);
+        $loader = new XmlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
+
+        // Load Driver
+        $loader->load(sprintf('driver/%s.xml', $config['driver']));
+
+        // Load Resources
+        $this->registerResources('symedit', $config['driver'], $config['resources'], $container);
+
+        // Load Config Files
+        $configFiles = [
+            'form.xml',
+            'widget.xml',
+        ];
+
+        foreach ($configFiles as $configFile) {
+            $loader->load($configFile);
+        }
     }
 
     public function prepend(ContainerBuilder $container)

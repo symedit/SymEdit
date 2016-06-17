@@ -1,5 +1,6 @@
-{% set enabled = sylius_settings_get('webmaster.google_analytics_enabled') %}
-{% set code = sylius_settings_get('webmaster.google_analytics') %}
+{% set webmaster = sylius_settings('webmaster') %}
+{% set enabled = webmaster.google_analytics_enabled %}
+{% set code = webmaster.google_analytics %}
 
 {% if code is not empty and enabled %}
 <script type="text/javascript">

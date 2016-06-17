@@ -138,10 +138,11 @@ stof_doctrine_extensions:
 # Sylius Settings
 sylius_settings:
     driver: doctrine/orm
-    classes:
-        parameter:
-            model: SymEdit\Bundle\CoreBundle\Model\Parameter
-            repository: SymEdit\Bundle\CoreBundle\Doctrine\ORM\ParameterRepository
+    resources:
+        settings:
+            classes:
+                model: SymEdit\Bundle\CoreBundle\Model\Settings
+                repository: SymEdit\Bundle\CoreBundle\Doctrine\ORM\SettingsRepository
 
 doctrine_cache:
     providers:

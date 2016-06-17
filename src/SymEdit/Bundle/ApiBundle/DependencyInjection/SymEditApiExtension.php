@@ -12,27 +12,24 @@
 namespace SymEdit\Bundle\ApiBundle\DependencyInjection;
 
 use SymEdit\Bundle\ResourceBundle\DependencyInjection\SymEditResourceExtension;
+use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Exception\ServiceNotFoundException;
 use Symfony\Component\DependencyInjection\Extension\PrependExtensionInterface;
+use Symfony\Component\DependencyInjection\Loader\XmlFileLoader;
 
 class SymEditApiExtension extends SymEditResourceExtension implements PrependExtensionInterface
 {
-    protected $configFiles = array(
-
-    );
-
     /**
      * {@inheritdoc}
      */
     public function load(array $config, ContainerBuilder $container)
     {
-        $this->configure(
-            $config,
-            new Configuration(),
-            $container,
-            self::CONFIGURE_LOADER | self::CONFIGURE_DATABASE | self::CONFIGURE_PARAMETERS
-        );
+        $config = $this->processConfiguration($this->getConfiguration($config, $container), $config);
+        $loader = new XmlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
+
+        // Load Resources
+        $this->registerResources('symedit', $config['driver'], $config['resources'], $container);
     }
 
     public function getAlias()

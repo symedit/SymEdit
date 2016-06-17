@@ -22,13 +22,6 @@
         <!-- Breadcrumbs -->
         <service id="symedit.breadcrumbs" class="%symedit.model.breadcrumbs.class%" />
 
-        <!-- Contact Controller -->
-        <service id="symedit.controller.contact" class="%symedit.controller.contact.class%">
-            <call method="setContainer">
-                <argument type="service" id="service_container" />
-            </call>
-        </service>
-
         <!-- Assetic Configuration Loader -->
         <service id="symedit.assetic.config_loader" class="%symedit.assetic.config_loader.class%" public="false">
             <tag name="assetic.formula_loader" alias="symedit_config" />

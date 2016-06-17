@@ -86,7 +86,7 @@ class PostRepository extends EntityRepository implements PostRepositoryInterface
 
     public function getPublishedQueryBuilder()
     {
-        return $this->getQueryBuilder()
+        return $this->getQueryBuilder('o')
             ->where('o.status = :published')
             ->orWhere('o.status = :scheduled AND o.publishedAt <= :now')
             ->setParameters(array(
@@ -102,8 +102,8 @@ class PostRepository extends EntityRepository implements PostRepositoryInterface
      */
     protected function getCreatedAtQueryBuilder()
     {
-        return parent::getQueryBuilder()
-            ->orderBy(sprintf('%s.createdAt', $this->getAlias()), 'DESC')
+        return $this->createQueryBuilder('o')
+            ->orderBy('o.createdAt', 'DESC')
         ;
     }
 
@@ -112,8 +112,8 @@ class PostRepository extends EntityRepository implements PostRepositoryInterface
      */
     public function getQueryBuilder()
     {
-        return parent::getQueryBuilder()
-            ->orderBy(sprintf('%s.publishedAt', $this->getAlias()), 'DESC')
+        return $this->createQueryBuilder('o')
+            ->orderBy('o.publishedAt', 'DESC')
         ;
     }
 

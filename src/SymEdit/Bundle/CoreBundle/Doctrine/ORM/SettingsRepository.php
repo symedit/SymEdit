@@ -12,9 +12,9 @@
 namespace SymEdit\Bundle\CoreBundle\Doctrine\ORM;
 
 use Sylius\Bundle\ResourceBundle\Doctrine\ORM\EntityRepository;
-use SymEdit\Bundle\CoreBundle\Repository\ParameterRepositoryInterface;
+use SymEdit\Bundle\CoreBundle\Repository\SettingsRepositoryInterface;
 
-class ParameterRepository extends EntityRepository implements ParameterRepositoryInterface
+class SettingsRepository extends EntityRepository implements SettingsRepositoryInterface
 {
     /**
      * {@inheritdoc}

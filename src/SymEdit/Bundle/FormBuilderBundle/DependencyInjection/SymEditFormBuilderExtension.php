@@ -12,8 +12,10 @@
 namespace SymEdit\Bundle\FormBuilderBundle\DependencyInjection;
 
 use SymEdit\Bundle\ResourceBundle\DependencyInjection\SymEditResourceExtension;
+use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Extension\PrependExtensionInterface;
+use Symfony\Component\DependencyInjection\Loader\XmlFileLoader;
 
 class SymEditFormBuilderExtension extends SymEditResourceExtension implements PrependExtensionInterface
 {
@@ -28,12 +30,22 @@ class SymEditFormBuilderExtension extends SymEditResourceExtension implements Pr
      */
     public function load(array $config, ContainerBuilder $container)
     {
-        $config = $this->configure(
-            $config,
-            new Configuration(),
-            $container,
-            self::CONFIGURE_LOADER | self::CONFIGURE_DATABASE | self::CONFIGURE_PARAMETERS
-        );
+        $config = $this->processConfiguration($this->getConfiguration($config, $container), $config);
+        $loader = new XmlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
+
+        // Load Resources
+        $this->registerResources('symedit', $config['driver'], $config['resources'], $container);
+
+        // Load Config Files
+        $configFiles = [
+            'services.xml',
+            'fields.xml',
+            'widget.xml',
+        ];
+
+        foreach ($configFiles as $configFile) {
+            $loader->load($configFile);
+        }
 
         $container->setParameter('symedit_form_builder.action_route', $config['action_route']);
     }

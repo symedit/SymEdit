@@ -19,7 +19,7 @@ use Symfony\Component\DependencyInjection\ContainerBuilder;
 
 class SymEditAnalyticsBundle extends AbstractResourceBundle
 {
-    public static function getSupportedDrivers()
+    public function getSupportedDrivers()
     {
         return array(
             SyliusResourceBundle::DRIVER_DOCTRINE_ORM,

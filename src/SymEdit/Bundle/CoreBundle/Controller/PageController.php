@@ -11,6 +11,8 @@
 
 namespace SymEdit\Bundle\CoreBundle\Controller;
 
+use FOS\RestBundle\View\View;
+use Sylius\Bundle\ResourceBundle\Controller\RequestConfiguration;
 use SymEdit\Bundle\CoreBundle\Model\PageInterface;
 use SymEdit\Bundle\ResourceBundle\Controller\ResourceController;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -30,13 +32,15 @@ class PageController extends ResourceController
             $template = '@Theme/Page/base.html.twig';
         }
 
-        $view = $this
-            ->view()
+        $view = View::create($page)
             ->setTemplateVar('Page')
             ->setData($page)
-            ->setTemplate($template);
+            ->setTemplate($template)
+        ;
 
-        return $this->handleView($view);
+        $configuration = $this->requestConfigurationFactory->create($this->metadata, $request);
+
+        return $this->viewHandler->handle($configuration, $view);
     }
 
     public function jsonAction()
@@ -56,8 +60,10 @@ class PageController extends ResourceController
         return new JsonResponse($out);
     }
 
-    public function findOr404(Request $request, array $criteria = array())
+    public function findOr404(RequestConfiguration $configuration)
     {
+        $request = $configuration->getRequest();
+
         if ($request->attributes->has('_page')) {
             $page = $request->attributes->get('_page');
 
@@ -66,6 +72,6 @@ class PageController extends ResourceController
             }
         }
 
-        return parent::findOr404($request, $criteria);
+        return parent::findOr404($configuration);
     }
 }

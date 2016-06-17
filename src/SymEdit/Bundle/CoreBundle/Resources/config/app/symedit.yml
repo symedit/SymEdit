@@ -5,13 +5,17 @@ symedit:
 
 # Blog Configuration
 symedit_blog:
-    classes:
+    resources:
         post:
-            model: SymEdit\Bundle\CoreBundle\Model\Post
-            form: SymEdit\Bundle\CoreBundle\Form\Type\PostType
+            classes:
+                model: SymEdit\Bundle\CoreBundle\Model\Post
+                form:
+                    default: SymEdit\Bundle\CoreBundle\Form\Type\PostType
         category:
-            model: SymEdit\Bundle\CoreBundle\Model\Category
-            form: SymEdit\Bundle\CoreBundle\Form\Type\CategoryType
+            classes:
+                model: SymEdit\Bundle\CoreBundle\Model\Category
+                form:
+                    default: SymEdit\Bundle\CoreBundle\Form\Type\CategoryType
 
 # SymEdit SEO
 symedit_seo:
@@ -46,10 +50,12 @@ symedit_analytics:
         category: %symedit.model.category.class%
 
 symedit_events:
-    classes:
+    resources:
         event:
-            model: SymEdit\Bundle\CoreBundle\Model\Event
-            form: SymEdit\Bundle\CoreBundle\Form\Type\EventType
+            classes:
+                model: SymEdit\Bundle\CoreBundle\Model\Event
+                form:
+                    default: SymEdit\Bundle\CoreBundle\Form\Type\EventType
 
 # Widget Configuration
 symedit_widget:
@@ -57,9 +63,11 @@ symedit_widget:
         strategy: esi
     renderer:
         widget: symedit.widget.renderer.widget
-    classes:
+    resources:
         widget:
-            form: SymEdit\Bundle\CoreBundle\Form\Type\WidgetType
+            classes:
+                form:
+                    default: SymEdit\Bundle\CoreBundle\Form\Type\WidgetType
 
 # Theme Configuration
 symedit_theme:

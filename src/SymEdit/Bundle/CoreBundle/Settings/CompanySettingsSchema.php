@@ -13,7 +13,7 @@ namespace SymEdit\Bundle\CoreBundle\Settings;
 
 use Sylius\Bundle\SettingsBundle\Schema\SchemaInterface;
 use Sylius\Bundle\SettingsBundle\Schema\SettingsBuilderInterface;
-use Sylius\Bundle\SettingsBundle\Transformer\ObjectToIdentifierTransformer;
+use Sylius\Bundle\SettingsBundle\Transformer\ResourceToIdentifierTransformer;
 use Sylius\Component\Resource\Repository\RepositoryInterface;
 use Symfony\Component\Form\FormBuilderInterface;
 
@@ -74,7 +74,7 @@ class CompanySettingsSchema implements SchemaInterface
                 'phone' => array('string', 'null'),
                 'fax' => array('string', 'null'),
             ))
-            ->setTransformer('logo', new ObjectToIdentifierTransformer($this->imageRepository))
+            ->setTransformer('logo', new ResourceToIdentifierTransformer($this->imageRepository))
         ;
     }
 }

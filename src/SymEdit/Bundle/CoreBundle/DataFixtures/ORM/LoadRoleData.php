@@ -53,7 +53,7 @@ class LoadRoleData extends AbstractFixture implements OrderedFixtureInterface
      */
     protected function createRole()
     {
-        return $this->getRepository('role')->createNew();
+        return $this->getFactory('role')->createNew();
     }
 
     public function getOrder()

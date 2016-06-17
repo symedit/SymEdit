@@ -11,6 +11,7 @@
 
 namespace SymEdit\Bundle\BlogBundle\Controller;
 
+use FOS\RestBundle\View\View;
 use SymEdit\Bundle\ResourceBundle\Controller\ResourceController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
@@ -19,7 +20,8 @@ class PostController extends ResourceController
 {
     public function showPublishedAction(Request $request)
     {
-        $post = $this->findOr404($request);
+        $configuration = $this->requestConfigurationFactory->create($this->metadata, $request);
+        $post = $this->findOr404($configuration);
 
         if (!$post->isPublished()) {
             throw $this->createNotFoundException('Post not published');
@@ -47,21 +49,20 @@ class PostController extends ResourceController
             throw $this->createNotFoundException(sprintf('Category with slug "%s" not found', $category));
         }
 
-        $config = $this->getConfiguration();
-        $paginator = $this->getRepository()->getCategoryPaginator($category)
-            ->setMaxPerPage($config->getPaginationMaxPerPage())
+        $configuration = $this->requestConfigurationFactory->create($this->metadata, $request);
+        $paginator = $this->repository->getCategoryPaginator($category)
+            ->setMaxPerPage($configuration->getPaginationMaxPerPage())
             ->setCurrentPage($request->get('page', 1), true, true)
         ;
 
-        $view = $this
-            ->view()
-            ->setTemplate($config->getTemplate('index.html'))
+        $view = View::create()
+            ->setTemplate($configuration->getTemplate('index.html'))
             ->setTemplateVar('category')
             ->setData(array(
                 'category' => $category,
                 'posts' => $paginator,
             ));
 
-        return $this->handleView($view);
+        return $this->viewHandler->handle($configuration, $view);
     }
 }

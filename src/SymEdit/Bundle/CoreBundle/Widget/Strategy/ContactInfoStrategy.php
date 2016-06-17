@@ -12,17 +12,17 @@
 namespace SymEdit\Bundle\CoreBundle\Widget\Strategy;
 
 use SymEdit\Bundle\CoreBundle\Model\PageInterface;
-use SymEdit\Bundle\CoreBundle\Repository\ParameterRepositoryInterface;
+use SymEdit\Bundle\CoreBundle\Repository\SettingsRepositoryInterface;
 use SymEdit\Bundle\WidgetBundle\Model\WidgetInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class ContactInfoStrategy extends AbstractWidgetStrategy
 {
-    protected $parameterRepository;
+    protected $settingsRepository;
 
-    public function __construct(ParameterRepositoryInterface $parameterRepository)
+    public function __construct(SettingsRepositoryInterface $settingsRepository)
     {
-        $this->parameterRepository = $parameterRepository;
+        $this->settingsRepository = $settingsRepository;
     }
 
     public function execute(WidgetInterface $widget, PageInterface $page = null)
@@ -39,7 +39,7 @@ class ContactInfoStrategy extends AbstractWidgetStrategy
 
     public function getCacheOptions(WidgetInterface $widget)
     {
-        $updatedAt = $this->parameterRepository->getLastUpdated();
+        $updatedAt = $this->settingsRepository->getLastUpdated();
 
         // No settings yet
         if (!$updatedAt) {

@@ -1,7 +1,7 @@
-{% set type = sylius_settings_get('seo.business_type') %}
+{% set type = sylius_settings('seo')['business_type'] %}
 
 <div itemscope itemtype="http://schema.org/{{ type }}">
-    {% set company = sylius_settings_all('company') %}
+    {% set company = sylius_settings('company') %}
     <address>
         <p>
             <strong>{{ company.name }}</strong> <br>

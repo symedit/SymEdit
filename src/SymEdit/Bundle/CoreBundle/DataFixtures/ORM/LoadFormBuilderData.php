@@ -91,7 +91,7 @@ class LoadFormBuilderData extends AbstractFixture implements OrderedFixtureInter
      */
     protected function createFormElement()
     {
-        return $this->getRepository('form_element')->createNew();
+        return $this->getFactory('form_element')->createNew();
     }
 
     /**
@@ -99,7 +99,7 @@ class LoadFormBuilderData extends AbstractFixture implements OrderedFixtureInter
      */
     protected function createForm()
     {
-        return $this->getRepository('form_builder')->createNew();
+        return $this->getFactory('form_builder')->createNew();
     }
 
     public function getOrder()

@@ -12,8 +12,10 @@
 namespace SymEdit\Bundle\UserBundle\DependencyInjection;
 
 use SymEdit\Bundle\ResourceBundle\DependencyInjection\SymEditResourceExtension;
+use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Extension\PrependExtensionInterface;
+use Symfony\Component\DependencyInjection\Loader\XmlFileLoader;
 
 class SymEditUserExtension extends SymEditResourceExtension implements PrependExtensionInterface
 {
@@ -28,12 +30,25 @@ class SymEditUserExtension extends SymEditResourceExtension implements PrependEx
      */
     public function load(array $config, ContainerBuilder $container)
     {
-        $config = $this->configure(
-            $config,
-            new Configuration(),
-            $container,
-            self::CONFIGURE_LOADER | self::CONFIGURE_DATABASE | self::CONFIGURE_PARAMETERS
-        );
+        $config = $this->processConfiguration($this->getConfiguration($config, $container), $config);
+        $loader = new XmlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
+
+        // Load Driver
+        $loader->load(sprintf('driver/%s.xml', $config['driver']));
+
+        // Load Resources
+        $this->registerResources('symedit', $config['driver'], $config['resources'], $container);
+
+        // Load Config Files
+        $configFiles = [
+            'services.xml',
+            'form.xml',
+            'notifications.xml',
+        ];
+
+        foreach ($configFiles as $configFile) {
+            $loader->load($configFile);
+        }
 
         foreach ($config['notifications'] as $type => $notification) {
             if (!$notification['enabled']) {
@@ -42,6 +57,9 @@ class SymEditUserExtension extends SymEditResourceExtension implements PrependEx
                 $this->remapParameters($container, 'notifications.'.$type, $notification);
             }
         }
+
+        // Set Registration Form Class
+        $container->setParameter('symedit.form.type.registration.class', $config['registration']['class']);
     }
 
     public function prepend(ContainerBuilder $container)

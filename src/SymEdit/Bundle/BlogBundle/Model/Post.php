@@ -13,9 +13,10 @@ namespace SymEdit\Bundle\BlogBundle\Model;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+use Sylius\Component\Resource\Model\ResourceInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 
-class Post implements PostInterface
+class Post implements PostInterface, ResourceInterface
 {
     /**
      * @var int

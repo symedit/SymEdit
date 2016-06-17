@@ -11,11 +11,6 @@
     </parameters>
 
     <services>
-        <!-- Contact Form -->
-        <service id="symedit.form.type.contact" class="%symedit.form.type.contact.class%">
-            <tag name="form.type" alias="symedit_contact" />
-        </service>
-
         <!-- Page Form -->
         <service id="symedit.form.type.page" class="%symedit.form.type.page.class%">
             <argument type="service" id="event_dispatcher" />

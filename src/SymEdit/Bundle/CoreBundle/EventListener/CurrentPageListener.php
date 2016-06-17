@@ -11,6 +11,7 @@
 
 namespace SymEdit\Bundle\CoreBundle\EventListener;
 
+use Sylius\Component\Resource\Factory\FactoryInterface;
 use SymEdit\Bundle\CoreBundle\Model\PageInterface;
 use SymEdit\Bundle\CoreBundle\Repository\PageRepositoryInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
@@ -24,11 +25,13 @@ class CurrentPageListener
 {
     private $container;
     private $pageRepository;
+    private $pageFactory;
 
-    public function __construct(ContainerInterface $container, PageRepositoryInterface $pageRepository)
+    public function __construct(ContainerInterface $container, PageRepositoryInterface $pageRepository, FactoryInterface $pageFactory)
     {
         $this->container = $container;
         $this->pageRepository = $pageRepository;
+        $this->pageFactory = $pageFactory;
     }
 
     public function onKernelRequest(GetResponseEvent $event)
@@ -47,7 +50,7 @@ class CurrentPageListener
             $request->attributes->remove('_page_id');
             $page = $this->pageRepository->find($pageId);
         } else {
-            $page = $this->pageRepository->createNew();
+            $page = $this->pageFactory->createNew();
             $page->setPath($request->getPathInfo());
         }
 

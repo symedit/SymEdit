@@ -11,7 +11,9 @@
 
 namespace SymEdit\Bundle\WidgetBundle\Model;
 
-class Widget implements WidgetInterface
+use Sylius\Component\Resource\Model\ResourceInterface;
+
+class Widget implements WidgetInterface, ResourceInterface
 {
     /**
      * @var int

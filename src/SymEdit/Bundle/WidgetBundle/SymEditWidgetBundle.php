@@ -13,7 +13,7 @@ namespace SymEdit\Bundle\WidgetBundle;
 
 use Sylius\Bundle\ResourceBundle\AbstractResourceBundle;
 use Sylius\Bundle\ResourceBundle\SyliusResourceBundle;
-use SymEdit\Bundle\WidgetBundle\DependencyInjection\Compiler\WidgetRepositoryCompilerPass;
+use SymEdit\Bundle\WidgetBundle\DependencyInjection\Compiler\WidgetFactoryCompilerPass;
 use SymEdit\Bundle\WidgetBundle\DependencyInjection\Compiler\WidgetStrategyCompilerPass;
 use SymEdit\Bundle\WidgetBundle\DependencyInjection\Compiler\WidgetVoterCompilerPass;
 use SymEdit\Bundle\WidgetBundle\DependencyInjection\SymEditWidgetExtension;
@@ -21,18 +21,10 @@ use Symfony\Component\DependencyInjection\ContainerBuilder;
 
 class SymEditWidgetBundle extends AbstractResourceBundle
 {
-    public static function getSupportedDrivers()
+    public function getSupportedDrivers()
     {
         return array(
             SyliusResourceBundle::DRIVER_DOCTRINE_ORM,
-        );
-    }
-
-    protected function getModelInterfaces()
-    {
-        return array(
-            'SymEdit\Bundle\WidgetBundle\Model\WidgetAreaInterface' => 'symedit.model.widget_area.class',
-            'SymEdit\Bundle\WidgetBundle\Model\WidgetInterface' => 'symedit.model.widget.class',
         );
     }
 
@@ -47,7 +39,7 @@ class SymEditWidgetBundle extends AbstractResourceBundle
 
         $container->addCompilerPass(new WidgetStrategyCompilerPass());
         $container->addCompilerPass(new WidgetVoterCompilerPass());
-        $container->addCompilerPass(new WidgetRepositoryCompilerPass());
+        $container->addCompilerPass(new WidgetFactoryCompilerPass());
     }
 
     protected function getBundlePrefix()

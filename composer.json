@@ -9,9 +9,11 @@
             "email": "craig.blanchette@gmail.com"
         }
     ],
+    "minimum-stability":    "dev",
+    "prefer-stable":        true,
     "require": {
         "php":                                  ">=5.3.3",
-        "doctrine/orm":                         "^2.4.8",
+        "doctrine/orm":                         "^2.4.8,<2.5",
         "doctrine/doctrine-bundle":             "~1.4",
         "doctrine/doctrine-fixtures-bundle":    "~2.2",
         "doctrine/doctrine-cache-bundle":       "~1.0",
@@ -31,12 +33,12 @@
         "sensio/distribution-bundle":           "~4.0",
         "sensio/framework-extra-bundle":        "^3.0.2",
         "stof/doctrine-extensions-bundle":      "~1.2.0",
-        "sylius/resource-bundle":               "~0.15.0",
-        "sylius/settings-bundle":               "~0.15.0",
+        "sylius/resource-bundle":               "~0.19.0@dev",
+        "sylius/settings-bundle":               "~0.19.0@dev",
         "symfony/assetic-bundle":               "~2.3",
         "symfony/monolog-bundle":               "~2.4",
         "symfony/swiftmailer-bundle":           "~2.3",
-        "symfony/symfony":                      "2.7.*",
+        "symfony/symfony":                      "~2.8",
         "symfony-cmf/routing-bundle":           "~1.0",
         "symfony-cmf/routing":                  "dev-master@dev",
         "twig/extensions":                      "~1.0",

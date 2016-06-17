@@ -15,27 +15,27 @@
         <!-- Company -->
         <service id="symedit.settings_schema.company" class="SymEdit\Bundle\CoreBundle\Settings\CompanySettingsSchema">
             <argument type="service" id="symedit.repository.image" />
-            <tag name="sylius.settings_schema" namespace="company" />
+            <tag name="sylius.settings_schema" alias="company" />
         </service>
 
         <!-- Social -->
         <service id="symedit.settings_schema.social" class="SymEdit\Bundle\CoreBundle\Settings\SocialSettingsSchema">
-            <tag name="sylius.settings_schema" namespace="social" />
+            <tag name="sylius.settings_schema" alias="social" />
         </service>
 
         <!-- Webmaster -->
         <service id="symedit.settings_schema.webmaster" class="SymEdit\Bundle\CoreBundle\Settings\WebmasterSettingsSchema">
-            <tag name="sylius.settings_schema" namespace="webmaster" />
+            <tag name="sylius.settings_schema" alias="webmaster" />
         </service>
 
         <!-- Advanced -->
         <service id="symedit.settings_schema.advanced" class="SymEdit\Bundle\CoreBundle\Settings\AdvancedSettingsSchema">
-            <tag name="sylius.settings_schema" namespace="advanced" />
+            <tag name="sylius.settings_schema" alias="advanced" />
         </service>
 
         <!-- SEO -->
         <service id="symedit.settings_schema.seo" class="SymEdit\Bundle\CoreBundle\Settings\SeoSettingsSchema">
-            <tag name="sylius.settings_schema" namespace="seo" />
+            <tag name="sylius.settings_schema" alias="seo" />
         </service>
     </services>
 

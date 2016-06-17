@@ -24,6 +24,13 @@ admin_widget_create:
             redirect:
                 route: admin_widget_update
                 parameters: { id: resource.id }
+            factory:
+                method: createFromStrategy
+                arguments: [$strategyName]
+            form:
+                type: symedit_widget
+                options:
+                    strategy: $strategyName
 
 admin_widget_update:
     path: /{id}/edit

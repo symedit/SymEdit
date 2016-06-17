@@ -117,7 +117,7 @@ class LoadPageData extends AbstractFixture implements OrderedFixtureInterface
      */
     protected function createPage()
     {
-        return $this->getRepository('page')->createNew();
+        return $this->getFactory('page')->createNew();
     }
 
     public function getOrder()

@@ -17,7 +17,7 @@ use SymEdit\Bundle\EventsBundle\DependencyInjection\SymEditEventsExtension;
 
 class SymEditEventsBundle extends AbstractResourceBundle
 {
-    public static function getSupportedDrivers()
+    public function getSupportedDrivers()
     {
         return array(
             SyliusResourceBundle::DRIVER_DOCTRINE_ORM,
@@ -27,13 +27,6 @@ class SymEditEventsBundle extends AbstractResourceBundle
     protected function getModelNamespace()
     {
         return 'SymEdit\Bundle\EventsBundle\Model';
-    }
-
-    protected function getModelInterfaces()
-    {
-        return array(
-            'SymEdit\Bundle\EventsBundle\Model\EventInterface' => 'symedit.model.event.class',
-        );
     }
 
     protected function getBundlePrefix()

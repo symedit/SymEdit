@@ -12,8 +12,9 @@
 namespace SymEdit\Bundle\BlogBundle\Model;
 
 use Doctrine\Common\Collections\ArrayCollection;
+use Sylius\Component\Resource\Model\ResourceInterface;
 
-class Category implements CategoryInterface
+class Category implements CategoryInterface, ResourceInterface
 {
     /**
      * @var int

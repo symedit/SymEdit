@@ -11,6 +11,16 @@
 
 namespace SymEdit\Bundle\WidgetBundle\DependencyInjection;
 
+use Sylius\Component\Resource\Factory\Factory;
+use SymEdit\Bundle\ResourceBundle\Controller\ResourceController;
+use SymEdit\Bundle\WidgetBundle\Controller\WidgetController;
+use SymEdit\Bundle\WidgetBundle\Factory\WidgetFactory;
+use SymEdit\Bundle\WidgetBundle\Form\Type\WidgetAreaType;
+use SymEdit\Bundle\WidgetBundle\Form\Type\WidgetType;
+use SymEdit\Bundle\WidgetBundle\Model\Widget;
+use SymEdit\Bundle\WidgetBundle\Model\WidgetArea;
+use SymEdit\Bundle\WidgetBundle\Model\WidgetAreaInterface;
+use SymEdit\Bundle\WidgetBundle\Model\WidgetInterface;
 use Symfony\Component\Config\Definition\Builder\ArrayNodeDefinition;
 use Symfony\Component\Config\Definition\Builder\TreeBuilder;
 use Symfony\Component\Config\Definition\ConfigurationInterface;
@@ -50,7 +60,7 @@ class Configuration implements ConfigurationInterface
                 ->end()
             ->end();
 
-        $this->addClassesSection($rootNode);
+        $this->addResourcesSection($rootNode);
 
         return $treeBuilder;
     }
@@ -60,33 +70,59 @@ class Configuration implements ConfigurationInterface
      *
      * @param ArrayNodeDefinition $node
      */
-    private function addClassesSection(ArrayNodeDefinition $node)
+    private function addResourcesSection(ArrayNodeDefinition $node)
     {
         $node
             ->children()
-                ->arrayNode('classes')
+                ->arrayNode('resources')
                     ->addDefaultsIfNotSet()
                     ->children()
                         ->arrayNode('widget')
                             ->addDefaultsIfNotSet()
                             ->children()
-                                ->scalarNode('model')->defaultValue('SymEdit\Bundle\WidgetBundle\Model\Widget')->end()
-                                ->scalarNode('controller')->defaultValue('SymEdit\Bundle\WidgetBundle\Controller\WidgetController')->end()
-                                ->scalarNode('respository')->end()
-                                ->scalarNode('form')->defaultValue('SymEdit\Bundle\WidgetBundle\Form\Type\WidgetType')->end()
+                                ->arrayNode('classes')
+                                    ->addDefaultsIfNotSet()
+                                    ->children()
+                                        ->scalarNode('model')->defaultValue(Widget::class)->end()
+                                        ->scalarNode('interface')->defaultValue(WidgetInterface::class)->end()
+                                        ->scalarNode('controller')->defaultValue(WidgetController::class)->end()
+                                        ->scalarNode('respository')->end()
+                                        ->scalarNode('factory')->defaultValue(WidgetFactory::class)->end()
+                                        ->arrayNode('form')
+                                            ->addDefaultsIfNotSet()
+                                            ->children()
+                                                ->scalarNode('default')->defaultValue(WidgetType::class)->cannotBeEmpty()->end()
+                                            ->end()
+                                        ->end()
+                                    ->end()
+                                ->end()
                             ->end()
                         ->end()
+
                         ->arrayNode('widget_area')
                             ->addDefaultsIfNotSet()
                             ->children()
-                                ->scalarNode('model')->defaultValue('SymEdit\Bundle\WidgetBundle\Model\WidgetArea')->end()
-                                ->scalarNode('controller')->defaultValue('Sylius\Bundle\ResourceBundle\Controller\ResourceController')->end()
-                                ->scalarNode('repository')->end()
-                                ->scalarNode('form')->defaultValue('SymEdit\Bundle\WidgetBundle\Form\Type\WidgetAreaType')->end()
+                                ->arrayNode('classes')
+                                    ->addDefaultsIfNotSet()
+                                    ->children()
+                                        ->scalarNode('model')->defaultValue(WidgetArea::class)->end()
+                                        ->scalarNode('interface')->defaultValue(WidgetAreaInterface::class)->end()
+                                        ->scalarNode('controller')->defaultValue(ResourceController::class)->end()
+                                        ->scalarNode('repository')->end()
+                                        ->scalarNode('factory')->defaultValue(Factory::class)->end()
+                                        ->arrayNode('form')
+                                            ->addDefaultsIfNotSet()
+                                            ->children()
+                                                ->scalarNode('default')->defaultValue(WidgetAreaType::class)->cannotBeEmpty()->end()
+                                            ->end()
+                                        ->end()
+                                    ->end()
+                                ->end()
                             ->end()
                         ->end()
                     ->end()
                 ->end()
-            ->end();
+            ->end()
+        ;
     }
 }

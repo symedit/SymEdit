@@ -12,45 +12,54 @@
 namespace SymEdit\Bundle\CoreBundle\DependencyInjection;
 
 use SymEdit\Bundle\ResourceBundle\DependencyInjection\SymEditResourceExtension;
+use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
+use Symfony\Component\DependencyInjection\Loader\XmlFileLoader;
 
 class SymEditExtension extends SymEditResourceExtension
 {
-    protected $configFiles = array(
-        'services.xml',
-        'widget.xml',
-        'routing.xml',
-        'form.xml',
-        'event.xml',
-        'twig.xml',
-        'util.xml',
-        'profiler.xml',
-        'menu.xml',
-        'seo.xml',
-        'report.xml',
-        'shortcode.xml',
-        'cache.xml',
-        'settings.xml',
-    );
-
     /**
      * {@inheritdoc}
      */
-    public function load(array $configs, ContainerBuilder $container)
+    public function load(array $config, ContainerBuilder $container)
     {
-        $config = $this->configure(
-            $configs,
-            new Configuration(),
-            $container,
-            self::CONFIGURE_LOADER | self::CONFIGURE_DATABASE | self::CONFIGURE_PARAMETERS
-        );
+        $config = $this->processConfiguration($this->getConfiguration($config, $container), $config);
+        $loader = new XmlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
+
+        // Load Driver
+        $loader->load(sprintf('driver/%s.xml', $config['driver']));
+
+        // Load Resources
+        $this->registerResources('symedit', $config['driver'], $config['resources'], $container);
+
+        // Load Config Files
+        $configFiles = [
+            'services.xml',
+            'widget.xml',
+            'routing.xml',
+            'form.xml',
+            'event.xml',
+            'twig.xml',
+            'util.xml',
+            'profiler.xml',
+            'menu.xml',
+            'seo.xml',
+            'report.xml',
+            'shortcode.xml',
+            'cache.xml',
+            'settings.xml',
+        ];
+
+        foreach ($configFiles as $configFile) {
+            $loader->load($configFile);
+        }
 
         $this->remapParameters($container, 'email', $config['email']);
         $container->setParameter('symedit.template_locations', $config['template_locations']);
         $container->setParameter('symedit.extensions.routes', $config['extensions']);
 
         // Process Assetic Configurations
-        $this->processResources($container, $config['assets']);
+        $this->processAssets($container, $config['assets']);
 
         // Process routing Config
         $pageControllers = $this->findBundleResources($container, '/Resources/config/symedit/page_controllers.yml');
@@ -63,7 +72,7 @@ class SymEditExtension extends SymEditResourceExtension
      * they can be added either in the config or in the prependExtension so you
      * can add new sheets/scripts without changing the templates.
      */
-    protected function processResources(ContainerBuilder $container, array $resources)
+    protected function processAssets(ContainerBuilder $container, array $resources)
     {
         $formulae = array();
 

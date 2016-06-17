@@ -34,7 +34,7 @@ class SettingsExpressionLanguageProvider implements ExpressionFunctionProviderIn
                     }
 
                     list($namespace, $name) = explode('.', $name);
-                    $settings = $settingsManager->loadSettings($namespace);
+                    $settings = $settingsManager->load($namespace);
 
                     if (!$settings->has($name)) {
                         return $default;

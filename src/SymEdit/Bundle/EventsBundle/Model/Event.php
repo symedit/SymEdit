@@ -11,7 +11,9 @@
 
 namespace SymEdit\Bundle\EventsBundle\Model;
 
-class Event implements EventInterface
+use Sylius\Component\Resource\Model\ResourceInterface;
+
+class Event implements EventInterface, ResourceInterface
 {
     protected $id;
     protected $title;
@@ -72,7 +74,7 @@ class Event implements EventInterface
         return $this->eventStart;
     }
 
-    public function setEventStart(\DateTime $eventStart)
+    public function setEventStart(DateTime $eventStart)
     {
         $this->eventStart = $eventStart;
 
@@ -84,7 +86,7 @@ class Event implements EventInterface
         return $this->eventEnd;
     }
 
-    public function setEventEnd(\DateTime $eventEnd = null)
+    public function setEventEnd(DateTime $eventEnd = null)
     {
         $this->eventEnd = $eventEnd;
 

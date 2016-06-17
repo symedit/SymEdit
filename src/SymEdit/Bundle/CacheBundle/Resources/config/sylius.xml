@@ -19,6 +19,6 @@
             <tag name="jms_aop.pointcut" interceptor="symedit_cache.sylius.interceptor.sylius_resource" />
         </service>
 
-        <service id="symedit_cache.sylius.parameters_parser" alias="sylius.controller.parameters_parser" />
+        <service id="symedit_cache.sylius.parameters_parser" alias="sylius.resource_controller.parameters_parser" />
     </services>
 </container>
