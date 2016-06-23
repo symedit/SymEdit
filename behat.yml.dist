@@ -43,6 +43,13 @@ default:
                 - SymEdit\Bundle\CoreBundle\Behat\AnalyticsContext
             filters:
                 tags: "@analytics"
+        widgets:
+            contexts:
+                - Behat\MinkExtension\Context\MinkContext
+                - SymEdit\Bundle\CoreBundle\Behat\WebContext
+                - SymEdit\Bundle\WidgetBundle\Behat\WidgetContext
+            filters:
+                tags: "@widgets"
     extensions:
         Behat\MinkExtension:
             sessions:
