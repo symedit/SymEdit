@@ -50,6 +50,12 @@ default:
                 - SymEdit\Bundle\WidgetBundle\Behat\WidgetContext
             filters:
                 tags: "@widgets"
+        settings:
+            contexts:
+                - Behat\MinkExtension\Context\MinkContext
+                - SymEdit\Bundle\CoreBundle\Behat\WebContext
+            filters:
+                tags: "@settings"
     extensions:
         Behat\MinkExtension:
             sessions:
