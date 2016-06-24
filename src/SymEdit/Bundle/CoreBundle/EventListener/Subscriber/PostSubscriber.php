@@ -11,7 +11,7 @@
 
 namespace SymEdit\Bundle\CoreBundle\EventListener\Subscriber;
 
-use Sylius\Component\Resource\Event\ResourceEvent;
+use Sylius\Bundle\ResourceBundle\Event\ResourceControllerEvent;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\HttpFoundation\Session\Session;
 use Symfony\Component\Routing\Exception\RouteNotFoundException;
@@ -36,12 +36,12 @@ class PostSubscriber implements EventSubscriberInterface
         ];
     }
 
-    public function sharePost(ResourceEvent $event)
+    public function sharePost(ResourceControllerEvent $event)
     {
         $this->addShare($event);
     }
 
-    protected function addShare(ResourceEvent $event)
+    protected function addShare(ResourceControllerEvent $event)
     {
         $post = $event->getSubject();
 

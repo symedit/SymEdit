@@ -27,6 +27,9 @@ class SymEditEventsExtension extends SymEditResourceExtension implements Prepend
         $config = $this->processConfiguration($this->getConfiguration($config, $container), $config);
         $loader = new XmlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
 
+        // Load Driver
+        $loader->load(sprintf('driver/%s.xml', $config['driver']));
+
         // Load Resources
         $this->registerResources('symedit', $config['driver'], $config['resources'], $container);
 

@@ -11,9 +11,10 @@
 
 namespace SymEdit\Bundle\BlogBundle\Model;
 
+use Sylius\Component\Resource\Model\ResourceInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 
-interface PostInterface
+interface PostInterface extends ResourceInterface
 {
     const DRAFT = 0;
     const PUBLISHED = 1;
@@ -118,7 +119,7 @@ interface PostInterface
     /**
      * Get Published At.
      *
-     * @return \DateTIme Get published at date.
+     * @return \DateTime Get published at date.
      */
     public function getPublishedAt();
 

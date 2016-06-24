@@ -82,6 +82,8 @@ admin_form_element_reorder:
         _controller: symedit.controller.form_element:reorderAction
         _sylius:
             sortable_position: position
+            criteria:
+                id: $id
 
 admin_form_element_delete:
     path: /{formId}/element/{id}/delete

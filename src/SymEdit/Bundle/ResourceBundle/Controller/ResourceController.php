@@ -12,6 +12,7 @@
 namespace SymEdit\Bundle\ResourceBundle\Controller;
 
 use Doctrine\Common\Persistence\ObjectManager;
+use FOS\RestBundle\View\View;
 use Sylius\Bundle\ResourceBundle\Controller\ResourceController as BaseResourceController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\PropertyAccess\PropertyAccess;
@@ -33,8 +34,9 @@ class ResourceController extends BaseResourceController
      */
     public function reorderAction(Request $request)
     {
-        $resource = $this->findOr404($request);
-        $position = $this->config->getSortablePosition();
+        $configuration = $this->requestConfigurationFactory->create($this->metadata, $request);
+        $resource = $this->findOr404($configuration);
+        $position = $configuration->getSortablePosition();
         $accessor = PropertyAccess::createPropertyAccessor();
 
         if (($index = $request->request->get('index', null)) !== null) {
@@ -44,32 +46,33 @@ class ResourceController extends BaseResourceController
             $this->getManager()->flush();
         }
 
-        $view = $this->view()
+        $view = View::create()
             ->setFormat('json')
             ->setTemplateVar('status')
             ->setData([
                 'status' => true,
-            ]);
+            ])
+        ;
 
-        return $this->handleView($view);
+        return $this->viewHandler->handle($configuration, $view);
     }
 
     public function historyAction(Request $request)
     {
-        $resource = $this->findOr404($request);
+        $configuration = $this->requestConfigurationFactory->create($this->metadata, $request);
+        $resource = $this->findOr404($configuration);
         $repository = $this->get('doctrine')->getManager()->getRepository('Gedmo\Loggable\Entity\LogEntry');
         $entries = $repository->getLogEntries($resource);
 
-        $view = $this
-            ->view()
-            ->setTemplate($this->config->getTemplate('history.html'))
+        $view = View::create()
+            ->setTemplate($configuration->getTemplate('history.html'))
             ->setData([
-                $this->config->getResourceName() => $resource,
+                $this->metadata->getName() => $resource,
                 'entries' => $entries,
             ])
         ;
 
-        return $this->handleView($view);
+        return $this->viewHandler->handle($configuration, $view);
     }
 
     /**
@@ -77,6 +80,6 @@ class ResourceController extends BaseResourceController
      */
     protected function getManager()
     {
-        return $this->get($this->getConfiguration()->getServiceName('manager'));
+        return $this->manager;
     }
 }

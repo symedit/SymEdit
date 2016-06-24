@@ -65,7 +65,7 @@ class FlattenTabExtension extends AbstractTypeExtension
             }
 
             // call buildTabNameForm
-            call_user_func([$formType, $method], $parent, $options);
+            call_user_func([$formType, $method], $parent, $options, $builder->getData());
         }
     }
 

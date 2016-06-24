@@ -27,10 +27,6 @@ admin_widget_create:
             factory:
                 method: createFromStrategy
                 arguments: [$strategyName]
-            form:
-                type: symedit_widget
-                options:
-                    strategy: $strategyName
 
 admin_widget_update:
     path: /{id}/edit
@@ -58,3 +54,5 @@ admin_widget_reorder:
         _controller: symedit.controller.widget:reorderAction
         _sylius:
             sortable_position: widgetOrder
+            criteria:
+                id: $id

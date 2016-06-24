@@ -12,13 +12,6 @@
     </parameters>
 
     <services>
-        <!-- FOS Rest Handler -->
-        <service parent="fos_rest.view_handler.default" id="symedit.seo_view_handler" class="SymEdit\Bundle\CoreBundle\View\ViewHandler">
-            <call method="setEventDispatcher">
-                <argument type="service" id="event_dispatcher" />
-            </call>
-        </service>
-
         <!-- Breadcrumbs -->
         <service id="symedit.breadcrumbs" class="%symedit.model.breadcrumbs.class%" />
 

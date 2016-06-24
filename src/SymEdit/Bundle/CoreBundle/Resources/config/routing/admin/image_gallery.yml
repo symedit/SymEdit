@@ -85,3 +85,7 @@ admin_gallery_item_reorder:
     methods: [POST]
     defaults:
         _controller: symedit.controller.gallery_item:reorderAction
+        _sylius:
+            sortable_position: position
+            criteria:
+                id: $id

@@ -11,7 +11,16 @@
 
 namespace SymEdit\Bundle\CoreBundle\Tests\DependencyInjection;
 
+use Sylius\Component\Resource\Factory\Factory;
+use SymEdit\Bundle\CoreBundle\Controller\PageController;
 use SymEdit\Bundle\CoreBundle\DependencyInjection\Configuration;
+use SymEdit\Bundle\CoreBundle\Form\Type\PageChooseType;
+use SymEdit\Bundle\CoreBundle\Form\Type\PageType;
+use SymEdit\Bundle\CoreBundle\Model\Breadcrumbs;
+use SymEdit\Bundle\CoreBundle\Model\Page;
+use SymEdit\Bundle\CoreBundle\Model\PageInterface;
+use SymEdit\Bundle\CoreBundle\Model\Role;
+use SymEdit\Bundle\CoreBundle\Model\RoleInterface;
 use SymEdit\Bundle\CoreBundle\Tests\TestCase;
 use Symfony\Component\Config\Definition\Processor;
 
@@ -80,24 +89,30 @@ class ConfigurationTest extends TestCase
                 'javascripts' => [],
                 'stylesheets' => [],
             ],
-            'classes' => [
+            'resources' => [
                 'page' => [
-                    'model' => 'SymEdit\Bundle\CoreBundle\Model\Page',
-                    'controller' => 'SymEdit\Bundle\CoreBundle\Controller\PageController',
-                    'form' => [
-                        'default' => 'SymEdit\Bundle\CoreBundle\Form\Type\PageType',
-                        'choose' => 'SymEdit\Bundle\CoreBundle\Form\Type\PageChooseType',
+                    'classes' => [
+                        'model' => Page::class,
+                        'interface' => PageInterface::class,
+                        'controller' => PageController::class,
+                        'form' => [
+                            'default' => PageType::class,
+                            'choose' => PageChooseType::class,
+                        ],
+                        'factory' => Factory::class,
                     ],
                 ],
                 'role' => [
-                    'model' => 'SymEdit\Bundle\CoreBundle\Model\Role',
+                    'classes' => [
+                        'model' => Role::class,
+                        'interface' => RoleInterface::class,
+                        'factory' => Factory::class,
+                    ],
                 ],
                 'breadcrumbs' => [
-                    'model' => 'SymEdit\Bundle\CoreBundle\Model\Breadcrumbs',
-                ],
-                'contact' => [
-                    'controller' => 'SymEdit\Bundle\CoreBundle\Controller\ContactController',
-                    'form' => 'SymEdit\Bundle\CoreBundle\Form\Type\ContactType',
+                    'classes' => [
+                        'model' => Breadcrumbs::class,
+                    ],
                 ],
             ],
             'routing' => [

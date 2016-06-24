@@ -19,7 +19,7 @@ class SettingsClient extends MailChimpClient
 {
     public function __construct(SettingsManagerInterface $settings, $version = self::LATEST_API_VERSION)
     {
-        $mailchimp = $settings->loadSettings('mailchimp');
+        $mailchimp = $settings->load('mailchimp');
 
         parent::__construct($mailchimp->get('api_key'), $version);
 

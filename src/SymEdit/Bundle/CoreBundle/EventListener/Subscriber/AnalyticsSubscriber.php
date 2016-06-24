@@ -12,8 +12,6 @@
 namespace SymEdit\Bundle\CoreBundle\EventListener\Subscriber;
 
 use SymEdit\Bundle\AnalyticsBundle\Analytics\Tracker;
-use SymEdit\Bundle\CoreBundle\Event\Events;
-use SymEdit\Bundle\CoreBundle\Event\SubjectEvent;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\HttpKernel\Event\FilterControllerEvent;
 use Symfony\Component\HttpKernel\HttpKernelInterface;
@@ -26,12 +24,6 @@ class AnalyticsSubscriber implements EventSubscriberInterface
     public function __construct(Tracker $tracker)
     {
         $this->tracker = $tracker;
-    }
-
-    public function onSubjectSet(SubjectEvent $event)
-    {
-        $subject = $event->getSubject();
-        $this->tracker->track($subject);
     }
 
     public function onKernelController(FilterControllerEvent $event)
@@ -57,7 +49,6 @@ class AnalyticsSubscriber implements EventSubscriberInterface
     public static function getSubscribedEvents()
     {
         return [
-            Events::SUBJECT_SET => 'onSubjectSet',
             KernelEvents::CONTROLLER => 'onKernelController',
         ];
     }

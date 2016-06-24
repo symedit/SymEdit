@@ -13,6 +13,7 @@ namespace SymEdit\Bundle\CoreBundle\Controller;
 
 use FOS\RestBundle\View\View;
 use Sylius\Bundle\ResourceBundle\Controller\RequestConfiguration;
+use Sylius\Component\Resource\ResourceActions;
 use SymEdit\Bundle\CoreBundle\Model\PageInterface;
 use SymEdit\Bundle\ResourceBundle\Controller\ResourceController;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -32,13 +33,14 @@ class PageController extends ResourceController
             $template = '@Theme/Page/base.html.twig';
         }
 
+        $configuration = $this->requestConfigurationFactory->create($this->metadata, $request);
+        $this->eventDispatcher->dispatch(ResourceActions::SHOW, $configuration, $page);
+
         $view = View::create($page)
             ->setTemplateVar('Page')
             ->setData($page)
             ->setTemplate($template)
         ;
-
-        $configuration = $this->requestConfigurationFactory->create($this->metadata, $request);
 
         return $this->viewHandler->handle($configuration, $view);
     }

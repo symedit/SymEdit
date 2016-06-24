@@ -50,6 +50,7 @@ abstract class DefaultContext extends RawMinkContext implements Context, KernelA
     {
         return $this->findOneBy($type, ['name' => trim($name)]);
     }
+    
     /**
      * @param string $type
      * @param array  $criteria

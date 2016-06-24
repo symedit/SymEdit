@@ -69,8 +69,6 @@ fos_user:
 
 # Rest Configuration
 fos_rest:
-    service:
-        view_handler: symedit.seo_view_handler
     view:
         formats:
             json: true

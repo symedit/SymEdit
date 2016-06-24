@@ -101,7 +101,7 @@ class SymEditMailer extends TwigSwiftMailer implements SymEditMailerInterface
 
     protected function getCompanySettings()
     {
-        return $this->settings->loadSettings('company');
+        return $this->settings->load('company');
     }
 
     protected function attachFiles(\Swift_Message $message, $files)

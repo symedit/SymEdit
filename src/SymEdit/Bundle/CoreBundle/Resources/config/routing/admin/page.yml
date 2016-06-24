@@ -56,6 +56,8 @@ admin_page_reorder:
         _controller: symedit.controller.page:reorderAction
         _sylius:
             sortable_position: pageOrder
+            criteria:
+                id: $id
 
 admin_page_history:
     path: /{id}/history

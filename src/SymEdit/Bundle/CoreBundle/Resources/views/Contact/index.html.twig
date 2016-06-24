@@ -19,11 +19,11 @@
 
     <div class="container">
     {% block content %}
-        {% set type = sylius_settings_get('seo.business_type') %}
+        {% set type = sylius_settings('seo')['business_type'] %}
         <div class="row">
             <div class="col-md-6" itemscope itemtype="http://schema.org/{{ type }}">
                 <h4>Our Contact Details</h4>
-                {% set company = sylius_settings_all('company') %}
+                {% set company = sylius_settings('company') %}
                 <address>
                     <p>
                         <strong>{{ company.name }}</strong> <br>

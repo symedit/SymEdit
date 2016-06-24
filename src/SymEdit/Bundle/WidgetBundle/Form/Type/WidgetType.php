@@ -16,7 +16,6 @@ use SymEdit\Bundle\WidgetBundle\Model\WidgetInterface;
 use SymEdit\Bundle\WidgetBundle\Widget\WidgetRegistry;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints\NotBlank;
 
 class WidgetType extends AbstractType
@@ -71,9 +70,9 @@ class WidgetType extends AbstractType
         ;
     }
 
-    public function buildOptionsForm(FormBuilderInterface $builder, array $options)
+    public function buildOptionsForm(FormBuilderInterface $builder, array $options, WidgetInterface $originalData)
     {
-        $strategy = $this->registry->getStrategy($options['strategy']);
+        $strategy = $this->registry->getStrategy($originalData->getStrategyName());
 
         // Add custom template override
         $builder
@@ -91,15 +90,8 @@ class WidgetType extends AbstractType
 
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $this->buildBasicForm($builder, $options);
+        $this->buildBasicForm($builder, $options, $builder->getData());
         $this->buildOptionsForm($builder, $options);
-    }
-
-    public function configureOptions(OptionsResolver $resolver)
-    {
-        $resolver->setRequired([
-            'strategy',
-        ]);
     }
 
     public function getName()

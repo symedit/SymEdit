@@ -25,7 +25,7 @@ abstract class MediaController extends ResourceController
         $file = $request->files->get('file');
 
         /* @var $media MediaInterface */
-        $media = $this->getRepository()->createNew();
+        $media = $this->factory->createNew();
         $media->setFile($file);
 
         // Validate the new image

@@ -12,7 +12,7 @@
 namespace SymEdit\Bundle\UserBundle\EventListener;
 
 use FOS\UserBundle\Model\UserManagerInterface;
-use Sylius\Component\Resource\Event\ResourceEvent;
+use Sylius\Bundle\ResourceBundle\Event\ResourceControllerEvent;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
 /**
@@ -29,7 +29,7 @@ class UpdatePasswordSubscriber implements EventSubscriberInterface
         $this->userManager = $userManager;
     }
 
-    public function updateUser(ResourceEvent $event)
+    public function updateUser(ResourceControllerEvent $event)
     {
         $user = $event->getSubject();
 

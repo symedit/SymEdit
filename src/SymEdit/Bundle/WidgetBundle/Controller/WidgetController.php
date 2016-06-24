@@ -65,16 +65,16 @@ class WidgetController extends ResourceController
     public function indexAction(Request $request)
     {
         $areas = $this->get('symedit.repository.widget_area')->findAll();
+        $configuration = $this->requestConfigurationFactory->create($this->metadata, $request);
 
-        $view = $this
-            ->view()
+        $view = View::create()
             ->setTemplate('@SymEdit/Admin/Widget/index.html.twig')
             ->setData([
                 'areas' => $areas,
                 'registry' => $this->getRegistry(),
             ]);
 
-        return $this->handleView($view);
+        return $this->viewHandler->handle($configuration, $view);
     }
 
     public function chooseAction(Request $request)

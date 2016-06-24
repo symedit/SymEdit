@@ -22,7 +22,8 @@ class FormBuilderController extends ResourceController
 {
     public function previewAction(Request $request)
     {
-        $resource = $this->findOr404($request);
+        $configuration = $this->requestConfigurationFactory->create($this->metadata, $request);
+        $resource = $this->findOr404($configuration);
 
         return $this->render('@SymEdit/Admin/FormBuilder/preview.html.twig', [
             'form_builder' => $resource,
@@ -32,7 +33,8 @@ class FormBuilderController extends ResourceController
 
     public function processAction(Request $request)
     {
-        $resource = $this->findOr404($request);
+        $configuration = $this->requestConfigurationFactory->create($this->metadata, $request);
+        $resource = $this->findOr404($configuration);
         $form = $this->getFactory()->build($resource);
 
         if ($form->handleRequest($request)->isValid()) {
