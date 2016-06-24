@@ -7,7 +7,7 @@ admin_page:
             paginate: false
             repository:
                 method: findRoot
-            template: @SymEdit/Admin/Page/index.html.twig
+            template: "@SymEdit/Admin/Page/index.html.twig"
 
 admin_page_json:
     path: /list.{_format}
@@ -25,7 +25,7 @@ admin_page_create:
     defaults:
         _controller: symedit.controller.page:createAction
         _sylius:
-            template: @SymEdit/Admin/Page/new.html.twig
+            template: "@SymEdit/Admin/Page/new.html.twig"
             redirect:
                 route: admin_page_update
                 parameters: { id: resource.id }
@@ -36,7 +36,7 @@ admin_page_update:
     defaults:
         _controller: symedit.controller.page:updateAction
         _sylius:
-            template: @SymEdit/Admin/Page/edit.html.twig
+            template: "@SymEdit/Admin/Page/edit.html.twig"
             redirect:
                 route: admin_page_update
                 parameters: { id: $id }
@@ -65,7 +65,7 @@ admin_page_history:
     defaults:
         _controller: symedit.controller.page:historyAction
         _sylius:
-            template: @SymEdit/Admin/Page/history.html.twig
+            template: "@SymEdit/Admin/Page/history.html.twig"
 
 admin_page_revert:
     path: /{id}/revert/{version}

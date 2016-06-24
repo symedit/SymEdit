@@ -4,7 +4,7 @@ admin_widget:
     defaults:
         _controller: symedit.controller.widget:indexAction
         _sylius:
-            template: @SymEdit/Admin/Widget/index.html.twig
+            template: "@SymEdit/Admin/Widget/index.html.twig"
 
 admin_widget_choose:
     path: /new
@@ -12,7 +12,7 @@ admin_widget_choose:
     defaults:
         _controller: symedit.controller.widget:chooseAction
         _sylius:
-            template: @SymEdit/Admin/Widget/choose.html.twig
+            template: "@SymEdit/Admin/Widget/choose.html.twig"
 
 admin_widget_create:
     path: /new/{strategyName}
@@ -20,7 +20,7 @@ admin_widget_create:
     defaults:
         _controller: symedit.controller.widget:createAction
         _sylius:
-            template: @SymEdit/Admin/Widget/new.html.twig
+            template: "@SymEdit/Admin/Widget/new.html.twig"
             redirect:
                 route: admin_widget_update
                 parameters: { id: resource.id }
@@ -34,7 +34,7 @@ admin_widget_update:
     defaults:
         _controller: symedit.controller.widget:updateAction
         _sylius:
-            template: @SymEdit/Admin/Widget/edit.html.twig
+            template: "@SymEdit/Admin/Widget/edit.html.twig"
             redirect:
                 route: admin_widget_update
                 parameters: { id: $id }

@@ -6,7 +6,7 @@ admin_post:
         _sylius:
             repository:
                 method: getCreatedAtPaginator
-            template: @SymEdit/Admin/Post/index.html.twig
+            template: "@SymEdit/Admin/Post/index.html.twig"
             paginate: 10
             sortable: true
             sorting:
@@ -18,7 +18,7 @@ admin_post_create:
     defaults:
         _controller: symedit.controller.post:createAction
         _sylius:
-            template: @SymEdit/Admin/Post/new.html.twig
+            template: "@SymEdit/Admin/Post/new.html.twig"
             redirect:
                 route: admin_post_update
                 parameters: { id: resource.id }
@@ -29,7 +29,7 @@ admin_post_update:
     defaults:
         _controller: symedit.controller.post:updateAction
         _sylius:
-            template: @SymEdit/Admin/Post/edit.html.twig
+            template: "@SymEdit/Admin/Post/edit.html.twig"
             redirect:
                 route: admin_post_update
                 parameters: { id: $id }
@@ -48,7 +48,7 @@ admin_post_history:
     defaults:
         _controller: symedit.controller.post:historyAction
         _sylius:
-            template: @SymEdit/Admin/Post/history.html.twig
+            template: "@SymEdit/Admin/Post/history.html.twig"
 
 admin_post_revert:
     path: /{id}/revert/{version}

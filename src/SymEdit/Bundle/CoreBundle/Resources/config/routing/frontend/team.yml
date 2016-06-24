@@ -3,7 +3,7 @@ team:
     defaults:
         _controller: symedit.controller.admin_profile:indexAction
         _sylius:
-            template: @SymEdit/Team/index.html.twig
+            template: "@SymEdit/Team/index.html.twig"
             criteria:
                 display: true
             sorting:
@@ -14,6 +14,6 @@ team_view_slug:
     defaults:
         _controller: symedit.controller.admin_profile:showAction
         _sylius:
-            template: @SymEdit/Team/view.html.twig
+            template: "@SymEdit/Team/view.html.twig"
             criteria:
                 display: true

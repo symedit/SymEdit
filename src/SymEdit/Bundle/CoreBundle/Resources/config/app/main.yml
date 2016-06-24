@@ -62,10 +62,10 @@ fos_user:
     registration:
         confirmation:
             enabled: true
-            template: @SymEdit/Email/confirm.html.twig
+            template: "@SymEdit/Email/confirm.html.twig"
     resetting:
         email:
-            template: @SymEdit/Email/resetting.html.twig
+            template: "@SymEdit/Email/resetting.html.twig"
 
 # Rest Configuration
 fos_rest:

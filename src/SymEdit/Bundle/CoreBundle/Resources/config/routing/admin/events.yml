@@ -4,7 +4,7 @@ admin_event:
     defaults:
         _controller: symedit.controller.event:indexAction
         _sylius:
-            template: @SymEdit/Admin/Event/index.html.twig
+            template: "@SymEdit/Admin/Event/index.html.twig"
             paginate: 10
             sorting:
                 eventStart: desc
@@ -15,7 +15,7 @@ admin_event_create:
     defaults:
         _controller: symedit.controller.event:createAction
         _sylius:
-            template: @SymEdit/Admin/Event/new.html.twig
+            template: "@SymEdit/Admin/Event/new.html.twig"
             redirect:
                 route: admin_event_update
                 parameters: { id: resource.id }
@@ -26,7 +26,7 @@ admin_event_update:
     defaults:
         _controller: symedit.controller.event:updateAction
         _sylius:
-            template: @SymEdit/Admin/Event/edit.html.twig
+            template: "@SymEdit/Admin/Event/edit.html.twig"
             redirect:
                 route: admin_event_update
                 parameters: { id: $id }

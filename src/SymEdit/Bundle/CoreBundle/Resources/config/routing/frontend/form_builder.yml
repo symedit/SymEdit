@@ -4,7 +4,7 @@ symedit_form_builder_process:
     defaults:
         _controller: symedit.controller.form_builder:processAction
         _sylius:
-            template: @SymEdit/FormBuilder/process.html.twig
+            template: "@SymEdit/FormBuilder/process.html.twig"
 
 symedit_form_builder_success:
     path: /{name}/success
@@ -12,4 +12,4 @@ symedit_form_builder_success:
     defaults:
         _controller: symedit.controller.form_builder:showAction
         _sylius:
-            template: @SymEdit/FormBuilder/success.html.twig
+            template: "@SymEdit/FormBuilder/success.html.twig"

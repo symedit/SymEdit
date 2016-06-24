@@ -4,7 +4,7 @@ admin_file:
     defaults:
         _controller: symedit.controller.file:indexAction
         _sylius:
-            template: @SymEdit/Admin/File/index.html.twig
+            template: "@SymEdit/Admin/File/index.html.twig"
             paginate: false
             limit: false
 
@@ -24,7 +24,7 @@ admin_file_create:
     defaults:
         _controller: symedit.controller.file:createAction
         _sylius:
-            template: @SymEdit/Admin/File/new.html.twig
+            template: "@SymEdit/Admin/File/new.html.twig"
             redirect: admin_file
 
 admin_file_quick_upload:
@@ -39,7 +39,7 @@ admin_file_update:
     defaults:
         _controller: symedit.controller.file:updateAction
         _sylius:
-            template: @SymEdit/Admin/File/edit.html.twig
+            template: "@SymEdit/Admin/File/edit.html.twig"
             redirect:
                 route: admin_file_update
                 parameters: { id: $id }

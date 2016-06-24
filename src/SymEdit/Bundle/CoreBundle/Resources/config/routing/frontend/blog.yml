@@ -8,7 +8,7 @@ blog:
         _format: html
         _sylius:
             paginate: expr:setting('blog.max_posts', 5)
-            template: @SymEdit/Blog/index.html.twig
+            template: "@SymEdit/Blog/index.html.twig"
             repository:
                 method: getPublishedPaginator
 
@@ -18,7 +18,7 @@ blog_rss:
         _format: rss
         _controller: symedit.controller.post:indexAction
         _sylius:
-            template: @SymEdit/Blog/feed.xml.twig
+            template: "@SymEdit/Blog/feed.xml.twig"
             paginate: false
 
 blog_archive:
@@ -28,7 +28,7 @@ blog_archive:
     defaults:
         _sylius:
             paginate: expr:setting('blog.max_posts', 5)
-            template: @SymEdit/Blog/index.html.twig
+            template: "@SymEdit/Blog/index.html.twig"
             criteria:
                 status: 1
         _controller: symedit.controller.post:indexAction
@@ -41,7 +41,7 @@ blog_preview:
     path: /preview/{slug}
     defaults:
         _sylius:
-            template: @SymEdit/Blog/single.html.twig
+            template: "@SymEdit/Blog/single.html.twig"
             criteria:
                 slug: $slug
         _controller: symedit.controller.post:previewAction
@@ -53,7 +53,7 @@ blog_slug_view:
     defaults:
         _controller: symedit.controller.post:showPublishedAction
         _sylius:
-            template: @SymEdit/Blog/single.html.twig
+            template: "@SymEdit/Blog/single.html.twig"
             cache:
                 last_modified: resource.updatedAt
                 public: true
@@ -68,7 +68,7 @@ blog_category_view:
         _format: html
         _sylius:
             paginate: expr:setting('blog.max_posts', 5)
-            template: @SymEdit/Blog/category.html.twig
+            template: "@SymEdit/Blog/category.html.twig"
         page: 1
 
 blog_category_rss:
@@ -79,5 +79,5 @@ blog_category_rss:
         _controller: symedit.controller.post:showCategoryAction
         _format: rss
         _sylius:
-            template: @SymEdit/Blog/feed.xml.twig
+            template: "@SymEdit/Blog/feed.xml.twig"
         page: 1
