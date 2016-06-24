@@ -11,7 +11,7 @@
 
 namespace SymEdit\Bundle\AnalyticsBundle\Model;
 
-class Visit
+class Visit implements VisitInterface
 {
     private $id;
     private $model;

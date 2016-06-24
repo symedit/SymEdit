@@ -17,7 +17,7 @@
         <!-- Tracker -->
         <service id="symedit_analytics.tracker" class="%symedit_analytics.tracker.class%">
             <argument type="service" id="symedit_analytics.entity_manager" />
-            <argument>%symedit.model.visit.class%</argument>
+            <argument type="service" id="symedit.factory.visit" />
             <argument>%symedit_analytics.tracker.models%</argument>
         </service>
 

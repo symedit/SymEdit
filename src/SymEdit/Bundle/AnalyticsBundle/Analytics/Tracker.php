@@ -12,23 +12,24 @@
 namespace SymEdit\Bundle\AnalyticsBundle\Analytics;
 
 use Doctrine\Common\Persistence\ObjectManager;
+use Sylius\Component\Resource\Factory\FactoryInterface;
+use SymEdit\Bundle\AnalyticsBundle\Model\VisitInterface;
 use Symfony\Component\PropertyAccess\PropertyAccess;
 
 class Tracker
 {
     protected $manager;
-    protected $visitClass;
+    protected $visitFactory;
     protected $models;
     protected $modelsByClass;
-    protected $propertyAccess;
+    protected $propertyAccessor;
     protected $trackedVisits = [];
 
-    public function __construct(ObjectManager $manager, $class, array $models)
+    public function __construct(ObjectManager $manager, FactoryInterface $visitFactory, array $models)
     {
         $this->manager = $manager;
-        $this->visitClass = $class;
+        $this->visitFactory = $visitFactory;
         $this->models = $models;
-        $this->propertyAccess = PropertyAccess::createPropertyAccessor();
     }
 
     protected function getIdentifier($class)
@@ -60,13 +61,13 @@ class Tracker
             return;
         }
 
-        $identifierValue = $this->propertyAccess->getValue($object, $identifier);
+        $identifierValue = $this->getPropertyAccessor()->getValue($object, $identifier);
 
         if ($identifierValue === null) {
             return;
         }
 
-        $visit = new $this->visitClass();
+        $visit = $this->visitFactory->createNew();
         $visit->setModel($modelName);
         $visit->setIdentifier($identifierValue);
 
@@ -82,6 +83,18 @@ class Tracker
         return isset($this->modelsByClass[$className]) ? $this->modelsByClass[$className] : null;
     }
 
+    protected function getPropertyAccessor()
+    {
+        if ($this->propertyAccessor === null) {
+            $this->propertyAccessor = PropertyAccess::createPropertyAccessor();
+        }
+
+        return $this->propertyAccessor;
+    }
+
+    /**
+     * @return VisitInterface[]
+     */
     public function getTrackedVisits()
     {
         return $this->trackedVisits;

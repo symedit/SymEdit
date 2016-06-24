@@ -11,7 +11,9 @@
 
 namespace SymEdit\Bundle\AnalyticsBundle\DependencyInjection;
 
+use Sylius\Component\Resource\Factory\Factory;
 use SymEdit\Bundle\AnalyticsBundle\Model\Visit;
+use SymEdit\Bundle\AnalyticsBundle\Model\VisitInterface;
 use Symfony\Component\Config\Definition\Builder\ArrayNodeDefinition;
 use Symfony\Component\Config\Definition\Builder\TreeBuilder;
 use Symfony\Component\Config\Definition\ConfigurationInterface;
@@ -65,6 +67,8 @@ class Configuration implements ConfigurationInterface
                                     ->addDefaultsIfNotSet()
                                     ->children()
                                         ->scalarNode('model')->defaultValue(Visit::class)->end()
+                                        ->scalarNode('interface')->defaultValue(VisitInterface::class)->end()
+                                        ->scalarNode('factory')->defaultValue(Factory::class)->end()
                                     ->end()
                                 ->end()
                             ->end()
