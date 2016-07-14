@@ -109,11 +109,6 @@ class ConfigurationTest extends TestCase
                         'factory' => Factory::class,
                     ],
                 ],
-                'breadcrumbs' => [
-                    'classes' => [
-                        'model' => Breadcrumbs::class,
-                    ],
-                ],
             ],
             'routing' => [
                 'route_uri_filter_regexp' => '',

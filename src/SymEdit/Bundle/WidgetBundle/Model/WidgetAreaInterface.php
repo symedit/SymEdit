@@ -12,8 +12,9 @@
 namespace SymEdit\Bundle\WidgetBundle\Model;
 
 use Doctrine\Common\Collections\ArrayCollection;
+use Sylius\Component\Resource\Model\ResourceInterface;
 
-interface WidgetAreaInterface
+interface WidgetAreaInterface extends ResourceInterface
 {
     public function getId();
 
@@ -55,7 +56,7 @@ interface WidgetAreaInterface
     public function getWidgets();
 
     /**
-     * @param \Doctrine\Common\Collections\ArrayCollection $widgets
+     * @param ArrayCollection $widgets
      *
      * @return WidgetAreaInterface
      */

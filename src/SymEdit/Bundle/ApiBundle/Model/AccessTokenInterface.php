@@ -12,7 +12,8 @@
 namespace SymEdit\Bundle\ApiBundle\Model;
 
 use FOS\OAuthServerBundle\Model\AccessTokenInterface as BaseAccessTokenInterface;
+use Sylius\Component\Resource\Model\ResourceInterface;
 
-interface AccessTokenInterface extends BaseAccessTokenInterface
+interface AccessTokenInterface extends BaseAccessTokenInterface, ResourceInterface
 {
 }

@@ -11,7 +11,9 @@
 
 namespace SymEdit\Bundle\UserBundle\Model;
 
-interface ProfileInterface
+use Sylius\Component\Resource\Model\ResourceInterface;
+
+interface ProfileInterface extends ResourceInterface
 {
     /**
      * @return int Profile ID

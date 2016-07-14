@@ -11,7 +11,9 @@
 
 namespace SymEdit\Bundle\MediaBundle\Model;
 
-interface GalleryItemInterface
+use Sylius\Component\Resource\Model\ResourceInterface;
+
+interface GalleryItemInterface extends ResourceInterface
 {
     /**
      * @return int $id

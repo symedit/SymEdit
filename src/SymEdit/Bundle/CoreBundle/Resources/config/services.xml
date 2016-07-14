@@ -13,7 +13,7 @@
 
     <services>
         <!-- Breadcrumbs -->
-        <service id="symedit.breadcrumbs" class="%symedit.model.breadcrumbs.class%" />
+        <service id="symedit.breadcrumbs" class="SymEdit\Bundle\CoreBundle\Model\Breadcrumbs" />
 
         <!-- Assetic Configuration Loader -->
         <service id="symedit.assetic.config_loader" class="%symedit.assetic.config_loader.class%" public="false">

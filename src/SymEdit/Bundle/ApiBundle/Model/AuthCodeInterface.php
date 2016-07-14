@@ -12,7 +12,8 @@
 namespace SymEdit\Bundle\ApiBundle\Model;
 
 use FOS\OAuthServerBundle\Model\AuthCodeInterface as BaseAuthCodeInterface;
+use Sylius\Component\Resource\Model\ResourceInterface;
 
-interface AuthCodeInterface extends BaseAuthCodeInterface
+interface AuthCodeInterface extends BaseAuthCodeInterface, ResourceInterface
 {
 }
