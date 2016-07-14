@@ -12,6 +12,7 @@
 namespace SymEdit\Bundle\CoreBundle\DataFixtures;
 
 use Doctrine\Common\DataFixtures\AbstractFixture as BaseAbstractFixture;
+use Sylius\Component\Resource\Factory\FactoryInterface;
 use Sylius\Component\Resource\Repository\RepositoryInterface;
 use Symfony\Component\DependencyInjection\ContainerAwareInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
@@ -42,5 +43,13 @@ abstract class AbstractFixture extends BaseAbstractFixture implements ContainerA
     protected function getRepository($type)
     {
         return $this->getContainer()->get(sprintf('%s.repository.%s', $this->applicationName, $type));
+    }
+
+    /**
+     * @return FactoryInterface
+     */
+    protected function getFactory($type)
+    {
+        return $this->getContainer()->get(sprintf('%s.factory.%s', $this->applicationName, $type));
     }
 }

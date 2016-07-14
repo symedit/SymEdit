@@ -26,20 +26,20 @@ class WidgetType extends BaseWidgetType
     {
         parent::configureOptions($resolver);
 
-        $resolver->setDefaults(array(
-            'tabs_data' => array(
-                'basic' => array(
+        $resolver->setDefaults([
+            'tabs_data' => [
+                'basic' => [
                     'label' => 'symedit.form.widget.tab.basic',
                     'icon' => 'info-circle',
                     'data_class' => $this->widgetClass,
-                ),
-                'options' => array(
+                ],
+                'options' => [
                     'label' => 'symedit.form.widget.tab.options',
                     'icon' => 'cog',
                     'inherit_data' => false,
                     'force_tab' => true,
-                ),
-            ),
-        ));
+                ],
+            ],
+        ]);
     }
 }

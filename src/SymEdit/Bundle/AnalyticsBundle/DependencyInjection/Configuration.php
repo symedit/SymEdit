@@ -11,6 +11,9 @@
 
 namespace SymEdit\Bundle\AnalyticsBundle\DependencyInjection;
 
+use Sylius\Component\Resource\Factory\Factory;
+use SymEdit\Bundle\AnalyticsBundle\Model\Visit;
+use SymEdit\Bundle\AnalyticsBundle\Model\VisitInterface;
 use Symfony\Component\Config\Definition\Builder\ArrayNodeDefinition;
 use Symfony\Component\Config\Definition\Builder\TreeBuilder;
 use Symfony\Component\Config\Definition\ConfigurationInterface;
@@ -40,7 +43,7 @@ class Configuration implements ConfigurationInterface
             ->end()
         ;
 
-        $this->addClassesSection($rootNode);
+        $this->addResourcesSection($rootNode);
 
         return $treeBuilder;
     }
@@ -50,17 +53,24 @@ class Configuration implements ConfigurationInterface
      *
      * @param ArrayNodeDefinition $node
      */
-    private function addClassesSection(ArrayNodeDefinition $node)
+    private function addResourcesSection(ArrayNodeDefinition $node)
     {
         $node
             ->children()
-                ->arrayNode('classes')
+                ->arrayNode('resources')
                     ->addDefaultsIfNotSet()
                     ->children()
                         ->arrayNode('visit')
                             ->addDefaultsIfNotSet()
                             ->children()
-                                ->scalarNode('model')->defaultValue('SymEdit\Bundle\AnalyticsBundle\Model\Visit')->end()
+                                ->arrayNode('classes')
+                                    ->addDefaultsIfNotSet()
+                                    ->children()
+                                        ->scalarNode('model')->defaultValue(Visit::class)->end()
+                                        ->scalarNode('interface')->defaultValue(VisitInterface::class)->end()
+                                        ->scalarNode('factory')->defaultValue(Factory::class)->end()
+                                    ->end()
+                                ->end()
                             ->end()
                         ->end()
                     ->end()

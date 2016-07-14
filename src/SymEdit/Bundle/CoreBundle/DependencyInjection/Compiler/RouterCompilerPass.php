@@ -21,8 +21,8 @@ class RouterCompilerPass implements CompilerPassInterface
     {
         $routerLoaderDefinition = $container->getDefinition('router.default');
         $routerLoaderDefinition->setClass('%symedit.routing.router.class%');
-        $routerLoaderDefinition->addMethodCall('setRouteManager', array(new Reference('symedit.routing.manager')));
-        $routerLoaderDefinition->addMethodCall('setRouteStorage', array(new Reference('symedit.routing.storage')));
+        $routerLoaderDefinition->addMethodCall('setRouteManager', [new Reference('symedit.routing.manager')]);
+        $routerLoaderDefinition->addMethodCall('setRouteStorage', [new Reference('symedit.routing.storage')]);
         $container->setAlias('symfony_router', 'router.default');
     }
 }

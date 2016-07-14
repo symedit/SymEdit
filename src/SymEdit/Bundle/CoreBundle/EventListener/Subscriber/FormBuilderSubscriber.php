@@ -29,18 +29,18 @@ class FormBuilderSubscriber implements EventSubscriberInterface
     {
         $result = $event->getResult();
 
-        $this->mailer->sendAdmin('@SymEdit/Email/form-builder.html.twig', array(
+        $this->mailer->sendAdmin('@SymEdit/Email/form-builder.html.twig', [
             'form_builder' => $event->getFormBuilder(),
             'pairs' => $result->getPairs(),
-        ), array(
+        ], [
             'replyTo' => $result->getReplyTo(),
-        ));
+        ]);
     }
 
     public static function getSubscribedEvents()
     {
-        return array(
+        return [
             Events::FORM_SUCCESS => 'onFormSuccess',
-        );
+        ];
     }
 }

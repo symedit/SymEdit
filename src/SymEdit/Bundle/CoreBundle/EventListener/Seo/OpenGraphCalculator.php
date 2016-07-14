@@ -29,8 +29,8 @@ class OpenGraphCalculator implements SeoCalculatorInterface
         $seo = $event->getSeo();
 
         if (!$seo->hasMeta('property', 'og:site_name')) {
-            $company = $this->settings->loadSettings('company');
-            $seo->addMetaProperty('og:site_name', $company->get('name'));
+            $company = $this->settings->load('company');
+            $seo->addMetaProperty('og:site_name', $company['name']);
         }
     }
 }

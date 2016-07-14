@@ -4,7 +4,7 @@ admin_image:
     defaults:
         _controller: symedit.controller.image:indexAction
         _sylius:
-            template: @SymEdit/Admin/Image/index.html.twig
+            template: "@SymEdit/Admin/Image/index.html.twig"
             paginate: false
             limit: false
 
@@ -24,7 +24,7 @@ admin_image_dialog:
     defaults:
         _controller: symedit.controller.image:indexAction
         _sylius:
-            template: @SymEdit/Admin/Image/dialog.html.twig
+            template: "@SymEdit/Admin/Image/dialog.html.twig"
             paginate: false
             limit: false
 
@@ -34,7 +34,7 @@ admin_image_create:
     defaults:
         _controller: symedit.controller.image:createAction
         _sylius:
-            template: @SymEdit/Admin/Image/new.html.twig
+            template: "@SymEdit/Admin/Image/new.html.twig"
             redirect: admin_image_update
 
 admin_image_quick_upload:
@@ -49,7 +49,7 @@ admin_image_update:
     defaults:
         _controller: symedit.controller.image:updateAction
         _sylius:
-            template: @SymEdit/Admin/Image/edit.html.twig
+            template: "@SymEdit/Admin/Image/edit.html.twig"
             redirect:
                 route: admin_image_update
                 parameters: { id: $id }

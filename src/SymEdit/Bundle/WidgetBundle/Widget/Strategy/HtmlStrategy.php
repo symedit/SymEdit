@@ -19,29 +19,29 @@ class HtmlStrategy extends AbstractWidgetStrategy
 {
     public function execute(WidgetInterface $widget)
     {
-        return $this->render($widget, array(
+        return $this->render($widget, [
             'html' => $widget->getOption('html'),
-        ));
+        ]);
     }
 
     public function getDefaultOptions(OptionsResolver $resolver)
     {
-        $resolver->setDefaults(array(
+        $resolver->setDefaults([
             'html' => 'New HTML Widget',
             'template' => '@SymEdit/Widget/html.html.twig',
-        ));
+        ]);
     }
 
     public function buildForm(FormBuilderInterface $builder)
     {
         $builder
-            ->add('html', 'textarea', array(
+            ->add('html', 'textarea', [
                 'horizontal' => false,
                 'label_render' => false,
-                'attr' => array(
+                'attr' => [
                     'class' => 'wysiwyg-editor',
-                ),
-            ))
+                ],
+            ])
         ;
     }
 

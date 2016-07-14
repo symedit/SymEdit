@@ -24,7 +24,7 @@ class RouteProvider extends DoctrineProvider implements RouteProviderInterface
 {
     protected $routeManager;
     protected $storage;
-    protected $routeByNameCache = array();
+    protected $routeByNameCache = [];
     protected $repository;
 
     public function __construct(RouteManager $routeManager, RouteStorage $storage, ManagerRegistry $managerRegistry, $className = null)
@@ -57,9 +57,9 @@ class RouteProvider extends DoctrineProvider implements RouteProviderInterface
     {
         // Homepage route
         if ($name === 'homepage') {
-            $homepage = $this->getRepository()->findOneBy(array(
+            $homepage = $this->getRepository()->findOneBy([
                 'homepage' => true,
-            ));
+            ]);
 
             return $this->createRoute($homepage);
         }
@@ -87,10 +87,10 @@ class RouteProvider extends DoctrineProvider implements RouteProviderInterface
             throw new RouteNotFoundException('No route found in SymEdit Router');
         }
 
-        $page = $this->getRepository()->findOneBy(array(
+        $page = $this->getRepository()->findOneBy([
             'pageController' => true,
             'pageControllerPath' => $pageController->getName(),
-        ));
+        ]);
 
         // No Page connected so this route is inactive
         if (!$page) {
@@ -107,9 +107,9 @@ class RouteProvider extends DoctrineProvider implements RouteProviderInterface
         $route->setPath($prefix.'/'.ltrim($route->getPath(), '/'));
 
         // Add this page
-        $route->addDefaults(array(
+        $route->addDefaults([
             '_page' => $page,
-        ));
+        ]);
 
         return $route;
     }
@@ -117,10 +117,10 @@ class RouteProvider extends DoctrineProvider implements RouteProviderInterface
     public function getRouteCollectionForRequest(Request $request)
     {
         // Check for direct match
-        $page = $this->getRepository()->findOneBy(array(
+        $page = $this->getRepository()->findOneBy([
             'path' => $request->getPathInfo(),
             'pageController' => false,
-        ));
+        ]);
 
         if ($page) {
             $collection = new RouteCollection();
@@ -145,12 +145,12 @@ class RouteProvider extends DoctrineProvider implements RouteProviderInterface
         $path = $request->getPathInfo();
 
         $paths = $this->getPathArray($path);
-        $pages = $this->getRepository()->findBy(array(
+        $pages = $this->getRepository()->findBy([
             'path' => $paths,
             'pageController' => true,
-        ), array(
+        ], [
             'path' => 'DESC',
-        ));
+        ]);
 
         // Get the one with the longest path
         $page = reset($pages);
@@ -190,9 +190,9 @@ class RouteProvider extends DoctrineProvider implements RouteProviderInterface
 
             // Mark the index route
             if ($route->getPath() === '/') {
-                $route->addDefaults(array(
+                $route->addDefaults([
                     '_controller_index' => true,
-                ));
+                ]);
             }
 
             $collection->add($routeName, $route);
@@ -203,9 +203,9 @@ class RouteProvider extends DoctrineProvider implements RouteProviderInterface
 
         // Add the page's prefix
         $clonedCollection->addPrefix($page->getPath());
-        $clonedCollection->addDefaults(array(
+        $clonedCollection->addDefaults([
             '_page' => $page,
-        ));
+        ]);
 
         return $clonedCollection;
     }
@@ -219,11 +219,11 @@ class RouteProvider extends DoctrineProvider implements RouteProviderInterface
     {
         // Homepage
         if ($path === '/') {
-            return array('/');
+            return ['/'];
         }
 
         $path = rtrim($path, '/').'/';
-        $paths = array('/');
+        $paths = ['/'];
         $lastOffset = 1;
 
         while (($lastOffset = strpos($path, '/', $lastOffset)) !== false) {
@@ -239,9 +239,9 @@ class RouteProvider extends DoctrineProvider implements RouteProviderInterface
         if ($names === null) {
             $collection = new RouteCollection();
 
-            $pages = $this->getRepository()->findBy(array(
+            $pages = $this->getRepository()->findBy([
                 'pageController' => true,
-            ));
+            ]);
 
             foreach ($pages as $page) {
                 $collection->addCollection($this->getPageControllerRoutes($page));
@@ -250,7 +250,7 @@ class RouteProvider extends DoctrineProvider implements RouteProviderInterface
             return $collection;
         }
 
-        $routes = array();
+        $routes = [];
 
         foreach ($names as $name) {
             try {
@@ -265,21 +265,21 @@ class RouteProvider extends DoctrineProvider implements RouteProviderInterface
 
     protected function createRoute(PageInterface $page)
     {
-        $defaults = array(
+        $defaults = [
             '_controller' => 'symedit.controller.page:showAction',
             '_page' => $page,
-        );
+        ];
 
         // Merge in other defaults for non-page controllers
         if (!$page->getPageController()) {
-            $defaults = array_merge($defaults, array(
-                '_sylius' => array(
-                    'cache' => array(
+            $defaults = array_merge($defaults, [
+                '_sylius' => [
+                    'cache' => [
                         'last_modified' => 'resource.updatedAt',
                         'public' => true,
-                    ),
-                ),
-            ));
+                    ],
+                ],
+            ]);
         }
 
         return new Route($page->getPath(), $defaults);

@@ -16,7 +16,7 @@ use SymEdit\Bundle\SeoBundle\Model\SeoAbleInterface;
 class AnalyzerContext
 {
     protected $object;
-    protected $issues = array();
+    protected $issues = [];
 
     public function __construct(SeoAbleInterface $object)
     {

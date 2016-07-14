@@ -20,9 +20,9 @@ class ThemeController extends Controller
     {
         $themes = $this->getThemeManager()->getThemes();
 
-        return $this->render('@SymEdit/Admin/Theme/index.html.twig', array(
+        return $this->render('@SymEdit/Admin/Theme/index.html.twig', [
             'themes' => $themes,
-        ));
+        ]);
     }
 
     /**

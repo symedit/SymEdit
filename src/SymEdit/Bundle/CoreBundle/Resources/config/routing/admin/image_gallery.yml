@@ -4,7 +4,7 @@ admin_image_gallery:
     defaults:
         _controller: symedit.controller.image_gallery:indexAction
         _sylius:
-            template: @SymEdit/Admin/ImageGallery/index.html.twig
+            template: "@SymEdit/Admin/ImageGallery/index.html.twig"
             paginate: false
             limit: false
 
@@ -14,7 +14,7 @@ admin_image_gallery_create:
     defaults:
         _controller: symedit.controller.image_gallery:createAction
         _sylius:
-            template: @SymEdit/Admin/ImageGallery/new.html.twig
+            template: "@SymEdit/Admin/ImageGallery/new.html.twig"
             redirect:
                 route: admin_image_gallery
                 parameters: { id: $id }
@@ -25,7 +25,7 @@ admin_image_gallery_add:
     defaults:
         _controller: symedit.controller.image_gallery:updateAction
         _sylius:
-            template: @SymEdit/Admin/ImageGallery/add.html.twig
+            template: "@SymEdit/Admin/ImageGallery/add.html.twig"
             redirect:
                 route: admin_image_gallery_update
                 parameters: { id: $id }
@@ -36,7 +36,7 @@ admin_image_gallery_update:
     defaults:
         _controller: symedit.controller.image_gallery:updateAction
         _sylius:
-            template: @SymEdit/Admin/ImageGallery/edit.html.twig
+            template: "@SymEdit/Admin/ImageGallery/edit.html.twig"
             redirect:
                 route: admin_image_gallery_update
                 parameters: { id: $id }
@@ -56,7 +56,7 @@ admin_gallery_item_create:
     defaults:
         _controller: symedit.controller.gallery_item:createAction
         _sylius:
-            template: @SymEdit/Admin/ImageGallery/Item/new.html.twig
+            template: "@SymEdit/Admin/ImageGallery/Item/new.html.twig"
             redirect:
                 route: admin_image_gallery_update
                 parameters: { id: $gallery_id }
@@ -67,7 +67,7 @@ admin_gallery_item_update:
     defaults:
         _controller: symedit.controller.gallery_item:updateAction
         _sylius:
-            template: @SymEdit/Admin/ImageGallery/Item/edit.html.twig
+            template: "@SymEdit/Admin/ImageGallery/Item/edit.html.twig"
             redirect:
                 route: admin_gallery_item_update
                 parameters: { id: $id }
@@ -85,3 +85,7 @@ admin_gallery_item_reorder:
     methods: [POST]
     defaults:
         _controller: symedit.controller.gallery_item:reorderAction
+        _sylius:
+            sortable_position: position
+            criteria:
+                id: $id

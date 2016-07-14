@@ -11,6 +11,15 @@
 
 namespace SymEdit\Bundle\CoreBundle\DependencyInjection;
 
+use Sylius\Component\Resource\Factory\Factory;
+use SymEdit\Bundle\CoreBundle\Controller\PageController;
+use SymEdit\Bundle\CoreBundle\Form\Type\PageChooseType;
+use SymEdit\Bundle\CoreBundle\Form\Type\PageType;
+use SymEdit\Bundle\CoreBundle\Model\Breadcrumbs;
+use SymEdit\Bundle\CoreBundle\Model\Page;
+use SymEdit\Bundle\CoreBundle\Model\PageInterface;
+use SymEdit\Bundle\CoreBundle\Model\Role;
+use SymEdit\Bundle\CoreBundle\Model\RoleInterface;
 use Symfony\Component\Config\Definition\Builder\ArrayNodeDefinition;
 use Symfony\Component\Config\Definition\Builder\TreeBuilder;
 use Symfony\Component\Config\Definition\ConfigurationInterface;
@@ -25,7 +34,7 @@ class Configuration implements ConfigurationInterface
         $treeBuilder = new TreeBuilder();
         $rootNode = $treeBuilder->root('symedit');
 
-        $supportedDrivers = array('doctrine/orm', 'doctrine/mongodb');
+        $supportedDrivers = ['doctrine/orm', 'doctrine/mongodb'];
 
         $rootNode
             ->children()
@@ -78,7 +87,7 @@ class Configuration implements ConfigurationInterface
                 ->end()
             ->end();
 
-        $this->addClassesSection($rootNode);
+        $this->addResourcesSection($rootNode);
 
         return $treeBuilder;
     }
@@ -86,51 +95,55 @@ class Configuration implements ConfigurationInterface
     /**
      * Add classes config to be processed by the Sylius Resource Bundle.
      *
-     * @param \Symfony\Component\Config\Definition\Builder\ArrayNodeDefinition $node
+     * @param ArrayNodeDefinition $node
      */
-    private function addClassesSection(ArrayNodeDefinition $node)
+    private function addResourcesSection(ArrayNodeDefinition $node)
     {
         $node
             ->children()
-                ->arrayNode('classes')
+                ->arrayNode('resources')
                     ->addDefaultsIfNotSet()
                     ->children()
+
                         ->arrayNode('page')
                             ->addDefaultsIfNotSet()
                             ->children()
-                                ->scalarNode('model')->defaultValue('SymEdit\Bundle\CoreBundle\Model\Page')->end()
-                                ->scalarNode('controller')->defaultValue('SymEdit\Bundle\CoreBundle\Controller\PageController')->end()
-                                ->scalarNode('repository')->end()
-                                ->arrayNode('form')
+                                ->arrayNode('classes')
                                     ->addDefaultsIfNotSet()
                                     ->children()
-                                        ->scalarNode('default')->defaultValue('SymEdit\Bundle\CoreBundle\Form\Type\PageType')->end()
-                                        ->scalarNode('choose')->defaultValue('SymEdit\Bundle\CoreBundle\Form\Type\PageChooseType')->end()
+                                        ->scalarNode('model')->defaultValue(Page::class)->end()
+                                        ->scalarNode('interface')->defaultValue(PageInterface::class)->end()
+                                        ->scalarNode('controller')->defaultValue(PageController::class)->end()
+                                        ->scalarNode('repository')->end()
+                                        ->scalarNode('factory')->defaultValue(Factory::class)->end()
+                                        ->arrayNode('form')
+                                            ->addDefaultsIfNotSet()
+                                            ->children()
+                                                ->scalarNode('default')->defaultValue(PageType::class)->end()
+                                                ->scalarNode('choose')->defaultValue(PageChooseType::class)->end()
+                                            ->end()
+                                        ->end()
                                     ->end()
                                 ->end()
                             ->end()
                         ->end()
+
                         ->arrayNode('role')
                             ->addDefaultsIfNotSet()
                             ->children()
-                                ->scalarNode('model')->defaultValue('SymEdit\Bundle\CoreBundle\Model\Role')->end()
-                            ->end()
-                        ->end()
-                        ->arrayNode('breadcrumbs')
-                            ->addDefaultsIfNotSet()
-                            ->children()
-                                ->scalarNode('model')->defaultValue('SymEdit\Bundle\CoreBundle\Model\Breadcrumbs')->end()
-                            ->end()
-                        ->end()
-                        ->arrayNode('contact')
-                            ->addDefaultsIfNotSet()
-                            ->children()
-                                ->scalarNode('controller')->defaultValue('SymEdit\Bundle\CoreBundle\Controller\ContactController')->end()
-                                ->scalarNode('form')->defaultValue('SymEdit\Bundle\CoreBundle\Form\Type\ContactType')->end()
+                                ->arrayNode('classes')
+                                    ->addDefaultsIfNotSet()
+                                    ->children()
+                                        ->scalarNode('model')->defaultValue(Role::class)->end()
+                                        ->scalarNode('interface')->defaultValue(RoleInterface::class)->end()
+                                        ->scalarNode('factory')->defaultValue(Factory::class)->end()
+                                    ->end()
+                                ->end()
                             ->end()
                         ->end()
                     ->end()
                 ->end()
-            ->end();
+            ->end()
+        ;
     }
 }

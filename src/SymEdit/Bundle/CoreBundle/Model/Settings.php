@@ -12,9 +12,9 @@
 
 namespace SymEdit\Bundle\CoreBundle\Model;
 
-use Sylius\Bundle\SettingsBundle\Model\Parameter as BaseParameter;
+use Sylius\Bundle\SettingsBundle\Model\Settings as BaseSettings;
 
-class Parameter extends BaseParameter
+class Settings extends BaseSettings
 {
     protected $updatedAt;
 

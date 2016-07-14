@@ -21,10 +21,10 @@ class PopularPostsStrategyTest extends WidgetStrategyTest
         $reporter->expects($this->once())
                  ->method('runReport')
                  ->with($this->equalTo('popular_posts'))
-                 ->will($this->returnValue(array(
-                     array('post1', 1),
-                     array('post2', 2),
-                 )));
+                 ->will($this->returnValue([
+                     ['post1', 1],
+                     ['post2', 2],
+                 ]));
 
         $widget = $this->createWidget();
         $strategy = $this->createStrategy($reporter);
@@ -32,9 +32,9 @@ class PopularPostsStrategyTest extends WidgetStrategyTest
                  ->method('render')
                  ->with(
                     $this->equalTo($widget),
-                    $this->equalTo(array(
-                        'posts' => array('post1', 'post2'),
-                    ))
+                    $this->equalTo([
+                        'posts' => ['post1', 'post2'],
+                    ])
                  );
 
         $strategy->execute($widget);
@@ -45,8 +45,8 @@ class PopularPostsStrategyTest extends WidgetStrategyTest
         $reporter = $reporter === null ? $this->getReporter() : $reporter;
 
         return $this->getMockBuilder('SymEdit\Bundle\BlogBundle\Widget\Strategy\PopularPostsStrategy')
-                    ->setMethods(array('render'))
-                    ->setConstructorArgs(array($reporter))
+                    ->setMethods(['render'])
+                    ->setConstructorArgs([$reporter])
                     ->getMock();
     }
 
@@ -72,10 +72,10 @@ class PopularPostsStrategyTest extends WidgetStrategyTest
 
     protected function getDefaultOptions()
     {
-        return array(
+        return [
             'max' => 3,
             'template' => '@SymEdit/Widget/Blog/popular-posts.html.twig',
-        );
+        ];
     }
 
     protected function getStrategyName()

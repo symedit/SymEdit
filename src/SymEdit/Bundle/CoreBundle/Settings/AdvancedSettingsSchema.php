@@ -20,31 +20,31 @@ class AdvancedSettingsSchema implements SchemaInterface
     public function buildForm(FormBuilderInterface $builder)
     {
         $builder
-            ->add('caching', 'choice', array(
+            ->add('caching', 'choice', [
                 'label' => 'symedit.settings.advanced.caching',
-                'choices' => array(
+                'choices' => [
                     'none' => 'No Cache',
                     'cache' => 'Cache',
-                ),
-            ))
-            ->add('ttl', 'integer', array(
+                ],
+            ])
+            ->add('ttl', 'integer', [
                 'label' => 'symedit.settings.advanced.ttl',
-            ))
-            ->add('widget_max_age', 'integer', array(
+            ])
+            ->add('widget_max_age', 'integer', [
                 'label' => 'symedit.settings.advanced.widget_max_age.label',
                 'help_block' => 'symedit.settings.advanced.widget_max_age.help',
-            ))
+            ])
         ;
     }
 
     public function buildSettings(SettingsBuilderInterface $builder)
     {
         $builder
-            ->setDefaults(array(
+            ->setDefaults([
                 'caching' => 'none',
                 'ttl' => 120,
                 'widget_max_age' => 300,
-            ))
+            ])
         ;
     }
 }

@@ -40,11 +40,11 @@ class SymEditBundle extends AbstractResourceBundle
         $this->kernel = $kernel;
     }
 
-    public static function getSupportedDrivers()
+    public function getSupportedDrivers()
     {
-        return array(
+        return [
             SyliusResourceBundle::DRIVER_DOCTRINE_ORM,
-        );
+        ];
     }
 
     public function build(ContainerBuilder $container)
@@ -58,14 +58,6 @@ class SymEditBundle extends AbstractResourceBundle
         $container->addCompilerPass(new LinkShortcodeCompilerPass());
         $container->addCompilerPass(new ExpressionLanguageCompilerPass());
         $container->addCompilerPass(new WidgetTwigExtensionCompilerPass());
-    }
-
-    protected function getModelInterfaces()
-    {
-        return array(
-            'SymEdit\Bundle\CoreBundle\Model\PageInterface' => 'symedit.model.page.class',
-            'SymEdit\Bundle\CoreBundle\Model\RoleInterface' => 'symedit.model.role.class',
-        );
     }
 
     protected function getModelNamespace()

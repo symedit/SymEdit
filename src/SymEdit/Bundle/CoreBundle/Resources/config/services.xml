@@ -12,22 +12,8 @@
     </parameters>
 
     <services>
-        <!-- FOS Rest Handler -->
-        <service parent="fos_rest.view_handler.default" id="symedit.seo_view_handler" class="SymEdit\Bundle\CoreBundle\View\ViewHandler">
-            <call method="setEventDispatcher">
-                <argument type="service" id="event_dispatcher" />
-            </call>
-        </service>
-
         <!-- Breadcrumbs -->
-        <service id="symedit.breadcrumbs" class="%symedit.model.breadcrumbs.class%" />
-
-        <!-- Contact Controller -->
-        <service id="symedit.controller.contact" class="%symedit.controller.contact.class%">
-            <call method="setContainer">
-                <argument type="service" id="service_container" />
-            </call>
-        </service>
+        <service id="symedit.breadcrumbs" class="SymEdit\Bundle\CoreBundle\Model\Breadcrumbs" />
 
         <!-- Assetic Configuration Loader -->
         <service id="symedit.assetic.config_loader" class="%symedit.assetic.config_loader.class%" public="false">

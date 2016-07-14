@@ -41,17 +41,17 @@ class WidgetExtension extends \Twig_Extension
 
     public function getFunctions()
     {
-        return array(
-            new \Twig_SimpleFunction('symedit_widget_area_render', array($this, 'renderWidgetArea'), array('needs_context' => true, 'is_safe' => array('html'))),
-            new \Twig_SimpleFunction('symedit_widget_render', array($this, 'renderWidget'), array('needs_context' => true, 'is_safe' => array('html'))),
-        );
+        return [
+            new \Twig_SimpleFunction('symedit_widget_area_render', [$this, 'renderWidgetArea'], ['needs_context' => true, 'is_safe' => ['html']]),
+            new \Twig_SimpleFunction('symedit_widget_render', [$this, 'renderWidget'], ['needs_context' => true, 'is_safe' => ['html']]),
+        ];
     }
 
     public function renderWidgetArea($context, $area, $template = null)
     {
-        $widgetArea = $this->widgetAreaRepository->findOneBy(array(
+        $widgetArea = $this->widgetAreaRepository->findOneBy([
             'area' => $area,
-        ));
+        ]);
 
         if ($widgetArea === null) {
             return '';
@@ -72,9 +72,9 @@ class WidgetExtension extends \Twig_Extension
 
     protected function getControllerAttributes(WidgetInterface $widget, $context)
     {
-        return array(
+        return [
             'id' => $widget->getId(),
-        );
+        ];
     }
 
     public function getName()

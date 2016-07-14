@@ -22,7 +22,7 @@ class Builder
     protected $container;
     protected $extensions;
 
-    public function __construct(ContainerInterface $container, $extensions = array())
+    public function __construct(ContainerInterface $container, $extensions = [])
     {
         $this->factory = $container->get('knp_menu.factory');
         $this->container = $container;
@@ -39,36 +39,36 @@ class Builder
 
     public function adminUserMenu()
     {
-        $menu = $this->factory->createItem('root', array(
+        $menu = $this->factory->createItem('root', [
             'navbar' => true,
             'pull-right' => true,
-        ));
+        ]);
 
         $user = $this->getUser();
 
-        $userMenu = $menu->addChild('User Menu', array(
+        $userMenu = $menu->addChild('User Menu', [
             'dropdown' => true,
             'caret' => true,
             'label' => $user->getProfile()->getFullname(),
-        ));
+        ]);
 
-        $userMenu->addChild('My Profile', array(
+        $userMenu->addChild('My Profile', [
             'label' => 'symedit.security.profile',
             'route' => 'fos_user_profile_show',
             'icon' => 'user',
-        ));
+        ]);
 
-        $userMenu->addChild('Change Password', array(
+        $userMenu->addChild('Change Password', [
             'label' => 'symedit.security.change_password',
             'route' => 'fos_user_change_password',
             'icon' => 'lock',
-        ));
+        ]);
 
-        $userMenu->addChild('Logout', array(
+        $userMenu->addChild('Logout', [
             'label' => 'symedit.security.logout',
             'route' => 'fos_user_security_logout',
             'icon' => 'power-off',
-        ));
+        ]);
 
         /*
          * Dispatch Menu Event

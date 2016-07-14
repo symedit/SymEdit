@@ -6,7 +6,11 @@
                                       http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd"
                   xmlns:gedmo="http://gediminasm.org/schemas/orm/doctrine-extensions-mapping">
 
-    <mapped-superclass name="SymEdit\Bundle\CoreBundle\Model\Parameter" table="sylius_settings_parameter">
+    <mapped-superclass name="SymEdit\Bundle\CoreBundle\Model\Settings" table="sylius_settings">
+        <unique-constraints>
+            <unique-constraint columns="schema_alias,namespace"/>
+        </unique-constraints>
+
         <field name="updatedAt" type="datetime" column="updatedAt" nullable="false">
             <gedmo:timestampable on="update" />
         </field>

@@ -14,7 +14,7 @@ namespace SymEdit\Bundle\ResourceBundle\DependencyInjection;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Sylius\Bundle\ResourceBundle\DependencyInjection\Extension\AbstractResourceExtension;
 
-class SymEditResourceExtension extends AbstractResourceExtension
+abstract class SymEditResourceExtension extends AbstractResourceExtension
 {
     protected $applicationName = 'symedit';
 
@@ -37,7 +37,7 @@ class SymEditResourceExtension extends AbstractResourceExtension
     protected function findBundleResources(ContainerBuilder $container, $pattern)
     {
         $bundles = $container->getParameter('kernel.bundles');
-        $files = array();
+        $files = [];
 
         foreach ($bundles as $bundle) {
             $class = new \ReflectionClass($bundle);

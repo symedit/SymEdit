@@ -28,7 +28,7 @@ class GetSeoCalculators implements CompilerPassInterface
 
         foreach ($taggedServices as $id => $tagAttributes) {
             foreach ($tagAttributes as $attributes) {
-                $args = array(new Reference($id));
+                $args = [new Reference($id)];
 
                 if (isset($attributes['priority'])) {
                     $args[] = $attributes['priority'];

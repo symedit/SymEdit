@@ -24,22 +24,22 @@ class EventType extends BaseEventType
 
     public function configureOptions(OptionsResolver $resolver)
     {
-        $resolver->setDefaults(array(
-            'tabs_data' => array(
-                'basic' => array(
+        $resolver->setDefaults([
+            'tabs_data' => [
+                'basic' => [
                     'label' => 'symedit.form.event.tab.basic',
                     'icon' => 'info-circle',
-                ),
-                'dateTime' => array(
+                ],
+                'dateTime' => [
                     'label' => 'symedit.form.event.tab.time',
                     'icon' => 'calendar',
-                ),
-                'location' => array(
+                ],
+                'location' => [
                     'label' => 'symedit.form.event.tab.location',
                     'icon' => 'map-marker',
-                ),
-            ),
-        ));
+                ],
+            ],
+        ]);
     }
 
     public function getName()

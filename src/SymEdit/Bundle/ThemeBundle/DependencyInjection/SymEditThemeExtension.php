@@ -19,12 +19,12 @@ use Symfony\Component\HttpKernel\DependencyInjection\Extension;
 
 class SymEditThemeExtension extends Extension implements PrependExtensionInterface
 {
-    protected $configFiles = array(
+    protected $configFiles = [
         'services',
         'theme',
         'template',
         'layout',
-    );
+    ];
 
     /**
      * {@inheritdoc}
@@ -53,34 +53,34 @@ class SymEditThemeExtension extends Extension implements PrependExtensionInterfa
         /*
          * Twig Extension
          */
-        $container->prependExtensionConfig('twig', array(
-            'form' => array(
-                'resources' => array(
+        $container->prependExtensionConfig('twig', [
+            'form' => [
+                'resources' => [
                     'SymEditThemeBundle:Form:fields.html.twig',
-                ),
-            ),
-        ));
+                ],
+            ],
+        ]);
 
         /*
          * Doctrine Cache
          */
-        $container->prependExtensionConfig('doctrine_cache', array(
-            'providers' => array(
-                'symedit_theme' => array(
-                    'file_system' => array(
+        $container->prependExtensionConfig('doctrine_cache', [
+            'providers' => [
+                'symedit_theme' => [
+                    'file_system' => [
                         'directory' => '%kernel.cache_dir%/symedit_theme',
-                    ),
-                ),
-            ),
-        ));
+                    ],
+                ],
+            ],
+        ]);
 
         /*
          * Stylizer Extension
          */
         if ($container->hasExtension('symedit_stylizer')) {
-            $container->prependExtensionConfig('symedit_stylizer', array(
+            $container->prependExtensionConfig('symedit_stylizer', [
                 'storage' => 'symedit_theme.stylizer.storage.theme',
-            ));
+            ]);
         }
     }
 

@@ -11,7 +11,6 @@
 
 namespace SymEdit\Bundle\CacheBundle\EventListener;
 
-use FOS\HttpCacheBundle\Handler\TagHandler;
 use Sylius\Bundle\SettingsBundle\Manager\SettingsManager;
 use SymEdit\Bundle\CacheBundle\Decision\CacheDecisionManager;
 use SymEdit\Bundle\WidgetBundle\Event\Events;
@@ -55,7 +54,7 @@ class WidgetCacheSubscriber implements EventSubscriberInterface
             return;
         }
 
-        $advancedSettings = $this->settings->loadSettings('advanced');
+        $advancedSettings = $this->settings->load('advanced');
         $ttl = $advancedSettings->get('widget_max_age');
 
         // Set max lifetime for widgets
@@ -64,11 +63,11 @@ class WidgetCacheSubscriber implements EventSubscriberInterface
 
     public static function getSubscribedEvents()
     {
-        return array(
-            Events::WIDGET_PRE_RENDER => array(
-                array('decideWidgetCache', 256),
-                array('setSharedCache', 64),
-            ),
-        );
+        return [
+            Events::WIDGET_PRE_RENDER => [
+                ['decideWidgetCache', 256],
+                ['setSharedCache', 64],
+            ],
+        ];
     }
 }

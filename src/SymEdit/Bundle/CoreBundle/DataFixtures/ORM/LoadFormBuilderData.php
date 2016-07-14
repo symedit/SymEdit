@@ -26,57 +26,57 @@ class LoadFormBuilderData extends AbstractFixture implements OrderedFixtureInter
             ->setLegend('Contact')
         ;
 
-        $elements = array();
+        $elements = [];
         $elements[] = $this->createFormElement()
             ->setName('name')
             ->setType('text')
-            ->setOptions(array(
+            ->setOptions([
                 'label' => 'Name',
                 'required' => true,
-            ))
+            ])
         ;
 
         $elements[] = $this->createFormElement()
             ->setName('email')
             ->setType('email')
-            ->setOptions(array(
+            ->setOptions([
                 'label' => 'Email',
                 'required' => true,
-                'attr' => array(
+                'attr' => [
                     'placeholder' => 'you@email.com',
-                ),
-                'extra' => array(
+                ],
+                'extra' => [
                     'replyTo' => true,
-                ),
-            ))
+                ],
+            ])
         ;
 
         $elements[] = $this->createFormElement()
             ->setName('phone')
             ->setType('text')
-            ->setOptions(array(
+            ->setOptions([
                 'label' => 'Phone',
                 'required' => true,
-                'attr' => array(
+                'attr' => [
                     'placeholder' => '123-123-1234',
-                ),
-            ))
+                ],
+            ])
         ;
 
         $elements[] = $this->createFormElement()
             ->setName('message')
             ->setType('textarea')
-            ->setOptions(array(
+            ->setOptions([
                 'label' => 'Message',
                 'required' => true,
-                'attr' => array(
+                'attr' => [
                     'rows' => 3,
-                ),
-            ))
+                ],
+            ])
         ;
 
         // Add Elements
-        array_map(array($builder, 'addFormElement'), $elements);
+        array_map([$builder, 'addFormElement'], $elements);
 
         // Save / flush
         $manager->persist($builder);
@@ -91,7 +91,7 @@ class LoadFormBuilderData extends AbstractFixture implements OrderedFixtureInter
      */
     protected function createFormElement()
     {
-        return $this->getRepository('form_element')->createNew();
+        return $this->getFactory('form_element')->createNew();
     }
 
     /**
@@ -99,7 +99,7 @@ class LoadFormBuilderData extends AbstractFixture implements OrderedFixtureInter
      */
     protected function createForm()
     {
-        return $this->getRepository('form_builder')->createNew();
+        return $this->getFactory('form_builder')->createNew();
     }
 
     public function getOrder()

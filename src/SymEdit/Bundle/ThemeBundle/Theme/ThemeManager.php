@@ -21,7 +21,7 @@ class ThemeManager
     protected $finder;
     protected $cache;
     protected $debug;
-    protected $themes = array();
+    protected $themes = [];
 
     public function __construct(ThemeFactoryInterface $factory, ThemeFinder $finder, Cache $cache, $debug = false)
     {

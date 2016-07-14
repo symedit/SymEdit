@@ -27,21 +27,21 @@ class GalleryItemType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('caption', 'textarea', array(
+            ->add('caption', 'textarea', [
                 'label' => 'Caption',
                 'required' => false,
-            ))
-            ->add('image', 'symedit_image_choose', array(
+            ])
+            ->add('image', 'symedit_image_choose', [
                 'show_image' => true,
-            ))
+            ])
         ;
     }
 
     public function configureOptions(OptionsResolver $resolver)
     {
-        $resolver->setDefaults(array(
+        $resolver->setDefaults([
             'data_class' => $this->class,
-        ));
+        ]);
     }
 
     public function getName()

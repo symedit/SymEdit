@@ -11,6 +11,9 @@
 
 namespace SymEdit\Bundle\CoreBundle\Controller;
 
+use FOS\RestBundle\View\View;
+use Sylius\Bundle\ResourceBundle\Controller\RequestConfiguration;
+use Sylius\Component\Resource\ResourceActions;
 use SymEdit\Bundle\CoreBundle\Model\PageInterface;
 use SymEdit\Bundle\ResourceBundle\Controller\ResourceController;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -30,34 +33,39 @@ class PageController extends ResourceController
             $template = '@Theme/Page/base.html.twig';
         }
 
-        $view = $this
-            ->view()
+        $configuration = $this->requestConfigurationFactory->create($this->metadata, $request);
+        $this->eventDispatcher->dispatch(ResourceActions::SHOW, $configuration, $page);
+
+        $view = View::create($page)
             ->setTemplateVar('Page')
             ->setData($page)
-            ->setTemplate($template);
+            ->setTemplate($template)
+        ;
 
-        return $this->handleView($view);
+        return $this->viewHandler->handle($configuration, $view);
     }
 
     public function jsonAction()
     {
         $pages = $this->getRepository()->getRecursiveIterator();
-        $out = array();
+        $out = [];
 
         foreach ($pages as $page) {
             $label = sprintf('%s %s', str_repeat('--', $page->getLevel()), $page->getTitle());
 
-            $out[] = array(
+            $out[] = [
                 'name' => trim($label),
                 'url' => sprintf('[link page-id=%d]', $page->getId()),
-            );
+            ];
         }
 
         return new JsonResponse($out);
     }
 
-    public function findOr404(Request $request, array $criteria = array())
+    public function findOr404(RequestConfiguration $configuration)
     {
+        $request = $configuration->getRequest();
+
         if ($request->attributes->has('_page')) {
             $page = $request->attributes->get('_page');
 
@@ -66,6 +74,6 @@ class PageController extends ResourceController
             }
         }
 
-        return parent::findOr404($request, $criteria);
+        return parent::findOr404($configuration);
     }
 }

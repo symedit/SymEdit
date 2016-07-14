@@ -38,7 +38,7 @@ class Dumper
 
     public function dump()
     {
-        $input = new ArrayInput(array('env' => 'prod'), $this->command->getDefinition());
+        $input = new ArrayInput(['env' => 'prod'], $this->command->getDefinition());
         $output = new NullOutput();
 
         $code = $this->command->run($input, $output);

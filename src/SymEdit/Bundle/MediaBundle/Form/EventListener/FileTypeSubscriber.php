@@ -27,11 +27,11 @@ class FileTypeSubscriber implements EventSubscriberInterface
 
     public static function getSubscribedEvents()
     {
-        return array(
+        return [
             FormEvents::PRE_SET_DATA => 'preSetData',
             FormEvents::POST_SUBMIT => 'postSubmit',
             FormEvents::SUBMIT => 'submit',
-        );
+        ];
     }
 
     public function submit(FormEvent $event)
@@ -75,31 +75,31 @@ class FileTypeSubscriber implements EventSubscriberInterface
         // Require if there is no file otherwise use the default
         $required = $hasFile ? false : $this->options['required'];
 
-        $form->add('file', 'file', array(
+        $form->add('file', 'file', [
             'required' => $required,
             'label' => $this->options['file_label'],
             'help_block' => $this->options['file_help'],
-        ));
+        ]);
 
         $require_name = $form->getConfig()->getOption('require_name');
         $allow_blank_name = $form->getConfig()->getOption('allow_blank_name');
 
         // If name is not set, then add the field
         if (($data === null || $data->getName() === null) && $require_name) {
-            $form->add('name', 'text', array(
+            $form->add('name', 'text', [
                 'label' => $this->options['name_label'],
                 'help_block' => $this->options['name_help'],
                 'required' => !$allow_blank_name,
-            ));
+            ]);
         }
 
         // If allow remove, add the checkbox
         if ($hasFile && $this->options['allow_remove']) {
-            $form->add('remove', 'checkbox', array(
+            $form->add('remove', 'checkbox', [
                 'mapped' => false,
                 'required' => false,
                 'label' => 'Remove Media',
-            ));
+            ]);
         }
     }
 }

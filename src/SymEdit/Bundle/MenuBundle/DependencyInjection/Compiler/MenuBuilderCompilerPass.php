@@ -31,7 +31,7 @@ class MenuBuilderCompilerPass implements CompilerPassInterface
 {
     public function process(ContainerBuilder $container)
     {
-        $menus = array();
+        $menus = [];
 
         foreach ($container->findTaggedServiceIds('symedit_menu.builder') as $id => $tag) {
             if (!isset($tag[0]['menu'])) {
@@ -49,7 +49,7 @@ class MenuBuilderCompilerPass implements CompilerPassInterface
         }
 
         // Get sorted menus
-        $sortedMenus = array();
+        $sortedMenus = [];
 
         foreach ($menus as $menu => $builders) {
             $sortedMenus[$menu] = iterator_to_array($builders);

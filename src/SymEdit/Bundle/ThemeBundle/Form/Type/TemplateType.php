@@ -35,12 +35,12 @@ class TemplateType extends AbstractType
 
     public function buildView(FormView $view, FormInterface $form, array $options)
     {
-        $view->vars = array_merge($view->vars, array(
+        $view->vars = array_merge($view->vars, [
             'templates' => $this->templateManager->getTemplateTree($options['directory']),
             'namespace' => $options['namespace'],
             'display_layouts' => $options['display_layouts'],
             'layout_manager' => $this->layoutManager,
-        ));
+        ]);
     }
 
     public function buildForm(FormBuilderInterface $builder, array $options)
@@ -55,14 +55,14 @@ class TemplateType extends AbstractType
 
     public function configureOptions(OptionsResolver $resolver)
     {
-        $resolver->setDefaults(array(
+        $resolver->setDefaults([
             'namespace' => 'Theme',
             'display_layouts' => false,
             'default_template' => 'base.html.twig',
-            'attr' => array(
+            'attr' => [
                 'data-toggle' => 'template-target',
-            ),
-        ));
+            ],
+        ]);
 
 
         $resolver->setRequired('directory');
@@ -70,7 +70,7 @@ class TemplateType extends AbstractType
 
         // Get Choice Normalizer
         $normalizer = function (Options $options) {
-            $choices = array();
+            $choices = [];
 
             foreach ($this->templateManager->getTemplates($options['directory']) as $template) {
                 $name = sprintf('@%s/%s', $options['namespace'], $template->getKey());

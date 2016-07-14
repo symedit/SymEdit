@@ -29,9 +29,9 @@ class UpcomingEventsWidgetStrategy extends AbstractWidgetStrategy
         $maxEvents = $widget->getOption('max_events');
         $events = $this->repository->getUpcomingEvents($maxEvents);
 
-        $this->render('@SymEdit/Widget/Events/upcoming_events.html.twig', array(
+        $this->render('@SymEdit/Widget/Events/upcoming_events.html.twig', [
             'events' => $events,
-        ));
+        ]);
     }
 
     public function getDescription()

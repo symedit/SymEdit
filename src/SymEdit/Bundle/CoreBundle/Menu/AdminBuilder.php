@@ -18,7 +18,7 @@ class AdminBuilder implements MenuBuilderInterface
 {
     protected $extensions;
 
-    public function __construct(array $extensions = array())
+    public function __construct(array $extensions = [])
     {
         $this->extensions = $extensions;
     }
@@ -28,79 +28,79 @@ class AdminBuilder implements MenuBuilderInterface
         $rootNode = $menu->getRootNode();
 
         // Dashboard
-        $rootNode->addChild('dashboard', array(
+        $rootNode->addChild('dashboard', [
             'route' => 'admin_dashboard',
             'label' => 'Dashboard',
             'icon' => 'home',
-        ));
+        ]);
 
         // Content
-        $content = $rootNode->addChild('content', array(
+        $content = $rootNode->addChild('content', [
             'label' => 'Content',
             'dropdown' => true,
             'caret' => true,
             'icon' => 'pencil',
-            'extras' => array(
+            'extras' => [
                 'remove_leaf' => true,
-            ),
-        ));
+            ],
+        ]);
 
-        $pageExtras = array('is_granted' => 'ROLE_ADMIN_PAGE');
-        $content->addChild('Pages', array(
+        $pageExtras = ['is_granted' => 'ROLE_ADMIN_PAGE'];
+        $content->addChild('Pages', [
             'dropdown-header' => true,
-            'extras' => array(
+            'extras' => [
                 'is_granted' => 'ROLE_ADMIN_PAGE',
-                'routes' => array('route' => 'admin_page_update'),
-            ),
-        ));
+                'routes' => ['route' => 'admin_page_update'],
+            ],
+        ]);
 
-        $content->addChild('New Page', array('route' => 'admin_page_create', 'icon' => 'edit', 'extras' => $pageExtras));
-        $content->addChild('List Pages', array('route' => 'admin_page', 'icon' => 'file', 'extras' => $pageExtras));
+        $content->addChild('New Page', ['route' => 'admin_page_create', 'icon' => 'edit', 'extras' => $pageExtras]);
+        $content->addChild('List Pages', ['route' => 'admin_page', 'icon' => 'file', 'extras' => $pageExtras]);
 
         // Media
-        $rootNode->addChild('media', array(
+        $rootNode->addChild('media', [
             'label' => 'Media',
             'dropdown' => true,
             'caret' => true,
             'icon' => 'image',
-            'extras' => array(
+            'extras' => [
                 'remove_leaf' => true,
-            ),
-        ));
+            ],
+        ]);
 
         // Structure
-        $rootNode->addChild('structure', array(
+        $rootNode->addChild('structure', [
             'label' => 'Structure',
             'dropdown' => true,
             'caret' => true,
             'icon' => 'tasks',
-            'extras' => array(
+            'extras' => [
                 'remove_leaf' => true,
-            ),
-        ));
+            ],
+        ]);
 
         // Site
-        $site = $rootNode->addChild('site', array(
+        $site = $rootNode->addChild('site', [
             'label' => 'Site',
             'dropdown' => true,
             'caret' => true,
             'icon' => 'cogs',
-            'extras' => array(
+            'extras' => [
                 'remove_leaf' => true,
-            ),
-        ));
+            ],
+        ]);
 
-        $site->addChild('Settings', array('route' => 'admin_settings', 'icon' => 'cogs', 'extras' => array('is_granted' => 'ROLE_ADMIN_SETTING')));
-        $site->addChild('Users', array('route' => 'admin_user', 'icon' => 'group', 'extras' => array('is_granted' => 'ROLE_ADMIN_USER')));
+        $site->addChild('Settings', ['route' => 'admin_settings', 'icon' => 'cogs', 'extras' => ['is_granted' => 'ROLE_ADMIN_SETTING']]);
+        $site->addChild('Users', ['route' => 'admin_user', 'icon' => 'group', 'extras' => ['is_granted' => 'ROLE_ADMIN_USER']]);
 
         // Extensions
-        $extensions = $rootNode->addChild('Extensions', array(
+        $extensions = $rootNode->addChild('Extensions', [
             'dropdown' => true,
             'caret' => true,
-            'extras' => array(
+            'extras' => [
                 'remove_leaf' => true,
-            ),
-        ));
+            ],
+        ]);
 
         $index = 0;
         foreach ($this->extensions as $extension) {
@@ -109,7 +109,7 @@ class AdminBuilder implements MenuBuilderInterface
 
         // Help
         $rootNode
-            ->addChild('Help', array('uri' => 'http://docs.symedit.com/guide', 'icon' => 'question-circle'))
+            ->addChild('Help', ['uri' => 'http://docs.symedit.com/guide', 'icon' => 'question-circle'])
             ->setLinkAttribute('target', '_blank');
     }
 }

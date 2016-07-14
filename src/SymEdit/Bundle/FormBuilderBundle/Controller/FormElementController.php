@@ -36,19 +36,19 @@ class FormElementController extends ResourceController
         if ($form->handleRequest($request)->isValid()) {
             $formElement = $this->domainManager->create($formElement);
 
-            return $this->redirect($this->generateUrl('admin_form_show', array(
+            return $this->redirect($this->generateUrl('admin_form_show', [
                 'id' => $formBuilder->getId(),
-            )));
+            ]));
         }
 
         $view = $this
             ->view()
             ->setTemplate($this->config->getTemplate('create.html'))
-            ->setData(array(
+            ->setData([
                 'formBuilder' => $formBuilder,
                 'formElement' => $formElement,
                 'form' => $form->createView(),
-            ))
+            ])
         ;
 
         return $this->handleView($view);
@@ -61,21 +61,21 @@ class FormElementController extends ResourceController
         $view = $this
             ->view()
             ->setTemplate($this->config->getTemplate('@SymEdit/Admin/FormElement/choose.html.twig'))
-            ->setData(array(
+            ->setData([
                 'formId' => $formId,
                 'types' => $types,
-            ))
+            ])
         ;
 
         return $this->handleView($view);
     }
 
-    public function getForm($resource = null, array $options = array())
+    public function getForm($resource = null, array $options = [])
     {
         $form = $this->config->getFormType();
 
-        return $this->createForm($form, $resource, array(
+        return $this->createForm($form, $resource, [
             'field_type' => $resource->getType(),
-        ));
+        ]);
     }
 }

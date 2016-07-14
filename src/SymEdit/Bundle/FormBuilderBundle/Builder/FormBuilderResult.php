@@ -19,7 +19,7 @@ class FormBuilderResult implements FormBuilderResultInterface
     protected $model;
     protected $form;
     protected $pairs;
-    protected $replyTo = array();
+    protected $replyTo = [];
 
     public function __construct(FormInterface $model, SymfonyFormInterface $form)
     {
@@ -44,10 +44,10 @@ class FormBuilderResult implements FormBuilderResultInterface
 
     public function addPair($label, $value)
     {
-        $this->pairs[] = array(
+        $this->pairs[] = [
             'label' => $label,
             'value' => $value,
-        );
+        ];
     }
 
     public function getPairs()

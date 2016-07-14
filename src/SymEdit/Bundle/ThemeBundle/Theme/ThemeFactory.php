@@ -33,7 +33,7 @@ class ThemeFactory implements ThemeFactoryInterface
 
     protected function getConfigData($name)
     {
-        $configs = array();
+        $configs = [];
 
         while (true) {
             $configFile = $this->getThemeFile($name);

@@ -26,7 +26,7 @@
     <section id="area_{{ area.area }}" class="{% if loop.first %}active {% endif %}tab-pane widget-area">
         <h4>{{ area.description }}</h4>
 
-        <table class="table table-striped table-bordered">
+        <table class="table table-striped table-bordered" id="widgets-{{ area.area }}">
             <thead>
                 <tr>
                     <th>Title</th>

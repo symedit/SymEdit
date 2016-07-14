@@ -32,9 +32,9 @@ class SettingsController extends FOSRestController
         $view = $this
             ->view()
             ->setTemplate('@SymEdit/Admin/Settings/index.html.twig')
-            ->setData(array(
+            ->setData([
                 'form' => $form->createView(),
-            ))
+            ])
         ;
 
         return $this->handleView($view);
@@ -44,23 +44,25 @@ class SettingsController extends FOSRestController
     {
         $manager = $this->getSettingsManager();
 
-        foreach ($data as $namespace => $settings) {
+        foreach ($data as $settings) {
             try {
-                $manager->saveSettings($namespace, $settings);
+                $manager->save($settings);
             } catch (\Exception $ex) {
                 $this->addFlash('error', $ex->getMessage());
 
                 break;
             }
         }
+
+        $this->addFlash('success', 'symedit.settings.saved');
     }
 
     protected function getForm(Request $request, $resource = null)
     {
         $settings = $this->getSettingsManager();
-        $schemas = $this->getSchemaRegistry()->getSchemas();
+        $schemas = $this->getSchemaRegistry()->all();
         $builder = $this->createFormBuilder()->create('sylius_settings', 'form');
-        $data = array();
+        $data = [];
 
         foreach ($schemas as $namespace => $schema) {
             // Check roles
@@ -72,7 +74,7 @@ class SettingsController extends FOSRestController
             $schema->buildForm($namespaceForm);
             $builder->add($namespaceForm);
 
-            $data[$namespace] = $settings->loadSettings($namespace);
+            $data[$namespace] = $settings->load($namespace);
         }
 
         // Set all the data
@@ -103,6 +105,6 @@ class SettingsController extends FOSRestController
      */
     protected function getSchemaRegistry()
     {
-        return $this->get('sylius.settings.schema_registry');
+        return $this->get('sylius.registry.settings_schema');
     }
 }

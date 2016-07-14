@@ -26,7 +26,7 @@ class MediaType extends AbstractType
 
     public function configureOptions(OptionsResolver $resolver)
     {
-        $resolver->setDefaults(array(
+        $resolver->setDefaults([
             'require_name' => true,
             'required' => true,
             'allow_remove' => false,
@@ -36,14 +36,14 @@ class MediaType extends AbstractType
             'name_label' => 'File Name',
             'name_help' => false,
             'allow_blank_name' => false,
-            'validation_groups' => array($this, 'getValidationGroups'),
-        ));
+            'validation_groups' => [$this, 'getValidationGroups'],
+        ]);
     }
 
     public function getValidationGroups(FormInterface $form)
     {
         $config = $form->getConfig();
-        $groups = array();
+        $groups = [];
 
         if ($config->getOption('require_name') && !$config->getOption('allow_blank_name')) {
             $groups[] = 'require_name';

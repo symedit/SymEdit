@@ -44,7 +44,7 @@ class Router extends BaseRouter
 
     protected function storeRoutes(RouteCollection $collection)
     {
-        $stored = array();
+        $stored = [];
 
         foreach ($this->routeManager->getAllRoutes() as $routeName) {
             $stored[$routeName] = $collection->get($routeName);

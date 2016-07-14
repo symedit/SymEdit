@@ -33,9 +33,9 @@ class TreeMenuProvider implements MenuProviderInterface
         $this->eventDispatcher = $eventDispatcher;
     }
 
-    public function get($name, array $options = array())
+    public function get($name, array $options = [])
     {
-        $rootOptions = isset($options['root_options']) ? $options['root_options'] : array();
+        $rootOptions = isset($options['root_options']) ? $options['root_options'] : [];
         $menu = $this->factory->createItem('root', $rootOptions);
         $this->populateChildren($menu, $this->getRoot($options));
 
@@ -58,7 +58,7 @@ class TreeMenuProvider implements MenuProviderInterface
         if (isset($options['root']) && $options['root'] instanceof PageInterface) {
             $root = $options['root'];
         } else {
-            $root = $this->pageRepository->findOneBy(array('root' => true));
+            $root = $this->pageRepository->findOneBy(['root' => true]);
         }
 
         /*
@@ -92,9 +92,9 @@ class TreeMenuProvider implements MenuProviderInterface
                 continue;
             }
 
-            $item = $this->factory->createItem($child->getTitle(), array(
+            $item = $this->factory->createItem($child->getTitle(), [
                 'route' => $child->getRoute(),
-            ));
+            ]);
 
             // Store Page ID
             $item->setExtra('_page_id', $child->getId());
@@ -104,7 +104,7 @@ class TreeMenuProvider implements MenuProviderInterface
         }
     }
 
-    public function has($name, array $options = array())
+    public function has($name, array $options = [])
     {
         return strtolower($name) === 'tree';
     }

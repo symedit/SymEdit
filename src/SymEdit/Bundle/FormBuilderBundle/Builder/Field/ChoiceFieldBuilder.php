@@ -21,13 +21,13 @@ class ChoiceFieldBuilder extends AbstractFieldBuilder
     public function buildOptionsForm(FormBuilderInterface $builder)
     {
         $choices = $builder
-            ->create('choices', 'textarea', array(
+            ->create('choices', 'textarea', [
                 'required' => false,
-                'attr' => array(
+                'attr' => [
                     'rows' => 10,
-                ),
+                ],
                 'help_block' => 'Separate choices by line.',
-            ))
+            ])
             ->addModelTransformer(new CallbackTransformer(
                 function ($originalChoices) {
                     if ($originalChoices === null) {
@@ -44,14 +44,14 @@ class ChoiceFieldBuilder extends AbstractFieldBuilder
 
         $builder
             ->add($choices)
-            ->add('expanded', 'checkbox', array(
+            ->add('expanded', 'checkbox', [
                 'required' => false,
                 'help_block' => 'Using "expanded" will use checkboxes or radio buttons depending on value of "multiple."',
-            ))
-            ->add('multiple', 'checkbox', array(
+            ])
+            ->add('multiple', 'checkbox', [
                 'required' => false,
                 'help_block' => 'Allow multiple choices to be chosen.',
-            ))
+            ])
         ;
     }
 
@@ -59,7 +59,7 @@ class ChoiceFieldBuilder extends AbstractFieldBuilder
     {
         $choices = $formElement->getOption('choices');
         $selectedKeys = (array)$value;
-        $selected = array();
+        $selected = [];
 
         foreach ($selectedKeys as $selectedId) {
             $selected[$selectedId] = $choices[$selectedId];

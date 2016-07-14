@@ -19,19 +19,11 @@ use Symfony\Component\DependencyInjection\ContainerBuilder;
 
 class SymEditFormBuilderBundle extends AbstractResourceBundle
 {
-    public static function getSupportedDrivers()
+    public function getSupportedDrivers()
     {
-        return array(
+        return [
             SyliusResourceBundle::DRIVER_DOCTRINE_ORM,
-        );
-    }
-
-    protected function getModelInterfaces()
-    {
-        return array(
-            'SymEdit\Bundle\FormBuilderBundle\Model\FormInterface' => 'symedit.model.form_builder.class',
-            'SymEdit\Bundle\FormBuilderBundle\Model\FormElementInterface' => 'symedit.model.form_element.class',
-        );
+        ];
     }
 
     protected function getModelNamespace()

@@ -19,11 +19,11 @@ use Symfony\Component\DependencyInjection\ContainerBuilder;
 
 class SymEditUserBundle extends AbstractResourceBundle
 {
-    public static function getSupportedDrivers()
+    public function getSupportedDrivers()
     {
-        return array(
+        return [
             SyliusResourceBundle::DRIVER_DOCTRINE_ORM,
-        );
+        ];
     }
 
     public function build(ContainerBuilder $container)
@@ -31,14 +31,6 @@ class SymEditUserBundle extends AbstractResourceBundle
         parent::build($container);
 
         $container->addCompilerPass(new ProfileTypeCompilerPass());
-    }
-
-    protected function getModelInterfaces()
-    {
-        return array(
-            'SymEdit\Bundle\UserBundle\Model\UserInterface' => 'symedit.model.user.class',
-            'SymEdit\Bundle\UserBundle\Model\ProfileInterface' => 'symedit.model.profile.class',
-        );
     }
 
     protected function getModelNamespace()

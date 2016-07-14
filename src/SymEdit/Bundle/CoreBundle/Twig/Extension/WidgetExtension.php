@@ -36,9 +36,9 @@ class WidgetExtension extends BaseExtension
 
     protected function getControllerAttributes(WidgetInterface $widget, $context)
     {
-        return array(
+        return [
             'id' => $widget->getId(),
             '_page_id' => $context['Page']->getId(),
-        );
+        ];
     }
 }

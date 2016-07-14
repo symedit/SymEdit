@@ -32,11 +32,11 @@ class CategoryTest extends TestCase
     protected function getCategory()
     {
         $category = new Category();
-        $category->setPosts(new ArrayCollection(array(
+        $category->setPosts(new ArrayCollection([
             $this->createPost(Post::PUBLISHED),
             $this->createPost(Post::DRAFT),
             $this->createPost(Post::PUBLISHED),
-        )));
+        ]));
 
         return $category;
     }

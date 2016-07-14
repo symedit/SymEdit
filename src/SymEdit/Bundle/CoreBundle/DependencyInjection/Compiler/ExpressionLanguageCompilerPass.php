@@ -30,7 +30,7 @@ class ExpressionLanguageCompilerPass implements CompilerPassInterface
         $definition = $container->getDefinition('symedit.expression_language');
 
         foreach ($container->findTaggedServiceIds('symedit.expression_language_provider') as $id => $tags) {
-            $definition->addMethodCall('registerProvider', array(new Reference($id)));
+            $definition->addMethodCall('registerProvider', [new Reference($id)]);
         }
     }
 }

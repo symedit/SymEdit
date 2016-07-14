@@ -57,7 +57,7 @@ class Post extends BasePost implements PostInterface
      *
      * @return Post
      */
-    public function setSeo(array $seo = array())
+    public function setSeo(array $seo = [])
     {
         $this->seo = $seo;
 

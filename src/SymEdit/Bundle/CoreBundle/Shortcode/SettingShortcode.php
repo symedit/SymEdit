@@ -33,7 +33,7 @@ class SettingShortcode extends AbstractShortcode
         }
 
         list($namespace, $name) = explode('.', $name);
-        $settings = $this->settingsManager->loadSettings($namespace);
+        $settings = $this->settingsManager->load($namespace);
 
         if (!$settings->has($name)) {
             return $match;

@@ -11,6 +11,15 @@
 
 namespace SymEdit\Bundle\FormBuilderBundle\DependencyInjection;
 
+use Sylius\Component\Resource\Factory\Factory;
+use SymEdit\Bundle\FormBuilderBundle\Controller\FormBuilderController;
+use SymEdit\Bundle\FormBuilderBundle\Controller\FormElementController;
+use SymEdit\Bundle\FormBuilderBundle\Form\Type\FormBuilderType;
+use SymEdit\Bundle\FormBuilderBundle\Form\Type\FormElementType;
+use SymEdit\Bundle\FormBuilderBundle\Model\Form;
+use SymEdit\Bundle\FormBuilderBundle\Model\FormElement;
+use SymEdit\Bundle\FormBuilderBundle\Model\FormElementInterface;
+use SymEdit\Bundle\FormBuilderBundle\Model\FormInterface;
 use Symfony\Component\Config\Definition\Builder\ArrayNodeDefinition;
 use Symfony\Component\Config\Definition\Builder\TreeBuilder;
 use Symfony\Component\Config\Definition\ConfigurationInterface;
@@ -45,38 +54,54 @@ class Configuration implements ConfigurationInterface
     {
         $node
             ->children()
-                ->arrayNode('classes')
+                ->arrayNode('resources')
                     ->addDefaultsIfNotSet()
                     ->children()
+
                         ->arrayNode('form_builder')
                             ->addDefaultsIfNotSet()
                             ->children()
-                                ->scalarNode('model')->defaultValue('SymEdit\Bundle\FormBuilderBundle\Model\Form')->end()
-                                ->scalarNode('controller')->defaultValue('SymEdit\Bundle\FormBuilderBundle\Controller\FormBuilderController')->end()
-                                ->scalarNode('repository')->end()
-                                ->arrayNode('form')
+                                ->arrayNode('classes')
                                     ->addDefaultsIfNotSet()
                                     ->children()
-                                        ->scalarNode('default')->defaultValue('SymEdit\Bundle\FormBuilderBundle\Form\Type\FormBuilderType')->end()
+                                        ->scalarNode('model')->defaultValue(Form::class)->end()
+                                        ->scalarNode('interface')->defaultValue(FormInterface::class)->end()
+                                        ->scalarNode('controller')->defaultValue(FormBuilderController::class)->end()
+                                        ->scalarNode('repository')->end()
+                                        ->scalarNode('factory')->defaultValue(Factory::class)->end()
+                                        ->arrayNode('form')
+                                            ->addDefaultsIfNotSet()
+                                            ->children()
+                                                ->scalarNode('default')->defaultValue(FormBuilderType::class)->end()
+                                            ->end()
+                                        ->end()
                                     ->end()
                                 ->end()
                             ->end()
                         ->end()
+
                         ->arrayNode('form_element')
                             ->addDefaultsIfNotSet()
                             ->children()
-                                ->scalarNode('model')->defaultValue('SymEdit\Bundle\FormBuilderBundle\Model\FormElement')->end()
-                                ->scalarNode('controller')->defaultValue('SymEdit\Bundle\FormBuilderBundle\Controller\FormElementController')->end()
-                                ->scalarNode('repository')->end()
-                                ->arrayNode('form')
+                                ->arrayNode('classes')
                                     ->addDefaultsIfNotSet()
                                     ->children()
-                                        ->scalarNode('default')->defaultValue('SymEdit\Bundle\FormBuilderBundle\Form\Type\FormElementType')->end()
-                                        ->scalarNode('choose')->defaultValue('SymEdit\Bundle\FormBuilderBundle\Form\Type\FormElementChooseType')->end()
+                                        ->scalarNode('model')->defaultValue(FormElement::class)->end()
+                                        ->scalarNode('interface')->defaultValue(FormElementInterface::class)->end()
+                                        ->scalarNode('controller')->defaultValue(FormElementController::class)->end()
+                                        ->scalarNode('repository')->end()
+                                        ->scalarNode('factory')->defaultValue(Factory::class)->end()
+                                        ->arrayNode('form')
+                                            ->addDefaultsIfNotSet()
+                                            ->children()
+                                                ->scalarNode('default')->defaultValue(FormElementType::class)->end()
+                                            ->end()
+                                        ->end()
                                     ->end()
                                 ->end()
                             ->end()
                         ->end()
+
                     ->end()
                 ->end()
             ->end()

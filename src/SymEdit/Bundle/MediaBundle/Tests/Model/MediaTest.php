@@ -74,12 +74,12 @@ class MediaTest extends TestCase
      */
     protected function createFile()
     {
-        return $this->getMockBuilder('Symfony\Component\HttpFoundation\File\UploadedFile', array('guessExtension'))
+        return $this->getMockBuilder('Symfony\Component\HttpFoundation\File\UploadedFile', ['guessExtension'])
             ->enableOriginalConstructor()
-            ->setConstructorArgs(array(
+            ->setConstructorArgs([
                $this->file,
                'media_test',
-            ))
+            ])
             ->getMock();
     }
 

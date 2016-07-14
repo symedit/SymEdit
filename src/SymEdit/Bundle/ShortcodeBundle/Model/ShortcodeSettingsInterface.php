@@ -13,7 +13,7 @@ namespace SymEdit\Bundle\ShortcodeBundle\Model;
 
 interface ShortcodeSettingsInterface
 {
-    public function setSettings(array $settings = array());
+    public function setSettings(array $settings = []);
     public function has($name);
     public function get($name);
 }

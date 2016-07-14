@@ -34,9 +34,9 @@ abstract class AbstractPostStrategy extends AbstractWidgetStrategy
         }
 
         // Return when latest post was modified
-        return array(
+        return [
             'public' => true,
             'last_modified' => $latestPost->getUpdatedAt(),
-        );
+        ];
     }
 }

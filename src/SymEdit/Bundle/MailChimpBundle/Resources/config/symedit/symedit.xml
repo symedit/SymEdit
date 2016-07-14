@@ -7,7 +7,7 @@
     <services>
         <!-- Mailchimp Settings -->
         <service id="symedit_mailchimp.settings_schema.mailchimp" class="SymEdit\Bundle\MailChimpBundle\Settings\MailChimpSettingsSchema">
-            <tag name="sylius.settings_schema" namespace="mailchimp" />
+            <tag name="sylius.settings_schema" alias="mailchimp" />
         </service>
     </services>
 </container>

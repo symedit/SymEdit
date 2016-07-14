@@ -28,12 +28,12 @@ class ExceptionController extends BaseController
             $template = new TemplateReference(sprintf('@SymEdit/Exception/%d.html.twig', $code));
 
             if ($this->templateExists($template)) {
-                return new Response($this->twig->render($template, array(
+                return new Response($this->twig->render($template, [
                     'status_code' => $code,
                     'status_text' => isset(Response::$statusTexts[$code]) ? Response::$statusTexts[$code] : '',
                     'exception' => $exception,
                     'logger' => $logger,
-                )));
+                ]));
             }
         }
 

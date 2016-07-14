@@ -26,19 +26,19 @@ class CategoryType extends AbstractType
     public function buildBasicForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('title', 'text', array(
+            ->add('title', 'text', [
                 'label' => 'symedit.form.category.title',
-            ))
-            ->add('name', 'text', array(
+            ])
+            ->add('name', 'text', [
                 'label' => 'symedit.form.category.name.label',
                 'help_block' => 'symedit.form.category.name.help',
-            ))
-            ->add('parent', 'entity', array(
+            ])
+            ->add('parent', 'entity', [
                 'label' => 'symedit.form.category.parent.label',
                 'empty_value' => 'symedit.form.category.parent.empty',
                 'class' => $this->class,
                 'required' => false,
-            ))
+            ])
         ;
     }
 

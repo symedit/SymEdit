@@ -16,7 +16,7 @@ use Symfony\Bundle\TwigBundle\Loader\FilesystemLoader as BaseFilesystemLoader;
 
 class FilesystemLoader extends BaseFilesystemLoader
 {
-    public function setThemePaths(ThemeInterface $theme, array $overrides = array())
+    public function setThemePaths(ThemeInterface $theme, array $overrides = [])
     {
         // Allow Theme namespace to access other namespaces
         foreach ($overrides as $override) {

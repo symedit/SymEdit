@@ -11,7 +11,16 @@
 
 namespace SymEdit\Bundle\CoreBundle\Tests\DependencyInjection;
 
+use Sylius\Component\Resource\Factory\Factory;
+use SymEdit\Bundle\CoreBundle\Controller\PageController;
 use SymEdit\Bundle\CoreBundle\DependencyInjection\Configuration;
+use SymEdit\Bundle\CoreBundle\Form\Type\PageChooseType;
+use SymEdit\Bundle\CoreBundle\Form\Type\PageType;
+use SymEdit\Bundle\CoreBundle\Model\Breadcrumbs;
+use SymEdit\Bundle\CoreBundle\Model\Page;
+use SymEdit\Bundle\CoreBundle\Model\PageInterface;
+use SymEdit\Bundle\CoreBundle\Model\Role;
+use SymEdit\Bundle\CoreBundle\Model\RoleInterface;
 use SymEdit\Bundle\CoreBundle\Tests\TestCase;
 use Symfony\Component\Config\Definition\Processor;
 
@@ -20,7 +29,7 @@ class ConfigurationTest extends TestCase
     public function testDefaultConfig()
     {
         $processor = new Processor();
-        $config = $processor->processConfiguration(new Configuration(), array());
+        $config = $processor->processConfiguration(new Configuration(), []);
 
         $this->assertEquals(
             self::getBundleDefaultConfig(),
@@ -35,74 +44,75 @@ class ConfigurationTest extends TestCase
     {
         $processor = new Processor();
         $configuration = new Configuration();
-        $processor->processConfiguration($configuration, array(
+        $processor->processConfiguration($configuration, [
             'driver' => 'some/other/driver',
-        ));
+        ]);
     }
 
     public function testExtensions()
     {
         $processor = new Processor();
         $configuration = new Configuration();
-        $config = $processor->processConfiguration($configuration, array(array(
-            'extensions' => array(
-                array(
+        $config = $processor->processConfiguration($configuration, [[
+            'extensions' => [
+                [
                     'route' => 'test_route',
                     'label' => 'Foo Extension',
                     'icon' => 'bar',
-                ),
-            ),
-        )));
+                ],
+            ],
+        ]]);
 
         $this->assertEquals(
-            array(
-                array(
+            [
+                [
                     'route' => 'test_route',
                     'label' => 'Foo Extension',
                     'role' => 'ROLE_ADMIN',
                     'icon' => 'bar',
-                ),
-            ),
+                ],
+            ],
             $config['extensions']
         );
     }
 
     protected static function getBundleDefaultConfig()
     {
-        return array(
+        return [
             'driver' => 'doctrine/orm',
-            'extensions' => array(),
-            'email' => array(
+            'extensions' => [],
+            'email' => [
                 'sender' => 'email@example.com',
-            ),
-            'template_locations' => array(),
-            'assets' => array(
-                'javascripts' => array(),
-                'stylesheets' => array(),
-            ),
-            'classes' => array(
-                'page' => array(
-                    'model' => 'SymEdit\Bundle\CoreBundle\Model\Page',
-                    'controller' => 'SymEdit\Bundle\CoreBundle\Controller\PageController',
-                    'form' => array(
-                        'default' => 'SymEdit\Bundle\CoreBundle\Form\Type\PageType',
-                        'choose' => 'SymEdit\Bundle\CoreBundle\Form\Type\PageChooseType',
-                    ),
-                ),
-                'role' => array(
-                    'model' => 'SymEdit\Bundle\CoreBundle\Model\Role',
-                ),
-                'breadcrumbs' => array(
-                    'model' => 'SymEdit\Bundle\CoreBundle\Model\Breadcrumbs',
-                ),
-                'contact' => array(
-                    'controller' => 'SymEdit\Bundle\CoreBundle\Controller\ContactController',
-                    'form' => 'SymEdit\Bundle\CoreBundle\Form\Type\ContactType',
-                ),
-            ),
-            'routing' => array(
+            ],
+            'template_locations' => [],
+            'assets' => [
+                'javascripts' => [],
+                'stylesheets' => [],
+            ],
+            'resources' => [
+                'page' => [
+                    'classes' => [
+                        'model' => Page::class,
+                        'interface' => PageInterface::class,
+                        'controller' => PageController::class,
+                        'form' => [
+                            'default' => PageType::class,
+                            'choose' => PageChooseType::class,
+                        ],
+                        'factory' => Factory::class,
+                    ],
+                ],
+                'role' => [
+                    'classes' => [
+                        'model' => Role::class,
+                        'interface' => RoleInterface::class,
+                        'factory' => Factory::class,
+                    ],
+                ],
+            ],
+            'routing' => [
                 'route_uri_filter_regexp' => '',
-            ),
-        );
+            ],
+        ];
     }
 }

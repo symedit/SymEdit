@@ -119,10 +119,10 @@ class LoadWidgetData extends AbstractFixture implements OrderedFixtureInterface
         $contactFormWidget = $this->createWidget('form_builder')
             ->setName('contact-us-form')
             ->setTitle('Send us a message')
-            ->setOptions(array(
+            ->setOptions([
                 'form_builder_id' => $formBuilder->getId(),
                 'template' => '@SymEdit/Widget/FormBuilder/contact.html.twig',
-            ))
+            ])
             ->setVisibility(WidgetInterface::INCLUDE_ONLY)
             ->addAssoc($contact_page->getId())
         ;
@@ -172,7 +172,7 @@ class LoadWidgetData extends AbstractFixture implements OrderedFixtureInterface
      */
     protected function createWidget($strategy)
     {
-        return $this->getRepository('widget')->createNew($strategy);
+        return $this->getFactory('widget')->createFromStrategy($strategy);
     }
 
     /**
@@ -180,7 +180,7 @@ class LoadWidgetData extends AbstractFixture implements OrderedFixtureInterface
      */
     protected function createWidgetArea()
     {
-        return $this->getRepository('widget_area')->createNew();
+        return $this->getFactory('widget_area')->createNew();
     }
 
     public function getOrder()

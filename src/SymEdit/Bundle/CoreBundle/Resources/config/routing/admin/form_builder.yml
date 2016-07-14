@@ -3,7 +3,7 @@ admin_form:
     defaults:
         _controller: symedit.controller.form_builder:indexAction
         _sylius:
-            template: @SymEdit/Admin/FormBuilder/index.html.twig
+            template: "@SymEdit/Admin/FormBuilder/index.html.twig"
 
 admin_form_create:
     path: /new
@@ -11,7 +11,7 @@ admin_form_create:
     defaults:
         _controller: symedit.controller.form_builder:createAction
         _sylius:
-            template: @SymEdit/Admin/FormBuilder/new.html.twig
+            template: "@SymEdit/Admin/FormBuilder/new.html.twig"
             redirect: admin_form_update
 
 admin_form_show:
@@ -20,7 +20,7 @@ admin_form_show:
     defaults:
         _controller: symedit.controller.form_builder:showAction
         _sylius:
-            template: @SymEdit/Admin/FormBuilder/show.html.twig
+            template: "@SymEdit/Admin/FormBuilder/show.html.twig"
 
 admin_form_preview:
     path: /{id}/preview
@@ -28,7 +28,7 @@ admin_form_preview:
     defaults:
         _controller: symedit.controller.form_builder:previewAction
         _sylius:
-            template: @SymEdit/Admin/FormBuilder/preview.html.twig
+            template: "@SymEdit/Admin/FormBuilder/preview.html.twig"
 
 admin_form_update:
     path: /{id}/edit
@@ -36,7 +36,7 @@ admin_form_update:
     defaults:
         _controller: symedit.controller.form_builder:updateAction
         _sylius:
-            template: @SymEdit/Admin/FormBuilder/edit.html.twig
+            template: "@SymEdit/Admin/FormBuilder/edit.html.twig"
             redirect: admin_form_update
 
 admin_form_delete:
@@ -53,7 +53,7 @@ admin_form_element_choose:
     defaults:
         _controller: symedit.controller.form_element:chooseAction
         _sylius:
-            template: @SymEdit/Admin/FormElement/choose.html.twig
+            template: "@SymEdit/Admin/FormElement/choose.html.twig"
 
 admin_form_element_create:
     path: /{formId}/element/{type}/new
@@ -61,7 +61,7 @@ admin_form_element_create:
     defaults:
         _controller: symedit.controller.form_element:createAction
         _sylius:
-            template: @SymEdit/Admin/FormElement/new.html.twig
+            template: "@SymEdit/Admin/FormElement/new.html.twig"
             redirect:
                 route: admin_form_show
                 parameters: { id: $formId }
@@ -72,7 +72,7 @@ admin_form_element_update:
     defaults:
         _controller: symedit.controller.form_element:updateAction
         _sylius:
-            template: @SymEdit/Admin/FormElement/edit.html.twig
+            template: "@SymEdit/Admin/FormElement/edit.html.twig"
             redirect: admin_form_element_update
 
 admin_form_element_reorder:
@@ -82,6 +82,8 @@ admin_form_element_reorder:
         _controller: symedit.controller.form_element:reorderAction
         _sylius:
             sortable_position: position
+            criteria:
+                id: $id
 
 admin_form_element_delete:
     path: /{formId}/element/{id}/delete

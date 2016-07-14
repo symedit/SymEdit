@@ -33,10 +33,10 @@ class UserChooseType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         // Set Defaults
-        $resolver->setDefaults(array(
+        $resolver->setDefaults([
             'class' => $this->userClass,
             'admin' => false,
-        ));
+        ]);
 
         // Query builder relies on option so create callback
         $resolver->setDefault('query_builder', function (Options $options) {

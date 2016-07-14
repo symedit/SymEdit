@@ -38,10 +38,10 @@ class SymEditMailChimpExtension extends Extension implements PrependExtensionInt
             return;
         }
 
-        $container->prependExtensionConfig('symedit', array(
-            'template_locations' => array(
+        $container->prependExtensionConfig('symedit', [
+            'template_locations' => [
                 '@SymEditMailChimpBundle/Resources/views',
-            ),
-        ));
+            ],
+        ]);
     }
 }

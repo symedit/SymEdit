@@ -19,6 +19,6 @@ class ThemeLoader implements FormulaLoaderInterface
 {
     public function load(ResourceInterface $resource)
     {
-        return $resource instanceof ThemeResource ? $resource->getContent() : array();
+        return $resource instanceof ThemeResource ? $resource->getContent() : [];
     }
 }

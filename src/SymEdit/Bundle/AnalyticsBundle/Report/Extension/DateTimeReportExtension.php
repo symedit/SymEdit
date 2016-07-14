@@ -35,9 +35,9 @@ class DateTimeReportExtension extends AbstractReportExtension
 
     public function setDefaultOptions(OptionsResolver $resolver)
     {
-        $resolver->setDefaults(array(
+        $resolver->setDefaults([
             'date_start' => null,
             'date_end' => null,
-        ));
+        ]);
     }
 }

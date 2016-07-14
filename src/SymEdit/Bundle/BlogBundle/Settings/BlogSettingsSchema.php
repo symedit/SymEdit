@@ -20,18 +20,18 @@ class BlogSettingsSchema implements SchemaInterface
     public function buildForm(FormBuilderInterface $builder)
     {
         $builder
-            ->add('max_posts', 'integer', array(
+            ->add('max_posts', 'integer', [
                 'label' => 'symedit.settings.blog.max_posts',
-            ))
+            ])
         ;
     }
 
     public function buildSettings(SettingsBuilderInterface $builder)
     {
         $builder
-            ->setDefaults(array(
+            ->setDefaults([
                 'max_posts' => 3,
-            ))
+            ])
         ;
     }
 }

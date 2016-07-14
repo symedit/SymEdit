@@ -48,6 +48,7 @@ class AppKernel extends Kernel
 
             new Sylius\Bundle\ResourceBundle\SyliusResourceBundle(),
             new Sylius\Bundle\SettingsBundle\SyliusSettingsBundle(),
+            new winzou\Bundle\StateMachineBundle\winzouStateMachineBundle(),
             new JMS\SerializerBundle\JMSSerializerBundle($this),
             new JMS\AopBundle\JMSAopBundle(),
             new Knp\Bundle\MenuBundle\KnpMenuBundle(),

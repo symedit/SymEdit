@@ -20,20 +20,20 @@ class Builder implements MenuBuilderInterface
     {
         $site = $menu->getRootNode()->getChild('site');
 
-        $site->addChild('SEO Export', array(
+        $site->addChild('SEO Export', [
             'icon' => 'search',
             'route' => 'symedit_seo_export',
-            'extras' => array(
+            'extras' => [
                 'is_granted' => 'ROLE_ADMIN_WEBMASTER',
-            ),
-        ));
+            ],
+        ]);
 
-        $site->addChild('SEO Analyze', array(
+        $site->addChild('SEO Analyze', [
             'icon' => 'check',
             'route' => 'symedit_seo_analyze',
-            'extras' => array(
+            'extras' => [
                 'is_granted' => 'ROLE_ADMIN_WEBMASTER',
-            ),
-        ));
+            ],
+        ]);
     }
 }

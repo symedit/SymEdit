@@ -24,16 +24,16 @@ class CategoryTest extends TestCase
     protected function getCategory()
     {
         $category = new Category();
-        $category->setPosts(new ArrayCollection(array(
+        $category->setPosts(new ArrayCollection([
             new Post(),
-        )));
+        ]));
 
         return $category;
     }
 
     public function testSeo()
     {
-        $seo = array('title' => 'foo');
+        $seo = ['title' => 'foo'];
         $category = $this->getCategory()->setSeo($seo);
 
         $this->assertEquals($seo, $category->getSeo());

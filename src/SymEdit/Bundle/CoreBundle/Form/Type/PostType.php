@@ -22,53 +22,53 @@ class PostType extends BasePostType
         parent::buildBasicForm($builder, $options);
 
         $builder
-            ->add('image', 'symedit_image_choose', array(
+            ->add('image', 'symedit_image_choose', [
                 'required' => false,
                 'show_image' => true,
                 'label' => 'symedit.form.post.image',
-            ))
+            ])
         ;
     }
 
     public function buildSeoForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('seo', 'symedit_seo', array(
+            ->add('seo', 'symedit_seo', [
                 'horizontal_label_offset_class' => '',
-            ))
+            ])
         ;
     }
 
     public function configureOptions(OptionsResolver $resolver)
     {
-        $resolver->setDefaults(array(
-            'tabs_data' => array(
-                'basic' => array(
+        $resolver->setDefaults([
+            'tabs_data' => [
+                'basic' => [
                     'label' => 'symedit.form.post.tab.basic',
                     'icon' => 'info-circle',
-                ),
-                'seo' => array(
+                ],
+                'seo' => [
                     'label' => 'symedit.form.post.tab.seo',
                     'icon' => 'search',
-                ),
-                'summary' => array(
+                ],
+                'summary' => [
                     'label' => 'symedit.form.post.tab.summary',
                     'horizontal' => false,
                     'icon' => 'file',
-                    'attr' => array(
+                    'attr' => [
                         'class' => 'full',
-                    ),
-                ),
-                'content' => array(
+                    ],
+                ],
+                'content' => [
                     'label' => 'symedit.form.post.tab.content',
                     'icon' => 'file',
                     'horizontal' => false,
-                    'attr' => array(
+                    'attr' => [
                         'class' => 'full',
-                    ),
-                ),
-            ),
-        ));
+                    ],
+                ],
+            ],
+        ]);
     }
 
     public function buildForm(FormBuilderInterface $builder, array $options)

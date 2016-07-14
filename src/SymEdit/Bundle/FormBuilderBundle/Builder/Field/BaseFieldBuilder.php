@@ -20,14 +20,14 @@ class BaseFieldBuilder extends AbstractFieldBuilder
     public function buildOptionsForm(FormBuilderInterface $builder)
     {
         $builder
-            ->add('label', 'text', array(
+            ->add('label', 'text', [
                 'required' => false,
                 'property_path' => '[label]',
-            ))
-            ->add('required', 'checkbox', array(
+            ])
+            ->add('required', 'checkbox', [
                 'required' => false,
                 'property_path' => '[required]',
-            ))
+            ])
         ;
     }
 

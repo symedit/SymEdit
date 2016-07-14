@@ -32,33 +32,33 @@ class SubscribeStrategy extends AbstractWidgetStrategy
 
     public function execute(WidgetInterface $widget)
     {
-        $form = $this->formFactory->create(new SubscribeType(), null, array(
+        $form = $this->formFactory->create(new SubscribeType(), null, [
             'action' => $this->router->generate('symedit_mailchimp_subscribe'),
             'method' => 'POST',
             'list' => $widget->getOption('list'),
-        ));
+        ]);
 
-        return $this->render($widget, array(
+        return $this->render($widget, [
             'form' => $form->createView(),
             'placeholder' => $widget->getOption('placeholder'),
             'button_text' => $widget->getOption('button_text'),
-        ));
+        ]);
     }
 
     public function getDefaultOptions(OptionsResolver $resolver)
     {
-        $resolver->setDefaults(array(
+        $resolver->setDefaults([
             'placeholder' => 'you@email.com',
             'button_text' => 'Subscribe!',
             'template' => '@SymEdit/Widget/MailChimp/subscribe-form.html.twig',
-        ));
+        ]);
     }
 
     public function getCacheOptions(WidgetInterface $widget)
     {
-        return array(
+        return [
             'private' => true,
-        );
+        ];
     }
 
     public function buildForm(FormBuilderInterface $builder)

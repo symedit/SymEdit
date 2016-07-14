@@ -19,9 +19,9 @@ class PageRepository extends EntityRepository implements PageRepositoryInterface
 {
     public function findRoot()
     {
-        return $this->findOneBy(array(
+        return $this->findOneBy([
             'root' => true,
-        ));
+        ]);
     }
 
     public function getIterator($display = true)
@@ -36,9 +36,9 @@ class PageRepository extends EntityRepository implements PageRepositoryInterface
 
     public function findPageControllers()
     {
-        return $this->findBy(array(
+        return $this->findBy([
             'pageController' => true,
-        ));
+        ]);
     }
 
     public function getLastUpdated()

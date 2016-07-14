@@ -30,10 +30,10 @@ class ThemeResource implements ResourceInterface
 
     public function getContent()
     {
-        $formulas = array(
+        $formulas = [
             'theme_css' => $this->getFormula($this->theme->getStylesheets()),
             'theme_js' => $this->getFormula($this->theme->getJavascripts()),
-        );
+        ];
 
         return $formulas;
     }
@@ -41,19 +41,19 @@ class ThemeResource implements ResourceInterface
     protected function getFormula($data)
     {
         if (empty($data)) {
-            return array(array(), array(), array());
+            return [[], [], []];
         }
 
-        return array(
-            isset($data['inputs']) ? $this->prepareInputs($data['inputs']) : array(),
-            isset($data['filters']) ? $data['filters'] : array(),
-            isset($data['options']) ? $data['options'] : array(),
-        );
+        return [
+            isset($data['inputs']) ? $this->prepareInputs($data['inputs']) : [],
+            isset($data['filters']) ? $data['filters'] : [],
+            isset($data['options']) ? $data['options'] : [],
+        ];
     }
 
     protected function prepareInputs($inputs)
     {
-        $prepared = array();
+        $prepared = [];
 
         foreach ($inputs as $input) {
             if (!$this->isThemeResource($input)) {

@@ -62,15 +62,13 @@ fos_user:
     registration:
         confirmation:
             enabled: true
-            template: @SymEdit/Email/confirm.html.twig
+            template: "@SymEdit/Email/confirm.html.twig"
     resetting:
         email:
-            template: @SymEdit/Email/resetting.html.twig
+            template: "@SymEdit/Email/resetting.html.twig"
 
 # Rest Configuration
 fos_rest:
-    service:
-        view_handler: symedit.seo_view_handler
     view:
         formats:
             json: true
@@ -138,10 +136,11 @@ stof_doctrine_extensions:
 # Sylius Settings
 sylius_settings:
     driver: doctrine/orm
-    classes:
-        parameter:
-            model: SymEdit\Bundle\CoreBundle\Model\Parameter
-            repository: SymEdit\Bundle\CoreBundle\Doctrine\ORM\ParameterRepository
+    resources:
+        settings:
+            classes:
+                model: SymEdit\Bundle\CoreBundle\Model\Settings
+                repository: SymEdit\Bundle\CoreBundle\Doctrine\ORM\SettingsRepository
 
 doctrine_cache:
     providers:

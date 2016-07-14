@@ -51,7 +51,7 @@ class WidgetAreaTest extends TestCase
         $widget2 = new Widget();
         $widget3 = new Widget();
 
-        $widgets = new ArrayCollection(array($widget1, $widget2));
+        $widgets = new ArrayCollection([$widget1, $widget2]);
         $widgetArea->setWidgets($widgets);
         $this->assertEquals($widgets, $widgetArea->getWidgets());
 

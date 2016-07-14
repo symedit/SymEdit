@@ -22,15 +22,15 @@ class EmailFieldBuilder extends AbstractFieldBuilder
     public function buildOptionsForm(FormBuilderInterface $builder)
     {
         $builder
-            ->add('placeholder', 'text', array(
+            ->add('placeholder', 'text', [
                 'required' => false,
                 'property_path' => '[attr][placeholder]',
-            ))
-            ->add('replyTo', 'checkbox', array(
+            ])
+            ->add('replyTo', 'checkbox', [
                 'required' => false,
                 'property_path' => '[extra][replyTo]',
                 'help_block' => 'If filled, use as a reply-to field so notification emails will reply to this address.',
-            ))
+            ])
         ;
     }
 

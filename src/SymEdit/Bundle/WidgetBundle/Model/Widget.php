@@ -11,7 +11,9 @@
 
 namespace SymEdit\Bundle\WidgetBundle\Model;
 
-class Widget implements WidgetInterface
+use Sylius\Component\Resource\Model\ResourceInterface;
+
+class Widget implements WidgetInterface, ResourceInterface
 {
     /**
      * @var int
@@ -70,9 +72,9 @@ class Widget implements WidgetInterface
 
     public function __construct()
     {
-        $this->setOptions(array());
+        $this->setOptions([]);
         $this->setVisibility(self::INCLUDE_ALL);
-        $this->setAssoc(array());
+        $this->setAssoc([]);
         $this->setUpdatedAt(new \DateTime());
     }
 

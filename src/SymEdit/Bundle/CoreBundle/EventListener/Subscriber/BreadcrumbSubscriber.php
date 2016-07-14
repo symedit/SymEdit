@@ -28,9 +28,9 @@ class BreadcrumbSubscriber implements EventSubscriberInterface
 
     public static function getSubscribedEvents()
     {
-        return array(
-            'kernel.controller' => array('buildPageCrumbs', 0),
-        );
+        return [
+            'kernel.controller' => ['buildPageCrumbs', 0],
+        ];
     }
 
     public function buildPageCrumbs(FilterControllerEvent $event)
@@ -52,8 +52,8 @@ class BreadcrumbSubscriber implements EventSubscriberInterface
             }
         }
 
-        $request->attributes->add(array(
+        $request->attributes->add([
             '_breadcrumbs' => $this->breadcrumbs,
-        ));
+        ]);
     }
 }

@@ -32,13 +32,13 @@ class SitemapFetcher extends ContainerAware
         if (!$this->hasRoute($routeName) && $routeName[0] !== '$') {
             // Ignore routes that are not found?
             if ($parameters['route']['ignore']) {
-                return array();
+                return [];
             }
 
             throw new \Exception(sprintf('Not ignoring unfound routes - Could not find "%s"', $routeName));
         }
 
-        $routes = array();
+        $routes = [];
         $objects = $this->getObjects($parameters);
 
         foreach ($objects as $object) {
@@ -74,7 +74,7 @@ class SitemapFetcher extends ContainerAware
 
         $repository = $this->container->get($parameters['repository']);
 
-        return call_user_func(array($repository, $parameters['method']));
+        return call_user_func([$repository, $parameters['method']]);
     }
 
     protected function passCallbacks($object, array $callbacks)
@@ -84,7 +84,7 @@ class SitemapFetcher extends ContainerAware
         }
 
         foreach ($callbacks as $callback) {
-            if (!call_user_func(array($object, $callback))) {
+            if (!call_user_func([$object, $callback])) {
                 return false;
             }
         }
@@ -105,11 +105,11 @@ class SitemapFetcher extends ContainerAware
         $routeName = $this->resolveParam($object, $parameters['route']['path']);
         $routeParams = $this->resolveRouteParams($object, $parameters['route']['params']);
 
-        $entry = array(
+        $entry = [
             'url' => $this->getRouter()->generate($routeName, $routeParams, true),
             'changefreq' => $parameters['changefreq'],
             'priority' => $parameters['priority'],
-        );
+        ];
 
         if ($parameters['lastmod']) {
             $entry['lastmod'] = $this->getPropertyAccessor()->getValue($object, $parameters['lastmod']);
@@ -129,7 +129,7 @@ class SitemapFetcher extends ContainerAware
      */
     protected function resolveRouteParams($object, $routeParams)
     {
-        $resolvedParams = array();
+        $resolvedParams = [];
 
         foreach ($routeParams as $key => $value) {
             $resolvedParams[$key] = $this->resolveParam($object, $value);

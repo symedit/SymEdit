@@ -27,68 +27,68 @@ class PostType extends AbstractType
     public function buildBasicForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('title', 'text', array(
+            ->add('title', 'text', [
                 'label' => 'symedit.form.post.title',
-            ))
-            ->add('author', 'symedit_user_choose', array(
+            ])
+            ->add('author', 'symedit_user_choose', [
                 'admin' => true,
                 'choice_label' => 'profile.fullname',
                 'label' => 'symedit.form.post.author',
-            ))
-            ->add('status', 'choice', array(
-                'choices' => array(
+            ])
+            ->add('status', 'choice', [
+                'choices' => [
                     PostInterface::DRAFT => 'symedit.form.post.status.choices.draft',
                     PostInterface::PUBLISHED => 'symedit.form.post.status.choices.published',
                     PostInterface::SCHEDULED => 'symedit.form.post.status.choices.scheduled',
-                ),
+                ],
                 'label' => 'symedit.form.post.status.label',
-            ))
-            ->add('publishedAt', 'datetime', array(
+            ])
+            ->add('publishedAt', 'datetime', [
                 'label' => 'symedit.form.post.published_at.label',
                 'help_block' => 'symedit.form.post.published_at.help',
                 'widget' => 'single_text',
                 'format' => 'yyyy-MM-dd HH:mm',
-                'attr' => array(
+                'attr' => [
                     'class' => 'datetimepicker',
-                ),
-            ))
-            ->add('categories', 'entity', array(
+                ],
+            ])
+            ->add('categories', 'entity', [
                 'choice_label' => 'title',
                 'class' => $this->categoryClass,
                 'multiple' => true,
                 'expanded' => true,
                 'label' => 'symedit.form.post.categories',
-            ))
+            ])
         ;
     }
 
     public function buildSummaryForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('summary', 'textarea', array(
+            ->add('summary', 'textarea', [
                 'label_render' => false,
-                'attr' => array(
+                'attr' => [
                     'class' => 'wysiwyg-editor',
                     'style' => 'height:300px',
                     'placeholder' => 'Post Summary...',
-                ),
+                ],
                 'required' => false,
-            ))
+            ])
         ;
     }
 
     public function buildContentForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('content', 'textarea', array(
+            ->add('content', 'textarea', [
                 'label_render' => false,
-                'attr' => array(
+                'attr' => [
                     'class' => 'wysiwyg-editor',
                     'style' => 'height:500px',
                     'placeholder' => 'Post Content...',
-                ),
+                ],
                 'required' => false,
-            ))
+            ])
         ;
     }
 

@@ -11,7 +11,9 @@
 
 namespace SymEdit\Bundle\MediaBundle\Model;
 
-interface MediaInterface
+use Sylius\Component\Resource\Model\ResourceInterface;
+
+interface MediaInterface extends ResourceInterface
 {
     public function getId();
 

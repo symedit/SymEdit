@@ -21,6 +21,8 @@
         <service id="symedit.listener.controller_listener" class="%symedit.listener.current_page.class%">
             <argument type="service" id="service_container" />
             <argument type="service" id="symedit.repository.page" />
+            <argument type="service" id="symedit.factory.page" />
+
             <tag name="kernel.event_listener" event="kernel.request" method="onKernelRequest" priority="-128" />
         </service>
 

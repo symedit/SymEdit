@@ -22,28 +22,28 @@ class SubscribeType extends AbstractType
     {
         // If there is a list in the data use that
         if ($builder->getData() !== null) {
-            $options = array();
+            $options = [];
         } else {
-            $options = array(
+            $options = [
                 'data' => $options['list'],
-            );
+            ];
         }
 
         $builder
-            ->add('email', 'email', array(
-                'constraints' => array(
+            ->add('email', 'email', [
+                'constraints' => [
                     new Email(),
-                ),
-            ))
+                ],
+            ])
             ->add('list', 'hidden', $options)
         ;
     }
 
     public function configureOptions(OptionsResolver $resolver)
     {
-        $resolver->setDefaults(array(
+        $resolver->setDefaults([
             'list' => null,
-        ));
+        ]);
     }
 
     public function getName()

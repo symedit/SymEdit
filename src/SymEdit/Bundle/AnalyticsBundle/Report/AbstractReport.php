@@ -23,9 +23,9 @@ abstract class AbstractReport implements ReportInterface
             ->from($options['class'], 'c')
             ->leftJoin($options['visitClass'], 'v', 'WITH', 'c.id = v.identifier AND v.model = :model')
             ->groupBy('v.identifier')
-            ->setParameters(array(
+            ->setParameters([
                 'model' => $options['model'],
-            ))
+            ])
         ;
     }
 

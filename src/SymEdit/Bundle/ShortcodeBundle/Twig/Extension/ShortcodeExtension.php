@@ -25,9 +25,9 @@ class ShortcodeExtension extends \Twig_Extension
 
     public function getFilters()
     {
-        return array(
-            new \Twig_SimpleFilter('shortcode', array($this, 'renderShortcodes')),
-        );
+        return [
+            new \Twig_SimpleFilter('shortcode', [$this, 'renderShortcodes']),
+        ];
     }
 
     /**

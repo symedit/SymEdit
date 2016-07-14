@@ -17,7 +17,8 @@ framework:
     templating:
         engines:                ['twig']
     default_locale:             %locale%
-    session:                    ~
+    session:
+        handler_id:             ~
     fragments:                  ~
     http_method_override:       true
 

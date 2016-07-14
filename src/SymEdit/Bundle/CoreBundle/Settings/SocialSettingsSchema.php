@@ -20,44 +20,44 @@ class SocialSettingsSchema implements SchemaInterface
     public function buildForm(FormBuilderInterface $builder)
     {
         $builder
-            ->add('facebook', null, array(
+            ->add('facebook', null, [
                 'required' => false,
-                'attr' => array('placeholder' => 'http://facebook.com'),
-            ))
-            ->add('twitter', null, array(
+                'attr' => ['placeholder' => 'http://facebook.com'],
+            ])
+            ->add('twitter', null, [
                 'required' => false,
-                'attr' => array('placeholder' => 'http://twitter.com'),
-            ))
-            ->add('youtube', null, array(
+                'attr' => ['placeholder' => 'http://twitter.com'],
+            ])
+            ->add('youtube', null, [
                 'label' => 'YouTube',
                 'required' => false,
-                'attr' => array('placeholder' => 'http://youtube.com'),
-            ))
-            ->add('google_plus', null, array(
+                'attr' => ['placeholder' => 'http://youtube.com'],
+            ])
+            ->add('google_plus', null, [
                 'label' => 'Google+',
                 'required' => false,
-                'attr' => array('placeholder' => 'http://plus.google.com'),
-            ))
-            ->add('linkedin', null, array(
+                'attr' => ['placeholder' => 'http://plus.google.com'],
+            ])
+            ->add('linkedin', null, [
                 'label' => 'LinkedIn',
                 'required' => false,
-                'attr' => array('placeholder' => 'http://linkedin.com'),
-            ))
-            ->add('pinterest', null, array(
+                'attr' => ['placeholder' => 'http://linkedin.com'],
+            ])
+            ->add('pinterest', null, [
                 'required' => false,
-                'attr' => array('placeholder' => 'http://pinterest.com'),
-            ))
-            ->add('instagram', null, array(
+                'attr' => ['placeholder' => 'http://pinterest.com'],
+            ])
+            ->add('instagram', null, [
                 'required' => false,
-                'attr' => array('placeholder' => 'http://instagram.com'),
-            ))
+                'attr' => ['placeholder' => 'http://instagram.com'],
+            ])
         ;
     }
 
     public function buildSettings(SettingsBuilderInterface $builder)
     {
         $builder
-            ->setDefaults(array(
+            ->setDefaults([
                 'facebook' => null,
                 'twitter' => null,
                 'youtube' => null,
@@ -65,7 +65,7 @@ class SocialSettingsSchema implements SchemaInterface
                 'linkedin' => null,
                 'pinterest' => null,
                 'instagram' => null,
-            ))
+            ])
         ;
     }
 }

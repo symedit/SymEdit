@@ -13,14 +13,14 @@ namespace SymEdit\Bundle\ShortcodeBundle\Model;
 
 class ShortcodeSettings implements ShortcodeSettingsInterface
 {
-    protected $settings = array();
+    protected $settings = [];
 
-    public function __construct(array $settings = array())
+    public function __construct(array $settings = [])
     {
         $this->setSettings($settings);
     }
 
-    public function setSettings(array $settings = array())
+    public function setSettings(array $settings = [])
     {
         $this->settings = array_replace_recursive($this->settings, $settings);
     }

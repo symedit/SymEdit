@@ -20,14 +20,14 @@ class SeoSettingsSchema implements SchemaInterface
     public function buildForm(FormBuilderInterface $builder)
     {
         $builder
-            ->add('head_extra', 'textarea', array(
+            ->add('head_extra', 'textarea', [
                 'label' => 'symedit.settings.seo.head_extra',
                 'required' => false,
-                'attr' => array('rows' => 5),
-            ))
-            ->add('business_type', 'choice', array(
+                'attr' => ['rows' => 5],
+            ])
+            ->add('business_type', 'choice', [
                 'label' => 'symedit.settings.seo.business_type',
-                'choices' => array(
+                'choices' => [
                     'LocalBusiness' => 'Local Business (Default)',
                     'AnimalShelter' => 'Animal Shelter',
                     'AutomotiveBusiness' => 'Automotive Business',
@@ -94,18 +94,18 @@ class SeoSettingsSchema implements SchemaInterface
                     'TelevisionStation' => 'Television Station',
                     'TouristInformationCenter' => 'Tourist Information Center',
                     'TravelAgency' => 'Travel Agency',
-                ),
-            ))
+                ],
+            ])
         ;
     }
 
     public function buildSettings(SettingsBuilderInterface $builder)
     {
         $builder
-            ->setDefaults(array(
+            ->setDefaults([
                 'head_extra' => null,
                 'business_type' => 'LocalBusiness',
-            ))
+            ])
         ;
     }
 }

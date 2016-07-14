@@ -12,8 +12,9 @@
 namespace SymEdit\Bundle\FormBuilderBundle\Model;
 
 use Doctrine\Common\Collections\ArrayCollection;
+use Sylius\Component\Resource\Model\ResourceInterface;
 
-interface FormInterface
+interface FormInterface extends ResourceInterface
 {
     /**
      * @return int Form ID

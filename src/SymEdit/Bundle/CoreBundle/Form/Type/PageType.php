@@ -31,91 +31,91 @@ class PageType extends AbstractType
     public function buildBasicForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('title', 'text', array(
+            ->add('title', 'text', [
                 'label' => 'symedit.form.page.title',
-            ))
-            ->add('name', 'text', array(
+            ])
+            ->add('name', 'text', [
                 'label' => 'symedit.form.page.name.label',
-                'help_label_popover' => array(
+                'help_label_popover' => [
                     'title' => 'symedit.form.page.name.popover.title',
                     'content' => 'symedit.form.page.name.popover.content',
                     'icon' => 'info-circle',
-                ),
-            ))
-            ->add('parent', 'symedit_page_choose', array(
+                ],
+            ])
+            ->add('parent', 'symedit_page_choose', [
                 'label' => 'symedit.form.page.parent',
-            ))
-            ->add('tagline', 'text', array(
+            ])
+            ->add('tagline', 'text', [
                 'required' => false,
                 'label' => 'symedit.form.page.tagline',
-            ))
-            ->add('display', 'checkbox', array(
+            ])
+            ->add('display', 'checkbox', [
                 'required' => false,
                 'help_block' => 'symedit.form.page.display.help',
                 'label' => 'symedit.form.page.display.label',
-            ))
-            ->add('image', 'symedit_image_choose', array(
+            ])
+            ->add('image', 'symedit_image_choose', [
                 'required' => false,
                 'show_image' => true,
                 'label' => 'symedit.form.page.image',
-            ))
+            ])
         ;
     }
 
     public function buildTemplateForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('template', 'template', array(
+            ->add('template', 'template', [
                 'label' => 'symedit.form.page.template',
                 'directory' => 'Page',
                 'display_layouts' => true,
-            ))
+            ])
         ;
     }
 
     public function buildSeoForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('seo', 'symedit_seo', array(
+            ->add('seo', 'symedit_seo', [
                 'horizontal_label_offset_class' => '',
-            ))
-            ->add('crawl', 'checkbox', array(
+            ])
+            ->add('crawl', 'checkbox', [
                 'required' => false,
                 'help_block' => 'symedit.form.page.crawl.help',
                 'label' => 'symedit.form.page.crawl.label',
-            ))
+            ])
         ;
     }
 
     public function buildSummaryForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('summary', 'textarea', array(
-                'attr' => array(
+            ->add('summary', 'textarea', [
+                'attr' => [
                     'class' => 'wysiwyg-editor',
                     'style' => 'height: 250px',
                     'placeholder' => 'Page Summary...',
-                 ),
+                 ],
                 'label' => 'symedit.form.page.summary',
                 'required' => false,
                 'label_render' => false,
-            ))
+            ])
         ;
     }
 
     public function buildContentForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('content', 'textarea', array(
-                'attr' => array(
+            ->add('content', 'textarea', [
+                'attr' => [
                     'class' => 'wysiwyg-editor',
                     'style' => 'height:500px',
                     'placeholder' => 'Page Content',
-                ),
+                ],
                 'required' => false,
                 'label' => 'symedit.form.page.content',
                 'label_render' => false,
-            ))
+            ])
         ;
     }
 
@@ -128,16 +128,16 @@ class PageType extends AbstractType
     public function buildAdvancedForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('pageController', 'checkbox', array(
+            ->add('pageController', 'checkbox', [
                 'required' => false,
                 'label' => 'symedit.form.page.pagecontroller',
-            ))
-            ->add('pageControllerPath', 'text', array(
-                'attr' => array('class' => 'span6'),
+            ])
+            ->add('pageControllerPath', 'text', [
+                'attr' => ['class' => 'span6'],
                 'required' => false,
                 'label' => 'symedit.form.page.pagecontrollerpath.label',
                 'help_block' => 'symedit.form.page.pagecontrollerpath.help',
-            ))
+            ])
         ;
     }
 
@@ -151,48 +151,48 @@ class PageType extends AbstractType
 
     public function configureOptions(OptionsResolver $resolver)
     {
-        $resolver->setDefaults(array(
-            'tabs_data' => array(
-                'basic' => array(
+        $resolver->setDefaults([
+            'tabs_data' => [
+                'basic' => [
                     'label' => 'symedit.form.page.tabs.basic',
                     'icon' => 'info-circle',
-                ),
-                'template' => array(
+                ],
+                'template' => [
                     'label' => 'symedit.form.page.tabs.template',
                     'icon' => 'columns',
-                ),
-                'seo' => array(
+                ],
+                'seo' => [
                     'label' => 'symedit.form.page.tabs.seo',
                     'icon' => 'search',
                     'inherit_data' => true,
-                ),
-                'summary' => array(
+                ],
+                'summary' => [
                     'label' => 'symedit.form.page.tabs.summary',
                     'icon' => 'file',
                     'horizontal' => false,
-                    'attr' => array(
+                    'attr' => [
                         'class' => 'full',
-                    ),
-                ),
-                'content' => array(
+                    ],
+                ],
+                'content' => [
                     'label' => 'symedit.form.page.tabs.content',
                     'icon' => 'file',
                     'horizontal' => false,
-                    'attr' => array(
+                    'attr' => [
                         'class' => 'full',
-                    ),
-                ),
-                'displayOptions' => array(
+                    ],
+                ],
+                'displayOptions' => [
                     'label' => 'Display',
                     'icon' => 'cog',
                     'inherit_data' => false,
-                ),
-                'advanced' => array(
+                ],
+                'advanced' => [
                     'label' => 'symedit.form.page.tabs.advanced',
                     'icon' => 'cogs',
-                ),
-            ),
-        ));
+                ],
+            ],
+        ]);
     }
 
     public function getName()

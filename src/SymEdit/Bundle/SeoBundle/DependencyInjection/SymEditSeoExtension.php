@@ -43,7 +43,7 @@ class SymEditSeoExtension extends Extension
         $this->loadPreferences($container, $config['models']);
     }
 
-    protected function remapParameters(ContainerBuilder $container, array $params = array(), $prefix = null)
+    protected function remapParameters(ContainerBuilder $container, array $params = [], $prefix = null)
     {
         foreach ($params as $key => $value) {
             if (is_array($value)) {
@@ -56,7 +56,7 @@ class SymEditSeoExtension extends Extension
 
     protected function remapParameter(ContainerBuilder $container, $key, $value, $prefix = null)
     {
-        $parameterParts = array($this->getAlias());
+        $parameterParts = [$this->getAlias()];
 
         if ($prefix !== null) {
             $parameterParts[] = $prefix;
@@ -70,7 +70,7 @@ class SymEditSeoExtension extends Extension
 
     protected function loadPreferences(ContainerBuilder $container, array $models)
     {
-        $preferences = array();
+        $preferences = [];
 
         foreach ($models as $model => $props) {
             $preferences[] = new Definition\SeoPreferenceDefinition($model, $props['title'], $props['description']);

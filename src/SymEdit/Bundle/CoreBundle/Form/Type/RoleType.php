@@ -30,7 +30,7 @@ class RoleType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $roles = $this->repository->findAll();
-        $choices = array();
+        $choices = [];
 
         foreach ($roles as $role) {
             if ($this->auth->isGranted($role->getRole())) {
@@ -38,12 +38,12 @@ class RoleType extends AbstractType
             }
         }
 
-        $resolver->setDefaults(array(
+        $resolver->setDefaults([
             'choices' => $choices,
             'multiple' => true,
             'expanded' => true,
             'required' => false,
-        ));
+        ]);
     }
 
     public function getParent()

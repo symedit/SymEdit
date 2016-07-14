@@ -32,7 +32,7 @@ class SymEditExtension extends \Twig_Extension implements \Twig_Extension_Global
 
     public function getGlobals()
     {
-        $globals = array();
+        $globals = [];
 
         if ($this->container->has('request')) {
             $request = $this->container->get('request');
@@ -46,17 +46,17 @@ class SymEditExtension extends \Twig_Extension implements \Twig_Extension_Global
 
     public function getFilters()
     {
-        return array(
-            new \Twig_SimpleFilter('plain', array($this, 'plain')),
-        );
+        return [
+            new \Twig_SimpleFilter('plain', [$this, 'plain']),
+        ];
     }
 
     public function getFunctions()
     {
-        return array(
-            new \Twig_SimpleFunction('route_exists', array($this, 'routeExists')),
-            new \Twig_SimpleFunction('symedit_breadcrumbs_get', array($this, 'getBreadcrumbs')),
-        );
+        return [
+            new \Twig_SimpleFunction('route_exists', [$this, 'routeExists']),
+            new \Twig_SimpleFunction('symedit_breadcrumbs_get', [$this, 'getBreadcrumbs']),
+        ];
     }
 
     public function getBreadcrumbs()
@@ -78,7 +78,7 @@ class SymEditExtension extends \Twig_Extension implements \Twig_Extension_Global
     {
         $text = strip_tags($text);
         $text = htmlentities($text);
-        $text = str_replace(array("\n", "\r"), ' ', $text);
+        $text = str_replace(["\n", "\r"], ' ', $text);
         $text = preg_replace('#\s+#', ' ', $text);
         $len = strlen($text);
 

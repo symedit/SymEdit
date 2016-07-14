@@ -12,8 +12,9 @@
 namespace SymEdit\Bundle\UserBundle\Model;
 
 use FOS\UserBundle\Model\User as BaseUser;
+use Sylius\Component\Resource\Model\ResourceInterface;
 
-class User extends BaseUser implements UserInterface
+class User extends BaseUser implements UserInterface, ResourceInterface
 {
     protected $id;
     protected $profile;

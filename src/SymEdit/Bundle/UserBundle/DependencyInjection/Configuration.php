@@ -11,6 +11,19 @@
 
 namespace SymEdit\Bundle\UserBundle\DependencyInjection;
 
+use Sylius\Component\Resource\Factory\Factory;
+use SymEdit\Bundle\ResourceBundle\Controller\ResourceController;
+use SymEdit\Bundle\UserBundle\Controller\UserController;
+use SymEdit\Bundle\UserBundle\Form\Type\AdminProfileType;
+use SymEdit\Bundle\UserBundle\Form\Type\RegistrationFormType;
+use SymEdit\Bundle\UserBundle\Form\Type\UserChooseType;
+use SymEdit\Bundle\UserBundle\Form\Type\UserProfileType;
+use SymEdit\Bundle\UserBundle\Form\Type\UserType;
+use SymEdit\Bundle\UserBundle\Model\AdminProfile;
+use SymEdit\Bundle\UserBundle\Model\Profile;
+use SymEdit\Bundle\UserBundle\Model\ProfileInterface;
+use SymEdit\Bundle\UserBundle\Model\User;
+use SymEdit\Bundle\UserBundle\Model\UserInterface;
 use Symfony\Component\Config\Definition\Builder\ArrayNodeDefinition;
 use Symfony\Component\Config\Definition\Builder\TreeBuilder;
 use Symfony\Component\Config\Definition\ConfigurationInterface;
@@ -40,9 +53,15 @@ class Configuration implements ConfigurationInterface
                         ->end()
                     ->end()
                 ->end()
+                ->arrayNode('registration')
+                    ->addDefaultsIfNotSet()
+                    ->children()
+                        ->scalarNode('class')->defaultValue(RegistrationFormType::class)->end()
+                    ->end()
+                ->end()
             ->end();
 
-        $this->addClassesSection($rootNode);
+        $this->addResourcesSection($rootNode);
 
         return $treeBuilder;
     }
@@ -50,52 +69,80 @@ class Configuration implements ConfigurationInterface
     /**
      * Add classes config to be processed by the Sylius Resource Bundle.
      *
-     * @param \Symfony\Component\Config\Definition\Builder\ArrayNodeDefinition $node
+     * @param ArrayNodeDefinition $node
      */
-    private function addClassesSection(ArrayNodeDefinition $node)
+    private function addResourcesSection(ArrayNodeDefinition $node)
     {
         $node
             ->children()
-                ->arrayNode('classes')
+                ->arrayNode('resources')
                     ->addDefaultsIfNotSet()
                     ->children()
                         ->arrayNode('user')
                             ->addDefaultsIfNotSet()
                             ->children()
-                                ->scalarNode('model')->defaultValue('SymEdit\Bundle\UserBundle\Model\User')->end()
-                                ->scalarNode('controller')->defaultValue('SymEdit\Bundle\UserBundle\Controller\UserController')->end()
-                                ->scalarNode('repository')->end()
-                                ->arrayNode('form')
+                                ->arrayNode('classes')
                                     ->addDefaultsIfNotSet()
                                     ->children()
-                                        ->scalarNode('default')->defaultValue('SymEdit\Bundle\UserBundle\Form\Type\UserType')->end()
-                                        ->scalarNode('choose')->defaultValue('SymEdit\Bundle\UserBundle\Form\Type\UserChooseType')->end()
+                                        ->scalarNode('model')->defaultValue(User::class)->end()
+                                        ->scalarNode('interface')->defaultValue(UserInterface::class)->end()
+                                        ->scalarNode('controller')->defaultValue(UserController::class)->end()
+                                        ->scalarNode('repository')->end()
+                                        ->scalarNode('factory')->defaultValue(Factory::class)->end()
+                                        ->arrayNode('form')
+                                            ->addDefaultsIfNotSet()
+                                            ->children()
+                                                ->scalarNode('default')->defaultValue(UserType::class)->end()
+                                                ->scalarNode('choose')->defaultValue(UserChooseType::class)->end()
+                                            ->end()
+                                        ->end()
                                     ->end()
                                 ->end()
                             ->end()
                         ->end()
+
                         ->arrayNode('profile')
                             ->addDefaultsIfNotSet()
                             ->children()
-                                ->scalarNode('model')->defaultValue('SymEdit\Bundle\UserBundle\Model\Profile')->end()
-                                ->scalarNode('form')->defaultValue('SymEdit\Bundle\UserBundle\Form\Type\UserProfileType')->end()
+                                ->arrayNode('classes')
+                                    ->addDefaultsIfNotSet()
+                                    ->children()
+                                        ->scalarNode('model')->defaultValue(Profile::class)->end()
+                                        ->scalarNode('interface')->defaultValue(ProfileInterface::class)->end()
+                                        ->scalarNode('factory')->defaultValue(Factory::class)->end()
+                                        ->arrayNode('form')
+                                            ->addDefaultsIfNotSet()
+                                            ->children()
+                                                ->scalarNode('default')->defaultValue(UserProfileType::class)->end()
+                                            ->end()
+                                        ->end()
+                                    ->end()
+                                ->end()
                             ->end()
                         ->end()
+
                         ->arrayNode('admin_profile')
                             ->addDefaultsIfNotSet()
                             ->children()
-                                ->scalarNode('model')->defaultValue('SymEdit\Bundle\UserBundle\Model\AdminProfile')->end()
-                                ->scalarNode('controller')->defaultValue('SymEdit\Bundle\ResourceBundle\Controller\ResourceController')->end()
-                                ->scalarNode('form')->defaultValue('SymEdit\Bundle\UserBundle\Form\Type\AdminProfileType')->end()
+                                ->arrayNode('classes')
+                                    ->addDefaultsIfNotSet()
+                                    ->children()
+                                        ->scalarNode('model')->defaultValue(AdminProfile::class)->end()
+                                        ->scalarNode('controller')->defaultValue(ResourceController::class)->end()
+                                        ->scalarNode('factory')->defaultValue(Factory::class)->end()
+                                        ->arrayNode('form')
+                                            ->addDefaultsIfNotSet()
+                                            ->children()
+                                                ->scalarNode('default')->defaultValue(AdminProfileType::class)->end()
+                                            ->end()
+                                        ->end()
+                                    ->end()
+                                ->end()
                             ->end()
                         ->end()
-                        ->arrayNode('registration')
-                            ->addDefaultsIfNotSet()
-                            ->children()
-                                ->scalarNode('form')->defaultValue('SymEdit\Bundle\UserBundle\Form\Type\RegistrationFormType')->end()
-                            ->end()
                     ->end()
                 ->end()
-            ->end();
+            ->end()
+        ;
     }
 }

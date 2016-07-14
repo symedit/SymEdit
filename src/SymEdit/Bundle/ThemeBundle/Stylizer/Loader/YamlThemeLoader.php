@@ -18,7 +18,7 @@ class YamlThemeLoader extends YamlLoader
 {
     public function __construct(Theme $theme)
     {
-        $yamlFiles = array();
+        $yamlFiles = [];
 
         while ($theme !== null) {
             $styles = sprintf('%s/%s.yml', $theme->getThemeDirectory(), 'styles');

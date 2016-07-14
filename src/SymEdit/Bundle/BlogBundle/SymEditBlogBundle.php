@@ -17,24 +17,16 @@ use SymEdit\Bundle\BlogBundle\DependencyInjection\SymEditBlogExtension;
 
 class SymEditBlogBundle extends AbstractResourceBundle
 {
-    public static function getSupportedDrivers()
+    public function getSupportedDrivers()
     {
-        return array(
+        return [
             SyliusResourceBundle::DRIVER_DOCTRINE_ORM,
-        );
+        ];
     }
 
     protected function getBundlePrefix()
     {
         return 'symedit_blog';
-    }
-
-    protected function getModelInterfaces()
-    {
-        return array(
-            'SymEdit\Bundle\BlogBundle\Model\PostInterface' => 'symedit.model.post.class',
-            'SymEdit\Bundle\BlogBundle\Model\CategoryInterface' => 'symedit.model.category.class',
-        );
     }
 
     protected function getModelNamespace()

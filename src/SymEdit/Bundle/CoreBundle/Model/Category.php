@@ -27,7 +27,7 @@ class Category extends BaseCategory implements CategoryInterface
      *
      * @return CategoryInterface
      */
-    public function setSeo(array $seo = array())
+    public function setSeo(array $seo = [])
     {
         $this->seo = $seo;
 

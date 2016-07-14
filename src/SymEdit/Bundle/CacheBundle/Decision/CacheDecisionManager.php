@@ -15,7 +15,7 @@ class CacheDecisionManager
 {
     protected $voters;
 
-    public function __construct(array $voters = array())
+    public function __construct(array $voters = [])
     {
         $this->voters = $voters;
     }

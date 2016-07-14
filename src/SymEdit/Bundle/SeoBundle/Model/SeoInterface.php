@@ -58,7 +58,7 @@ interface SeoInterface extends SeoAbleInterface
      *
      * @param array $metas
      */
-    public function setMetas(array $metas = array());
+    public function setMetas(array $metas = []);
 
     /**
      * Get links for page, grouped by rel attribute.
@@ -72,7 +72,7 @@ interface SeoInterface extends SeoAbleInterface
      *
      * @param array $links
      */
-    public function setLinks(array $links = array());
+    public function setLinks(array $links = []);
 
     /**
      * Gets current SEO Subject.

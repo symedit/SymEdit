@@ -4,7 +4,7 @@ admin_category:
     defaults:
         _controller: symedit.controller.category:indexAction
         _sylius:
-            template: @SymEdit/Admin/Category/index.html.twig
+            template: "@SymEdit/Admin/Category/index.html.twig"
             paginate: false
             repository:
                 method: findRoot
@@ -15,7 +15,7 @@ admin_category_create:
     defaults:
         _controller: symedit.controller.category:createAction
         _sylius:
-            template: @SymEdit/Admin/Category/new.html.twig
+            template: "@SymEdit/Admin/Category/new.html.twig"
             redirect: admin_category
 
 admin_category_update:
@@ -24,7 +24,7 @@ admin_category_update:
     defaults:
         _controller: symedit.controller.category:updateAction
         _sylius:
-            template: @SymEdit/Admin/Category/edit.html.twig
+            template: "@SymEdit/Admin/Category/edit.html.twig"
             redirect:
                 route: admin_category_update
                 parameters: { id: $id }

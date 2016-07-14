@@ -19,7 +19,7 @@ class FieldBuilderRegistry
     protected $baseBuilder;
     protected $fields;
 
-    public function __construct(FormFieldBuilderInterface $baseBuilder, $fields = array())
+    public function __construct(FormFieldBuilderInterface $baseBuilder, $fields = [])
     {
         $this->baseBuilder = $baseBuilder;
         $this->fields = $fields;
@@ -43,7 +43,7 @@ class FieldBuilderRegistry
     public function getFieldBuilders($type)
     {
         $fieldBuilder = $this->getFieldBuilder($type);
-        $builders = array($fieldBuilder);
+        $builders = [$fieldBuilder];
 
         while ($fieldBuilder->getParent() !== null) {
             $fieldBuilder = $this->getFieldBuilder($fieldBuilder->getParent());

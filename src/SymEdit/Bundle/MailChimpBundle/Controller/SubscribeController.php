@@ -34,12 +34,12 @@ class SubscribeController extends Controller
 
             // Attempt to subscribe the user
             try {
-                $mailchimp->subscribe(array(
+                $mailchimp->subscribe([
                     'id' => $data['list'],
-                    'email' => array(
+                    'email' => [
                         'email' => $data['email'],
-                    ),
-                ));
+                    ],
+                ]);
 
                 $error = false;
             } catch (AlreadySubscribedException $e) {
@@ -51,10 +51,10 @@ class SubscribeController extends Controller
             }
         }
 
-        return $this->render('@SymEdit/MailChimp/subscribe.html.twig', array(
+        return $this->render('@SymEdit/MailChimp/subscribe.html.twig', [
             'form' => $form->createView(),
             'error' => $error,
-        ));
+        ]);
     }
 
     protected function getForm()

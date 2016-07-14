@@ -23,17 +23,17 @@ class SymEditMenuProvider implements MenuProviderInterface
     protected $builders;
     protected $extensions;
 
-    public function __construct(MenuFactory $factory, array $builders = array(), array $extensions = array())
+    public function __construct(MenuFactory $factory, array $builders = [], array $extensions = [])
     {
         $this->factory = $factory;
         $this->builders = $builders;
         $this->extensions = $extensions;
     }
 
-    public function get($name, array $options = array())
+    public function get($name, array $options = [])
     {
         // Create a root node
-        $rootOptions = isset($options['root_options']) ? $options['root_options'] : array();
+        $rootOptions = isset($options['root_options']) ? $options['root_options'] : [];
         $menu = new Menu($this->factory->createItem('root', $rootOptions), $name);
 
         // Run all of the other builders to build on the root node
@@ -57,7 +57,7 @@ class SymEditMenuProvider implements MenuProviderInterface
         return $menu->getRootNode();
     }
 
-    public function has($name, array $options = array())
+    public function has($name, array $options = [])
     {
         return array_key_exists($name, $this->builders);
     }

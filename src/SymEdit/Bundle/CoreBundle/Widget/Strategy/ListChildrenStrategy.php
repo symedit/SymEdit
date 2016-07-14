@@ -27,17 +27,17 @@ class ListChildrenStrategy extends AbstractWidgetStrategy
             return false;
         }
 
-        return $this->render($widget, array(
+        return $this->render($widget, [
             'page' => $page,
             'children' => new PageIterator($page),
-        ));
+        ]);
     }
 
     public function getDefaultOptions(OptionsResolver $resolver)
     {
-        $resolver->setDefaults(array(
+        $resolver->setDefaults([
             'template' => '@SymEdit/Widget/list-children.html.twig',
-        ));
+        ]);
     }
 
     public function getName()

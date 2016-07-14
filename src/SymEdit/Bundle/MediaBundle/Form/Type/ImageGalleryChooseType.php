@@ -38,19 +38,19 @@ class ImageGalleryChooseType extends AbstractType
 
     public function configureOptions(OptionsResolver $resolver)
     {
-        $choices = array();
-        $labels = array();
+        $choices = [];
+        $labels = [];
 
         foreach ($this->imageRepository->findAll() as $image) {
             $choices[] = $image;
             $labels[] = $image->getName();
         }
 
-        $resolver->setDefaults(array(
+        $resolver->setDefaults([
             'expanded' => true,
             'multiple' => true,
             'choice_list' => new ObjectChoiceList($choices, 'name'),
-        ));
+        ]);
     }
 
     public function getParent()

@@ -11,6 +11,14 @@
 
 namespace SymEdit\Bundle\ApiBundle\DependencyInjection;
 
+use SymEdit\Bundle\ApiBundle\Model\AccessToken;
+use SymEdit\Bundle\ApiBundle\Model\AccessTokenInterface;
+use SymEdit\Bundle\ApiBundle\Model\AuthCode;
+use SymEdit\Bundle\ApiBundle\Model\AuthCodeInterface;
+use SymEdit\Bundle\ApiBundle\Model\Client;
+use SymEdit\Bundle\ApiBundle\Model\ClientInterface;
+use SymEdit\Bundle\ApiBundle\Model\RefreshToken;
+use SymEdit\Bundle\ApiBundle\Model\RefreshTokenInterface;
 use Symfony\Component\Config\Definition\Builder\ArrayNodeDefinition;
 use Symfony\Component\Config\Definition\Builder\TreeBuilder;
 use Symfony\Component\Config\Definition\ConfigurationInterface;
@@ -30,7 +38,7 @@ class Configuration implements ConfigurationInterface
                 ->scalarNode('driver')->cannotBeEmpty()->defaultValue('doctrine/orm')->end()
             ->end();
 
-        $this->addClassesSection($rootNode);
+        $this->addResourcesSection($rootNode);
 
         return $treeBuilder;
     }
@@ -40,39 +48,68 @@ class Configuration implements ConfigurationInterface
      *
      * @param ArrayNodeDefinition $node
      */
-    private function addClassesSection(ArrayNodeDefinition $node)
+    private function addResourcesSection(ArrayNodeDefinition $node)
     {
         $node
             ->children()
-                ->arrayNode('classes')
+                ->arrayNode('resources')
                     ->addDefaultsIfNotSet()
                     ->children()
+
                         ->arrayNode('client')
                             ->addDefaultsIfNotSet()
                             ->children()
-                                ->scalarNode('model')->defaultValue('SymEdit\Bundle\ApiBundle\Model\Client')->end()
+                                ->arrayNode('classes')
+                                    ->addDefaultsIfNotSet()
+                                    ->children()
+                                        ->scalarNode('model')->defaultValue(Client::class)->end()
+                                        ->scalarNode('interface')->defaultValue(ClientInterface::class)->end()
+                                    ->end()
+                                ->end()
                             ->end()
                         ->end()
+
                         ->arrayNode('access_token')
                             ->addDefaultsIfNotSet()
                             ->children()
-                                ->scalarNode('model')->defaultValue('SymEdit\Bundle\ApiBundle\Model\AccessToken')->end()
+                                ->arrayNode('classes')
+                                    ->addDefaultsIfNotSet()
+                                    ->children()
+                                        ->scalarNode('model')->defaultValue(AccessToken::class)->end()
+                                        ->scalarNode('interface')->defaultValue(AccessTokenInterface::class)->end()
+                                    ->end()
+                                ->end()
                             ->end()
                         ->end()
+
                         ->arrayNode('refresh_token')
                             ->addDefaultsIfNotSet()
                             ->children()
-                                ->scalarNode('model')->defaultValue('SymEdit\Bundle\ApiBundle\Model\RefreshToken')->end()
+                                ->arrayNode('classes')
+                                    ->addDefaultsIfNotSet()
+                                    ->children()
+                                        ->scalarNode('model')->defaultValue(RefreshToken::class)->end()
+                                        ->scalarNode('interface')->defaultValue(RefreshTokenInterface::class)->end()
+                                    ->end()
+                                ->end()
                             ->end()
                         ->end()
+
                         ->arrayNode('auth_code')
                             ->addDefaultsIfNotSet()
                             ->children()
-                                ->scalarNode('model')->defaultValue('SymEdit\Bundle\ApiBundle\Model\AuthCode')->end()
+                                ->arrayNode('classes')
+                                    ->addDefaultsIfNotSet()
+                                    ->children()
+                                        ->scalarNode('model')->defaultValue(AuthCode::class)->end()
+                                        ->scalarNode('interface')->defaultValue(AuthCodeInterface::class)->end()
+                                    ->end()
+                                ->end()
                             ->end()
                         ->end()
                     ->end()
                 ->end()
-            ->end();
+            ->end()
+        ;
     }
 }

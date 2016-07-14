@@ -34,33 +34,33 @@ class PopularPostsStrategy extends AbstractWidgetStrategy
         // We don't need the counts here
         $posts = array_map('current', $posts);
 
-        return $this->render($widget, array(
+        return $this->render($widget, [
             'posts' => $posts,
-        ));
+        ]);
     }
 
     public function buildForm(FormBuilderInterface $builder)
     {
         $builder
-            ->add('max', 'integer', array(
+            ->add('max', 'integer', [
                 'label' => 'Max Posts',
                 'help_block' => 'Maximum Posts to display in Widget',
-                'constraints' => array(
-                    new Range(array(
+                'constraints' => [
+                    new Range([
                         'min' => 1,
                         'minMessage' => 'Minimum posts is 1, if you want less disable the widget.',
-                    )),
-                ),
-            ))
+                    ]),
+                ],
+            ])
         ;
     }
 
     public function getDefaultOptions(OptionsResolver $resolver)
     {
-        $resolver->setDefaults(array(
+        $resolver->setDefaults([
             'max' => 3,
             'template' => '@SymEdit/Widget/Blog/popular-posts.html.twig',
-        ));
+        ]);
     }
 
     public function getName()

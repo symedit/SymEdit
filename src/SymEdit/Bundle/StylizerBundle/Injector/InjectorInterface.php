@@ -15,5 +15,5 @@ use Symfony\Bundle\AsseticBundle\FilterManager;
 
 interface InjectorInterface
 {
-    public function inject(FilterManager $manager, array $variables = array());
+    public function inject(FilterManager $manager, array $variables = []);
 }

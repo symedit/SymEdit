@@ -19,28 +19,28 @@ class AddThisStrategy extends AbstractWidgetStrategy
 {
     public function execute(WidgetInterface $widget)
     {
-        return $this->render($widget, array(
+        return $this->render($widget, [
             'include_script' => $widget->getOption('include_script'),
-        ));
+        ]);
     }
 
     public function buildForm(FormBuilderInterface $builder)
     {
         $builder
-            ->add('include_script', 'checkbox', array(
+            ->add('include_script', 'checkbox', [
                 'required' => false,
                 'label' => 'Include Javascript File?',
                 'help_block' => 'Try not to include the Javascript file twice on any page.',
-            ))
+            ])
         ;
     }
 
     public function getDefaultOptions(OptionsResolver $resolver)
     {
-        $resolver->setDefaults(array(
+        $resolver->setDefaults([
             'include_script' => true,
             'template' => '@SymEdit/Widget/addthis.html.twig',
-        ));
+        ]);
     }
 
     public function getName()

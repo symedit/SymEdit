@@ -1,1 +1,9 @@
-<iframe width="{{ width|default('100%') }}" marginheight="0" marginwidth="0" scrolling="no" frameborder="0" height="{{ height|default(300) }}" src="https://maps.google.com?q={{ (query|default(sylius_settings_get('company.name') ~ ', ' ~ sylius_settings_get('company.address')))|escape('url') }}&amp;z={{ zoom|default(16) }}&amp;output=embed"></iframe>
+{% set company = sylius_settings('company') %}
+<iframe width="{{ width|default('100%') }}"
+    marginheight="0"
+    marginwidth="0"
+    scrolling="no"
+    frameborder="0"
+    height="{{ height|default(300) }}"
+    src="https://maps.google.com?q={{ (query|default(company.name ~ ', ' ~ company.address))|escape('url') }}&amp;z={{ zoom|default(16) }}&amp;output=embed">
+</iframe>

@@ -21,90 +21,90 @@ class AdminProfileType extends BaseType
         parent::buildBasicForm($builder, $options);
 
         $builder
-            ->add('display', 'checkbox', array(
+            ->add('display', 'checkbox', [
                 'label' => 'Display',
                 'required' => false,
                 'property_path' => 'profile.display',
                 'help_block' => 'Display this user on team pages',
-            ))
+            ])
         ;
     }
 
     protected function buildSocialForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('facebook', 'url', array(
+            ->add('facebook', 'url', [
                 'label' => 'Facebook',
-                'attr' => array(
+                'attr' => [
                     'placeholder' => 'http://facebook.com',
-                ),
-            ))
-            ->add('twitter', 'url', array(
+                ],
+            ])
+            ->add('twitter', 'url', [
                 'label' => 'Twitter',
-                'attr' => array(
+                'attr' => [
                     'placeholder' => 'http://twitter.com',
-                ),
-            ))
-            ->add('youtube', 'url', array(
+                ],
+            ])
+            ->add('youtube', 'url', [
                 'label' => 'YouTube',
-                'attr' => array(
+                'attr' => [
                     'placeholder' => 'http://youtube.com',
-                ),
-            ))
-            ->add('google_plus', 'url', array(
+                ],
+            ])
+            ->add('google_plus', 'url', [
                 'label' => 'Google+',
-                'attr' => array(
+                'attr' => [
                     'placeholder' => 'http://plus.google.com',
-                ),
-            ))
-            ->add('linkedin', 'url', array(
+                ],
+            ])
+            ->add('linkedin', 'url', [
                 'label' => 'LinkedIn',
-                'attr' => array(
+                'attr' => [
                     'placeholder' => 'http://linkedin.com',
-                ),
-            ))
+                ],
+            ])
         ;
     }
 
     protected function buildSummaryForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('summary', 'textarea', array(
+            ->add('summary', 'textarea', [
                 'required' => false,
                 'label_render' => false,
-                'attr' => array(
+                'attr' => [
                     'class' => 'wysiwyg-editor',
                     'style' => 'min-height: 300px',
                     'placeholder' => 'User Summary...',
-                ),
+                ],
                 'property_path' => 'profile.summary',
-            ))
+            ])
         ;
     }
 
     protected function buildBiographyForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('biography', 'textarea', array(
+            ->add('biography', 'textarea', [
                 'required' => false,
                 'label_render' => false,
-                'attr' => array(
+                'attr' => [
                     'class' => 'wysiwyg-editor',
                     'style' => 'min-height: 500px',
                     'placeholder' => 'User Biography...',
-                ),
+                ],
                 'property_path' => 'profile.biography',
-            ))
+            ])
         ;
     }
 
     protected function buildImageForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('image', 'symedit_image_choose', array(
+            ->add('image', 'symedit_image_choose', [
                 'required' => false,
                 'property_path' => 'profile.image',
-            ))
+            ])
         ;
     }
 
@@ -118,59 +118,59 @@ class AdminProfileType extends BaseType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         // Create basic tab
-        $basic = $builder->create('basic', 'tab', array(
+        $basic = $builder->create('basic', 'tab', [
             'inherit_data' => true,
             'label' => 'Basic',
-        ));
+        ]);
 
         $this->buildBasicForm($basic, $options);
 
         // Create social tab
-        $social = $builder->create('social', 'tab', array(
+        $social = $builder->create('social', 'tab', [
             'label' => 'Social',
             'required' => false,
             'property_path' => 'profile.social',
-        ));
+        ]);
 
         $this->buildSocialForm($social, $options);
 
         // Create summary tab
-        $summary = $builder->create('summary', 'tab', array(
+        $summary = $builder->create('summary', 'tab', [
             'label' => 'Summary',
             'inherit_data' => true,
             'horizontal' => false,
-            'attr' => array(
+            'attr' => [
                 'class' => 'full',
-            ),
-        ));
+            ],
+        ]);
 
         $this->buildSummaryForm($summary, $options);
 
         // Create biography tab
-        $biography = $builder->create('biography', 'tab', array(
+        $biography = $builder->create('biography', 'tab', [
             'label' => 'Biography',
             'inherit_data' => true,
             'horizontal' => false,
-            'attr' => array(
+            'attr' => [
                 'class' => 'full',
-            ),
-        ));
+            ],
+        ]);
 
         $this->buildBiographyForm($biography, $options);
 
         // Create image tab
-        $image = $builder->create('image', 'tab', array(
+        $image = $builder->create('image', 'tab', [
             'label' => 'Image',
             'inherit_data' => true,
-        ));
+        ]);
 
         $this->buildImageForm($image, $options);
 
         // Create roles tab
-        $roles = $builder->create('roles', 'tab', array(
+        $roles = $builder->create('roles', 'tab', [
             'label' => 'Roles',
             'inherit_data' => true,
-        ));
+        ]);
 
         $this->buildRolesForm($roles, $options);
 

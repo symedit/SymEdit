@@ -15,6 +15,6 @@ class SeoPreferenceDefinition extends \Symfony\Component\DependencyInjection\Def
 {
     public function __construct($model, array $title, array $description)
     {
-        parent::__construct('%symedit_seo.model.preference.class%', array($model, $title, $description));
+        parent::__construct('%symedit_seo.model.preference.class%', [$model, $title, $description]);
     }
 }

@@ -19,14 +19,14 @@ class ShortcodeCompilerPass implements CompilerPassInterface
 {
     public function process(ContainerBuilder $container)
     {
-        $shortCodes = array();
+        $shortCodes = [];
         foreach ($container->findTaggedServiceIds('symedit_shortcode.shortcode') as $id => $attributes) {
             if (!isset($attributes[0]['alias'])) {
                 throw new \Exception(sprintf('No alias for shortcode "%s"', $id));
             }
 
             $shortCodeDefinition = $container->getDefinition($id);
-            $shortCodeDefinition->addMethodCall('setSettings', array(new Reference('symedit_shortcode.settings')));
+            $shortCodeDefinition->addMethodCall('setSettings', [new Reference('symedit_shortcode.settings')]);
 
             $shortCodes[$attributes[0]['alias']] = new Reference($id);
         }

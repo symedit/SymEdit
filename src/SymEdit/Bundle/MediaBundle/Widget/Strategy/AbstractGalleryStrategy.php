@@ -30,16 +30,16 @@ abstract class AbstractGalleryStrategy extends AbstractWidgetStrategy
      */
     protected function getGallery(WidgetInterface $widget)
     {
-        return $this->repository->findOneBy(array(
+        return $this->repository->findOneBy([
             'slug' => $widget->getOption('slider'),
-        ));
+        ]);
     }
 
     public function getCacheOptions(WidgetInterface $widget)
     {
-        return array(
+        return [
             'public' => true,
             'last_modified' => $this->getGallery($widget)->getUpdatedAt(),
-        );
+        ];
     }
 }

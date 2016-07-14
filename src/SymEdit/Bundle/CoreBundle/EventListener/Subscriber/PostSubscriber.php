@@ -11,7 +11,7 @@
 
 namespace SymEdit\Bundle\CoreBundle\EventListener\Subscriber;
 
-use Sylius\Component\Resource\Event\ResourceEvent;
+use Sylius\Bundle\ResourceBundle\Event\ResourceControllerEvent;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\HttpFoundation\Session\Session;
 use Symfony\Component\Routing\Exception\RouteNotFoundException;
@@ -30,24 +30,24 @@ class PostSubscriber implements EventSubscriberInterface
 
     public static function getSubscribedEvents()
     {
-        return array(
+        return [
             'symedit.post.post_create' => 'sharePost',
             'symedit.post.post_update' => 'sharePost',
-        );
+        ];
     }
 
-    public function sharePost(ResourceEvent $event)
+    public function sharePost(ResourceControllerEvent $event)
     {
         $this->addShare($event);
     }
 
-    protected function addShare(ResourceEvent $event)
+    protected function addShare(ResourceControllerEvent $event)
     {
         $post = $event->getSubject();
 
         if ($post->isPublished()) {
             try {
-                $url = $this->router->generate('blog_slug_view', array('slug' => $post->getSlug()), true);
+                $url = $this->router->generate('blog_slug_view', ['slug' => $post->getSlug()], true);
                 $this->session->getFlashBag()->add('share', $url);
             } catch (RouteNotFoundException $e) {
                 // The route to view posts doesn't exist, so we can't really share it.

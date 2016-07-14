@@ -19,7 +19,7 @@ class LoaderCompilerPass implements CompilerPassInterface
 {
     public function process(ContainerBuilder $container)
     {
-        $loaders = array();
+        $loaders = [];
         foreach ($container->findTaggedServiceIds('stylizer.loader') as $id => $attributes) {
             $loaders[] = new Reference($id);
         }

@@ -17,7 +17,7 @@ class DirectoriesTemplateLoader implements TemplateLoaderInterface
 {
     protected $directories;
 
-    public function __construct($directories = array())
+    public function __construct($directories = [])
     {
         $this->directories = $directories;
     }

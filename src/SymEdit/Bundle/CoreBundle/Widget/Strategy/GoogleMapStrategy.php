@@ -22,31 +22,31 @@ class GoogleMapStrategy extends AbstractWidgetStrategy
     {
         $address = $widget->getOption('address');
 
-        return $this->render($widget, array(
+        return $this->render($widget, [
             'query' => empty($address) ? null : $address,
-        ));
+        ]);
     }
 
     public function buildForm(FormBuilderInterface $builder)
     {
         $builder
-            ->add('address', 'textarea', array(
+            ->add('address', 'textarea', [
                 'required' => false,
                 'label' => 'Address',
                 'help_block' => 'Leave blank for default company address',
-                'attr' => array(
+                'attr' => [
                     'rows' => 5,
                     'cols' => 50,
-                ),
-            ))
+                ],
+            ])
         ;
     }
 
     public function getDefaultOptions(OptionsResolver $resolver)
     {
-        $resolver->setDefaults(array(
+        $resolver->setDefaults([
             'template' => '@SymEdit/CMS/map.html.twig',
-        ));
+        ]);
     }
 
     public function getName()

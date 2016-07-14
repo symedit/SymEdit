@@ -11,7 +11,9 @@
 
 namespace SymEdit\Bundle\FormBuilderBundle\Model;
 
-interface FormElementInterface
+use Sylius\Component\Resource\Model\ResourceInterface;
+
+interface FormElementInterface extends ResourceInterface
 {
     /**
      * @return string Get form element id

@@ -12,6 +12,7 @@
 namespace SymEdit\Bundle\BlogBundle\Doctrine\ORM;
 
 use Sylius\Bundle\ResourceBundle\Doctrine\ORM\EntityRepository;
+use SymEdit\Bundle\BlogBundle\Model\Category;
 use SymEdit\Bundle\BlogBundle\Repository\CategoryRepositoryInterface;
 
 class CategoryRepository extends EntityRepository implements CategoryRepositoryInterface
@@ -21,9 +22,9 @@ class CategoryRepository extends EntityRepository implements CategoryRepositoryI
      */
     public function findRoots()
     {
-        return $this->findBy(array(
+        return $this->findBy([
             'parent' => null,
-        ));
+        ]);
     }
 
     /**
@@ -31,7 +32,7 @@ class CategoryRepository extends EntityRepository implements CategoryRepositoryI
      */
     public function findRoot()
     {
-        $root = $this->createNew();
+        $root = new Category();
         $root->setChildren($this->findRoots());
 
         return $root;

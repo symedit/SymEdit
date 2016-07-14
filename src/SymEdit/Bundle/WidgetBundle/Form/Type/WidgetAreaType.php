@@ -27,9 +27,9 @@ class WidgetAreaType extends AbstractType
 
     public function configureOptions(OptionsResolver $resolver)
     {
-        $resolver->setDefaults(array(
+        $resolver->setDefaults([
             'data_class' => 'SymEdit\Bundle\WidgetBundle\Model\WidgetArea',
-        ));
+        ]);
     }
 
     public function getName()

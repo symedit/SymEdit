@@ -17,7 +17,7 @@ class YamlLoader implements LoaderInterface
 {
     private $yamlFiles;
 
-    public function __construct(array $yamlFiles = array())
+    public function __construct(array $yamlFiles = [])
     {
         $this->yamlFiles = $yamlFiles;
     }

@@ -18,7 +18,7 @@ class Recorder
     protected $manager;
     protected $visitClass;
     protected $models;
-    protected $visits = array();
+    protected $visits = [];
 
     public function __construct(ObjectManager $manager, $class, array $models)
     {
@@ -54,6 +54,6 @@ class Recorder
         $this->manager->flush($this->visits);
 
         // Clear flushed
-        $this->visits = array();
+        $this->visits = [];
     }
 }

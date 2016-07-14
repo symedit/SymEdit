@@ -26,10 +26,10 @@ class StylizerExtension extends \Twig_Extension
 
     public function getFunctions()
     {
-        return array(
-            new \Twig_SimpleFunction('google_fonts', array($this, 'renderGoogleFonts'), array('is_safe' => array('html'))),
-            new \Twig_SimpleFunction('stylizer_asset', array($this, 'getAssetUrl')),
-        );
+        return [
+            new \Twig_SimpleFunction('google_fonts', [$this, 'renderGoogleFonts'], ['is_safe' => ['html']]),
+            new \Twig_SimpleFunction('stylizer_asset', [$this, 'getAssetUrl']),
+        ];
     }
 
     /**

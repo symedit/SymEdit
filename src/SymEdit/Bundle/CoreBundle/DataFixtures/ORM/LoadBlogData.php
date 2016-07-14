@@ -14,7 +14,6 @@ namespace SymEdit\Bundle\CoreBundle\DataFixtures\ORM;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
 use SymEdit\Bundle\CoreBundle\DataFixtures\AbstractFixture;
-use SymEdit\Bundle\CoreBundle\Model\Category;
 use SymEdit\Bundle\CoreBundle\Model\CategoryInterface;
 use SymEdit\Bundle\CoreBundle\Model\Post;
 
@@ -51,12 +50,12 @@ class LoadBlogData extends AbstractFixture implements OrderedFixtureInterface
      */
     protected function createCategory()
     {
-        return $this->getRepository('category')->createNew();
+        return $this->getFactory('category')->createNew();
     }
 
     protected function createPost()
     {
-        return $this->getRepository('post')->createNew();
+        return $this->getFactory('post')->createNew();
     }
 
     public function getOrder()

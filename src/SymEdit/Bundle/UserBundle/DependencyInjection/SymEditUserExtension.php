@@ -12,28 +12,40 @@
 namespace SymEdit\Bundle\UserBundle\DependencyInjection;
 
 use SymEdit\Bundle\ResourceBundle\DependencyInjection\SymEditResourceExtension;
+use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Extension\PrependExtensionInterface;
+use Symfony\Component\DependencyInjection\Loader\XmlFileLoader;
 
 class SymEditUserExtension extends SymEditResourceExtension implements PrependExtensionInterface
 {
-    protected $configFiles = array(
+    protected $configFiles = [
         'services.xml',
         'form.xml',
         'notifications.xml',
-    );
+    ];
 
     /**
      * {@inheritdoc}
      */
     public function load(array $config, ContainerBuilder $container)
     {
-        $config = $this->configure(
-            $config,
-            new Configuration(),
-            $container,
-            self::CONFIGURE_LOADER | self::CONFIGURE_DATABASE | self::CONFIGURE_PARAMETERS
-        );
+        $config = $this->processConfiguration($this->getConfiguration($config, $container), $config);
+        $loader = new XmlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
+        
+        // Load Resources
+        $this->registerResources('symedit', $config['driver'], $config['resources'], $container);
+
+        // Load Config Files
+        $configFiles = [
+            'services.xml',
+            'form.xml',
+            'notifications.xml',
+        ];
+
+        foreach ($configFiles as $configFile) {
+            $loader->load($configFile);
+        }
 
         foreach ($config['notifications'] as $type => $notification) {
             if (!$notification['enabled']) {
@@ -42,21 +54,24 @@ class SymEditUserExtension extends SymEditResourceExtension implements PrependEx
                 $this->remapParameters($container, 'notifications.'.$type, $notification);
             }
         }
+
+        // Set Registration Form Class
+        $container->setParameter('symedit.form.type.registration.class', $config['registration']['class']);
     }
 
     public function prepend(ContainerBuilder $container)
     {
-        $container->prependExtensionConfig('fos_user', array(
+        $container->prependExtensionConfig('fos_user', [
             'user_class' => '%symedit.model.user.class%',
-            'service' => array(
+            'service' => [
                 'user_manager' => 'symedit_user.user_manager',
-            ),
-            'registration' => array(
-                'form' => array(
+            ],
+            'registration' => [
+                'form' => [
                     'type' => 'symedit_user_registration',
-                ),
-            ),
-        ));
+                ],
+            ],
+        ]);
     }
 
     /**

@@ -27,8 +27,8 @@ class RegistrationListener
 
     public function sendNotification(UserEvent $event)
     {
-        $this->mailer->sendAdmin($this->template, array(
+        $this->mailer->sendAdmin($this->template, [
             'user' => $event->getUser(),
-        ));
+        ]);
     }
 }

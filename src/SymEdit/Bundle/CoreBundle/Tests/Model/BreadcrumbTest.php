@@ -22,9 +22,9 @@ class BreadcrumbTest extends TestCase
     {
         $this->breadcrumbs = new Breadcrumbs();
         $this->breadcrumbs->push('Home', 'homepage');
-        $this->breadcrumbs->push('Controller', 'controller', array(
+        $this->breadcrumbs->push('Controller', 'controller', [
             'val10' => 10,
-        ));
+        ]);
     }
 
     protected function assertBreadcrumbCount($num)

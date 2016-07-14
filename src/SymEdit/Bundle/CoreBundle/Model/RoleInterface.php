@@ -11,7 +11,9 @@
 
 namespace SymEdit\Bundle\CoreBundle\Model;
 
-interface RoleInterface
+use Sylius\Component\Resource\Model\ResourceInterface;
+
+interface RoleInterface extends ResourceInterface
 {
     public function getId();
 

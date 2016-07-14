@@ -12,26 +12,35 @@
 namespace SymEdit\Bundle\EventsBundle\DependencyInjection;
 
 use SymEdit\Bundle\ResourceBundle\DependencyInjection\SymEditResourceExtension;
+use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Extension\PrependExtensionInterface;
+use Symfony\Component\DependencyInjection\Loader\XmlFileLoader;
 
 class SymEditEventsExtension extends SymEditResourceExtension implements PrependExtensionInterface
 {
-    protected $configFiles = array(
-        'form.xml', // 'widget',
-    );
-
     /**
      * {@inheritdoc}
      */
     public function load(array $config, ContainerBuilder $container)
     {
-        $this->configure(
-            $config,
-            new Configuration(),
-            $container,
-            self::CONFIGURE_LOADER | self::CONFIGURE_DATABASE | self::CONFIGURE_PARAMETERS
-        );
+        $config = $this->processConfiguration($this->getConfiguration($config, $container), $config);
+        $loader = new XmlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
+
+        // Load Driver
+        $loader->load(sprintf('driver/%s.xml', $config['driver']));
+
+        // Load Resources
+        $this->registerResources('symedit', $config['driver'], $config['resources'], $container);
+
+        // Load Config Files
+        $configFiles = [
+            'form.xml',
+        ];
+
+        foreach ($configFiles as $configFile) {
+            $loader->load($configFile);
+        }
     }
 
     public function prepend(ContainerBuilder $container)
@@ -40,20 +49,20 @@ class SymEditEventsExtension extends SymEditResourceExtension implements Prepend
          * SymEdit Config, add the views
          */
         if ($container->hasExtension('symedit')) {
-            $container->prependExtensionConfig('symedit', array(
-                'template_locations' => array(
+            $container->prependExtensionConfig('symedit', [
+                'template_locations' => [
                     '@SymEditEventsBundle/Resources/views',
-                ),
-                'assets' => array(
-                    'javascripts' => array(
+                ],
+                'assets' => [
+                    'javascripts' => [
                         '@SymEditEventsBundle/Resources/js/bootstrap-datetimepicker.min.js',
                         '@SymEditEventsBundle/Resources/js/activate.js',
-                    ),
-                    'stylesheets' => array(
+                    ],
+                    'stylesheets' => [
                         '@SymEditEventsBundle/Resources/css/bootstrap-datetimepicker.min.css',
-                    ),
-                ),
-            ));
+                    ],
+                ],
+            ]);
         }
     }
 

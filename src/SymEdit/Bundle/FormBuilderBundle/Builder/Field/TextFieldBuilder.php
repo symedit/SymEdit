@@ -18,10 +18,10 @@ class TextFieldBuilder extends AbstractFieldBuilder
     public function buildOptionsForm(FormBuilderInterface $builder)
     {
         $builder
-            ->add('placeholder', 'text', array(
+            ->add('placeholder', 'text', [
                 'required' => false,
                 'property_path' => '[attr][placeholder]',
-            ))
+            ])
         ;
     }
 }

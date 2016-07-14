@@ -25,7 +25,7 @@ class SettingsCacheVoter implements CacheVoterInterface
 
     public function isCacheable($resource = null)
     {
-        $advanced = $this->settings->loadSettings('advanced');
+        $advanced = $this->settings->load('advanced');
 
         if ($advanced->get('caching') !== 'cache') {
             return self::FAIL;

@@ -121,7 +121,7 @@ class WidgetRegistry extends ContainerAware
      *
      * @param WidgetInterface $widget
      */
-    public function init(WidgetInterface $widget, array $options = array())
+    public function init(WidgetInterface $widget, array $options = [])
     {
         $resolver = new OptionsResolver();
         $strategy = $this->getStrategy($widget->getStrategyName());

@@ -12,28 +12,40 @@
 namespace SymEdit\Bundle\WidgetBundle\DependencyInjection;
 
 use SymEdit\Bundle\ResourceBundle\DependencyInjection\SymEditResourceExtension;
+use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Extension\PrependExtensionInterface;
+use Symfony\Component\DependencyInjection\Loader\XmlFileLoader;
 
 class SymEditWidgetExtension extends SymEditResourceExtension implements PrependExtensionInterface
 {
-    protected $configFiles = array(
+    protected $configFiles = [
         'services.xml',
         'widget.xml',
         'form.xml',
-    );
+    ];
 
     /**
      * {@inheritdoc}
      */
     public function load(array $config, ContainerBuilder $container)
     {
-        $config = $this->configure(
-            $config,
-            new Configuration(),
-            $container,
-            self::CONFIGURE_LOADER | self::CONFIGURE_DATABASE | self::CONFIGURE_PARAMETERS
-        );
+        $config = $this->processConfiguration($this->getConfiguration($config, $container), $config);
+        $loader = new XmlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
+
+        // Load Resources
+        $this->registerResources('symedit', $config['driver'], $config['resources'], $container);
+
+        // Load Config Files
+        $configFiles = [
+            'services.xml',
+            'widget.xml',
+            'form.xml',
+        ];
+
+        foreach ($configFiles as $configFile) {
+            $loader->load($configFile);
+        }
 
         // Map Fragment Parameters
         $this->remapParameters($container, 'fragment', $config['fragment']);
@@ -44,7 +56,7 @@ class SymEditWidgetExtension extends SymEditResourceExtension implements Prepend
 
     protected function setupRenderers(ContainerBuilder $container, array $renderers)
     {
-        foreach (array('widget', 'area') as $renderer) {
+        foreach (['widget', 'area'] as $renderer) {
             $container->setAlias(sprintf('symedit_widget.renderer.%s.default', $renderer), $renderers[$renderer]);
         }
     }
@@ -55,11 +67,11 @@ class SymEditWidgetExtension extends SymEditResourceExtension implements Prepend
             return;
         }
 
-        $container->prependExtensionConfig('symedit', array(
-            'template_locations' => array(
+        $container->prependExtensionConfig('symedit', [
+            'template_locations' => [
                 '@SymEditWidgetBundle/Resources/views',
-            ),
-        ));
+            ],
+        ]);
     }
 
     /**

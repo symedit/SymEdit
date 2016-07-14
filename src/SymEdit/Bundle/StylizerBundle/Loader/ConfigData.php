@@ -13,7 +13,7 @@ namespace SymEdit\Bundle\StylizerBundle\Loader;
 
 class ConfigData implements \Serializable
 {
-    private $groups = array();
+    private $groups = [];
 
     public function parseGroup($name, $data)
     {
@@ -49,7 +49,7 @@ class ConfigData implements \Serializable
 
     public function getVariables()
     {
-        $variables = array();
+        $variables = [];
 
         foreach ($this->getGroups() as $group) {
             $variables = array_merge($variables, $group->getVariables());

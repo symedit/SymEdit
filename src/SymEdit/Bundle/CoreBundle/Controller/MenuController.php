@@ -31,7 +31,7 @@ class MenuController extends Controller
             return $response;
         }
 
-        return $this->render('@SymEdit/Menu/render.html.twig', array('ulClass' => $ulClass), $response);
+        return $this->render('@SymEdit/Menu/render.html.twig', ['ulClass' => $ulClass], $response);
     }
 
     /**

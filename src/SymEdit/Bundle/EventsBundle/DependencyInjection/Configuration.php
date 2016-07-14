@@ -11,6 +11,11 @@
 
 namespace SymEdit\Bundle\EventsBundle\DependencyInjection;
 
+use Sylius\Component\Resource\Factory\Factory;
+use SymEdit\Bundle\EventsBundle\Controller\EventController;
+use SymEdit\Bundle\EventsBundle\Form\Type\EventType;
+use SymEdit\Bundle\EventsBundle\Model\Event;
+use SymEdit\Bundle\EventsBundle\Model\EventInterface;
 use Symfony\Component\Config\Definition\Builder\ArrayNodeDefinition;
 use Symfony\Component\Config\Definition\Builder\TreeBuilder;
 use Symfony\Component\Config\Definition\ConfigurationInterface;
@@ -30,7 +35,7 @@ class Configuration implements ConfigurationInterface
                 ->scalarNode('driver')->cannotBeEmpty()->defaultValue('doctrine/orm')->end()
             ->end();
 
-        $this->addClassesSection($rootNode);
+        $this->addResourcesSection($rootNode);
 
         return $treeBuilder;
     }
@@ -40,24 +45,37 @@ class Configuration implements ConfigurationInterface
      *
      * @param ArrayNodeDefinition $node
      */
-    private function addClassesSection(ArrayNodeDefinition $node)
+    private function addResourcesSection(ArrayNodeDefinition $node)
     {
         $node
             ->children()
-                ->arrayNode('classes')
+                ->arrayNode('resources')
                     ->addDefaultsIfNotSet()
                     ->children()
                         ->arrayNode('event')
                             ->addDefaultsIfNotSet()
                             ->children()
-                                ->scalarNode('model')->defaultValue('SymEdit\Bundle\EventsBundle\Model\Event')->end()
-                                ->scalarNode('controller')->defaultValue('SymEdit\Bundle\EventsBundle\Controller\EventController')->end()
-                                ->scalarNode('respository')->end()
-                                ->scalarNode('form')->defaultValue('SymEdit\Bundle\EventsBundle\Form\Type\EventType')->end()
+                                ->arrayNode('classes')
+                                    ->addDefaultsIfNotSet()
+                                    ->children()
+                                        ->scalarNode('model')->defaultValue(Event::class)->end()
+                                        ->scalarNode('interface')->defaultValue(EventInterface::class)->end()
+                                        ->scalarNode('controller')->defaultValue(EventController::class)->end()
+                                        ->scalarNode('respository')->end()
+                                        ->scalarNode('factory')->defaultValue(Factory::class)->end()
+                                        ->arrayNode('form')
+                                            ->addDefaultsIfNotSet()
+                                            ->children()
+                                                ->scalarNode('default')->defaultValue(EventType::class)->cannotBeEmpty()->end()
+                                            ->end()
+                                        ->end()
+                                    ->end()
+                                ->end()
                             ->end()
                         ->end()
                     ->end()
                 ->end()
-            ->end();
+            ->end()
+        ;
     }
 }

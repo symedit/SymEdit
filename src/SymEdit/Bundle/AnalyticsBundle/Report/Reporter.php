@@ -24,7 +24,7 @@ class Reporter
     protected $reports;
     protected $extensions;
 
-    public function __construct(ObjectManager $manager, $visitClass, array $models, array $reports = array(), array $extensions = array())
+    public function __construct(ObjectManager $manager, $visitClass, array $models, array $reports = [], array $extensions = [])
     {
         $this->manager = $manager;
         $this->visitClass = $visitClass;
@@ -33,7 +33,7 @@ class Reporter
         $this->extensions = $extensions;
     }
 
-    public function runReport($name, array $options = array())
+    public function runReport($name, array $options = [])
     {
         $report = $this->getReport($name);
         $queryBuilder = $this->manager->createQueryBuilder();
@@ -69,9 +69,9 @@ class Reporter
         }
 
         // Set up some global defaults
-        $resolver->setRequired(array(
+        $resolver->setRequired([
             'model',
-        ));
+        ]);
 
         $options = $resolver->resolve($options);
 

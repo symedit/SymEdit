@@ -31,7 +31,7 @@ class ThemeFinder
             ->depth(0)
         ;
 
-        $names = array();
+        $names = [];
 
         foreach ($finder as $directory) {
             $names[] = $directory->getFilename();

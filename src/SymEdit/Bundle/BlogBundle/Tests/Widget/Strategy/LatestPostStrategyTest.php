@@ -28,14 +28,14 @@ class LatestPostStrategyTest extends WidgetStrategyTest
 
         $widget = $this->createWidget();
 
-        $strategy = $this->getMock('SymEdit\Bundle\BlogBundle\Widget\Strategy\LatestPostStrategy', array('render'), array($repository));
+        $strategy = $this->getMock('SymEdit\Bundle\BlogBundle\Widget\Strategy\LatestPostStrategy', ['render'], [$repository]);
         $strategy->expects($this->once())
                  ->method('render')
                  ->with(
                     $this->equalTo($widget),
-                    $this->equalTo(array(
+                    $this->equalTo([
                         'post' => 'foo',
-                    ))
+                    ])
                  );
 
         $strategy->execute($widget);
@@ -63,10 +63,10 @@ class LatestPostStrategyTest extends WidgetStrategyTest
 
     protected function getDefaultOptions()
     {
-        return array(
+        return [
             'show_image' => true,
             'template' => '@SymEdit/Widget/Blog/latest-post.html.twig',
-        );
+        ];
     }
 
     protected function getStrategyDescription()

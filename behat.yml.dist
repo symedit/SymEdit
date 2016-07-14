@@ -35,6 +35,27 @@ default:
                 - SymEdit\Bundle\CoreBundle\Behat\WebContext
             filters:
                 tags: "@contact"
+        analytics:
+            contexts:
+                - Behat\MinkExtension\Context\MinkContext
+                - SymEdit\Bundle\CoreBundle\Behat\WebContext
+                - SymEdit\Bundle\BlogBundle\Behat\BlogContext
+                - SymEdit\Bundle\CoreBundle\Behat\AnalyticsContext
+            filters:
+                tags: "@analytics"
+        widgets:
+            contexts:
+                - Behat\MinkExtension\Context\MinkContext
+                - SymEdit\Bundle\CoreBundle\Behat\WebContext
+                - SymEdit\Bundle\WidgetBundle\Behat\WidgetContext
+            filters:
+                tags: "@widgets"
+        settings:
+            contexts:
+                - Behat\MinkExtension\Context\MinkContext
+                - SymEdit\Bundle\CoreBundle\Behat\WebContext
+            filters:
+                tags: "@settings"
     extensions:
         Behat\MinkExtension:
             sessions:

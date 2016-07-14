@@ -11,20 +11,20 @@
 
 namespace SymEdit\Bundle\CoreBundle\EventListener\Subscriber;
 
+use Sylius\Bundle\ResourceBundle\Event\ResourceControllerEvent;
 use SymEdit\Bundle\CoreBundle\Model\PageInterface;
-use Sylius\Component\Resource\Event\ResourceEvent;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
 class PageSubscriber implements EventSubscriberInterface
 {
     public static function getSubscribedEvents()
     {
-        return array(
+        return [
             'symedit.page.pre_delete' => 'pagePreDelete',
-        );
+        ];
     }
 
-    public function pagePreDelete(ResourceEvent $event)
+    public function pagePreDelete(ResourceControllerEvent $event)
     {
         /* @var $page PageInterface */
         $page = $event->getSubject();

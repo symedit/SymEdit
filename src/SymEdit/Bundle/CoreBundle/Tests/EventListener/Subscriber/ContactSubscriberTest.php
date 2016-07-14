@@ -24,20 +24,20 @@ class ContactSubscriberTest extends TestCase
                ->method('sendAdmin')
                ->with(
                    $this->equalTo('@SymEdit/Contact/contact.html.twig'),
-                   $this->equalTo(array(
-                       'Form' => array(
+                   $this->equalTo([
+                       'Form' => [
                            'email' => 'foo@bar.com',
-                       ),
-                   )));
+                       ],
+                   ]));
 
         $subscriber = new ContactSubscriber($mailer);
         $request = $this->getMock('Symfony\Component\HttpFoundation\Request');
 
         $form = $this->getMock('Symfony\Component\Form\FormInterface');
         $form->method('getData')
-             ->will($this->returnValue(array(
+             ->will($this->returnValue([
                  'email' => 'foo@bar.com',
-             )));
+             ]));
 
         $event = new FormEvent($form, $request);
 

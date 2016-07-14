@@ -21,8 +21,8 @@ class GroupData
     public function __construct($name)
     {
         $this->name = $name;
-        $this->extra = array();
-        $this->variables = array();
+        $this->extra = [];
+        $this->variables = [];
     }
 
     public function getName()
@@ -53,9 +53,9 @@ class GroupData
     public function addVariable($name, $data)
     {
         if (!is_array($data)) {
-            $this->variables[$name] = array(
+            $this->variables[$name] = [
                 'value' => $data,
-            );
+            ];
         } else {
             $this->variables[$name] = $data;
         }
@@ -70,7 +70,7 @@ class GroupData
 
     public function getVariables()
     {
-        $variables = array();
+        $variables = [];
 
         foreach ($this->variables as $name => $data) {
             $variables[$name] = $data['value'];

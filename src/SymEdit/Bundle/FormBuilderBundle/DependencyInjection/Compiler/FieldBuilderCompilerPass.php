@@ -19,7 +19,7 @@ class FieldBuilderCompilerPass implements CompilerPassInterface
 {
     public function process(ContainerBuilder $container)
     {
-        $mapping = array();
+        $mapping = [];
 
         foreach ($container->findTaggedServiceIds('symedit_form_builder.builder') as $id => $tags) {
             $service = new Reference($id);

@@ -31,9 +31,9 @@ class FormBuilderStrategy extends AbstractWidgetStrategy
 
     public function execute(WidgetInterface $widget)
     {
-        $model = $this->repository->findOneBy(array(
+        $model = $this->repository->findOneBy([
             'id' => $widget->getOption('form_builder_id'),
-        ));
+        ]);
 
         if (!$model) {
             return sprintf('Form Builder #%s not found.', $widget->getOption('form_builder_id'));
@@ -41,35 +41,35 @@ class FormBuilderStrategy extends AbstractWidgetStrategy
 
         $form = $this->factory->build($model);
 
-        return $this->render($widget, array(
+        return $this->render($widget, [
             'form' => $form->createView(),
-        ));
+        ]);
     }
 
     public function buildForm(FormBuilderInterface $builder)
     {
         $builder
-            ->add('form_builder_id', 'entity_property', array(
+            ->add('form_builder_id', 'entity_property', [
                 'class' => $this->repository->getClassName(),
                 'property' => 'legend',
                 'property_value' => 'id',
                 'label' => 'Form to display',
-            ))
+            ])
         ;
     }
 
     public function getDefaultOptions(OptionsResolver $resolver)
     {
-        $resolver->setDefaults(array(
+        $resolver->setDefaults([
             'template' => '@SymEdit/Widget/FormBuilder/form.html.twig',
-        ));
+        ]);
     }
 
     public function getCacheOptions(WidgetInterface $widget)
     {
-        return array(
+        return [
             'private' => true,
-        );
+        ];
     }
 
     public function getDescription()

@@ -5,3 +5,5 @@ symedit:
     stylizer:
         save: Styles Saved
         save_and_dump: Styles Saved and Dumped
+    settings:
+        saved: Settings Saved

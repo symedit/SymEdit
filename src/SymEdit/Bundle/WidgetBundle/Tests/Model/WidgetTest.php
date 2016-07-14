@@ -53,11 +53,11 @@ class WidgetTest extends TestCase
     public function testAssoc()
     {
         $widget = $this->getWidget();
-        $this->assertEquals(array(), $widget->getAssoc());
+        $this->assertEquals([], $widget->getAssoc());
 
-        $assoc = array(
+        $assoc = [
             '/', '/about',
-        );
+        ];
 
         $widget->setAssoc($assoc);
         $this->assertEquals($assoc, $widget->getAssoc());
@@ -85,12 +85,12 @@ class WidgetTest extends TestCase
     public function testOptions()
     {
         $widget = $this->getWidget();
-        $this->assertEquals(array(), $widget->getOptions());
+        $this->assertEquals([], $widget->getOptions());
 
-        $options = array(
+        $options = [
             'foo' => 'bar',
             'baz' => 'salts',
-        );
+        ];
 
         $widget->setOptions($options);
         $this->assertEquals($options, $widget->getOptions());

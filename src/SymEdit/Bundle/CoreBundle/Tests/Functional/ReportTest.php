@@ -29,7 +29,7 @@ class ReportTest extends WebTestCase
     /**
      * @dataProvider fixtureReportProvider
      */
-    public function testReports($reportName, $options = array())
+    public function testReports($reportName, $options = [])
     {
         $this->getReporter()->runReport($reportName, $options);
     }
@@ -42,11 +42,11 @@ class ReportTest extends WebTestCase
      */
     public function fixtureReportProvider()
     {
-        return array(
-            array('popular_pages'),
-            array('popular_posts'),
-            array('popular', array('model' => 'page')),
-            array('popular', array('model' => 'post')),
-        );
+        return [
+            ['popular_pages'],
+            ['popular_posts'],
+            ['popular', ['model' => 'page']],
+            ['popular', ['model' => 'post']],
+        ];
     }
 }

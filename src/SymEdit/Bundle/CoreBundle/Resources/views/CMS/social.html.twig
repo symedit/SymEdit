@@ -3,7 +3,7 @@
     will default it to the company when you'd rather have nothing
 #}
 {%- if social is not defined %}
-    {% set social = sylius_settings_all('social').parameters %}
+    {% set social = sylius_settings('social').parameters %}
 {% endif -%}
 
 {%- if name is not defined %}

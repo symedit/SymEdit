@@ -17,21 +17,21 @@ class ShortcodeRenderer implements ShortcodeRendererInterface
     protected $pattern = '#\[(%s)(?:\s(.*?))?\](?:(.+?)(?:\[\/\1\]))?#';
     protected $attrPattern = '#([\w\d-_\.]+)(?:\s*=\s*([^\s]+))?#';
 
-    public function __construct($shortcodes = array())
+    public function __construct($shortcodes = [])
     {
         $this->shortcodes = $shortcodes;
     }
 
     public function renderString($string)
     {
-        return preg_replace_callback($this->getRegex(), array($this, 'parseCode'), $string);
+        return preg_replace_callback($this->getRegex(), [$this, 'parseCode'], $string);
     }
 
     protected function parseAttrs($attr)
     {
         preg_match_all($this->attrPattern, $attr, $matches, PREG_SET_ORDER);
 
-        $finalAttrs = array();
+        $finalAttrs = [];
 
         foreach ($matches as $match) {
             if (!isset($match[2])) {

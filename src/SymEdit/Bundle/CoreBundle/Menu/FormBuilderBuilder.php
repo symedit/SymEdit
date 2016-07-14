@@ -19,10 +19,10 @@ class FormBuilderBuilder implements MenuBuilderInterface
     public function buildMenu(MenuInterface $menu, array $options)
     {
         $structure = $menu->getRootNode()->getChild('structure');
-        $formExtras = array('is_granted' => 'ROLE_ADMIN_FORM_BUILDER');
+        $formExtras = ['is_granted' => 'ROLE_ADMIN_FORM_BUILDER'];
 
-        $structure->addChild('Form Builder', array('dropdown-header' => true, 'extras' => $formExtras));
-        $structure->addChild('Create Form', array('route' => 'admin_form_create', 'icon' => 'plus', 'extras' => $formExtras));
-        $structure->addCHild('List Forms', array('route' => 'admin_form', 'icon' => 'reorder', 'extras' => $formExtras));
+        $structure->addChild('Form Builder', ['dropdown-header' => true, 'extras' => $formExtras]);
+        $structure->addChild('Create Form', ['route' => 'admin_form_create', 'icon' => 'plus', 'extras' => $formExtras]);
+        $structure->addCHild('List Forms', ['route' => 'admin_form', 'icon' => 'reorder', 'extras' => $formExtras]);
     }
 }

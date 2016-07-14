@@ -18,7 +18,7 @@ class RoleCacheVoter implements CacheVoterInterface
     protected $auth;
     protected $roles;
 
-    public function __construct(AuthorizationCheckerInterface $auth, array $roles = array())
+    public function __construct(AuthorizationCheckerInterface $auth, array $roles = [])
     {
         $this->auth = $auth;
         $this->roles = $roles;

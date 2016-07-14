@@ -19,7 +19,7 @@ class InjectorCompilerPass implements CompilerPassInterface
 {
     public function process(ContainerBuilder $container)
     {
-        $injectors = array();
+        $injectors = [];
         foreach ($container->findTaggedServiceIds('stylizer.injector') as $id => $attributes) {
             $injectors[] = new Reference($id);
         }

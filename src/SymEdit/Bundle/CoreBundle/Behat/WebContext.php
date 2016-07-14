@@ -79,9 +79,9 @@ class WebContext extends DefaultContext implements SnippetAcceptingContext
      */
     public function iShouldHaveAResourceWithProperty($type, $property, $value)
     {
-        $this->findOneBy($type, array(
+        $this->findOneBy($type, [
             $property => $value,
-        ));
+        ]);
     }
 
     /**

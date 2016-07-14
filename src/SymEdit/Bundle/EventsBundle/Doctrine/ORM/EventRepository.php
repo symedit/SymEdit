@@ -27,7 +27,7 @@ class EventRepository extends EntityRepository
 
     public function getQueryBuilder()
     {
-        return parent::getQueryBuilder()
-                ->orderBy(sprintf('%s.eventStart', $this->getAlias()), 'DESC');
+        return $this->createQueryBuilder('o')
+               ->orderBy('o.eventStart', 'DESC');
     }
 }

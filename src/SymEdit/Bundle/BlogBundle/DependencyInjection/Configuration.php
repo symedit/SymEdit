@@ -11,6 +11,15 @@
 
 namespace SymEdit\Bundle\BlogBundle\DependencyInjection;
 
+use Sylius\Component\Resource\Factory\Factory;
+use SymEdit\Bundle\BlogBundle\Controller\PostController;
+use SymEdit\Bundle\BlogBundle\Form\Type\CategoryType;
+use SymEdit\Bundle\BlogBundle\Form\Type\PostType;
+use SymEdit\Bundle\BlogBundle\Model\Category;
+use SymEdit\Bundle\BlogBundle\Model\CategoryInterface;
+use SymEdit\Bundle\BlogBundle\Model\Post;
+use SymEdit\Bundle\BlogBundle\Model\PostInterface;
+use SymEdit\Bundle\ResourceBundle\Controller\ResourceController;
 use Symfony\Component\Config\Definition\Builder\ArrayNodeDefinition;
 use Symfony\Component\Config\Definition\Builder\TreeBuilder;
 use Symfony\Component\Config\Definition\ConfigurationInterface;
@@ -30,7 +39,7 @@ class Configuration implements ConfigurationInterface
                 ->scalarNode('driver')->cannotBeEmpty()->defaultValue('doctrine/orm')->end()
             ->end();
 
-        $this->addClassesSection($rootNode);
+        $this->addResourcesSection($rootNode);
 
         return $treeBuilder;
     }
@@ -40,33 +49,59 @@ class Configuration implements ConfigurationInterface
      *
      * @param ArrayNodeDefinition $node
      */
-    private function addClassesSection(ArrayNodeDefinition $node)
+    private function addResourcesSection(ArrayNodeDefinition $node)
     {
         $node
             ->children()
-                ->arrayNode('classes')
+                ->arrayNode('resources')
                     ->addDefaultsIfNotSet()
                     ->children()
                         ->arrayNode('post')
                             ->addDefaultsIfNotSet()
                             ->children()
-                                ->scalarNode('model')->defaultValue('SymEdit\Bundle\BlogBundle\Model\Post')->end()
-                                ->scalarNode('controller')->defaultValue('SymEdit\Bundle\BlogBundle\Controller\PostController')->end()
-                                ->scalarNode('respository')->end()
-                                ->scalarNode('form')->defaultValue('SymEdit\Bundle\BlogBundle\Form\Type\PostType')->end()
+                                ->arrayNode('classes')
+                                    ->addDefaultsIfNotSet()
+                                    ->children()
+                                        ->scalarNode('model')->defaultValue(Post::class)->end()
+                                        ->scalarNode('interface')->defaultValue(PostInterface::class)->end()
+                                        ->scalarNode('controller')->defaultValue(PostController::class)->end()
+                                        ->scalarNode('respository')->end()
+                                        ->scalarNode('factory')->defaultValue(Factory::class)->end()
+                                        ->arrayNode('form')
+                                            ->addDefaultsIfNotSet()
+                                            ->children()
+                                                ->scalarNode('default')->defaultValue(PostType::class)->cannotBeEmpty()->end()
+                                            ->end()
+                                        ->end()
+                                    ->end()
+                                ->end()
                             ->end()
                         ->end()
+
                         ->arrayNode('category')
                             ->addDefaultsIfNotSet()
                             ->children()
-                                ->scalarNode('model')->defaultValue('SymEdit\Bundle\BlogBundle\Model\Category')->end()
-                                ->scalarNode('controller')->defaultValue('SymEdit\Bundle\ResourceBundle\Controller\ResourceController')->end()
-                                ->scalarNode('respository')->end()
-                                ->scalarNode('form')->defaultValue('SymEdit\Bundle\BlogBundle\Form\Type\CategoryType')->end()
+                                ->arrayNode('classes')
+                                    ->addDefaultsIfNotSet()
+                                    ->children()
+                                        ->scalarNode('model')->defaultValue(Category::class)->end()
+                                        ->scalarNode('interface')->defaultValue(CategoryInterface::class)->end()
+                                        ->scalarNode('controller')->defaultValue(ResourceController::class)->end()
+                                        ->scalarNode('respository')->end()
+                                        ->scalarNode('factory')->defaultValue(Factory::class)->end()
+                                        ->arrayNode('form')
+                                            ->addDefaultsIfNotSet()
+                                            ->children()
+                                                ->scalarNode('default')->defaultValue(CategoryType::class)->cannotBeEmpty()->end()
+                                            ->end()
+                                        ->end()
+                                    ->end()
+                                ->end()
                             ->end()
                         ->end()
                     ->end()
                 ->end()
-            ->end();
+            ->end()
+        ;
     }
 }

@@ -22,7 +22,7 @@ class WidgetStrategyCompilerPass implements CompilerPassInterface
     public function process(ContainerBuilder $container)
     {
         $tags = $container->findTaggedServiceIds('symedit_widget.widget_strategy');
-        $strategies = array();
+        $strategies = [];
 
         foreach ($tags as $id => $tags) {
             foreach ($tags as $attr) {
