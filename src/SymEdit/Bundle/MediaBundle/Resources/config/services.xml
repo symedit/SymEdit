@@ -13,16 +13,19 @@
     <services>
         <!-- Image Uploader -->
         <service id="symedit_media.image_upload_manager" class="%symedit_media.image_upload_manager.class%">
-            <argument type="service">
-                <service class="Gaufrette\Filesystem" factory-service="knp_gaufrette.filesystem_map" factory-method="get">
-                    <argument>symedit_image</argument>
-                </service>
-            </argument>
+            <argument type="service" id="symedit_media.filesystem.image" />
             <argument type="service" id="liip_imagine.cache.manager" />
         </service>
 
+        <!-- Image Filesystem -->
+        <service id="symedit_media.filesystem.image" class="Gaufrette\Filesystem">
+            <factory service="knp_gaufrette.filesystem_map" method="get" />
+            <argument>symedit_image</argument>
+        </service>
+
         <!-- File Filesystem -->
-        <service id="symedit_media.filesystem.file" class="Gaufrette\Filesystem" factory-service="knp_gaufrette.filesystem_map" factory-method="get">
+        <service id="symedit_media.filesystem.file" class="Gaufrette\Filesystem">
+            <factory service="knp_gaufrette.filesystem_map" method="get" />
             <argument>symedit_file</argument>
         </service>
 

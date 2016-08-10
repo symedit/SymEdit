@@ -1,6 +1,6 @@
 {% extends '@SymEdit/Email/base.html.twig' %}
 
-{% block subject %}{{ sylius_settings_get('company.name') }} - Contact Submission{% endblock %}
+{% block subject %}{{ sylius_settings('company')['name'] }} - Contact Submission{% endblock %}
 
 {% block body_html '' %}
 

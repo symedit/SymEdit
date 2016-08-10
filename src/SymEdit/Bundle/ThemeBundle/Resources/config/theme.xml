@@ -68,7 +68,8 @@
         <service id="symedit_theme.theme.config" class="%symedit_theme.theme.config.class%" public="false" />
 
         <!-- Current Theme -->
-        <service id="symedit_theme.theme" class="%symedit_theme.model.theme.class%" factory-service="symedit_theme.theme_manager" factory-method="getTheme">
+        <service id="symedit_theme.theme" class="%symedit_theme.model.theme.class%">
+            <factory service="symedit_theme.theme_manager" method="getTheme" />
             <argument>%symedit_theme.active_theme%</argument>
         </service>
     </services>

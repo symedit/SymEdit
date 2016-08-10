@@ -1,6 +1,6 @@
 {% extends '@SymEdit/Email/base.html.twig' %}
 
-{% block subject %}{{ sylius_settings_get('company.name') }} - Password Reset{% endblock %}
+{% block subject %}{{ sylius_settings('company')['name'] }} - Password Reset{% endblock %}
 
 {% block content %}
   <h4>Hey {{ user.profile.firstName }},</h4>

@@ -27,7 +27,7 @@ security:
             logout: true
             anonymous: true
             remember_me:
-                key: "%secret%"
+                secret: "%secret%"
 
     access_control:
         - { path: ^/api, role: IS_AUTHENTICATED_ANONYMOUSLY, ip: [192.168.1.0/24, 127.0.0.1] }

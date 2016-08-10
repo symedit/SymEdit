@@ -7,7 +7,7 @@
 {% endif -%}
 
 {%- if name is not defined %}
-    {% set name = sylius_settings_get('company.name') %}
+    {% set name = sylius_settings('company')['name'] %}
 {% endif -%}
 
 {% for key, value in social if value is not empty %}

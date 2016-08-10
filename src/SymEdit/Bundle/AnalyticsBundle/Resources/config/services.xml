@@ -12,7 +12,9 @@
     </parameters>
 
     <services>
-        <service id="symedit_analytics.entity_manager" factory-service="doctrine" factory-method="getManager" class="Doctrine\ORM\EntityManager" public="false" />
+        <service id="symedit_analytics.entity_manager" class="Doctrine\ORM\EntityManager" public="false">
+            <factory service="doctrine" method="getManager" />
+        </service>
 
         <!-- Tracker -->
         <service id="symedit_analytics.tracker" class="%symedit_analytics.tracker.class%">

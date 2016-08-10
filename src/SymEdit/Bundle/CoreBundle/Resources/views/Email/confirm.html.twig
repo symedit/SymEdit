@@ -1,12 +1,12 @@
 {% extends '@SymEdit/Email/base.html.twig' %}
 
-{% block subject %}{{ sylius_settings_get('company.name') }} - Verify Your Email{% endblock %}
+{% block subject %}{{ sylius_settings('company')['name'] }} - Verify Your Email{% endblock %}
 
 {% block content %}
   <h4>Hey {{ user.profile.firstName }},</h4>
 
   <p>
-      Thanks for signing up with us at {{ sylius_settings_get('company.name') }}!
+      Thanks for signing up with us at {{ sylius_settings('company')['name'] }}!
   </p>
 
   <p>

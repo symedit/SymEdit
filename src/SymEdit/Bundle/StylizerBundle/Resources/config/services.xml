@@ -61,11 +61,9 @@
         </service>
 
         <!-- Styles Model -->
-        <service
-            id="symedit_stylizer.styles"
-            class="SymEdit\Bundle\StylizerBundle\Model\Styles"
-            factory-service="symedit_stylizer.style_manager"
-            factory-method="getStyles" />
+        <service id="symedit_stylizer.styles" class="SymEdit\Bundle\StylizerBundle\Model\Styles">
+            <factory service="symedit_stylizer.style_manager" method="getStyles" />
+        </service>
 
         <!-- Stylizer Form Type -->
         <service id="symedit_stylizer.form.styles" class="%symedit_stylizer.form.styles.class%">

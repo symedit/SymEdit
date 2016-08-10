@@ -1,5 +1,5 @@
 imports:
-    - { resource: @SymEditBundle/Resources/config/app/symedit.yml }
+    - { resource: "@SymEditBundle/Resources/config/app/symedit.yml" }
 
 # Gaufrette Configuration
 knp_gaufrette:
