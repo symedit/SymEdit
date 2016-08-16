@@ -11,7 +11,8 @@ matrix:
 
 install:
     - composer self-update
-    - composer --prefer-source install
+    - composer install --prefer-source --no-scripts --no-interaction
+    - composer run-script travis-build --no-interaction
 
 before_script:
     - php app/console symedit:install --force --env=test
