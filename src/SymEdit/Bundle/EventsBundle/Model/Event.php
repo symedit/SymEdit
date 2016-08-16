@@ -74,7 +74,7 @@ class Event implements EventInterface, ResourceInterface
         return $this->eventStart;
     }
 
-    public function setEventStart(DateTime $eventStart)
+    public function setEventStart(\DateTime $eventStart)
     {
         $this->eventStart = $eventStart;
 
@@ -86,7 +86,7 @@ class Event implements EventInterface, ResourceInterface
         return $this->eventEnd;
     }
 
-    public function setEventEnd(DateTime $eventEnd = null)
+    public function setEventEnd(\DateTime $eventEnd = null)
     {
         $this->eventEnd = $eventEnd;
 
