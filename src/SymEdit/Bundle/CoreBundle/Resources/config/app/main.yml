@@ -89,6 +89,7 @@ mopa_bootstrap:
     icons:
         icon_set: fontawesome4
     form:
+        allow_legacy: true
         show_legend: false
         render_required_asterisk: true
         render_optional_text: false
