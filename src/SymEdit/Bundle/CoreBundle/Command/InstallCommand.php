@@ -33,6 +33,8 @@ class InstallCommand extends ContainerAwareCommand
         $force = (boolean) $input->getOption('force');
         $dialog = $this->getHelperSet()->get('dialog');
 
+        $output->writeln('pre create?');
+
         // Doctrine create database
         if ($force || $dialog->askConfirmation($output, '<question>Create Database?</question>', false)) {
             $output->writeln('Creating database...');
@@ -41,6 +43,8 @@ class InstallCommand extends ContainerAwareCommand
             $input = new ArrayInput(['command' => 'doctrine:database:create', '-n' => $force]);
             $returnCode = $command->run($input, $output);
         }
+
+        $output->writeln('did not create DB');
 
         // Doctrine schema update
         if ($force || $dialog->askConfirmation($output, '<question>Load Schema?</question>', false)) {
