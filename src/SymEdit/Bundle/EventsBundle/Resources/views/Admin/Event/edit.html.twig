@@ -1,4 +1,5 @@
 {% extends '@SymEdit/Admin/Event/crud.html.twig' %}
+{% import '@SymEdit/Admin/macro.html.twig' as macro %}
 
 {% block title %}Events &raquo; {{ event.title }} &raquo; Edit{% endblock %}
 
@@ -7,4 +8,10 @@
     {{ icon('save') }}
     Update Event
 </button>
+
+{{ macro.delete_button('event_delete', 'Delete Event') }}
+{% endblock %}
+
+{% block extra %}
+{{ macro.delete_form('event_delete', path('admin_event_delete', {'id': event.id})) }}
 {% endblock %}
