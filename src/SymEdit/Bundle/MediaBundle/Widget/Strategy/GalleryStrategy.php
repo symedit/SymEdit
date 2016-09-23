@@ -13,6 +13,7 @@ namespace SymEdit\Bundle\MediaBundle\Widget\Strategy;
 
 use SymEdit\Bundle\WidgetBundle\Model\WidgetInterface;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class GalleryStrategy extends AbstractGalleryStrategy
 {
@@ -42,10 +43,11 @@ class GalleryStrategy extends AbstractGalleryStrategy
         ;
     }
 
-    public function getDefaultOptions(\Symfony\Component\OptionsResolver\OptionsResolver $resolver)
+    public function getDefaultOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
             'template' => '@SymEdit/Widget/Media/gallery.html.twig',
+            'slider' => null,
         ]);
     }
 

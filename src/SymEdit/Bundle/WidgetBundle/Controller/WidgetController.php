@@ -15,6 +15,7 @@ use FOS\RestBundle\View\View;
 use SymEdit\Bundle\ResourceBundle\Controller\ResourceController;
 use SymEdit\Bundle\WidgetBundle\Event\Events;
 use SymEdit\Bundle\WidgetBundle\Event\WidgetEvent;
+use SymEdit\Bundle\WidgetBundle\Factory\WidgetFactoryInterface;
 use SymEdit\Bundle\WidgetBundle\Model\WidgetInterface;
 use SymEdit\Bundle\WidgetBundle\Renderer\WidgetRendererInterface;
 use SymEdit\Bundle\WidgetBundle\Widget\WidgetRegistry;
@@ -27,6 +28,23 @@ class WidgetController extends ResourceController
     {
         $configuration = $this->requestConfigurationFactory->create($this->metadata, $request);
         $widget = $this->findOr404($configuration);
+
+        return $this->renderWidget($request, $widget);
+    }
+
+    public function createAndRenderAction(Request $request, $strategyName, array $options = [])
+    {
+        try {
+            $widget = $this->getFactory()->createFromStrategy($strategyName, $options);
+        } catch (\Exception $e) {
+            return new Response($e->getMessage());
+        }
+
+        return $this->renderWidget($request, $widget);
+    }
+
+    protected function renderWidget(Request $request, WidgetInterface $widget)
+    {
         $strategy = $this->getStrategy($widget);
 
         // Prepare pre render event
@@ -105,6 +123,14 @@ class WidgetController extends ResourceController
     protected function getRegistry()
     {
         return $this->get('symedit_widget.widget.registry');
+    }
+
+    /**
+     * @return WidgetFactoryInterface
+     */
+    protected function getFactory()
+    {
+        return $this->get('symedit.factory.widget');
     }
 
     /**

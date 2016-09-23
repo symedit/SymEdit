@@ -12,5 +12,13 @@
         <service id="symedit_widget.symedit.menu" class="%symedit_widget.symedit.menu.class%">
             <tag name="symedit_menu.builder" menu="symedit_admin" />
         </service>
+
+        <!-- Widget Shortcode -->
+        <service id="symedit.shortcode.widget" class="SymEdit\Bundle\WidgetBundle\Shortcode\WidgetShortcode" public="false">
+            <argument type="service" id="symedit.factory.widget" />
+            <argument type="service" id="fragment.handler" />
+
+            <tag name="symedit_shortcode.shortcode" alias="widget" />
+        </service>
     </services>
 </container>
