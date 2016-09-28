@@ -40,6 +40,11 @@ class BackendTest extends WebTestCase
 
         $client = $this->getClient();
         $client->request('GET', $prefix.$url);
+
+        if (!$client->getResponse()->isSuccessful()) {
+            echo $client->getResponse()->getContent();
+        }
+
         $this->assertTrue($client->getResponse()->isSuccessful());
     }
 
