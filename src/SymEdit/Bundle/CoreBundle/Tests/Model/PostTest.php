@@ -30,7 +30,10 @@ class PostTest extends TestCase
         $post->setSlug('foo');
         $this->assertNull($post->getImage());
 
-        $image = $this->getMock('SymEdit\Bundle\MediaBundle\Model\Image');
+        $image = $this->getMockBuilder('SymEdit\Bundle\MediaBundle\Model\ImageInterface')
+            ->getMock()
+        ;
+        
         $post->setImage($image);
         $this->assertEquals($image, $post->getImage());
     }

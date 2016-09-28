@@ -39,7 +39,9 @@ class UploadManagerTest extends TestCase
 
     public function getMedia()
     {
-        return $this->getMock('SymEdit\Bundle\MediaBundle\Model\MediaInterface');
+        return $this->getMockBuilder('SymEdit\Bundle\MediaBundle\Model\MediaInterface')
+            ->getMock()
+        ;
     }
 
     public function testPreUpload()
