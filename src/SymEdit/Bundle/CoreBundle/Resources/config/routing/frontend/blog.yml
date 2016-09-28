@@ -62,7 +62,7 @@ blog_category_view:
     path: /category/{slug}/{page}
     requirements:
         page: \d+
-        slug: "[a-z0-9_\-\/]+?"
+        slug: "[a-z0-9_\\-\\/]+?"
     defaults:
         _controller: symedit.controller.post:showCategoryAction
         _format: html
@@ -74,7 +74,7 @@ blog_category_view:
 blog_category_rss:
     path: /category/{slug}/feed.xml
     requirements:
-        slug: "[a-z0-9_\-\/]+?"
+        slug: "[a-z0-9_\\-\\/]+?"
     defaults:
         _controller: symedit.controller.post:showCategoryAction
         _format: rss
