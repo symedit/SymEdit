@@ -19,31 +19,41 @@ class LatestPostStrategyTest extends WidgetStrategyTest
     public function testExecute()
     {
         $repository = $this->getMockBuilder('SymEdit\Bundle\BlogBundle\Repository\PostRepositoryInterface')
-                           ->disableOriginalConstructor()
-                           ->getMock();
+           ->disableOriginalConstructor()
+           ->getMock()
+        ;
 
         $repository->expects($this->once())
-                   ->method('getLatestPost')
-                   ->will($this->returnValue('foo'));
+           ->method('getLatestPost')
+           ->will($this->returnValue('foo'))
+        ;
 
         $widget = $this->createWidget();
 
-        $strategy = $this->getMock('SymEdit\Bundle\BlogBundle\Widget\Strategy\LatestPostStrategy', ['render'], [$repository]);
+        $strategy = $this->getMockBuilder('SymEdit\Bundle\BlogBundle\Widget\Strategy\LatestPostStrategy')
+            ->setConstructorArgs([$repository])
+            ->setMethods(['render'])
+            ->getMock()
+        ;
+
         $strategy->expects($this->once())
-                 ->method('render')
-                 ->with(
-                    $this->equalTo($widget),
-                    $this->equalTo([
-                        'post' => 'foo',
-                    ])
-                 );
+            ->method('render')
+            ->with(
+                $this->equalTo($widget),
+                $this->equalTo([
+                    'post' => 'foo',
+                ])
+            )
+        ;
 
         $strategy->execute($widget);
     }
 
     protected function createStrategy()
     {
-        $repository = $this->getMock('SymEdit\Bundle\BlogBundle\Repository\PostRepositoryInterface');
+        $repository = $this->getMockBuilder('SymEdit\Bundle\BlogBundle\Repository\PostRepositoryInterface')
+            ->getMock()
+        ;
 
         return new LatestPostStrategy($repository);
     }
@@ -52,11 +62,12 @@ class LatestPostStrategyTest extends WidgetStrategyTest
     {
         $builder = parent::getFormBuilder();
         $builder->expects($this->once())
-                ->method('add')
-                ->with(
-                    $this->equalTo('show_image'),
-                    $this->equalTo('checkbox')
-                );
+            ->method('add')
+            ->with(
+                $this->equalTo('show_image'),
+                $this->equalTo('checkbox')
+            )
+        ;
 
         return $builder;
     }

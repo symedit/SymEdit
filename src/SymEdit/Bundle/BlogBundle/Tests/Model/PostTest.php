@@ -141,7 +141,10 @@ class PostTest extends TestCase
         $post = $this->getPost();
         $this->assertNull($post->getAuthor());
 
-        $author = $this->getMock('Symfony\Component\Security\Core\User\UserInterface');
+        $author = $this->getMockBuilder('Symfony\Component\Security\Core\User\UserInterface')
+            ->getMock()
+        ;
+        
         $post->setAuthor($author);
         $this->assertEquals($author, $post->getAuthor());
     }

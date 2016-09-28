@@ -19,25 +19,38 @@ class ContactSubscriberTest extends TestCase
 {
     public function testEmailSend()
     {
-        $mailer = $this->getMock('SymEdit\Bundle\CoreBundle\Util\SymEditMailerInterface');
-        $mailer->expects($this->once())
-               ->method('sendAdmin')
-               ->with(
-                   $this->equalTo('@SymEdit/Contact/contact.html.twig'),
-                   $this->equalTo([
-                       'Form' => [
-                           'email' => 'foo@bar.com',
-                       ],
-                   ]));
+        $mailer = $this->getMockBuilder('SymEdit\Bundle\CoreBundle\Util\SymEditMailerInterface')
+            ->getMock()
+        ;
+
+        $mailer
+            ->expects($this->once())
+            ->method('sendAdmin')
+            ->with(
+                $this->equalTo('@SymEdit/Contact/contact.html.twig'),
+                $this->equalTo([
+                    'Form' => [
+                        'email' => 'foo@bar.com',
+                    ],
+                ]
+            ))
+        ;
 
         $subscriber = new ContactSubscriber($mailer);
-        $request = $this->getMock('Symfony\Component\HttpFoundation\Request');
+        $request = $this->getMockBuilder('Symfony\Component\HttpFoundation\Request')
+            ->getMock()
+        ;
 
-        $form = $this->getMock('Symfony\Component\Form\FormInterface');
-        $form->method('getData')
-             ->will($this->returnValue([
-                 'email' => 'foo@bar.com',
-             ]));
+        $form = $this->getMockBuilder('Symfony\Component\Form\FormInterface')
+            ->getMock()
+        ;
+
+        $form
+            ->method('getData')
+            ->will($this->returnValue([
+                'email' => 'foo@bar.com',
+            ]))
+        ;
 
         $event = new FormEvent($form, $request);
 

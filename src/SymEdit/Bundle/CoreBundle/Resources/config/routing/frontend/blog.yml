@@ -7,7 +7,7 @@ blog:
         _controller: symedit.controller.post:indexAction
         _format: html
         _sylius:
-            paginate: expr:setting('blog.max_posts', 5)
+            paginate: "expr:setting('blog.max_posts', 5)"
             template: "@SymEdit/Blog/index.html.twig"
             repository:
                 method: getPublishedPaginator
@@ -27,7 +27,7 @@ blog_archive:
         page: \d+
     defaults:
         _sylius:
-            paginate: expr:setting('blog.max_posts', 5)
+            paginate: "expr:setting('blog.max_posts', 5)"
             template: "@SymEdit/Blog/index.html.twig"
             criteria:
                 status: 1
@@ -62,19 +62,19 @@ blog_category_view:
     path: /category/{slug}/{page}
     requirements:
         page: \d+
-        slug: "[a-z0-9_\-\/]+?"
+        slug: "[a-z0-9_\\-\\/]+?"
     defaults:
         _controller: symedit.controller.post:showCategoryAction
         _format: html
         _sylius:
-            paginate: expr:setting('blog.max_posts', 5)
+            paginate: "expr:setting('blog.max_posts', 5)"
             template: "@SymEdit/Blog/category.html.twig"
         page: 1
 
 blog_category_rss:
     path: /category/{slug}/feed.xml
     requirements:
-        slug: "[a-z0-9_\-\/]+?"
+        slug: "[a-z0-9_\\-\\/]+?"
     defaults:
         _controller: symedit.controller.post:showCategoryAction
         _format: rss
