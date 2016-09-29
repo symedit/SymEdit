@@ -56,6 +56,9 @@ admin_gallery_item_create:
     defaults:
         _controller: symedit.controller.gallery_item:createAction
         _sylius:
+            factory:
+                method: createWithGallery
+                arguments: [$gallery_id]
             template: "@SymEdit/Admin/ImageGallery/Item/new.html.twig"
             redirect:
                 route: admin_image_gallery_update

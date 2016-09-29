@@ -22,6 +22,12 @@ default:
                 - SymEdit\Bundle\BlogBundle\Behat\BlogContext
             filters:
                 tags: "@blog, @posts"
+        gallery:
+            contexts:
+                - Behat\MinkExtension\Context\MinkContext
+                - SymEdit\Bundle\CoreBundle\Behat\WebContext
+            filters:
+                tags: "@gallery"
         sitemap:
             contexts:
                 - Behat\MinkExtension\Context\MinkContext

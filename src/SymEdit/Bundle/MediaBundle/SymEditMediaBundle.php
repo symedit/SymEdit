@@ -13,7 +13,9 @@ namespace SymEdit\Bundle\MediaBundle;
 
 use Sylius\Bundle\ResourceBundle\AbstractResourceBundle;
 use Sylius\Bundle\ResourceBundle\SyliusResourceBundle;
+use SymEdit\Bundle\MediaBundle\DependencyInjection\Compiler\GalleryItemFactoryCompilerPass;
 use SymEdit\Bundle\MediaBundle\DependencyInjection\SymEditMediaExtension;
+use Symfony\Component\DependencyInjection\ContainerBuilder;
 
 class SymEditMediaBundle extends AbstractResourceBundle
 {
@@ -37,6 +39,13 @@ class SymEditMediaBundle extends AbstractResourceBundle
     protected function getModelNamespace()
     {
         return 'SymEdit\Bundle\MediaBundle\Model';
+    }
+
+    public function build(ContainerBuilder $container)
+    {
+        parent::build($container);
+
+        $container->addCompilerPass(new GalleryItemFactoryCompilerPass());
     }
 
     protected function getBundlePrefix()

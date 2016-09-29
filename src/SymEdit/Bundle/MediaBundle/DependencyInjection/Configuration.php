@@ -15,6 +15,7 @@ use Sylius\Component\Resource\Factory\Factory;
 use SymEdit\Bundle\MediaBundle\Controller\FileController;
 use SymEdit\Bundle\MediaBundle\Controller\GalleryItemController;
 use SymEdit\Bundle\MediaBundle\Controller\ImageController;
+use SymEdit\Bundle\MediaBundle\Factory\GalleryItemFactory;
 use SymEdit\Bundle\MediaBundle\Form\Type\FileType;
 use SymEdit\Bundle\MediaBundle\Form\Type\GalleryItemType;
 use SymEdit\Bundle\MediaBundle\Form\Type\ImageGalleryType;
@@ -173,7 +174,7 @@ class Configuration implements ConfigurationInterface
                                         ->scalarNode('interface')->defaultValue(GalleryItemInterface::class)->end()
                                         ->scalarNode('controller')->defaultValue(GalleryItemController::class)->end()
                                         ->scalarNode('repository')->end()
-                                        ->scalarNode('factory')->defaultValue(Factory::class)->end()
+                                        ->scalarNode('factory')->defaultValue(GalleryItemFactory::class)->end()
                                         ->arrayNode('form')
                                             ->addDefaultsIfNotSet()
                                             ->children()
