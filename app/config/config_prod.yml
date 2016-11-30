@@ -6,9 +6,9 @@ doctrine:
     orm:
         entity_managers:
             default:
-                metadata_cache_driver: apc
-                query_cache_driver: apc
-                result_cache_driver: apc
+                metadata_cache_driver: apcu
+                query_cache_driver: apcu
+                result_cache_driver: apcu
 
 monolog:
     handlers:
@@ -24,8 +24,8 @@ monolog:
 doctrine_cache:
     providers:
         sylius_settings:
-            type: apc
+            type: apcu
             namespace: sylius_settings
         symedit_theme:
-            type: apc
+            type: apcu
             namespace: symedit_theme
