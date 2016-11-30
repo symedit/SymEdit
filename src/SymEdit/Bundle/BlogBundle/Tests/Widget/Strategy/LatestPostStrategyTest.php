@@ -11,6 +11,7 @@
 
 namespace SymEdit\Bundle\BlogBundle\Tests\Widget\Strategy;
 
+use SymEdit\Bundle\BlogBundle\Repository\PostRepositoryInterface;
 use SymEdit\Bundle\BlogBundle\Widget\Strategy\LatestPostStrategy;
 use SymEdit\Bundle\WidgetBundle\Test\WidgetStrategyTest;
 
@@ -18,7 +19,7 @@ class LatestPostStrategyTest extends WidgetStrategyTest
 {
     public function testExecute()
     {
-        $repository = $this->getMockBuilder('SymEdit\Bundle\BlogBundle\Repository\PostRepositoryInterface')
+        $repository = $this->getMockBuilder(PostRepositoryInterface::class)
            ->disableOriginalConstructor()
            ->getMock()
         ;
@@ -30,7 +31,7 @@ class LatestPostStrategyTest extends WidgetStrategyTest
 
         $widget = $this->createWidget();
 
-        $strategy = $this->getMockBuilder('SymEdit\Bundle\BlogBundle\Widget\Strategy\LatestPostStrategy')
+        $strategy = $this->getMockBuilder(LatestPostStrategy::class)
             ->setConstructorArgs([$repository])
             ->setMethods(['render'])
             ->getMock()
@@ -51,7 +52,7 @@ class LatestPostStrategyTest extends WidgetStrategyTest
 
     protected function createStrategy()
     {
-        $repository = $this->getMockBuilder('SymEdit\Bundle\BlogBundle\Repository\PostRepositoryInterface')
+        $repository = $this->getMockBuilder(PostRepositoryInterface::class)
             ->getMock()
         ;
 

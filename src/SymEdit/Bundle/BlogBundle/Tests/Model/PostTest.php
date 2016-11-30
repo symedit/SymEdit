@@ -14,6 +14,7 @@ namespace SymEdit\Bundle\BlogBundle\Tests\Model;
 use SymEdit\Bundle\BlogBundle\Model\Category;
 use SymEdit\Bundle\BlogBundle\Model\Post;
 use SymEdit\Bundle\BlogBundle\Tests\TestCase;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 class PostTest extends TestCase
 {
@@ -113,7 +114,7 @@ class PostTest extends TestCase
     public function testPublishedAt()
     {
         $post = $this->getPost();
-        $updated = new \DateTIme();
+        $updated = new \DateTime();
         $updated->modify('+1 second');
 
         // We are going with setting published in constructor
@@ -141,10 +142,10 @@ class PostTest extends TestCase
         $post = $this->getPost();
         $this->assertNull($post->getAuthor());
 
-        $author = $this->getMockBuilder('Symfony\Component\Security\Core\User\UserInterface')
+        $author = $this->getMockBuilder(UserInterface::class)
             ->getMock()
         ;
-        
+
         $post->setAuthor($author);
         $this->assertEquals($author, $post->getAuthor());
     }
