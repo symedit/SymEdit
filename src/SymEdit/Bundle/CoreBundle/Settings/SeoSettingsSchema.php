@@ -25,6 +25,11 @@ class SeoSettingsSchema implements SchemaInterface
                 'required' => false,
                 'attr' => ['rows' => 5],
             ])
+            ->add('body_extra', 'textarea', [
+                'label' => 'symedit.settings.seo.body_extra',
+                'required' => false,
+                'attr' => ['rows' => 5],
+            ])
             ->add('business_type', 'choice', [
                 'label' => 'symedit.settings.seo.business_type',
                 'choices' => [

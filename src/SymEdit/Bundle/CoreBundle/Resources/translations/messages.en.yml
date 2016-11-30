@@ -68,6 +68,7 @@ symedit:
             fax: Fax
         seo:
             head_extra: Extra <head> contents
+            body_extra: Extra <body> contents
             business_type: Business Type
         webmaster:
             google_analytics_enabled: Enable Google Analytics?
