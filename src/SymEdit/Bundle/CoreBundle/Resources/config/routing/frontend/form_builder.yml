@@ -4,6 +4,8 @@ symedit_form_builder_process:
     defaults:
         _controller: symedit.controller.form_builder:processAction
         _sylius:
+            criteria:
+                name: $name
             template: "@SymEdit/FormBuilder/process.html.twig"
 
 symedit_form_builder_success:
@@ -12,4 +14,6 @@ symedit_form_builder_success:
     defaults:
         _controller: symedit.controller.form_builder:showAction
         _sylius:
+            criteria:
+                name: $name
             template: "@SymEdit/FormBuilder/success.html.twig"
