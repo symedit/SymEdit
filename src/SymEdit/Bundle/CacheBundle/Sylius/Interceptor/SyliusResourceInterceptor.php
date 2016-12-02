@@ -13,9 +13,13 @@ namespace SymEdit\Bundle\CacheBundle\Sylius\Interceptor;
 
 use CG\Proxy\MethodInterceptorInterface;
 use CG\Proxy\MethodInvocation;
-use Sylius\Bundle\ResourceBundle\Controller\ParametersParser;
+use Sylius\Bundle\ResourceBundle\Controller\RequestConfigurationFactoryInterface;
 use Sylius\Bundle\ResourceBundle\Controller\ResourceController;
+use Sylius\Bundle\ResourceBundle\Controller\SingleResourceProviderInterface;
+use Sylius\Component\Resource\Metadata\RegistryInterface;
 use SymEdit\Bundle\CacheBundle\Decision\CacheDecisionManager;
+use SymEdit\Bundle\CacheBundle\Sylius\AttributeParser;
+use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -23,11 +27,25 @@ class SyliusResourceInterceptor implements MethodInterceptorInterface
 {
     protected $decider;
     protected $parser;
+    protected $configurationFactory;
+    protected $registry;
+    protected $singleResourceProvider;
+    protected $container;
 
-    public function __construct(CacheDecisionManager $decider, ParametersParser $parser)
+    public function __construct(
+        CacheDecisionManager $decider,
+        AttributeParser $parser,
+        RequestConfigurationFactoryInterface $configurationFactory,
+        RegistryInterface $registry,
+        SingleResourceProviderInterface $singleResourceProvider,
+        ContainerInterface $container)
     {
         $this->decider = $decider;
         $this->parser = $parser;
+        $this->configurationFactory = $configurationFactory;
+        $this->registry = $registry;
+        $this->singleResourceProvider = $singleResourceProvider;
+        $this->container = $container;
     }
 
     public function intercept(MethodInvocation $invocation)
@@ -45,20 +63,32 @@ class SyliusResourceInterceptor implements MethodInterceptorInterface
 
         /* @var $request Request */
         $request = $invocation->arguments[0];
+        $controllerPath = $request->attributes->get('_controller', null);
 
-        // Current Resource
-        $resource = $controller->findOr404($request);
+        // Split into controller:method
+        list($controllerString, $method) = explode(':', $controllerPath, 2);
+
+        // Split into vendor.controller.type
+        list($appName, $ignored, $alias) = explode('.', $controllerString, 3);
+
+        // Get metadata
+        $metadata = $this->registry->get(sprintf('%s.%s', $appName, $alias));
+        $requestConfiguration = $this->configurationFactory->create($metadata, $request);
+
+        // Get Repository
+        $repository = $this->container->get($metadata->getServiceId('repository'));
+        $resource = $this->singleResourceProvider->get($requestConfiguration, $repository);
 
         // Cache Options
         $options = $request->attributes->get('_sylius', []);
         $cacheOptions = array_key_exists('cache', $options) ? $options['cache'] : [];
 
         // Build the actual cache options since we'll need to use it twice
-        $this->parser->process($cacheOptions, $resource);
+        $parsedOptions = $this->parser->process($cacheOptions, $resource);
 
         // Create a preliminary response to see if it is already cached
         $cachedResponse = new Response();
-        $cachedResponse->setCache($cacheOptions);
+        $cachedResponse->setCache($parsedOptions);
 
         if ($cachedResponse->isNotModified($request)) {
             return $cachedResponse;
@@ -66,7 +96,7 @@ class SyliusResourceInterceptor implements MethodInterceptorInterface
 
         // If not we take the response back from the controller and modify it again
         $controllerResponse = $invocation->proceed();
-        $controllerResponse->setCache($cacheOptions);
+        $controllerResponse->setCache($parsedOptions);
 
         return $controllerResponse;
     }

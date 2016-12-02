@@ -61,19 +61,4 @@ class PageController extends ResourceController
 
         return new JsonResponse($out);
     }
-
-    public function findOr404(RequestConfiguration $configuration)
-    {
-        $request = $configuration->getRequest();
-
-        if ($request->attributes->has('_page')) {
-            $page = $request->attributes->get('_page');
-
-            if ($page->getId() !== null) {
-                return $page;
-            }
-        }
-
-        return parent::findOr404($configuration);
-    }
 }

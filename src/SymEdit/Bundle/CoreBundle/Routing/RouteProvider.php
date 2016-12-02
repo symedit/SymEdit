@@ -273,10 +273,14 @@ class RouteProvider extends DoctrineProvider implements RouteProviderInterface
         // Merge in other defaults for non-page controllers
         if (!$page->getPageController()) {
             $defaults = array_merge($defaults, [
+                'path' => $page->getPath(),
                 '_sylius' => [
                     'cache' => [
                         'last_modified' => 'resource.updatedAt',
                         'public' => true,
+                    ],
+                    'criteria' => [
+                        'path' => '$path',
                     ],
                 ],
             ]);

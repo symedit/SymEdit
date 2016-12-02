@@ -12,13 +12,17 @@
     <services>
         <service id="symedit_cache.sylius.interceptor.sylius_resource" class="%symedit_cache.sylius.interceptor.class%">
             <argument type="service" id="symedit_cache.decision_manager" />
-            <argument type="service" id="symedit_cache.sylius.parameters_parser" />
+            <argument type="service" id="symedit_cache.sylius.attribute_parser" />
+            <argument type="service" id="sylius.resource_controller.request_configuration_factory" />
+            <argument type="service" id="sylius.resource_registry" />
+            <argument type="service" id="sylius.resource_controller.single_resource_provider" />
+            <argument type="service" id="service_container" />
         </service>
 
         <service id="symedit_cache.sylius.pointcut.sylius_resource" class="%symedit_cache.sylius.pointcut.class%">
             <tag name="jms_aop.pointcut" interceptor="symedit_cache.sylius.interceptor.sylius_resource" />
         </service>
 
-        <service id="symedit_cache.sylius.parameters_parser" alias="sylius.resource_controller.parameters_parser" />
+        <service id="symedit_cache.sylius.attribute_parser" class="SymEdit\Bundle\CacheBundle\Sylius\AttributeParser" />
     </services>
 </container>
