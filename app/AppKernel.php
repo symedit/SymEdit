@@ -40,7 +40,6 @@ class AppKernel extends Kernel
 
             // Isometriks Bundles
             new Isometriks\Bundle\SpamBundle\IsometriksSpamBundle(),
-            new Isometriks\Bundle\JsonLdDumperBundle\IsometriksJsonLdDumperBundle(),
 
             // Others
             new FOS\RestBundle\FOSRestBundle(),
