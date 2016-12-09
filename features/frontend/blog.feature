@@ -18,3 +18,8 @@ Feature: CMS Homepage
         Given I am on the blog index
          When I follow "General"
          Then I should see "Hello World!"
+
+    Scenario: A Post should have SEO
+        Given I am on the blog index
+         When I follow "Hello World!"
+         Then I should see a title tag with "SEO Title"

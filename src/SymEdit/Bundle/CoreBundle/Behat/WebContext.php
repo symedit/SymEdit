@@ -42,6 +42,19 @@ class WebContext extends DefaultContext implements SnippetAcceptingContext
     }
 
     /**
+     * @Then I should see a title tag with :title
+     */
+    public function iShouldSeeATitleTagWith($title)
+    {
+        $titleValue = $this->getSession()->getPage()->find('css', 'title')->getText();
+
+        if ($title !== $titleValue) {
+            throw new \Exception(sprintf('Title should be "%s" got "%s"', $title, $titleValue));
+        }
+    }
+
+
+    /**
      * @Given I am logged in as admin
      */
     public function iAmLoggedInAsAdmin()

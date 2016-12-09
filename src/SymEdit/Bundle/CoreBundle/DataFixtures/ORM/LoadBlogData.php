@@ -37,6 +37,9 @@ class LoadBlogData extends AbstractFixture implements OrderedFixtureInterface
             ->setStatus(Post::PUBLISHED)
             ->setContent('<p>Here is your first blog post! You will probably want to delete this.</p>')
             ->addCategory($category_general)
+            ->setSeo([
+                'title' => 'SEO Title',
+            ])
         ;
 
         $manager->persist($post_default);
