@@ -11,8 +11,8 @@
 
 namespace SymEdit\Bundle\SeoBundle\EventListener;
 
+use Sylius\Bundle\ResourceBundle\Event\ResourceControllerEvent;
 use SymEdit\Bundle\CoreBundle\Event\Events;
-use SymEdit\Bundle\CoreBundle\Event\SubjectEvent;
 use SymEdit\Bundle\SeoBundle\Model\SeoManagerInterface;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
@@ -27,7 +27,7 @@ class SymEditSubjectSubscriber implements EventSubscriberInterface
         $this->preferences = $preferences;
     }
 
-    public function onSymEditSubjectSet(SubjectEvent $event)
+    public function onSymEditShow(ResourceControllerEvent $event)
     {
         $subject = $event->getSubject();
 
@@ -51,12 +51,8 @@ class SymEditSubjectSubscriber implements EventSubscriberInterface
 
     public static function getSubscribedEvents()
     {
-        $events = [];
-
-        if (class_exists('SymEdit\Bundle\CoreBundle\Event\Events')) {
-            $events[Events::SUBJECT_SET] = 'onSymEditSubjectSet';
-        }
-
-        return $events;
+        return array(
+            'symedit.show' => 'onSymEditShow',
+        );
     }
 }

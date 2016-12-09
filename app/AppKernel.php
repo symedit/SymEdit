@@ -18,6 +18,7 @@ class AppKernel extends Kernel
             new Symfony\Cmf\Bundle\RoutingBundle\CmfRoutingBundle(),
 
             // SymEdit Bundles
+            new SymEdit\Bundle\ResourceBundle\SymEditResourceBundle(),
             new SymEdit\Bundle\StylizerBundle\SymEditStylizerBundle(),
             new SymEdit\Bundle\BlogBundle\SymEditBlogBundle(),
             new SymEdit\Bundle\UserBundle\SymEditUserBundle(),
@@ -39,6 +40,7 @@ class AppKernel extends Kernel
 
             // Isometriks Bundles
             new Isometriks\Bundle\SpamBundle\IsometriksSpamBundle(),
+            new Isometriks\Bundle\JsonLdDumperBundle\IsometriksJsonLdDumperBundle(),
 
             // Others
             new FOS\RestBundle\FOSRestBundle(),
