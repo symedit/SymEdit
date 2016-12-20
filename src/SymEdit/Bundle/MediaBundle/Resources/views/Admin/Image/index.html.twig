@@ -16,8 +16,24 @@
         <div class="row" id="images">
             {% for image in images %}
                 <div class="col-sm-{{ 12 / columns }} thumbnail-container">
-                    <a class="thumbnail" href="{{ path('admin_image_update', {id:image.id}) }}">
+                    <a class="thumbnail symedit-gallery-thumbnail" href="{{ path('admin_image_update', {id:image.id}) }}">
                         <img src="{{ image | imagine_filter('gallery_thumbnail') }}">
+
+                        {% set metadata = image.metadata %}
+
+                        <div class="metadata">
+                            {% if metadata.width is defined and metadata.height is defined %}
+                                <span class="dimensions">
+                                    {{ metadata.width }} x {{ metadata.height }}
+                                </span>
+                            {% endif %}
+
+                            {% if metadata.size is defined %}
+                                <span class="size">
+                                    {{ (metadata.size / 1024 / 1024)|round(2) }}MB
+                                </span>
+                            {% endif %}
+                        </div>
                     </a>
                 </div>
             {% endfor %}

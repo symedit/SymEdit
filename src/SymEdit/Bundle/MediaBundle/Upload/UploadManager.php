@@ -18,10 +18,12 @@ use Gaufrette\Filesystem;
 class UploadManager implements UploadManagerInterface
 {
     protected $filesystem;
+    protected $metadataTagger;
 
-    public function __construct(Filesystem $filesystem)
+    public function __construct(Filesystem $filesystem, MetadataTagger $metadataTagger)
     {
         $this->filesystem = $filesystem;
+        $this->metadataTagger = $metadataTagger;
     }
 
     /**
@@ -55,6 +57,9 @@ class UploadManager implements UploadManagerInterface
             $media->getPath(),
             file_get_contents($file->getFileInfo()->getPathname())
         );
+
+        // Set metadata size
+        $this->metadataTagger->tag($media, $file);
 
         // Mark as null to not upload again
         $media->setFile(null);

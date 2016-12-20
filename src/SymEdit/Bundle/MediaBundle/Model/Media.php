@@ -19,6 +19,7 @@ abstract class Media implements MediaInterface
     protected $path;
     protected $name;
     protected $updatedAt;
+    protected $metadata = [];
     protected $prefix = '';
 
     public function __toString()
@@ -96,6 +97,18 @@ abstract class Media implements MediaInterface
     public function getUpdatedAt()
     {
         return $this->updatedAt;
+    }
+
+    public function setMetadata(array $metadata)
+    {
+        $this->metadata = $metadata;
+
+        return $this;
+    }
+
+    public function getMetadata()
+    {
+        return $this->metadata;
     }
 
     public function hasFile()

@@ -16,6 +16,7 @@
         <field name="path" type="string" column="path" length="255" unique="true"/>
         <field name="name" type="string" column="name" length="255"/>
         <field name="updatedAt" type="datetime" column="updatedAt"/>
+        <field name="metadata" type="json_array" column="metadata"/>
     </entity>
 
 </doctrine-mapping>

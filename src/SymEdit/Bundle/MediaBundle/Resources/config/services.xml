@@ -14,6 +14,7 @@
         <!-- Image Uploader -->
         <service id="symedit_media.image_upload_manager" class="%symedit_media.image_upload_manager.class%">
             <argument type="service" id="symedit_media.filesystem.image" />
+            <argument type="service" id="symedit_media.metadata_tagger" />
             <argument type="service" id="liip_imagine.cache.manager" />
         </service>
 
@@ -32,9 +33,13 @@
         <!-- File Uploader -->
         <service id="symedit_media.file_upload_manager" class="%symedit_media.file_upload_manager.class%">
             <argument type="service" id="symedit_media.filesystem.file" />
+            <argument type="service" id="symedit_media.metadata_tagger" />
         </service>
 
         <!-- Slug Namer -->
         <service id="symedit_media.namer.slug" class="%symedit_media.namer.slug.class%" public="false" />
+
+        <!-- Metadata Tagger -->
+        <service id="symedit_media.metadata_tagger" class="SymEdit\Bundle\MediaBundle\Upload\MetadataTagger" />
     </services>
 </container>

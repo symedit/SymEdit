@@ -15,6 +15,10 @@ use Sylius\Component\Resource\Model\ResourceInterface;
 
 interface MediaInterface extends ResourceInterface
 {
+    const META_FILESIZE = 'size';
+    const META_WIDTH = 'width';
+    const META_HEIGHT = 'height';
+
     public function getId();
 
     public function setPath($path);
@@ -30,6 +34,10 @@ interface MediaInterface extends ResourceInterface
     public function getUpdatedAt();
 
     public function setUpdated();
+
+    public function getMetadata();
+
+    public function setMetadata(array $metadata);
 
     public function hasFile();
 

@@ -25,13 +25,13 @@ class ImageUploadManager extends UploadManager
     protected $cache;
     protected $filters;
 
-    public function __construct(Filesystem $filesystem, CacheManager $cache)
+    public function __construct(Filesystem $filesystem, MetadataTagger $metadataTagger, CacheManager $cache)
     {
         $this->cache = $cache;
 
-        parent::__construct($filesystem);
+        parent::__construct($filesystem, $metadataTagger);
     }
-
+    
     public function removeUpload(MediaInterface $media)
     {
         // Image is new
