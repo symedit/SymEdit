@@ -14,13 +14,16 @@ namespace SymEdit\Bundle\MediaBundle\Tests\Upload;
 use Gaufrette\Filesystem;
 use SymEdit\Bundle\MediaBundle\Model\MediaInterface;
 use SymEdit\Bundle\MediaBundle\Tests\TestCase;
+use SymEdit\Bundle\MediaBundle\Upload\MetadataTagger;
+use SymEdit\Bundle\MediaBundle\Upload\UploadManager;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 class UploadManagerTest extends TestCase
 {
     /**
      * @return Filesystem
      */
-    public function getFilesystem()
+    private function getFilesystem()
     {
         return $this->getMockBuilder('Gaufrette\Filesystem')
             ->disableOriginalConstructor()
@@ -28,25 +31,35 @@ class UploadManagerTest extends TestCase
         ;
     }
 
-    public function getUploadManager(Filesystem $filesystem, $methods = null)
+    /**
+     * @return MetadataTagger
+     */
+    private function getMetadataTagger()
     {
-        return $this->getMockBuilder('SymEdit\Bundle\MediaBundle\Upload\UploadManager')
+        return $this->getMockBuilder(MetadataTagger::class)
+            ->getMock()
+        ;
+    }
+
+    public function getUploadManager(Filesystem $filesystem, MetadataTagger $tagger, $methods = null)
+    {
+        return $this->getMockBuilder(UploadManager::class)
             ->setMethods($methods)
-            ->setConstructorArgs([$filesystem])
+            ->setConstructorArgs([$filesystem, $tagger])
             ->getMock()
         ;
     }
 
     public function getMedia()
     {
-        return $this->getMockBuilder('SymEdit\Bundle\MediaBundle\Model\MediaInterface')
+        return $this->getMockBuilder(MediaInterface::class)
             ->getMock()
         ;
     }
 
     public function testPreUpload()
     {
-        $manager = $this->getUploadManager($this->getFilesystem(), ['removeUpload']);
+        $manager = $this->getUploadManager($this->getFilesystem(), $this->getMetadataTagger(), ['removeUpload']);
         $media = $this->getMedia();
         $callback = function (MediaInterface $media) {
             return 'foo';
@@ -88,13 +101,13 @@ class UploadManagerTest extends TestCase
         $file = tempnam(sys_get_temp_dir(), 'symedit_media_upload');
         file_put_contents($file, $content);
 
-        return new \Symfony\Component\HttpFoundation\File\UploadedFile($file, 'foo.bar');
+        return new UploadedFile($file, 'foo.bar');
     }
 
     public function testNoUploadedFile()
     {
         $filesystem = $this->getFilesystem();
-        $manager = $this->getUploadManager($filesystem);
+        $manager = $this->getUploadManager($filesystem, $this->getMetadataTagger());
         $media = $this->getMedia();
 
         // Don't send a file first time
@@ -116,7 +129,7 @@ class UploadManagerTest extends TestCase
     public function testUpload()
     {
         $filesystem = $this->getFilesystem();
-        $manager = $this->getUploadManager($filesystem);
+        $manager = $this->getUploadManager($filesystem, $this->getMetadataTagger());
         $media = $this->getMedia();
         $file = $this->getFile('some contents');
 
@@ -153,7 +166,7 @@ class UploadManagerTest extends TestCase
     public function testNoPathRemove()
     {
         $filesystem = $this->getFilesystem();
-        $manager = $this->getUploadManager($filesystem);
+        $manager = $this->getUploadManager($filesystem, $this->getMetadataTagger());
         $media = $this->getMedia();
 
         $media
@@ -174,7 +187,7 @@ class UploadManagerTest extends TestCase
     public function testRemoveUPload()
     {
         $filesystem = $this->getFilesystem();
-        $manager = $this->getUploadManager($filesystem);
+        $manager = $this->getUploadManager($filesystem, $this->getMetadataTagger());
         $media = $this->getMedia();
 
         $media

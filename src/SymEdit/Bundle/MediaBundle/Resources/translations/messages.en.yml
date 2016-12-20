@@ -2,6 +2,7 @@ symedit:
     form:
         image:
             actions:
+                back: Image List
                 save: Save Image
                 delete: Delete Image
                 new: Upload New Image

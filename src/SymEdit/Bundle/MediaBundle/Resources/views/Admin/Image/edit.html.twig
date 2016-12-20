@@ -4,16 +4,71 @@
 {% block title %}Images &raquo; {{ image.name }} &raquo; Edit{% endblock %}
 
 {% block form_actions %}
-        <button type="submit" class="btn btn-primary">{{ icon('save') }} {{ 'symedit.form.image.actions.save'|trans }}</button>
-        {{ macro.delete_button('image_delete', 'symedit.form.image.actions.delete') }}
+    <a class="btn btn-info" href="{{ path('admin_image') }}">
+        {{ icon('arrow-left') }}
+        {{ 'symedit.form.image.actions.back'|trans }}
+    </a>
+
+    <button type="submit" class="btn btn-primary">{{ icon('save') }} {{ 'symedit.form.image.actions.save'|trans }}</button>
+
+    {{ macro.delete_button('image_delete', 'symedit.form.image.actions.delete') }}
 {% endblock %}
 
 {% block tab_content %}
-<div class="text-center">
-    <img class="img-polaroid" src="{{ image | imagine_filter('gallery') }}" />
-    <h5>{{ image.webPath }}</h5>
-</div>
-{{ parent() }}
+    <div class="row clearfix">
+        <div class="col-md-6 text-center">
+            <img class="img-responsive" src="{{ image | imagine_filter('gallery') }}" />
+        </div>
+
+        {% set metadata = image.metadata|default([]) %}
+        <div class="col-md-6">
+            <table class="table">
+                <tr>
+                    <th>ID</th>
+                    <td>{{ image.id }}</td>
+                </tr>
+
+                <tr>
+                    <th>Path</th>
+                    <td>{{ image.webPath }}</td>
+                </tr>
+
+                <tr>
+                    <th>Width</th>
+                    <td>
+                        {{ metadata.width is defined ? metadata.width ~ 'px' : 'Unknown' }}
+                    </td>
+                </tr>
+
+                <tr>
+                    <th>Height</th>
+                    <td>
+                        {{ metadata.height is defined ? metadata.height ~ 'px' : 'Unknown' }}
+                    </td>
+                </tr>
+
+                <tr>
+                    <th>Size</th>
+                    <td>
+                        {{ metadata.size is defined ? (metadata.size / 1024 / 1024)|round(2) ~ 'MB' : 'Unknown' }}
+                    </td>
+                </tr>
+
+                <tr>
+                    <th>Last Updated</th>
+                    <td>
+                        {{ image.updatedAt|date }}
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+    <h4>Replace Image</h4>
+
+    <div class="well">
+        {{ parent() }}
+    </div>
 {% endblock %}
 
 {% block extra %}
