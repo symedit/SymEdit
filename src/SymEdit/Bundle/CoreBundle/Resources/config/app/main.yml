@@ -143,7 +143,49 @@ sylius_settings:
                 model: SymEdit\Bundle\CoreBundle\Model\Settings
                 repository: SymEdit\Bundle\CoreBundle\Doctrine\ORM\SettingsRepository
 
+# Doctrine Cache
 doctrine_cache:
     providers:
         sylius_settings:
             type: file_system
+
+# Isometriks Json LD
+isometriks_json_ld_dumper:
+    static:
+        logo:
+            mapping:
+                @context: http://schema.org/
+                @type: ImageObject
+                url: https://riwebgurus.com/media/image/logo.png
+
+        company:
+            always_include: true
+            mapping:
+                @context: http://schema.org/
+                @type: LocalBusiness
+                address:
+                    @type: PostalAddress
+                    streetAddress: 464 victory highway
+                description: RI Web Gurus are cool guys..
+                name: RI Web Gurus
+                logo: $static.logo
+                image: $static.logo
+                url: "expr:absolute_url('/')"
+
+    entity:
+        %symedit.model.post.class%:
+            mapping:
+                @context: http://schema.org/
+                @type: NewsArticle
+                headline: $resource.title
+                publisher: $static.company
+                image: $resource.image
+                datePublished: $resource.publishedAt
+                dateModified: $resource.updatedAt
+                author: $resource.author.profile.fullName
+
+        %symedit.model.image.class%:
+            mapping:
+                @context: http://schema.org/
+                @type: ImageObject
+                url: "expr:context ? absolute_url(context.getWebPath()) : null"
