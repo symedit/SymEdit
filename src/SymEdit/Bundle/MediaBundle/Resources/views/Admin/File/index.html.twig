@@ -10,18 +10,55 @@
 {% endblock %}
 
 {% block content %}
-    <div class="row">
-      {% for file in files %}
-      <div class="col-md-2">
-          <a class="thumbnail icon" href="{{ path('admin_file_update', {id:file.id}) }}">
-              {{ icon('file') }}
-              {{ file.path }}
-          </a>
-      </div>
-      {% else %}
-          <div class="col-sm-12">
-              <h4>You currently have no files uploaded.</h4>
-          </div>
-      {% endfor %}
-    </div>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>URL</th>
+                <th>Size</th>
+                <th>Last Updated</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            {% for file in files %}
+                <tr>
+                    <td>
+                        <a href="{{ path('admin_file_update', {id:file.id}) }}">
+                            {{ file.path }}
+                        </a>
+                    </td>
+
+                    <td>
+                        <a href="{{ file.webPath }}" target="_blank">
+                            {{ file.webPath }}
+                        </a>
+                    </td>
+
+                    <td>
+                        {% if file.metadata.size is defined %}
+                            {{ ((file.metadata.size / 1024 / 1024)|round(2))|number_format }}MB
+                        {% endif %}
+                    </td>
+
+                    <td>
+                        {{ file.updatedAt|date }}
+                    </td>
+
+                    <td>
+                        <a class="btn btn-xs btn-primary" href="{{ path('admin_file_update', {id:file.id}) }}">
+                            Edit
+                        </a>
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="4">
+                        You currently have no files uploaded.
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
 {% endblock %}

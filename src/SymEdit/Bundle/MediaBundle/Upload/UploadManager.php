@@ -36,8 +36,13 @@ class UploadManager implements UploadManagerInterface
         }
 
         if ($media->getFile() !== null) {
+            // Remove old upload
             $this->removeUpload($media);
+
+            // Set metadata
+            $this->metadataTagger->tag($media, $media->getFile());
         }
+
     }
 
     /**
@@ -57,9 +62,6 @@ class UploadManager implements UploadManagerInterface
             $media->getPath(),
             file_get_contents($file->getFileInfo()->getPathname())
         );
-
-        // Set metadata size
-        $this->metadataTagger->tag($media, $file);
 
         // Mark as null to not upload again
         $media->setFile(null);
