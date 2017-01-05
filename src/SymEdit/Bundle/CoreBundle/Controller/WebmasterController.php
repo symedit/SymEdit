@@ -58,6 +58,6 @@ class WebmasterController extends Controller
 
     protected function getWebmasterSettings()
     {
-        return $this->get('sylius.settings.manager')->load('webmaster');
+        return $this->get('sylius.settings_manager')->load('webmaster');
     }
 }

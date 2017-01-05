@@ -11,7 +11,7 @@
     <services>
         <service parent="fos_user.mailer.twig_swift" public="true" id="symedit.mailer" class="%symedit.util.mailer.class%">
             <call method="setSettings">
-                <argument type="service" id="sylius.settings.manager" />
+                <argument type="service" id="sylius.settings_manager" />
             </call>
 
             <call method="setEmailSender">

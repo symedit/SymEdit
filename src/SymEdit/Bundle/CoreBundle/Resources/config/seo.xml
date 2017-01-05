@@ -17,7 +17,7 @@
         </service>
 
         <service id="symedit.seo.opengraph" class="%symedit.seo.opengraph.class%">
-            <argument type="service" id="sylius.settings.manager" />
+            <argument type="service" id="sylius.settings_manager" />
             <tag name="seo.calculator" />
         </service>
     </services>
