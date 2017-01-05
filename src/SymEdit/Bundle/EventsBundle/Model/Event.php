@@ -11,9 +11,7 @@
 
 namespace SymEdit\Bundle\EventsBundle\Model;
 
-use Sylius\Component\Resource\Model\ResourceInterface;
-
-class Event implements EventInterface, ResourceInterface
+class Event implements EventInterface
 {
     protected $id;
     protected $title;

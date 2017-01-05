@@ -38,7 +38,7 @@
 
                     <td>
                         {% if file.metadata.size is defined %}
-                            {{ ((file.metadata.size / 1024 / 1024)|round(2))|number_format }}MB
+                            {{ file|symedit_media_size }}
                         {% endif %}
                     </td>
 

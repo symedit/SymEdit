@@ -50,7 +50,7 @@
                 <tr>
                     <th>Size</th>
                     <td>
-                        {{ metadata.size is defined ? (metadata.size / 1024 / 1024)|round(2) ~ 'MB' : 'Unknown' }}
+                        {{ image|symedit_media_size }}
                     </td>
                 </tr>
 

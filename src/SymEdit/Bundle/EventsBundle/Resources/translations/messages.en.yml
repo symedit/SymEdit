@@ -5,6 +5,7 @@ symedit:
                 basic: Basic Information
                 time: Time / Date
                 location: Location
+                media: Media
             basic:
                 title: Title
                 description: Description
@@ -18,3 +19,6 @@ symedit:
             location:
                 address: Address
                 show_map: Show Map?
+            media:
+                file: Attach File
+                image: Attach Image

@@ -80,7 +80,6 @@ class EventType extends AbstractType
             ->add('showMap', 'checkbox', [
                 'label' => 'symedit.form.event.location.show_map',
                 'required' => false,
-                'label' => 'Show Map?',
             ])
         ;
     }

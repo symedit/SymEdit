@@ -11,7 +11,9 @@
 
 namespace SymEdit\Bundle\EventsBundle\Model;
 
-interface EventInterface
+use Sylius\Component\Resource\Model\ResourceInterface;
+
+interface EventInterface extends ResourceInterface
 {
     public function getId();
 

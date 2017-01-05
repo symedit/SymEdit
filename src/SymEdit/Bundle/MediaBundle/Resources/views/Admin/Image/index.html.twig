@@ -30,7 +30,7 @@
 
                             {% if metadata.size is defined %}
                                 <span class="size">
-                                    {{ (metadata.size / 1024 / 1024)|round(2) }}MB
+                                    ({{ image|symedit_media_size }})
                                 </span>
                             {% endif %}
                         </div>

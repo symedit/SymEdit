@@ -22,6 +22,20 @@ class EventType extends BaseEventType
         // Left blank for tab builder
     }
 
+    public function buildMediaForm(FormBuilderInterface $builder, array $options)
+    {
+        $builder
+            ->add('file', 'symedit_file', [
+                'label' => 'symedit.form.event.media.file',
+                'required' => false,
+            ])
+            ->add('image', 'symedit_image_choose', [
+                'label' => 'symedit.form.event.media.image',
+                'required' => false,
+            ])
+        ;
+    }
+
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
@@ -38,6 +52,10 @@ class EventType extends BaseEventType
                     'label' => 'symedit.form.event.tab.location',
                     'icon' => 'map-marker',
                 ],
+                'media' => [
+                    'label' => 'symedit.form.event.tab.media',
+                    'icon' => 'image',
+                ]
             ],
         ]);
     }

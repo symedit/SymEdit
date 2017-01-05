@@ -41,5 +41,10 @@
 
         <!-- Metadata Tagger -->
         <service id="symedit_media.metadata_tagger" class="SymEdit\Bundle\MediaBundle\Upload\MetadataTagger" />
+
+        <!-- Twig Extension -->
+        <service id="symedit_media.twig.extension.media" class="SymEdit\Bundle\MediaBundle\Twig\Extension\MediaExtension">
+            <tag name="twig.extension" />
+        </service>
     </services>
 </container>

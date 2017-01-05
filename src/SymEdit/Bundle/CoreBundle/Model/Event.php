@@ -12,7 +12,48 @@
 namespace SymEdit\Bundle\CoreBundle\Model;
 
 use SymEdit\Bundle\EventsBundle\Model\Event as BaseEvent;
+use SymEdit\Bundle\MediaBundle\Model\FileInterface;
+use SymEdit\Bundle\MediaBundle\Model\ImageInterface;
 
-class Event extends BaseEvent
+class Event extends BaseEvent implements EventInterface
 {
+    protected $seo;
+    protected $image;
+    protected $file;
+
+    public function setSeo(array $seo = [])
+    {
+        $this->seo = $seo;
+
+        return $this;
+    }
+
+    public function getSeo()
+    {
+        return $this->seo;
+    }
+
+    public function getImage()
+    {
+        return $this->image;
+    }
+
+    public function setImage(ImageInterface $image = null)
+    {
+        $this->image = $image;
+
+        return $this;
+    }
+
+    public function getFile()
+    {
+        return $this->file;
+    }
+
+    public function setFile(FileInterface $file = null)
+    {
+        $this->file = $file;
+
+        return $this;
+    }
 }

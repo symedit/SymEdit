@@ -8,6 +8,10 @@
     <div itemscope itemtype="http://schema.org/Event">
         <meta itemprop="name" content="{{ event.title }}">
 
+        {% if event.image %}
+            <img src="{{ event.image.webPath }}" alt="{{ event.title }}" class="img-responsive" />
+        {% endif %}
+
         {% if event.showMap %}
             {% include '@SymEdit/CMS/map.html.twig' with { query: event.address } %}
         {% endif %}
@@ -38,5 +42,18 @@
             </div>
             {% endif %}
         </div>
+
+        {% if event.file %}
+        <h5>Attachment</h5>
+        <div class="attachment">
+            <a href="{{ event.file.webPath }}" target="_blank" class="btn btn-primary">
+                View Attachment
+            </a>
+
+            <small class="text-muted">
+                ({{ event.file.path }} - {{ event.file|symedit_media_size }})
+            </small>
+        </div>
+        {% endif %}
     </div>
 {% endblock %}
