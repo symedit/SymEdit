@@ -59,8 +59,15 @@ class UploadManagerTest extends TestCase
 
     public function testPreUpload()
     {
-        $manager = $this->getUploadManager($this->getFilesystem(), $this->getMetadataTagger(), ['removeUpload']);
         $media = $this->getMedia();
+        $metadataTagger = $this->getMetadataTagger();
+
+        $metadataTagger
+            ->expects($this->once())
+            ->method('tag')
+        ;
+
+        $manager = $this->getUploadManager($this->getFilesystem(), $metadataTagger, ['removeUpload']);
         $callback = function (MediaInterface $media) {
             return 'foo';
         };
@@ -83,7 +90,9 @@ class UploadManagerTest extends TestCase
         $media
             ->expects($this->once())
             ->method('getFile')
-            ->will($this->returnValue(true))
+            ->will($this->returnValue(
+                $this->getFile('test')
+            ))
         ;
 
         $manager

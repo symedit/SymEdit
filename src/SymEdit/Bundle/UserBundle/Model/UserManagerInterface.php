@@ -12,9 +12,8 @@
 namespace SymEdit\Bundle\UserBundle\Model;
 
 use FOS\UserBundle\Model\UserManagerInterface as BaseManager;
-use Symfony\Component\Security\Core\User\UserProviderInterface;
 
-interface UserManagerInterface extends UserProviderInterface, BaseManager
+interface UserManagerInterface extends BaseManager
 {
     public function setProfileClass($profileClass);
     public function setAdminProfileClass($adminProfileClass);

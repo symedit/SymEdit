@@ -35,12 +35,12 @@ class UploadManager implements UploadManagerInterface
             $media->setName($callback($media));
         }
 
-        if ($media->getFile() !== null) {
+        if (($file = $media->getFile()) !== null) {
             // Remove old upload
             $this->removeUpload($media);
 
             // Set metadata
-            $this->metadataTagger->tag($media, $media->getFile());
+            $this->metadataTagger->tag($media, $file);
         }
 
     }
