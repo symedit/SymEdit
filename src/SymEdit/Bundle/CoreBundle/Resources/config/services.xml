@@ -30,11 +30,7 @@
         <service id="symedit_page" class="%symedit.model.page.class%" synthetic="true" />
 
         <!-- Expression Language -->
-        <service id="symedit.expression_language" class="%symedit.expression_language.class%">
-            <call method="setContainer">
-                <argument type="service" id="service_container" />
-            </call>
-        </service>
+        <service id="symedit.expression_language" class="%symedit.expression_language.class%" />
 
         <!-- Expression Language Provider -->
         <service

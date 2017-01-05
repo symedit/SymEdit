@@ -11,7 +11,7 @@
 
 namespace SymEdit\Bundle\CoreBundle\ExpressionLanguage;
 
-use Sylius\Bundle\ResourceBundle\ExpressionLanguage\ExpressionLanguage as BaseExpressionLanguage;
+use Symfony\Component\DependencyInjection\ExpressionLanguage as BaseExpressionLanguage;
 
 class ExpressionLanguage extends BaseExpressionLanguage
 {

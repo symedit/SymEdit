@@ -1,3 +1,13 @@
+{% macro alert(flash, iconName) %}
+    {{ icon(iconName) }}
+
+    {% if flash is iterable %}
+        {{ flash.message|trans(flash.parameters, 'flashes') }}
+    {% else %}
+        {{ flash|trans({}, 'flashes') }}
+    {% endif %}
+{% endmacro %}
+
 <div id="flash">
     {% for url in app.session.flashbag.get('share')|default([]) %}
         <div class="flash-message share">
@@ -13,14 +23,14 @@
 
     {% for message in app.session.flashbag.get('success')|default([]) %}
         <div class="flash-message message">
-            {{ icon('thumbs-up') }} {{ message|trans({}, 'flashes') }}
+            {{ _self.alert(message, 'thumbs-up') }}
         </div>
     {% endfor %}
 
 
     {% for message in app.session.flashbag.get('error')|default([]) %}
         <div class="flash-message error">
-            {{ icon('warning-sign') }} {{ message|trans({}, 'flashes') }}
+            {{ _self.alert(message, 'warning-sign') }}
         </div>
     {% endfor %}
 </div>
