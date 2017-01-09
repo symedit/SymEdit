@@ -22,6 +22,15 @@ class EventType extends BaseEventType
         // Left blank for tab builder
     }
 
+    public function buildSeoForm(FormBuilderInterface $builder, array $options)
+    {
+        $builder
+            ->add('seo', 'symedit_seo', [
+                'horizontal_label_offset_class' => '',
+            ])
+        ;
+    }
+
     public function buildMediaForm(FormBuilderInterface $builder, array $options)
     {
         $builder
@@ -43,6 +52,10 @@ class EventType extends BaseEventType
                 'basic' => [
                     'label' => 'symedit.form.event.tab.basic',
                     'icon' => 'info-circle',
+                ],
+                'seo' => [
+                    'label' => 'symedit.form.event.tab.seo',
+                    'icon' => 'search',
                 ],
                 'dateTime' => [
                     'label' => 'symedit.form.event.tab.time',

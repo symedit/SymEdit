@@ -3,6 +3,7 @@ symedit:
         event:
             tab:
                 basic: Basic Information
+                seo: SEO
                 time: Time / Date
                 location: Location
                 media: Media
