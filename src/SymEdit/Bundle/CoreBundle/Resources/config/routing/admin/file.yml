@@ -18,6 +18,16 @@ admin_file_json:
         _sylius:
             paginate: false
 
+admin_file_dialog:
+    path: /dialog
+    methods: [GET, POST]
+    defaults:
+        _controller: symedit.controller.file:indexAction
+        _sylius:
+            template: "@SymEdit/Admin/File/dialog.html.twig"
+            paginate: false
+            limit: false
+
 admin_file_create:
     path: /new
     methods: [GET, POST]

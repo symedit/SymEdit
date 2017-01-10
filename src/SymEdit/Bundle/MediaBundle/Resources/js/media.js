@@ -6,7 +6,7 @@ jQuery(function($) {
     var $current;
     var dropzone;
 
-    $('[data-toggle="symedit-choose-image"]').click(function() {
+    $('[data-toggle="symedit-media-choose"]').click(function() {
 
         $current = $(this);
 
