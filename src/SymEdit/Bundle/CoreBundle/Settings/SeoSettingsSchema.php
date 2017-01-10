@@ -32,6 +32,7 @@ class SeoSettingsSchema implements SchemaInterface
             ])
             ->add('business_type', 'choice', [
                 'label' => 'symedit.settings.seo.business_type',
+                'choice_translation_domain' => false,
                 'choices' => [
                     'LocalBusiness' => 'Local Business (Default)',
                     'AnimalShelter' => 'Animal Shelter',
