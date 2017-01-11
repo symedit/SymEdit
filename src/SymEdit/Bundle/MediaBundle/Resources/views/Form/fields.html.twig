@@ -34,7 +34,7 @@
 {% block symedit_image_choose_widget %}
 <div class="symedit-media-choose row">
     <div class="col-md-6">
-        <button type="button" data-toggle="symedit-choose-image" data-url="{{ path('admin_image_dialog') }}" class="btn btn-primary btn-sm">Choose Image</button>
+        <button type="button" data-toggle="symedit-media-choose" data-type="image" data-url="{{ path('admin_image_dialog') }}" class="btn btn-primary btn-sm">Choose Image</button>
     </div>
 
     {% if show_image %}
@@ -49,6 +49,21 @@
 </div>
 {% endblock %}
 
+{% block symedit_file_choose_widget %}
+<div class="symedit-media-choose row">
+    <div class="col-md-6">
+        <button type="button" data-toggle="symedit-media-choose" data-type="file" data-url="{{ path('admin_file_dialog') }}" class="btn btn-primary btn-sm">Choose File</button>
+    </div>
+
+    {% set hasData = data is not null and data.webpath is not empty %}
+    <div class="col-md-6 symedit-media-container {{ hasData ? 'has-data' : 'no-data' }}">
+        <h5>Current File</h5>
+        <div class="symedit-media-file">{{ hasData ? data.webPath : '' }}</div>
+    </div>
+
+    {{ block('hidden_widget') }}
+</div>
+{% endblock %}
 
 {# Choose Image Widget #}
 {% block symedit_image_gallery_choose_row %}

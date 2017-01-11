@@ -15,15 +15,19 @@ use Sylius\Bundle\SettingsBundle\Schema\SchemaInterface;
 use Sylius\Bundle\SettingsBundle\Schema\SettingsBuilderInterface;
 use Sylius\Bundle\SettingsBundle\Transformer\ResourceToIdentifierTransformer;
 use Sylius\Component\Resource\Repository\RepositoryInterface;
+use SymEdit\Bundle\MediaBundle\Model\FileInterface;
+use SymEdit\Bundle\MediaBundle\Model\ImageInterface;
 use Symfony\Component\Form\FormBuilderInterface;
 
 class CompanySettingsSchema implements SchemaInterface
 {
-    protected $imageRepository;
+    private $imageRepository;
+    private $fileRepository;
 
-    public function __construct(RepositoryInterface $imageRepository)
+    public function __construct(RepositoryInterface $imageRepository, RepositoryInterface $fileRepository)
     {
         $this->imageRepository = $imageRepository;
+        $this->fileRepository = $fileRepository;
     }
 
     public function buildForm(FormBuilderInterface $builder)
@@ -31,6 +35,10 @@ class CompanySettingsSchema implements SchemaInterface
         $builder
             ->add('logo', 'symedit_image_choose', [
                 'label' => 'symedit.settings.company.logo',
+                'required' => false,
+            ])
+            ->add('favicon', 'symedit_file_choose', [
+                'label' => 'symedit.settings.company.favicon',
                 'required' => false,
             ])
             ->add('name', null, [
@@ -60,6 +68,7 @@ class CompanySettingsSchema implements SchemaInterface
         $builder
             ->setDefaults([
                 'logo' => null,
+                'favicon' => null,
                 'name' => 'SymEdit Site',
                 'address' => '5 SymEdit Way',
                 'email' => 'contact@mysite.com',
@@ -67,14 +76,17 @@ class CompanySettingsSchema implements SchemaInterface
                 'fax' => '',
             ])
             ->setAllowedTypes([
-                'logo' => ['null', 'SymEdit\Bundle\MediaBundle\Model\ImageInterface'],
+                'logo' => ['null', ImageInterface::class],
+                'favicon' => ['null', FileInterface::class],
                 'name' => ['string', 'null'],
                 'address' => ['string', 'null'],
                 'email' => ['string'],
                 'phone' => ['string', 'null'],
                 'fax' => ['string', 'null'],
             ])
-            ->setTransformer('logo', new ResourceToIdentifierTransformer($this->imageRepository))
         ;
+
+        $builder->setTransformer('logo', new ResourceToIdentifierTransformer($this->imageRepository));
+        $builder->setTransformer('favicon', new ResourceToIdentifierTransformer($this->fileRepository));
     }
 }

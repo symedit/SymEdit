@@ -6,7 +6,11 @@
 {% for meta in symedit_seo_metas() %}
         {{ meta|raw }}
 {% endfor %}
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+{% set favicon = sylius_settings('company')['favicon'] %}
+{% if favicon %}
+        <link rel="icon" href="{{ favicon.webPath }}" />
+{% endif %}
 {{ (sylius_settings('seo')['head_extra']|default(''))|raw }}
 {% endblock %}
 {% block stylesheets %}

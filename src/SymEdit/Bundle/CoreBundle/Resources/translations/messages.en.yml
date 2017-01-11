@@ -61,6 +61,7 @@ symedit:
                 help: Widgets will only update every this amount of seconds.
         company:
             logo: Logo
+            favicon: Favicon
             name: Company Name
             address: Address
             email: Contact Email

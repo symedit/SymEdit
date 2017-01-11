@@ -6,9 +6,10 @@ jQuery(function($) {
     var $current;
     var dropzone;
 
-    $('[data-toggle="symedit-choose-image"]').click(function() {
+    $('[data-toggle="symedit-media-choose"]').click(function() {
 
         $current = $(this);
+        var type = $current.data('type');
 
         if (!$(this).data('url')) {
             return;
@@ -25,7 +26,9 @@ jQuery(function($) {
             dropzone = new Dropzone('#symedit-media-dropzone', {
                 previewsContainer: '#symedit-media-preview'
             });
-            dropzone.on('success', uploadImage);
+            dropzone.on('success', uploadMedia.bind({
+                type: type
+            }));
 
             $(this).modal();
         });
@@ -44,8 +47,8 @@ jQuery(function($) {
         $('body').append($modal);
 
         // Setup events
-        $modal.on('click', '[data-toggle="remove"]', removeImage);
-        $modal.on('click', '[data-toggle="choose"]', chooseImage);
+        $modal.on('click', '[data-toggle="remove"]', removeMedia);
+        $modal.on('click', '[data-toggle="choose"]', chooseMedia);
 
         return $modal;
     }
@@ -65,30 +68,45 @@ jQuery(function($) {
         return getBlock().find('.symedit-media-container');
     }
 
-    function removeImage()
+    function removeMedia()
     {
         getForm().val('');
         getModal().modal('hide');
         getContainer().addClass('no-data').removeClass('has-data');
     }
 
-    function uploadImage(file, response)
+    function setValue(id, path, type)
+    {
+        // Set form value
+        getForm().val(id);
+
+        // Show the preview
+        getContainer().addClass('has-data').removeClass('no-data');
+
+        if (type === 'image') {
+            getContainer().find('> img').attr('src', path);
+        } else {
+            getContainer().find('.symedit-media-file').text(path);
+        }
+    }
+
+    function uploadMedia(file, response)
     {
         var id = response.id;
-        var path = response.filelink;
+        var path = response.weblink;
+        var type = this.type;
 
         // Hide Modal
         getModal().modal('hide');
 
-        // Set form values
-        getForm().val(id);
-        getContainer().addClass('has-data').removeClass('no-data');
-        getContainer().find('> img').attr('src', path);
+        // Run Javascript for type
+        setValue(id, path, type);
     }
 
-    function chooseImage()
+    function chooseMedia()
     {
         var $selected = getModal().find('input[name=symedit-media-choose]:checked');
+        var type = $current.data('type');
 
         // Hide modal regardless
         getModal().modal('hide');
@@ -97,8 +115,7 @@ jQuery(function($) {
             return;
         }
 
-        getForm().val($selected.val());
-        getContainer().addClass('has-data').removeClass('no-data');
-        getContainer().find('> img').attr('src', $selected.data('preview'));
+        // Run Javascript for type
+        setValue($selected.val(), $selected.data('preview'), type);
     }
 });

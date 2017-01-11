@@ -15,6 +15,8 @@
         <!-- Company -->
         <service id="symedit.settings_schema.company" class="SymEdit\Bundle\CoreBundle\Settings\CompanySettingsSchema">
             <argument type="service" id="symedit.repository.image" />
+            <argument type="service" id="symedit.repository.file" />
+
             <tag name="sylius.settings_schema" alias="company" />
         </service>
 
