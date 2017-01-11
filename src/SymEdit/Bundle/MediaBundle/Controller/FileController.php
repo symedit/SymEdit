@@ -51,6 +51,7 @@ class FileController extends MediaController
             'id' => $media->getId(),
             'filename' => $media->getName(),
             'filelink' => $this->getMediaLink($media),
+            'weblink' => $media->getWebPath(),
         ]);
     }
 

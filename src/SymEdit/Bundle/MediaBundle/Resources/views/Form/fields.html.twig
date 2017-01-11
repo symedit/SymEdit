@@ -58,7 +58,7 @@
     {% set hasData = data is not null and data.webpath is not empty %}
     <div class="col-md-6 symedit-media-container {{ hasData ? 'has-data' : 'no-data' }}">
         <h5>Current File</h5>
-        <div>{{ hasData ? data.webPath : '' }}</div>
+        <div class="symedit-media-file">{{ hasData ? data.webPath : '' }}</div>
     </div>
 
     {{ block('hidden_widget') }}

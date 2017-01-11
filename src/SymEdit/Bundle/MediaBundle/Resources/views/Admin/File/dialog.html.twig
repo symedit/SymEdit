@@ -37,7 +37,7 @@
                                         {% set labelId = 'symedit-file-choose-' ~ loop.index0 %}
                                         <tr>
                                             <td>
-                                                <input id="{{ labelId }}" type="radio" value="{{ file.id }}" name="symedit-media-choose" />
+                                                <input id="{{ labelId }}" data-preview="{{ file.webPath }}" type="radio" value="{{ file.id }}" name="symedit-media-choose" />
                                             </td>
 
                                             <td>
