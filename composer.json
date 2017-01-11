@@ -18,7 +18,7 @@
         "doctrine/doctrine-fixtures-bundle":    "~2.2",
         "doctrine/doctrine-cache-bundle":       "~1.0",
         "doctrine/doctrine-migrations-bundle":  "@stable",
-        "doctrine/migrations":                  "~1.0@dev",
+        "doctrine/migrations":                  "~1.4",
         "friendsofsymfony/oauth-server-bundle": "~1.4.0",
         "friendsofsymfony/user-bundle":         "~2.0@dev",
         "friendsofsymfony/rest-bundle":         "~1.5",

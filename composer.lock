@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "6e9a8b6a6dcc534ccfe12938e6c82ffa",
+    "content-hash": "ba283ec2beacaccac010b0eee1f94cd9",
     "packages": [
         {
             "name": "behat/transliterator",
@@ -6683,7 +6683,6 @@
     "minimum-stability": "dev",
     "stability-flags": {
         "doctrine/doctrine-migrations-bundle": 0,
-        "doctrine/migrations": 20,
         "friendsofsymfony/user-bundle": 20,
         "mopa/bootstrap-bundle": 20
     },
