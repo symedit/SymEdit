@@ -1,6 +1,7 @@
 
 var Isometriks = (function(){
     redactor_options = {
+        deniedTags: false,
         buttonSource: true,
         formattingTags: ['p', 'blockquote', 'pre', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6'],
         dragImageUpload: true,
