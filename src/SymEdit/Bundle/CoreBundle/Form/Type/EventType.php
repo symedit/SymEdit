@@ -34,7 +34,7 @@ class EventType extends BaseEventType
     public function buildMediaForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('file', 'symedit_file', [
+            ->add('file', 'symedit_file_choose', [
                 'label' => 'symedit.form.event.media.file',
                 'required' => false,
             ])
