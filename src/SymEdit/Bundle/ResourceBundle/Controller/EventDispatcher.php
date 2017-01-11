@@ -45,7 +45,7 @@ class EventDispatcher implements EventDispatcherInterface
 
     private function dispatchGenericEvent(ResourceControllerEvent $event, $eventName)
     {
-        $this->symfonyEventDispatcher->dispatch($ev = sprintf('symedit.%s', $eventName), $event);
+        $this->symfonyEventDispatcher->dispatch(sprintf('symedit.%s', $eventName), $event);
 
         return $event;
     }
