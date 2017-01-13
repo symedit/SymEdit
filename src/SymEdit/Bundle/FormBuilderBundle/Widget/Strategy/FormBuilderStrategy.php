@@ -61,6 +61,7 @@ class FormBuilderStrategy extends AbstractWidgetStrategy
     public function getDefaultOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
+            'form_builder_id' => null,
             'template' => '@SymEdit/Widget/FormBuilder/form.html.twig',
         ]);
     }
