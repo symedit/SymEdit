@@ -3,15 +3,15 @@
 {% block heading '' %}
 
 {% block blog_content %}
-<article class="single blog-post" itemscope itemtype="http://schema.org/BlogPosting">
+<article class="single blog-post">
     <h1 class="title">
-        <a itemprop="name" href="{{ path('blog_slug_view', {slug:post.slug}) }}">{{ post.title }}</a>
+        <a href="{{ path('blog_slug_view', {slug:post.slug}) }}">{{ post.title }}</a>
     </h1>
 
-    <div itemprop="articleBody" class="clearfix">
+    <div class="clearfix">
         {% if post.image %}
             <div class="image">
-                <img class="img-rounded" itemprop="image" src="{{ post.image | imagine_filter('blog') }}" alt="{{ post.title }}" />
+                <img class="img-rounded" src="{{ post.image | imagine_filter('blog') }}" alt="{{ post.title }}" />
             </div>
         {% endif %}
         {{ post.content|raw }}
@@ -26,12 +26,12 @@
                 <a href="{{ profile.social.google_plus }}?rel=author"><img src="https://www.gstatic.com/images/icons/gplus-16.png" alt="{{ profile.fullname|plain }} on Google+"></a>
             {% endif %}
 
-            <span itemprop="author">{{ post.author.profile.fullname }}</span>
+            <span>{{ post.author.profile.fullname }}</span>
         </span>
 
         <span class="date">
             {{ icon('time') }}
-            <span itemprop="dateCreated">{{ post.publishedAt|date('F j, Y') }}</span>
+            <span>{{ post.publishedAt|date('F j, Y') }}</span>
         </span>
     </div>
 

@@ -162,7 +162,7 @@ isometriks_json_ld_dumper:
             always_include: true
             mapping:
                 @context: http://schema.org/
-                @type: LocalBusiness
+                @type: Organization
                 address:
                     @type: PostalAddress
                     streetAddress: 464 victory highway
@@ -189,3 +189,5 @@ isometriks_json_ld_dumper:
                 @context: http://schema.org/
                 @type: ImageObject
                 url: "expr:context ? absolute_url(context.getWebPath()) : null"
+                width: "expr:context.getMetadata()['width'] ~ 'px'"
+                height: "expr:context.getMetadata()['height'] ~ 'px'"
