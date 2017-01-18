@@ -22,6 +22,11 @@
             </call>
         </service>
 
+        <!-- User Factory -->
+        <service id="symedit.factory.user" class="%symedit.factory.user.class%">
+            <argument type="service" id="symedit_user.user_manager" />
+        </service>
+
         <!-- Doctrine Metadata Subscriber -->
         <service id="symedit_user.event_listener.metadata_subscriber" class="%symedit_user.event_listener.metadata_subscriber.class%">
             <argument>%symedit.model.profile.class%</argument>

@@ -17,6 +17,7 @@ admin_user_create:
         _controller: symedit.controller.user:createAction
         _sylius:
             template: "@SymEdit/Admin/User/new.html.twig"
+            factory: createAdmin
             redirect:
                 route: admin_user_update
                 parameters: { id: resource.id }
