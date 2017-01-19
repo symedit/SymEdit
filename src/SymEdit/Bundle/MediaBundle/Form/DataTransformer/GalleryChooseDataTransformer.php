@@ -12,18 +12,16 @@
 namespace SymEdit\Bundle\MediaBundle\Form\DataTransformer;
 
 use Doctrine\Common\Collections\Collection;
-use Sylius\Component\Resource\Repository\RepositoryInterface;
+use Sylius\Component\Resource\Factory\FactoryInterface;
 use Symfony\Component\Form\DataTransformerInterface;
 
 class GalleryChooseDataTransformer implements DataTransformerInterface
 {
-    protected $imageRepository;
-    protected $itemRepository;
+    private $itemFactory;
 
-    public function __construct(RepositoryInterface $imageRepository, RepositoryInterface $itemRepository)
+    public function __construct(FactoryInterface $itemFactory)
     {
-        $this->imageRepository = $imageRepository;
-        $this->itemRepository = $itemRepository;
+        $this->itemFactory = $itemFactory;
     }
 
     public function reverseTransform($value)
@@ -32,7 +30,7 @@ class GalleryChooseDataTransformer implements DataTransformerInterface
 
         $galleryItems = [];
         foreach ($images as $image) {
-            $item = $this->itemRepository->createNew();
+            $item = $this->itemFactory->createNew();
             $item->setImage($image);
 
             $galleryItems[] = $item;

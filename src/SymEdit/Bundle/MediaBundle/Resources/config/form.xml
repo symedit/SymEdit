@@ -43,7 +43,7 @@
         <!-- Image Gallery Choose Form -->
         <service id="symedit_media.form.type.image_gallery_choose" class="SymEdit\Bundle\MediaBundle\Form\Type\ImageGalleryChooseType">
             <argument type="service" id="symedit.repository.image" />
-            <argument type="service" id="symedit.repository.gallery_item" />
+            <argument type="service" id="symedit.factory.gallery_item" />
             <tag name="form.type" alias="symedit_image_gallery_choose" />
         </service>
 

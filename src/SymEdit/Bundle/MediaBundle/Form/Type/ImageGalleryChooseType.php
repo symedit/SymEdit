@@ -11,6 +11,7 @@
 
 namespace SymEdit\Bundle\MediaBundle\Form\Type;
 
+use Sylius\Component\Resource\Factory\FactoryInterface;
 use Sylius\Component\Resource\Repository\RepositoryInterface;
 use SymEdit\Bundle\MediaBundle\Form\DataTransformer\GalleryChooseDataTransformer;
 use Symfony\Component\Form\AbstractType;
@@ -20,20 +21,20 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class ImageGalleryChooseType extends AbstractType
 {
-    protected $imageRepository;
-    protected $itemRepository;
+    private $imageRepository;
+    private $itemFactory;
 
-    public function __construct(RepositoryInterface $imageRepository, RepositoryInterface $itemRepository)
+    public function __construct(RepositoryInterface $imageRepository, FactoryInterface $itemFactory)
     {
         $this->imageRepository = $imageRepository;
-        $this->itemRepository = $itemRepository;
+        $this->itemFactory = $itemFactory;
     }
 
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         parent::buildForm($builder, $options);
 
-        $builder->addModelTransformer(new GalleryChooseDataTransformer($this->imageRepository, $this->itemRepository));
+        $builder->addModelTransformer(new GalleryChooseDataTransformer($this->itemFactory));
     }
 
     public function configureOptions(OptionsResolver $resolver)
