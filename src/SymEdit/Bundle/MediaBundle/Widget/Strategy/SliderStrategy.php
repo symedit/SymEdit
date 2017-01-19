@@ -36,6 +36,7 @@ class SliderStrategy extends AbstractGalleryStrategy
     public function getDefaultOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
+            'slider' => null,
             'thumbnails' => false,
             'stretch' => false,
             'controls' => false,

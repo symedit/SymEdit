@@ -45,6 +45,7 @@ class GoogleMapStrategy extends AbstractWidgetStrategy
     public function getDefaultOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
+            'address' => null,
             'template' => '@SymEdit/CMS/map.html.twig',
         ]);
     }

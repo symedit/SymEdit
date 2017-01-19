@@ -15,7 +15,7 @@ class ShortcodeRenderer implements ShortcodeRendererInterface
 {
     protected $shortcodes;
     protected $pattern = '#\[(%s)(?:\s(.*?))?\](?:(.+?)(?:\[\/\1\]))?#';
-    protected $attrPattern = '#([\w\d-_\.]+)(?:\s*=\s*([^\s]+))?#';
+    protected $attrPattern = '#([\w\d-_\.]+)\s*=\s*(?:(?:\"(.+)\")|([^\s]+))#';
 
     public function __construct($shortcodes = [])
     {
@@ -34,8 +34,10 @@ class ShortcodeRenderer implements ShortcodeRendererInterface
         $finalAttrs = [];
 
         foreach ($matches as $match) {
-            if (!isset($match[2])) {
-                $finalAttrs[] = $match[1];
+            // Matched one with quotes, so 2 is empty
+            if (empty($match[2])) {
+                $finalAttrs[$match[1]] = $match[3];
+            // Matched without quotes
             } else {
                 $finalAttrs[$match[1]] = $match[2];
             }
