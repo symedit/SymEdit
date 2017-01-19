@@ -51,6 +51,10 @@ class SocialSettingsSchema implements SchemaInterface
                 'required' => false,
                 'attr' => ['placeholder' => 'http://instagram.com'],
             ])
+            ->add('houzz', null, [
+                'required' => false,
+                'attr' => ['placeholder' => 'http://houzz.com'],
+            ])
         ;
     }
 
@@ -65,6 +69,7 @@ class SocialSettingsSchema implements SchemaInterface
                 'linkedin' => null,
                 'pinterest' => null,
                 'instagram' => null,
+                'houzz' => null,
             ])
         ;
     }
