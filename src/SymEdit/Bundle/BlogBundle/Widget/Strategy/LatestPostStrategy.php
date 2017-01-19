@@ -23,6 +23,7 @@ class LatestPostStrategy extends AbstractPostStrategy
 
         return $this->render($widget, [
             'post' => $post,
+            'show_image' => $widget->getOption('show_image'),
         ]);
     }
 

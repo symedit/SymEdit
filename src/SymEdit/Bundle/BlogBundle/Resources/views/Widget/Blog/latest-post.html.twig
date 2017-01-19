@@ -1,11 +1,17 @@
-<div class="blog-latest-post">
+<article class="blog-latest-post blog-post">
     <h3>{{ post.title }}</h3>
 
-    <div>
+    {% if show_image and post.image %}
+        <div class="teaser-image">
+            <img src="{{ post.image.webPath }}" alt="{{ post.title }}" class="img-responsive" />
+        </div>
+    {% endif %}
+
+    <div class="summary">
         {{ post.summary|raw }}
     </div>
 
     <div class="clearfix">
         <a class="read-more btn btn-default btn-sm" href="{{ path('blog_slug_view', { slug: post.slug }) }}">Read Article &raquo;</a>
     </div>
-</div>
+</article>
