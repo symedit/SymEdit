@@ -13,7 +13,6 @@ namespace SymEdit\Bundle\UserBundle\DependencyInjection;
 
 use Sylius\Component\Resource\Factory\Factory;
 use SymEdit\Bundle\ResourceBundle\Controller\ResourceController;
-use SymEdit\Bundle\UserBundle\Controller\UserController;
 use SymEdit\Bundle\UserBundle\Factory\UserFactory;
 use SymEdit\Bundle\UserBundle\Form\Type\AdminProfileType;
 use SymEdit\Bundle\UserBundle\Form\Type\RegistrationFormType;
@@ -87,7 +86,7 @@ class Configuration implements ConfigurationInterface
                                     ->children()
                                         ->scalarNode('model')->defaultValue(User::class)->end()
                                         ->scalarNode('interface')->defaultValue(UserInterface::class)->end()
-                                        ->scalarNode('controller')->defaultValue(UserController::class)->end()
+                                        ->scalarNode('controller')->defaultValue(ResourceController::class)->end()
                                         ->scalarNode('repository')->end()
                                         ->scalarNode('factory')->defaultValue(UserFactory::class)->end()
                                         ->arrayNode('form')

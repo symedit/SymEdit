@@ -11,9 +11,10 @@
 
 namespace SymEdit\Bundle\UserBundle\Form\Type;
 
-use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Component\Form\AbstractType;
 use SymEdit\Bundle\UserBundle\Form\EventListener\UserTypeSubscriber;
+use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class UserType extends AbstractType
 {
@@ -37,6 +38,13 @@ class UserType extends AbstractType
          * depending on if it's a new user or existing.
          */
         $builder->addEventSubscriber(new UserTypeSubscriber());
+    }
+
+    public function configureOptions(OptionsResolver $resolver)
+    {
+        parent::configureOptions($resolver);
+
+        $resolver->setDefault('tabs_class', 'nav nav-tabs');
     }
 
     public function getParent()

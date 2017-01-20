@@ -11,6 +11,7 @@
 
 namespace SymEdit\Bundle\UserBundle\Factory;
 
+use SymEdit\Bundle\UserBundle\Model\UserInterface;
 use SymEdit\Bundle\UserBundle\Model\UserManagerInterface;
 
 class UserFactory implements UserFactoryInterface
@@ -23,7 +24,7 @@ class UserFactory implements UserFactoryInterface
     }
 
     /**
-     * @return WidgetInterface
+     * @return UserInterface
      */
     public function createNew()
     {

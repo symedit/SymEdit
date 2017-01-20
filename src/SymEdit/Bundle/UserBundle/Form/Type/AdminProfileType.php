@@ -13,6 +13,7 @@ namespace SymEdit\Bundle\UserBundle\Form\Type;
 
 use SymEdit\Bundle\UserBundle\Form\Type\UserProfileType as BaseType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class AdminProfileType extends BaseType
 {
@@ -185,6 +186,13 @@ class AdminProfileType extends BaseType
             ->add($image)
             ->add($roles)
         ;
+    }
+
+    public function configureOptions(OptionsResolver $resolver)
+    {
+        parent::configureOptions($resolver);
+        
+        $resolver->setDefault('tabs_class', 'nav nav-stacked');
     }
 
     public function getName()
