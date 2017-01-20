@@ -2,7 +2,8 @@
 <html>
     <head>
         <title>{% block title %}SymEdit{% endblock %}</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link rel="icon" href="{{ asset('bundles/symedit/img/favicon.ico') }}" />
         {% block stylesheets %}
         {% stylesheets
             'bundles/symedit/redactor/redactor.css'
