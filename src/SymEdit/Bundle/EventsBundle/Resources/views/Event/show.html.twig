@@ -5,9 +5,7 @@
 {% endblock %}
 
 {% block content %}
-    <div itemscope itemtype="http://schema.org/Event">
-        <meta itemprop="name" content="{{ event.title }}">
-
+    <div class="event">
         {% if event.image %}
             <img src="{{ event.image.webPath }}" alt="{{ event.title }}" class="img-responsive" />
         {% endif %}
@@ -17,26 +15,26 @@
         {% endif %}
 
         <h4>Address</h4>
-        <address class="location" itemprop="location">
+        <address class="location">
             {{ event.address|nl2br }}
         </address>
 
         <h4>Description</h4>
-        <div class="description" itemprop="description">
+        <div class="description">
             {{ event.description|shortcode|raw }}
         </div>
 
         <h4>Time</h4>
         <div class="time">
             <div class="startDate">
-                <time itemprop="startDate" datetime="{{ event.eventStart|date('c') }}">
+                <time datetime="{{ event.eventStart|date('c') }}">
                     {{ event.eventStart|date('F jS Y - g:ia T') }}
                 </time>
             </div>
 
             {% if event.eventEnd %}
             <div class="endDate">
-                <time itemprop="endDate" datetime="{{ event.eventEnd|date('c') }}">
+                <time datetime="{{ event.eventEnd|date('c') }}">
                     {{ event.eventEnd|date('F jS Y - g:ia T') }}
                 </time>
             </div>

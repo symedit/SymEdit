@@ -156,7 +156,7 @@ isometriks_json_ld_dumper:
             mapping:
                 @context: http://schema.org/
                 @type: ImageObject
-                url: https://riwebgurus.com/media/image/logo.png
+                url: "expr:setting('company.logo', false) ? absolute_url(setting('company.logo').getWebPath()) : ''"
 
         company:
             always_include: true
@@ -165,12 +165,15 @@ isometriks_json_ld_dumper:
                 @type: Organization
                 address:
                     @type: PostalAddress
-                    streetAddress: 464 victory highway
-                description: RI Web Gurus are cool guys..
-                name: RI Web Gurus
+                    streetAddress: "expr:setting('company.address', '')"
+                name: "expr:setting('company.name')"
                 logo: $static.logo
                 image: $static.logo
                 url: "expr:absolute_url('/')"
+                contactPoint:
+                    @type: ContactPoint
+                    telephone: expr:'+1-' ~ setting('company.phone', '')
+                    contactType: customer service
 
     entity:
         %symedit.model.post.class%:
@@ -183,6 +186,21 @@ isometriks_json_ld_dumper:
                 datePublished: $resource.publishedAt
                 dateModified: $resource.updatedAt
                 author: $resource.author.profile.fullName
+
+        %symedit.model.event.class%:
+            mapping:
+                @context: http://schema.org/
+                @type: Event
+                name: $resource.title
+                url: $resource.url
+                description: $resource.description
+                startDate: $resource.eventStart
+                endDate: $resource.eventEnd
+                image: $resource.image
+                location:
+                    @type: PostalAddress
+                    streetAddress: $resource.address
+
 
         %symedit.model.image.class%:
             mapping:
