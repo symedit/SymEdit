@@ -22,11 +22,11 @@ class SettingsExpressionLanguageProvider implements ExpressionFunctionProviderIn
             new ExpressionFunction(
                 'setting',
 
-                function ($name, $default) {
+                function ($name, $default = null) {
                     return sprintf('$this->setting(%s, %s)', $name, $default);
                 },
 
-                function (array $variables, $name, $default) {
+                function (array $variables, $name, $default = null) {
                     $settingsManager = $variables['container']->get('sylius.settings_manager');
 
                     if (false === strpos($name, '.')) {

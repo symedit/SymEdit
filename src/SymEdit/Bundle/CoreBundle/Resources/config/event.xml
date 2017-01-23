@@ -50,6 +50,14 @@
             <tag name="kernel.event_subscriber" />
         </service>
 
+        <!-- Json Ld Subscriber -->
+        <service id="symedit.event_subscriber.json_ld" class="SymEdit\Bundle\CoreBundle\EventListener\Subscriber\JsonLdSubscriber">
+            <argument type="service" id="isometriks_json_ld_dumper.registry" />
+            <argument type="service" id="isometriks_json_ld_dumper.mapping_configuration" />
+
+            <tag name="kernel.event_subscriber" />
+        </service>
+
         <!-- Page Subscriber -->
         <service id="symedit.event_subscriber.page" class="%symedit.event_subscriber.page.class%">
             <tag name="kernel.event_subscriber" />

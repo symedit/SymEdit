@@ -32,5 +32,13 @@ class ExpressionLanguageCompilerPass implements CompilerPassInterface
         foreach ($container->findTaggedServiceIds('symedit.expression_language_provider') as $id => $tags) {
             $definition->addMethodCall('registerProvider', [new Reference($id)]);
         }
+
+        // Add Settings Expression Parser to JsonLd Expression Engine
+        if (!$container->hasDefinition('isometriks_json_ld_dumper.expression_language')) {
+            return;
+        }
+
+        $jsonLdExpressionDefinition = $container->getDefinition('isometriks_json_ld_dumper.expression_language');
+        $jsonLdExpressionDefinition->addMethodCall('registerProvider', [new Reference('symedit.expression_language.settings_provider')]);
     }
 }

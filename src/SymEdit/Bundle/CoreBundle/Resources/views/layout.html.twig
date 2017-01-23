@@ -86,6 +86,8 @@
         {% include '@SymEdit/Widget/google-analytics.html.twig' %}
         {% endblock %}
 
+        {{ json_ld_dump_all() }}
+
         {{ (sylius_settings('seo')['body_extra']|default(''))|raw }}
     </body>
 </html>

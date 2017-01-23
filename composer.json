@@ -24,6 +24,7 @@
         "friendsofsymfony/rest-bundle":         "~1.5",
         "incenteev/composer-parameter-handler": "~2.0",
         "isometriks/spam-bundle":               "~0.3.0",
+        "isometriks/json-ld-dumper-bundle":     "@stable",
         "jms/aop-bundle":                       "~1.0",
         "jms/serializer-bundle":                "~0.13.0",
         "knplabs/knp-gaufrette-bundle":         "~0.2.0",
