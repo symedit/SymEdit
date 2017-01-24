@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "ba283ec2beacaccac010b0eee1f94cd9",
+    "content-hash": "cddffcdcafe2f4c914af55edc54fe3fb",
     "packages": [
         {
             "name": "behat/transliterator",
@@ -186,28 +186,29 @@
         },
         {
             "name": "doctrine/collections",
-            "version": "v1.3.0",
+            "version": "v1.4.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/doctrine/collections.git",
-                "reference": "6c1e4eef75f310ea1b3e30945e9f06e652128b8a"
+                "reference": "1a4fb7e902202c33cce8c55989b945612943c2ba"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/collections/zipball/6c1e4eef75f310ea1b3e30945e9f06e652128b8a",
-                "reference": "6c1e4eef75f310ea1b3e30945e9f06e652128b8a",
+                "url": "https://api.github.com/repos/doctrine/collections/zipball/1a4fb7e902202c33cce8c55989b945612943c2ba",
+                "reference": "1a4fb7e902202c33cce8c55989b945612943c2ba",
                 "shasum": ""
             },
             "require": {
-                "php": ">=5.3.2"
+                "php": "^5.6 || ^7.0"
             },
             "require-dev": {
-                "phpunit/phpunit": "~4.0"
+                "doctrine/coding-standard": "~0.1@dev",
+                "phpunit/phpunit": "^5.7"
             },
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.2.x-dev"
+                    "dev-master": "1.3.x-dev"
                 }
             },
             "autoload": {
@@ -248,20 +249,20 @@
                 "collections",
                 "iterator"
             ],
-            "time": "2015-04-14T22:21:58+00:00"
+            "time": "2017-01-03T10:49:41+00:00"
         },
         {
             "name": "doctrine/common",
-            "version": "v2.7.1",
+            "version": "v2.7.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/doctrine/common.git",
-                "reference": "5954c297e9d93ff84554906c2fbbc2a133c43941"
+                "reference": "930297026c8009a567ac051fd545bf6124150347"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/common/zipball/5954c297e9d93ff84554906c2fbbc2a133c43941",
-                "reference": "5954c297e9d93ff84554906c2fbbc2a133c43941",
+                "url": "https://api.github.com/repos/doctrine/common/zipball/930297026c8009a567ac051fd545bf6124150347",
+                "reference": "930297026c8009a567ac051fd545bf6124150347",
                 "shasum": ""
             },
             "require": {
@@ -321,7 +322,7 @@
                 "persistence",
                 "spl"
             ],
-            "time": "2016-12-03T08:15:01+00:00"
+            "time": "2017-01-13T14:02:13+00:00"
         },
         {
             "name": "doctrine/data-fixtures",
@@ -384,30 +385,38 @@
         },
         {
             "name": "doctrine/dbal",
-            "version": "v2.4.5",
+            "version": "v2.5.10",
             "source": {
                 "type": "git",
                 "url": "https://github.com/doctrine/dbal.git",
-                "reference": "5a1f4bf34d61d997ccd9f0539fbc14c7a772aa16"
+                "reference": "fc376f7a61498e18520cd6fa083752a4ca08072b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/dbal/zipball/5a1f4bf34d61d997ccd9f0539fbc14c7a772aa16",
-                "reference": "5a1f4bf34d61d997ccd9f0539fbc14c7a772aa16",
+                "url": "https://api.github.com/repos/doctrine/dbal/zipball/fc376f7a61498e18520cd6fa083752a4ca08072b",
+                "reference": "fc376f7a61498e18520cd6fa083752a4ca08072b",
                 "shasum": ""
             },
             "require": {
-                "doctrine/common": "~2.4",
+                "doctrine/common": ">=2.4,<2.8-dev",
                 "php": ">=5.3.2"
             },
             "require-dev": {
-                "phpunit/phpunit": "3.7.*",
-                "symfony/console": "~2.0"
+                "phpunit/phpunit": "4.*",
+                "symfony/console": "2.*||^3.0"
             },
             "suggest": {
                 "symfony/console": "For helpful console commands such as SQL execution and import of files."
             },
+            "bin": [
+                "bin/doctrine-dbal"
+            ],
             "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "2.5.x-dev"
+                }
+            },
             "autoload": {
                 "psr-0": {
                     "Doctrine\\DBAL\\": "lib/"
@@ -443,20 +452,20 @@
                 "persistence",
                 "queryobject"
             ],
-            "time": "2016-01-05T22:18:20+00:00"
+            "time": "2017-01-23T23:17:10+00:00"
         },
         {
             "name": "doctrine/doctrine-bundle",
-            "version": "1.6.6",
+            "version": "1.6.7",
             "source": {
                 "type": "git",
                 "url": "https://github.com/doctrine/DoctrineBundle.git",
-                "reference": "0f0c4df366bd1d36d38a27e2f5ff128e118ac969"
+                "reference": "a01d99bc6c9a6c8a8ace0012690099dd957ce9b9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/DoctrineBundle/zipball/0f0c4df366bd1d36d38a27e2f5ff128e118ac969",
-                "reference": "0f0c4df366bd1d36d38a27e2f5ff128e118ac969",
+                "url": "https://api.github.com/repos/doctrine/DoctrineBundle/zipball/a01d99bc6c9a6c8a8ace0012690099dd957ce9b9",
+                "reference": "a01d99bc6c9a6c8a8ace0012690099dd957ce9b9",
                 "shasum": ""
             },
             "require": {
@@ -524,7 +533,7 @@
                 "orm",
                 "persistence"
             ],
-            "time": "2017-01-07T21:47:22+00:00"
+            "time": "2017-01-16T12:01:26+00:00"
         },
         {
             "name": "doctrine/doctrine-cache-bundle",
@@ -800,6 +809,60 @@
             "time": "2015-11-06T14:35:42+00:00"
         },
         {
+            "name": "doctrine/instantiator",
+            "version": "1.0.5",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/doctrine/instantiator.git",
+                "reference": "8e884e78f9f0eb1329e445619e04456e64d8051d"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/doctrine/instantiator/zipball/8e884e78f9f0eb1329e445619e04456e64d8051d",
+                "reference": "8e884e78f9f0eb1329e445619e04456e64d8051d",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3,<8.0-DEV"
+            },
+            "require-dev": {
+                "athletic/athletic": "~0.1.8",
+                "ext-pdo": "*",
+                "ext-phar": "*",
+                "phpunit/phpunit": "~4.0",
+                "squizlabs/php_codesniffer": "~2.0"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.0.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Doctrine\\Instantiator\\": "src/Doctrine/Instantiator/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Marco Pivetta",
+                    "email": "ocramius@gmail.com",
+                    "homepage": "http://ocramius.github.com/"
+                }
+            ],
+            "description": "A small, lightweight utility to instantiate objects in PHP without invoking their constructors",
+            "homepage": "https://github.com/doctrine/instantiator",
+            "keywords": [
+                "constructor",
+                "instantiate"
+            ],
+            "time": "2015-06-14T21:17:01+00:00"
+        },
+        {
             "name": "doctrine/lexer",
             "version": "v1.0.1",
             "source": {
@@ -929,28 +992,31 @@
         },
         {
             "name": "doctrine/orm",
-            "version": "v2.4.8",
+            "version": "v2.5.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/doctrine/doctrine2.git",
-                "reference": "5aedac1e5c5caaeac14798822c70325dc242d467"
+                "reference": "e6c434196c8ef058239aaa0724b4aadb0107940b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/doctrine2/zipball/5aedac1e5c5caaeac14798822c70325dc242d467",
-                "reference": "5aedac1e5c5caaeac14798822c70325dc242d467",
+                "url": "https://api.github.com/repos/doctrine/doctrine2/zipball/e6c434196c8ef058239aaa0724b4aadb0107940b",
+                "reference": "e6c434196c8ef058239aaa0724b4aadb0107940b",
                 "shasum": ""
             },
             "require": {
-                "doctrine/collections": "~1.1",
-                "doctrine/dbal": "~2.4",
+                "doctrine/cache": "~1.4",
+                "doctrine/collections": "~1.2",
+                "doctrine/common": ">=2.5-dev,<2.8-dev",
+                "doctrine/dbal": ">=2.5-dev,<2.6-dev",
+                "doctrine/instantiator": "~1.0.1",
                 "ext-pdo": "*",
-                "php": ">=5.3.2",
-                "symfony/console": "~2.0"
+                "php": ">=5.4",
+                "symfony/console": "~2.5|~3.0"
             },
             "require-dev": {
-                "satooshi/php-coveralls": "dev-master",
-                "symfony/yaml": "~2.1"
+                "phpunit/phpunit": "~4.0",
+                "symfony/yaml": "~2.3|~3.0"
             },
             "suggest": {
                 "symfony/yaml": "If you want to use YAML Metadata Mapping Driver"
@@ -962,7 +1028,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "2.4.x-dev"
+                    "dev-master": "2.6.x-dev"
                 }
             },
             "autoload": {
@@ -998,7 +1064,7 @@
                 "database",
                 "orm"
             ],
-            "time": "2015-08-31T13:19:01+00:00"
+            "time": "2016-12-18T15:42:34+00:00"
         },
         {
             "name": "friendsofsymfony/oauth-server-bundle",
@@ -1609,6 +1675,66 @@
                 "password"
             ],
             "time": "2014-11-20T16:49:30+00:00"
+        },
+        {
+            "name": "isometriks/json-ld-dumper",
+            "version": "v0.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/isometriks/JsonLdDumper.git",
+                "reference": "bb239d48ee41816c8e4fd06b66b40bfd1da50f37"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/isometriks/JsonLdDumper/zipball/bb239d48ee41816c8e4fd06b66b40bfd1da50f37",
+                "reference": "bb239d48ee41816c8e4fd06b66b40bfd1da50f37",
+                "shasum": ""
+            },
+            "require": {
+                "symfony/expression-language": "^2.8|^3.0",
+                "symfony/property-access": "^2.8|^3.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Isometriks\\JsonLdDumper\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "time": "2017-01-23T18:34:18+00:00"
+        },
+        {
+            "name": "isometriks/json-ld-dumper-bundle",
+            "version": "v0.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/isometriks/JsonLdDumperBundle.git",
+                "reference": "280a385ae8ffbaffdc321e78aae83107623466fc"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/isometriks/JsonLdDumperBundle/zipball/280a385ae8ffbaffdc321e78aae83107623466fc",
+                "reference": "280a385ae8ffbaffdc321e78aae83107623466fc",
+                "shasum": ""
+            },
+            "require": {
+                "isometriks/json-ld-dumper": "@stable"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Isometriks\\Bundle\\JsonLdDumperBundle\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "authors": [
+                {
+                    "name": "Craig Blanchette",
+                    "email": "craig.blanchette@gmail.com"
+                }
+            ],
+            "description": "Symfony Integration for IsometriksJsonLdDumper",
+            "time": "2017-01-23T18:44:53+00:00"
         },
         {
             "name": "isometriks/spam-bundle",
@@ -2362,16 +2488,16 @@
         },
         {
             "name": "liip/imagine-bundle",
-            "version": "1.7.0",
+            "version": "1.7.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/liip/LiipImagineBundle.git",
-                "reference": "2b0e6c614be4a79026a3b64d32bc5e9735de35e0"
+                "reference": "d653f4d22b33c2c2870cb87df8a32508186a799a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/liip/LiipImagineBundle/zipball/2b0e6c614be4a79026a3b64d32bc5e9735de35e0",
-                "reference": "2b0e6c614be4a79026a3b64d32bc5e9735de35e0",
+                "url": "https://api.github.com/repos/liip/LiipImagineBundle/zipball/d653f4d22b33c2c2870cb87df8a32508186a799a",
+                "reference": "d653f4d22b33c2c2870cb87df8a32508186a799a",
                 "shasum": ""
             },
             "require": {
@@ -2416,7 +2542,7 @@
             "type": "symfony-bundle",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.6.x-dev"
+                    "dev-master": "1.7.x-dev"
                 }
             },
             "autoload": {
@@ -2440,7 +2566,7 @@
                 "image",
                 "imagine"
             ],
-            "time": "2017-01-08T18:53:27+00:00"
+            "time": "2017-01-20T01:55:04+00:00"
         },
         {
             "name": "monolog/monolog",
@@ -4413,16 +4539,16 @@
         },
         {
             "name": "symfony/symfony",
-            "version": "v2.8.15",
+            "version": "v2.8.16",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/symfony.git",
-                "reference": "3ec15b9379ebb0758e296d4193926a7b4121a964"
+                "reference": "9fef72a3ab561c4bfa703a70369db028dec387d2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/symfony/zipball/3ec15b9379ebb0758e296d4193926a7b4121a964",
-                "reference": "3ec15b9379ebb0758e296d4193926a7b4121a964",
+                "url": "https://api.github.com/repos/symfony/symfony/zipball/9fef72a3ab561c4bfa703a70369db028dec387d2",
+                "reference": "9fef72a3ab561c4bfa703a70369db028dec387d2",
                 "shasum": ""
             },
             "require": {
@@ -4544,7 +4670,7 @@
             "keywords": [
                 "framework"
             ],
-            "time": "2016-12-13T12:16:34+00:00"
+            "time": "2017-01-12T20:27:46+00:00"
         },
         {
             "name": "twig/extensions",
@@ -5673,60 +5799,6 @@
             "time": "2014-12-30T15:22:37+00:00"
         },
         {
-            "name": "doctrine/instantiator",
-            "version": "1.0.5",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/doctrine/instantiator.git",
-                "reference": "8e884e78f9f0eb1329e445619e04456e64d8051d"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/instantiator/zipball/8e884e78f9f0eb1329e445619e04456e64d8051d",
-                "reference": "8e884e78f9f0eb1329e445619e04456e64d8051d",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=5.3,<8.0-DEV"
-            },
-            "require-dev": {
-                "athletic/athletic": "~0.1.8",
-                "ext-pdo": "*",
-                "ext-phar": "*",
-                "phpunit/phpunit": "~4.0",
-                "squizlabs/php_codesniffer": "~2.0"
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "1.0.x-dev"
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Doctrine\\Instantiator\\": "src/Doctrine/Instantiator/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Marco Pivetta",
-                    "email": "ocramius@gmail.com",
-                    "homepage": "http://ocramius.github.com/"
-                }
-            ],
-            "description": "A small, lightweight utility to instantiate objects in PHP without invoking their constructors",
-            "homepage": "https://github.com/doctrine/instantiator",
-            "keywords": [
-                "constructor",
-                "instantiate"
-            ],
-            "time": "2015-06-14T21:17:01+00:00"
-        },
-        {
             "name": "phpdocumentor/reflection-common",
             "version": "1.0",
             "source": {
@@ -6180,16 +6252,16 @@
         },
         {
             "name": "phpunit/phpunit",
-            "version": "4.8.31",
+            "version": "4.8.32",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/phpunit.git",
-                "reference": "98b2b39a520766bec663ff5b7ff1b729db9dbfe3"
+                "reference": "f5e1941a8dacf0d904753ff2895c6f68e54bcee1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/98b2b39a520766bec663ff5b7ff1b729db9dbfe3",
-                "reference": "98b2b39a520766bec663ff5b7ff1b729db9dbfe3",
+                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/f5e1941a8dacf0d904753ff2895c6f68e54bcee1",
+                "reference": "f5e1941a8dacf0d904753ff2895c6f68e54bcee1",
                 "shasum": ""
             },
             "require": {
@@ -6248,7 +6320,7 @@
                 "testing",
                 "xunit"
             ],
-            "time": "2016-12-09T02:45:31+00:00"
+            "time": "2017-01-22T08:37:05+00:00"
         },
         {
             "name": "phpunit/phpunit-mock-objects",
@@ -6684,6 +6756,7 @@
     "stability-flags": {
         "doctrine/doctrine-migrations-bundle": 0,
         "friendsofsymfony/user-bundle": 20,
+        "isometriks/json-ld-dumper-bundle": 0,
         "mopa/bootstrap-bundle": 20
     },
     "prefer-stable": true,
