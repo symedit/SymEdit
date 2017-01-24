@@ -43,6 +43,7 @@ class LatestPostStrategyTest extends WidgetStrategyTest
                 $this->equalTo($widget),
                 $this->equalTo([
                     'post' => 'foo',
+                    'show_image' => null,
                 ])
             )
         ;
