@@ -36,6 +36,7 @@ class SymEditEventsExtension extends SymEditResourceExtension implements Prepend
         // Load Config Files
         $configFiles = [
             'form.xml',
+            'widget.xml',
         ];
 
         foreach ($configFiles as $configFile) {

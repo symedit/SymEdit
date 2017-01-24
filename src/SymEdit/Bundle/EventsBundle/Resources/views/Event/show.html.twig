@@ -6,52 +6,83 @@
 
 {% block content %}
     <div class="event">
-        {% if event.image %}
-            <img src="{{ event.image.webPath }}" alt="{{ event.title }}" class="img-responsive" />
-        {% endif %}
+        <div class="row">
+            <div class="col-md-6">
+                <h4>Address</h4>
+                <address class="location">
+                    {{ event.address|nl2br }}
+                </address>
 
-        {% if event.showMap %}
-            {% include '@SymEdit/CMS/map.html.twig' with { query: event.address } %}
-        {% endif %}
+                <h4>Description</h4>
+                <div class="description">
+                    {{ event.description|shortcode|raw }}
+                </div>
 
-        <h4>Address</h4>
-        <address class="location">
-            {{ event.address|nl2br }}
-        </address>
+                <h4>Time</h4>
+                <div class="time">
+                    <div class="startDate">
+                        <time datetime="{{ event.eventStart|date('c') }}">
+                            {{ event.eventStart|date('F jS Y - g:ia T') }}
+                        </time>
+                    </div>
 
-        <h4>Description</h4>
-        <div class="description">
-            {{ event.description|shortcode|raw }}
-        </div>
+                    {% if event.eventEnd %}
+                    <div class="endDate">
+                        <time datetime="{{ event.eventEnd|date('c') }}">
+                            {{ event.eventEnd|date('F jS Y - g:ia T') }}
+                        </time>
+                    </div>
+                    {% endif %}
+                </div>
 
-        <h4>Time</h4>
-        <div class="time">
-            <div class="startDate">
-                <time datetime="{{ event.eventStart|date('c') }}">
-                    {{ event.eventStart|date('F jS Y - g:ia T') }}
-                </time>
+                {% if event.email %}
+                    <h4>Email</h4>
+                    <a href="mailto:{{ event.email }}">
+                        {{ event.email }}
+                    </a>
+                {% endif %}
+
+                {% if event.phone %}
+                    <h4>Phone</h4>
+                    <a href="tel:{{ event.phone }}">
+                        {{ event.phone }}
+                    </a>
+                {% endif %}
+
+                {% if event.url %}
+                    <h4>Website</h4>
+                    <div>
+                        <a href="{{ event.url }}" target="_blank" class="btn btn-primary">
+                            View Website
+                        </a>
+                    </div>
+                {% endif %}
+
+                {% if event.file %}
+                <h5>Attachment</h5>
+                <div class="attachment">
+                    <a href="{{ event.file.webPath }}" target="_blank" class="btn btn-primary">
+                        View Attachment
+                    </a>
+
+                    <small class="text-muted">
+                        ({{ event.file.path }} - {{ event.file|symedit_media_size }})
+                    </small>
+                </div>
+                {% endif %}
             </div>
 
-            {% if event.eventEnd %}
-            <div class="endDate">
-                <time datetime="{{ event.eventEnd|date('c') }}">
-                    {{ event.eventEnd|date('F jS Y - g:ia T') }}
-                </time>
-            </div>
+            {% if event.image %}
+                <div class="col-md-6">
+                    <img src="{{ event.image.webPath }}" alt="{{ event.title }}" class="img-responsive" />
+                </div>
             {% endif %}
         </div>
 
-        {% if event.file %}
-        <h5>Attachment</h5>
-        <div class="attachment">
-            <a href="{{ event.file.webPath }}" target="_blank" class="btn btn-primary">
-                View Attachment
-            </a>
-
-            <small class="text-muted">
-                ({{ event.file.path }} - {{ event.file|symedit_media_size }})
-            </small>
-        </div>
+        {% if event.showMap %}
+            <div class="map">
+                {% include '@SymEdit/CMS/map.html.twig' with { query: event.address } %}
+            </div>
         {% endif %}
     </div>
 {% endblock %}

@@ -11,9 +11,12 @@
 
 namespace SymEdit\Bundle\EventsBundle\Widget\Strategy;
 
-use Sylius\Bundle\ResourceBundle\Model\RepositoryInterface;
+use Sylius\Component\Resource\Repository\RepositoryInterface;
 use SymEdit\Bundle\WidgetBundle\Model\WidgetInterface;
 use SymEdit\Bundle\WidgetBundle\Widget\Strategy\AbstractWidgetStrategy;
+use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Validator\Constraints\Range;
 
 class UpcomingEventsWidgetStrategy extends AbstractWidgetStrategy
 {
@@ -24,13 +27,37 @@ class UpcomingEventsWidgetStrategy extends AbstractWidgetStrategy
         $this->repository = $repository;
     }
 
+    public function buildForm(FormBuilderInterface $builder)
+    {
+        $builder
+            ->add('max', 'integer', [
+                'label' => 'Max Events',
+                'help_block' => 'Maximum Events to display in Widget',
+                'constraints' => [
+                    new Range([
+                        'min' => 1,
+                        'minMessage' => 'Minimum is 1',
+                    ]),
+                ],
+            ])
+        ;
+    }
+
     public function execute(WidgetInterface $widget)
     {
-        $maxEvents = $widget->getOption('max_events');
-        $events = $this->repository->getUpcomingEvents($maxEvents);
+        $maxEvents = $widget->getOption('max');
+        $events = $this->repository->getUpcoming($maxEvents);
 
-        $this->render('@SymEdit/Widget/Events/upcoming_events.html.twig', [
+        return $this->render($widget, [
             'events' => $events,
+        ]);
+    }
+
+    public function getDefaultOptions(OptionsResolver $resolver)
+    {
+        $resolver->setDefaults([
+            'max' => 3,
+            'template' => '@SymEdit/Widget/Events/upcoming-events.html.twig',
         ]);
     }
 

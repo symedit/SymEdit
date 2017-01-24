@@ -1,0 +1,12 @@
+<ul class="event-list">
+{% for event in events %}
+    <li>
+        <a class="event-name" href="{{ path('symedit_event_show', { slug: event.slug }) }}">
+            {{ event.title }}
+        </a> - 
+        {{ event.eventStart|date('M jS @ g:ia') }}
+    </li>
+{% else %}
+    <li>No Upcoming Events</li>
+{% endfor %}
+</ul>

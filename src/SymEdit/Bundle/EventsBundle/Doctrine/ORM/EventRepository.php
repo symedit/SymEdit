@@ -15,19 +15,32 @@ use Sylius\Bundle\ResourceBundle\Doctrine\ORM\EntityRepository;
 
 class EventRepository extends EntityRepository
 {
-    public function getUpcoming()
+    public function getUpcomingQueryBuilder()
     {
-        $qb = $this->getQueryBuilder()
+        $queryBuilder = $this->getQueryBuilder()
            ->where('o.eventEnd > :now')
            ->orWhere('o.eventStart > :now')
-           ->setParameter('now', new \DateTime());
+           ->setParameter('now', new \DateTime())
+        ;
 
-        return $this->getPaginator($qb);
+        return $queryBuilder;
+    }
+
+    public function getUpcoming($max = null)
+    {
+        $queryBuilder = $this->getUpcomingQueryBuilder();
+
+        if ($max !== null) {
+            $queryBuilder->setMaxResults($max);
+        }
+
+        return $this->getPaginator($queryBuilder);
     }
 
     public function getQueryBuilder()
     {
         return $this->createQueryBuilder('o')
-               ->orderBy('o.eventStart', 'ASC');
+            ->orderBy('o.eventStart', 'ASC')
+        ;
     }
 }

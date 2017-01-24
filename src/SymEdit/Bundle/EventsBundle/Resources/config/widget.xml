@@ -1,0 +1,14 @@
+<?xml version="1.0" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+    <services>
+        <!-- Widget Strategies -->
+        <service id="symedit.widget.strategy.upcoming_events" class="SymEdit\Bundle\EventsBundle\Widget\Strategy\UpcomingEventsWidgetStrategy">
+            <argument type="service" id="symedit.repository.event" />
+
+            <tag name="symedit_widget.widget_strategy" alias="upcoming_events" />
+        </service>
+    </services>
+</container>
