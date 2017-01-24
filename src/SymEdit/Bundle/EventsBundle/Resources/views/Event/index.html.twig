@@ -5,9 +5,12 @@
 
     <div class="events-list">
         {% for event in events %}
-            <div class="event">
+            <div class="event clearfix">
                 <h3>
-                    <a href="{{ path('symedit_event_show', { slug: event.slug }) }}">{{ event.title }}</a>
+                    <a href="{{ path('symedit_event_show', { slug: event.slug }) }}">
+                        {{ event.title }}
+                    </a>
+
                     <small>
                         {{ event.eventStart|date('F jS, Y') }}
                     </small>
@@ -18,6 +21,12 @@
                     {{ event.address }}
                 </p>
                 {% endif %}
+
+                <div>
+                    <a class="btn btn-primary btn-sm" href="{{ path('symedit_event_show', { slug: event.slug }) }}">
+                        View Event
+                    </a>
+                </div>
             </div>
         {% else %}
             <p>
