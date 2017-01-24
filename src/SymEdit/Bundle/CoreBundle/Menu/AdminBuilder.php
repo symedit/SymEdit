@@ -92,6 +92,7 @@ class AdminBuilder implements MenuBuilderInterface
 
         $site->addChild('Settings', ['route' => 'admin_settings', 'icon' => 'cogs', 'extras' => ['is_granted' => 'ROLE_ADMIN_SETTING']]);
         $site->addChild('Users', ['route' => 'admin_user', 'icon' => 'group', 'extras' => ['is_granted' => 'ROLE_ADMIN_USER']]);
+        $site->addChild('Cache', ['route' => 'admin_cache', 'icon' => 'folder-open-o']);
 
         // Extensions
         $extensions = $rootNode->addChild('Extensions', [

@@ -1,0 +1,11 @@
+admin_cache:
+    path: /
+    methods: [GET]
+    defaults:
+        _controller: SymEditCacheBundle:HttpCache:index
+
+admin_cache_clear:
+    path: /clear
+    methods: [GET, POST]
+    defaults:
+        _controller: SymEditCacheBundle:HttpCache:clear

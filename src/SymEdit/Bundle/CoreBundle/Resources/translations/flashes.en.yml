@@ -7,3 +7,6 @@ symedit:
         save_and_dump: Styles Saved and Dumped
     settings:
         saved: Settings Saved
+    cache:
+        cleared: Cache was cleared successfully.
+        no_cache: There is currently no cache to clear.

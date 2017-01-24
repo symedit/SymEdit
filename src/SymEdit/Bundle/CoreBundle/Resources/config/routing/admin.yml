@@ -42,6 +42,10 @@ symedit_admin_form_builder_controller:
     resource: "@SymEditBundle/Resources/config/routing/admin/form_builder.yml"
     prefix: /form-builder
 
+symedit_admin_cache_controller:
+    resource: "@SymEditBundle/Resources/config/routing/admin/cache.yml"
+    prefix: /cache
+
 # Below not converted
 
 symedit_admin_dashboard_controller:

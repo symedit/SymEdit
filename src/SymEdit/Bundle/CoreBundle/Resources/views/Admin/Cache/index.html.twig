@@ -1,0 +1,29 @@
+{% extends '@SymEdit/Admin/base.html.twig' %}
+
+{% block title %}SymEdit Cache{% endblock %}
+
+{% block form_actions %}
+    {% if cache_exists %}
+        <a href="{{ path('admin_cache_clear') }}" class="btn btn-primary">
+            {{ icon('trash') }} Clear Cache
+        </a>
+    {% endif %}
+{% endblock %}
+
+{% block content %}
+    {% if cache_exists %}
+        <table class="table table-striped">
+            <tr>
+                <td>Last Modified</td>
+                <td>{{ stat.ctime|date }}</td>
+            </tr>
+
+            <tr>
+                <td>Size</td>
+                <td>{{ (stat.size / 1024)|round(2) }}Kb</td>
+            </tr>
+        </table>
+    {% else %}
+        There is currently no cache.
+    {% endif %}
+{% endblock %}
