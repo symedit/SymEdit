@@ -172,7 +172,8 @@ isometriks_json_ld_dumper:
                 url: "expr:absolute_url('/')"
                 contactPoint:
                     @type: ContactPoint
-                    telephone: expr:'+1-' ~ setting('company.phone', '')
+                    telephone: "expr:'+1-' ~ setting('company.phone', '')"
+                    email: "expr:setting('company.email', '')"
                     contactType: customer service
 
     entity:
