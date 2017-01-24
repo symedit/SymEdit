@@ -31,6 +31,7 @@
         "knplabs/knp-menu-bundle":              "~2.0",
         "liip/imagine-bundle":                  "~1.0",
         "mopa/bootstrap-bundle":                "dev-master@dev",
+        "ocramius/proxy-manager":               "^1.0",
         "sensio/distribution-bundle":           "~4.0",
         "sensio/framework-extra-bundle":        "^3.0.2",
         "stof/doctrine-extensions-bundle":      "~1.2.0",
