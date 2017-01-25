@@ -146,7 +146,7 @@ sylius_settings:
 # Doctrine Cache
 doctrine_cache:
     providers:
-        sylius_settings:
+        symedit_analytics:
             type: file_system
 
 # Isometriks Json LD

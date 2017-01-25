@@ -12,11 +12,11 @@
 namespace SymEdit\Bundle\AnalyticsBundle\Report;
 
 use Doctrine\Common\Persistence\ObjectManager;
+use Doctrine\ORM\QueryBuilder;
 use SymEdit\Bundle\AnalyticsBundle\Exception\InvalidReportException;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Doctrine\ORM\QueryBuilder;
 
-class Reporter
+class Reporter implements ReporterInterface
 {
     protected $manager;
     protected $visitClass;
@@ -90,8 +90,6 @@ class Reporter
      * @param string $name
      *
      * @return ReportInterface
-     *
-     * @throws InvalidArgumentException
      */
     protected function getReport($name)
     {

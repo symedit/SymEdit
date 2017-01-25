@@ -11,7 +11,7 @@
 
 namespace SymEdit\Bundle\CoreBundle\Tests\Functional;
 
-use SymEdit\Bundle\AnalyticsBundle\Report\Reporter;
+use SymEdit\Bundle\AnalyticsBundle\Report\ReporterInterface;
 use SymEdit\Bundle\CoreBundle\Tests\WebTestCase;
 
 class ReportTest extends WebTestCase
@@ -19,7 +19,7 @@ class ReportTest extends WebTestCase
     protected $reporter;
 
     /**
-     * @return Reporter
+     * @return ReporterInterface
      */
     protected function getReporter()
     {

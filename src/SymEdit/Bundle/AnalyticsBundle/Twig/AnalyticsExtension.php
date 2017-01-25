@@ -13,7 +13,7 @@ namespace SymEdit\Bundle\AnalyticsBundle\Twig;
 
 use SymEdit\Bundle\AnalyticsBundle\Analytics\Tracker;
 use SymEdit\Bundle\AnalyticsBundle\Exception\InvalidReportException;
-use SymEdit\Bundle\AnalyticsBundle\Report\Reporter;
+use SymEdit\Bundle\AnalyticsBundle\Report\ReporterInterface;
 
 class AnalyticsExtension extends \Twig_Extension
 {
@@ -21,7 +21,7 @@ class AnalyticsExtension extends \Twig_Extension
     protected $environment;
     protected $reporter;
 
-    public function __construct(Tracker $tracker, Reporter $reporter)
+    public function __construct(Tracker $tracker, ReporterInterface $reporter)
     {
         $this->tracker = $tracker;
         $this->reporter = $reporter;

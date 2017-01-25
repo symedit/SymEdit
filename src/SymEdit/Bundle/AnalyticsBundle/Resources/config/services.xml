@@ -41,6 +41,12 @@
             <argument type="collection" />
         </service>
 
+        <!-- Cached Reporter -->
+        <service id="symedit_analytics.cached_reporter" class="SymEdit\Bundle\AnalyticsBundle\Report\CachedReporter" decorates="symedit_analytics.reporter">
+            <argument type="service" id="symedit_analytics.cached_reporter.inner" />
+            <argument type="service" id="doctrine_cache.providers.symedit_analytics" />
+        </service>
+
         <!-- Twig Extension -->
         <service id="symedit_analytics.twig.extension" class="%symedit_analytics.twig.extension.class%">
             <argument type="service" id="symedit_analytics.tracker" />

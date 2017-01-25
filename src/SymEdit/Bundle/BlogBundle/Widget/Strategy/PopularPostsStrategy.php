@@ -11,7 +11,7 @@
 
 namespace SymEdit\Bundle\BlogBundle\Widget\Strategy;
 
-use SymEdit\Bundle\AnalyticsBundle\Report\Reporter;
+use SymEdit\Bundle\AnalyticsBundle\Report\ReporterInterface;
 use SymEdit\Bundle\WidgetBundle\Model\WidgetInterface;
 use SymEdit\Bundle\WidgetBundle\Widget\Strategy\AbstractWidgetStrategy;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -22,7 +22,7 @@ class PopularPostsStrategy extends AbstractWidgetStrategy
 {
     protected $reporter;
 
-    public function __construct(Reporter $reporter)
+    public function __construct(ReporterInterface $reporter)
     {
         $this->reporter = $reporter;
     }
