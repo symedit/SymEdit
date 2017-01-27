@@ -26,6 +26,11 @@ admin_image_gallery_add:
         _controller: symedit.controller.image_gallery:updateAction
         _sylius:
             template: "@SymEdit/Admin/ImageGallery/add.html.twig"
+            form:
+                type: symedit_image_gallery
+                options:
+                    attr:
+                        class: checkbox-multi-select
             redirect:
                 route: admin_image_gallery_update
                 parameters: { id: $id }
