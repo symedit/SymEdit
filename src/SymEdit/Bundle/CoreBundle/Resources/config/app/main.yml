@@ -33,8 +33,9 @@ liip_imagine:
     filter_sets:
         gallery_thumbnail:
             filters:
-                thumbnail: { size: [350, 200], mode: outbound, allow_upscale: true }
-                background: { size: [350, 200] }
+                upscale: { min: [350, 200] }
+                thumbnail: { size: [350, 200], mode: outbound }
+                background: { size: [350, 200], position: center, color: '#ffffff' }
         gallery:
             filters:
                 thumbnail: { size: [800, 400], mode: inset }
