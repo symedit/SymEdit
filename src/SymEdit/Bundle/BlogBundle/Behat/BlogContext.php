@@ -11,10 +11,9 @@
 
 namespace SymEdit\Bundle\BlogBundle\Behat;
 
-use Behat\Behat\Context\SnippetAcceptingContext;
 use SymEdit\Bundle\ResourceBundle\Behat\DefaultContext;
 
-class BlogContext extends DefaultContext implements SnippetAcceptingContext
+class BlogContext extends DefaultContext
 {
     /**
      * @Given I am on the blog index

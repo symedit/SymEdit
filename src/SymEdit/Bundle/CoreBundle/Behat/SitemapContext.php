@@ -11,12 +11,11 @@
 
 namespace SymEdit\Bundle\CoreBundle\Behat;
 
-use Behat\Behat\Context\SnippetAcceptingContext;
 use Behat\Gherkin\Node\PyStringNode;
 use SymEdit\Bundle\ResourceBundle\Behat\DefaultContext;
 use Symfony\Component\DomCrawler\Crawler;
 
-class SitemapContext extends DefaultContext implements SnippetAcceptingContext
+class SitemapContext extends DefaultContext
 {
     /**
      * @Then the sitemap should have urls:

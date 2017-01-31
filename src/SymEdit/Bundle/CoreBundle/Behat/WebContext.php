@@ -11,10 +11,9 @@
 
 namespace SymEdit\Bundle\CoreBundle\Behat;
 
-use Behat\Behat\Context\SnippetAcceptingContext;
 use SymEdit\Bundle\ResourceBundle\Behat\DefaultContext;
 
-class WebContext extends DefaultContext implements SnippetAcceptingContext
+class WebContext extends DefaultContext
 {
     /**
      * @Given /^I am on the (.+) page$/

@@ -11,11 +11,10 @@
 
 namespace SymEdit\Bundle\CoreBundle\Behat;
 
-use Behat\Behat\Context\SnippetAcceptingContext;
 use SymEdit\Bundle\AnalyticsBundle\Analytics\Tracker;
 use SymEdit\Bundle\ResourceBundle\Behat\DefaultContext;
 
-class AnalyticsContext extends DefaultContext implements SnippetAcceptingContext
+class AnalyticsContext extends DefaultContext
 {
     /**
      * @Then /^I should have a tracked (.+)$/
