@@ -62,6 +62,12 @@ default:
                 - SymEdit\Bundle\CoreBundle\Behat\WebContext
             filters:
                 tags: "@settings"
+        form_builder:
+            contexts:
+                - Behat\MinkExtension\Context\MinkContext
+                - SymEdit\Bundle\CoreBundle\Behat\WebContext
+            filters:
+                tags: "@form_builder"
     extensions:
         Behat\MinkExtension:
             sessions:
