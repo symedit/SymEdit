@@ -40,8 +40,15 @@ class FormElementType extends AbstractType
             'embed_form' => true
          ]);
 
+        // Get Field type
+        if ($options['field_type'] === null) {
+            $fieldType = $builder->getData()->getType();
+        } else {
+            $fieldType = $options['field_type'];
+        }
+
         // Get builders from registry
-        $fieldBuilders = $this->registry->getFieldBuilders($options['field_type']);
+        $fieldBuilders = $this->registry->getFieldBuilders($fieldType);
 
         foreach ($fieldBuilders as $fieldBuilder) {
             $fieldBuilder->buildOptionsForm($optionsBuilder);
@@ -54,7 +61,7 @@ class FormElementType extends AbstractType
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults([
-            'field_type' => 'form',
+            'field_type' => null,
             'data_class' => $this->class,
         ]);
     }
