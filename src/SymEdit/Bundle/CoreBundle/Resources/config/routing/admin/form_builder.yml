@@ -65,6 +65,13 @@ admin_form_element_create:
             redirect:
                 route: admin_form_show
                 parameters: { id: $formId }
+            factory:
+                method: createWithBuilder
+                arguments: [$type, $formId]
+            form:
+                type: symedit_form_element
+                options:
+                    field_type: $type
 
 admin_form_element_update:
     path: /element/{id}/edit

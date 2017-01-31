@@ -14,6 +14,7 @@ namespace SymEdit\Bundle\FormBuilderBundle;
 use Sylius\Bundle\ResourceBundle\AbstractResourceBundle;
 use Sylius\Bundle\ResourceBundle\SyliusResourceBundle;
 use SymEdit\Bundle\FormBuilderBundle\DependencyInjection\Compiler\FieldBuilderCompilerPass;
+use SymEdit\Bundle\FormBuilderBundle\DependencyInjection\Compiler\FormElementFactoryCompilerPass;
 use SymEdit\Bundle\FormBuilderBundle\DependencyInjection\SymEditFormBuilderExtension;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 
@@ -36,6 +37,7 @@ class SymEditFormBuilderBundle extends AbstractResourceBundle
         parent::build($container);
 
         $container->addCompilerPass(new FieldBuilderCompilerPass());
+        $container->addCompilerPass(new FormElementFactoryCompilerPass());
     }
 
     public function getContainerExtension()

@@ -14,6 +14,7 @@ namespace SymEdit\Bundle\FormBuilderBundle\DependencyInjection;
 use Sylius\Component\Resource\Factory\Factory;
 use SymEdit\Bundle\FormBuilderBundle\Controller\FormBuilderController;
 use SymEdit\Bundle\FormBuilderBundle\Controller\FormElementController;
+use SymEdit\Bundle\FormBuilderBundle\Factory\FormElementFactory;
 use SymEdit\Bundle\FormBuilderBundle\Form\Type\FormBuilderType;
 use SymEdit\Bundle\FormBuilderBundle\Form\Type\FormElementType;
 use SymEdit\Bundle\FormBuilderBundle\Model\Form;
@@ -90,7 +91,7 @@ class Configuration implements ConfigurationInterface
                                         ->scalarNode('interface')->defaultValue(FormElementInterface::class)->end()
                                         ->scalarNode('controller')->defaultValue(FormElementController::class)->end()
                                         ->scalarNode('repository')->end()
-                                        ->scalarNode('factory')->defaultValue(Factory::class)->end()
+                                        ->scalarNode('factory')->defaultValue(FormElementFactory::class)->end()
                                         ->arrayNode('form')
                                             ->addDefaultsIfNotSet()
                                             ->children()

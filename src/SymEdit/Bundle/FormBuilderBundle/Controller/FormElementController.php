@@ -11,71 +11,25 @@
 
 namespace SymEdit\Bundle\FormBuilderBundle\Controller;
 
-use SymEdit\Bundle\FormBuilderBundle\Model\FormElementInterface;
+use FOS\RestBundle\View\View;
 use SymEdit\Bundle\ResourceBundle\Controller\ResourceController;
 use Symfony\Component\HttpFoundation\Request;
 
 class FormElementController extends ResourceController
 {
-    public function createAction(Request $request)
-    {
-        $type = $request->get('type');
-        $formId = $request->get('formId');
-        $formBuilder = $this->get('symedit.repository.form_builder')->find($formId);
-
-        if ($formBuilder === null) {
-            throw $this->createNotFoundException();
-        }
-
-        /* @var $formElement FormElementInterface */
-        $formElement = $this->createNew();
-        $formElement->setType($type);
-        $formElement->setForm($formBuilder);
-        $form = $this->getForm($formElement);
-
-        if ($form->handleRequest($request)->isValid()) {
-            $formElement = $this->domainManager->create($formElement);
-
-            return $this->redirect($this->generateUrl('admin_form_show', [
-                'id' => $formBuilder->getId(),
-            ]));
-        }
-
-        $view = $this
-            ->view()
-            ->setTemplate($this->config->getTemplate('create.html'))
-            ->setData([
-                'formBuilder' => $formBuilder,
-                'formElement' => $formElement,
-                'form' => $form->createView(),
-            ])
-        ;
-
-        return $this->handleView($view);
-    }
-
-    public function chooseAction($formId)
+    public function chooseAction(Request $request, $formId)
     {
         $types = $this->get('symedit_form_builder.builder_registry')->getTypes();
+        $configuration = $this->requestConfigurationFactory->create($this->metadata, $request);
 
-        $view = $this
-            ->view()
-            ->setTemplate($this->config->getTemplate('@SymEdit/Admin/FormElement/choose.html.twig'))
+        $view = View::create()
+            ->setTemplate($configuration->getTemplate('@SymEdit/Admin/FormElement/choose.html.twig'))
             ->setData([
                 'formId' => $formId,
                 'types' => $types,
             ])
         ;
 
-        return $this->handleView($view);
-    }
-
-    public function getForm($resource = null, array $options = [])
-    {
-        $form = $this->config->getFormType();
-
-        return $this->createForm($form, $resource, [
-            'field_type' => $resource->getType(),
-        ]);
+        return $this->viewHandler->handle($configuration, $view);
     }
 }
