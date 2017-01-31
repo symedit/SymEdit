@@ -23,9 +23,6 @@ monolog:
 
 doctrine_cache:
     providers:
-        sylius_settings:
-            type: apcu
-            namespace: sylius_settings
         symedit_theme:
             type: apcu
             namespace: symedit_theme
