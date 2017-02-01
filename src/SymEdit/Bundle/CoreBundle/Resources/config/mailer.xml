@@ -1,0 +1,50 @@
+<?xml version="1.0" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <services>
+        <!-- Mailer -->
+        <service id="symedit.new_mailer" class="SymEdit\Bundle\CoreBundle\Mailer\Mailer">
+            <argument type="service" id="symedit.mailer.sender" />
+
+            <!-- Both replaced by compiler pass -->
+            <argument type="collection" />
+            <argument type="collection" />
+        </service>
+
+        <!-- Sender -->
+        <service id="symedit.mailer.sender" class="SymEdit\Bundle\CoreBundle\Mailer\Sender\SwiftMailSender">
+            <argument type="service" id="swiftmailer.mailer" />
+        </service>
+
+        <!-- Message Builders -->
+
+        <!-- Root Builder -->
+        <service id="symedit.mailer.message.base" class="SymEdit\Bundle\CoreBundle\Mailer\Message\Message">
+            <tag name="symedit.mailer.message" alias="message" />
+        </service>
+
+        <!-- Admin Message -->
+        <service id="symedit.mailer.message.admin" class="SymEdit\Bundle\CoreBundle\Mailer\Message\AdminMessage">
+            <argument type="service" id="sylius.settings_manager" />
+
+            <tag name="symedit.mailer.message" alias="admin" />
+        </service>
+
+        <!-- Form Builder -->
+        <service id="symedit.mailer.message.form_builder" class="SymEdit\Bundle\CoreBundle\Mailer\Message\FormBuilderMessage">
+            <tag name="symedit.mailer.message" alias="form_builder_result" />
+        </service>
+
+        <!-- Mailer Extensions -->
+
+        <!-- Twig Extension -->
+        <service id="symedit.mailer.extension.twig" class="SymEdit\Bundle\CoreBundle\Mailer\Extension\TwigMailerExtension">
+            <argument type="service" id="twig" />
+
+            <tag name="symedit.mailer.extension" alias="twig" />
+        </service>
+    </services>
+</container>

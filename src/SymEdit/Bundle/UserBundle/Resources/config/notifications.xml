@@ -11,7 +11,7 @@
     <services>
         <!-- Registration Listener -->
         <service id="symedit_user.notifications.registration" class="%symedit_user.notifications.registration.class%">
-            <argument type="service" id="symedit.mailer" />
+            <argument type="service" id="symedit.new_mailer" />
             <argument>%symedit_user.notifications.registration.template%</argument>
 
             <tag name="kernel.event_listener" event="fos_user.registration.confirmed" method="sendNotification" />

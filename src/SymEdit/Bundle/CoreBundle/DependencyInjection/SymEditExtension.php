@@ -48,6 +48,7 @@ class SymEditExtension extends SymEditResourceExtension
             'shortcode.xml',
             'cache.xml',
             'settings.xml',
+            'mailer.xml',
         ];
 
         foreach ($configFiles as $configFile) {
