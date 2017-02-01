@@ -12,12 +12,12 @@
 namespace SymEdit\Bundle\FormBuilderBundle\Factory;
 
 use Sylius\Component\Resource\Factory\FactoryInterface;
-use SymEdit\Bundle\WidgetBundle\Model\WidgetInterface;
+use SymEdit\Bundle\FormBuilderBundle\Model\FormElementInterface;
 
 interface FormElementFactoryInterface extends FactoryInterface
 {
     /**
-     * @return WidgetInterface
+     * @return FormElementInterface
      */
     public function createWithBuilder($type, $formBuilderId);
 }
