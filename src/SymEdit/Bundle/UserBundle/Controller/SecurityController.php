@@ -11,8 +11,15 @@
 
 namespace SymEdit\Bundle\UserBundle\Controller;
 
-use SymEdit\Bundle\CoreBundle\Controller\SecurityController as BaseController;
+use FOS\UserBundle\Controller\SecurityController as BaseController;
 
 class SecurityController extends BaseController
 {
+    protected function renderLogin(array $data)
+    {
+        return $this->container->get('templating')->renderResponse(
+            '@SymEdit/Security/login.html.twig',
+            $data
+        );
+    }
 }
