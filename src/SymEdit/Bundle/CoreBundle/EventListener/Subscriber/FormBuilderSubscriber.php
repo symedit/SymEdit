@@ -29,6 +29,14 @@ class FormBuilderSubscriber implements EventSubscriberInterface
     {
         $result = $event->getResult();
 
+        /*
+        $this->mailer->send('form_builder_result', [
+            'form_builder' => $event->getFormBuilder(),
+            'result' => $result,
+        ]);
+         * 
+         */
+
         $this->mailer->sendAdmin('@SymEdit/Email/form-builder.html.twig', [
             'form_builder' => $event->getFormBuilder(),
             'pairs' => $result->getPairs(),

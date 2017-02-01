@@ -13,7 +13,6 @@
         <parameter key="symedit.event_subscriber.analytics.class">SymEdit\Bundle\CoreBundle\EventListener\Subscriber\AnalyticsSubscriber</parameter>
         <parameter key="symedit.event_subscriber.page.class">SymEdit\Bundle\CoreBundle\EventListener\Subscriber\PageSubscriber</parameter>
         <parameter key="symedit.event_subscriber.post.class">SymEdit\Bundle\CoreBundle\EventListener\Subscriber\PostSubscriber</parameter>
-        <parameter key="symedit.event_subscriber.contact.class">SymEdit\Bundle\CoreBundle\EventListener\Subscriber\ContactSubscriber</parameter>
     </parameters>
 
     <services>
@@ -74,12 +73,6 @@
         <service id="symedit.event_subscriber.post" class="%symedit.event_subscriber.post.class%">
             <argument type="service" id="session" />
             <argument type="service" id="router" />
-            <tag name="kernel.event_subscriber" />
-        </service>
-
-        <!-- Contact Subscriber -->
-        <service id="symedit.event_subscriber.contact" class="%symedit.event_subscriber.contact.class%">
-            <argument type="service" id="symedit.mailer" />
             <tag name="kernel.event_subscriber" />
         </service>
 

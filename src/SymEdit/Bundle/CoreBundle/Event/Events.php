@@ -19,16 +19,6 @@ final class Events
     const MENU_VIEW = 'symedit.menu.view';
 
     /**
-     * FOS View / Subject Set.
-     */
-    const SUBJECT_SET = 'symedit.subject.set';
-
-    /**
-     * Contact Form.
-     */
-    const CONTACT_SUBMIT_VALID = 'symedit.contact.valid';
-
-    /**
      * Page Display Options
      */
     const PAGE_DISPLAY_OPTIONS = 'symedit.form.page_display';
