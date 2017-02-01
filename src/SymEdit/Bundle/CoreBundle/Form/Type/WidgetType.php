@@ -31,7 +31,6 @@ class WidgetType extends BaseWidgetType
                 'basic' => [
                     'label' => 'symedit.form.widget.tab.basic',
                     'icon' => 'info-circle',
-                    'data_class' => $this->widgetClass,
                 ],
                 'options' => [
                     'label' => 'symedit.form.widget.tab.options',

@@ -21,13 +21,11 @@ use Symfony\Component\Validator\Constraints\NotBlank;
 class WidgetType extends AbstractType
 {
     protected $registry;
-    protected $widgetClass;
     protected $widgetAreaClass;
 
-    public function __construct(WidgetRegistry $registry, $widgetClass, $widgetAreaClass)
+    public function __construct(WidgetRegistry $registry, $widgetAreaClass)
     {
         $this->registry = $registry;
-        $this->widgetClass = $widgetClass;
         $this->widgetAreaClass = $widgetAreaClass;
     }
 
@@ -90,8 +88,8 @@ class WidgetType extends AbstractType
 
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $this->buildBasicForm($builder, $options, $builder->getData());
-        $this->buildOptionsForm($builder, $options);
+        $this->buildBasicForm($builder, $options);
+        $this->buildOptionsForm($builder, $options, $builder->getData());
     }
 
     public function getName()
