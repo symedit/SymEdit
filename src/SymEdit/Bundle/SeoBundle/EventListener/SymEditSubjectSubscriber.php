@@ -12,7 +12,6 @@
 namespace SymEdit\Bundle\SeoBundle\EventListener;
 
 use Sylius\Bundle\ResourceBundle\Event\ResourceControllerEvent;
-use SymEdit\Bundle\CoreBundle\Event\Events;
 use SymEdit\Bundle\SeoBundle\Model\SeoManagerInterface;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
