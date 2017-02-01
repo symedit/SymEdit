@@ -13,7 +13,6 @@
         <!-- Form Element Form Type -->
         <service id="symedit.form.type.form_element" class="%symedit.form.type.form_element.class%">
             <argument type="service" id="symedit_form_builder.builder_registry" />
-            <argument>%symedit.model.form_element.class%</argument>
 
             <tag name="form.type" alias="symedit_form_element" />
         </service>

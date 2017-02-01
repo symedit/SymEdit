@@ -14,17 +14,14 @@ namespace SymEdit\Bundle\FormBuilderBundle\Form\Type;
 use SymEdit\Bundle\FormBuilderBundle\Builder\FieldBuilderRegistry;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
 class FormElementType extends AbstractType
 {
     protected $registry;
-    protected $class;
 
-    public function __construct(FieldBuilderRegistry $registry, $class)
+    public function __construct(FieldBuilderRegistry $registry)
     {
         $this->registry = $registry;
-        $this->class = $class;
     }
 
     public function buildForm(FormBuilderInterface $builder, array $options)
@@ -41,11 +38,7 @@ class FormElementType extends AbstractType
          ]);
 
         // Get Field type
-        if ($options['field_type'] === null) {
-            $fieldType = $builder->getData()->getType();
-        } else {
-            $fieldType = $options['field_type'];
-        }
+        $fieldType = $builder->getData()->getType();
 
         // Get builders from registry
         $fieldBuilders = $this->registry->getFieldBuilders($fieldType);
@@ -56,14 +49,6 @@ class FormElementType extends AbstractType
 
         // Add options to form
         $builder->add($optionsBuilder);
-    }
-
-    public function setDefaultOptions(OptionsResolverInterface $resolver)
-    {
-        $resolver->setDefaults([
-            'field_type' => null,
-            'data_class' => $this->class,
-        ]);
     }
 
     public function getName()
