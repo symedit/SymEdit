@@ -59,7 +59,7 @@ fos_user:
     db_driver: orm
     firewall_name: main
     service:
-        mailer: symedit.mailer
+        mailer: symedit_user.mailer
     registration:
         confirmation:
             enabled: true

@@ -31,7 +31,6 @@ class AdminMessage extends AbstractMessage
 
         // Set company name and email as from address
         $resolver->setDefaults([
-            'from' => [$companyEmail => $companyName],
             'to' => [$companyEmail => $companyName],
         ]);
     }

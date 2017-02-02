@@ -41,5 +41,16 @@
 
             <tag name="kernel.event_subscriber" />
         </service>
+
+        <!-- User Mailer -->
+        <service id="symedit_user.mailer" class="SymEdit\Bundle\UserBundle\Mailer\UserMailer">
+            <argument type="service" id="symedit.mailer" />
+            <argument type="service" id="router" />
+        </service>
+
+        <!-- User Message -->
+        <service id="symedit_user.mailer.message.fos" class="SymEdit\Bundle\UserBundle\Mailer\Message\FOSUserMessage">
+            <tag name="symedit.mailer.message" alias="fos_user" />
+        </service>
     </services>
 </container>

@@ -22,7 +22,7 @@ class MailerCompilerPass implements CompilerPassInterface
         $messages = $this->getServices($container, 'symedit.mailer.message', true);
         $extensions = $this->getServices($container, 'symedit.mailer.extension', false);
 
-        $mailerDefinition = $container->getDefinition('symedit.new_mailer');
+        $mailerDefinition = $container->getDefinition('symedit.mailer');
         $mailerDefinition->replaceArgument(1, $messages);
         $mailerDefinition->replaceArgument(2, $extensions);
     }

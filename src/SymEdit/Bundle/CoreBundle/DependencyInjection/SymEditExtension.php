@@ -40,7 +40,6 @@ class SymEditExtension extends SymEditResourceExtension
             'form.xml',
             'event.xml',
             'twig.xml',
-            'util.xml',
             'profiler.xml',
             'menu.xml',
             'seo.xml',

@@ -78,7 +78,7 @@
 
         <!-- Form Builder Emailer -->
         <service id="symedit.event_subscriber.form_builder" class="SymEdit\Bundle\CoreBundle\EventListener\Subscriber\FormBuilderSubscriber">
-            <argument type="service" id="symedit.new_mailer" />
+            <argument type="service" id="symedit.mailer" />
             <tag name="kernel.event_subscriber" />
         </service>
     </services>

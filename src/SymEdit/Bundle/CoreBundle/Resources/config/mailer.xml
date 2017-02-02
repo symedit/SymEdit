@@ -6,7 +6,7 @@
 
     <services>
         <!-- Mailer -->
-        <service id="symedit.new_mailer" class="SymEdit\Bundle\CoreBundle\Mailer\Mailer">
+        <service id="symedit.mailer" class="SymEdit\Bundle\CoreBundle\Mailer\Mailer">
             <argument type="service" id="symedit.mailer.sender" />
 
             <!-- Both replaced by compiler pass -->
@@ -23,6 +23,9 @@
 
         <!-- Root Builder -->
         <service id="symedit.mailer.message.base" class="SymEdit\Bundle\CoreBundle\Mailer\Message\Message">
+            <argument type="service" id="sylius.settings_manager" />
+            <argument>%symedit.email.sender%</argument>
+
             <tag name="symedit.mailer.message" alias="message" />
         </service>
 
