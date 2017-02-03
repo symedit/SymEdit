@@ -172,7 +172,7 @@ class Configuration implements ConfigurationInterface
                                     ->children()
                                         ->scalarNode('model')->defaultValue(GalleryItem::class)->end()
                                         ->scalarNode('interface')->defaultValue(GalleryItemInterface::class)->end()
-                                        ->scalarNode('controller')->defaultValue(GalleryItemController::class)->end()
+                                        ->scalarNode('controller')->defaultValue(ResourceController::class)->end()
                                         ->scalarNode('repository')->end()
                                         ->scalarNode('factory')->defaultValue(GalleryItemFactory::class)->end()
                                         ->arrayNode('form')
