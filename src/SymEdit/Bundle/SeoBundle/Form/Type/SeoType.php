@@ -22,17 +22,16 @@ class SeoType extends AbstractType
         $builder
             ->add('title', 'text', [
                 'label' => 'symedit.form.seo.title',
-                'attr' => ['class' => 'span6', 'data-toggle' => 'char-count', 'data-max' => 65],
+                'attr' => ['data-toggle' => 'char-count', 'data-max' => 65],
                 'required' => false,
             ])
             ->add('description', 'textarea', [
                 'label' => 'symedit.form.seo.description',
-                'attr' => ['class' => 'span6', 'data-toggle' => 'char-count', 'data-max' => 155],
+                'attr' => ['data-toggle' => 'char-count', 'data-max' => 155],
                 'required' => false,
             ])
             ->add('keywords', 'textarea', [
                 'label' => 'symedit.form.seo.keywords',
-                'attr' => ['class' => 'span6'],
                 'required' => false,
             ])
             ->add('index', 'choice', [
