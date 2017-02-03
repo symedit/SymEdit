@@ -15,6 +15,7 @@ use Sylius\Bundle\ResourceBundle\AbstractResourceBundle;
 use Sylius\Bundle\ResourceBundle\SyliusResourceBundle;
 use SymEdit\Bundle\CoreBundle\DependencyInjection\Compiler\ExpressionLanguageCompilerPass;
 use SymEdit\Bundle\CoreBundle\DependencyInjection\Compiler\LinkShortcodeCompilerPass;
+use SymEdit\Bundle\CoreBundle\DependencyInjection\Compiler\MailerCompilerPass;
 use SymEdit\Bundle\CoreBundle\DependencyInjection\Compiler\RouterCompilerPass;
 use SymEdit\Bundle\CoreBundle\DependencyInjection\Compiler\SymEditExtensionCompilerPass;
 use SymEdit\Bundle\CoreBundle\DependencyInjection\Compiler\TwigExceptionCompilerPass;
@@ -58,6 +59,7 @@ class SymEditBundle extends AbstractResourceBundle
         $container->addCompilerPass(new LinkShortcodeCompilerPass());
         $container->addCompilerPass(new ExpressionLanguageCompilerPass());
         $container->addCompilerPass(new WidgetTwigExtensionCompilerPass());
+        $container->addCompilerPass(new MailerCompilerPass());
     }
 
     protected function getModelNamespace()

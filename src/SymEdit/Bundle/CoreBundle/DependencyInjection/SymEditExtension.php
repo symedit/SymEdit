@@ -40,7 +40,6 @@ class SymEditExtension extends SymEditResourceExtension
             'form.xml',
             'event.xml',
             'twig.xml',
-            'util.xml',
             'profiler.xml',
             'menu.xml',
             'seo.xml',
@@ -48,6 +47,7 @@ class SymEditExtension extends SymEditResourceExtension
             'shortcode.xml',
             'cache.xml',
             'settings.xml',
+            'mailer.xml',
         ];
 
         foreach ($configFiles as $configFile) {

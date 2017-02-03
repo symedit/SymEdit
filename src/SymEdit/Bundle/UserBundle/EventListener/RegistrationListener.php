@@ -12,14 +12,14 @@
 namespace SymEdit\Bundle\UserBundle\EventListener;
 
 use FOS\UserBundle\Event\UserEvent;
-use SymEdit\Bundle\CoreBundle\Util\SymEditMailerInterface;
+use SymEdit\Bundle\CoreBundle\Mailer\MailerInterface;
 
 class RegistrationListener
 {
     protected $mailer;
     protected $template;
 
-    public function __construct(SymEditMailerInterface $mailer, $template)
+    public function __construct(MailerInterface $mailer, $template)
     {
         $this->mailer = $mailer;
         $this->template = $template;
@@ -27,8 +27,11 @@ class RegistrationListener
 
     public function sendNotification(UserEvent $event)
     {
-        $this->mailer->sendAdmin($this->template, [
-            'user' => $event->getUser(),
+        $this->mailer->send('admin', [
+            'template' => $this->template,
+            'templateVars' => [
+                'user' => $event->getUser(),
+            ],
         ]);
     }
 }

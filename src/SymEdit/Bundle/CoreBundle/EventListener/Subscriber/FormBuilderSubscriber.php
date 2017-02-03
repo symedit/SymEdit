@@ -11,7 +11,7 @@
 
 namespace SymEdit\Bundle\CoreBundle\EventListener\Subscriber;
 
-use SymEdit\Bundle\CoreBundle\Util\SymEditMailerInterface;
+use SymEdit\Bundle\CoreBundle\Mailer\MailerInterface;
 use SymEdit\Bundle\FormBuilderBundle\Event\Events;
 use SymEdit\Bundle\FormBuilderBundle\Event\FormBuilderResultEvent;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
@@ -20,7 +20,7 @@ class FormBuilderSubscriber implements EventSubscriberInterface
 {
     protected $mailer;
 
-    public function __construct(SymEditMailerInterface $mailer)
+    public function __construct(MailerInterface $mailer)
     {
         $this->mailer = $mailer;
     }
@@ -29,19 +29,9 @@ class FormBuilderSubscriber implements EventSubscriberInterface
     {
         $result = $event->getResult();
 
-        /*
         $this->mailer->send('form_builder_result', [
             'form_builder' => $event->getFormBuilder(),
             'result' => $result,
-        ]);
-         * 
-         */
-
-        $this->mailer->sendAdmin('@SymEdit/Email/form-builder.html.twig', [
-            'form_builder' => $event->getFormBuilder(),
-            'pairs' => $result->getPairs(),
-        ], [
-            'replyTo' => $result->getReplyTo(),
         ]);
     }
 
