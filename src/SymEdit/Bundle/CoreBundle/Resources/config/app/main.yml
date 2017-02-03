@@ -49,9 +49,11 @@ liip_imagine:
                 thumbnail: { size: [850, 400], mode: outbound }
         symedit_64x64:
             filters:
+                upscale: { min: [64, 64] }
                 thumbnail: { size: [64, 64], mode: outbound }
         symedit_96x96:
             filters:
+                upscale: { min: [96, 96] }
                 thumbnail: { size: [96, 96], mode: outbound }
 
 # User Configuration
