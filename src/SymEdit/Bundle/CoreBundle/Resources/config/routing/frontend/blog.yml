@@ -15,7 +15,6 @@ blog:
 blog_rss:
     path: /feed.xml
     defaults:
-        _format: rss
         _controller: symedit.controller.post:indexAction
         _sylius:
             template: "@SymEdit/Blog/feed.xml.twig"
