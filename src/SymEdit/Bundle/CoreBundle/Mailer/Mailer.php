@@ -47,12 +47,12 @@ class Mailer implements MailerInterface
         $parents = $this->getLineage($message);
 
         // Build all extension defaults
-        array_map(function(MailerExtensionInterface $extension) use ($resolver) {
+        array_map(function (MailerExtensionInterface $extension) use ($resolver) {
             $extension->getDefaultOptions($resolver);
         }, $this->extensions);
 
         // Build all default options of parents, starting with greatest
-        array_map(function(MessageInterface $builder) use ($resolver) {
+        array_map(function (MessageInterface $builder) use ($resolver) {
             $builder->getDefaultOptions($resolver);
         }, $parents);
 
@@ -68,12 +68,12 @@ class Mailer implements MailerInterface
         $parents = $this->getLineage($message);
 
         // Build from extensions first this time
-        array_map(function(MailerExtensionInterface $extension) use ($messageBuilder, $options) {
+        array_map(function (MailerExtensionInterface $extension) use ($messageBuilder, $options) {
             $extension->buildMessage($messageBuilder, $options);
         }, $this->extensions);
 
         // Build from parents
-        array_map(function(MessageInterface $builder) use ($messageBuilder, $options) {
+        array_map(function (MessageInterface $builder) use ($messageBuilder, $options) {
             $builder->buildMessage($messageBuilder, $options);
         }, $parents);
 

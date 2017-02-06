@@ -42,7 +42,6 @@ class UploadManager implements UploadManagerInterface
             // Set metadata
             $this->metadataTagger->tag($media, $file);
         }
-
     }
 
     /**

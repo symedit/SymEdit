@@ -24,7 +24,7 @@ class MetadataTagger
         ];
 
         if ($media instanceof ImageInterface) {
-            list ($width, $height) = getimagesize($file->getPathname());
+            list($width, $height) = getimagesize($file->getPathname());
 
             $metadata = array_merge($metadata, [
                 MediaInterface::META_WIDTH => $width,

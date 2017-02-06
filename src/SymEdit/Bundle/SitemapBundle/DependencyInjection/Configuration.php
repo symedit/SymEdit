@@ -43,7 +43,9 @@ class Configuration implements ConfigurationInterface
                                     ->booleanNode('ignore')->defaultFalse()->end()
                                 ->end()
                                 ->beforeNormalization()
-                                    ->ifTrue(function ($v) { return !is_array($v); })
+                                    ->ifTrue(function ($v) {
+                                        return !is_array($v);
+                                    })
                                     ->then(function ($v) {
                                         return [
                                             'path' => $v,

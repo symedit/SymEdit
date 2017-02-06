@@ -35,6 +35,6 @@ class TemplateData
 
     public function getTemplates($type)
     {
-       return isset($this->templates[$type]) ? $this->templates[$type] : [];
+        return isset($this->templates[$type]) ? $this->templates[$type] : [];
     }
 }

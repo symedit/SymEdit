@@ -26,7 +26,9 @@ class GalleryChooseDataTransformer implements DataTransformerInterface
 
     public function reverseTransform($value)
     {
-        $images = array_filter($value, function ($v) { return $v !== null; });
+        $images = array_filter($value, function ($v) {
+            return $v !== null;
+        });
 
         $galleryItems = [];
         foreach ($images as $image) {

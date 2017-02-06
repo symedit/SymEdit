@@ -29,7 +29,7 @@ class GetResponseFormBuilderEvent extends FormBuilderEvent
 
     /**
      * Get Response.
-     * 
+     *
      * @return Response|null
      */
     public function getResponse()

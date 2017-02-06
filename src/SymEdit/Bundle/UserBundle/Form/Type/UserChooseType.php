@@ -41,7 +41,6 @@ class UserChooseType extends AbstractType
         // Query builder relies on option so create callback
         $resolver->setDefault('query_builder', function (Options $options) {
             $closure = function (EntityRepository $er) use ($options) {
-
                 return $er->createQueryBuilder('u')
                     ->andWhere('u.admin = :admin')
                     ->setParameter('admin', $options['admin'])

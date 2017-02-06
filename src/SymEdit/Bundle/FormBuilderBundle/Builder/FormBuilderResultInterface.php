@@ -37,7 +37,7 @@ interface FormBuilderResultInterface
 
     /**
      * Add A Pair.
-     * 
+     *
      * @param string $label
      * @param mixed  $value
      */

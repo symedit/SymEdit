@@ -23,7 +23,7 @@ use Symfony\Component\HttpFoundation\File\File;
  * The files must be copied locally to determine their sizes as we don't know
  * where they could be stored with Gaufrette. It's not the best solution but
  * this command is more of a migration tool than something that would be used
- * often anyway. 
+ * often anyway.
  */
 class TagMetadataCommand extends ContainerAwareCommand
 {

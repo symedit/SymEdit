@@ -27,8 +27,8 @@ class WidgetAssociationTransformer implements DataTransformerInterface
         $list = array_map('trim', preg_split('#\n|,#', $value));
 
         $filtered = array_filter($list, function ($item) {
-             return !empty($item);
-         });
+            return !empty($item);
+        });
 
         return array_values($filtered);
     }

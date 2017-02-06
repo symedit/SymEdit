@@ -160,7 +160,8 @@ class MediaTest extends TestCase
         $media = $this->createMedia();
         $this->assertNull($media->getNameCallback());
 
-        $callback = function () {};
+        $callback = function () {
+        };
         $media->setNameCallback($callback);
         $this->assertEquals($callback, $media->getNameCallback());
     }
