@@ -29,6 +29,15 @@
             <argument type="service" id="sylius.settings_manager" />
             <tag name="symedit_shortcode.shortcode" alias="setting" />
         </service>
+        
+        <!-- Widget Shortcode -->
+        <service id="symedit.shortcode.widget" class="SymEdit\Bundle\CoreBundle\Shortcode\WidgetShortcode" public="false">
+            <argument type="service" id="symedit.factory.widget" />
+            <argument type="service" id="symedit_page" />
+            <argument type="service" id="fragment.handler" />
+
+            <tag name="symedit_shortcode.shortcode" alias="widget" />
+        </service>
     </services>
 
 </container>

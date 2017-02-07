@@ -9,8 +9,9 @@
  * file that was distributed with this source code.
  */
 
-namespace SymEdit\Bundle\WidgetBundle\Shortcode;
+namespace SymEdit\Bundle\CoreBundle\Shortcode;
 
+use SymEdit\Bundle\CoreBundle\Model\PageInterface;
 use SymEdit\Bundle\ShortcodeBundle\Shortcode\AbstractShortcode;
 use SymEdit\Bundle\WidgetBundle\Factory\WidgetFactoryInterface;
 use Symfony\Component\HttpKernel\Controller\ControllerReference;
@@ -19,11 +20,13 @@ use Symfony\Component\HttpKernel\Fragment\FragmentHandler;
 class WidgetShortcode extends AbstractShortcode
 {
     private $factory;
+    private $page;
     private $handler;
 
-    public function __construct(WidgetFactoryInterface $factory, FragmentHandler $handler)
+    public function __construct(WidgetFactoryInterface $factory, PageInterface $page, FragmentHandler $handler)
     {
         $this->factory = $factory;
+        $this->page = $page;
         $this->handler = $handler;
     }
 
@@ -41,6 +44,7 @@ class WidgetShortcode extends AbstractShortcode
             [
                 'strategyName' => $strategyName,
                 'options' => $attr,
+                '_page_id' => $this->page->getId(),
             ]
         );
 
