@@ -32,7 +32,9 @@ class Configuration implements ConfigurationInterface
         $rootNode
             ->children()
                 ->arrayNode('models')
+                    ->useAttributeAsKey('name')
                     ->prototype('array')
+                        ->performNoDeepMerging()
                         ->children()
                             ->scalarNode('repository')->defaultNull()->end()
                             ->scalarNode('method')->defaultValue('findAll')->end()
