@@ -110,6 +110,7 @@ class SeoSettingsSchema implements SchemaInterface
         $builder
             ->setDefaults([
                 'head_extra' => null,
+                'body_extra' => null,
                 'business_type' => 'LocalBusiness',
             ])
         ;
