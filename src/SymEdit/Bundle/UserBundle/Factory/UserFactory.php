@@ -33,6 +33,9 @@ class UserFactory implements UserFactoryInterface
 
     public function createAdmin()
     {
-        return $this->userManager->createUser(true);
+        $user = $this->userManager->createUser(true);
+        $user->setEnabled(true);
+
+        return $user;
     }
 }
