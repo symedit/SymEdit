@@ -20,7 +20,7 @@ class ImageController extends MediaController
 {
     public function jsonAction()
     {
-        $images = $this->getRepository()->findAll();
+        $images = $this->repository->findAll();
         $out = [];
 
         foreach ($images as $image) {

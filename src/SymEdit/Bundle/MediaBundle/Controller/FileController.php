@@ -19,7 +19,7 @@ class FileController extends MediaController
 {
     public function jsonAction()
     {
-        $files = $this->getRepository()->findAll();
+        $files = $this->repository->findAll();
         $out = [];
 
         foreach ($files as $file) {
