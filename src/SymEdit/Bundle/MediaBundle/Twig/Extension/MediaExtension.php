@@ -30,15 +30,11 @@ class MediaExtension extends \Twig_Extension
             return 'Unknown';
         }
 
-        $size = $metadata[MediaInterface::META_FILESIZE] / 1024 / 1024;
-        $formatted = number_format($size, 1);
+        $bytes = $metadata[MediaInterface::META_FILESIZE];
+        $sizes = array('B','kB','MB','GB','TB','PB','EB','ZB','YB');
+        $factor = floor((strlen($bytes) - 1) / 3);
 
-        // Don't display 0MB
-        if ($size < 1) {
-            $formatted = '<1';
-        }
-
-        return sprintf('%sMB', $formatted);
+        return sprintf('%.2f%s', $bytes / pow(1024, $factor), $sizes[$factor]);
     }
 
     public function getName()
