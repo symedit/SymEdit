@@ -47,7 +47,7 @@ class PageController extends ResourceController
 
     public function jsonAction()
     {
-        $pages = $this->getRepository()->getRecursiveIterator();
+        $pages = $this->repository->getRecursiveIterator();
         $out = [];
 
         foreach ($pages as $page) {
