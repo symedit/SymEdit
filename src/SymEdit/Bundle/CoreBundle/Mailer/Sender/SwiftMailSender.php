@@ -12,6 +12,7 @@
 namespace SymEdit\Bundle\CoreBundle\Mailer\Sender;
 
 use SymEdit\Bundle\CoreBundle\Mailer\MessageBuilderInterface;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 class SwiftMailSender implements MailSenderInterface
 {
