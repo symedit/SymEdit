@@ -15,7 +15,7 @@
 
     <services>
         <!-- Renderers -->
-        <service id="symedit.widget.renderer.widget" class="%symedit.widget.renderer.widget.class%" parent="symedit_widget.renderer.widget">
+        <service id="symedit.widget.renderer.widget" class="%symedit.widget.renderer.widget.class%" parent="symedit_widget.renderer.widget" lazy="true">
             <call method="setCurrentPage">
                 <argument type="service" id="symedit_page" on-invalid="null" />
             </call>

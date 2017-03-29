@@ -14,7 +14,7 @@
     <services>
         <service id="symedit_seo.seo" class="%symedit_seo.model.seo.class%" />
 
-        <service id="symedit_seo.seo_manager" class="SymEdit\Bundle\SeoBundle\Model\SeoManager">
+        <service id="symedit_seo.seo_manager" class="SymEdit\Bundle\SeoBundle\Model\SeoManager" lazy="true">
             <argument type="service" id="symedit_seo.seo" />
             <argument type="service" id="event_dispatcher" />
             <argument>SymEdit\Bundle\SeoBundle\Model\Seo</argument>

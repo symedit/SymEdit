@@ -12,7 +12,7 @@
 
     <services>
         <!-- Image Uploader -->
-        <service id="symedit_media.image_upload_manager" class="%symedit_media.image_upload_manager.class%">
+        <service id="symedit_media.image_upload_manager" class="%symedit_media.image_upload_manager.class%" lazy="true">
             <argument type="service" id="symedit_media.filesystem.image" />
             <argument type="service" id="symedit_media.metadata_tagger" />
             <argument type="service" id="liip_imagine.cache.manager" />

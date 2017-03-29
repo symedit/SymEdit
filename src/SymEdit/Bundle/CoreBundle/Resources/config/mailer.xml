@@ -6,7 +6,7 @@
 
     <services>
         <!-- Mailer -->
-        <service id="symedit.mailer" class="SymEdit\Bundle\CoreBundle\Mailer\Mailer">
+        <service id="symedit.mailer" class="SymEdit\Bundle\CoreBundle\Mailer\Mailer" lazy="true">
             <argument type="service" id="symedit.mailer.sender" />
 
             <!-- Both replaced by compiler pass -->
