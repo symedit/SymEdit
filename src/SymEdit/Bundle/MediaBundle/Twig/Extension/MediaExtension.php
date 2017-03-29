@@ -19,6 +19,7 @@ class MediaExtension extends \Twig_Extension
     {
         return [
             new \Twig_SimpleFilter('symedit_media_size', [$this, 'getSize']),
+            new \Twig_SimpleFilter('symedit_media_attr', [$this, 'getAttributes'], ['is_safe' => ['html']]),
         ];
     }
 
@@ -35,6 +36,22 @@ class MediaExtension extends \Twig_Extension
         $factor = floor((strlen($bytes) - 1) / 3);
 
         return sprintf('%.1f %s', $bytes / pow(1024, $factor), $sizes[$factor]);
+    }
+
+    public function getAttributes(MediaInterface $media)
+    {
+        $attr = '';
+        $metadata = $media->getMetadata();
+
+        if (isset($metadata[MediaInterface::META_WIDTH])) {
+            $attr .= sprintf('width="%d"', $metadata[MediaInterface::META_WIDTH]);
+        }
+
+        if (isset($metadata[MediaInterface::META_HEIGHT])) {
+            $attr .= sprintf(' height="%d"', $metadata[MediaInterface::META_HEIGHT]);
+        }
+
+        return trim($attr);
     }
 
     public function getName()
