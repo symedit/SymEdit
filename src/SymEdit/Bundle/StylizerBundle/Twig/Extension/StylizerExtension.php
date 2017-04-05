@@ -55,7 +55,7 @@ class StylizerExtension extends \Twig_Extension
             return;
         }
 
-        return sprintf('<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=%s">', $fonts);
+        return sprintf('<link rel="stylesheet" href="//fonts.googleapis.com/css?family=%s">', $fonts);
     }
 
     /**
