@@ -15,7 +15,8 @@ blog:
 blog_rss:
     path: /feed.xml
     defaults:
-        _controller: symedit.controller.post:indexAction
+        _controller: symedit.controller.post:rssAction
+        _format: rss
         _sylius:
             template: "@SymEdit/Blog/feed.xml.twig"
             paginate: false
