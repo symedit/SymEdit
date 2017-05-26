@@ -12,8 +12,8 @@
 namespace SymEdit\Bundle\CoreBundle\Controller;
 
 use FOS\RestBundle\Controller\FOSRestController;
-use Sylius\Bundle\SettingsBundle\Manager\SettingsManagerInterface;
-use Sylius\Bundle\SettingsBundle\Schema\SchemaRegistryInterface;
+use SymEdit\Bundle\SettingsBundle\Manager\SettingsManagerInterface;
+use SymEdit\Bundle\SettingsBundle\Schema\SchemaRegistryInterface;
 use Symfony\Component\HttpFoundation\Request;
 
 /**
@@ -95,7 +95,7 @@ class SettingsController extends FOSRestController
      */
     protected function getSettingsManager()
     {
-        return $this->get('sylius.settings_manager');
+        return $this->get('symedit.settings_manager');
     }
 
     /**
@@ -105,6 +105,6 @@ class SettingsController extends FOSRestController
      */
     protected function getSchemaRegistry()
     {
-        return $this->get('sylius.registry.settings_schema');
+        return $this->get('symedit.registry.settings_schema');
     }
 }

@@ -11,7 +11,7 @@
 
 namespace SymEdit\Bundle\MailChimpBundle\Client;
 
-use Sylius\Bundle\SettingsBundle\Manager\SettingsManagerInterface;
+use SymEdit\Bundle\SettingsBundle\Manager\SettingsManagerInterface;
 use SymEdit\Bundle\MailChimpBundle\Client\Listener\ConnectionErrorListener;
 use ZfrMailChimp\Client\MailChimpClient;
 

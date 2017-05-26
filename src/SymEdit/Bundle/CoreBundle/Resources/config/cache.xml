@@ -10,7 +10,7 @@
 
     <services>
         <service id="symedit.cache.voter.settings" class="%symedit.cache.voter.settings.class%">
-            <argument type="service" id="sylius.settings_manager" />
+            <argument type="service" id="symedit.settings_manager" />
             <tag name="symedit_cache.voter" />
         </service>
     </services>

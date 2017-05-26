@@ -11,7 +11,7 @@
 
 namespace SymEdit\Bundle\CoreBundle\Mailer\Message;
 
-use Sylius\Bundle\SettingsBundle\Manager\SettingsManager;
+use SymEdit\Bundle\SettingsBundle\Manager\SettingsManager;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class AdminMessage extends AbstractMessage

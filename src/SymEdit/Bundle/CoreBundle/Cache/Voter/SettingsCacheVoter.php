@@ -11,7 +11,7 @@
 
 namespace SymEdit\Bundle\CoreBundle\Cache\Voter;
 
-use Sylius\Bundle\SettingsBundle\Manager\SettingsManagerInterface;
+use SymEdit\Bundle\SettingsBundle\Manager\SettingsManagerInterface;
 use SymEdit\Bundle\CacheBundle\Decision\Voter\CacheVoterInterface;
 
 class SettingsCacheVoter implements CacheVoterInterface

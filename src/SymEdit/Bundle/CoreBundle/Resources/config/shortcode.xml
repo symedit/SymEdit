@@ -26,7 +26,7 @@
 
         <!-- Settings -->
         <service id="symedit.shortcode.setting" class="%symedit.shortcode.setting.class%" public="false">
-            <argument type="service" id="sylius.settings_manager" />
+            <argument type="service" id="symedit.settings_manager" />
             <tag name="symedit_shortcode.shortcode" alias="setting" />
         </service>
         

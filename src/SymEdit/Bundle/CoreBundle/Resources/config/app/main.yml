@@ -138,15 +138,6 @@ stof_doctrine_extensions:
             loggable: true
             blameable: true
 
-# Sylius Settings
-sylius_settings:
-    driver: doctrine/orm
-    resources:
-        settings:
-            classes:
-                model: SymEdit\Bundle\CoreBundle\Model\Settings
-                repository: SymEdit\Bundle\CoreBundle\Doctrine\ORM\SettingsRepository
-
 # Doctrine Cache
 doctrine_cache:
     providers:

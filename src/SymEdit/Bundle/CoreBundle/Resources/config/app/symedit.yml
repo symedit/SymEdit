@@ -43,6 +43,15 @@ symedit_seo:
             description:
                 - model.getDescription()
 
+# Sylius Settings
+symedit_settings:
+    driver: doctrine/orm
+    resources:
+        settings:
+            classes:
+                controller: SymEdit\Bundle\CoreBundle\Controller\SettingsController
+                repository: SymEdit\Bundle\SettingsBundle\Doctrine\ORM\SettingsRepository
+
 symedit_analytics:
     tracker:
         page: %symedit.model.page.class%

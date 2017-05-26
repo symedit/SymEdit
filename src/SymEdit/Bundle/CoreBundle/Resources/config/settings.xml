@@ -5,39 +5,32 @@
            xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
 
     <services>
-        <!-- Settings Controller -->
-        <service id="symedit.controller.settings" class="SymEdit\Bundle\CoreBundle\Controller\SettingsController">
-            <call method="setContainer">
-                <argument type="service" id="service_container" />
-            </call>
-        </service>
-
         <!-- Company -->
         <service id="symedit.settings_schema.company" class="SymEdit\Bundle\CoreBundle\Settings\CompanySettingsSchema">
             <argument type="service" id="symedit.repository.image" />
             <argument type="service" id="symedit.repository.file" />
 
-            <tag name="sylius.settings_schema" alias="company" />
+            <tag name="symedit.settings_schema" alias="company" />
         </service>
 
         <!-- Social -->
         <service id="symedit.settings_schema.social" class="SymEdit\Bundle\CoreBundle\Settings\SocialSettingsSchema">
-            <tag name="sylius.settings_schema" alias="social" />
+            <tag name="symedit.settings_schema" alias="social" />
         </service>
 
         <!-- Webmaster -->
         <service id="symedit.settings_schema.webmaster" class="SymEdit\Bundle\CoreBundle\Settings\WebmasterSettingsSchema">
-            <tag name="sylius.settings_schema" alias="webmaster" />
+            <tag name="symedit.settings_schema" alias="webmaster" />
         </service>
 
         <!-- Advanced -->
         <service id="symedit.settings_schema.advanced" class="SymEdit\Bundle\CoreBundle\Settings\AdvancedSettingsSchema">
-            <tag name="sylius.settings_schema" alias="advanced" />
+            <tag name="symedit.settings_schema" alias="advanced" />
         </service>
 
         <!-- SEO -->
         <service id="symedit.settings_schema.seo" class="SymEdit\Bundle\CoreBundle\Settings\SeoSettingsSchema">
-            <tag name="sylius.settings_schema" alias="seo" />
+            <tag name="symedit.settings_schema" alias="seo" />
         </service>
     </services>
 

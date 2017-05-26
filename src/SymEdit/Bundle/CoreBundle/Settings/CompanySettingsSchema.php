@@ -11,9 +11,9 @@
 
 namespace SymEdit\Bundle\CoreBundle\Settings;
 
-use Sylius\Bundle\SettingsBundle\Schema\SchemaInterface;
-use Sylius\Bundle\SettingsBundle\Schema\SettingsBuilderInterface;
-use Sylius\Bundle\SettingsBundle\Transformer\ResourceToIdentifierTransformer;
+use SymEdit\Bundle\SettingsBundle\Schema\SchemaInterface;
+use SymEdit\Bundle\SettingsBundle\Schema\SettingsBuilderInterface;
+use SymEdit\Bundle\SettingsBundle\Transformer\ResourceToIdentifierTransformer;
 use Sylius\Component\Resource\Repository\RepositoryInterface;
 use SymEdit\Bundle\MediaBundle\Model\FileInterface;
 use SymEdit\Bundle\MediaBundle\Model\ImageInterface;

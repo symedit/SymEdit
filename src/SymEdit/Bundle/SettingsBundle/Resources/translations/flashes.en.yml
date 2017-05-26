@@ -1,0 +1,3 @@
+sylius:
+    settings:
+        update: Settings have been successfully updated.

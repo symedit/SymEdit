@@ -36,6 +36,7 @@ class AppKernel extends Kernel
             new SymEdit\Bundle\MenuBundle\SymEditMenuBundle(),
             new SymEdit\Bundle\EventsBundle\SymEditEventsBundle(),
             new SymEdit\Bundle\FormBuilderBundle\SymEditFormBuilderBundle(),
+            new SymEdit\Bundle\SettingsBundle\SymEditSettingsBundle(),
             new SymEdit\Bundle\ApiBundle\SymEditApiBundle(),
 
             // Isometriks Bundles
@@ -49,7 +50,6 @@ class AppKernel extends Kernel
             new Doctrine\Bundle\DoctrineCacheBundle\DoctrineCacheBundle(),
 
             new Sylius\Bundle\ResourceBundle\SyliusResourceBundle(),
-            new Sylius\Bundle\SettingsBundle\SyliusSettingsBundle(),
             new winzou\Bundle\StateMachineBundle\winzouStateMachineBundle(),
             new JMS\SerializerBundle\JMSSerializerBundle($this),
             new JMS\AopBundle\JMSAopBundle(),

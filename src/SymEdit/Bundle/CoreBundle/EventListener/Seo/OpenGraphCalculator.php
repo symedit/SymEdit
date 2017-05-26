@@ -11,7 +11,7 @@
 
 namespace SymEdit\Bundle\CoreBundle\EventListener\Seo;
 
-use Sylius\Bundle\SettingsBundle\Manager\SettingsManagerInterface;
+use SymEdit\Bundle\SettingsBundle\Manager\SettingsManagerInterface;
 use SymEdit\Bundle\SeoBundle\Event\SeoEvent;
 use SymEdit\Bundle\SeoBundle\Model\SeoCalculatorInterface;
 

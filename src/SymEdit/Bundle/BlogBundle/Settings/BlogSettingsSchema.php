@@ -11,8 +11,8 @@
 
 namespace SymEdit\Bundle\BlogBundle\Settings;
 
-use Sylius\Bundle\SettingsBundle\Schema\SchemaInterface;
-use Sylius\Bundle\SettingsBundle\Schema\SettingsBuilderInterface;
+use SymEdit\Bundle\SettingsBundle\Schema\SchemaInterface;
+use SymEdit\Bundle\SettingsBundle\Schema\SettingsBuilderInterface;
 use Symfony\Component\Form\FormBuilderInterface;
 
 class BlogSettingsSchema implements SchemaInterface

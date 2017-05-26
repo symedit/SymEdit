@@ -11,7 +11,7 @@
 
 namespace SymEdit\Bundle\CacheBundle\EventListener;
 
-use Sylius\Bundle\SettingsBundle\Manager\SettingsManager;
+use SymEdit\Bundle\SettingsBundle\Manager\SettingsManager;
 use SymEdit\Bundle\CacheBundle\Decision\CacheDecisionManager;
 use SymEdit\Bundle\WidgetBundle\Event\Events;
 use SymEdit\Bundle\WidgetBundle\Event\WidgetEvent;

@@ -16,7 +16,7 @@
 
         <!-- Blog Settings -->
         <service id="symedit_blog.settings_schema.blog" class="SymEdit\Bundle\BlogBundle\Settings\BlogSettingsSchema">
-            <tag name="sylius.settings_schema" alias="blog" />
+            <tag name="symedit.settings_schema" alias="blog" />
         </service>
     </services>
 </container>
