@@ -11,8 +11,8 @@
 
 namespace SymEdit\Bundle\SeoBundle\Analyze\Analyzer;
 
-use SymEdit\Bundle\SeoBundle\Model\SeoAbleInterface;
 use SymEdit\Bundle\SeoBundle\Analyze\AnalyzerContext;
+use SymEdit\Bundle\SeoBundle\Model\SeoAbleInterface;
 
 class MissingAttributesAnalyzer implements AnalyzerInterface
 {

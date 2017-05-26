@@ -14,6 +14,7 @@ namespace SymEdit\Bundle\ThemeBundle\Form\Type;
 use SymEdit\Bundle\ThemeBundle\Model\LayoutManager;
 use SymEdit\Bundle\ThemeBundle\Model\TemplateManager;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\FormEvent;
 use Symfony\Component\Form\FormEvents;
@@ -86,10 +87,10 @@ class TemplateType extends AbstractType
 
     public function getParent()
     {
-        return 'choice';
+        return ChoiceType::class;
     }
 
-    public function getName()
+    public function getBlockPrefix()
     {
         return 'template';
     }

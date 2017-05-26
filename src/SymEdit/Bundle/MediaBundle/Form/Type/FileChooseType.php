@@ -35,7 +35,7 @@ class FileChooseType extends AbstractType
         return 'entity';
     }
 
-    public function getName()
+    public function getBlockPrefix()
     {
         return 'symedit_file_choose';
     }

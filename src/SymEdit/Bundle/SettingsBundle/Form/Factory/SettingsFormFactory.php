@@ -11,8 +11,8 @@
 
 namespace SymEdit\Bundle\SettingsBundle\Form\Factory;
 
-use SymEdit\Bundle\SettingsBundle\Schema\SchemaInterface;
 use Sylius\Component\Registry\ServiceRegistryInterface;
+use SymEdit\Bundle\SettingsBundle\Schema\SchemaInterface;
 use Symfony\Component\Form\FormFactoryInterface;
 
 /**

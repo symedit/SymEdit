@@ -12,11 +12,11 @@
 namespace SymEdit\Bundle\CoreBundle\Controller;
 
 use Symfony\Bundle\TwigBundle\Controller\ExceptionController as BaseController;
-use Symfony\Component\HttpKernel\Exception\FlattenException;
-use Symfony\Component\Templating\TemplateReference;
-use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpKernel\Exception\FlattenException;
 use Symfony\Component\HttpKernel\Log\DebugLoggerInterface;
+use Symfony\Component\Templating\TemplateReference;
 
 class ExceptionController extends BaseController
 {

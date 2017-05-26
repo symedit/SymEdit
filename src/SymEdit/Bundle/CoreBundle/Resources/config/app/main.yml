@@ -60,6 +60,9 @@ liip_imagine:
 fos_user:
     db_driver: orm
     firewall_name: main
+    from_email:
+        address: notused@overriden.com
+        sender_name: overridden
     service:
         mailer: symedit_user.mailer
     registration:

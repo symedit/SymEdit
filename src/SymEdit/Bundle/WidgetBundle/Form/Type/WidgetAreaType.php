@@ -32,7 +32,7 @@ class WidgetAreaType extends AbstractType
         ]);
     }
 
-    public function getName()
+    public function getBlockPrefix()
     {
         return 'symedit_widget_area';
     }

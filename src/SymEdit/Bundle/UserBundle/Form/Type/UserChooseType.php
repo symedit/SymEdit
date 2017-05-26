@@ -51,7 +51,7 @@ class UserChooseType extends AbstractType
         });
     }
 
-    public function getName()
+    public function getBlockPrefix()
     {
         return 'symedit_user_choose';
     }

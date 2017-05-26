@@ -11,12 +11,12 @@
 
 namespace SymEdit\Bundle\CoreBundle\Settings;
 
-use SymEdit\Bundle\SettingsBundle\Schema\SchemaInterface;
-use SymEdit\Bundle\SettingsBundle\Schema\SettingsBuilderInterface;
-use SymEdit\Bundle\SettingsBundle\Transformer\ResourceToIdentifierTransformer;
 use Sylius\Component\Resource\Repository\RepositoryInterface;
 use SymEdit\Bundle\MediaBundle\Model\FileInterface;
 use SymEdit\Bundle\MediaBundle\Model\ImageInterface;
+use SymEdit\Bundle\SettingsBundle\Schema\SchemaInterface;
+use SymEdit\Bundle\SettingsBundle\Schema\SettingsBuilderInterface;
+use SymEdit\Bundle\SettingsBundle\Transformer\ResourceToIdentifierTransformer;
 use Symfony\Component\Form\FormBuilderInterface;
 
 class CompanySettingsSchema implements SchemaInterface

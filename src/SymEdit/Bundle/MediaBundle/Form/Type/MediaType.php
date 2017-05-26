@@ -58,7 +58,7 @@ class MediaType extends AbstractType
         return $groups;
     }
 
-    public function getName()
+    public function getBlockPrefix()
     {
         return 'symedit_media';
     }

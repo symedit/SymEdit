@@ -11,9 +11,9 @@
 
 namespace SymEdit\Bundle\SeoBundle\Event;
 
+use SymEdit\Bundle\SeoBundle\Model\SeoInterface;
 use Symfony\Component\EventDispatcher\Event;
 use Symfony\Component\HttpFoundation\Request;
-use SymEdit\Bundle\SeoBundle\Model\SeoInterface;
 
 /**
  * Event for SEO.

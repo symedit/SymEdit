@@ -11,8 +11,8 @@
 
 namespace SymEdit\Bundle\ThemeBundle\Layout;
 
-use Symfony\Component\Config\Definition\ConfigurationInterface;
 use Symfony\Component\Config\Definition\Builder\TreeBuilder;
+use Symfony\Component\Config\Definition\ConfigurationInterface;
 
 class LayoutConfiguration implements ConfigurationInterface
 {

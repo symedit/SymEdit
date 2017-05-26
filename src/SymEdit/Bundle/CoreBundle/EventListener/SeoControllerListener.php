@@ -11,8 +11,8 @@
 
 namespace SymEdit\Bundle\CoreBundle\EventListener;
 
-use Symfony\Component\HttpKernel\Event\FilterControllerEvent;
 use SymEdit\Bundle\SeoBundle\Model\SeoManagerInterface;
+use Symfony\Component\HttpKernel\Event\FilterControllerEvent;
 
 /**
  * Checks for a _page attribute in the request and sets that by default

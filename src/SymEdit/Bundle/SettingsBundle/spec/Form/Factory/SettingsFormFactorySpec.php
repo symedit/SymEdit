@@ -12,10 +12,10 @@
 namespace spec\SymEdit\Bundle\SettingsBundle\Form\Factory;
 
 use PhpSpec\ObjectBehavior;
+use Sylius\Component\Registry\ServiceRegistryInterface;
 use SymEdit\Bundle\SettingsBundle\Form\Factory\SettingsFormFactory;
 use SymEdit\Bundle\SettingsBundle\Form\Factory\SettingsFormFactoryInterface;
 use SymEdit\Bundle\SettingsBundle\Schema\SchemaInterface;
-use Sylius\Component\Registry\ServiceRegistryInterface;
 use Symfony\Component\Form\FormBuilder;
 use Symfony\Component\Form\FormFactoryInterface;
 use Symfony\Component\Form\FormInterface;

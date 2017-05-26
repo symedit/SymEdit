@@ -52,7 +52,7 @@ class UserType extends AbstractType
         return 'symedit_admin_profile';
     }
 
-    public function getName()
+    public function getBlockPrefix()
     {
         return 'symedit_user';
     }

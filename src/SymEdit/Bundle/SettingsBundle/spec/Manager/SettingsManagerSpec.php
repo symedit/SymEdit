@@ -13,10 +13,10 @@ namespace spec\SymEdit\Bundle\SettingsBundle\Manager;
 
 use Doctrine\Common\Persistence\ObjectManager;
 use PhpSpec\ObjectBehavior;
-use SymEdit\Bundle\SettingsBundle\Manager\SettingsManager;
-use SymEdit\Bundle\SettingsBundle\Manager\SettingsManagerInterface;
 use Sylius\Component\Registry\ServiceRegistryInterface;
 use Sylius\Component\Resource\Factory\FactoryInterface;
+use SymEdit\Bundle\SettingsBundle\Manager\SettingsManager;
+use SymEdit\Bundle\SettingsBundle\Manager\SettingsManagerInterface;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 
 /**

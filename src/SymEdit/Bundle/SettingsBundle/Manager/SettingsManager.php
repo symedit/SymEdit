@@ -12,13 +12,13 @@
 namespace SymEdit\Bundle\SettingsBundle\Manager;
 
 use Doctrine\Common\Persistence\ObjectManager;
+use Sylius\Component\Registry\ServiceRegistryInterface;
+use Sylius\Component\Resource\Factory\FactoryInterface;
 use SymEdit\Bundle\SettingsBundle\Event\SettingsEvent;
 use SymEdit\Bundle\SettingsBundle\Model\SettingsInterface;
 use SymEdit\Bundle\SettingsBundle\Resolver\SettingsResolverInterface;
 use SymEdit\Bundle\SettingsBundle\Schema\SchemaInterface;
 use SymEdit\Bundle\SettingsBundle\Schema\SettingsBuilder;
-use Sylius\Component\Registry\ServiceRegistryInterface;
-use Sylius\Component\Resource\Factory\FactoryInterface;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 
 /**

@@ -15,6 +15,8 @@ use SymEdit\Bundle\WidgetBundle\Form\DataTransformer\WidgetAssociationTransforme
 use SymEdit\Bundle\WidgetBundle\Model\WidgetInterface;
 use SymEdit\Bundle\WidgetBundle\Widget\WidgetRegistry;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Validator\Constraints\NotBlank;
 
@@ -34,11 +36,11 @@ class WidgetType extends AbstractType
         $transformer = new WidgetAssociationTransformer();
 
         $builder
-            ->add('title', 'text', [
+            ->add('title', TextType::class, [
                 'label' => 'symedit.form.widget.basic.title',
                 'required' => false,
             ])
-            ->add('name', 'text', [
+            ->add('name', TextType::class, [
                 'label' => 'symedit.form.widget.basic.name.label',
                 'help_block' => 'symedit.form.widget.basic.name.help',
             ])
@@ -47,7 +49,7 @@ class WidgetType extends AbstractType
                 'choice_label' => 'area',
                 'class' => $this->widgetAreaClass,
             ])
-            ->add('visibility', 'choice', [
+            ->add('visibility', ChoiceType::class, [
                 'label' => 'symedit.form.widget.basic.visibility.label',
                 'choices' => [
                     WidgetInterface::INCLUDE_ALL => 'symedit.form.widget.basic.visibility.include_all',
@@ -74,7 +76,7 @@ class WidgetType extends AbstractType
 
         // Add custom template override
         $builder
-            ->add('template', 'text', [
+            ->add('template', TextType::class, [
                 'required' => true,
                 'help_block' => 'symedit.form.widget.options.template.help',
                 'constraints' => [
@@ -92,7 +94,7 @@ class WidgetType extends AbstractType
         $this->buildOptionsForm($builder, $options, $builder->getData());
     }
 
-    public function getName()
+    public function getBlockPrefix()
     {
         return 'symedit_widget';
     }

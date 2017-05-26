@@ -12,6 +12,12 @@
 namespace SymEdit\Bundle\EventsBundle\Form\Type;
 
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
+use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
+use Symfony\Component\Form\Extension\Core\Type\EmailType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\UrlType;
 use Symfony\Component\Form\FormBuilderInterface;
 
 class EventType extends AbstractType
@@ -19,28 +25,28 @@ class EventType extends AbstractType
     public function buildBasicForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('title', 'text', [
+            ->add('title', TextType::class, [
                 'label' => 'symedit.form.event.basic.title',
             ])
-            ->add('description', 'textarea', [
+            ->add('description', TextareaType::class, [
                 'label' => 'symedit.form.event.basic.description',
                 'attr' => [
                     'rows' => 5,
                 ],
             ])
-            ->add('url', 'url', [
+            ->add('url', UrlType::class, [
                 'label' => 'symedit.form.event.basic.url',
                 'required' => false,
             ])
-            ->add('email', 'email', [
+            ->add('email', EmailType::class, [
                 'label' => 'symedit.form.event.basic.email',
                 'required' => false,
             ])
-            ->add('phone', 'text', [
+            ->add('phone', TextType::class, [
                 'label' => 'symedit.form.event.basic.phone',
                 'required' => false,
             ])
-            ->add('price', 'text', [
+            ->add('price', TextType::class, [
                 'label' => 'symedit.form.event.basic.price',
                 'required' => false,
             ])
@@ -50,7 +56,7 @@ class EventType extends AbstractType
     public function buildDateTimeForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('eventStart', 'datetime', [
+            ->add('eventStart', DateTimeType::class, [
                 'label' => 'symedit.form.event.time.start',
                 'widget' => 'single_text',
                 'format' => 'yyyy-MM-dd HH:mm',
@@ -58,7 +64,7 @@ class EventType extends AbstractType
                     'class' => 'datetimepicker',
                 ],
             ])
-            ->add('eventEnd', 'datetime', [
+            ->add('eventEnd', DateTimeType::class, [
                 'label' => 'symedit.form.event.time.end',
                 'widget' => 'single_text',
                 'format' => 'yyyy-MM-dd',
@@ -73,11 +79,11 @@ class EventType extends AbstractType
     public function buildLocationForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('address', 'text', [
+            ->add('address', TextType::class, [
                 'label' => 'symedit.form.event.location.address',
                 'required' => false,
             ])
-            ->add('showMap', 'checkbox', [
+            ->add('showMap', CheckboxType::class, [
                 'label' => 'symedit.form.event.location.show_map',
                 'required' => false,
             ])
@@ -91,7 +97,7 @@ class EventType extends AbstractType
         $this->buildLocationForm($builder, $options);
     }
 
-    public function getName()
+    public function getBlockPrefix()
     {
         return 'symedit_event';
     }

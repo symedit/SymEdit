@@ -11,8 +11,8 @@
 
 namespace SymEdit\Bundle\SettingsBundle\Model;
 
-use SymEdit\Bundle\SettingsBundle\Exception\ParameterNotFoundException;
 use Sylius\Component\Resource\Model\ResourceInterface;
+use SymEdit\Bundle\SettingsBundle\Exception\ParameterNotFoundException;
 
 /**
  * @author Steffen Brem <steffenbrem@gmail.com>

@@ -11,12 +11,13 @@
 
 namespace SymEdit\Bundle\CoreBundle\Form\Type;
 
-use Symfony\Component\Form\AbstractType;
-use Symfony\Component\OptionsResolver\OptionsResolver;
 use Doctrine\Bundle\DoctrineBundle\Registry;
-use Symfony\Component\PropertyAccess\PropertyAccess;
+use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\ChoiceList\SimpleChoiceList;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\OptionsResolver\Options;
+use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\PropertyAccess\PropertyAccess;
 
 class EntityPropertyType extends AbstractType
 {
@@ -65,10 +66,10 @@ class EntityPropertyType extends AbstractType
 
     public function getParent()
     {
-        return 'choice';
+        return ChoiceType::class;
     }
 
-    public function getName()
+    public function getBlockPrefix()
     {
         return 'entity_property';
     }

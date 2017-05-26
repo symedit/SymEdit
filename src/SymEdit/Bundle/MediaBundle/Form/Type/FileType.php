@@ -39,7 +39,7 @@ class FileType extends AbstractType
         return 'symedit_media';
     }
 
-    public function getName()
+    public function getBlockPrefix()
     {
         return 'symedit_file';
     }

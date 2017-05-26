@@ -12,10 +12,10 @@
 namespace spec\SymEdit\Bundle\SettingsBundle\Transformer;
 
 use PhpSpec\ObjectBehavior;
+use Sylius\Component\Resource\Repository\RepositoryInterface;
 use SymEdit\Bundle\SettingsBundle\spec\Fixture\ParameterFixture;
 use SymEdit\Bundle\SettingsBundle\Transformer\ParameterTransformerInterface;
 use SymEdit\Bundle\SettingsBundle\Transformer\ResourceToIdentifierTransformer;
-use Sylius\Component\Resource\Repository\RepositoryInterface;
 
 /**
  * @author Paweł Jędrzejewski <pawel@sylius.org>

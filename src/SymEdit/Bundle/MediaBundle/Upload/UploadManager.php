@@ -11,9 +11,9 @@
 
 namespace SymEdit\Bundle\MediaBundle\Upload;
 
+use Gaufrette\Filesystem;
 use SymEdit\Bundle\MediaBundle\Model\MediaInterface;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
-use Gaufrette\Filesystem;
 
 class UploadManager implements UploadManagerInterface
 {

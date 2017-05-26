@@ -11,8 +11,8 @@
 
 namespace SymEdit\Bundle\CoreBundle\Tests\Model;
 
-use SymEdit\Bundle\CoreBundle\Tests\TestCase;
 use SymEdit\Bundle\CoreBundle\Model\Page;
+use SymEdit\Bundle\CoreBundle\Tests\TestCase;
 
 class PageTest extends TestCase
 {

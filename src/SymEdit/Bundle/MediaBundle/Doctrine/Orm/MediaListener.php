@@ -11,12 +11,12 @@
 
 namespace SymEdit\Bundle\MediaBundle\Doctrine\Orm;
 
-use SymEdit\Bundle\MediaBundle\Doctrine\AbstractMediaListener;
-use SymEdit\Bundle\MediaBundle\Model\MediaInterface;
-use Doctrine\ORM\Events;
+use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\Event\LifecycleEventArgs;
 use Doctrine\ORM\Event\OnFlushEventArgs;
-use Doctrine\ORM\EntityManager;
+use Doctrine\ORM\Events;
+use SymEdit\Bundle\MediaBundle\Doctrine\AbstractMediaListener;
+use SymEdit\Bundle\MediaBundle\Model\MediaInterface;
 
 class MediaListener extends AbstractMediaListener
 {

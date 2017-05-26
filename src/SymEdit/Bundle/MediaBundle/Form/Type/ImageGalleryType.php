@@ -39,7 +39,7 @@ class ImageGalleryType extends AbstractType
         ]);
     }
 
-    public function getName()
+    public function getBlockPrefix()
     {
         return 'symedit_image_gallery';
     }

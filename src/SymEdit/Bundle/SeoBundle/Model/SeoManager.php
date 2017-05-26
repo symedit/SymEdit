@@ -13,8 +13,8 @@ namespace SymEdit\Bundle\SeoBundle\Model;
 
 use SymEdit\Bundle\SeoBundle\Event\Events;
 use SymEdit\Bundle\SeoBundle\Event\SeoEvent;
-use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
+use Symfony\Component\HttpFoundation\Request;
 
 /**
  * @TODO Do we really need getCalculatedSeo here? Or do we need to store

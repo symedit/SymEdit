@@ -11,8 +11,8 @@
 
 namespace SymEdit\Bundle\CoreBundle\Mailer\Message;
 
-use SymEdit\Bundle\SettingsBundle\Manager\SettingsManager;
 use SymEdit\Bundle\CoreBundle\Mailer\MessageBuilderInterface;
+use SymEdit\Bundle\SettingsBundle\Manager\SettingsManager;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class Message extends AbstractMessage

@@ -12,9 +12,9 @@
 namespace SymEdit\Bundle\MediaBundle\Form\Type;
 
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\OptionsResolver\OptionsResolver;
-use Symfony\Component\Form\FormView;
 use Symfony\Component\Form\FormInterface;
+use Symfony\Component\Form\FormView;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class ImageType extends AbstractType
 {
@@ -47,7 +47,7 @@ class ImageType extends AbstractType
         return 'symedit_media';
     }
 
-    public function getName()
+    public function getBlockPrefix()
     {
         return 'symedit_image';
     }

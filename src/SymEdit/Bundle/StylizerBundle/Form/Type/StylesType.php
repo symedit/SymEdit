@@ -83,7 +83,7 @@ class StylesType extends AbstractType
         ], $options));
     }
 
-    public function getName()
+    public function getBlockPrefix()
     {
         return 'symedit_stylizer';
     }
