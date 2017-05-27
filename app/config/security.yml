@@ -21,7 +21,6 @@ security:
             pattern: ^/
             form_login:
                 provider: fos_userbundle
-                csrf_provider: form.csrf_provider
                 use_forward: false
                 use_referer: true
             logout: true

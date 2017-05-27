@@ -25,7 +25,7 @@
         </service>
 
         <!-- Nested Matcher -->
-        <service id="symedit.routing.nested_matcher" class="%cmf_routing.nested_matcher.class%">
+        <service id="symedit.routing.nested_matcher" class="Symfony\Cmf\Component\Routing\NestedMatcher\NestedMatcher">
             <argument type="service" id="symedit.routing.route_provider" />
             <argument type="service" id="cmf_routing.final_matcher"/>
         </service>

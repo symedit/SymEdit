@@ -54,10 +54,8 @@ class SymEditThemeExtension extends Extension implements PrependExtensionInterfa
          * Twig Extension
          */
         $container->prependExtensionConfig('twig', [
-            'form' => [
-                'resources' => [
-                    'SymEditThemeBundle:Form:fields.html.twig',
-                ],
+            'form_themes' => [
+                'SymEditThemeBundle:Form:fields.html.twig',
             ],
         ]);
 

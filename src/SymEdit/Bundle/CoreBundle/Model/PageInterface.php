@@ -13,7 +13,7 @@ namespace SymEdit\Bundle\CoreBundle\Model;
 
 use SymEdit\Bundle\MediaBundle\Model\ImageInterface;
 use SymEdit\Bundle\SeoBundle\Model\SeoAbleInterface;
-use Symfony\Component\Validator\ExecutionContextInterface;
+use Symfony\Component\Validator\Context\ExecutionContextInterface;
 
 interface PageInterface extends SeoAbleInterface, \IteratorAggregate
 {

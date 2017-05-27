@@ -12,6 +12,8 @@
 namespace SymEdit\Bundle\BlogBundle\Form\Type;
 
 use SymEdit\Bundle\BlogBundle\Model\PostInterface;
+use SymEdit\Bundle\UserBundle\Form\Type\UserChooseType;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
@@ -34,16 +36,16 @@ class PostType extends AbstractType
             ->add('title', TextType::class, [
                 'label' => 'symedit.form.post.title',
             ])
-            ->add('author', 'symedit_user_choose', [
+            ->add('author', UserChooseType::class, [
                 'admin' => true,
                 'choice_label' => 'profile.fullname',
                 'label' => 'symedit.form.post.author',
             ])
             ->add('status', ChoiceType::class, [
                 'choices' => [
-                    PostInterface::DRAFT => 'symedit.form.post.status.choices.draft',
-                    PostInterface::PUBLISHED => 'symedit.form.post.status.choices.published',
-                    PostInterface::SCHEDULED => 'symedit.form.post.status.choices.scheduled',
+                    'symedit.form.post.status.choices.draft' => PostInterface::DRAFT,
+                    'symedit.form.post.status.choices.published' => PostInterface::PUBLISHED,
+                    'symedit.form.post.status.choices.scheduled' => PostInterface::SCHEDULED,
                 ],
                 'label' => 'symedit.form.post.status.label',
             ])
@@ -56,7 +58,7 @@ class PostType extends AbstractType
                     'class' => 'datetimepicker',
                 ],
             ])
-            ->add('categories', 'entity', [
+            ->add('categories', EntityType::class, [
                 'choice_label' => 'title',
                 'class' => $this->categoryClass,
                 'multiple' => true,

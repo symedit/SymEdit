@@ -13,6 +13,9 @@ namespace SymEdit\Bundle\MediaBundle\Form\EventListener;
 
 use SymEdit\Bundle\MediaBundle\Model\MediaInterface;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormEvent;
 use Symfony\Component\Form\FormEvents;
 
@@ -75,7 +78,7 @@ class FileTypeSubscriber implements EventSubscriberInterface
         // Require if there is no file otherwise use the default
         $required = $hasFile ? false : $this->options['required'];
 
-        $form->add('file', 'file', [
+        $form->add('file', FileType::class, [
             'required' => $required,
             'label' => $this->options['file_label'],
             'help_block' => $this->options['file_help'],
@@ -86,7 +89,7 @@ class FileTypeSubscriber implements EventSubscriberInterface
 
         // If name is not set, then add the field
         if (($data === null || $data->getName() === null) && $require_name) {
-            $form->add('name', 'text', [
+            $form->add('name', TextType::class, [
                 'label' => $this->options['name_label'],
                 'help_block' => $this->options['name_help'],
                 'required' => !$allow_blank_name,
@@ -95,7 +98,7 @@ class FileTypeSubscriber implements EventSubscriberInterface
 
         // If allow remove, add the checkbox
         if ($hasFile && $this->options['allow_remove']) {
-            $form->add('remove', 'checkbox', [
+            $form->add('remove', CheckboxType::class, [
                 'mapped' => false,
                 'required' => false,
                 'label' => 'Remove Media',

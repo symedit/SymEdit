@@ -6,18 +6,18 @@
 
     <services>
         <!-- Media Form -->
-        <service id="symedit_media.form.type.media" class="%symedit.form.type.media.class%">
+        <service id="symedit_media.form.type.media" class="SymEdit\Bundle\MediaBundle\Form\Type\MediaType">
             <tag name="form.type" alias="symedit_media" />
         </service>
 
         <!-- Image Form -->
-        <service id="symedit_media.form.type.image" class="%symedit.form.type.image.class%">
+        <service id="symedit_media.form.type.image" class="SymEdit\Bundle\MediaBundle\Form\Type\ImageType">
             <argument>%symedit.model.image.class%</argument>
             <tag name="form.type" alias="symedit_image" />
         </service>
 
         <!-- File Form -->
-        <service id="symedit_media.form.type.file" class="%symedit.form.type.file.class%">
+        <service id="symedit_media.form.type.file" class="SymEdit\Bundle\MediaBundle\Form\Type\FileType">
             <argument>%symedit.model.file.class%</argument>
             <tag name="form.type" alias="symedit_file" />
         </service>
@@ -29,13 +29,13 @@
         </service>
 
         <!-- Image Gallery Form -->
-        <service id="symedit_media.form.type.image_gallery" class="%symedit.form.type.image_gallery.class%">
+        <service id="symedit_media.form.type.image_gallery" class="SymEdit\Bundle\MediaBundle\Form\Type\ImageGalleryType">
             <argument>%symedit.model.image_gallery.class%</argument>
             <tag name="form.type" alias="symedit_image_gallery" />
         </service>
 
         <!-- Gallery Item Form -->
-        <service id="symedit_media.form.type.gallery_item" class="%symedit.form.type.gallery_item.class%">
+        <service id="symedit_media.form.type.gallery_item" class="SymEdit\Bundle\MediaBundle\Form\Type\GaleryItemType">
             <argument>%symedit.model.gallery_item.class%</argument>
             <tag name="form.type" alias="symedit_gallery_item" />
         </service>

@@ -34,8 +34,8 @@ class SymEditExtension extends \Twig_Extension implements \Twig_Extension_Global
     {
         $globals = [];
 
-        if ($this->container->has('request')) {
-            $request = $this->container->get('request');
+        if ($this->container->has('request_stack')) {
+            $request = $this->container->get('request_stack')->getCurrentRequest();
             $page = $request->attributes->get('_page');
 
             $globals['Page'] = $page;

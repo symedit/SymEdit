@@ -13,9 +13,9 @@ namespace SymEdit\Bundle\SitemapBundle\Controller;
 
 use SymEdit\Bundle\SitemapBundle\Event\SitemapEvent;
 use SymEdit\Bundle\SitemapBundle\Event\SitemapEvents;
-use Symfony\Component\DependencyInjection\ContainerAware;
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
-class SitemapController extends ContainerAware
+class SitemapController extends Controller
 {
     public function indexAction()
     {
@@ -26,7 +26,7 @@ class SitemapController extends ContainerAware
         $event = new SitemapEvent($sitemap);
         $this->container->get('event_dispatcher')->dispatch(SitemapEvents::SITEMAP_VIEW, $event);
 
-        return $this->container->get('templating')->renderResponse('SymEditSitemapBundle:Sitemap:index.xml.twig', [
+        return $this->render('SymEditSitemapBundle:Sitemap:index.xml.twig', [
             'sitemap' => $sitemap,
         ]);
     }

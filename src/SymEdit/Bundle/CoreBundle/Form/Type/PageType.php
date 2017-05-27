@@ -14,6 +14,9 @@ namespace SymEdit\Bundle\CoreBundle\Form\Type;
 use SymEdit\Bundle\CoreBundle\Event\DisplayOptionsEvent;
 use SymEdit\Bundle\CoreBundle\Event\Events;
 use SymEdit\Bundle\CoreBundle\Form\EventListener\PageTypeSubscriber;
+use SymEdit\Bundle\MediaBundle\Form\Type\ImageChooseType;
+use SymEdit\Bundle\SeoBundle\Form\Type\SeoType;
+use SymEdit\Bundle\ThemeBundle\Form\Type\TemplateType;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
@@ -45,7 +48,7 @@ class PageType extends AbstractType
                     'icon' => 'info-circle',
                 ],
             ])
-            ->add('parent', 'symedit_page_choose', [
+            ->add('parent', PageChooseType::class, [
                 'label' => 'symedit.form.page.parent',
             ])
             ->add('tagline', TextType::class, [
@@ -57,7 +60,7 @@ class PageType extends AbstractType
                 'help_block' => 'symedit.form.page.display.help',
                 'label' => 'symedit.form.page.display.label',
             ])
-            ->add('image', 'symedit_image_choose', [
+            ->add('image', ImageChooseType::class, [
                 'required' => false,
                 'show_image' => true,
                 'label' => 'symedit.form.page.image',
@@ -68,7 +71,7 @@ class PageType extends AbstractType
     public function buildTemplateForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('template', 'template', [
+            ->add('template', TemplateType::class, [
                 'label' => 'symedit.form.page.template',
                 'directory' => 'Page',
                 'display_layouts' => true,
@@ -79,7 +82,7 @@ class PageType extends AbstractType
     public function buildSeoForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('seo', 'symedit_seo', [
+            ->add('seo', SeoType::class, [
                 'horizontal_label_offset_class' => '',
             ])
             ->add('crawl', CheckboxType::class, [

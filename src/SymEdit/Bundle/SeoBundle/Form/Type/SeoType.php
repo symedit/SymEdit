@@ -39,15 +39,15 @@ class SeoType extends AbstractType
             ])
             ->add('index', ChoiceType::class, [
                 'choices' => [
-                    true => 'Index',
-                    false => 'No Index',
+                    'Index' => true,
+                    'No Index' => false,
                 ],
                 'label' => 'symedit.form.seo.index',
             ])
             ->add('follow', ChoiceType::class, [
                 'choices' => [
-                    true => 'Follow',
-                    false => 'No Follow',
+                    'Follow' => true,
+                    'No Follow' => false,
                 ],
                 'label' => 'symedit.form.seo.follow',
             ])

@@ -11,14 +11,16 @@
 
 namespace SymEdit\Bundle\SitemapBundle\Sitemap;
 
-use Symfony\Component\DependencyInjection\ContainerAware;
+use Symfony\Component\DependencyInjection\ContainerAwareTrait;
 use Symfony\Component\PropertyAccess\PropertyAccess;
 use Symfony\Component\Routing\Exception\MissingMandatoryParametersException;
 use Symfony\Component\Routing\Exception\RouteNotFoundException;
 use Symfony\Component\Routing\RouterInterface;
 
-class SitemapFetcher extends ContainerAware
+class SitemapFetcher
 {
+    use ContainerAwareTrait;
+
     protected $propertyAccessor;
 
     public function fetchEntries($className, array $parameters)

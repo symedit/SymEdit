@@ -12,7 +12,6 @@
 namespace SymEdit\Bundle\CoreBundle\Controller;
 
 use FOS\RestBundle\View\View;
-use Sylius\Bundle\ResourceBundle\Controller\RequestConfiguration;
 use Sylius\Component\Resource\ResourceActions;
 use SymEdit\Bundle\CoreBundle\Model\PageInterface;
 use SymEdit\Bundle\ResourceBundle\Controller\ResourceController;

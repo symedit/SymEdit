@@ -44,7 +44,7 @@ class ImageType extends AbstractType
 
     public function getParent()
     {
-        return 'symedit_media';
+        return MediaType::class;
     }
 
     public function getBlockPrefix()

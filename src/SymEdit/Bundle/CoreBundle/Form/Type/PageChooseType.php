@@ -52,11 +52,12 @@ class PageChooseType extends AbstractType
             if ($page->getHomepage()) {
                 continue;
             }
-            $choices[$page->getId()] = str_repeat('--', $page->getLevel()).' '.$page->getTitle();
+
+            $choices[$page->getId()] = sprintf('%s %s (%d)', str_repeat('--', $page->getLevel()), $page->getTitle(), $page->getId());
         }
 
         $resolver->setDefaults([
-            'choices' => $choices,
+            'choices' => array_flip($choices),
         ]);
     }
 

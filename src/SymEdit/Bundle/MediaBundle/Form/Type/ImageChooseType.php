@@ -11,6 +11,7 @@
 
 namespace SymEdit\Bundle\MediaBundle\Form\Type;
 
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\Form\FormView;
@@ -40,7 +41,7 @@ class ImageChooseType extends AbstractType
 
     public function getParent()
     {
-        return 'entity';
+        return EntityType::class;
     }
 
     public function getBlockPrefix()

@@ -12,6 +12,7 @@
 namespace SymEdit\Bundle\CoreBundle\Controller;
 
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use SymEdit\Bundle\StylizerBundle\Form\Type\StylesType;
 use SymEdit\Bundle\StylizerBundle\Model\StyleManager;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
@@ -27,7 +28,7 @@ class StylizerController extends Controller
     public function indexAction(Request $request)
     {
         $styles = $this->getStyleManager()->getStyles();
-        $form = $this->createForm('symedit_stylizer', $styles);
+        $form = $this->createForm(StylesType::class, $styles);
 
         if ($request->getMethod() === 'POST' && $form->handleRequest($request)->isValid()) {
             // Save Styles

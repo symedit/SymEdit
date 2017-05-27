@@ -16,7 +16,7 @@ use Doctrine\Common\Collections\Collection;
 use Sylius\Component\Resource\Model\ResourceInterface;
 use SymEdit\Bundle\CoreBundle\Iterator\RecursivePageIterator;
 use SymEdit\Bundle\MediaBundle\Model\ImageInterface;
-use Symfony\Component\Validator\ExecutionContextInterface;
+use Symfony\Component\Validator\Context\ExecutionContextInterface;
 
 class Page implements PageInterface, ResourceInterface
 {

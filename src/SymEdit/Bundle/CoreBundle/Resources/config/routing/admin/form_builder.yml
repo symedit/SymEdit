@@ -79,7 +79,7 @@ admin_form_element_update:
             redirect: admin_form_element_update
 
 admin_form_element_reorder:
-    pattern: /reorder
+    path: /reorder
     methods: [POST]
     defaults:
         _controller: symedit.controller.form_element:reorderAction

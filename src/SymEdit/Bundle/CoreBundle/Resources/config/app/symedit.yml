@@ -9,13 +9,11 @@ symedit_blog:
         post:
             classes:
                 model: SymEdit\Bundle\CoreBundle\Model\Post
-                form:
-                    default: SymEdit\Bundle\CoreBundle\Form\Type\PostType
+                form: SymEdit\Bundle\CoreBundle\Form\Type\PostType
         category:
             classes:
                 model: SymEdit\Bundle\CoreBundle\Model\Category
-                form:
-                    default: SymEdit\Bundle\CoreBundle\Form\Type\CategoryType
+                form: SymEdit\Bundle\CoreBundle\Form\Type\CategoryType
 
 # SymEdit SEO
 symedit_seo:
@@ -63,8 +61,7 @@ symedit_events:
         event:
             classes:
                 model: SymEdit\Bundle\CoreBundle\Model\Event
-                form:
-                    default: SymEdit\Bundle\CoreBundle\Form\Type\EventType
+                form: SymEdit\Bundle\CoreBundle\Form\Type\EventType
 
 # Widget Configuration
 symedit_widget:

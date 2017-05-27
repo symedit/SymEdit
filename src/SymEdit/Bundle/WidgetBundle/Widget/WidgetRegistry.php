@@ -13,12 +13,14 @@ namespace SymEdit\Bundle\WidgetBundle\Widget;
 
 use SymEdit\Bundle\WidgetBundle\Model\WidgetInterface;
 use SymEdit\Bundle\WidgetBundle\Widget\Strategy\WidgetStrategyInterface;
-use Symfony\Component\DependencyInjection\ContainerAware;
+use Symfony\Component\DependencyInjection\ContainerAwareTrait;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class WidgetRegistry extends ContainerAware
+class WidgetRegistry
 {
+    use ContainerAwareTrait;
+
     private $strategies;
     private $templating;
     private $loadedStrategies;
