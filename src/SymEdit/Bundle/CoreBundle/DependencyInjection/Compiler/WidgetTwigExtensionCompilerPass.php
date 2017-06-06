@@ -13,6 +13,7 @@ namespace SymEdit\Bundle\CoreBundle\DependencyInjection\Compiler;
 
 use Symfony\Component\DependencyInjection\Compiler\CompilerPassInterface;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
+use Symfony\Component\DependencyInjection\Reference;
 
 class WidgetTwigExtensionCompilerPass implements CompilerPassInterface
 {
@@ -24,5 +25,6 @@ class WidgetTwigExtensionCompilerPass implements CompilerPassInterface
 
         $definition = $container->getDefinition('symedit_widget.twig.widget_extension');
         $definition->setClass('SymEdit\Bundle\CoreBundle\Twig\Extension\WidgetExtension');
+        $definition->addMethodCall('setWidgetRegistry', [new Reference('symedit_widget.widget.registry')]);
     }
 }

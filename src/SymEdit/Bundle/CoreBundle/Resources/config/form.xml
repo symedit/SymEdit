@@ -25,14 +25,24 @@
             <tag name="form.type" alias="symedit_role" />
         </service>
 
+        <!-- Post Form Type Override -->
         <service id="symedit.form.type.post" class="SymEdit\Bundle\CoreBundle\Form\Type\PostType">
             <argument>%symedit.model.category.class%</argument>
             <tag name="form.type" alias="symedit_post" />
         </service>
 
+        <!-- Category Form Type Override -->
         <service id="symedit.form.type.category" class="SymEdit\Bundle\CoreBundle\Form\Type\CategoryType">
             <argument>%symedit.model.category.class%</argument>
             <tag name="form.type" alias="symedit_category" />
+        </service>
+
+        <!-- Widget Form Type Override -->
+        <service id="symedit.form.type.widget" class="SymEdit\Bundle\CoreBundle\Form\Type\WidgetType">
+            <argument type="service" id="symedit_widget.widget.registry" />
+            <argument>%symedit.model.widget_area.class%</argument>
+
+            <tag name="form.type" alias="symedit_widget" />
         </service>
 
         <!-- Entity Property Form -->

@@ -13,6 +13,8 @@ namespace SymEdit\Bundle\CoreBundle\Settings;
 
 use SymEdit\Bundle\SettingsBundle\Schema\SchemaInterface;
 use SymEdit\Bundle\SettingsBundle\Schema\SettingsBuilderInterface;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\FormBuilderInterface;
 
 class SeoSettingsSchema implements SchemaInterface
@@ -20,17 +22,17 @@ class SeoSettingsSchema implements SchemaInterface
     public function buildForm(FormBuilderInterface $builder)
     {
         $builder
-            ->add('head_extra', 'textarea', [
+            ->add('head_extra', TextareaType::class, [
                 'label' => 'symedit.settings.seo.head_extra',
                 'required' => false,
                 'attr' => ['rows' => 5],
             ])
-            ->add('body_extra', 'textarea', [
+            ->add('body_extra', TextareaType::class, [
                 'label' => 'symedit.settings.seo.body_extra',
                 'required' => false,
                 'attr' => ['rows' => 5],
             ])
-            ->add('business_type', 'choice', [
+            ->add('business_type', ChoiceType::class, [
                 'label' => 'symedit.settings.seo.business_type',
                 'choice_translation_domain' => false,
                 'choices' => [

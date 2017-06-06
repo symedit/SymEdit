@@ -18,7 +18,7 @@ use SymEdit\Bundle\WidgetBundle\Widget\Strategy\WidgetStrategyInterface as BaseW
 /**
  * Allow a PageInterface to be passed into the widget execute if one exists.
  */
-interface WidgetStrategyInterface extends BaseWidgetStrategyInterface
+interface PageAwareWidgetStrategyInterface extends BaseWidgetStrategyInterface
 {
     /**
      * Executes the strategy.

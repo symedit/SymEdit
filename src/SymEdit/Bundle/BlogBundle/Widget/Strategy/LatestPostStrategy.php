@@ -12,6 +12,7 @@
 namespace SymEdit\Bundle\BlogBundle\Widget\Strategy;
 
 use SymEdit\Bundle\WidgetBundle\Model\WidgetInterface;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -30,7 +31,7 @@ class LatestPostStrategy extends AbstractPostStrategy
     public function buildForm(FormBuilderInterface $builder)
     {
         $builder
-            ->add('show_image', 'checkbox', [
+            ->add('show_image', CheckboxType::class, [
                 'label' => 'Show Image',
                 'required' => false,
             ])

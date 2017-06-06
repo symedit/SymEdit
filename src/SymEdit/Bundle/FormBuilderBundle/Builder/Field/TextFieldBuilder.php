@@ -11,6 +11,7 @@
 
 namespace SymEdit\Bundle\FormBuilderBundle\Builder\Field;
 
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 
 class TextFieldBuilder extends AbstractFieldBuilder
@@ -18,10 +19,15 @@ class TextFieldBuilder extends AbstractFieldBuilder
     public function buildOptionsForm(FormBuilderInterface $builder)
     {
         $builder
-            ->add('placeholder', 'text', [
+            ->add('placeholder', TextType::class, [
                 'required' => false,
                 'property_path' => '[attr][placeholder]',
             ])
         ;
+    }
+
+    public function getFormFQCN()
+    {
+        return TextType::class;
     }
 }

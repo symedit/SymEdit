@@ -13,6 +13,8 @@ namespace SymEdit\Bundle\CoreBundle\Settings;
 
 use SymEdit\Bundle\SettingsBundle\Schema\SchemaInterface;
 use SymEdit\Bundle\SettingsBundle\Schema\SettingsBuilderInterface;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\FormBuilderInterface;
 
 class AdvancedSettingsSchema implements SchemaInterface
@@ -20,17 +22,17 @@ class AdvancedSettingsSchema implements SchemaInterface
     public function buildForm(FormBuilderInterface $builder)
     {
         $builder
-            ->add('caching', 'choice', [
+            ->add('caching', ChoiceType::class, [
                 'label' => 'symedit.settings.advanced.caching',
                 'choices' => [
-                    'none' => 'No Cache',
-                    'cache' => 'Cache',
+                    'No Cache' => 'none',
+                    'Cache' => 'cache',
                 ],
             ])
-            ->add('ttl', 'integer', [
+            ->add('ttl', IntegerType::class, [
                 'label' => 'symedit.settings.advanced.ttl',
             ])
-            ->add('widget_max_age', 'integer', [
+            ->add('widget_max_age', IntegerType::class, [
                 'label' => 'symedit.settings.advanced.widget_max_age.label',
                 'help_block' => 'symedit.settings.advanced.widget_max_age.help',
             ])

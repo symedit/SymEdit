@@ -14,6 +14,7 @@ namespace SymEdit\Bundle\StylizerBundle\Form\Type;
 use SymEdit\Bundle\StylizerBundle\Loader\GroupData;
 use SymEdit\Bundle\StylizerBundle\Model\StyleManager;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\FormType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Validator\Constraints\NotBlank;
 
@@ -30,7 +31,7 @@ class StylesType extends AbstractType
     {
         $groups = $this->manager->getConfigData()->getGroups();
 
-        $allGroups = $builder->create('groups', 'form', [
+        $allGroups = $builder->create('groups', FormType::class, [
             'inherit_data' => true,
             'label' => false,
         ]);
@@ -45,7 +46,7 @@ class StylesType extends AbstractType
                 $groupOptions['label'] = $group->getLabel();
             }
 
-            $groupForm = $builder->create('group_'.$groupName, new GroupType(), $groupOptions);
+            $groupForm = $builder->create('group_'.$groupName, GroupType::class, $groupOptions);
             $this->addVariables($groupForm, $group);
 
             $allGroups->add($groupForm);
@@ -75,6 +76,13 @@ class StylesType extends AbstractType
                 new NotBlank(),
             ];
         }
+
+        // Do all stylizer shit with php, and allow to add forms to different tabs that way
+        $tab = $stylizer->getTab('navigation');
+        $tab
+            ->add('nav_height', IntegerType::class)
+            ->add('blah blah', null)
+        ;
 
         $builder->add($name, $type, array_merge([
             'label' => $label,

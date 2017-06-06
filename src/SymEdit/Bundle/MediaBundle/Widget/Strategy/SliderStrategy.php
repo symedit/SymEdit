@@ -11,7 +11,9 @@
 
 namespace SymEdit\Bundle\MediaBundle\Widget\Strategy;
 
+use SymEdit\Bundle\CoreBundle\Form\Type\EntityPropertyType;
 use SymEdit\Bundle\WidgetBundle\Model\WidgetInterface;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -47,22 +49,22 @@ class SliderStrategy extends AbstractGalleryStrategy
     public function buildForm(FormBuilderInterface $builder)
     {
         $builder
-            ->add('slider', 'entity_property', [
+            ->add('slider', EntityPropertyType::class, [
                 'label' => 'Slider',
                 'help_block' => 'Choose slider to display',
                 'class' => $this->repository->getClassName(),
                 'property' => 'title',
-                'property_value' => 'slug',
+                //'property_value' => 'slug',
             ])
-            ->add('thumbnails', 'checkbox', [
+            ->add('thumbnails', CheckboxType::class, [
                 'label' => 'Show Thumbnails',
                 'required' => false,
             ])
-            ->add('stretch', 'checkbox', [
+            ->add('stretch', CheckboxType::class, [
                 'label' => 'Stretch',
                 'required' => false,
             ])
-            ->add('controls', 'checkbox', [
+            ->add('controls', CheckboxType::class, [
                 'label' => 'Show Controls',
                 'required' => false,
             ])

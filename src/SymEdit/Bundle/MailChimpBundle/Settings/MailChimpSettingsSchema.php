@@ -11,8 +11,10 @@
 
 namespace SymEdit\Bundle\MailChimpBundle\Settings;
 
+use SymEdit\Bundle\MailChimpBundle\Form\Type\ListType;
 use SymEdit\Bundle\SettingsBundle\Schema\SchemaInterface;
 use SymEdit\Bundle\SettingsBundle\Schema\SettingsBuilderInterface;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 
 class MailChimpSettingsSchema implements SchemaInterface
@@ -20,12 +22,12 @@ class MailChimpSettingsSchema implements SchemaInterface
     public function buildForm(FormBuilderInterface $builder)
     {
         $builder
-            ->add('api_key', 'text', [
+            ->add('api_key', TextType::class, [
                 'label' => 'symedit.settings.mailchimp.api_key',
                 'required' => false,
                 'attr' => ['placeholder' => '1234abc98fe9a1234a987f9a12e123a1-us6'],
             ])
-            ->add('default_list', 'mailchimp_list', [
+            ->add('default_list', ListType::class, [
                 'label' => 'symedit.settings.mailchimp.default_list',
             ])
         ;

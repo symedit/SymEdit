@@ -95,10 +95,7 @@ class ConfigurationTest extends TestCase
                         'model' => Page::class,
                         'interface' => PageInterface::class,
                         'controller' => PageController::class,
-                        'form' => [
-                            'default' => PageType::class,
-                            'choose' => PageChooseType::class,
-                        ],
+                        'form' => PageType::class,
                         'factory' => Factory::class,
                     ],
                 ],

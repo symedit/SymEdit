@@ -59,6 +59,8 @@ class FieldBuilderRegistry
     public function getFormElementConfig(FormElementInterface $element)
     {
         $config = new FormElementConfig($element);
+        $typeBuilder = $this->getFieldBuilder($element->getType());
+        $config->setFormFQCN($typeBuilder->getFormFQCN());
         $builders = $this->getFieldBuilders($element->getType());
 
         foreach ($builders as $builder) {

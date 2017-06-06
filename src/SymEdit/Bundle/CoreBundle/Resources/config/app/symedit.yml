@@ -72,8 +72,7 @@ symedit_widget:
     resources:
         widget:
             classes:
-                form:
-                    default: SymEdit\Bundle\CoreBundle\Form\Type\WidgetType
+                form: SymEdit\Bundle\CoreBundle\Form\Type\WidgetType
 
 # Theme Configuration
 symedit_theme:

@@ -13,7 +13,6 @@ namespace SymEdit\Bundle\MediaBundle\DependencyInjection;
 
 use Sylius\Component\Resource\Factory\Factory;
 use SymEdit\Bundle\MediaBundle\Controller\FileController;
-use SymEdit\Bundle\MediaBundle\Controller\GalleryItemController;
 use SymEdit\Bundle\MediaBundle\Controller\ImageController;
 use SymEdit\Bundle\MediaBundle\Factory\GalleryItemFactory;
 use SymEdit\Bundle\MediaBundle\Form\Type\FileType;
@@ -155,7 +154,7 @@ class Configuration implements ConfigurationInterface
                                         ->scalarNode('controller')->defaultValue(ResourceController::class)->end()
                                         ->scalarNode('repository')->end()
                                         ->scalarNode('factory')->defaultValue(GalleryItemFactory::class)->end()
-                                        ->scalarNode('default')->defaultValue(GalleryItemType::class)->cannotBeEmpty()->end()
+                                        ->scalarNode('form')->defaultValue(GalleryItemType::class)->cannotBeEmpty()->end()
                                     ->end()
                                 ->end()
                             ->end()

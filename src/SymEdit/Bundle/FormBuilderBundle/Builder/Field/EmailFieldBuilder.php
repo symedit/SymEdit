@@ -14,6 +14,9 @@ namespace SymEdit\Bundle\FormBuilderBundle\Builder\Field;
 use SymEdit\Bundle\FormBuilderBundle\Builder\FormBuilderResultInterface;
 use SymEdit\Bundle\FormBuilderBundle\Builder\FormElementConfigInterface;
 use SymEdit\Bundle\FormBuilderBundle\Model\FormElementInterface;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
+use Symfony\Component\Form\Extension\Core\Type\EmailType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Validator\Constraints\Email;
 
@@ -22,11 +25,11 @@ class EmailFieldBuilder extends AbstractFieldBuilder
     public function buildOptionsForm(FormBuilderInterface $builder)
     {
         $builder
-            ->add('placeholder', 'text', [
+            ->add('placeholder', TextType::class, [
                 'required' => false,
                 'property_path' => '[attr][placeholder]',
             ])
-            ->add('replyTo', 'checkbox', [
+            ->add('replyTo', CheckboxType::class, [
                 'required' => false,
                 'property_path' => '[extra][replyTo]',
                 'help_block' => 'If filled, use as a reply-to field so notification emails will reply to this address.',
@@ -46,6 +49,11 @@ class EmailFieldBuilder extends AbstractFieldBuilder
     public function buildFormConfig(FormElementConfigInterface $config)
     {
         $config->addConstraint(new Email());
+    }
+
+    public function getFormFQCN()
+    {
+        return EmailType::class;
     }
 
     public function getParent()

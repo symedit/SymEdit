@@ -13,6 +13,7 @@ namespace SymEdit\Bundle\SettingsBundle\Form\Factory;
 
 use Sylius\Component\Registry\ServiceRegistryInterface;
 use SymEdit\Bundle\SettingsBundle\Schema\SchemaInterface;
+use Symfony\Component\Form\Extension\Core\Type\FormType;
 use Symfony\Component\Form\FormFactoryInterface;
 
 /**
@@ -48,7 +49,7 @@ final class SettingsFormFactory implements SettingsFormFactoryInterface
         /** @var SchemaInterface $schema */
         $schema = $this->schemaRegistry->get($schemaAlias);
 
-        $builder = $this->formFactory->createBuilder('form', $data, array_merge_recursive(
+        $builder = $this->formFactory->createBuilder(FormType::class, $data, array_merge_recursive(
             ['data_class' => null], $options
         ));
 

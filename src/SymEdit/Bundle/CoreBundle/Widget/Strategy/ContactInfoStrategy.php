@@ -11,9 +11,9 @@
 
 namespace SymEdit\Bundle\CoreBundle\Widget\Strategy;
 
-use SymEdit\Bundle\CoreBundle\Model\PageInterface;
 use SymEdit\Bundle\CoreBundle\Repository\SettingsRepositoryInterface;
 use SymEdit\Bundle\WidgetBundle\Model\WidgetInterface;
+use SymEdit\Bundle\WidgetBundle\Widget\Strategy\AbstractWidgetStrategy;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class ContactInfoStrategy extends AbstractWidgetStrategy
@@ -25,7 +25,7 @@ class ContactInfoStrategy extends AbstractWidgetStrategy
         $this->settingsRepository = $settingsRepository;
     }
 
-    public function execute(WidgetInterface $widget, PageInterface $page = null)
+    public function execute(WidgetInterface $widget)
     {
         return $this->render($widget);
     }

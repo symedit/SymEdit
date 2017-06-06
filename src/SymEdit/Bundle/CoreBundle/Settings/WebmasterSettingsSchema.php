@@ -13,6 +13,8 @@ namespace SymEdit\Bundle\CoreBundle\Settings;
 
 use SymEdit\Bundle\SettingsBundle\Schema\SchemaInterface;
 use SymEdit\Bundle\SettingsBundle\Schema\SettingsBuilderInterface;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 
 class WebmasterSettingsSchema implements SchemaInterface
@@ -20,7 +22,7 @@ class WebmasterSettingsSchema implements SchemaInterface
     public function buildForm(FormBuilderInterface $builder)
     {
         $builder
-            ->add('google_analytics_enabled', 'choice', [
+            ->add('google_analytics_enabled', ChoiceType::class, [
                 'label' => 'symedit.settings.webmaster.google_analytics_enabled',
                 'required' => false,
                 'choices' => [
@@ -28,21 +30,21 @@ class WebmasterSettingsSchema implements SchemaInterface
                     false => 'Disabled',
                 ],
             ])
-            ->add('google_analytics', 'text', [
+            ->add('google_analytics', TextType::class, [
                 'label' => 'symedit.settings.webmaster.google_analytics',
                 'required' => false,
                 'attr' => ['placeholder' => 'UA-12345678'],
             ])
-            ->add('google_verify', 'text', [
+            ->add('google_verify', TextType::class, [
                 'label' => 'symedit.settings.webmaster.google_verify',
                 'required' => false,
                 'attr' => ['placeholder' => 'google123456789012'],
             ])
-            ->add('bing_verify', 'text', [
+            ->add('bing_verify', TextType::class, [
                 'label' => 'symedit.settings.webmaster.bing_verify',
                 'required' => false,
             ])
-            ->add('robots', 'choice', [
+            ->add('robots', ChoiceType::class, [
                 'label' => 'symedit.settings.webmaster.robots',
                 'choices' => [
                     'deny' => 'Deny All',

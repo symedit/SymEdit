@@ -12,6 +12,7 @@
 namespace SymEdit\Bundle\StylizerBundle\Form\Type;
 
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\FormType;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\Form\FormView;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -38,6 +39,6 @@ class GroupType extends AbstractType
 
     public function getParent()
     {
-        return 'form';
+        return FormType::class;
     }
 }

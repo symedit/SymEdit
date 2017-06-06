@@ -11,6 +11,7 @@
 
 namespace SymEdit\Bundle\MediaBundle\Widget\Strategy;
 
+use SymEdit\Bundle\CoreBundle\Form\Type\EntityPropertyType;
 use SymEdit\Bundle\WidgetBundle\Model\WidgetInterface;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -33,7 +34,7 @@ class GalleryStrategy extends AbstractGalleryStrategy
     public function buildForm(FormBuilderInterface $builder)
     {
         $builder
-            ->add('slider', 'entity_property', [
+            ->add('slider', EntityPropertyType::class, [
                 'label' => 'Gallery',
                 'help_block' => 'Choose gallery to display',
                 'class' => $this->repository->getClassName(),

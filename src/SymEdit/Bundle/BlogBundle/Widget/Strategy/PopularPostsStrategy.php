@@ -14,6 +14,7 @@ namespace SymEdit\Bundle\BlogBundle\Widget\Strategy;
 use SymEdit\Bundle\AnalyticsBundle\Report\ReporterInterface;
 use SymEdit\Bundle\WidgetBundle\Model\WidgetInterface;
 use SymEdit\Bundle\WidgetBundle\Widget\Strategy\AbstractWidgetStrategy;
+use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints\Range;
@@ -42,7 +43,7 @@ class PopularPostsStrategy extends AbstractWidgetStrategy
     public function buildForm(FormBuilderInterface $builder)
     {
         $builder
-            ->add('max', 'integer', [
+            ->add('max', IntegerType::class, [
                 'label' => 'Max Posts',
                 'help_block' => 'Maximum Posts to display in Widget',
                 'constraints' => [

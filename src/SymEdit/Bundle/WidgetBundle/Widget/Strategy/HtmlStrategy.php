@@ -12,6 +12,7 @@
 namespace SymEdit\Bundle\WidgetBundle\Widget\Strategy;
 
 use SymEdit\Bundle\WidgetBundle\Model\WidgetInterface;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -35,7 +36,7 @@ class HtmlStrategy extends AbstractWidgetStrategy
     public function buildForm(FormBuilderInterface $builder)
     {
         $builder
-            ->add('html', 'textarea', [
+            ->add('html', TextareaType::class, [
                 'horizontal' => false,
                 'label_render' => false,
                 'attr' => [

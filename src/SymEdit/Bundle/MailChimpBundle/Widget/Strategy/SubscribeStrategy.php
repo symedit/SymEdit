@@ -11,9 +11,11 @@
 
 namespace SymEdit\Bundle\MailChimpBundle\Widget\Strategy;
 
+use SymEdit\Bundle\MailChimpBundle\Form\Type\ListType;
 use SymEdit\Bundle\MailChimpBundle\Form\Type\SubscribeType;
 use SymEdit\Bundle\WidgetBundle\Model\WidgetInterface;
 use SymEdit\Bundle\WidgetBundle\Widget\Strategy\AbstractWidgetStrategy;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\FormFactoryInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -32,7 +34,7 @@ class SubscribeStrategy extends AbstractWidgetStrategy
 
     public function execute(WidgetInterface $widget)
     {
-        $form = $this->formFactory->create(new SubscribeType(), null, [
+        $form = $this->formFactory->create(SubscribeType::class, null, [
             'action' => $this->router->generate('symedit_mailchimp_subscribe'),
             'method' => 'POST',
             'list' => $widget->getOption('list'),
@@ -64,9 +66,9 @@ class SubscribeStrategy extends AbstractWidgetStrategy
     public function buildForm(FormBuilderInterface $builder)
     {
         $builder
-            ->add('list', 'mailchimp_list')
-            ->add('placeholder', 'text')
-            ->add('button_text', 'text')
+            ->add('list', ListType::class)
+            ->add('placeholder', TextType::class)
+            ->add('button_text', TextType::class)
         ;
     }
 

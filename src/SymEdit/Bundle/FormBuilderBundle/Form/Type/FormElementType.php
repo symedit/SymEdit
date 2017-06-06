@@ -13,6 +13,7 @@ namespace SymEdit\Bundle\FormBuilderBundle\Form\Type;
 
 use SymEdit\Bundle\FormBuilderBundle\Builder\FieldBuilderRegistry;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\FormType;
 use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -35,7 +36,7 @@ class FormElementType extends AbstractType
             ->add('type', HiddenType::class)
         ;
 
-        $optionsBuilder = $builder->create('options', 'form', [
+        $optionsBuilder = $builder->create('options', FormType::class, [
             'embed_form' => true
          ]);
 

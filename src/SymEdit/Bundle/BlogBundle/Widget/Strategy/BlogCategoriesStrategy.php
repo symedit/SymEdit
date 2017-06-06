@@ -14,6 +14,7 @@ namespace SymEdit\Bundle\BlogBundle\Widget\Strategy;
 use SymEdit\Bundle\BlogBundle\Repository\CategoryRepositoryInterface;
 use SymEdit\Bundle\WidgetBundle\Model\WidgetInterface;
 use SymEdit\Bundle\WidgetBundle\Widget\Strategy\AbstractWidgetStrategy;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -39,7 +40,7 @@ class BlogCategoriesStrategy extends AbstractWidgetStrategy
     public function buildForm(FormBuilderInterface $builder)
     {
         $builder
-            ->add('counts', 'checkbox', [
+            ->add('counts', CheckboxType::class, [
                 'required' => false,
                 'label' => 'Display Counts',
                 'help_block' => 'Display Category counts next to label',

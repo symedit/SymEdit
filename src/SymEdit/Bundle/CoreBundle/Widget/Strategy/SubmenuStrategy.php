@@ -13,11 +13,13 @@ namespace SymEdit\Bundle\CoreBundle\Widget\Strategy;
 
 use SymEdit\Bundle\CoreBundle\Model\PageInterface;
 use SymEdit\Bundle\WidgetBundle\Model\WidgetInterface;
+use Symfony\Component\Form\Extension\Core\Type\IntegerType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints\Range;
 
-class SubmenuStrategy extends AbstractWidgetStrategy
+class SubmenuStrategy extends PageAwareAbstractWidgetStrategy
 {
     public function execute(WidgetInterface $widget, PageInterface $page = null)
     {
@@ -38,7 +40,7 @@ class SubmenuStrategy extends AbstractWidgetStrategy
     public function buildForm(FormBuilderInterface $builder)
     {
         $builder
-            ->add('level', 'integer', [
+            ->add('level', IntegerType::class, [
                 'label' => 'Menu level',
                 'help_block' => 'Level to display, cannot be greater than current page. Starts at 1',
                 'constraints' => [
@@ -48,7 +50,7 @@ class SubmenuStrategy extends AbstractWidgetStrategy
                     ]),
                 ],
             ])
-            ->add('nav_class', 'text', [
+            ->add('nav_class', TextType::class, [
                 'label' => 'Navigation UL Class',
             ])
         ;

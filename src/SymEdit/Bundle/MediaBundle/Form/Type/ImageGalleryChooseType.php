@@ -44,14 +44,13 @@ class ImageGalleryChooseType extends AbstractType
         $labels = [];
 
         foreach ($this->imageRepository->findAll() as $image) {
-            $choices[] = $image;
-            $labels[] = $image->getName();
+            $choices[$image->getName()] = $image;
         }
 
         $resolver->setDefaults([
             'expanded' => true,
             'multiple' => true,
-            'choice_list' => new ObjectChoiceList($choices, 'name'),
+            'choices' => $choices,
         ]);
     }
 

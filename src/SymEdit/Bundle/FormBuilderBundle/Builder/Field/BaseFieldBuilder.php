@@ -12,6 +12,8 @@
 namespace SymEdit\Bundle\FormBuilderBundle\Builder\Field;
 
 use SymEdit\Bundle\FormBuilderBundle\Builder\FormElementConfigInterface;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Validator\Constraints\NotBlank;
 
@@ -20,11 +22,11 @@ class BaseFieldBuilder extends AbstractFieldBuilder
     public function buildOptionsForm(FormBuilderInterface $builder)
     {
         $builder
-            ->add('label', 'text', [
+            ->add('label', TextType::class, [
                 'required' => false,
                 'property_path' => '[label]',
             ])
-            ->add('required', 'checkbox', [
+            ->add('required', CheckboxType::class, [
                 'required' => false,
                 'property_path' => '[required]',
             ])
@@ -46,5 +48,13 @@ class BaseFieldBuilder extends AbstractFieldBuilder
         if ($element->getOption('required')) {
             $config->addConstraint(new NotBlank());
         }
+    }
+
+    /**
+     * Should be unreachable.
+     */
+    public function getFormFQCN()
+    {
+        return;
     }
 }
