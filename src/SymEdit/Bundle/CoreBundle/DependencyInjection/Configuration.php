@@ -13,9 +13,7 @@ namespace SymEdit\Bundle\CoreBundle\DependencyInjection;
 
 use Sylius\Component\Resource\Factory\Factory;
 use SymEdit\Bundle\CoreBundle\Controller\PageController;
-use SymEdit\Bundle\CoreBundle\Form\Type\PageChooseType;
 use SymEdit\Bundle\CoreBundle\Form\Type\PageType;
-use SymEdit\Bundle\CoreBundle\Model\Breadcrumbs;
 use SymEdit\Bundle\CoreBundle\Model\Page;
 use SymEdit\Bundle\CoreBundle\Model\PageInterface;
 use SymEdit\Bundle\CoreBundle\Model\Role;
@@ -116,13 +114,7 @@ class Configuration implements ConfigurationInterface
                                         ->scalarNode('controller')->defaultValue(PageController::class)->end()
                                         ->scalarNode('repository')->end()
                                         ->scalarNode('factory')->defaultValue(Factory::class)->end()
-                                        ->arrayNode('form')
-                                            ->addDefaultsIfNotSet()
-                                            ->children()
-                                                ->scalarNode('default')->defaultValue(PageType::class)->end()
-                                                ->scalarNode('choose')->defaultValue(PageChooseType::class)->end()
-                                            ->end()
-                                        ->end()
+                                        ->scalarNode('form')->defaultValue(PageType::class)->cannotBeEmpty()->end()
                                     ->end()
                                 ->end()
                             ->end()

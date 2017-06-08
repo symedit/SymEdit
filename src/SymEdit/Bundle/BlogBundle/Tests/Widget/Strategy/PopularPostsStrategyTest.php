@@ -12,6 +12,7 @@
 namespace SymEdit\Bundle\BlogBundle\Tests\Widget\Strategy;
 
 use SymEdit\Bundle\WidgetBundle\Test\WidgetStrategyTest;
+use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 
 class PopularPostsStrategyTest extends WidgetStrategyTest
 {
@@ -64,7 +65,7 @@ class PopularPostsStrategyTest extends WidgetStrategyTest
                 ->method('add')
                 ->with(
                     $this->equalTo('max'),
-                    $this->equalTo('integer')
+                    $this->equalTo(IntegerType::class)
                 );
 
         return $builder;

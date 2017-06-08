@@ -13,10 +13,11 @@ namespace SymEdit\Bundle\StylizerBundle\DependencyInjection;
 
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
+use Symfony\Component\DependencyInjection\Extension\PrependExtensionInterface;
 use Symfony\Component\DependencyInjection\Loader;
 use Symfony\Component\HttpKernel\DependencyInjection\Extension;
 
-class SymEditStylizerExtension extends Extension
+class SymEditStylizerExtension extends Extension implements PrependExtensionInterface
 {
     /**
      * {@inheritdoc}
@@ -30,9 +31,16 @@ class SymEditStylizerExtension extends Extension
         $bundles = $container->getParameter('kernel.bundles');
         $yamlFiles = $this->getYamlStyleFiles($bundles);
 
+        // Set YAML Files
         $container->setParameter('symedit_stylizer.loader.files.yaml', $yamlFiles);
 
+        // Set Form Mappings
+        $container->setParameter('symedit_stylizer.form_mappings', $config['form_mappings']);
+
+        // Load Services
         $loader->load('services.xml');
+
+        // Override default package
 
         $env = $container->getParameter('kernel.environment');
 
@@ -68,5 +76,18 @@ class SymEditStylizerExtension extends Extension
     public function getAlias()
     {
         return 'symedit_stylizer';
+    }
+
+    public function prepend(ContainerBuilder $container)
+    {
+        $container->prependExtensionConfig('framework', [
+            'assets' => [
+                'packages' => [
+                    'stylizer' => [
+                        'version_strategy' => 'symedit_stylizer.asset_version_strategy',
+                    ],
+                ],
+            ],
+        ]);
     }
 }

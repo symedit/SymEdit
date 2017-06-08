@@ -28,7 +28,6 @@ class StylizerExtension extends \Twig_Extension
     {
         return [
             new \Twig_SimpleFunction('google_fonts', [$this, 'renderGoogleFonts'], ['is_safe' => ['html']]),
-            new \Twig_SimpleFunction('stylizer_asset', [$this, 'getAssetUrl']),
         ];
     }
 
@@ -64,23 +63,6 @@ class StylizerExtension extends \Twig_Extension
     public function getVersionManager()
     {
         return $this->container->get('symedit_stylizer.version_manager');
-    }
-
-    public function getAssetUrl($url)
-    {
-        // Get stylizer version as string
-        $stylizerVersion = $this->getVersionManager()->getVersion();
-
-        if ($stylizerVersion === null) {
-            return $url;
-        }
-
-        // @TODO: Maybe move this logic to the versionmanager? Pass it the url?
-        $query = parse_url($url, PHP_URL_QUERY);
-        $queryVersion = $query === null ? $stylizerVersion : $query.$stylizerVersion;
-        $versionUrl = strtok($url, '?').'?'.$queryVersion;
-
-        return $versionUrl;
     }
 
     public function getName()

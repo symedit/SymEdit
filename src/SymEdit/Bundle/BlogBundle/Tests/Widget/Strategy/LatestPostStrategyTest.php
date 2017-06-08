@@ -14,6 +14,7 @@ namespace SymEdit\Bundle\BlogBundle\Tests\Widget\Strategy;
 use SymEdit\Bundle\BlogBundle\Repository\PostRepositoryInterface;
 use SymEdit\Bundle\BlogBundle\Widget\Strategy\LatestPostStrategy;
 use SymEdit\Bundle\WidgetBundle\Test\WidgetStrategyTest;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 
 class LatestPostStrategyTest extends WidgetStrategyTest
 {
@@ -67,7 +68,7 @@ class LatestPostStrategyTest extends WidgetStrategyTest
             ->method('add')
             ->with(
                 $this->equalTo('show_image'),
-                $this->equalTo('checkbox')
+                $this->equalTo(CheckboxType::class)
             )
         ;
 

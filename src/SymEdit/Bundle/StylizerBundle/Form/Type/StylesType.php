@@ -21,10 +21,12 @@ use Symfony\Component\Validator\Constraints\NotBlank;
 class StylesType extends AbstractType
 {
     protected $manager;
+    protected $mappings;
 
-    public function __construct(StyleManager $manager)
+    public function __construct(StyleManager $manager, array $mappings)
     {
         $this->manager = $manager;
+        $this->mappings = $mappings;
     }
 
     public function buildForm(FormBuilderInterface $builder, array $options)
@@ -77,14 +79,14 @@ class StylesType extends AbstractType
             ];
         }
 
-        // Do all stylizer shit with php, and allow to add forms to different tabs that way
-        $tab = $stylizer->getTab('navigation');
-        $tab
-            ->add('nav_height', IntegerType::class)
-            ->add('blah blah', null)
-        ;
+        if (!isset($this->mappings[$type])) {
+            throw new \InvalidArgumentException(sprintf('Stylizer form type "%s" not mapped to a form class', $type));
+        }
 
-        $builder->add($name, $type, array_merge([
+        // Get fqcn for form type
+        $fqcn = $this->mappings[$type];
+
+        $builder->add($name, $fqcn, array_merge([
             'label' => $label,
             'property_path' => sprintf('[%s]', $name),
             'constraints' => $constraints,
