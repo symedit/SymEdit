@@ -39,6 +39,7 @@ class LoadBlogData extends AbstractFixture implements OrderedFixtureInterface
             ->addCategory($category_general)
             ->setSeo([
                 'title' => 'SEO Title',
+                'description' => 'SEO Description',
             ])
         ;
 
