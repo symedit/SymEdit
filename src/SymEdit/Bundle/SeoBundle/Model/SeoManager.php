@@ -53,7 +53,7 @@ class SeoManager implements SeoManagerInterface
         $this->dispatcher->addListener(Events::CALCULATE_SEO, [$calculator, 'calculateSeo'], $priority);
     }
 
-    public function getCalculatedSeo(Request $request = null)
+    public function getCalculatedSeo(Request $request)
     {
         $event = new SeoEvent($this->seo, $request);
         $this->dispatcher->dispatch(Events::CALCULATE_SEO, $event);

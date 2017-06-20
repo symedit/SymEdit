@@ -15,22 +15,20 @@ use SymEdit\Bundle\SeoBundle\Model\SeoInterface;
 use SymEdit\Bundle\SeoBundle\Model\SeoManagerInterface;
 use SymEdit\Bundle\SeoBundle\Util\SeoTools;
 use Symfony\Component\DependencyInjection\ContainerInterface;
-use Symfony\Component\HttpFoundation\Request;
 
 class SeoExtension extends \Twig_Extension
 {
     protected $container;
     protected $calculatedSeo;
-    protected $request;
 
     public function __construct(ContainerInterface $container)
     {
         $this->container = $container;
     }
 
-    public function setRequest(Request $request = null)
+    public function getRequest()
     {
-        $this->request = $request;
+        return $this->container->get('request_stack')->getCurrentRequest();
     }
 
     public function getFunctions()
@@ -65,7 +63,7 @@ class SeoExtension extends \Twig_Extension
     protected function getCalculatedSeo()
     {
         if ($this->calculatedSeo === null) {
-            $this->calculatedSeo = $this->getSeoManager()->getCalculatedSeo($this->request);
+            $this->calculatedSeo = $this->getSeoManager()->getCalculatedSeo($this->getRequest());
         }
 
         return $this->calculatedSeo;

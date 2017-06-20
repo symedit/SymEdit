@@ -20,9 +20,6 @@
         </service>
 
         <service id="symedit_seo.event_listener.request" class="SymEdit\Bundle\SeoBundle\EventListener\Seo\RequestCalculator">
-            <call method="setRequest">
-                <argument type="service" id="request" on-invalid="null" strict="false" />
-            </call>
             <tag name="seo.calculator" priority="-150" />
         </service>
 
