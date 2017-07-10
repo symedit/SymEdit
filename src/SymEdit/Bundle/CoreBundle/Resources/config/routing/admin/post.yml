@@ -19,6 +19,8 @@ admin_post_create:
         _controller: symedit.controller.post:createAction
         _sylius:
             template: "@SymEdit/Admin/Post/new.html.twig"
+            factory:
+                method: createWithUser
             redirect:
                 route: admin_post_update
                 parameters: { id: resource.id }
