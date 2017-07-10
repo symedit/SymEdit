@@ -39,6 +39,7 @@ default:
             contexts:
                 - Behat\MinkExtension\Context\MinkContext
                 - SymEdit\Bundle\CoreBundle\Behat\WebContext
+                - SymEdit\Bundle\CoreBundle\Behat\MailerContext
             filters:
                 tags: "@contact"
         analytics:

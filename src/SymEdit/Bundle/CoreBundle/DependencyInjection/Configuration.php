@@ -45,17 +45,7 @@ class Configuration implements ConfigurationInterface
                     ->defaultValue('doctrine/orm')
                     ->cannotBeOverwritten()
                 ->end()
-                ->arrayNode('extensions')
-                    ->info('Extensions to add to extensions menu in admin menu')
-                    ->prototype('array')
-                        ->children()
-                            ->scalarNode('route')->end()
-                            ->scalarNode('label')->end()
-                            ->scalarNode('role')->defaultValue('ROLE_ADMIN')->end()
-                            ->scalarNode('icon')->defaultNull()->end()
-                        ->end()
-                    ->end()
-                ->end()
+                ->booleanNode('test')->end()
                 ->arrayNode('email')
                     ->info('Default email address from which to send')
                     ->addDefaultsIfNotSet()
@@ -77,13 +67,8 @@ class Configuration implements ConfigurationInterface
                         ->end()
                     ->end()
                 ->end()
-                ->arrayNode('routing')
-                    ->addDefaultsIfNotSet()
-                    ->children()
-                        ->scalarNode('route_uri_filter_regexp')->defaultValue('')->info('Regexp to skip SymEdit Dynamic router for any matching routes')->end()
-                    ->end()
-                ->end()
-            ->end();
+            ->end()
+        ;
 
         $this->addResourcesSection($rootNode);
 

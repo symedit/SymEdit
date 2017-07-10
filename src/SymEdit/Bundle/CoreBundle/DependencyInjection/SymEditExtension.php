@@ -50,13 +50,17 @@ class SymEditExtension extends SymEditResourceExtension
             'mailer.xml',
         ];
 
+
         foreach ($configFiles as $configFile) {
             $loader->load($configFile);
         }
 
+        if (!empty($config['test'])) {
+            $loader->load('test.xml');
+        }
+
         $this->remapParameters($container, 'email', $config['email']);
         $container->setParameter('symedit.template_locations', $config['template_locations']);
-        $container->setParameter('symedit.extensions.routes', $config['extensions']);
 
         // Process Assetic Configurations
         $this->processAssets($container, $config['assets']);
@@ -64,7 +68,6 @@ class SymEditExtension extends SymEditResourceExtension
         // Process routing Config
         $pageControllers = $this->findBundleResources($container, '/Resources/config/symedit/page_controllers.yml');
         $container->setParameter('symedit.routing.loader.resources', $pageControllers);
-        $container->setParameter('symedit.routing.route_uri_filter_regexp', $config['routing']['route_uri_filter_regexp']);
     }
 
     /**
