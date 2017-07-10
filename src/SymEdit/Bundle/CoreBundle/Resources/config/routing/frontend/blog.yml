@@ -22,7 +22,7 @@ blog_rss:
             paginate: false
 
 blog_archive:
-    path: /archive/{page}
+    path: /archive
     requirements:
         page: \d+
     defaults:
