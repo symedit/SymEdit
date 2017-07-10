@@ -42,6 +42,9 @@ class StylizerController extends Controller
             } else {
                 $this->addFlash('success', 'symedit.stylizer.save');
             }
+
+            // Redirect so refreshing doesn't save again.
+            return $this->redirectToRoute('admin_stylizer');
         }
 
         return $this->render('@SymEdit/Admin/Stylizer/index.html.twig', [
