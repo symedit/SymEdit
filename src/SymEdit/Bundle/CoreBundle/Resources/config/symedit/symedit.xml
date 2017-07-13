@@ -10,7 +10,6 @@
 
     <services>
         <service id="symedit.menu.admin" class="%symedit.menu.admin.class%">
-            <argument>%symedit.extensions.routes%</argument>
             <tag name="symedit_menu.builder" menu="symedit_admin" priority="256" />
         </service>
     </services>

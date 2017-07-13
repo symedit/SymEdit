@@ -16,13 +16,6 @@ use SymEdit\Bundle\MenuBundle\Model\MenuInterface;
 
 class AdminBuilder implements MenuBuilderInterface
 {
-    protected $extensions;
-
-    public function __construct(array $extensions = [])
-    {
-        $this->extensions = $extensions;
-    }
-
     public function buildMenu(MenuInterface $menu, array $options)
     {
         $rootNode = $menu->getRootNode();
@@ -93,20 +86,6 @@ class AdminBuilder implements MenuBuilderInterface
         $site->addChild('Settings', ['route' => 'admin_settings', 'icon' => 'cogs', 'extras' => ['is_granted' => 'ROLE_ADMIN_SETTING']]);
         $site->addChild('Users', ['route' => 'admin_user', 'icon' => 'group', 'extras' => ['is_granted' => 'ROLE_ADMIN_USER']]);
         $site->addChild('Cache', ['route' => 'admin_cache', 'icon' => 'folder-open-o']);
-
-        // Extensions
-        $extensions = $rootNode->addChild('Extensions', [
-            'dropdown' => true,
-            'caret' => true,
-            'extras' => [
-                'remove_leaf' => true,
-            ],
-        ]);
-
-        $index = 0;
-        foreach ($this->extensions as $extension) {
-            $extensions->addChild(sprintf('extension_%d', $index++), $extension);
-        }
 
         // Help
         $rootNode

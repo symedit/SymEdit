@@ -19,7 +19,7 @@
             <argument type="service" id="router.request_context" />
             <argument type="service" id="cmf_routing.nested_matcher" />
             <argument type="service" id="cmf_routing.generator" />
-            <argument>%symedit.routing.route_uri_filter_regexp%</argument>
+            <argument></argument>
             <argument type="service" id="event_dispatcher" on-invalid="ignore" />
             <argument type="service" id="symedit.routing.route_provider" />
         </service>
