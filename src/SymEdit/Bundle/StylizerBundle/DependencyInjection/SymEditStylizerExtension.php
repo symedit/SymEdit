@@ -89,5 +89,28 @@ class SymEditStylizerExtension extends Extension implements PrependExtensionInte
                 ],
             ],
         ]);
+
+        /*
+         * Twig Extension
+         */
+        $container->prependExtensionConfig('twig', [
+            'form_themes' => [
+                'SymEditStylizerBundle:Form:fields.html.twig',
+            ],
+        ]);
+
+        if ($container->hasExtension('symedit')) {
+            $container->prependExtensionConfig('symedit', [
+                'assets' => [
+                    'javascripts' => [
+                        'bundles/symeditstylizer/colorpicker/js/bootstrap-colorpicker.min.js',
+                        '@SymEditStylizerBundle/Resources/js/main.js',
+                    ],
+                    'stylesheets' => [
+                        'bundles/symeditstylizer/colorpicker/css/bootstrap-colorpicker.min.css',
+                    ]
+                ],
+            ]);
+        }
     }
 }
