@@ -11,14 +11,23 @@
 
 namespace SymEdit\Bundle\CoreBundle\Twig\Extension;
 
+use SymEdit\Bundle\CoreBundle\Widget\Strategy\PageAwareWidgetStrategyInterface;
 use SymEdit\Bundle\WidgetBundle\Model\WidgetInterface;
 use SymEdit\Bundle\WidgetBundle\Twig\Extension\WidgetExtension as BaseExtension;
+use SymEdit\Bundle\WidgetBundle\Widget\WidgetRegistry;
 
 /**
  * Pass in a different TokenParser for SymEdit specific widgets.
  */
 class WidgetExtension extends BaseExtension
 {
+    private $registry;
+
+    public function setWidgetRegistry(WidgetRegistry $registry)
+    {
+        $this->registry = $registry;
+    }
+
     /**
      * Override renderWidgetArea to use page display options to display
      * the widget area if no template is provided as a hardcoded override.
@@ -36,6 +45,12 @@ class WidgetExtension extends BaseExtension
 
     protected function getControllerAttributes(WidgetInterface $widget, $context)
     {
+        $strategy = $this->registry->getStrategy($widget->getStrategyName());
+
+        if (!$strategy instanceof PageAwareWidgetStrategyInterface) {
+            return parent::getControllerAttributes($widget, $context);
+        }
+
         return [
             'id' => $widget->getId(),
             '_page_id' => $context['Page']->getId(),

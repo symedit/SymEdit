@@ -12,10 +12,11 @@
 namespace SymEdit\Bundle\CoreBundle\Command;
 
 use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
-use Symfony\Component\Console\Input\InputInterface;
-use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Input\ArrayInput;
+use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
+use Symfony\Component\Console\Output\OutputInterface;
+use Symfony\Component\Console\Question\ConfirmationQuestion;
 
 class InstallCommand extends ContainerAwareCommand
 {
@@ -31,10 +32,11 @@ class InstallCommand extends ContainerAwareCommand
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         $force = (boolean) $input->getOption('force');
-        $dialog = $this->getHelperSet()->get('dialog');
+        $helper = $this->getHelper('question');
 
         // Doctrine create database
-        if ($force || $dialog->askConfirmation($output, '<question>Create Database?</question>', false)) {
+        $createQuestion = new ConfirmationQuestion('<question>Create Database?</question>', false);
+        if ($force || $helper->ask($input, $output, $createQuestion)) {
             $output->writeln('Creating database...');
 
             $command = $this->getApplication()->find('doctrine:database:create');
@@ -43,7 +45,8 @@ class InstallCommand extends ContainerAwareCommand
         }
 
         // Doctrine schema update
-        if ($force || $dialog->askConfirmation($output, '<question>Load Schema?</question>', false)) {
+        $schemaQuestion = new ConfirmationQuestion('<question>Load Schema?</question>', false);
+        if ($force || $helper->ask($input, $output, $schemaQuestion)) {
             $output->writeln('Loading Schema...');
 
             $command = $this->getApplication()->find('doctrine:schema:update');
@@ -56,7 +59,8 @@ class InstallCommand extends ContainerAwareCommand
         }
 
         // Doctrine Fixtures
-        if ($force || $dialog->askConfirmation($output, '<question>Load Fixtures?</question>', false)) {
+        $fixtureQuestion = new ConfirmationQuestion('<question>Load Fixtures?</question>', false);
+        if ($force || $helper->ask($input, $output, $fixtureQuestion)) {
             $output->writeln('Loading Fixtures...');
 
             $command = $this->getApplication()->find('doctrine:fixtures:load');

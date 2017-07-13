@@ -14,6 +14,9 @@ namespace SymEdit\Bundle\FormBuilderBundle\Builder\Field;
 use SymEdit\Bundle\FormBuilderBundle\Builder\FormBuilderResultInterface;
 use SymEdit\Bundle\FormBuilderBundle\Model\FormElementInterface;
 use Symfony\Component\Form\CallbackTransformer;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\FormBuilderInterface;
 
 class ChoiceFieldBuilder extends AbstractFieldBuilder
@@ -21,7 +24,7 @@ class ChoiceFieldBuilder extends AbstractFieldBuilder
     public function buildOptionsForm(FormBuilderInterface $builder)
     {
         $choices = $builder
-            ->create('choices', 'textarea', [
+            ->create('choices', TextareaType::class, [
                 'required' => false,
                 'attr' => [
                     'rows' => 10,
@@ -44,11 +47,11 @@ class ChoiceFieldBuilder extends AbstractFieldBuilder
 
         $builder
             ->add($choices)
-            ->add('expanded', 'checkbox', [
+            ->add('expanded', CheckboxType::class, [
                 'required' => false,
                 'help_block' => 'Using "expanded" will use checkboxes or radio buttons depending on value of "multiple."',
             ])
-            ->add('multiple', 'checkbox', [
+            ->add('multiple', CheckboxType::class, [
                 'required' => false,
                 'help_block' => 'Allow multiple choices to be chosen.',
             ])
@@ -66,5 +69,10 @@ class ChoiceFieldBuilder extends AbstractFieldBuilder
         }
 
         return $selected;
+    }
+
+    public function getFormFQCN()
+    {
+        return ChoiceType::class;
     }
 }

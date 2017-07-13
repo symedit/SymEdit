@@ -13,8 +13,8 @@ namespace SymEdit\Bundle\SeoBundle\Model;
 
 use SymEdit\Bundle\SeoBundle\Event\Events;
 use SymEdit\Bundle\SeoBundle\Event\SeoEvent;
-use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
+use Symfony\Component\HttpFoundation\Request;
 
 /**
  * @TODO Do we really need getCalculatedSeo here? Or do we need to store
@@ -53,7 +53,7 @@ class SeoManager implements SeoManagerInterface
         $this->dispatcher->addListener(Events::CALCULATE_SEO, [$calculator, 'calculateSeo'], $priority);
     }
 
-    public function getCalculatedSeo(Request $request = null)
+    public function getCalculatedSeo(Request $request)
     {
         $event = new SeoEvent($this->seo, $request);
         $this->dispatcher->dispatch(Events::CALCULATE_SEO, $event);

@@ -36,6 +36,7 @@ class AppKernel extends Kernel
             new SymEdit\Bundle\MenuBundle\SymEditMenuBundle(),
             new SymEdit\Bundle\EventsBundle\SymEditEventsBundle(),
             new SymEdit\Bundle\FormBuilderBundle\SymEditFormBuilderBundle(),
+            new SymEdit\Bundle\SettingsBundle\SymEditSettingsBundle(),
             new SymEdit\Bundle\ApiBundle\SymEditApiBundle(),
 
             // Isometriks Bundles
@@ -49,7 +50,6 @@ class AppKernel extends Kernel
             new Doctrine\Bundle\DoctrineCacheBundle\DoctrineCacheBundle(),
 
             new Sylius\Bundle\ResourceBundle\SyliusResourceBundle(),
-            new Sylius\Bundle\SettingsBundle\SyliusSettingsBundle(),
             new winzou\Bundle\StateMachineBundle\winzouStateMachineBundle(),
             new JMS\SerializerBundle\JMSSerializerBundle($this),
             new JMS\AopBundle\JMSAopBundle(),
@@ -73,8 +73,23 @@ class AppKernel extends Kernel
         return $bundles;
     }
 
+    public function getRootDir()
+    {
+        return __DIR__;
+    }
+
+    public function getCacheDir()
+    {
+        return dirname(__DIR__).'/var/cache/'.$this->getEnvironment();
+    }
+
+    public function getLogDir()
+    {
+        return dirname(__DIR__).'/var/logs';
+    }
+    
     public function registerContainerConfiguration(LoaderInterface $loader)
     {
-        $loader->load(__DIR__.'/config/config_'.$this->getEnvironment().'.yml');
+        $loader->load($this->getRootDir().'/config/config_'.$this->getEnvironment().'.yml');
     }
 }

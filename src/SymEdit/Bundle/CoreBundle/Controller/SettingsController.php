@@ -12,8 +12,9 @@
 namespace SymEdit\Bundle\CoreBundle\Controller;
 
 use FOS\RestBundle\Controller\FOSRestController;
-use Sylius\Bundle\SettingsBundle\Manager\SettingsManagerInterface;
-use Sylius\Bundle\SettingsBundle\Schema\SchemaRegistryInterface;
+use SymEdit\Bundle\SettingsBundle\Manager\SettingsManagerInterface;
+use SymEdit\Bundle\SettingsBundle\Schema\SchemaRegistryInterface;
+use Symfony\Component\Form\Extension\Core\Type\FormType;
 use Symfony\Component\HttpFoundation\Request;
 
 /**
@@ -61,7 +62,7 @@ class SettingsController extends FOSRestController
     {
         $settings = $this->getSettingsManager();
         $schemas = $this->getSchemaRegistry()->all();
-        $builder = $this->createFormBuilder()->create('sylius_settings', 'form');
+        $builder = $this->createFormBuilder()->create('sylius_settings', FormType::class);
         $data = [];
 
         foreach ($schemas as $namespace => $schema) {
@@ -70,7 +71,7 @@ class SettingsController extends FOSRestController
                 continue;
             }
 
-            $namespaceForm = $builder->create($namespace, 'form');
+            $namespaceForm = $builder->create($namespace, FormType::class);
             $schema->buildForm($namespaceForm);
             $builder->add($namespaceForm);
 
@@ -95,7 +96,7 @@ class SettingsController extends FOSRestController
      */
     protected function getSettingsManager()
     {
-        return $this->get('sylius.settings_manager');
+        return $this->get('symedit.settings_manager');
     }
 
     /**
@@ -105,6 +106,6 @@ class SettingsController extends FOSRestController
      */
     protected function getSchemaRegistry()
     {
-        return $this->get('sylius.registry.settings_schema');
+        return $this->get('symedit.registry.settings_schema');
     }
 }

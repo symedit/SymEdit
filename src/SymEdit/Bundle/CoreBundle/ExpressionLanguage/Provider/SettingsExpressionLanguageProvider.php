@@ -27,7 +27,7 @@ class SettingsExpressionLanguageProvider implements ExpressionFunctionProviderIn
                 },
 
                 function (array $variables, $name, $default = null) {
-                    $settingsManager = $variables['container']->get('sylius.settings_manager');
+                    $settingsManager = $variables['container']->get('symedit.settings_manager');
 
                     if (false === strpos($name, '.')) {
                         throw new \InvalidArgumentException(sprintf('Parameter must be in format "namespace.name", "%s" given.', $name));

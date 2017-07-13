@@ -11,8 +11,8 @@
 
 namespace SymEdit\Bundle\CoreBundle\Settings;
 
-use Sylius\Bundle\SettingsBundle\Schema\SchemaInterface;
-use Sylius\Bundle\SettingsBundle\Schema\SettingsBuilderInterface;
+use SymEdit\Bundle\SettingsBundle\Schema\SchemaInterface;
+use SymEdit\Bundle\SettingsBundle\Schema\SettingsBuilderInterface;
 use Symfony\Component\Form\FormBuilderInterface;
 
 class SocialSettingsSchema implements SchemaInterface

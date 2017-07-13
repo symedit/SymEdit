@@ -5,11 +5,11 @@
            xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
 
     <services>
-        <service id="symedit.form.type.widget_area" class="%symedit.form.type.widget_area.class%">
+        <service id="symedit.form.type.widget_area" class="SymEdit\Bundle\WidgetBundle\Form\Type\WidgetAreaType">
             <tag name="form.type" alias="symedit_widget_area" />
         </service>
 
-        <service id="symedit.form.type.widget" class="%symedit.form.type.widget.class%">
+        <service id="symedit.form.type.widget" class="SymEdit\Bundle\WidgetBundle\Form\Type\WidgetType">
             <argument type="service" id="symedit_widget.widget.registry" />
             <argument>%symedit.model.widget_area.class%</argument>
 

@@ -14,6 +14,7 @@ namespace SymEdit\Bundle\CoreBundle\EventListener\Subscriber;
 use Sylius\Component\Resource\Repository\RepositoryInterface;
 use SymEdit\Bundle\CoreBundle\Event\DisplayOptionsEvent;
 use SymEdit\Bundle\CoreBundle\Event\Events;
+use SymEdit\Bundle\ThemeBundle\Form\Type\TemplateType;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
 class PageDisplayOptionsSubscriber implements EventSubscriberInterface
@@ -30,7 +31,7 @@ class PageDisplayOptionsSubscriber implements EventSubscriberInterface
         $builder = $event->getFormBuilder();
 
         foreach ($this->widgetAreaRepository->findAll() as $widgetArea) {
-            $builder->add($widgetArea->getArea(), 'template', [
+            $builder->add($widgetArea->getArea(), TemplateType::class, [
                 'placeholder' => 'No Override',
                 'directory' => 'WidgetArea',
                 'required' => false,

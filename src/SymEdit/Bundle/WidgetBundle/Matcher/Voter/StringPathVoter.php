@@ -11,8 +11,8 @@
 
 namespace SymEdit\Bundle\WidgetBundle\Matcher\Voter;
 
-use SymEdit\Bundle\WidgetBundle\Model\WidgetInterface;
 use SymEdit\Bundle\WidgetBundle\Model\Widget;
+use SymEdit\Bundle\WidgetBundle\Model\WidgetInterface;
 
 /**
  * This is mostly used as a parent class but you can also inject

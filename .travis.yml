@@ -22,7 +22,7 @@ install:
     - composer run-script travis-build --no-interaction
 
 before_script:
-    - php app/console symedit:install --force --env=test -v
+    - php bin/console symedit:install --force --env=test -v
 
 script:
     - phpunit

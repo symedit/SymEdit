@@ -10,7 +10,6 @@
         <parameter key="symedit.widget.strategy.google_map.class">SymEdit\Bundle\CoreBundle\Widget\Strategy\GoogleMapStrategy</parameter>
         <parameter key="symedit.widget.strategy.submenu.class">SymEdit\Bundle\CoreBundle\Widget\Strategy\SubmenuStrategy</parameter>
         <parameter key="symedit.widget.strategy.list_children.class">SymEdit\Bundle\CoreBundle\Widget\Strategy\ListChildrenStrategy</parameter>
-        <parameter key="symedit.widget.voter.current_page.class">SymEdit\Bundle\CoreBundle\Widget\Matcher\Voter\CurrentPageVoter</parameter>
     </parameters>
 
     <services>
@@ -23,7 +22,7 @@
 
         <!-- Widget Strategies -->
         <service id="symedit.widget.strategy.contact_info" class="%symedit.widget.strategy.contact_info.class%">
-            <argument type="service" id="sylius.repository.settings" />
+            <argument type="service" id="symedit.repository.settings" />
 
             <tag name="symedit_widget.widget_strategy" alias="contact_info" />
         </service>
@@ -41,9 +40,9 @@
         </service>
 
         <!-- Voters -->
-        <service id="symedit.widget.voter.current_page" class="%symedit.widget.voter.current_page.class%">
+        <service id="symedit.widget.voter.current_page" class="SymEdit\Bundle\CoreBundle\Widget\Matcher\Voter\CurrentPageVoter">
             <call method="setRequest">
-                <argument type="service" id="request" on-invalid="null" strict="false" />
+                <argument type="service" id="request_stack" />
             </call>
             <tag name="symedit_widget.voter" />
         </service>

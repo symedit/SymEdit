@@ -25,6 +25,10 @@ interface FormElementConfigInterface
 
     public function setType($type);
 
+    public function setFormFQCN($formFQCN);
+
+    public function getFormFQCN();
+
     public function getName();
 
     /**

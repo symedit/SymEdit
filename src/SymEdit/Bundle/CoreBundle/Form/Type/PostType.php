@@ -12,6 +12,8 @@
 namespace SymEdit\Bundle\CoreBundle\Form\Type;
 
 use SymEdit\Bundle\BlogBundle\Form\Type\PostType as BasePostType;
+use SymEdit\Bundle\MediaBundle\Form\Type\ImageChooseType;
+use SymEdit\Bundle\SeoBundle\Form\Type\SeoType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -22,7 +24,7 @@ class PostType extends BasePostType
         parent::buildBasicForm($builder, $options);
 
         $builder
-            ->add('image', 'symedit_image_choose', [
+            ->add('image', ImageChooseType::class, [
                 'required' => false,
                 'show_image' => true,
                 'label' => 'symedit.form.post.image',
@@ -33,7 +35,7 @@ class PostType extends BasePostType
     public function buildSeoForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('seo', 'symedit_seo', [
+            ->add('seo', SeoType::class, [
                 'horizontal_label_offset_class' => '',
             ])
         ;

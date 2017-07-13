@@ -12,6 +12,7 @@
 namespace SymEdit\Bundle\UserBundle\Form\Type;
 
 use Doctrine\ORM\EntityRepository;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\OptionsResolver\Options;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -27,7 +28,7 @@ class UserChooseType extends AbstractType
 
     public function getParent()
     {
-        return 'entity';
+        return EntityType::class;
     }
 
     public function configureOptions(OptionsResolver $resolver)
@@ -51,7 +52,7 @@ class UserChooseType extends AbstractType
         });
     }
 
-    public function getName()
+    public function getBlockPrefix()
     {
         return 'symedit_user_choose';
     }

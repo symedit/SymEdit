@@ -12,6 +12,7 @@
 namespace SymEdit\Bundle\FormBuilderBundle\Widget\Strategy;
 
 use Sylius\Component\Resource\Repository\RepositoryInterface;
+use SymEdit\Bundle\CoreBundle\Form\Type\EntityPropertyType;
 use SymEdit\Bundle\FormBuilderBundle\Form\FormBuilderFactoryInterface;
 use SymEdit\Bundle\WidgetBundle\Model\WidgetInterface;
 use SymEdit\Bundle\WidgetBundle\Widget\Strategy\AbstractWidgetStrategy;
@@ -49,7 +50,7 @@ class FormBuilderStrategy extends AbstractWidgetStrategy
     public function buildForm(FormBuilderInterface $builder)
     {
         $builder
-            ->add('form_builder_id', 'entity_property', [
+            ->add('form_builder_id', EntityPropertyType::class, [
                 'class' => $this->repository->getClassName(),
                 'property' => 'legend',
                 'property_value' => 'id',

@@ -11,9 +11,9 @@
 
 namespace SymEdit\Bundle\CoreBundle\EventListener\Seo;
 
+use SymEdit\Bundle\CoreBundle\Model\PostInterface;
 use SymEdit\Bundle\SeoBundle\Event\SeoEvent;
 use SymEdit\Bundle\SeoBundle\Model\SeoCalculatorInterface;
-use SymEdit\Bundle\CoreBundle\Model\PostInterface;
 
 class PostCalculator implements SeoCalculatorInterface
 {

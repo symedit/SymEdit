@@ -16,6 +16,7 @@ use Sylius\Component\Resource\Repository\RepositoryInterface;
 use SymEdit\Bundle\MediaBundle\Form\DataTransformer\GalleryChooseDataTransformer;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\ChoiceList\ObjectChoiceList;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -43,23 +44,22 @@ class ImageGalleryChooseType extends AbstractType
         $labels = [];
 
         foreach ($this->imageRepository->findAll() as $image) {
-            $choices[] = $image;
-            $labels[] = $image->getName();
+            $choices[$image->getName()] = $image;
         }
 
         $resolver->setDefaults([
             'expanded' => true,
             'multiple' => true,
-            'choice_list' => new ObjectChoiceList($choices, 'name'),
+            'choices' => $choices,
         ]);
     }
 
     public function getParent()
     {
-        return 'choice';
+        return ChoiceType::class;
     }
 
-    public function getName()
+    public function getBlockPrefix()
     {
         return 'symedit_image_gallery_choose';
     }

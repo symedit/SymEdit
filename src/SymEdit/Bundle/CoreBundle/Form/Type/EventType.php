@@ -12,6 +12,9 @@
 namespace SymEdit\Bundle\CoreBundle\Form\Type;
 
 use SymEdit\Bundle\EventsBundle\Form\Type\EventType as BaseEventType;
+use SymEdit\Bundle\MediaBundle\Form\Type\FileChooseType;
+use SymEdit\Bundle\MediaBundle\Form\Type\ImageChooseType;
+use SymEdit\Bundle\SeoBundle\Form\Type\SeoType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -25,7 +28,7 @@ class EventType extends BaseEventType
     public function buildSeoForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('seo', 'symedit_seo', [
+            ->add('seo', SeoType::class, [
                 'horizontal_label_offset_class' => '',
             ])
         ;
@@ -34,11 +37,11 @@ class EventType extends BaseEventType
     public function buildMediaForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('file', 'symedit_file_choose', [
+            ->add('file', FileChooseType::class, [
                 'label' => 'symedit.form.event.media.file',
                 'required' => false,
             ])
-            ->add('image', 'symedit_image_choose', [
+            ->add('image', ImageChooseType::class, [
                 'label' => 'symedit.form.event.media.image',
                 'required' => false,
             ])

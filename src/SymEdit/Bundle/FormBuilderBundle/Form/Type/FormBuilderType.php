@@ -12,6 +12,7 @@
 namespace SymEdit\Bundle\FormBuilderBundle\Form\Type;
 
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 
 class FormBuilderType extends AbstractType
@@ -19,16 +20,16 @@ class FormBuilderType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('name', 'text', [
+            ->add('name', TextType::class, [
                 'required' => true,
             ])
-            ->add('legend', 'text', [
+            ->add('legend', TextType::class, [
                 'required' => true,
             ])
         ;
     }
 
-    public function getName()
+    public function getBlockPrefix()
     {
         return 'symedit_form_builder';
     }

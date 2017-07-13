@@ -15,7 +15,7 @@
             <argument type="service" id="knp_menu.factory" />
             <argument type="service" id="symedit.repository.page" />
             <argument type="service" id="event_dispatcher" />
-            
+
             <tag name="knp_menu.provider" />
         </service>
 
@@ -25,7 +25,6 @@
 
         <service id="symedit.menu_builder" class="%symedit.menu_builder.class%">
             <argument type="service" id="service_container" />
-            <argument>%symedit.extensions.routes%</argument>
         </service>
 
         <service id="symedit.menu.admin_user" class="Knp\Menu\Menuitem">

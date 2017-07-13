@@ -12,6 +12,7 @@
 namespace SymEdit\Bundle\WidgetBundle\Widget\Strategy;
 
 use SymEdit\Bundle\WidgetBundle\Model\WidgetInterface;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -27,7 +28,7 @@ class AddThisStrategy extends AbstractWidgetStrategy
     public function buildForm(FormBuilderInterface $builder)
     {
         $builder
-            ->add('include_script', 'checkbox', [
+            ->add('include_script', CheckboxType::class, [
                 'required' => false,
                 'label' => 'Include Javascript File?',
                 'help_block' => 'Try not to include the Javascript file twice on any page.',

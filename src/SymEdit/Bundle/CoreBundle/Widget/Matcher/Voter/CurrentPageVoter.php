@@ -15,6 +15,7 @@ use SymEdit\Bundle\CoreBundle\Model\PageInterface;
 use SymEdit\Bundle\WidgetBundle\Matcher\Voter\StringPathVoter;
 use SymEdit\Bundle\WidgetBundle\Model\WidgetInterface;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\RequestStack;
 
 /**
  * Get the current page from the Request and check to see if
@@ -22,11 +23,11 @@ use Symfony\Component\HttpFoundation\Request;
  */
 class CurrentPageVoter extends StringPathVoter
 {
-    protected $request;
+    protected $requestStack;
 
-    public function setRequest(Request $request = null)
+    public function setRequest(RequestStack $requestStack = null)
     {
-        $this->request = $request;
+        $this->requestStack = $requestStack;
     }
 
     /**
@@ -34,7 +35,7 @@ class CurrentPageVoter extends StringPathVoter
      */
     public function getRequest()
     {
-        return $this->request;
+        return $this->requestStack->getCurrentRequest();
     }
 
     public function isVisible(WidgetInterface $widget)

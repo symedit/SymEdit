@@ -12,8 +12,8 @@
 namespace SymEdit\Bundle\UserBundle\Form\EventListener;
 
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
-use Symfony\Component\Form\FormEvents;
 use Symfony\Component\Form\FormEvent;
+use Symfony\Component\Form\FormEvents;
 
 class UserTypeSubscriber implements EventSubscriberInterface
 {

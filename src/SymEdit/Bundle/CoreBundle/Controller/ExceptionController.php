@@ -12,15 +12,15 @@
 namespace SymEdit\Bundle\CoreBundle\Controller;
 
 use Symfony\Bundle\TwigBundle\Controller\ExceptionController as BaseController;
-use Symfony\Component\HttpKernel\Exception\FlattenException;
-use Symfony\Component\Templating\TemplateReference;
-use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Debug\Exception\FlattenException;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Log\DebugLoggerInterface;
+use Symfony\Component\Templating\TemplateReference;
 
 class ExceptionController extends BaseController
 {
-    public function showAction(Request $request, FlattenException $exception, DebugLoggerInterface $logger = null, $format = 'html')
+    public function showAction(Request $request, FlattenException $exception, DebugLoggerInterface $logger = NULL)
     {
         $code = $exception->getStatusCode();
 
@@ -37,6 +37,6 @@ class ExceptionController extends BaseController
             }
         }
 
-        return parent::showAction($request, $exception, $logger, $format);
+        return parent::showAction($request, $exception, $logger);
     }
 }

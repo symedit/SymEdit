@@ -1,4 +1,5 @@
 {% extends 'knp_menu.html.twig' %}
+{% import _self as menu %}
 
 {% macro attributes(attributes) %}
 {% for name, value in attributes %}
@@ -10,7 +11,7 @@
 
 {% block linkElement %}
 {% spaceless %}
-    <a href="{{ item.uri }}"{{ _self.attributes(item.linkAttributes) }}>
+    <a href="{{ item.uri }}"{{ menu.attributes(item.linkAttributes) }}>
         {{- block('label') -}}
         {%- if item.children|length > 0 -%}
             <span class="caret"></span>

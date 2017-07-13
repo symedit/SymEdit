@@ -16,7 +16,7 @@ use SymEdit\Bundle\CoreBundle\Model\PageInterface;
 use SymEdit\Bundle\WidgetBundle\Model\WidgetInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class ListChildrenStrategy extends AbstractWidgetStrategy
+class ListChildrenStrategy extends PageAwareAbstractWidgetStrategy
 {
     public function execute(WidgetInterface $widget, PageInterface $page = null)
     {

@@ -5,12 +5,12 @@
            xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
 
     <services>
-        <service id="symedit.form.type.post" class="%symedit.form.type.post.class%">
+        <service id="symedit_blog.form.type.post" class="SymEdit\Bundle\BlogBundle\Form\Type\PostType">
             <argument>%symedit.model.category.class%</argument>
             <tag name="form.type" alias="symedit_post" />
         </service>
 
-        <service id="symedit.form.type.category" class="%symedit.form.type.category.class%">
+        <service id="symedit_blog.form.type.category" class="SymEdit\Bundle\BlogBundle\Form\Type\CategoryType">
             <argument>%symedit.model.category.class%</argument>
             <tag name="form.type" alias="symedit_category" />
         </service>

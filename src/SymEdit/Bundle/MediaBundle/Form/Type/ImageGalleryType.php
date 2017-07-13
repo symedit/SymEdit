@@ -28,7 +28,7 @@ class ImageGalleryType extends AbstractType
     {
         $builder
             ->add('title')
-            ->add('items', 'symedit_image_gallery_choose')
+            ->add('items', ImageGalleryChooseType::class)
         ;
     }
 
@@ -39,7 +39,7 @@ class ImageGalleryType extends AbstractType
         ]);
     }
 
-    public function getName()
+    public function getBlockPrefix()
     {
         return 'symedit_image_gallery';
     }

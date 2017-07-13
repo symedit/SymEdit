@@ -11,12 +11,13 @@
 
 namespace SymEdit\Bundle\CoreBundle\Form\Type;
 
-use Symfony\Component\Form\AbstractType;
-use Symfony\Component\OptionsResolver\OptionsResolver;
 use Doctrine\Bundle\DoctrineBundle\Registry;
-use Symfony\Component\PropertyAccess\PropertyAccess;
-use Symfony\Component\Form\Extension\Core\ChoiceList\SimpleChoiceList;
+use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\ChoiceList\ArrayChoiceList;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\OptionsResolver\Options;
+use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\PropertyAccess\PropertyAccess;
 
 class EntityPropertyType extends AbstractType
 {
@@ -35,40 +36,48 @@ class EntityPropertyType extends AbstractType
             'class',
         ]);
 
-        $doctrine = $this->doctrine;
-
-        $choiceList = function (Options $options) use ($doctrine) {
-            $entities = $doctrine->getManager()->getRepository($options['class'])->findAll();
-
-            $choices = [];
-            $accessor = PropertyAccess::createPropertyAccessor();
-            $i = 0;
-
-            foreach ($entities as $entity) {
-                if ($options['property_value'] !== null) {
-                    $key = $accessor->getValue($entity, $options['property_value']);
-                } else {
-                    $key = $i++;
-                }
-
-                $choices[$key] = $accessor->getValue($entity, $options['property']);
-            }
-
-            return new SimpleChoiceList($choices);
-        };
 
         $resolver->setDefaults([
             'property_value' => null,
-            'choice_list' => $choiceList,
+            'choices' => function (Options $options) {
+                return $choices = $this->doctrine->getManager()->getRepository($options['class'])->findAll();
+            }
         ]);
+
+        // Create Accessor
+        $accessor = PropertyAccess::createPropertyAccessor();
+
+        // Get Choice Values
+        $resolver->setNormalizer('choice_value', function (Options $options) use ($accessor) {
+            $i = 0;
+
+            return function($entity) use ($options, $accessor, &$i) {
+                if ($entity === null) {
+                    return;
+                }
+
+                if ($options['property_value'] !== null) {
+                    return $accessor->getValue($entity, $options['property_value']);
+                }
+
+                return $i++;
+            };
+        });
+
+        // Get Choice Labels
+        $resolver->setNormalizer('choice_label', function (Options $options) use ($accessor) {
+            return function($entity, $key, $index) use ($options, $accessor) {
+                return $accessor->getValue($entity, $options['property']);
+            };
+        });
     }
 
     public function getParent()
     {
-        return 'choice';
+        return ChoiceType::class;
     }
 
-    public function getName()
+    public function getBlockPrefix()
     {
         return 'entity_property';
     }

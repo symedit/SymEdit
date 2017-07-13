@@ -24,9 +24,11 @@ Feature: Contact Form
           And I should see "This value is not a valid email address."
 
     Scenario: Successful Submit
-         When I fill in "Name" with "My Name"
+         When there are no collected emails
+          And I fill in "Name" with "My Name"
           And I fill in "Email" with "test@test.com"
           And I fill in "Phone" with "123-123-1234"
           And I fill in "Message" with "Here is a message"
           And I press "Send Message"
          Then I should see "Your submission has been successfully received."
+          And I should see an email of type "form_builder_result"

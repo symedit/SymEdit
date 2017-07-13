@@ -18,6 +18,7 @@ class FormElementConfig implements FormElementConfigInterface
 {
     protected $element;
     protected $type;
+    protected $formFQCN;
     protected $name;
     protected $constraints = [];
 
@@ -44,6 +45,18 @@ class FormElementConfig implements FormElementConfigInterface
     public function setName($name)
     {
         $this->name = $name;
+
+        return $this;
+    }
+
+    public function getFormFQCN()
+    {
+        return $this->formFQCN;
+    }
+
+    public function setFormFQCN($formFQCN)
+    {
+        $this->formFQCN = $formFQCN;
 
         return $this;
     }

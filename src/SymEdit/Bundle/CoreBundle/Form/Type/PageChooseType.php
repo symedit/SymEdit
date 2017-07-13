@@ -14,6 +14,7 @@ namespace SymEdit\Bundle\CoreBundle\Form\Type;
 use SymEdit\Bundle\CoreBundle\Form\DataTransformer\RepositoryTransformer;
 use SymEdit\Bundle\CoreBundle\Repository\PageRepositoryInterface;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -35,7 +36,7 @@ class PageChooseType extends AbstractType
 
     public function getParent()
     {
-        return 'choice';
+        return ChoiceType::class;
     }
 
     public function configureOptions(OptionsResolver $resolver)
@@ -51,15 +52,16 @@ class PageChooseType extends AbstractType
             if ($page->getHomepage()) {
                 continue;
             }
-            $choices[$page->getId()] = str_repeat('--', $page->getLevel()).' '.$page->getTitle();
+
+            $choices[$page->getId()] = sprintf('%s %s (%d)', str_repeat('--', $page->getLevel()), $page->getTitle(), $page->getId());
         }
 
         $resolver->setDefaults([
-            'choices' => $choices,
+            'choices' => array_flip($choices),
         ]);
     }
 
-    public function getName()
+    public function getBlockPrefix()
     {
         return 'symedit_page_choose';
     }

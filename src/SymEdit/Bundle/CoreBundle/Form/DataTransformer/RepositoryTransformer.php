@@ -11,8 +11,8 @@
 
 namespace SymEdit\Bundle\CoreBundle\Form\DataTransformer;
 
-use Symfony\Component\Form\DataTransformerInterface;
 use Sylius\Component\Resource\Repository\RepositoryInterface;
+use Symfony\Component\Form\DataTransformerInterface;
 
 class RepositoryTransformer implements DataTransformerInterface
 {

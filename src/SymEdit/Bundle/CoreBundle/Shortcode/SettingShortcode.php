@@ -11,7 +11,7 @@
 
 namespace SymEdit\Bundle\CoreBundle\Shortcode;
 
-use Sylius\Bundle\SettingsBundle\Manager\SettingsManagerInterface;
+use SymEdit\Bundle\SettingsBundle\Manager\SettingsManagerInterface;
 use SymEdit\Bundle\ShortcodeBundle\Shortcode\AbstractShortcode;
 
 class SettingShortcode extends AbstractShortcode

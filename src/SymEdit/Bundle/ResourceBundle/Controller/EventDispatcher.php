@@ -52,6 +52,14 @@ class EventDispatcher implements EventDispatcherInterface
         return $this->dispatchGenericEvent($event, 'pre_'.$eventName);
     }
 
+    /**
+     * {@inheritdoc}
+     */
+    public function dispatchInitializeEvent($eventName, RequestConfiguration $requestConfiguration, ResourceInterface $resource)
+    {
+        return $this->syliusEventDispatcher->dispatchInitializeEvent($eventName, $requestConfiguration, $resource);
+    }
+
     private function dispatchGenericEvent(ResourceControllerEvent $event, $eventName)
     {
         $this->symfonyEventDispatcher->dispatch(sprintf('symedit.%s', $eventName), $event);

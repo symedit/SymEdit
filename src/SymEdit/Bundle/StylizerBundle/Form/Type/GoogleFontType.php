@@ -13,6 +13,7 @@ namespace SymEdit\Bundle\StylizerBundle\Form\Type;
 
 use SymEdit\Bundle\StylizerBundle\Form\DataTransformer\GoogleFontTransformer;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -38,13 +39,13 @@ class GoogleFontType extends AbstractType
      */
     public function getParent()
     {
-        return 'text';
+        return TextType::class;
     }
 
     /**
      * {@inheritdoc}
      */
-    public function getName()
+    public function getBlockPrefix()
     {
         return 'google_font';
     }

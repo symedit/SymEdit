@@ -11,9 +11,9 @@
 
 namespace SymEdit\Bundle\SeoBundle\DataCollector;
 
-use Symfony\Component\HttpKernel\DataCollector\DataCollector;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpKernel\DataCollector\DataCollector;
 
 class SeoDataCollector extends DataCollector
 {

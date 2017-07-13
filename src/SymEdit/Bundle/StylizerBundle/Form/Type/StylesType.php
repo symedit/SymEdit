@@ -14,23 +14,26 @@ namespace SymEdit\Bundle\StylizerBundle\Form\Type;
 use SymEdit\Bundle\StylizerBundle\Loader\GroupData;
 use SymEdit\Bundle\StylizerBundle\Model\StyleManager;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\FormType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Validator\Constraints\NotBlank;
 
 class StylesType extends AbstractType
 {
     protected $manager;
+    protected $mappings;
 
-    public function __construct(StyleManager $manager)
+    public function __construct(StyleManager $manager, array $mappings)
     {
         $this->manager = $manager;
+        $this->mappings = $mappings;
     }
 
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $groups = $this->manager->getConfigData()->getGroups();
 
-        $allGroups = $builder->create('groups', 'form', [
+        $allGroups = $builder->create('groups', FormType::class, [
             'inherit_data' => true,
             'label' => false,
         ]);
@@ -45,7 +48,7 @@ class StylesType extends AbstractType
                 $groupOptions['label'] = $group->getLabel();
             }
 
-            $groupForm = $builder->create('group_'.$groupName, new GroupType(), $groupOptions);
+            $groupForm = $builder->create('group_'.$groupName, GroupType::class, $groupOptions);
             $this->addVariables($groupForm, $group);
 
             $allGroups->add($groupForm);
@@ -76,14 +79,21 @@ class StylesType extends AbstractType
             ];
         }
 
-        $builder->add($name, $type, array_merge([
+        if (!isset($this->mappings[$type])) {
+            throw new \InvalidArgumentException(sprintf('Stylizer form type "%s" not mapped to a form class', $type));
+        }
+
+        // Get fqcn for form type
+        $fqcn = $this->mappings[$type];
+
+        $builder->add($name, $fqcn, array_merge([
             'label' => $label,
             'property_path' => sprintf('[%s]', $name),
             'constraints' => $constraints,
         ], $options));
     }
 
-    public function getName()
+    public function getBlockPrefix()
     {
         return 'symedit_stylizer';
     }

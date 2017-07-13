@@ -36,10 +36,10 @@ class FileType extends AbstractType
 
     public function getParent()
     {
-        return 'symedit_media';
+        return MediaType::class;
     }
 
-    public function getName()
+    public function getBlockPrefix()
     {
         return 'symedit_file';
     }

@@ -20,13 +20,11 @@ class Builder
 {
     protected $factory;
     protected $container;
-    protected $extensions;
 
-    public function __construct(ContainerInterface $container, $extensions = [])
+    public function __construct(ContainerInterface $container)
     {
         $this->factory = $container->get('knp_menu.factory');
         $this->container = $container;
-        $this->extensions = $extensions;
     }
 
     /**

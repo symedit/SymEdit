@@ -1,0 +1,13 @@
+<?xml version="1.0" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <services>
+        <service id="symedit_blog.custom_factory.post" class="SymEdit\Bundle\BlogBundle\Factory\PostFactory" decorates="symedit.factory.post">
+            <argument type="service" id="symedit_blog.custom_factory.post.inner" />
+            <argument type="service" id="security.token_storage" />
+        </service>
+    </services>
+</container>

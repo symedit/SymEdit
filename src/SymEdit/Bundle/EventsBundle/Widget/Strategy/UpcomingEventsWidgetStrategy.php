@@ -14,6 +14,7 @@ namespace SymEdit\Bundle\EventsBundle\Widget\Strategy;
 use Sylius\Component\Resource\Repository\RepositoryInterface;
 use SymEdit\Bundle\WidgetBundle\Model\WidgetInterface;
 use SymEdit\Bundle\WidgetBundle\Widget\Strategy\AbstractWidgetStrategy;
+use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints\Range;
@@ -30,7 +31,7 @@ class UpcomingEventsWidgetStrategy extends AbstractWidgetStrategy
     public function buildForm(FormBuilderInterface $builder)
     {
         $builder
-            ->add('max', 'integer', [
+            ->add('max', IntegerType::class, [
                 'label' => 'Max Events',
                 'help_block' => 'Maximum Events to display in Widget',
                 'constraints' => [

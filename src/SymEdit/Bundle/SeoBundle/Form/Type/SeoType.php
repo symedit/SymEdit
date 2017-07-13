@@ -12,6 +12,9 @@
 namespace SymEdit\Bundle\SeoBundle\Form\Type;
 
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -20,31 +23,31 @@ class SeoType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('title', 'text', [
+            ->add('title', TextType::class, [
                 'label' => 'symedit.form.seo.title',
                 'attr' => ['data-toggle' => 'char-count', 'data-max' => 65],
                 'required' => false,
             ])
-            ->add('description', 'textarea', [
+            ->add('description', TextareaType::class, [
                 'label' => 'symedit.form.seo.description',
                 'attr' => ['data-toggle' => 'char-count', 'data-max' => 155],
                 'required' => false,
             ])
-            ->add('keywords', 'textarea', [
+            ->add('keywords', TextareaType::class, [
                 'label' => 'symedit.form.seo.keywords',
                 'required' => false,
             ])
-            ->add('index', 'choice', [
+            ->add('index', ChoiceType::class, [
                 'choices' => [
-                    true => 'Index',
-                    false => 'No Index',
+                    'Index' => true,
+                    'No Index' => false,
                 ],
                 'label' => 'symedit.form.seo.index',
             ])
-            ->add('follow', 'choice', [
+            ->add('follow', ChoiceType::class, [
                 'choices' => [
-                    true => 'Follow',
-                    false => 'No Follow',
+                    'Follow' => true,
+                    'No Follow' => false,
                 ],
                 'label' => 'symedit.form.seo.follow',
             ])
@@ -58,7 +61,7 @@ class SeoType extends AbstractType
         ]);
     }
 
-    public function getName()
+    public function getBlockPrefix()
     {
         return 'symedit_seo';
     }

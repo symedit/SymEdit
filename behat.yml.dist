@@ -39,6 +39,7 @@ default:
             contexts:
                 - Behat\MinkExtension\Context\MinkContext
                 - SymEdit\Bundle\CoreBundle\Behat\WebContext
+                - SymEdit\Bundle\CoreBundle\Behat\MailerContext
             filters:
                 tags: "@contact"
         analytics:
@@ -68,6 +69,13 @@ default:
                 - SymEdit\Bundle\CoreBundle\Behat\WebContext
             filters:
                 tags: "@form_builder"
+        seo:
+            contexts:
+                - Behat\MinkExtension\Context\MinkContext
+                - SymEdit\Bundle\CoreBundle\Behat\WebContext
+                - SymEdit\Bundle\CoreBundle\Behat\SeoContext
+            filters:
+                tags: "@seo"
     extensions:
         Behat\MinkExtension:
             sessions:

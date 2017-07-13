@@ -16,6 +16,7 @@ use SymEdit\Bundle\FormBuilderBundle\Event\Events;
 use SymEdit\Bundle\FormBuilderBundle\Event\FormBuilderFactoryEvent;
 use SymEdit\Bundle\FormBuilderBundle\Model\FormInterface;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
+use Symfony\Component\Form\Extension\Core\Type\FormType;
 use Symfony\Component\Form\FormFactoryInterface;
 use Symfony\Component\Routing\RouterInterface;
 
@@ -27,8 +28,13 @@ class FormBuilderFactory implements FormBuilderFactoryInterface
     protected $router;
     protected $route;
 
-    public function __construct(FieldBuilderRegistry $registry, FormFactoryInterface $factory, EventDispatcherInterface $dispatcher, RouterInterface $router, $route)
-    {
+    public function __construct
+    (
+        FieldBuilderRegistry $registry,
+        FormFactoryInterface $factory,
+        EventDispatcherInterface $dispatcher,
+        RouterInterface $router, $route
+    ) {
         $this->registry = $registry;
         $this->factory = $factory;
         $this->dispatcher = $dispatcher;
@@ -48,7 +54,7 @@ class FormBuilderFactory implements FormBuilderFactoryInterface
         $event = new FormBuilderFactoryEvent($form, $options);
         $this->dispatcher->dispatch(Events::FORM_BUILD, $event);
 
-        $builder = $this->factory->createNamedBuilder($form->getName(), 'form', $data, $event->getOptions());
+        $builder = $this->factory->createNamedBuilder($form->getName(), FormType::class, $data, $event->getOptions());
 
         foreach ($form->getFormElements() as $element) {
             $fieldConfig = $this->registry->getFormElementConfig($element);
@@ -61,7 +67,7 @@ class FormBuilderFactory implements FormBuilderFactoryInterface
             $options['constraints'] = $fieldConfig->getConstraints();
 
             // Add to form
-            $builder->add($fieldConfig->getName(), $fieldConfig->getType(), $options);
+            $builder->add($fieldConfig->getName(), $fieldConfig->getFormFQCN(), $options);
         }
 
         return $builder->getForm();

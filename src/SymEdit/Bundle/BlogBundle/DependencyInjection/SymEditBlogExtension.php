@@ -35,6 +35,7 @@ class SymEditBlogExtension extends SymEditResourceExtension implements PrependEx
 
         // Load Config Files
         $configFiles = [
+            'services.xml',
             'form.xml',
             'widget.xml',
         ];

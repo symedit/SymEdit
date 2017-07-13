@@ -14,9 +14,7 @@ namespace SymEdit\Bundle\CoreBundle\Tests\DependencyInjection;
 use Sylius\Component\Resource\Factory\Factory;
 use SymEdit\Bundle\CoreBundle\Controller\PageController;
 use SymEdit\Bundle\CoreBundle\DependencyInjection\Configuration;
-use SymEdit\Bundle\CoreBundle\Form\Type\PageChooseType;
 use SymEdit\Bundle\CoreBundle\Form\Type\PageType;
-use SymEdit\Bundle\CoreBundle\Model\Breadcrumbs;
 use SymEdit\Bundle\CoreBundle\Model\Page;
 use SymEdit\Bundle\CoreBundle\Model\PageInterface;
 use SymEdit\Bundle\CoreBundle\Model\Role;
@@ -38,7 +36,7 @@ class ConfigurationTest extends TestCase
     }
 
     /**
-     * @expectedException \Symfony\Component\Config\Definition\Exception\InvalidConfigurationException
+     * @expectedException Symfony\Component\Config\Definition\Exception\InvalidConfigurationException
      */
     public function testInvalidDriver()
     {
@@ -49,38 +47,10 @@ class ConfigurationTest extends TestCase
         ]);
     }
 
-    public function testExtensions()
-    {
-        $processor = new Processor();
-        $configuration = new Configuration();
-        $config = $processor->processConfiguration($configuration, [[
-            'extensions' => [
-                [
-                    'route' => 'test_route',
-                    'label' => 'Foo Extension',
-                    'icon' => 'bar',
-                ],
-            ],
-        ]]);
-
-        $this->assertEquals(
-            [
-                [
-                    'route' => 'test_route',
-                    'label' => 'Foo Extension',
-                    'role' => 'ROLE_ADMIN',
-                    'icon' => 'bar',
-                ],
-            ],
-            $config['extensions']
-        );
-    }
-
     protected static function getBundleDefaultConfig()
     {
         return [
             'driver' => 'doctrine/orm',
-            'extensions' => [],
             'email' => [
                 'sender' => 'email@example.com',
             ],
@@ -95,10 +65,7 @@ class ConfigurationTest extends TestCase
                         'model' => Page::class,
                         'interface' => PageInterface::class,
                         'controller' => PageController::class,
-                        'form' => [
-                            'default' => PageType::class,
-                            'choose' => PageChooseType::class,
-                        ],
+                        'form' => PageType::class,
                         'factory' => Factory::class,
                     ],
                 ],
@@ -109,9 +76,6 @@ class ConfigurationTest extends TestCase
                         'factory' => Factory::class,
                     ],
                 ],
-            ],
-            'routing' => [
-                'route_uri_filter_regexp' => '',
             ],
         ];
     }

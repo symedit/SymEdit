@@ -13,7 +13,6 @@ namespace SymEdit\Bundle\SeoBundle\EventListener\Seo;
 
 use SymEdit\Bundle\SeoBundle\Event\SeoEvent;
 use SymEdit\Bundle\SeoBundle\Model\SeoCalculatorInterface;
-use Symfony\Component\HttpFoundation\Request;
 
 /**
  * Checks to see if you added the _seo attribute to routing
@@ -22,28 +21,18 @@ use Symfony\Component\HttpFoundation\Request;
  */
 class RequestCalculator implements SeoCalculatorInterface
 {
-    protected $request;
-
-    /**
-     * Set the Request.
-     *
-     * @param \Symfony\Component\HttpFoundation\Request $request
-     */
-    public function setRequest(Request $request = null)
-    {
-        $this->request = $request;
-    }
-
     /**
      * {@inheritdoc}
      */
     public function calculateSeo(SeoEvent $event)
     {
-        if ($this->request === null || !$this->request->attributes->has('_seo')) {
+        $request = $event->getRequest();
+
+        if ($request === null || !$request->attributes->has('_seo')) {
             return;
         }
 
-        $requestSeo = $this->request->attributes->get('_seo');
+        $requestSeo = $request->attributes->get('_seo');
         $seo = $event->getSeo();
 
         $seo->merge($requestSeo, true);

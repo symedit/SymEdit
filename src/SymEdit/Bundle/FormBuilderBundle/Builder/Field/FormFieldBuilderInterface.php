@@ -41,6 +41,11 @@ interface FormFieldBuilderInterface
     public function buildFormConfig(FormElementConfigInterface $config);
 
     /**
+     * Get FQCN Of Form Type
+     */
+    public function getFormFQCN();
+
+    /**
      * Get Parent.
      *
      * @return string

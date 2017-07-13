@@ -11,8 +11,8 @@
 
 namespace SymEdit\Bundle\ResourceBundle\DependencyInjection;
 
-use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Sylius\Bundle\ResourceBundle\DependencyInjection\Extension\AbstractResourceExtension;
+use Symfony\Component\DependencyInjection\ContainerBuilder;
 
 abstract class SymEditResourceExtension extends AbstractResourceExtension
 {

@@ -11,8 +11,8 @@
 
 namespace SymEdit\Bundle\WidgetBundle\Matcher\Voter;
 
-use SymEdit\Bundle\WidgetBundle\Model\WidgetInterface;
 use SymEdit\Bundle\WidgetBundle\Model\Widget;
+use SymEdit\Bundle\WidgetBundle\Model\WidgetInterface;
 
 /**
  * If visibility is set to INCLUDE_ALL then it should

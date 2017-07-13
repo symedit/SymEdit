@@ -14,7 +14,11 @@ namespace SymEdit\Bundle\WidgetBundle\Form\Type;
 use SymEdit\Bundle\WidgetBundle\Form\DataTransformer\WidgetAssociationTransformer;
 use SymEdit\Bundle\WidgetBundle\Model\WidgetInterface;
 use SymEdit\Bundle\WidgetBundle\Widget\WidgetRegistry;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Validator\Constraints\NotBlank;
 
@@ -34,29 +38,29 @@ class WidgetType extends AbstractType
         $transformer = new WidgetAssociationTransformer();
 
         $builder
-            ->add('title', 'text', [
+            ->add('title', TextType::class, [
                 'label' => 'symedit.form.widget.basic.title',
                 'required' => false,
             ])
-            ->add('name', 'text', [
+            ->add('name', TextType::class, [
                 'label' => 'symedit.form.widget.basic.name.label',
                 'help_block' => 'symedit.form.widget.basic.name.help',
             ])
-            ->add('area', 'entity', [
+            ->add('area', EntityType::class, [
                 'label' => 'symedit.form.widget.basic.area',
                 'choice_label' => 'area',
                 'class' => $this->widgetAreaClass,
             ])
-            ->add('visibility', 'choice', [
+            ->add('visibility', ChoiceType::class, [
                 'label' => 'symedit.form.widget.basic.visibility.label',
                 'choices' => [
-                    WidgetInterface::INCLUDE_ALL => 'symedit.form.widget.basic.visibility.include_all',
-                    WidgetInterface::INCLUDE_ONLY => 'symedit.form.widget.basic.visibility.include_only',
-                    WidgetInterface::EXCLUDE_ONLY => 'symedit.form.widget.basic.visibility.exclude_only',
+                    'symedit.form.widget.basic.visibility.include_all' => WidgetInterface::INCLUDE_ALL,
+                    'symedit.form.widget.basic.visibility.include_only' => WidgetInterface::INCLUDE_ONLY,
+                    'symedit.form.widget.basic.visibility.exclude_only' => WidgetInterface::EXCLUDE_ONLY,
                 ],
             ])
             ->add(
-                $builder->create('assoc', 'textarea', [
+                $builder->create('assoc', TextareaType::class, [
                     'label' => 'symedit.form.widget.basic.associations',
                     'required' => false,
                     'auto_initialize' => false,
@@ -74,7 +78,7 @@ class WidgetType extends AbstractType
 
         // Add custom template override
         $builder
-            ->add('template', 'text', [
+            ->add('template', TextType::class, [
                 'required' => true,
                 'help_block' => 'symedit.form.widget.options.template.help',
                 'constraints' => [
@@ -92,7 +96,7 @@ class WidgetType extends AbstractType
         $this->buildOptionsForm($builder, $options, $builder->getData());
     }
 
-    public function getName()
+    public function getBlockPrefix()
     {
         return 'symedit_widget';
     }

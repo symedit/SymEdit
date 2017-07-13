@@ -12,7 +12,13 @@
 namespace SymEdit\Bundle\BlogBundle\Form\Type;
 
 use SymEdit\Bundle\BlogBundle\Model\PostInterface;
+use SymEdit\Bundle\UserBundle\Form\Type\UserChooseType;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 
 class PostType extends AbstractType
@@ -27,23 +33,23 @@ class PostType extends AbstractType
     public function buildBasicForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('title', 'text', [
+            ->add('title', TextType::class, [
                 'label' => 'symedit.form.post.title',
             ])
-            ->add('author', 'symedit_user_choose', [
+            ->add('author', UserChooseType::class, [
                 'admin' => true,
                 'choice_label' => 'profile.fullname',
                 'label' => 'symedit.form.post.author',
             ])
-            ->add('status', 'choice', [
+            ->add('status', ChoiceType::class, [
                 'choices' => [
-                    PostInterface::DRAFT => 'symedit.form.post.status.choices.draft',
-                    PostInterface::PUBLISHED => 'symedit.form.post.status.choices.published',
-                    PostInterface::SCHEDULED => 'symedit.form.post.status.choices.scheduled',
+                    'symedit.form.post.status.choices.draft' => PostInterface::DRAFT,
+                    'symedit.form.post.status.choices.published' => PostInterface::PUBLISHED,
+                    'symedit.form.post.status.choices.scheduled' => PostInterface::SCHEDULED,
                 ],
                 'label' => 'symedit.form.post.status.label',
             ])
-            ->add('publishedAt', 'datetime', [
+            ->add('publishedAt', DateTimeType::class, [
                 'label' => 'symedit.form.post.published_at.label',
                 'help_block' => 'symedit.form.post.published_at.help',
                 'widget' => 'single_text',
@@ -52,7 +58,7 @@ class PostType extends AbstractType
                     'class' => 'datetimepicker',
                 ],
             ])
-            ->add('categories', 'entity', [
+            ->add('categories', EntityType::class, [
                 'choice_label' => 'title',
                 'class' => $this->categoryClass,
                 'multiple' => true,
@@ -65,7 +71,7 @@ class PostType extends AbstractType
     public function buildSummaryForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('summary', 'textarea', [
+            ->add('summary', TextareaType::class, [
                 'label_render' => false,
                 'attr' => [
                     'class' => 'wysiwyg-editor',
@@ -80,7 +86,7 @@ class PostType extends AbstractType
     public function buildContentForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('content', 'textarea', [
+            ->add('content', TextareaType::class, [
                 'label_render' => false,
                 'attr' => [
                     'class' => 'wysiwyg-editor',
@@ -99,7 +105,7 @@ class PostType extends AbstractType
         $this->buildContentForm($builder, $options);
     }
 
-    public function getName()
+    public function getBlockPrefix()
     {
         return 'symedit_post';
     }

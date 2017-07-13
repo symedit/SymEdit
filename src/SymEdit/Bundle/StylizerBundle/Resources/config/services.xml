@@ -68,7 +68,9 @@
         <!-- Stylizer Form Type -->
         <service id="symedit_stylizer.form.styles" class="%symedit_stylizer.form.styles.class%">
             <argument type="service" id="symedit_stylizer.style_manager" />
-            <tag name="form.type" alias="symedit_stylizer" />
+            <argument>%symedit_stylizer.form_mappings%</argument>
+
+            <tag name="form.type" />
         </service>
 
         <!-- Style Manager -->
@@ -103,6 +105,11 @@
         <!-- Version Manager -->
         <service id="symedit_stylizer.version_manager" class="%symedit_stylizer.dumper.version_manage.class%">
             <argument>%kernel.cache_dir%/symedit_stylizer</argument>
+        </service>
+
+        <!-- Version Strategy -->
+        <service id="symedit_stylizer.asset_version_strategy" class="SymEdit\Bundle\StylizerBundle\VersionStrategy\StylizerVersionStrategy">
+            <argument type="service" id="symedit_stylizer.version_manager" />
         </service>
     </services>
 </container>

@@ -1,7 +1,7 @@
 SymEdit\Bundle\CoreBundle\Model\Page:
     constraints:
-        - Callback:
-            methods: [isNameValid, isParentValid]
+        - Callback: isNameValid
+        - Callback: isParentValid
     properties:
         title:
             - NotBlank:

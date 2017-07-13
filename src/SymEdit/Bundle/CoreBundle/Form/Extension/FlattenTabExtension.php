@@ -11,7 +11,9 @@
 
 namespace SymEdit\Bundle\CoreBundle\Form\Extension;
 
+use Mopa\Bundle\BootstrapBundle\Form\Type\TabType;
 use Symfony\Component\Form\AbstractTypeExtension;
+use Symfony\Component\Form\Extension\Core\Type\FormType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -47,7 +49,7 @@ class FlattenTabExtension extends AbstractTypeExtension
 
             // Build Tab
             if ($buildTabs || $forceTab) {
-                $parent = $builder->create($name, 'tab', $tabOptions);
+                $parent = $builder->create($name, TabType::class, $tabOptions);
                 $builder->add($parent);
 
             // Just add it to the main form
@@ -79,6 +81,6 @@ class FlattenTabExtension extends AbstractTypeExtension
 
     public function getExtendedType()
     {
-        return 'form';
+        return FormType::class;
     }
 }

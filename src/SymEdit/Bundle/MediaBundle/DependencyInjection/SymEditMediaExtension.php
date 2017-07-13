@@ -57,10 +57,8 @@ class SymEditMediaExtension extends SymEditResourceExtension implements PrependE
          * Twig Extension
          */
         $container->prependExtensionConfig('twig', [
-            'form' => [
-                'resources' => [
-                    'SymEditMediaBundle:Form:fields.html.twig',
-                ],
+            'form_themes' => [
+                'SymEditMediaBundle:Form:fields.html.twig',
             ],
         ]);
 
