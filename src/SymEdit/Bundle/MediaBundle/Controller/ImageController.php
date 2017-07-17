@@ -36,12 +36,6 @@ class ImageController extends MediaController
 
     protected function getThumbnail($path, $size = 'symedit_64x64')
     {
-        $this->container->get('liip_imagine.controller')->filterAction(
-            $this->getRequest(),
-            $path,
-            $size
-        );
-
         $cacheManager = $this->container->get('liip_imagine.cache.manager');
 
         return $cacheManager->getBrowserPath($path, $size);
