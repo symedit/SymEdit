@@ -12,6 +12,8 @@
 namespace SymEdit\Bundle\UserBundle\Form\EventListener;
 
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
+use Symfony\Component\Form\Extension\Core\Type\PasswordType;
+use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
 use Symfony\Component\Form\FormEvent;
 use Symfony\Component\Form\FormEvents;
 
@@ -31,9 +33,9 @@ class UserTypeSubscriber implements EventSubscriberInterface
 
         $basic = $form->get('basic');
 
-        $basic->add('plainPassword', 'repeated', [
+        $basic->add('plainPassword', RepeatedType::class, [
             'required' => ($data === null || $data->getId() === null),
-            'type' => 'password',
+            'type' => PasswordType::class,
             'options' => ['translation_domain' => 'FOSUserBundle'],
             'first_options' => ['label' => 'form.password'],
             'second_options' => ['label' => 'form.password_confirmation'],

@@ -49,7 +49,7 @@ class UserType extends AbstractType
 
     public function getParent()
     {
-        return 'symedit_admin_profile';
+        return AdminProfileType::class;
     }
 
     public function getBlockPrefix()

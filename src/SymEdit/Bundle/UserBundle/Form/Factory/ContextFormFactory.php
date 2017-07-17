@@ -18,18 +18,22 @@ use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInt
 
 class ContextFormFactory implements FactoryInterface
 {
-    protected $factory;
-    protected $context;
+    private $factory;
+    private $context;
+    private $userProfileFQCN;
+    private $adminProfileFQCN;
 
-    public function __construct(FormFactoryInterface $factory, TokenStorageInterface $context)
+    public function __construct(FormFactoryInterface $factory, TokenStorageInterface $context, $userProfileFQCN, $adminProfileFQCN)
     {
         $this->factory = $factory;
         $this->context = $context;
+        $this->userProfileFQCN = $userProfileFQCN;
+        $this->adminProfileFQCN = $adminProfileFQCN;
     }
 
     public function createForm()
     {
-        $type = sprintf('symedit_%s_profile', $this->getUser()->isAdmin() ? 'admin' : 'user');
+        $type = $this->getUser()->isAdmin() ? $this->adminProfileFQCN : $this->userProfileFQCN;
 
         return $this->factory->createNamed('symedit_profile', $type);
     }

@@ -32,7 +32,7 @@ class SymEditUserExtension extends SymEditResourceExtension implements PrependEx
     {
         $config = $this->processConfiguration($this->getConfiguration($config, $container), $config);
         $loader = new XmlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
-        
+
         // Load Resources
         $this->registerResources('symedit', $config['driver'], $config['resources'], $container);
 
@@ -57,6 +57,10 @@ class SymEditUserExtension extends SymEditResourceExtension implements PrependEx
 
         // Set Registration Form Class
         $container->setParameter('symedit.form.type.registration.class', $config['registration']['class']);
+
+        // Set Profile Form Classes
+        $container->setParameter('symedit.form.type.user_profile.class', $config['resources']['profile']['classes']['form']);
+        $container->setParameter('symedit.form.type.admin_profile.class', $config['resources']['admin_profile']['classes']['form']);
     }
 
     public function prepend(ContainerBuilder $container)

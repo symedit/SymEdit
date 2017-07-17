@@ -12,6 +12,8 @@
 namespace SymEdit\Bundle\UserBundle\Form\Type;
 
 use FOS\UserBundle\Form\Type\ProfileFormType as BaseType;
+use Mopa\Bundle\BootstrapBundle\Form\Type\TabType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 
 /**
@@ -29,11 +31,11 @@ class UserProfileType extends BaseType
         parent::buildUserForm($builder, $options);
 
         $builder
-            ->add('firstName', 'text', [
+            ->add('firstName', TextType::class, [
                 'label' => 'First Name',
                 'property_path' => 'profile.firstName',
             ])
-            ->add('lastName', 'text', [
+            ->add('lastName', TextType::class, [
                 'label' => 'Last Name',
                 'required' => false,
                 'property_path' => 'profile.lastName',
@@ -44,7 +46,7 @@ class UserProfileType extends BaseType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         // Basic Tab
-        $basic = $builder->create('basic', 'tab', [
+        $basic = $builder->create('basic', TabType::class, [
             'inherit_data' => true,
             'label' => 'Basic',
         ]);

@@ -11,7 +11,13 @@
 
 namespace SymEdit\Bundle\UserBundle\Form\Type;
 
+use Mopa\Bundle\BootstrapBundle\Form\Type\TabType;
+use SymEdit\Bundle\CoreBundle\Form\Type\RoleType;
+use SymEdit\Bundle\MediaBundle\Form\Type\ImageChooseType;
 use SymEdit\Bundle\UserBundle\Form\Type\UserProfileType as BaseType;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
+use Symfony\Component\Form\Extension\Core\Type\UrlType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -22,7 +28,7 @@ class AdminProfileType extends BaseType
         parent::buildBasicForm($builder, $options);
 
         $builder
-            ->add('display', 'checkbox', [
+            ->add('display', CheckboxType::class, [
                 'label' => 'Display',
                 'required' => false,
                 'property_path' => 'profile.display',
@@ -34,31 +40,31 @@ class AdminProfileType extends BaseType
     protected function buildSocialForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('facebook', 'url', [
+            ->add('facebook', UrlType::class, [
                 'label' => 'Facebook',
                 'attr' => [
                     'placeholder' => 'http://facebook.com',
                 ],
             ])
-            ->add('twitter', 'url', [
+            ->add('twitter', UrlType::class, [
                 'label' => 'Twitter',
                 'attr' => [
                     'placeholder' => 'http://twitter.com',
                 ],
             ])
-            ->add('youtube', 'url', [
+            ->add('youtube', UrlType::class, [
                 'label' => 'YouTube',
                 'attr' => [
                     'placeholder' => 'http://youtube.com',
                 ],
             ])
-            ->add('google_plus', 'url', [
+            ->add('google_plus', UrlType::class, [
                 'label' => 'Google+',
                 'attr' => [
                     'placeholder' => 'http://plus.google.com',
                 ],
             ])
-            ->add('linkedin', 'url', [
+            ->add('linkedin', UrlType::class, [
                 'label' => 'LinkedIn',
                 'attr' => [
                     'placeholder' => 'http://linkedin.com',
@@ -70,7 +76,7 @@ class AdminProfileType extends BaseType
     protected function buildSummaryForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('summary', 'textarea', [
+            ->add('summary', TextareaType::class, [
                 'required' => false,
                 'label_render' => false,
                 'attr' => [
@@ -86,7 +92,7 @@ class AdminProfileType extends BaseType
     protected function buildBiographyForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('biography', 'textarea', [
+            ->add('biography', TextareaType::class, [
                 'required' => false,
                 'label_render' => false,
                 'attr' => [
@@ -102,7 +108,7 @@ class AdminProfileType extends BaseType
     protected function buildImageForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('image', 'symedit_image_choose', [
+            ->add('image', ImageChooseType::class, [
                 'required' => false,
                 'property_path' => 'profile.image',
             ])
@@ -112,14 +118,14 @@ class AdminProfileType extends BaseType
     protected function buildRolesForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('roles', 'symedit_role')
+            ->add('roles', RoleType::class)
         ;
     }
 
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         // Create basic tab
-        $basic = $builder->create('basic', 'tab', [
+        $basic = $builder->create('basic', TabType::class, [
             'inherit_data' => true,
             'label' => 'Basic',
         ]);
@@ -127,7 +133,7 @@ class AdminProfileType extends BaseType
         $this->buildBasicForm($basic, $options);
 
         // Create social tab
-        $social = $builder->create('social', 'tab', [
+        $social = $builder->create('social', TabType::class, [
             'label' => 'Social',
             'required' => false,
             'property_path' => 'profile.social',
@@ -136,7 +142,7 @@ class AdminProfileType extends BaseType
         $this->buildSocialForm($social, $options);
 
         // Create summary tab
-        $summary = $builder->create('summary', 'tab', [
+        $summary = $builder->create('summary', TabType::class, [
             'label' => 'Summary',
             'inherit_data' => true,
             'horizontal' => false,
@@ -148,7 +154,7 @@ class AdminProfileType extends BaseType
         $this->buildSummaryForm($summary, $options);
 
         // Create biography tab
-        $biography = $builder->create('biography', 'tab', [
+        $biography = $builder->create('biography', TabType::class, [
             'label' => 'Biography',
             'inherit_data' => true,
             'horizontal' => false,
@@ -160,7 +166,7 @@ class AdminProfileType extends BaseType
         $this->buildBiographyForm($biography, $options);
 
         // Create image tab
-        $image = $builder->create('image', 'tab', [
+        $image = $builder->create('image', TabType::class, [
             'label' => 'Image',
             'inherit_data' => true,
         ]);
@@ -168,7 +174,7 @@ class AdminProfileType extends BaseType
         $this->buildImageForm($image, $options);
 
         // Create roles tab
-        $roles = $builder->create('roles', 'tab', [
+        $roles = $builder->create('roles', TabType::class, [
             'label' => 'Roles',
             'inherit_data' => true,
         ]);
@@ -191,7 +197,7 @@ class AdminProfileType extends BaseType
     public function configureOptions(OptionsResolver $resolver)
     {
         parent::configureOptions($resolver);
-        
+
         $resolver->setDefault('tabs_class', 'nav nav-stacked');
     }
 

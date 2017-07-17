@@ -39,6 +39,8 @@
         <service id="symedit_user.form.factory.context" class="SymEdit\Bundle\UserBundle\Form\Factory\ContextFormFactory">
             <argument type="service" id="form.factory" />
             <argument type="service" id="security.token_storage" />
+            <argument>%symedit.form.type.user_profile.class%</argument>
+            <argument>%symedit.form.type.admin_profile.class%</argument>
         </service>
     </services>
 </container>
