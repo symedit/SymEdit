@@ -12,6 +12,7 @@
 namespace SymEdit\Bundle\StylizerBundle\Command;
 
 use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
+use Symfony\Component\Console\Helper\Table;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
@@ -27,15 +28,15 @@ class DebugCommand extends ContainerAwareCommand
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        $table = $this->getHelper('table');
-        $styles = $this->getContainer()->get('symedit_stylizer.styles');
-
+        $table = new Table($output);
         $table->setHeaders(['Name', 'Value']);
+
+        $styles = $this->getContainer()->get('symedit_stylizer.styles');
 
         foreach ($styles->getVariables() as $name => $value) {
             $table->addRow([$name, $value]);
         }
 
-        $table->render($output);
+        $table->render();
     }
 }

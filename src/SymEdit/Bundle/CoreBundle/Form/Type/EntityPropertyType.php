@@ -13,7 +13,6 @@ namespace SymEdit\Bundle\CoreBundle\Form\Type;
 
 use Doctrine\Bundle\DoctrineBundle\Registry;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\ChoiceList\ArrayChoiceList;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\OptionsResolver\Options;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -40,7 +39,7 @@ class EntityPropertyType extends AbstractType
         $resolver->setDefaults([
             'property_value' => null,
             'choices' => function (Options $options) {
-                return $choices = $this->doctrine->getManager()->getRepository($options['class'])->findAll();
+                return $this->doctrine->getManager()->getRepository($options['class'])->findAll();
             }
         ]);
 
