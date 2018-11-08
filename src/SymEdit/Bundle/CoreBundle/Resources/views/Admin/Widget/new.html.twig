@@ -1,0 +1,10 @@
+{% extends '@SymEdit/Admin/tabbed.html.twig' %}
+
+{% block title %}Widget &raquo; New{% endblock %}
+
+{% block form_actions %}
+<button class="btn btn-primary" type="submit">
+    {{ icon('plus') }}
+    {{ 'symedit.form.widget.actions.create'|trans }}
+</button>
+{% endblock %}

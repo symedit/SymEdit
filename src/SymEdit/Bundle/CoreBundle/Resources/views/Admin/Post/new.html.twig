@@ -1,0 +1,10 @@
+{% extends '@SymEdit/Admin/tabbed.html.twig' %}
+
+{% block title %}Blog &raquo; Create a new blog post{% endblock %}
+
+{% block form_actions %}
+<button class="btn btn-primary" type="submit">
+    {{ icon('plus') }}
+    {{ 'symedit.form.post.actions.create'|trans }}
+</button>
+{% endblock %}

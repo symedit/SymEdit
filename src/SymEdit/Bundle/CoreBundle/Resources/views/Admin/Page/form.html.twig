@@ -1,0 +1,69 @@
+{% block tabs %}
+    <div class="ui tabular menu attached top">
+        <a class="item active" data-tab="basic">
+            Basic
+        </a>
+
+        <a class="item" data-tab="template">
+            Template
+        </a>
+
+        <a class="item" data-tab="seo">
+            SEO
+        </a>
+
+        <a class="item" data-tab="summary">
+            Summary
+        </a>
+
+        <a class="item" data-tab="content">
+            Content
+        </a>
+
+        <div class="right menu">
+            <a class="item" data-tab="display">
+                Display
+            </a>
+
+            <a class="item" data-tab="advanced">
+                Advanced
+            </a>
+        </div>
+    </div>
+{% endblock %}
+
+{% block content %}
+    <div class="ui tab active" data-tab="basic">
+        {{ form_row(form.title) }}
+        {{ form_row(form.name) }}
+        {{ form_row(form.parent) }}
+        {{ form_row(form.tagline) }}
+        {{ form_row(form.display) }}
+        {{ form_row(form.image) }}
+    </div>
+
+    <div class="ui tab" data-tab="template">
+        {{ form_row(form.template) }}
+    </div>
+
+    <div class="ui tab" data-tab="seo">
+        {% include '@SymEdit/Admin/Seo/form.html.twig' with {form: form.seo} %}
+        {{ form_row(form.crawl) }}
+    </div>
+
+    <div class="ui tab" data-tab="summary">
+        {{ form_widget(form.summary) }}
+    </div>
+
+    <div class="ui tab" data-tab="content">
+        {{ form_widget(form.content) }}
+    </div>
+
+    <div class="ui tab" data-tab="display">
+        {{ form_widget(form.displayOptions) }}
+    </div>
+
+    <div class="ui tab" data-tab="advanced">
+        {{ form_rest(form) }}
+    </div>
+{% endblock %}

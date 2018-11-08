@@ -1,0 +1,40 @@
+{% macro button(route, label, additional) %}
+
+{% endmacro %}
+
+{% macro add_button(route, label, icon) %}
+<a class="ui button labeled icon small primary" href="{{ path(route) }}">
+    <i class="{{ icon|default('plus') }} icon"></i>
+    {{ label|trans }}
+</a>
+{% endmacro %}
+
+{% macro save_button(label, icon) %}
+<button id="main-crud-submit" class="ui button labeled icon small primary" type="submit">
+    <i class="{{ icon|default('save') }} icon"></i>
+    {{ label|trans }}
+</a>
+{% endmacro %}
+
+{% macro delete_button(id, label, class) %}
+<button data-target="#{{ id }}" data-message="{{ 'admin.resource.confirm_delete'|trans }}" data-toggle="form-forward" class="ui button labeled icon small negative" type="button">
+    <i class="trash icon"></i>
+    {{ label|trans }}
+</button>
+{% endmacro %}
+
+{% macro delete_form(id, path) %}
+<form id="{{ id }}" method="post" class="form-hidden" action="{{ path }}">
+    <input type="hidden" name="_method" value="DELETE">
+    <input type="hidden" name="confirmed" value="1">
+</form>
+{% endmacro %}
+
+{% macro patch(url, message, icon, button) %}
+<form action="{{ url }}" method="post" novalidate>
+    <input type="hidden" name="_method" value="PATCH">
+    <button class="btn btn-{{ button|default('success') }}" type="submit">
+        {{ icon ? icon(icon) : '' }} <span>{{ message }}</span>
+    </button>
+</form>
+{% endmacro %}

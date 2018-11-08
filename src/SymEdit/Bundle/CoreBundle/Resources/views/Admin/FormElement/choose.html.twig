@@ -1,0 +1,23 @@
+{% extends '@SymEdit/Admin/layout.html.twig' %}
+
+{% block title %}Form Builder &raquo; Add New Element{% endblock %}
+
+{% block actions %}
+    <a class="btn btn-info" href="{{ path('admin_form_show', { id: formId }) }}">
+        Back To Form
+    </a>
+{% endblock %}
+
+{% block content %}
+    <h3>Choose Type</h3>
+
+    <ul>
+        {% for type in types %}
+            <li>
+                <a href="{{ path('admin_form_element_create', { formId: formId, type: type }) }}">
+                    {{ type|trans({}, 'SymEditFormBuilder') }}
+                </a>
+            </li>
+        {% endfor %}
+    </ul>
+{% endblock %}

@@ -1,0 +1,27 @@
+{% extends '@SymEdit/Admin/tabbed.html.twig' %}
+{% import '@SymEdit/Admin/UI/macro.html.twig' as UI %}
+
+{% block title %}Blog &raquo; {{ post.title|default('(No Title)') }} &raquo; Edit{% endblock %}
+
+{% block form_actions %}
+    {{ UI.save_button('symedit.form.post.actions.save') }}
+    {{ UI.delete_button('post_delete', 'symedit.form.post.actions.delete') }}
+
+    {% if route_exists('blog_preview') %}
+    <a target="_blank" class="btn btn-info" href="{{ path('blog_preview', { slug: post.slug }) }}">
+        {{ icon('search') }}
+        {{ 'symedit.form.post.actions.preview'|trans }}
+    </a>
+    {% else %}
+    <a class="btn btn-info disabled" href="#" title="{{ 'symedit.form.post.actions.no_preview.help' }}">{{ 'symedit.form.post.actions.no_preview.label'|trans }}</a>
+    {% endif %}
+
+    <a href="{{ path('admin_post_history', {'id': post.id}) }}" class="btn btn-warning">
+        {{ icon('history') }}
+        {{ 'symedit.history.view'|trans }}
+    </a>
+{% endblock %}
+
+{% block extra %}
+    {{ UI.delete_form('post_delete', path('admin_post_delete', {'id': post.id})) }}
+{% endblock %}

@@ -1,0 +1,84 @@
+<div class="modal-dialog">
+    <div class="modal-content">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <ul class="nav nav-pills">
+                <li role="presentation" class="active">
+                    <a href="#symedit-media-choose-tab" data-toggle="tab">
+                        Choose File
+                    </a>
+                </li>
+
+                <li role="presentation">
+                    <a href="#symedit-media-upload-tab" data-toggle="tab">
+                        Upload File
+                    </a>
+                </li>
+            </ul>
+
+        </div>
+
+        <div class="modal-body">
+            <div class="tab-content">
+                <div role="tabpanel" class="tab-pane active" id="symedit-media-choose-tab">
+                    <div class="row">
+                        <form>
+                            <table class="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <td width="30"></td>
+                                        <td>Name</td>
+                                        <td>Size</td>
+                                    </tr>
+                                </thead>
+
+                                <tbody>
+                                    {% for file in files %}
+                                        {% set labelId = 'symedit-file-choose-' ~ loop.index0 %}
+                                        <tr>
+                                            <td>
+                                                <input id="{{ labelId }}" data-preview="{{ file.webPath }}" type="radio" value="{{ file.id }}" name="symedit-media-choose" />
+                                            </td>
+
+                                            <td>
+                                                <label for="{{ labelId }}">
+                                                    {{ file.path }}
+                                                </label>
+                                            </td>
+
+                                            <td>
+                                                {{ file | symedit_media_size }}
+                                            </td>
+                                        </tr>
+                                    {% else %}
+                                        <tr>
+                                            <td colspan="3">No Files</td>
+                                        </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </form>
+                    </div>
+                </div>
+
+                <div role="tabpanel" class="tab-pane" id="symedit-media-upload-tab">
+                    <form class="dropzone" id="symedit-media-dropzone" action="{{ path('admin_file_quick_upload') }}">
+                        <div id="symedit-media-preview" class="hidden"></div>
+                        <div class="fallback">
+                            <input type="file" name="file">
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal-footer">
+            <button type="button" class="btn btn-default btn-sm pull-left" data-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-warning btn-sm" data-toggle="remove">Remove File</button>
+            <button type="button" class="btn btn-primary btn-sm" data-toggle="choose">
+                {{ icon('save') }}
+                Choose File
+            </button>
+        </div>
+    </div>
+</div>

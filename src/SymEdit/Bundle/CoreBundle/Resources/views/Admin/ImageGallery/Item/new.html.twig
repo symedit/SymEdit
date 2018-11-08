@@ -1,0 +1,18 @@
+{% extends '@SymEdit/Admin/tabbed.html.twig' %}
+
+{% block title %}Gallery Item &raquo; New{% endblock %}
+
+{% block tabs %}
+{{ form_tabs(form) }}
+{% endblock %}
+
+{% block tab_content %}
+{{ form_widget(form) }}
+{% endblock %}
+
+{% block form_actions %}
+<button class="btn btn-primary" type="submit">
+    {{ icon('plus') }}
+    Create Item
+</button>
+{% endblock %}

@@ -1,0 +1,31 @@
+{% extends '@SymEdit/Admin/base.html.twig' %}
+
+{% macro tree(node) %}
+  {% if node.children|length > 0 %}
+  <ul>
+      {% for child in node.children %}
+          <li>
+              <a href="{{ path('admin_category_update', {id:child.id}) }}">
+                  {{ icon('tag') }} {{ child.title }}
+              </a>
+              {{ _self.tree( child ) }}
+          </li>
+      {% endfor %}
+  </ul>
+  {% endif %}
+{% endmacro %}
+
+{% block title %}Blog &raquo; Categories &raquo; List{% endblock %}
+
+{% block actions %}
+    <a class="btn btn-primary" href="{{ path('admin_category_create') }}">
+        {{ icon('plus') }}
+        {{ 'symedit.form.category.actions.new'|trans }}
+    </a>
+{% endblock %}
+
+{% block content %}
+<div class="tree">
+     {{ _self.tree(categories) }}
+</div>
+{% endblock %}

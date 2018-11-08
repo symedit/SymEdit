@@ -1,0 +1,27 @@
+{% extends '@SymEdit/Admin/base.html.twig' %}
+
+{% block title %}Image Galleries &raquo; List{% endblock %}
+
+{% block actions %}
+    <a class="btn btn-primary" href="{{ path('admin_image_gallery_create') }}">
+        {{ icon('plus') }}
+        Create New Gallery
+    </a>
+{% endblock %}
+
+{% block content %}
+    {% for gallery in image_galleries %}
+    <div>
+        <h4>
+            {{ gallery.title }}
+            <a class="btn btn-xs btn-primary" href="{{ path('admin_image_gallery_update', { id: gallery.id }) }}">Edit</a>
+        </h4>
+
+        {% for item in gallery.items|slice(0,6) %}
+        <img src="{{ item.image | imagine_filter('symedit_96x96') }}">
+        {% endfor %}
+    </div>
+    {% else %}
+        <h4>You currently have no galleries, click "Create New Gallery" above to make one!</h4>
+    {% endfor %}
+{% endblock %}

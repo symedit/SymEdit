@@ -1,0 +1,14 @@
+{% extends '@SymEdit/Admin/tabbed.html.twig' %}
+
+{% block scripts %}
+    {{- parent() -}}
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCxfHRcTp9nMbnZXXQpRkptAnDNhAOE_dc&libraries=places"></script>
+    <script>
+        $(function() {
+            new google.maps.places.Autocomplete(
+                document.getElementById('symedit_event_location_address'),
+                { types: ['geocode', 'establishment'] }
+            );
+        });
+</script>
+{% endblock %}

@@ -1,0 +1,50 @@
+{% extends '@SymEdit/Admin/base.html.twig' %}
+{% import '@SymEdit/Admin/UI/macro.html.twig' as UI %}
+
+{% block title %}Images &raquo; List{% endblock %}
+
+{% set columns = 6 %}
+
+{% block actions %}
+    {{ UI.add_button('admin_image_create', 'symedit.form.image.actions.new', 'upload') }}
+{% endblock %}
+
+{% block content %}
+    <div class="ui five cards stackable" id="images">
+        {% for image in images %}
+            <div class="ui card">
+                <div class="image">
+                    <a class="symedit-gallery-thumbnail" href="{{ path('admin_image_update', {id:image.id}) }}">
+                        <img src="{{ image | imagine_filter('gallery_thumbnail') }}">
+                    </a>
+                </div>
+
+                <div class="content">
+                    <a class="ui tiny header">
+                        {{ image.path }}
+                    </a>
+
+                    {% set metadata = image.metadata %}
+                    <div class="meta">
+                        {% if metadata.width is defined and metadata.height is defined %}
+                            <span class="dimensions">
+                                {{ metadata.width }} x {{ metadata.height }}
+                            </span>
+                        {% endif %}
+
+                        {% if metadata.size is defined %}
+                            <span class="size">
+                                ({{ image|symedit_media_size }})
+                            </span>
+                        {% endif %}
+                    </div>
+                </div>
+
+                <a class="ui bottom attached button tiny" href="{{ path('admin_image_update', {id:image.id}) }}">
+                    <i class="pencil icon"></i>
+                    Edit
+                </a>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}

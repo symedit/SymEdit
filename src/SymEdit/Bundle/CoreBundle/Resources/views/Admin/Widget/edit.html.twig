@@ -1,0 +1,17 @@
+{% extends '@SymEdit/Admin/tabbed.html.twig' %}
+{% import '@SymEdit/Admin/UI/macro.html.twig' as macro %}
+
+{% block title %}Widgets &raquo; {{ widget.title }} &raquo; Edit{% endblock %}
+
+{% block form_actions %}
+<button class="btn btn-primary" type="submit">
+    {{ icon('save') }}
+    {{ 'symedit.form.widget.actions.save'|trans }}
+</button>
+
+{{ macro.delete_button('widget_delete', 'symedit.form.widget.actions.delete') }}
+{% endblock %}
+
+{% block extra %}
+{{ macro.delete_form('widget_delete', path('admin_widget_delete', {'id':widget.id})) }}
+{% endblock %}

@@ -1,0 +1,63 @@
+{% extends '@SymEdit/Admin/tabbed.html.twig' %}
+{% import '@SymEdit/Admin/UI/macro.html.twig' as UI %}
+
+{% block title %}Showing Widgets{% endblock %}
+
+{% block form_actions %}
+    {{ UI.add_button('admin_widget_choose', 'symedit.form.widget.actions.new') }}
+{% endblock %}
+
+{% block tabs %}
+<div class="ui top attached tabular menu">
+    {% for area in areas %}
+        <a class="item{% if loop.first %} active{% endif %}" data-tab="area-{{ area.area }}">
+            {{ area.area|capitalize }}
+        </a>
+    {% endfor %}
+</div>
+{% endblock %}
+
+
+{% block content %}
+    {% for area in areas %}
+        <div class="ui bottom attached tab{% if loop.first %} active{% endif %}" data-tab="area-{{ area.area }}">
+            <h4>{{ area.description }}</h4>
+
+            <table class="ui celled table" id="widgets-{{ area.area }}">
+                <thead>
+                    <tr>
+                        <th>Title</th>
+                        <th>Name</th>
+                        <th>Type</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+
+                <tbody class="widget-area-sortable" data-toggle="sortable" data-url="{{ path('admin_widget_reorder') }}">
+                    {% for widget in area.widgets %}
+                        <tr class="draggable" data-id="{{ widget.id }}">
+                            <td>
+                                <a href="{{ path('admin_widget_update', {id:widget.id}) }}">
+                                    {{ widget.title|default('[No Title]') }}
+                                </a>
+                            </td>
+
+                            <td>
+                                {{ widget.name }}
+                            </td>
+
+                            <td>
+                                {{ widget.strategyName|trans({}, 'widget') }}
+                            </td>
+
+                            <td>
+                                <a class="ui button small" href="{{ path('admin_widget_update', {id:widget.id}) }}">Edit</a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+
+                </tbody>
+            </table>
+        </div>
+    {% endfor %}
+{% endblock %}

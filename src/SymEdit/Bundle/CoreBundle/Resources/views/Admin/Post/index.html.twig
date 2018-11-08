@@ -1,0 +1,45 @@
+{% extends '@SymEdit/Admin/base.html.twig' %}
+{% import '@SymEdit/Admin/UI/macro.html.twig' as UI %}
+
+{% block title %}Blog &raquo; List{% endblock %}
+
+{% block actions %}
+    {{ UI.add_button('admin_post_create', 'symedit.form.post.actions.new') }}
+{% endblock %}
+
+{% block content %}
+    {{ sylius_grid_render(resources, '@SyliusUi/Grid/_default.html.twig') }}
+
+<table class="ui table celled">
+    <thead>
+        <tr>
+            <th width="40"></th>
+            <th>Title</th>
+            <th>Created</th>
+            <th>Published</th>
+            <th>Categories</th>
+            <th width="60">Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+    {% for post in posts %}
+            <tr>
+                <td>{{ icon(post.published ? 'eye' : 'eye-slash') }}</td>
+                <td><a href="{{ path('admin_post_update', { 'id': post.id }) }}">{{ post.title }}</a></td>
+                <td>{{ post.createdAt|date('F j, Y') }}</td>
+                <td>{{ post.published ? post.publishedAt|date('F j, Y') : 'Not Published' }}</td>
+                <td>
+                    {% for category in post.categories %}
+                        <span class="label label-info">{{ category.title }}</span>
+                    {% endfor %}
+                </td>
+                <td>
+                    <a class="ui button tiny" href="{{ path('admin_post_update', { 'id': post.id }) }}">
+                        Edit
+                    </a>
+                </td>
+            </tr>
+    {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
