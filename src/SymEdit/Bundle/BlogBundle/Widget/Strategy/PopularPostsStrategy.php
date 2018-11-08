@@ -68,9 +68,4 @@ class PopularPostsStrategy extends AbstractWidgetStrategy
     {
         return 'blog_popular_posts';
     }
-
-    public function getDescription()
-    {
-        return 'blog.popular_posts';
-    }
 }

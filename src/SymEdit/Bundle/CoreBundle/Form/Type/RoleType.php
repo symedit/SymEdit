@@ -35,7 +35,7 @@ class RoleType extends AbstractType
 
         foreach ($roles as $role) {
             if ($this->auth->isGranted($role->getRole())) {
-                $choices[$role->getRole()] = $role->getDescription();
+                $choices[$role->getDescription()] = $role->getRole();
             }
         }
 

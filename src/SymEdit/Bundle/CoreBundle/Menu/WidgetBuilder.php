@@ -19,10 +19,11 @@ class WidgetBuilder implements MenuBuilderInterface
     public function buildMenu(MenuInterface $menu, array $options)
     {
         $structure = $menu->getRootNode()->getChild('structure');
-        $widgetExtras = ['is_granted' => 'ROLE_ADMIN_WIDGET'];
 
-        $structure->addChild('Widgets', ['dropdown-header' => true, 'extras' => $widgetExtras]);
-        $structure->addChild('New Widget', ['route' => 'admin_widget_choose', 'icon' => 'edit', 'extras' => $widgetExtras]);
-        $structure->addChild('List Widgets', ['route' => 'admin_widget', 'icon' => 'tasks', 'extras' => $widgetExtras]);
+        $structure->addChild('Widgets', [
+            'route' => 'admin_widget', 
+            'icon' => 'tasks',
+            'extras' => ['is_granted' => 'ROLE_ADMIN_WIDGET']
+        ]);
     }
 }

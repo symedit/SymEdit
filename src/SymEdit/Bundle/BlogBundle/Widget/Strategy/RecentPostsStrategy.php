@@ -56,9 +56,4 @@ class RecentPostsStrategy extends AbstractPostStrategy
     {
         return 'blog_recent_posts';
     }
-
-    public function getDescription()
-    {
-        return 'blog.recent_posts';
-    }
 }

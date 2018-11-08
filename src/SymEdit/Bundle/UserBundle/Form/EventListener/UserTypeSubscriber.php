@@ -31,9 +31,7 @@ class UserTypeSubscriber implements EventSubscriberInterface
         $data = $event->getData();
         $form = $event->getForm();
 
-        $basic = $form->get('basic');
-
-        $basic->add('plainPassword', RepeatedType::class, [
+        $form->add('plainPassword', RepeatedType::class, [
             'required' => ($data === null || $data->getId() === null),
             'type' => PasswordType::class,
             'options' => ['translation_domain' => 'FOSUserBundle'],

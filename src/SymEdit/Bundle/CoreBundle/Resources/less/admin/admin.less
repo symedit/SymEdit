@@ -5,21 +5,6 @@
 @import "layout.less";
 @import "theme.less";
 
-@media (max-width: 979px){
-    .navbar-fixed-top {
-        margin-bottom: 0;
-        position: relative;
-        z-index: 1000;
-    }
-}
-
-@media (min-width: 1200px){
-    .container {
-        max-width: 1400px;
-    }
-}
-
-
 //
 // General
 //
@@ -43,13 +28,6 @@ h1, h2, h3, h4, h5, h6 {
     }
 }
 
-.container-fluid {
-    &.container-nopad {
-        padding-left: 0;
-        padding-right: 0;
-    }
-}
-
 img {
     max-width: 100%;
 }
@@ -57,6 +35,18 @@ img {
 #header {
     z-index: 2100;
     position: relative;
+}
+
+#brand {
+    color: #fff;
+    font-size: 18px;
+    padding: 18px .92857143em;
+    float: left;
+    margin-right: 100px;
+
+    a {
+        color: #fff;
+    }
 }
 
 #global {
@@ -251,7 +241,7 @@ img {
     }
 }
 
-@sidebar_offset:    @menu_icon_width + 20px;
+@sidebar_offset:    @menu_icon_width + 150px;
 
 #content {
     padding-top: 30px;
@@ -301,7 +291,6 @@ img {
     }
 
     .form-buttons {
-        float: left;
         padding-bottom: 6px;
 
         .btn {
@@ -314,6 +303,7 @@ img {
 .background-well {
     background-color: white;
     padding: 30px 20px;
+    border-left: 1px solid #d4d4d5;
 }
 
     // Remove top margins on h tags if it's first

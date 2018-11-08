@@ -50,9 +50,4 @@ class HtmlStrategy extends AbstractWidgetStrategy
     {
         return 'html';
     }
-
-    public function getDescription()
-    {
-        return 'widget.html';
-    }
 }

@@ -1,3 +1,8 @@
+jQuery(function($){
+   $('#main-crud-submit').click(function(){
+       $('#main-crud-button').click();
+   }) ;
+});
 
 var Isometriks = (function(){
     redactor_options = {

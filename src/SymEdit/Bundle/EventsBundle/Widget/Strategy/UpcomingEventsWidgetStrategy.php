@@ -62,11 +62,6 @@ class UpcomingEventsWidgetStrategy extends AbstractWidgetStrategy
         ]);
     }
 
-    public function getDescription()
-    {
-        return 'events.upcoming_events';
-    }
-
     public function getName()
     {
         return 'upcoming_events';

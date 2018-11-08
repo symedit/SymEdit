@@ -67,16 +67,14 @@ class FormBuilderStrategy extends AbstractWidgetStrategy
         ]);
     }
 
+    /**
+     * Should always be private due to CSRF.
+     */
     public function getCacheOptions(WidgetInterface $widget)
     {
         return [
             'private' => true,
         ];
-    }
-
-    public function getDescription()
-    {
-        return 'form_builder.form_builder';
     }
 
     public function getName()

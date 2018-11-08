@@ -30,30 +30,11 @@
             <argument>%symedit.model.category.class%</argument>
             <tag name="form.type" alias="symedit_post" />
         </service>
-
-        <!-- Category Form Type Override -->
-        <service id="symedit.form.type.category" class="SymEdit\Bundle\CoreBundle\Form\Type\CategoryType">
-            <argument>%symedit.model.category.class%</argument>
-            <tag name="form.type" alias="symedit_category" />
-        </service>
-
-        <!-- Widget Form Type Override -->
-        <service id="symedit.form.type.widget" class="SymEdit\Bundle\CoreBundle\Form\Type\WidgetType">
-            <argument type="service" id="symedit_widget.widget.registry" />
-            <argument>%symedit.model.widget_area.class%</argument>
-
-            <tag name="form.type" alias="symedit_widget" />
-        </service>
-
+        
         <!-- Entity Property Form -->
         <service id="symedit.form.type.entity_property" class="SymEdit\Bundle\CoreBundle\Form\Type\EntityPropertyType">
             <argument type="service" id="doctrine" />
             <tag name="form.type" alias="entity_property" />
-        </service>
-
-        <!-- Flatten Tab Extension -->
-        <service id="symedit.form.extension.flatten_tab" class="SymEdit\Bundle\CoreBundle\Form\Extension\FlattenTabExtension">
-            <tag name="form.type_extension" extended-type="Symfony\Component\Form\Extension\Core\Type\FormType" />
         </service>
     </services>
 

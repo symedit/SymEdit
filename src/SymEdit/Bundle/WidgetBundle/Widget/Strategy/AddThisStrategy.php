@@ -48,9 +48,4 @@ class AddThisStrategy extends AbstractWidgetStrategy
     {
         return 'addthis';
     }
-
-    public function getDescription()
-    {
-        return 'widget.addthis';
-    }
 }

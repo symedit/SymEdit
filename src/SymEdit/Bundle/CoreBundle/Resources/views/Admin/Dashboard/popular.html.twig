@@ -1,47 +1,41 @@
-{% set span = span|default('col-sm-3') %}
+<div class="ui segment">
+    <div class="ui list">
+        <div class="header">Most Popular Pages</div>
 
-<div class="row">
-    <div class="{{ span }}">
-        <div class="panel panel-default">
-            <div class="panel-heading">
-                <h3 class="panel-title">
-                    {{ icon('file') }}
-                    Most Popular Pages
-                </h3>
-            </div>
-            <div class="list-group">
-            {% for pageData in symedit_analytics_report('popular_pages', { max: 5 }) %}
-                {% set page = pageData.object %}
-                <a target="_blank" class="list-group-item" href="{{ path(page.route) }}">
-                    <span class="badge">{{ pageData.visits|number_format }}</span>
+        {% for pageData in symedit_analytics_report('popular_pages', { max: 5 }) %}
+            {% set page = pageData.object %}
+            <div class="item">
+                <a target="_blank" href="{{ path(page.route) }}">
+                    <div class="ui label">
+                        {{ pageData.visits|number_format }}
+                    </div>
+
                     {{ page.title }}
                 </a>
-            {% endfor %}
             </div>
-        </div>
+        {% endfor %}
     </div>
+</div>
 
-    {% if route_exists('blog_slug_view') %}
-    <div class="{{ span }}">
-        <div class="panel panel-default">
-            <div class="panel-heading">
-                <h3 class="panel-title">
-                    {{ icon('pencil') }}
-                    Most Popular Posts
-                </h3>
-            </div>
-            <div class="list-group">
-            {% for postData in symedit_analytics_report('popular_posts', { max: 5 }) %}
-                {% set post = postData.object %}
-                <a target="_blank" class="list-group-item" href="{{ path('blog_slug_view', {slug: post.slug}) }}">
-                    <span class="badge">{{ postData.visits|number_format }}</span>
+{% if route_exists('blog_slug_view') %}
+<div class="ui segment">
+    <div class="ui list">
+        <div class="header">Most Popular Posts</div>
+
+        {% for postData in symedit_analytics_report('popular_posts', { max: 5 }) %}
+            {% set post = postData.object %}
+            <div class="item">
+                <a target="_blank" href="{{ path('blog_slug_view', {slug: post.slug}) }}">
+                    <div class="ui label">
+                        {{ postData.visits|number_format }}
+                    </div>
+
                     {{ post.title }}
                 </a>
-            {% else %}
-                <div class="list-group-item">No Posts to Display</div>
-            {% endfor %}
             </div>
-        </div>
+        {% else %}
+            <div class="list-group-item">No Posts to Display</div>
+        {% endfor %}
     </div>
-    {% endif %}
 </div>
+{% endif %}

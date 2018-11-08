@@ -11,10 +11,10 @@
 
 namespace SymEdit\Bundle\BlogBundle\Model;
 
-use Sylius\Component\Resource\Model\ResourceInterface;
+use SymEdit\Bundle\ResourceBundle\Model\ContentInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 
-interface PostInterface extends ResourceInterface
+interface PostInterface extends ContentInterface
 {
     const DRAFT = 0;
     const PUBLISHED = 1;

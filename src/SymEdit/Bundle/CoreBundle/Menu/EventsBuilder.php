@@ -19,10 +19,11 @@ class EventsBuilder implements MenuBuilderInterface
     public function buildMenu(MenuInterface $menu, array $options)
     {
         $content = $menu->getRootNode()->getChild('content');
-        $eventExtras = ['is_granted' => 'ROLE_ADMIN_EVENT'];
 
-        $content->addChild('Events', ['dropdown-header' => true, 'extras' => $eventExtras]);
-        $content->addChild('View Events', ['route' => 'admin_event', 'icon' => 'list', 'extras' => $eventExtras]);
-        $content->addChild('Add Event', ['route' => 'admin_event_create', 'icon' => 'plus', 'extras' => $eventExtras]);
+        $content->addChild('Events', [
+            'route' => 'admin_event',
+            'icon' => 'list',
+            'extras' => ['is_granted' => 'ROLE_ADMIN_EVENT']
+        ]);
     }
 }

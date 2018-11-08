@@ -4,14 +4,8 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
 
-    <parameters>
-        <parameter key="symedit.menu.provider.tree.class">SymEdit\Bundle\CoreBundle\Menu\Provider\TreeMenuProvider</parameter>
-        <parameter key="symedit.menu.voter.page.class">SymEdit\Bundle\CoreBundle\Menu\Voter\PageVoter</parameter>
-        <parameter key="symedit.menu_builder.class">SymEdit\Bundle\CoreBundle\Menu\Builder</parameter>
-    </parameters>
-
     <services>
-        <service id="symedit.menu.provider.tree" class="%symedit.menu.provider.tree.class%">
+        <service id="symedit.menu.provider.tree" class="SymEdit\Bundle\CoreBundle\Menu\Provider\TreeMenuProvider">
             <argument type="service" id="knp_menu.factory" />
             <argument type="service" id="symedit.repository.page" />
             <argument type="service" id="event_dispatcher" />
@@ -19,18 +13,8 @@
             <tag name="knp_menu.provider" />
         </service>
 
-        <service id="symedit.menu.voter.page" class="%symedit.menu.voter.page.class%">
+        <service id="symedit.menu.voter.page" class="SymEdit\Bundle\CoreBundle\Menu\Voter\PageVoter">
             <tag name="knp_menu.voter" request="true" />
-        </service>
-
-        <service id="symedit.menu_builder" class="%symedit.menu_builder.class%">
-            <argument type="service" id="service_container" />
-        </service>
-
-        <service id="symedit.menu.admin_user" class="Knp\Menu\Menuitem">
-            <factory service="symedit.menu_builder" method="adminUserMenu" />
-
-            <tag name="knp_menu.menu" alias="symedit_admin_user" />
         </service>
     </services>
 </container>

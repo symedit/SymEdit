@@ -3,48 +3,48 @@
 {% block title %}Welcome, {{ app.user.profile.firstname }}{% endblock %}
 
 {% block content %}
-<div class="row">
-    <div class="col-md-8">
-        <div class="row dashboard">
-            <div class="col-md-4">
-                <h3><i class="circle icon-cog"></i> Setup</h3>
+<div class="ui grid">
+    <div class="ten wide column">
+        <div class="ui three column grid dashboard">
+            <div class="column">
+                <h3>Setup</h3>
 
-                <ul>
-                    {% if is_granted('ROLE_ADMIN_SETTING') %}<li><a href="{{ path('admin_settings') }}">Change Site Settings</a></li>{% endif %}
-                    {% if is_granted('ROLE_ADMIN_USER')    %}<li><a href="{{ path('admin_user') }}">Create Users</a></li>{% endif %}
-                    {% if is_granted('ROLE_ADMIN_BLOG')    %}<li><a href="{{ path('admin_category') }}">Create Blog Categories</a></li>{% endif %}
-                </ul>
+                <div class="ui vertical menu">
+                    {% if is_granted('ROLE_ADMIN_SETTING') %}<a class="item" href="{{ path('admin_settings') }}">Change Site Settings</a>{% endif %}
+                    {% if is_granted('ROLE_ADMIN_USER')    %}<a class="item" href="{{ path('admin_user') }}">Create Users</a>{% endif %}
+                    {% if is_granted('ROLE_ADMIN_BLOG')    %}<a class="item" href="{{ path('admin_category') }}">Create Blog Categories</a>{% endif %}
+                </div>
             </div>
 
-            <div class="col-md-4">
-                <h3><i class="circle icon-pencil"></i> Content Updates</h3>
+            <div class="column">
+                <h3>Content Updates</h3>
 
-                <ul>
-                    {% if is_granted('ROLE_ADMIN_BLOG')  %}<li><a href="{{ path('admin_post_create') }}">Post New Blog</a></li>{% endif %}
-                    {% if is_granted('ROLE_ADMIN_PAGE')  %}<li><a href="{{ path('admin_page') }}">Edit Page Content</a></li>{% endif %}
-                    {% if is_granted('ROLE_ADMIN_IMAGE') %}<li><a href="{{ path('admin_image') }}">Upload / Edit Images</a></li>{% endif %}
+                <div class="ui vertical menu">
+                    {% if is_granted('ROLE_ADMIN_BLOG')  %}<a class="item" href="{{ path('admin_post_create') }}">Post New Blog</a>{% endif %}
+                    {% if is_granted('ROLE_ADMIN_PAGE')  %}<a class="item" href="{{ path('admin_page') }}">Edit Page Content</a>{% endif %}
+                    {% if is_granted('ROLE_ADMIN_IMAGE') %}<a class="item" href="{{ path('admin_image') }}">Upload / Edit Images</a>{% endif %}
                     {% if is_granted('ROLE_ADMIN_WIDGET') %}
-                    <li><a href="{{ path('admin_widget') }}">View / Rearrange Widgets</a></li>
-                    <li><a href="{{ path('admin_widget_choose') }}">Create New Widget</a></li>
+                    <a class="item" href="{{ path('admin_widget') }}">View / Rearrange Widgets</a>
+                    <a class="item" href="{{ path('admin_widget_choose') }}">Create New Widget</a>
                     {% endif %}
-                </ul>
+                </div>
             </div>
 
-            <div class="col-md-4">
-                <h3><i class="circle icon-check"></i> {{ app.user.profile.firstname }}'s Actions</h3>
+            <div class="column">
+                <h3>{{ app.user.profile.firstname }}'s Actions</h3>
 
-                <ul>
-                    <li><a href="{{ path('fos_user_profile_show') }}">View Profile</a></li>
-                    <li><a href="{{ path('fos_user_profile_edit') }}">Edit Profile</a></li>
-                    <li><a href="{{ path('fos_user_change_password') }}">Change Password</a></li>
-                    <li><a href="{{ path('fos_user_security_logout') }}">Logout</a></li>
-                </ul>
+                <div class="ui vertical menu">
+                    <a class="item" href="{{ path('fos_user_profile_show') }}">View Profile</a>
+                    <a class="item" href="{{ path('fos_user_profile_edit') }}">Edit Profile</a>
+                    <a class="item" href="{{ path('fos_user_change_password') }}">Change Password</a>
+                    <a class="item" href="{{ path('fos_user_security_logout') }}">Logout</a>
+                </div>
             </div>
         </div>
     </div>
 
-    <div class="col-md-4">
-        {% include '@SymEdit/Admin/Dashboard/popular.html.twig' with {span: 'col-sm-12'} %}
+    <div class="six wide column">
+        {% include '@SymEdit/Admin/Dashboard/popular.html.twig' %}
     </div>
 </div>
 {% endblock %}

@@ -8,7 +8,7 @@
         {% stylesheets
             'bundles/symedit/redactor/redactor.css'
             'bundles/symedit/css/font-awesome.min.css'
-            '@SymEditBundle/Resources/less/admin/bootstrap/bootstrap.less'
+            'bundles/symedit/semantic-ui/semantic.min.css'
             '@SymEditBundle/Resources/less/admin/admin.less'
             '@symedit_stylesheets'
             filter="cssrewrite" %}
@@ -19,20 +19,37 @@
     </head>
     <body>
         <div id="header">
-            <div id="global">
-                <div class="hidden-sm hidden-xs">
-                    {{ mopa_bootstrap_menu('symedit_admin_user') }}
-                </div>
-
+            <div id="global" class="ui menu">
                 {% block brand %}
-                    {% include '@SymEdit/Admin/brand.html.twig' %}
+                    <div id="brand" class="item">
+                        {% include '@SymEdit/Admin/brand.html.twig' %}
+                    </div>
                 {% endblock %}
 
-                <div id="title">
-                    {{ mopa_bootstrap_icon('chevron-right') }}
-                    &nbsp;
+                <div id="title" class="ui small header item">
                     {{ block('title') }}
                 </div>
+
+                {% if app.user %}
+                <div class="ui inverted right menu">
+                    <div class="ui dropdown item">
+                        {{ app.user.profile.fullname }}
+                        <i class="dropdown icon"></i>
+
+                        <div class="menu">
+                            <a href="{{ path('fos_user_profile_show') }}" class="ui item">
+                                {{ 'symedit.security.profile'|trans }}
+                            </a>
+                            <a href="{{ path('fos_user_change_password') }}" class="ui item">
+                                {{ 'symedit.security.change_password'|trans }}
+                            </a>
+                            <a href="{{ path('fos_user_security_logout') }}" class="ui item">
+                                {{ 'symedit.security.logout'|trans }}
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                {% endif %}
             </div>
         </div>
 
@@ -41,24 +58,29 @@
         {% endblock %}
 
         {% block navbar %}
-            <div id="menu">
-                {{ mopa_bootstrap_menu('symedit_admin', { 'template': '@SymEdit/Admin/menu.html.twig' }) }}
+            <div id="sidebar" class="">
+                <div id="menu" class="ui vertical menu sticky inverted">
+                    {{ knp_menu_render('symedit_admin', { 'template': '@SymEdit/Admin/Menu/sidebar.html.twig' }) }}
+                </div>
             </div>
         {% endblock %}
 
         {% block content_container %}
             <div id="content">
-                <div class="container-fluid">
-                    <div class="clearfix">
-                        <div class="form-buttons">
-                            {% block form_actions %}{% endblock %}
-                            {% block actions %}{% endblock %}
-                        </div>
-                    </div>
+                <div class="form-buttons ui item small buttons">
+                    {% block form_actions %}{% endblock %}
+                </div>
 
-                    <div class="background-well">
-                        {% block content %}{% endblock %}
-                    </div>
+                <div class="form-buttons ui item tiny buttons">
+                    {% block actions %}{% endblock %}
+                </div>
+
+                <div class="ui clearing divider"></div>
+
+                {% block tabs %}{% endblock %}
+
+                <div class="background-well ui bottom attached">
+                    {% block content %}{% endblock %}
                 </div>
             </div>
         {% endblock %}
@@ -69,6 +91,7 @@
             'bundles/symedit/redactor/redactor.min.js'
             'bundles/symedit/redactor/plugins/*.js'
             'bundles/symedit/js/snippets/*.js'
+            'bundles/symedit/semantic-ui/semantic.min.js'
             '@symedit_javascripts'
         %}
         <script src="{{ asset_url }}" type="text/javascript"></script>

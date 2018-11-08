@@ -12,10 +12,11 @@
 namespace SymEdit\Bundle\CoreBundle\Model;
 
 use SymEdit\Bundle\MediaBundle\Model\ImageInterface;
+use SymEdit\Bundle\ResourceBundle\Model\ContentInterface;
 use SymEdit\Bundle\SeoBundle\Model\SeoAbleInterface;
 use Symfony\Component\Validator\Context\ExecutionContextInterface;
 
-interface PageInterface extends SeoAbleInterface, \IteratorAggregate
+interface PageInterface extends SeoAbleInterface, ContentInterface, \IteratorAggregate
 {
     /**
      * @return mixed Unique ID for Page

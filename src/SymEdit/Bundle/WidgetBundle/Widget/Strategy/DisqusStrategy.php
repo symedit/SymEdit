@@ -50,9 +50,4 @@ class DisqusStrategy extends AbstractWidgetStrategy
     {
         return 'disqus';
     }
-
-    public function getDescription()
-    {
-        return 'widget.disqus';
-    }
 }

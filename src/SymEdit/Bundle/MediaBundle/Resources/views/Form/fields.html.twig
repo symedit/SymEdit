@@ -4,8 +4,8 @@
 {% endblock %}
 
 {% block symedit_image_widget %}
-<div class="row">
-    <div class="col-md-6">
+<div class="grid two columns">
+    <div class="columne">
         {% if form.name is defined %}
             {{ form_row(form.name) }}
         {% endif %}
@@ -23,7 +23,7 @@
           form.vars.show_image and
           form.vars.data is not null and
           form.vars.data.webpath is not empty %}
-    <div class="col-md-6">
+    <div class="column-6">
         <h5>Current Image</h5>
         <img class="img-thumbnail" src="{{ form.vars.data | imagine_filter('gallery') }}">
     </div>
@@ -32,18 +32,17 @@
 {% endblock %}
 
 {% block symedit_image_choose_widget %}
-<div class="symedit-media-choose row">
-    <div class="col-md-6">
-        <button type="button" data-toggle="symedit-media-choose" data-type="image" data-url="{{ path('admin_image_dialog') }}" class="btn btn-primary btn-sm">Choose Image</button>
-    </div>
-
+<div class="ui card fitted symedit-media-choose">
     {% if show_image %}
         {% set hasData = data is not null and data.webpath is not empty %}
-        <div class="col-md-6 symedit-media-container {{ hasData ? 'has-data' : 'no-data' }}">
-            <h5>Current Image</h5>
-            <img class="img-thumbnail symedit-media-image"{% if hasData %} src="{{ data | imagine_filter('gallery') }}"{% endif %}>
+        <div class="image symedit-media-container {{ hasData ? 'has-data' : 'no-data' }}">
+            <img class="symedit-media-image"{% if hasData %} src="{{ data | imagine_filter('square') }}"{% endif %}>
         </div>
     {% endif %}
+
+    <button type="button" data-toggle="symedit-media-choose" data-type="image" data-url="{{ path('admin_image_dialog') }}" class="ui bottom attached button">
+        Choose Image
+    </button>
 
     {{ block('hidden_widget') }}
 </div>

@@ -1,4 +1,9 @@
 {% extends '@SymEdit/Admin/base.html.twig' %}
+{% import '@SymEdit/Admin/UI/macro.html.twig' as UI %}
+
+{% block actions %}
+    {{ UI.add_button('admin_page_create', 'Create Page') }}
+{% endblock %}
 
 {% macro tree(node) %}
     {% if node.children|length > 0 %}

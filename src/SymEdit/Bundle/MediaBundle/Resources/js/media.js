@@ -23,14 +23,14 @@ jQuery(function($) {
             }
 
             // Setup dropzone
-            dropzone = new Dropzone('#symedit-media-dropzone', {
+            /*dropzone = new Dropzone('#symedit-media-dropzone', {
                 previewsContainer: '#symedit-media-preview'
             });
             dropzone.on('success', uploadMedia.bind({
                 type: type
-            }));
+            }));*/
 
-            $(this).modal();
+            $(this).modal('show');
         });
     });
 
@@ -43,7 +43,7 @@ jQuery(function($) {
            return $modal;
         }
 
-        $modal = $('<div class="modal fade" id="' + modalId + '" />');
+        $modal = $('<div class="ui modal" id="' + modalId + '" />');
         $('body').append($modal);
 
         // Setup events

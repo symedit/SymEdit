@@ -1,29 +1,31 @@
 {% extends '@SymEdit/Admin/tabbed.html.twig' %}
-{% import '@SymEdit/Admin/macro.html.twig' as macro %}
+{% import '@SymEdit/Admin/UI/macro.html.twig' as UI %}
+{% use '@SymEdit/Admin/Page/form.html.twig' %}
 
 {% block title %}Pages &raquo; {{ page.title }} &raquo; Edit{% endblock %}
 
+{% block actions %}
+    <a href="{{ path(page.route) }}" class="ui small labeled icon blue button">
+        <i class="world icon"></i>
+        {{ 'symedit.form.page.actions.view'|trans }}
+    </a>
+
+    <a href="{{ path('admin_page_history', {'id': page.id}) }}" class="ui small orange labeled icon button">
+        <i class="history icon"></i>
+        {{ 'symedit.history.view'|trans }}
+    </a>
+{% endblock %}
+
 {% block form_actions %}
-<button class="btn btn-primary" type="submit">
-    {{ icon('save') }}
-    {{ 'symedit.form.page.actions.save'|trans }}
-</button>
+    {{ UI.save_button('symedit.form.page.actions.save') }}
 
-{% if not page.homepage %}{{ macro.delete_button('page_delete', 'symedit.form.page.actions.delete') }}{% endif %}
-
-<a href="{{ path(page.route) }}" class="btn btn-info">
-    {{ icon('globe') }}
-    {{ 'symedit.form.page.actions.view'|trans }}
-</a>
-
-<a href="{{ path('admin_page_history', {'id': page.id}) }}" class="btn btn-warning">
-    {{ icon('history') }}
-    {{ 'symedit.history.view'|trans }}
-</a>
+    {% if not page.homepage %}
+        {{ UI.delete_button('page_delete', 'symedit.form.page.actions.delete') }}
+    {% endif %}
 {% endblock %}
 
 {% block extra %}
-{% if not page.homepage %}
-{{ macro.delete_form('page_delete', path('admin_page_delete', {id: page.id})) }}
-{% endif %}
+    {% if not page.homepage %}
+        {{ UI.delete_form('page_delete', path('admin_page_delete', {id: page.id})) }}
+    {% endif %}
 {% endblock %}

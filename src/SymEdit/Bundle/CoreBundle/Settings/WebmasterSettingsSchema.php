@@ -47,8 +47,8 @@ class WebmasterSettingsSchema implements SchemaInterface
             ->add('robots', ChoiceType::class, [
                 'label' => 'symedit.settings.webmaster.robots',
                 'choices' => [
-                    'deny' => 'Deny All',
-                    'allow' => 'Allow All',
+                    'Deny All' => 'deny',
+                    'Allow All' => 'allow',
                 ],
             ])
         ;

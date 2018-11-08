@@ -4,6 +4,7 @@ admin_post:
     defaults:
         _controller: symedit.controller.post:indexAction
         _sylius:
+            grid: post
             repository:
                 method: getCreatedAtPaginator
             template: "@SymEdit/Admin/Post/index.html.twig"

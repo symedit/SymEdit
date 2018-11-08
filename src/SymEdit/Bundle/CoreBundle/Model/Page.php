@@ -13,12 +13,11 @@ namespace SymEdit\Bundle\CoreBundle\Model;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
-use Sylius\Component\Resource\Model\ResourceInterface;
 use SymEdit\Bundle\CoreBundle\Iterator\RecursivePageIterator;
 use SymEdit\Bundle\MediaBundle\Model\ImageInterface;
 use Symfony\Component\Validator\Context\ExecutionContextInterface;
 
-class Page implements PageInterface, ResourceInterface
+class Page implements PageInterface
 {
     /**
      * @var int
@@ -772,5 +771,13 @@ class Page implements PageInterface, ResourceInterface
 
             $page = $parent;
         }
+    }
+
+    /**
+     * @TODO: Rename...
+     */
+    public function getSlug()
+    {
+        return $this->getName();
     }
 }

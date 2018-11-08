@@ -50,9 +50,4 @@ class LatestPostStrategy extends AbstractPostStrategy
     {
         return 'blog_latest_post';
     }
-
-    public function getDescription()
-    {
-        return 'blog.latest_post';
-    }
 }

@@ -1,31 +1,27 @@
 {% extends '@SymEdit/Admin/tabbed.html.twig' %}
+{% import '@SymEdit/Admin/UI/macro.html.twig' as UI %}
 
 {% block title %}Settings{% endblock %}
 
-{% block tabs %}
-<ul class="nav nav-tabs">
-{% for group in form.children if group|length > 0 %}
-<li{% if loop.first %} class="active"{% endif %}>
-    <a href="#setting-{{ group.vars.name }}" data-toggle="tab">{{ ('symedit.settings.tabs.' ~ group.vars.name)|trans }}</a>
-</li>
-{% endfor %}
-</ul>
+{% block form_actions %}
+    {{ UI.save_button('Update Settings') }}
 {% endblock %}
 
-{% block tab_content %}
-<div class="tab-content">
-{% for group in form.children if group|length > 0 %}
-    <div class="tab-pane{% if loop.first %} active{% endif %}" id="setting-{{ group.vars.name }}">
-        {{ form_widget(group) }}
-    </div>
-{% endfor %}
+{% block tabs %}
+<div class="ui top attached tabular menu">
+    {% for group in form.children if group|length > 0 %}
+    <a class="item{% if loop.first %} active{% endif %}" data-tab="setting-{{ group.vars.name }}">
+        {{ ('symedit.settings.tabs.' ~ group.vars.name)|trans }}
+    </a>
+    {% endfor %}
 </div>
 {% endblock %}
 
-
-{% block form_actions %}
-<button type="submit" class="btn btn-primary">
-    {{ icon('save') }}
-    Update Settings
-</button>
+{% block content %}
+    {% for group in form.children if group|length > 0 %}
+        <div class="ui bottom attached tab{% if loop.first %} active{% endif %}" data-tab="setting-{{ group.vars.name }}">
+            {{ form_widget(group) }}
+        </div>
+    {% endfor %}
 {% endblock %}
+

@@ -17,6 +17,7 @@ use SymEdit\Bundle\WidgetBundle\Widget\WidgetRegistry;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\FormType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -93,7 +94,13 @@ class WidgetType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $this->buildBasicForm($builder, $options);
-        $this->buildOptionsForm($builder, $options, $builder->getData());
+
+        // Build Options
+        $optionsBuilder = $builder->create('options', FormType::class);
+        $this->buildOptionsForm($optionsBuilder, $options, $builder->getData());
+
+        // Add options
+        $builder->add($optionsBuilder);
     }
 
     public function getBlockPrefix()

@@ -30,7 +30,7 @@ class PostType extends AbstractType
         $this->categoryClass = $categoryClass;
     }
 
-    public function buildBasicForm(FormBuilderInterface $builder, array $options)
+    public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
             ->add('title', TextType::class, [
@@ -65,12 +65,6 @@ class PostType extends AbstractType
                 'expanded' => true,
                 'label' => 'symedit.form.post.categories',
             ])
-        ;
-    }
-
-    public function buildSummaryForm(FormBuilderInterface $builder, array $options)
-    {
-        $builder
             ->add('summary', TextareaType::class, [
                 'label_render' => false,
                 'attr' => [
@@ -80,12 +74,6 @@ class PostType extends AbstractType
                 ],
                 'required' => false,
             ])
-        ;
-    }
-
-    public function buildContentForm(FormBuilderInterface $builder, array $options)
-    {
-        $builder
             ->add('content', TextareaType::class, [
                 'label_render' => false,
                 'attr' => [
@@ -96,13 +84,6 @@ class PostType extends AbstractType
                 'required' => false,
             ])
         ;
-    }
-
-    public function buildForm(FormBuilderInterface $builder, array $options)
-    {
-        $this->buildBasicForm($builder, $options);
-        $this->buildSummaryForm($builder, $options);
-        $this->buildContentForm($builder, $options);
     }
 
     public function getBlockPrefix()

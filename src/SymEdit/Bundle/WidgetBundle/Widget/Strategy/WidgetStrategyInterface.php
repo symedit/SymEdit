@@ -24,11 +24,6 @@ interface WidgetStrategyInterface
     public function getName();
 
     /**
-     * Get description of the widget.
-     */
-    public function getDescription();
-
-    /**
      * @param FormBuilderInterface $builder
      */
     public function buildForm(FormBuilderInterface $builder);

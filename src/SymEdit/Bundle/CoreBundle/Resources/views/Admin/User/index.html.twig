@@ -1,36 +1,40 @@
 {% extends '@SymEdit/Admin/base.html.twig' %}
+{% import '@SymEdit/Admin/UI/macro.html.twig' as UI %}
 
 {% block title %}Users &raquo; List{% endblock %}
 
 {% block actions %}
-    <a class="btn btn-primary" href="{{ path('admin_user_create') }}">
-        {{ icon('plus') }}
-        Create New User
-    </a>
+    {{ UI.add_button('admin_user_create', 'Create New User') }}
 {% endblock %}
 
 {% block content %}
 <h4>Listing Users</h4>
 
-<table class="table table-striped">
-    <tr>
-        <th>Username</th>
-        <th>Name</th>
-        <th width="120">Actions</th>
-    </tr>
+<table class="ui table celled">
+    <thead>
+        <tr>
+            <th>Username</th>
+            <th>Name</th>
+            <th width="120">Actions</th>
+        </tr>
+    </thead>
+    <tbody>
     {% for user in users %}
         <tr>
             <td>{{ icon('user') }} {{ user.username }}</td>
             <td>{{ user.profile.fullname }}</td>
             <td>
-                <a class="btn btn-success btn-sm" href="{{ path('admin_user_show', {id:user.id}) }}">Show</a>
-                <a class="btn btn-primary btn-sm" href="{{ path('admin_user_update', {id:user.id}) }}">Edit</a>
+                <div class="ui buttons">
+                    <a class="ui button tiny green" href="{{ path('admin_user_show', {id:user.id}) }}">Show</a>
+                    <a class="ui button tiny blue" href="{{ path('admin_user_update', {id:user.id}) }}">Edit</a>
+                </div>
             </td>
         </tr>
     {% endfor %}
+    </tbody>
 </table>
 
 <div>
-    {{ pagerfanta(users) }}
+    {{ pagerfanta(users, 'semantic_ui') }}
 </div>
 {% endblock %}

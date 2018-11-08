@@ -60,9 +60,4 @@ class BlogCategoriesStrategy extends AbstractWidgetStrategy
     {
         return 'blog_categories';
     }
-
-    public function getDescription()
-    {
-        return 'blog.blog_categories';
-    }
 }

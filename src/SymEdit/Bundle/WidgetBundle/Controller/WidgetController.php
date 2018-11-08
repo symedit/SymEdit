@@ -89,7 +89,6 @@ class WidgetController extends ResourceController
             ->setTemplate('@SymEdit/Admin/Widget/index.html.twig')
             ->setData([
                 'areas' => $areas,
-                'registry' => $this->getRegistry(),
             ]);
 
         return $this->viewHandler->handle($configuration, $view);

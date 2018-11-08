@@ -1,5 +1,4 @@
-blog:
-    recent_posts: Recent Posts
-    blog_categories: Blog Categories
-    latest_post: Latest Blog Post
-    popular_posts: Popular Posts
+blog_recent_posts: Recent Posts
+blog_categories: Blog Categories
+blog_latest_post: Latest Blog Post
+blog_popular_posts: Popular Posts

@@ -13,7 +13,6 @@ symedit_blog:
         category:
             classes:
                 model: SymEdit\Bundle\CoreBundle\Model\Category
-                form: SymEdit\Bundle\CoreBundle\Form\Type\CategoryType
 
 # SymEdit SEO
 symedit_seo:
@@ -69,10 +68,6 @@ symedit_widget:
         strategy: esi
     renderer:
         widget: symedit.widget.renderer.widget
-    resources:
-        widget:
-            classes:
-                form: SymEdit\Bundle\CoreBundle\Form\Type\WidgetType
 
 # Theme Configuration
 symedit_theme:

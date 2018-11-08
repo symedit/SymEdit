@@ -30,31 +30,21 @@ class AdminBuilder implements MenuBuilderInterface
         // Content
         $content = $rootNode->addChild('content', [
             'label' => 'Content',
-            'dropdown' => true,
-            'caret' => true,
             'icon' => 'pencil',
             'extras' => [
                 'remove_leaf' => true,
             ],
         ]);
 
-        $pageExtras = ['is_granted' => 'ROLE_ADMIN_PAGE'];
         $content->addChild('Pages', [
-            'dropdown-header' => true,
-            'extras' => [
-                'is_granted' => 'ROLE_ADMIN_PAGE',
-                'routes' => ['route' => 'admin_page_update'],
-            ],
+            'route' => 'admin_page',
+            'icon' => 'file',
+            'extras' => ['is_granted' => 'ROLE_ADMIN_PAGE']
         ]);
-
-        $content->addChild('New Page', ['route' => 'admin_page_create', 'icon' => 'edit', 'extras' => $pageExtras]);
-        $content->addChild('List Pages', ['route' => 'admin_page', 'icon' => 'file', 'extras' => $pageExtras]);
 
         // Media
         $rootNode->addChild('media', [
             'label' => 'Media',
-            'dropdown' => true,
-            'caret' => true,
             'icon' => 'image',
             'extras' => [
                 'remove_leaf' => true,
@@ -64,8 +54,6 @@ class AdminBuilder implements MenuBuilderInterface
         // Structure
         $rootNode->addChild('structure', [
             'label' => 'Structure',
-            'dropdown' => true,
-            'caret' => true,
             'icon' => 'tasks',
             'extras' => [
                 'remove_leaf' => true,
@@ -75,8 +63,6 @@ class AdminBuilder implements MenuBuilderInterface
         // Site
         $site = $rootNode->addChild('site', [
             'label' => 'Site',
-            'dropdown' => true,
-            'caret' => true,
             'icon' => 'cogs',
             'extras' => [
                 'remove_leaf' => true,

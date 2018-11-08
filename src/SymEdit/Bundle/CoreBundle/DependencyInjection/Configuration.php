@@ -14,10 +14,13 @@ namespace SymEdit\Bundle\CoreBundle\DependencyInjection;
 use Sylius\Component\Resource\Factory\Factory;
 use SymEdit\Bundle\CoreBundle\Controller\PageController;
 use SymEdit\Bundle\CoreBundle\Form\Type\PageType;
+use SymEdit\Bundle\CoreBundle\Model\Node;
+use SymEdit\Bundle\CoreBundle\Model\NodeInterface;
 use SymEdit\Bundle\CoreBundle\Model\Page;
 use SymEdit\Bundle\CoreBundle\Model\PageInterface;
 use SymEdit\Bundle\CoreBundle\Model\Role;
 use SymEdit\Bundle\CoreBundle\Model\RoleInterface;
+use SymEdit\Bundle\ResourceBundle\Controller\ResourceController;
 use Symfony\Component\Config\Definition\Builder\ArrayNodeDefinition;
 use Symfony\Component\Config\Definition\Builder\TreeBuilder;
 use Symfony\Component\Config\Definition\ConfigurationInterface;
@@ -87,6 +90,21 @@ class Configuration implements ConfigurationInterface
                 ->arrayNode('resources')
                     ->addDefaultsIfNotSet()
                     ->children()
+                        ->arrayNode('node')
+                            ->addDefaultsIfNotSet()
+                            ->children()
+                                ->arrayNode('classes')
+                                    ->addDefaultsIfNotSet()
+                                    ->children()
+                                        ->scalarNode('model')->defaultValue(Node::class)->end()
+                                        ->scalarNode('interface')->defaultValue(NodeInterface::class)->end()
+                                        ->scalarNode('controller')->defaultValue(ResourceController::class)->end()
+                                        ->scalarNode('repository')->end()
+                                        ->scalarNode('factory')->defaultValue(Factory::class)->end()
+                                    ->end()
+                                ->end()
+                            ->end()
+                        ->end()
 
                         ->arrayNode('page')
                             ->addDefaultsIfNotSet()
@@ -100,6 +118,12 @@ class Configuration implements ConfigurationInterface
                                         ->scalarNode('repository')->end()
                                         ->scalarNode('factory')->defaultValue(Factory::class)->end()
                                         ->scalarNode('form')->defaultValue(PageType::class)->cannotBeEmpty()->end()
+                                    ->end()
+                                ->end()
+                                ->arrayNode('tree')
+                                    ->addDefaultsIfNotSet()
+                                    ->children()
+                                        ->booleanNode('attached')->defaultTrue()->end()
                                     ->end()
                                 ->end()
                             ->end()

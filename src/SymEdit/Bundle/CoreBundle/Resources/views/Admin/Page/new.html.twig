@@ -1,10 +1,9 @@
 {% extends '@SymEdit/Admin/tabbed.html.twig' %}
+{% import '@SymEdit/Admin/UI/macro.html.twig' as UI %}
+{% use '@SymEdit/Admin/Page/form.html.twig' %}
 
 {% block title %}Create New Page{% endblock %}
 
 {% block form_actions %}
-<button class="btn btn-primary" type="submit">
-    {{ icon('plus') }}
-    Create Page
-</button>
+    {{ UI.save_button('Create Page') }}
 {% endblock %}

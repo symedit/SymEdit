@@ -39,6 +39,13 @@
             public="false">
             <tag name="symedit.expression_language_provider" />
         </service>
+
+        <service id="symedit.event_listener.node" class="SymEdit\Bundle\CoreBundle\Doctrine\ORM\NodeListener">
+            <argument type="service" id="sylius.resource_registry" />
+            <argument type="service" id="symedit.factory.node" />
+
+            <tag name="doctrine.event_listener" event="postPersist" />
+        </service>
     </services>
 
 </container>

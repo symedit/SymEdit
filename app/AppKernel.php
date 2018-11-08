@@ -49,6 +49,8 @@ class AppKernel extends Kernel
             new FOS\OAuthServerBundle\FOSOAuthServerBundle(),
             new Doctrine\Bundle\DoctrineCacheBundle\DoctrineCacheBundle(),
 
+            new Sylius\Bundle\GridBundle\SyliusGridBundle(),
+            new Sylius\Bundle\UiBundle\SyliusUiBundle(),
             new Sylius\Bundle\ResourceBundle\SyliusResourceBundle(),
             new winzou\Bundle\StateMachineBundle\winzouStateMachineBundle(),
             new JMS\SerializerBundle\JMSSerializerBundle($this),
@@ -87,7 +89,7 @@ class AppKernel extends Kernel
     {
         return dirname(__DIR__).'/var/logs';
     }
-    
+
     public function registerContainerConfiguration(LoaderInterface $loader)
     {
         $loader->load($this->getRootDir().'/config/config_'.$this->getEnvironment().'.yml');

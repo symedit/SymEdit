@@ -55,6 +55,14 @@ liip_imagine:
             filters:
                 upscale: { min: [96, 96] }
                 thumbnail: { size: [96, 96], mode: outbound }
+        square:
+            filters:
+                upscale: { min: [150, 150] }
+                thumbnail: { size: [150, 150], mode: outbound }
+        square_large:
+            filters:
+                upscale: { min: [300, 300] }
+                thumbnail: { size: [300, 300], mode: outbound }
 
 # User Configuration
 fos_user:
@@ -208,3 +216,31 @@ isometriks_json_ld_dumper:
                 url: "expr:context ? absolute_url(context.getWebPath()) : null"
                 width: "expr:context.getMetadata()['width'] ~ 'px'"
                 height: "expr:context.getMetadata()['height'] ~ 'px'"
+
+sylius_grid:
+    templates:
+        action:
+            update: "@SyliusUi/Grid/Action/update.html.twig"
+    grids:
+        post:
+            driver:
+                name: doctrine/orm
+                options:
+                    class: "%symedit.model.post.class%"
+            fields:
+                id:
+                    type: string
+                    label: ID
+                title:
+                    type: string
+                    label: Title
+                publishedAt:
+                    type: datetime
+                    label: Published At
+            actions:
+                item:
+                    update:
+                        type: update
+                        options:
+                            link:
+                                route: admin_post_update
