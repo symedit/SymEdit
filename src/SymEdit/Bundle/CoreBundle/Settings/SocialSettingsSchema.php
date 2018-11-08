@@ -47,6 +47,10 @@ class SocialSettingsSchema implements SchemaInterface
                 'required' => false,
                 'attr' => ['placeholder' => 'http://pinterest.com'],
             ])
+            ->add('yelp', null, [
+                'required' => false,
+                'attr' => ['placeholder' => 'https://yelp.com'],
+            ])
             ->add('instagram', null, [
                 'required' => false,
                 'attr' => ['placeholder' => 'http://instagram.com'],
@@ -68,6 +72,7 @@ class SocialSettingsSchema implements SchemaInterface
                 'google_plus' => null,
                 'linkedin' => null,
                 'pinterest' => null,
+                'yelp' => null,
                 'instagram' => null,
                 'houzz' => null,
             ])

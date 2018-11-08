@@ -20,6 +20,8 @@ blog_rss:
         _sylius:
             template: "@SymEdit/Blog/feed.xml.twig"
             paginate: false
+            repository:
+                method: findPublished
 
 blog_archive:
     path: /archive/{page}
@@ -29,6 +31,8 @@ blog_archive:
         _sylius:
             paginate: "expr:setting('blog.max_posts', 5)"
             template: "@SymEdit/Blog/index.html.twig"
+            repository:
+                method: getPublishedPaginator
             criteria:
                 status: 1
         _controller: symedit.controller.post:indexAction
